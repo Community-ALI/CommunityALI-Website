@@ -33,9 +33,9 @@ app.post("/application-create", function (req,res) { // FIXME change application
     });
   });
 
-// app.get("/", function (req, res) {
-//     res.sendFile(__dirname + "/index.html");
-// });
+app.get("/", function (req, res) {
+    res.sendFile(__dirname + "/index.html");
+});
 
 app.listen(3000, function(){
     console.log("Server is running on port 3000");
