@@ -4,7 +4,9 @@ const app = express();
 app.use(express.static("public"));
 
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', false);
 mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
+
 
 const applicationSchema = {
   
