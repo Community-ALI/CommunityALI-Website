@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Translating symbols; Adding compatibility; Proper displaying -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel = "stylesheet" type = "text/css" href = "services.css" >
+
+    <!-- FONTS AND ICONS FOR MAIN PAGE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>    
+
+    <title>Services Search Page</title>
+</head>
+
+<body>
+    <article>
+        <nav class="navigation-menu">
+            <ul class = "navigation-bar"> 
+                <li class="navigation-button"> <a class="navigation-text" href="index.html" > Home </a> </li>
+                <li class="navigation-button"> <a class="navigation-text" href="service-options.html" > Services </a> </li>
+                <li class="navigation-button"> <a class="navigation-text" href="https://www.mjc.edu/" > MJC </a> </li>
+                <li class="navigation-button"> <a class="navigation-text" id ="navigation-login" href="login.html" > Login </a> </li>
+                <!-- https://muhamamdmuaaz03.github.io/MJC-Service-Learning/ -->
+            </ul>
+
+            <div class = "navigation-hamburger">
+                <span class="navigation-line"> </span>
+                <span class="navigation-line"> </span>
+                <span class="navigation-line"> </span>
+            </div>
+        </nav>  
+
+        <div class="search-container">
+            <div action="" class="search-bar">
+                <!-- JS uses this class to find the text-->
+                <input type="text" placeholder="Search for a Service" autocomplete="off" name="search" class="input-for-search">
+                <button type="submit" class="search-picture-container">
+                    <img src ="search.png" class="search-picture">
+                </button> 
+            </div>
+        </div>
+
+        <div class ="results">
+            <div class = "result-container">
+                <h1 class = "result-title">title of service</h1>
+                <h5 class = "result-author">author name</h5>
+                <p class = "result-time">start time - end time</p>
+                <p class = "result-date">date of service</p>
+                <p class = "result-description">a description of the service. My descriptions are fairly short which may not be accruate.</p>
+            </div>
+        </div>
+
+        <section class="filter-container">
+            <span class="filter-header">
+                Filter By School
+            </span>
+
+            <div class="filter-content">
+            <form>
+                <ul class="filter-list">
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter1">
+                        <label for="filter1" class="filter-text">School of Agriculture</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter2">
+                        <label for="filter2" class="filter-text">School of Arts, Performance, & the Humanities</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter3">
+                        <label for="filter3" class="filter-text">School of Behavioral and Social Science</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter4">
+                        <label for="filter4" class="filter-text">School of Business and Computing</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter5">
+                        <label for="filter5" class="filter-text">School of Fitness and Health Professions</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter6">
+                        <label for="filter6" class="filter-text">School of Industry and Trades</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter7">
+                        <label for="filter7" class="filter-text">School of Language Arts and Education</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter8">
+                        <label for="filter8" class="filter-text">School of Public Safety</label>
+                    </li>
+
+                    <li class="filter-item">
+                        <input type="checkbox" class="filter-bubble" id="filter9">
+                        <label for="filter9" class="filter-text">School of Science and Mathematics</label>
+                    </li>
+                </ul>
+
+                <div class="filter-buttons">
+                        <input type="submit" class="filter-submit" value="Apply Filter" />
+                        <input type="reset" class="filter-reset" value="Reset" />
+                </div>
+            </form>
+            </div>
+
+        </section>        
+
+
+        <script src = "index.js"> </script>
+        <script src="services.js"></script>
+
+    </article>
+    
+</body>
+
+</html>

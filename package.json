@@ -1,0 +1,24 @@
+{
+  "name": "slw-01-21-23-updated-",
+  "version": "1.0.0",
+  "description": "SLW website",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-/issues"
+  },
+  "homepage": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.4",
+    "node": "^19.4.0"
+  }
+}
