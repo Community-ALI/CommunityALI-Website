@@ -148,7 +148,8 @@ body
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 20vh;
+    gap: 15vh;
+    max-height: 115vh;
 }
 
 #header-title
@@ -159,6 +160,8 @@ body
     text-align: center;
     line-height: 100px;
     text-shadow: 0px 2px 3px rgb(0 0 0 / 50%);
+    margin-left: 50px;
+    margin-right: 50px
 }
 
 
@@ -186,7 +189,6 @@ body
     padding : 10px 40px;
     transition : all 0.3s ease-in-out;
 
-    margin-bottom: 10vh;
 }
 
 #header-subtitle
