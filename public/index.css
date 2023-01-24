@@ -11,13 +11,13 @@
 body
 {
     background: linear-gradient(
-      #0096C9 65%, #00468D,
+      #0096C9 100%, 
     /* #0095BD 80%, */
       /*#2645bf 20% */
-      #00468D 35% /* #0096C9 */
+      #00468D 0% /* #0096C9 */
       );
 
-    background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 82%, #0096C9 82%, #0096C9 100%);
+    /*background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 82%, #0096C9 82%, #0096C9 100%); */
 
     width: 100%;
     height: 100%;
@@ -487,6 +487,7 @@ article
     margin: 0 auto;
     margin-bottom : 30px;
     flex : 0 0 auto;
+    max-width: 40%;
 
     border : 5px solid whitesmoke;
     border-radius: 20px;
@@ -632,7 +633,7 @@ article
 {
     body
     {
-        background: linear-gradient(#0096C9 0, #0096C9 72%, #00468D 72%, #00468D 95%, #0096C9 95%, #0096C9 100%);
+        /*background: linear-gradient(#0096C9 0, #0096C9 72%, #00468D 72%, #00468D 95%, #0096C9 95%, #0096C9 100%); */
 
     }
 
@@ -714,7 +715,7 @@ article
 {
     body
     {
-        background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 80%, #0096C9 80%, #0096C9 100%);
+        /*background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 80%, #0096C9 80%, #0096C9 100%); */
     }
 
     .description-container
@@ -1122,8 +1123,8 @@ article
 {
     #header-title
     {
-        top : 18%;
-        font-size : 32px;
+        top : 16%;
+        font-size : 31px;
         line-height: 50px;
     }
 
