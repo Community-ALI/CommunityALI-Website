@@ -362,6 +362,11 @@ input[type="reset"]
     margin-bottom : 10px;
 }
 
+.result-location
+{
+    margin-bottom: 10px;
+}
+
 @media all and (max-width : 1700px)
 {
     .filter-container
