@@ -1,5 +1,5 @@
 const selectElement = document.querySelector(".search-bar");
-// json data. Yes I had fun making it up
+// json data. 
 json_data = {
     "information":[
         {
