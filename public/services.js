@@ -7,17 +7,32 @@ json_data = {
             "author": "Host: Paola Alvarez",
             "startTime": "Time: To be determined",
             "date": "Date: To be determined",
-            "description": "Description: apiusdhfy8asdhghsadnjfkndsaiuhg7aeihsjkgbdsg"
+            "description": "Description: No description yet"
         },
         {
             "title": "Community Catalyst Team",
             "author": "Host: Adrean Cajigas",
             "startTime": "Time: 9am-12pm",
             "date": "Date: Every Friday",
-            "description": "Description: apiusdhfy8asdhghsadnjfkndsaiuhg7aeihsjkgbdsg"
+            "description": "Description: No description yet"
         }
     ]
 }
+
+const resultContainers = document.querySelectorAll('.result-container');
+resultContainers.forEach(function(resultContainer) {
+    if (resultContainer.id === 'CS'){
+    resultContainer.addEventListener('click', function() {
+        window.location.href = '/apply-for-service.html';
+    });
+    }
+    else{
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/apply-for-service-OUR-TEAM.html';
+    });
+    }
+});
+
 
 //wait for someone to edit the text in the search bar
 selectElement.addEventListener('change', (event) => {
@@ -58,6 +73,18 @@ selectElement.addEventListener('change', (event) => {
         result.appendChild(time)
         result.appendChild(date)
         result.appendChild(description)
+        // connect it to the apply page
+        if (service.title === 'Community Catalyst Team'){
+            result.addEventListener('click', function() {
+                window.location.href = '/apply-for-service-OUR-TEAM.html';
+            });
+        }
+        else{
+            result.addEventListener('click', function() {
+                window.location.href = '/apply-for-service.html';
+            });
+        }
+        
         //display this search result!
         results.appendChild(result)
     }
