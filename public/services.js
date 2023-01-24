@@ -7,7 +7,7 @@ json_data = {
             "author": "Host: Paola Alvarez",
             "startTime": "Time: To be determined",
             "date": "Date: To be determined",
-            "description": "Description: No description yet"
+            "description": "Description: The purpose of the Computer Science Club is to provide a community for students interested in computer science to connect, collaborate and learn from one another. With potential to gain hands-on experience with teachers, guest speakers, network with peers and go on a field trip."
         },
         {
             "title": "Community Catalyst Team",
