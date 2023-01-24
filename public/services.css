@@ -347,11 +347,19 @@ input[type="reset"]
     border-radius: 20px;
     max-width : 1000px;
     cursor : pointer;
+
+    transition: 300ms ease ;
+}
+
+.result-container:hover
+{
+    background-color: #001E60;
 }
 
 .result-title
 {
     color : #ecaa1e;
+    margin-bottom : 10px;
 }
 
 @media all and (max-width : 1700px)
