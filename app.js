@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
+//
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // connect to database
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
@@ -10,7 +14,7 @@ mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/applica
 
 // create format for entering applications
 const applicationSchema = {
-  
+    service: String,
     name: String,
     email: String,
     w_number: String
@@ -20,10 +24,12 @@ const applicationSchema = {
 const Application = mongoose.model("applications", applicationSchema);
 
 // fire when an application form is submitted
-app.post("/application-create", function (req,res) { // FIXME: change application-create to the name of the application form
+app.post("/apply-for-service", function (req,res) { // FIXME: change application-create to the name of the application form
     console.log('posting service');
     // create json data from form
+    console.log(req.body);
     const apply = new Application({
+      service: "CS club",
       name: req.body.name,
       email: req.body.email,
       w_number: req.body.w_number
@@ -33,7 +39,30 @@ app.post("/application-create", function (req,res) { // FIXME: change applicatio
       if (err) {
         console.log(err);
       } else {
-        res.send("Application sucessful!"); // FIXME: display a better sucess screen using html and css
+        console.log('nice');
+        res.sendFile(__dirname + "/public/success.html");
+      }
+    });
+  });
+
+  
+  app.post("/apply-for-service-OUR-TEAM", function (req,res) { // FIXME: change application-create to the name of the application form
+    console.log('posting service');
+    // create json data from form
+    console.log(req.body);
+    const apply = new Application({
+      service: "Community Catylist",
+      name: req.body.name,
+      email: req.body.email,
+      w_number: req.body.w_number
+    });
+    // save json data to the database
+    apply.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Great!');
+        res.sendFile(__dirname + "/public/success.html");
       }
     });
   });
