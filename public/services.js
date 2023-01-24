@@ -4,13 +4,18 @@ json_data = {
     "information":[
         {
             "title": "MJC Computer Science Club",
-            "author": "Paula",
-            "startTime": "7:45 AM",
-            "endTime": "8:30 AM",
-            "date": "08/30/2022",
-            "description": "Strike me down, and your journey twards the dark side will be complete!"
+            "author": "Host: Paola Alvarez",
+            "startTime": "Time: To be determined",
+            "date": "Date: To be determined",
+            "description": "Description: apiusdhfy8asdhghsadnjfkndsaiuhg7aeihsjkgbdsg"
+        },
+        {
+            "title": "Community Catalyst Team",
+            "author": "Host: Adrean Cajigas",
+            "startTime": "Time: 9am-12pm",
+            "date": "Date: Every Friday",
+            "description": "Description: apiusdhfy8asdhghsadnjfkndsaiuhg7aeihsjkgbdsg"
         }
-
     ]
 }
 
@@ -37,7 +42,7 @@ selectElement.addEventListener('change', (event) => {
         // add the correct text to each one
         title.textContent = service.title;
         author.textContent = service.author;
-        time.textContent = service.startTime + " - " + service.endTime;
+        time.textContent = service.startTime;
         date.textContent = service.date;
         description.textContent = service.description;
         // give each one a class I hope this is helpful for css and/ or JS later
