@@ -321,6 +321,7 @@ form
     form
     {
       width: 400px;
+      padding : 20px;
     }
 
     input[type="text"], input[type="email"] 
@@ -328,6 +329,11 @@ form
       width: 75%;
     }
 
+    #introduction-text
+    {
+      font-size: 14px;
+      line-height: 25px;
+    }
   }
 
   @media all and (max-width : 400px)
