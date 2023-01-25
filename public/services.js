@@ -14,7 +14,7 @@ json_data = {
             "author": "Host: Adrean Cajigas",
             "startTime": "Time: 9am-12pm",
             "date": "Date: Every Friday",
-            "description": "Description: No description yet"
+            "description": "Description : We are united under the concept of contextualized learning experiences to promote engagement for students at MJC. Together, we hope to serve as the stimulus to move the conversation around Service-Learning forward at MJC and in our community."
         }
     ]
 }
