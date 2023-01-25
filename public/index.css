@@ -829,6 +829,11 @@ iframe
         padding-right : 40px;
     }
 
+        .description-text:hover
+    {
+        background-color :#0096C9;
+    }
+
     .schools-box
     {
         transform:scale(.8);
@@ -857,15 +862,15 @@ iframe
         padding : 30px;
     }
 
+    .description-text:hover
+    {
+        background-color :#0096C9;
+    }
+
     .description-image
     {
         top : 10%;
         max-width: 50%;
-    }
-
-    .description-text:hover
-    {
-        padding : 40px;
     }
 
     .description-curve
@@ -1017,12 +1022,6 @@ iframe
     {
         font-size : 15px;
         line-height: 35px;
-    }
-
-    .description-text:hover
-    {
-        padding : 30px;
-        background-color : #0c1c8c;
     }
 
     iframe
@@ -1194,7 +1193,6 @@ iframe
     .description-text:hover
     {
         padding : 20px;
-        background-color : #0c1c8c;
     }
 
     .container
