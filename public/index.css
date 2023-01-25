@@ -487,10 +487,15 @@ article
     margin: 0 auto;
     margin-bottom : 30px;
     flex : 0 0 auto;
-    max-width: 40%;
 
-    border : 5px solid whitesmoke;
+    /* border : 5px solid whitesmoke; */
     border-radius: 20px;
+}
+
+iframe
+{
+    width: 650px;
+    height: 366px;
 }
 
 
@@ -709,10 +714,19 @@ article
         padding : 18px 25px;      
 
     }  
+
+    iframe
+    {
+        width: 550px;
+        height: 309px;
+        display:block;
+        margin: auto;
+    }
 }
 
 @media all and (max-width : 1240px)
 {
+
     body
     {
         /*background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 80%, #0096C9 80%, #0096C9 100%); */
@@ -865,6 +879,16 @@ article
     }
 }
 
+@media all and (max-width : 850px)
+{
+    iframe
+    {
+        width: 450px;
+        height: 253px;
+    }
+
+}
+
 @media all and (max-width : 780px)
 {
     .navigation-hamburger
@@ -981,6 +1005,7 @@ article
     {
         top : 9%;
         max-width : 60%;
+        height : 200px;
     }
 
     .description-text 
@@ -999,6 +1024,14 @@ article
         padding : 30px;
         background-color : #0c1c8c;
     }
+
+    iframe
+    {
+        width : 420px;
+        height : 236px;
+        display:block;
+        margin: auto;
+    }
 }
 
 @media all and (max-width : 560px)
@@ -1007,6 +1040,12 @@ article
     {
         padding-left : 30px;
         padding-right : 30px;
+    }
+
+    iframe
+    {
+        width : 400px;
+        height : 225px;
     }
 
     .schools-box
@@ -1020,13 +1059,14 @@ article
     {
         top : 9%;
         max-width : 80%;
+        height : 180px;
         right : 0%;
         left : 0%;
     }
 
     .description-text 
     {
-        margin-top: 28%;
+        margin-top: 30%;
     }
 
     .description-text p
@@ -1049,6 +1089,13 @@ article
 
 @media all and (max-width : 480px)
 {
+
+    iframe
+    {
+        width : 320px;
+        height : 180px;
+    }
+
     .subtext
     {
         font-size: 13px;
@@ -1089,7 +1136,7 @@ article
 
     .description-text 
     {
-        margin-top: 34%;
+        margin-top: 36%;
         padding : 15px 15px;
     }
 
@@ -1121,6 +1168,12 @@ article
 
 @media all and (max-width : 380px)
 {
+    iframe
+    {
+        width : 280px;
+        height : 158px;
+    }
+
     #header-title
     {
         top : 16%;
@@ -1154,6 +1207,7 @@ article
     {
         top : 10%;
         max-width : 85%;
+        height : 160px;
     }
 
     .description-text 
