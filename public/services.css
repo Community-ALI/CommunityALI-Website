@@ -447,3 +447,19 @@ input[type="reset"]
         top : 5%;
     }
 }
+
+@media all and (max-width : 480px)
+{
+    .search-bar
+    {
+        max-width : 350px;
+    }
+}
+
+@media all and (max-width : 340px)
+{
+    .search-bar
+    {
+        max-width : 300px;
+    }
+}
