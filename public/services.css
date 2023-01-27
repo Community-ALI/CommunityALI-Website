@@ -141,6 +141,7 @@ article
     transition : all 0.3s ease-in-out;
 
     margin-bottom : 20px;
+    margin-top : 20px;
 }
 
 /*
@@ -346,11 +347,24 @@ input[type="reset"]
     border-radius: 20px;
     max-width : 1000px;
     cursor : pointer;
+
+    transition: 300ms ease ;
+}
+
+.result-container:hover
+{
+    background-color: #001E60;
 }
 
 .result-title
 {
     color : #ecaa1e;
+    margin-bottom : 10px;
+}
+
+.result-location
+{
+    margin-bottom: 10px;
 }
 
 @media all and (max-width : 1700px)
@@ -431,5 +445,21 @@ input[type="reset"]
     .navigation-bar.active 
     {
         top : 5%;
+    }
+}
+
+@media all and (max-width : 480px)
+{
+    .search-bar
+    {
+        max-width : 350px;
+    }
+}
+
+@media all and (max-width : 340px)
+{
+    .search-bar
+    {
+        max-width : 300px;
     }
 }

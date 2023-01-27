@@ -1,82 +1,38 @@
 const selectElement = document.querySelector(".search-bar");
-// json data. Yes I had fun making it up
+// json data. 
 json_data = {
     "information":[
         {
-            "title": "Building an Engine",
-            "author": "Toyota",
-            "startTime": "1:00 PM",
-            "endTime": "1:30 PM",
-            "date": "01/18/2023",
-            "description": "Learning how engines are manufactured and what makes them the most efficient for conserving energy."
+            "title": "MJC Computer Science Club",
+            "author": "Host: Paola Alvarez",
+            "startTime": "Time: 11-12pm",
+            "date": "Date: Friday February 24",
+            "description": "Description: The purpose of the Computer Science Club is to provide a community for students interested in computer science to connect, collaborate and learn from one another. With potential to gain hands-on experience with teachers, guest speakers, network with peers and go on a field trip."
         },
         {
-            "title": "Give Ben pizza",
-            "author": "Benjamin",
-            "startTime": "5:00 PM",
-            "endTime": "5:30 PM",
-            "date": "08/22/2022",
-            "description": "Pepperoni is good"
-        },
-        {
-            "title": "Mow Ben's lawn",
-            "author": "Ben Schoolland",
-            "startTime": "10:00 AM",
-            "endTime": "11:00 AM",
-            "date": "08/20/2022",
-            "description": "Find the lawnmower at his old house, fill it with gas and then use it to make the lawn shorter! It'll be fun I promise"
-        },
-        {
-            "title": "Program a website",
-            "author": "Beeyn",
-            "startTime": "6:00 AM",
-            "endTime": "11:00 PM",
-            "date": "08/19/2022",
-            "description": "It should search through this json data and display the right information to the user. Ben got tired of coding it himself so this is a service learning opportunity now."
-        },
-        {
-            "title": "Vacuum Ben's living room",
-            "author": "Ben",
-            "startTime": "4:00 PM",
-            "endTime": "4:30 PM",
-            "date": "08/23/2022",
-            "description": "Another chore that Ben added to this list and called service learning."
-        },
-        {
-            "title": "Be a passenger in Muhammed's car",
-            "author": "Muhammed",
-            "startTime": "12:00 PM",
-            "endTime": "12:15 PM",
-            "date": "08/19/2022",
-            "description": "Chance of death: 98%.  Enter the car at your own risk."
-        },
-        {
-            "title": "Sing the my little pony theme song",
-            "author": "Krill",
-            "startTime": "10:30 AM",
-            "endTime": "11:30 AM",
-            "date": "08/19/2022",
-            "description": "Chance of death: 98%. (didn't feel like changing the description from last time)"
-        },
-        {
-            "title": "Actually get work done",
-            "author": "My consience",
-            "startTime": "7:45 AM",
-            "endTime": "8:30 AM",
-            "date": "08/19/2022",
-            "description": "Stop writing fake services that aren't even funny and start programming the actual logic for this program."
-        },
-        {
-            "title": "Use your anger",
-            "author": "Darth sidius",
-            "startTime": "7:45 AM",
-            "endTime": "8:30 AM",
-            "date": "08/30/2022",
-            "description": "Strike me down, and your journey twards the dark side will be complete!"
+            "title": "Community Catalyst Team",
+            "author": "Host: Adrean Cajigas",
+            "startTime": "Time: 9am-12pm",
+            "date": "Date: Every Friday",
+            "description": "Description : We are united under the concept of contextualized learning experiences to promote engagement for students at MJC. Together, we hope to serve as the stimulus to move the conversation around Service-Learning forward at MJC and in our community."
         }
-
     ]
 }
+
+const resultContainers = document.querySelectorAll('.result-container');
+resultContainers.forEach(function(resultContainer) {
+    if (resultContainer.id === 'CS'){
+    resultContainer.addEventListener('click', function() {
+        window.location.href = '/apply-for-service.html';
+    });
+    }
+    else{
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/apply-for-service-OUR-TEAM.html';
+    });
+    }
+});
+
 
 //wait for someone to edit the text in the search bar
 selectElement.addEventListener('change', (event) => {
@@ -101,7 +57,7 @@ selectElement.addEventListener('change', (event) => {
         // add the correct text to each one
         title.textContent = service.title;
         author.textContent = service.author;
-        time.textContent = service.startTime + " - " + service.endTime;
+        time.textContent = service.startTime;
         date.textContent = service.date;
         description.textContent = service.description;
         // give each one a class I hope this is helpful for css and/ or JS later
@@ -117,6 +73,18 @@ selectElement.addEventListener('change', (event) => {
         result.appendChild(time)
         result.appendChild(date)
         result.appendChild(description)
+        // connect it to the apply page
+        if (service.title === 'Community Catalyst Team'){
+            result.addEventListener('click', function() {
+                window.location.href = '/apply-for-service-OUR-TEAM.html';
+            });
+        }
+        else{
+            result.addEventListener('click', function() {
+                window.location.href = '/apply-for-service.html';
+            });
+        }
+        
         //display this search result!
         results.appendChild(result)
     }

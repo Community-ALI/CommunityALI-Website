@@ -117,7 +117,7 @@ form
 {
     width: 800px;
     margin : 0 auto;
-    margin-top: 30px;
+    margin-top: 60px;
     padding: 30px;
     border: 2px solid #001E60;
     border-radius: 10px;
@@ -228,4 +228,125 @@ form
   {
       color: red;
       margin-top: 5px;
+  }
+
+  @media all and (max-width : 1000px)
+  {
+    form
+    {
+      width: 700px;
+    }
+
+    input[type="text"], input[type="email"] 
+    {
+      width: 50%;
+    }
+
+  }
+
+  @media all and (max-width : 988px)
+{
+    .navigation-hamburger
+    {
+        z-index : 5;
+        display : block; 
+        position : fixed;
+        justify-content: center;
+        padding-top : 10px; 
+        padding-bottom : 10px;
+        width : 100%;
+
+        background-color: #0096C9;
+    }
+
+    .navigation-hamburger.active .navigation-line:nth-child(2)
+    {
+        opacity : 0;
+    }
+
+    .navigation-hamburger.active .navigation-line:nth-child(1)
+    {
+        transform : translateY(8px) rotate(45deg);
+    }
+
+    .navigation-hamburger.active .navigation-line:nth-child(3)
+    {
+        transform : translateY(-8px) rotate(-45deg);
+    }
+    
+    .navigation-bar
+    {
+        position : fixed;
+        top : -20%;
+        background-color: #0096C9;
+        gap : 0;
+        flex-direction : column;  
+        width : 100%;
+        text-align : center;
+        z-index : 5;
+        padding-right : 0;
+
+        transition : 0.3s ease-in-out;
+    }
+
+    .navigation-button
+    {
+        margin-bottom : 15px;
+        margin-top : 10px;
+        padding : 15px 30px;
+    }
+
+    .navigation-bar.active 
+    {
+        top : 5%;
+    }
+}
+
+  @media all and (max-width : 800px)
+  {
+    form
+    {
+      width: 550px;
+    }
+
+    input[type="text"], input[type="email"] 
+    {
+      width: 60%;
+    }
+
+  }
+
+  @media all and (max-width : 600px)
+  {
+    form
+    {
+      width: 400px;
+      padding : 20px;
+    }
+
+    input[type="text"], input[type="email"] 
+    {
+      width: 75%;
+    }
+
+    #introduction-text
+    {
+      font-size: 14px;
+      line-height: 25px;
+    }
+  }
+
+  @media all and (max-width : 400px)
+  {
+    form
+    {
+      width: 300px;
+    }
+
+    input[type="text"], input[type="email"] 
+    {
+      width: 90%;
+    }
+
+
   }
