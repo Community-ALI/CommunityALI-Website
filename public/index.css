@@ -525,14 +525,22 @@ iframe
     padding-bottom : 40px;
 }
 
-@media all and (max-width : 1700px)
+@media all and (max-width : 1800px)
 {
-    body
+    .container
     {
-        /*background: linear-gradient(#0096C9 0, #0096C9 72%, #00468D 72%, #00468D 95%, #0096C9 95%, #0096C9 100%); */
-
+        padding-left : 160px;
+        padding-right : 160px;
     }
 
+    .schools-box
+    {
+        margin : 45px;
+    }
+}
+
+@media all and (max-width : 1600px)
+{
     .description-text
     {
         font-size : clamp(10px, 4vh, 19px);
@@ -550,6 +558,18 @@ iframe
         font-size : clamp(12px, 2vw, 19px);
         line-height: 75px; 
     }
+
+    .container
+    {
+        padding-right : 120px;
+        padding-left : 120px;
+    }
+
+    .schools-box
+    {
+        margin : 35px;
+    }
+    
 }
 
 @media all and (max-width : 1320px)
@@ -568,6 +588,7 @@ iframe
         margin: auto;
     }
 }
+
 
 @media all and (max-width : 1240px)
 {
