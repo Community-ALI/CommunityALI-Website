@@ -516,6 +516,33 @@ iframe
     padding-bottom : 40px;
 }
 
+@media all and (max-width : 2400px)
+{
+    .container
+    {
+        padding-left : 200px;
+        padding-right : 200px;
+    }
+
+    .schools-box
+    {
+        width : 200px;
+        min-height : 200px;
+        padding-top : 30px;
+        margin : 50px;
+    }
+
+    .fa-3x
+    {
+        font-size: 4em;
+    }
+
+    .icon-text
+    {
+        font-size : 18px;
+    }
+}
+
 @media all and (max-width : 1800px)
 {
     .container
@@ -526,7 +553,20 @@ iframe
 
     .schools-box
     {
+        padding-top : 10px;
         margin : 45px;
+        width : 160px;
+        min-height : 160px;
+    }
+
+    .fa-3x
+    {
+        font-size: 3em;
+    }
+
+    .icon-text
+    {
+        font-size : 14px;
     }
 }
 
