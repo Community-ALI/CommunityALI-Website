@@ -454,6 +454,12 @@ input[type="reset"]
     {
         max-width : 350px;
     }
+
+    .result-container
+    {
+        margin : 30px 25px;
+    }
+
 }
 
 @media all and (max-width : 340px)
