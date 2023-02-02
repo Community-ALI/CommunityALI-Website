@@ -967,6 +967,11 @@ iframe
     {
         transform:scale(.9);
     }
+
+    .icon-text
+    {
+        font-size : 12px;
+    }
 }
 
 @media all and (max-width : 380px)
@@ -1014,5 +1019,11 @@ iframe
         width : 100px;
         min-height: 110px;
         font-size : 10px;
+    }
+
+    .icon-text
+    {
+        font-size : 10px;
+        padding-top: 8px;
     }
 }
