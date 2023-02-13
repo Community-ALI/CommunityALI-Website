@@ -23,9 +23,14 @@ const resultContainers = document.querySelectorAll('.result-container');
 resultContainers.forEach(function(resultContainer) {
     if (resultContainer.id === 'CS'){
     resultContainer.addEventListener('click', function() {
-        window.location.href = '/apply-for-service.html';
+        window.location.href = '/service-ComputerScience.html';
     });
     }
+    else if (resultContainer.id === 'MANRRS'){
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/service-MANRRS.html';
+        });
+        }
     else{
         resultContainer.addEventListener('click', function() {
             window.location.href = '/apply-for-service-OUR-TEAM.html';
