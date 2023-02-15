@@ -19,17 +19,34 @@ json_data = {
     ]
 }
 
-// const resultContainers = document.querySelectorAll('.result-container');
-
-// resultContainers.forEach(function(resultContainer) {
-//     resultContainerID = resultContainer.id;
-//     console.log(resultContainerID);
-//     resultContainer.innerHTML=resultContainerID;
-//     resultContainer.addEventListener('click', function() {
-//         window.location.href = '/apply-for-service.html';
-//     });
-    
-// });
+const resultContainers = document.querySelectorAll('.result-container');
+resultContainers.forEach(function(resultContainer) {
+    if (resultContainer.id === 'CS'){
+    resultContainer.addEventListener('click', function() {
+        window.location.href = '/Services/ComputerScience.html';
+    });
+    }
+    else if (resultContainer.id === 'MANRRS'){
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/Services/MANRRS.html';
+        });
+        }
+    else if (resultContainer.id === 'MathEngineering'){
+        resultContainer.addEventListener('click', function() {
+             window.location.href = '/Services/MathEngineering.html';
+        });
+        }
+    else if (resultContainer.id === 'CommunityCatalyst'){
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/Services/CommunityCatalyst.html';
+        });
+        }
+    else{
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/apply-for-service.html';
+    });
+    }
+});
 
 
 //wait for someone to edit the text in the search bar

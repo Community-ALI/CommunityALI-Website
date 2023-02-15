@@ -11,10 +11,8 @@
 body
 {
     background: linear-gradient(
-      #0096C9 100%, 
-    /* #0095BD 80%, */
-      /*#2645bf 20% */
-      #00468D 0% /* #0096C9 */
+    #0096C9 100%, 
+    #00468D 0% 
       );
 
     /*background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 82%, #0096C9 82%, #0096C9 100%); */
@@ -22,14 +20,6 @@ body
     width: 100%;
     height: 100%;
     min-height: calc(100vh);
-}
-
-article 
-{
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
 }
 
 .navigation-bar
@@ -61,9 +51,6 @@ article
     padding-top: 5px;
     padding-bottom: 5px;
 
-    /* border-style: solid;
-    border-radius : 20px; */
-
     transition : all 0.2s linear;
 
 }
@@ -72,7 +59,6 @@ article
 {
     color :#001E60;
     background-color: #ecaa1e;
-    
     
     border-radius : 10px;
 
@@ -99,7 +85,6 @@ article
     left : 0;
     width : 100%;
     height : 3px;
-    background-color : white;
 }
 
 .navigation-menu
@@ -107,7 +92,6 @@ article
     min-height : 50px;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .navigation-hamburger
@@ -144,8 +128,6 @@ article
 
 .header
 {
-    /*background : linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)); */
-
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, .4),
@@ -162,45 +144,46 @@ article
     overflow : hidden;
 }
 
+.header-container
+{
+    display: flex;
+    flex-direction: column;
+}
+
 
 #header-title
 {
     color: white;
     font-size : clamp(36px, 4vw, 60px);
     font-family: 'Poppins', sans-serif;
-    text-align: center;
-    line-height: 100px;
+    line-height: 120px;
     text-shadow: 0px 2px 3px rgb(0 0 0 / 50%);
-    z-index: 1;
 
-    display : inline-block;
+    display : flex;
     justify-content: center;
-    position : absolute;
-    top : 18%;
-    left : 10%;
-    right : 10%;
+    align-items: center;
+    text-align: center;
+    position : relative;
+
+    height : 45vh;
 }
 
 #header-subtitle
 {
     color: white;
     font-size : 26px;
-    /* font-family: 'Montserrat', sans-serif; */
     font-family: 'Poppins', sans-serif;
     text-align: center;
     text-shadow: 0px 2px 3px rgb(0 0 0 / 50%);
-    z-index: 1;
 
-    display : flex;
     margin : auto;
+    margin-top : auto;
     justify-content: center;
+    align-items: center;
     position : absolute;
     bottom : 26%;
-    padding-left: 3%;
-    padding-right : 3%;
-
-    left : 6%;
-    right : 6%;
+    left: 2%;
+    right: 2%;
 }
 
 #header-button
@@ -209,19 +192,15 @@ article
     text-align: center;
     display : flex;
     justify-content: center;
-    z-index: 1;
 }
 
 #button
 {
     color : #001E60;
     font-size : 25px;
-    /* font-family: 'Montserrat', sans-serif; */
     font-family: 'Poppins', sans-serif;
     font-weight : 600;
     text-decoration: none;
-    z-index: 1;
-    /* text-shadow: 0px 2px 3px rgb(0 0 0 / 50%); */
 
     background-color : #ecaa1e;
     border-color : white;
@@ -229,7 +208,6 @@ article
     cursor: pointer;
 
     position : absolute;
-    bottom : 52%;
     padding : 10px 40px;
     transition : all 0.3s ease-in-out;
 }
@@ -255,7 +233,6 @@ article
     font-size : clamp(18px, 2.3vw, 32px);
     font-family: 'Poppins', sans-serif;
     font-weight : 300;
-    /* font-family: 'Quicksand', sans-serif; */
     text-decoration: none;
     text-align: center;
 
@@ -270,30 +247,11 @@ article
     justify-content : center;
 }
 
-    /*
-    background-image : linear-gradient(90deg, blue, rgb(19, 140, 253));
-    background-size : 0% 3px;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-
-    transition : 500ms ease;
-}
-
-#container-title:hover
-{
-    background-size : 100% 6px;
-}
-    */
 
 .container
 {
     padding-left: 150px;
     padding-right: 150px;
-
-    /*
-    display : grid;
-    grid-template-columns: auto auto auto;
-    */
 
     display : flex;
     justify-content : space-evenly;
@@ -304,7 +262,6 @@ article
 .schools-box
 {
     color: white;
-    /* background-color : #004EBA; */
     background-color: #001E60;
     font-family: 'Merriweather', serif;
     font-size : 14px;
@@ -325,7 +282,6 @@ article
 
 .schools-box:hover
 {
-    /* background-color : #0c1c8c; */
     background-color: #00468D;
     transform: scale(1.1);
 }
@@ -396,10 +352,18 @@ article
 .description-container
 {
     position : relative;
-    min-height : 1050px;
+    margin-top : 100px;
+}
+
+.text-video-container
+{
     display : flex;
+    justify-content : space-evenly;
     flex-flow : wrap;
-    margin-top : 60px;
+    align-items: center;
+    margin-bottom : 10%;
+    padding-right: 5%;
+    padding-left: 5%;
 }
 
 .description-title
@@ -407,13 +371,12 @@ article
     color: white;
     text-decoration: none;
 
-    position : absolute;
-    left : 5.8%;
-    top : 7%;
+    position : relative;
     min-width : 43%;
 
-    margin-right : 10px;
-    margin-bottom : 40px;
+    margin-right : 5%;
+    margin-left : 5%;
+    margin-bottom : 3%;
 
     background-color: #001E60;
     border-radius: 10px;
@@ -428,47 +391,19 @@ article
     padding : 10px 25px;
 }
 
-/*
-    background-image : linear-gradient(90deg, blue, rgb(19, 140, 253));
-    background-size : 0% 3px;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-
-    transition : 500ms ease;
-}
-
-.description-title p:hover
-{
-    background-size : 100% 6px;
-}
-*/
-
 .description-text
 {
     color: white;
     font-size : clamp(10px, 4vh, 21px);
     font-family: 'Poppins', sans-serif;
     font-weight : 400;
-    line-height: 60px;
+    line-height: 50px;
 
-    display : inline-block;
-
-    position : absolute;
+    position : relative;
     width : 45%;
-    top : 17%;
-    left : 5.8%;
     padding : 18px 25px;
-
-    /*
-    border-color : whitesmoke;
-    border-width : 3px;
-    border-style: solid; */
     border-radius: 20px; 
-
-    /*background-color : #004EBA;*/
-    /* background-color : #001E60; */
     background-size: cover;
-
     transition: 300ms ease ;
 }
 
@@ -480,16 +415,7 @@ article
 .description-image
 {
     background-repeat : no-repeat;
-    position : absolute;
-    display : inline-block;
-    right : 4%;
-    bottom : 42%;
-    margin: 0 auto;
-    margin-bottom : 30px;
-    flex : 0 0 auto;
-
-    /* border : 5px solid whitesmoke; */
-    border-radius: 20px;
+    position : relative;
 }
 
 iframe
@@ -534,7 +460,6 @@ iframe
 {
     font-family: 'Poppins', sans-serif;
     font-weight : 300;
-    /* font-size : clamp(30px, 5vh, 40px); */
     font-size : clamp(20px, 3vw, 35px);
     text-align: center;
     padding : 10px 25px;
@@ -570,49 +495,6 @@ iframe
     color :#ecaa1e;
 }
 
-.teacher-text p
-{
-    font-family: 'Poppins', sans-serif;
-    font-weight : 300;
-    text-align: center;
-    padding : 10px 25px;
-
-    color: white;
-    text-decoration: none;
-    position : relative;
-    margin-bottom : 60px;
-    display : inline-block;
-    margin-left : 80px;
-
-    background-color:#001E60;
-    border-radius: 10px; 
-}
-
-#teacher-title
-{
-    font-size : clamp(20px, 5vw, 50px);
-}
-
-#teacher-subtitle
-{
-    font-size : clamp(20px, 5vw, 35px);
-}
-
-#teacher-photo
-{
-    max-width : 100%;
-    width : 42%;
-    float : right;
-    margin-right : 70px;
-
-    border-color : whitesmoke;
-    border-width : 5px;
-    border-style: solid;
-    border-radius : 20px;
-}
-
-
-
 #footer
 {
     color: whitesmoke; background-color : #2e3030; border-bottom:1px solid #3B3B3B; height:160px;
@@ -634,25 +516,65 @@ iframe
     padding-bottom : 40px;
 }
 
-@media all and (max-width : 1700px)
+@media all and (max-width : 2400px)
 {
-    body
+    .container
     {
-        /*background: linear-gradient(#0096C9 0, #0096C9 72%, #00468D 72%, #00468D 95%, #0096C9 95%, #0096C9 100%); */
-
+        padding-left : 200px;
+        padding-right : 200px;
     }
 
+    .schools-box
+    {
+        width : 200px;
+        min-height : 200px;
+        padding-top : 30px;
+        margin : 50px;
+    }
+
+    .fa-3x
+    {
+        font-size: 4em;
+    }
+
+    .icon-text
+    {
+        font-size : 18px;
+    }
+}
+
+@media all and (max-width : 1800px)
+{
+    .container
+    {
+        padding-left : 160px;
+        padding-right : 160px;
+    }
+
+    .schools-box
+    {
+        padding-top : 10px;
+        margin : 45px;
+        width : 160px;
+        min-height : 160px;
+    }
+
+    .fa-3x
+    {
+        font-size: 3em;
+    }
+
+    .icon-text
+    {
+        font-size : 14px;
+    }
+}
+
+@media all and (max-width : 1600px)
+{
     .description-text
     {
         font-size : clamp(10px, 4vh, 19px);
-    }
-
-    .description-image
-    {
-        max-width: 44%;
-        margin-bottom: 0;
-        margin-top: 0;
-        height : auto;
     }
 
     .diagram
@@ -668,51 +590,25 @@ iframe
         line-height: 75px; 
     }
 
+    .container
+    {
+        padding-right : 120px;
+        padding-left : 120px;
+    }
+
+    .schools-box
+    {
+        margin : 35px;
+    }
+    
 }
 
-@media all and (max-width : 1500px)
-{
-
-    #header-title
-    {
-        left : 0%;
-        right : 0%;
-    } 
-
-    #video-background
-    {
-        top : -60px;
-    }
-
-    .description-title
-    {
-        left : 5%;
-        right : 5%;
-        top : 5%;
-    }
-
-    #header-subtitle
-    {
-        padding-left : 0%;
-        padding-right : 0%;
-    }
-
-    .description-image
-    {
-        max-height: 40%;
-    }
-}
 @media all and (max-width : 1320px)
 {
     .description-text
     {
-        line-height: 50px;
-    
-        width : 45%;
-        top : 17%;
-        left : 5.8%;
+        line-height: 45px;
         padding : 18px 25px;      
-
     }  
 
     iframe
@@ -726,37 +622,13 @@ iframe
 
 @media all and (max-width : 1240px)
 {
-
-    body
-    {
-        /*background: linear-gradient(#0096C9 0, #0096C9 60%, #00468D 60%, #00468D 80%, #0096C9 80%, #0096C9 100%); */
-    }
-
-    .description-container
-    {
-        margin-bottom : 600px;
-    }
-
     .description-curve
     {
         transform: translateY(100px);
     }
 
-    .description-title 
-    {
-        top : 0%;
-    }
-
-    .description-image
-    {
-        top : 12%;
-        right : 13%;
-        left : 13%;
-    }
-
     .description-text
     {
-        margin-top : 22%;
         width : 90%;
         min-height : 20%;
         padding : 20px;
@@ -778,6 +650,10 @@ iframe
         padding : 12px 8%;
     }
 
+    .description-image
+    {
+        padding-top : 5%;
+    }
 }
 
 @media all and (max-width : 1030px)
@@ -785,15 +661,12 @@ iframe
 
     #header-subtitle
     {
-        left: 0%;
-        right : 0%;
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .subtext
     {
         font-size: 18px;
-    
         margin-top : 60px;
         margin-left : 10px;
         margin-right : 10px;
@@ -813,25 +686,13 @@ iframe
 
     #header-title
     {
-        top : 22%;
         line-height: 80px;
-    }
-
-    #header-subtitle
-    {
-        padding-right : 0;
-        padding-left : 0;
     }
     
     .container
     {
         padding-left : 40px;
         padding-right : 40px;
-    }
-
-        .description-text:hover
-    {
-        background-color :#0096C9;
     }
 
     .schools-box
@@ -862,25 +723,9 @@ iframe
         padding : 30px;
     }
 
-    .description-text:hover
-    {
-        background-color :#0096C9;
-    }
-
-    .description-image
-    {
-        top : 10%;
-        max-width: 50%;
-    }
-
     .description-curve
     {
         transform: translateY(0px);
-    }
-
-    .description-container
-    {
-        margin-bottom : 440px;
     }
 }
 
@@ -892,6 +737,10 @@ iframe
         height: 253px;
     }
 
+    .description-text:hover
+    {
+        background-color :#0096C9;
+    }
 }
 
 @media all and (max-width : 780px)
@@ -943,7 +792,7 @@ iframe
     {
         margin-bottom : 15px;
         margin-top : 10px;
-        padding : 15px 30px;
+        padding : 15px 15px;
     }
 
     .navigation-bar.active 
@@ -966,27 +815,16 @@ iframe
         top : -20px;
     }
 
-    .description-container
-    {
-        margin-bottom : 490px;
-    }
-
-    .navigation-button
-    {
-        padding : 15px 15px;
-    }
-
     #header-title
     {
-        top : 22%;
         line-height: 70px;
+        height : 50vh;
+        padding: 0px 20px;
     }
 
     #header-subtitle
     {
         font-size: 22px;
-        left : 2.25%;
-        right : 2.25%;
     }
 
     .container
@@ -1004,18 +842,6 @@ iframe
     {
         margin-right: 1%;
         margin-left: 1%;
-    }
-
-    .description-image
-    {
-        top : 9%;
-        max-width : 60%;
-        height : 200px;
-    }
-
-    .description-text 
-    {
-        margin-top: 22%;
     }
 
     .description-text p
@@ -1052,20 +878,6 @@ iframe
         margin : 0px;
         width : 130px;
         font-size : 13px;
-    }
-
-    .description-image
-    {
-        top : 9%;
-        max-width : 80%;
-        height : 180px;
-        right : 0%;
-        left : 0%;
-    }
-
-    .description-text 
-    {
-        margin-top: 30%;
     }
 
     .description-text p
@@ -1107,8 +919,7 @@ iframe
 
     #header-title
     {
-        top : 20%;
-        line-height: 50px;
+        line-height: 60px;
     }
 
     #header-subtitle
@@ -1123,19 +934,8 @@ iframe
         padding-right : 10px;
     }
 
-    .description-container
-    {
-        margin-bottom : 560px;
-    }
-
-    .description-image
-    {
-        top : 11%;
-    }
-
     .description-text 
     {
-        margin-top: 36%;
         padding : 15px 15px;
     }
 
@@ -1163,6 +963,11 @@ iframe
     {
         transform:scale(.9);
     }
+
+    .icon-text
+    {
+        font-size : 12px;
+    }
 }
 
 @media all and (max-width : 380px)
@@ -1175,24 +980,16 @@ iframe
 
     #header-title
     {
-        top : 16%;
         font-size : 31px;
         line-height: 50px;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 5%;
     }
 
     #header-subtitle
     {
         font-size : 16px;
-    }
-
-    #video-background
-    {
-        top : 0px;
-    }
-
-    .description-text:hover
-    {
-        padding : 20px;
     }
 
     .container
@@ -1201,16 +998,8 @@ iframe
         padding-right : 5px;
     }
 
-    .description-image
-    {
-        top : 10%;
-        max-width : 85%;
-        height : 160px;
-    }
-
     .description-text 
     {
-        margin-top: 34%;
         padding : 5px 5px;
     }
 
@@ -1226,5 +1015,11 @@ iframe
         width : 100px;
         min-height: 110px;
         font-size : 10px;
+    }
+
+    .icon-text
+    {
+        font-size : 10px;
+        padding-top: 8px;
     }
 }

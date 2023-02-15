@@ -61,7 +61,7 @@ app.post("/apply-for-service", function (req,res) { // FIXME: change application
         console.log(err);
       } else {
         console.log('nice');
-        res.sendFile(__dirname + "/public/success.html");
+        res.sendFile(__dirname + "/public/signup-success.html");
       }
     });
   });
