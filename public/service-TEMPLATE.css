@@ -188,7 +188,7 @@ body
 {
     color: white;
     background-color: #00468D;
-    font-size: clamp(8px, 3vh, 21px);
+    font-size: clamp(8px, 3vh, 20px);
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
@@ -304,6 +304,11 @@ input[type="submit"]:hover
 {
   background-color: #ecaa1e;
   color : #00468D;
+}
+
+#hyperlink
+{
+    color : whitesmoke;
 }
 
 @media all and (max-width : 1200px)

@@ -40,7 +40,7 @@ app.post("/apply-for-service", function (req,res) { // FIXME: change application
         console.log(err);
       } else {
         console.log('nice');
-        res.sendFile(__dirname + "/public/success.html");
+        res.sendFile(__dirname + "/public/signup-success.html");
       }
     });
   });
@@ -51,7 +51,7 @@ app.post("/apply-for-service", function (req,res) { // FIXME: change application
     // create json data from form
     console.log(req.body);
     const apply = new Application({
-      service: "Community Catylist",
+      service: "Community Catalyst",
       name: req.body.name,
       email: req.body.email,
       w_number: req.body.w_number
@@ -62,7 +62,7 @@ app.post("/apply-for-service", function (req,res) { // FIXME: change application
         console.log(err);
       } else {
         console.log('Great!');
-        res.sendFile(__dirname + "/public/success.html");
+        res.sendFile(__dirname + "/public/signup-success.html");
       }
     });
   });

@@ -31,6 +31,11 @@ resultContainers.forEach(function(resultContainer) {
             window.location.href = '/service-MANRRS.html';
         });
         }
+    else if (resultContainer.id === 'CommunityCatalyst'){
+        resultContainer.addEventListener('click', function() {
+            window.location.href = '/service-CommunityCatalyst.html';
+        });
+        }
     else{
         resultContainer.addEventListener('click', function() {
             window.location.href = '/apply-for-service-OUR-TEAM.html';

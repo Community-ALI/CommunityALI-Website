@@ -20,7 +20,6 @@
 </head>
 
 <body>
-    <article>
         <nav class="navigation-menu">
             <ul class = "navigation-bar"> 
                 <li class="navigation-button"> <a class="navigation-text" href="index.html" > Home </a> </li>
@@ -36,12 +35,13 @@
             </div>
         </nav>  
 
+    <div class = "search-result-container">
         <div class="search-container">
             <div action="" class="search-bar">
                 <!-- JS uses this class to find the text-->
                 <input type="text" placeholder="Search for a Service" autocomplete="off" name="search" class="input-for-search">
                 <button type="submit" class="search-picture-container">
-                    <img src ="search.png" class="search-picture">
+                    <img src ="Photos/search.png" class="search-picture">
                 </button> 
             </div>
         </div>
@@ -49,10 +49,10 @@
         <div class ="results">
             <div class = "result-container" id = 'CS'>
                 <div class="result-picture-container">
-                    <img class="result-picture" src ="computerscience.jpg">
+                    <img class="result-picture" src ="Photos/computerscience.jpg">
                 </div>
-                <h1 class = "result-title">MJC Computer Science Club</h1>
-                <h5 class = "result-author">President: Paola Alvarez</h5>
+                <div class = "result-title">MJC Computer Science Club</div>
+                <div class = "result-author">President: Paola Alvarez</div>
                 <div class="button-container">
                     <a class="button" href="service-ComputerScience.html"> Click for more info </a>
                 </div>
@@ -60,7 +60,7 @@
 
             <div class = "result-container" id = 'MANRRS'>
                 <div class="result-picture-container">
-                    <img class="result-picture" src ="MANRRS.webp">
+                    <img class="result-picture" src ="Photos/MANRRS.webp">
                 </div>
                 <div class = "result-title">MJC MANRRS Club</div>
                 <div class = "result-author">President: Veronica Martinez Mota </div>
@@ -69,92 +69,31 @@
                 </div>
             </div>
 
-            <div class = "result-container">
+            <div class = "result-container" id = 'EngineeringClub'>
                 <div id="community-catalyst-photo" class="result-picture-container">
-                    <img class="result-picture" src ="team photo.jpg">
+                    <img class="result-picture" src ="Photos/EngineeringClub.jpg">
                 </div>
-                <h1 class = "result-title">Community Catalyst Team</h1>
-                <h5 class = "result-author">Project Lead: Adrean Cajigas</h5>
-          <!--       <p class = "result-description"> Description : We are united under the concept of contextualized learning 
-                    experiences to promote engagement for students at MJC. Together, we hope to serve as the stimulus to 
-                    move the conversation around Service-Learning forward at MJC and in our community.</p> -->
+                <div class = "result-title">MJC Math and Engineering Club</div>
+                <div class = "result-author">President: Jonah Olsen</div>
+                <div class="button-container">
+                    <a class="button" href="apply-for-service.html"> Click for more info</a>
+                </div>
+            </div>
+
+            <div class = "result-container" id = 'CommunityCatalyst'>
+                <div id="community-catalyst-photo" class="result-picture-container">
+                    <img class="result-picture" src ="Photos/CommunityCatalystPhoto.jpg">
+                </div>
+                <div class = "result-title">Community Catalyst Team</div>
+                <div class = "result-author">Project Lead: Adrean Cajigas</div>
                 <div class="button-container">
                     <a class="button" href="apply-for-service.html"> Click for more info</a>
                 </div>
             </div>
         </div>
-
-        <!--
-        <section class="filter-container">
-            <span class="filter-header">
-                Filter By School
-            </span>
-
-            <div class="filter-content">
-            <form>
-                <ul class="filter-list">
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter1">
-                        <label for="filter1" class="filter-text">School of Agriculture</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter2">
-                        <label for="filter2" class="filter-text">School of Arts, Performance, & the Humanities</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter3">
-                        <label for="filter3" class="filter-text">School of Behavioral and Social Science</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter4">
-                        <label for="filter4" class="filter-text">School of Business and Computing</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter5">
-                        <label for="filter5" class="filter-text">School of Fitness and Health Professions</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter6">
-                        <label for="filter6" class="filter-text">School of Industry and Trades</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter7">
-                        <label for="filter7" class="filter-text">School of Language Arts and Education</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter8">
-                        <label for="filter8" class="filter-text">School of Public Safety</label>
-                    </li>
-
-                    <li class="filter-item">
-                        <input type="checkbox" class="filter-bubble" id="filter9">
-                        <label for="filter9" class="filter-text">School of Science and Mathematics</label>
-                    </li>
-                </ul>
-
-                <div class="filter-buttons">
-                        <input type="submit" class="filter-submit" value="Apply Filter" />
-                        <input type="reset" class="filter-reset" value="Reset" />
-                </div>
-            </form>
-            </div>
-
-        </section>  
-        -->      
-
-
+    </div>
         <script src = "index.js"> </script>
         <script src="services.js"></script>
-
-    </article>
-    
 </body>
 
 </html>
