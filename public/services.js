@@ -23,22 +23,27 @@ const resultContainers = document.querySelectorAll('.result-container');
 resultContainers.forEach(function(resultContainer) {
     if (resultContainer.id === 'CS'){
     resultContainer.addEventListener('click', function() {
-        window.location.href = '/service-ComputerScience.html';
+        window.location.href = '/Services/ComputerScience.html';
     });
     }
     else if (resultContainer.id === 'MANRRS'){
         resultContainer.addEventListener('click', function() {
-            window.location.href = '/service-MANRRS.html';
+            window.location.href = '/Services/MANRRS.html';
+        });
+        }
+    else if (resultContainer.id === 'MathEngineering'){
+        resultContainer.addEventListener('click', function() {
+             window.location.href = '/Services/MathEngineering.html';
         });
         }
     else if (resultContainer.id === 'CommunityCatalyst'){
         resultContainer.addEventListener('click', function() {
-            window.location.href = '/service-CommunityCatalyst.html';
+            window.location.href = '/Services/CommunityCatalyst.html';
         });
         }
     else{
         resultContainer.addEventListener('click', function() {
-            window.location.href = '/apply-for-service-OUR-TEAM.html';
+            window.location.href = '/apply-for-service.html';
     });
     }
 });
