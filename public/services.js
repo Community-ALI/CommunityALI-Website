@@ -19,19 +19,17 @@ json_data = {
     ]
 }
 
-const resultContainers = document.querySelectorAll('.result-container');
-resultContainers.forEach(function(resultContainer) {
-    if (resultContainer.id === 'CS'){
-    resultContainer.addEventListener('click', function() {
-        window.location.href = '/apply-for-service.html';
-    });
-    }
-    else{
-        resultContainer.addEventListener('click', function() {
-            window.location.href = '/apply-for-service-OUR-TEAM.html';
-    });
-    }
-});
+// const resultContainers = document.querySelectorAll('.result-container');
+
+// resultContainers.forEach(function(resultContainer) {
+//     resultContainerID = resultContainer.id;
+//     console.log(resultContainerID);
+//     resultContainer.innerHTML=resultContainerID;
+//     resultContainer.addEventListener('click', function() {
+//         window.location.href = '/apply-for-service.html';
+//     });
+    
+// });
 
 
 //wait for someone to edit the text in the search bar
@@ -74,16 +72,16 @@ selectElement.addEventListener('change', (event) => {
         result.appendChild(date)
         result.appendChild(description)
         // connect it to the apply page
-        if (service.title === 'Community Catalyst Team'){
-            result.addEventListener('click', function() {
-                window.location.href = '/apply-for-service-OUR-TEAM.html';
-            });
-        }
-        else{
-            result.addEventListener('click', function() {
-                window.location.href = '/apply-for-service.html';
-            });
-        }
+        
+
+        hrefText = '/apply-for-service.html'
+        hrefText += "?service=";
+        hrefText += service.title;
+        result.addEventListener('click', function() {
+            window.location.href = hrefText;
+        });
+    
+        
         
         //display this search result!
         results.appendChild(result)
