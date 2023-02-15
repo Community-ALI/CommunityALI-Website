@@ -89,16 +89,16 @@ selectElement.addEventListener('change', (event) => {
         result.appendChild(date)
         result.appendChild(description)
         // connect it to the apply page
-        if (service.title === 'Community Catalyst Team'){
-            result.addEventListener('click', function() {
-                window.location.href = '/apply-for-service-OUR-TEAM.html';
-            });
-        }
-        else{
-            result.addEventListener('click', function() {
-                window.location.href = '/apply-for-service.html';
-            });
-        }
+        
+
+        hrefText = '/apply-for-service.html'
+        hrefText += "?service=";
+        hrefText += service.title;
+        result.addEventListener('click', function() {
+            window.location.href = hrefText;
+        });
+    
+        
         
         //display this search result!
         results.appendChild(result)

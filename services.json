@@ -1,0 +1,25 @@
+{
+    "information":[
+        {
+            "title": "MJC Computer Science Club",
+            "author": "Host: Paola Alvarez",
+            "startTime": "Time: 11-12pm",
+            "date": "Date: Friday February 24",
+            "description": "Description: The purpose of the Computer Science Club is to provide a community for students interested in computer science to connect, collaborate and learn from one another. With potential to gain hands-on experience with teachers, guest speakers, network with peers and go on a field trip."
+        },
+        {
+            "title": "Community Catalyst Team",
+            "author": "Host: Adrean Cajigas",
+            "startTime": "Time: 9am-12pm",
+            "date": "Date: Every Friday",
+            "description": "Description : We are united under the concept of contextualized learning experiences to promote engagement for students at MJC. Together, we hope to serve as the stimulus to move the conversation around Service-Learning forward at MJC and in our community."
+        },
+        {
+            "title": "Example Service",
+            "author": "Host: Dev",
+            "startTime": "Time: TBD",
+            "date": "Date: TBD",
+            "description": "Description : NONE"
+        }
+    ]
+}
