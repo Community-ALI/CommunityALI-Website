@@ -171,7 +171,7 @@ app.get("/apply-for-service", function (req, res) {
         description.innerHTML = selected_service_json.description;
 
 
-        contactHTML = '<div class="service-author"></div><div class="service-header">Next Meeting Details</div>';
+        contactHTML = '<div class="service-author"></div><div class="service-header">Contact and Social Media</div>';
         for (contact of selected_service_json.contacts){
           contactHTML+='<div>'
           contactHTML+=contact;
