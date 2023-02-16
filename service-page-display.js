@@ -2,23 +2,24 @@ var React = require('react');
 
 const SearchResult = function(props) {
   const service = props.service;
-  return React.createElement(
-    "div",
-    { className: "result-container" },
-    React.createElement("h1", { className: "result-title" }, service.title),
-    React.createElement("h5", { className: "result-author" }, service.author),
-    React.createElement("p", { className: "result-time" }, service.startTime),
-    React.createElement("p", { className: "result-date" }, service.date),
-    React.createElement("p", { className: "result-description" }, service.description),
-    React.createElement("a", { className: "result-link", href: "/apply-for-service.html?service=" + service.title}, "Apply")
+   return React.createElement('div', { className: 'result-container', id: service.title},
+    React.createElement('div', { className: 'result-picture-container' },
+        React.createElement('img', { className: 'result-picture', src: service.photo })
+    ),
+    React.createElement('div', { className: 'result-title' }, service.title),
+    React.createElement('div', { className: 'result-author' }, service.author_role+": "+service.author),
+    React.createElement('div', { className: 'button-container' },
+        React.createElement('a', { className: 'button', href: "/apply-for-service?service=" + service.title}, 'Click for more info')
+    )
   );
 };
+
 
 const SearchResults = function(props) {
   const results = props.results;
   return React.createElement(
     "div",
-    { className: "search-results" },
+    { className: "results" },
     results.map(function(service) {
       return React.createElement(SearchResult, {
         service: service,
