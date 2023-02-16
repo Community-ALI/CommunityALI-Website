@@ -75,7 +75,7 @@ app.post('/send-application', upload.none(), function (req, res) {
       } else {
         // display success page
         console.log('application success');
-        res.sendFile(__dirname + "/public/signup-success.html");
+        res.send("/signup-success.html");
       }
     });
   });

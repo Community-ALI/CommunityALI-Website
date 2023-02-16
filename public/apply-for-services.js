@@ -16,7 +16,7 @@ form.addEventListener('submit', function (event) {
 
     let data = "service="+service+"&name="+name+"&email="+email+"&w_number="+w_number;
 
-    xhr.onload = () => document.body.innerHTML = (xhr.responseText);
+    xhr.onload = () => window.location.href=(xhr.responseText);
 
     xhr.send(data);
 });
