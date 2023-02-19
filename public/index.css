@@ -155,8 +155,9 @@ body
 {
     color: white;
     font-size : clamp(36px, 4vw, 60px);
+    font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    line-height: 120px;
+    line-height: 110px;
     text-shadow: 0px 2px 3px rgb(0 0 0 / 50%);
 
     display : flex;
@@ -819,8 +820,9 @@ iframe
     #header-title
     {
         line-height: 70px;
-        height : 50vh;
+        height : 35vh;
         padding: 0px 20px;
+        margin-top: 25%;
     }
 
     #header-subtitle
