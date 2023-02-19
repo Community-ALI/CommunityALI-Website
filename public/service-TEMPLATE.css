@@ -30,7 +30,7 @@ body
 .navigation-button
 {
     display : inline-block;
-    padding : 30px 20px;
+    padding : 40px 20px;
 }
 
 .navigation-text
@@ -155,6 +155,7 @@ body
     padding-right: 5%;
     padding-left: 5%;
     margin-bottom : 8%;
+    padding-bottom: 5%;
 }
 
 
@@ -495,12 +496,6 @@ input[type="submit"]:hover
     {
         padding-right : 0px;
         padding-left : 0px;
-    }
-
-    .navigation-button
-    {
-        padding : 0px 0px;
-        margin-bottom: 0px;
     }
 
     .MANRRS-picture

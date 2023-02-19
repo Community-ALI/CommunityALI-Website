@@ -20,35 +20,15 @@ json_data = {
 }
 
 const resultContainers = document.querySelectorAll('.result-container');
+
 resultContainers.forEach(function(resultContainer) {
-    if (resultContainer.id === 'CS'){
-    resultContainer.addEventListener('click', function() {
-        window.location.href = '/Services/ComputerScience.html';
-    });
-    }
-    else if (resultContainer.id === 'MANRRS'){
-        resultContainer.addEventListener('click', function() {
-            window.location.href = '/Services/MANRRS.html';
-        });
-        }
-    else if (resultContainer.id === 'MathEngineering'){
-        resultContainer.addEventListener('click', function() {
-             window.location.href = '/Services/MathEngineering.html';
-        });
-        }
-    else if (resultContainer.id === 'CommunityCatalyst'){
-        resultContainer.addEventListener('click', function() {
-            window.location.href = '/Services/CommunityCatalyst.html';
-        });
-        }
-    else{
-        resultContainer.addEventListener('click', function() {
-            window.location.href = '/apply-for-service.html';
-    });
-    }
+  resultContainer.addEventListener('click', function() {
+    const hrefText = '/apply-for-service?service=' + resultContainer.id;
+    window.location.href = hrefText;
+  });
 });
 
-
+ 
 //wait for someone to edit the text in the search bar
 selectElement.addEventListener('change', (event) => {
     // get the string to search for

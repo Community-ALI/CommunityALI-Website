@@ -535,6 +535,7 @@ iframe
     .fa-3x
     {
         font-size: 4em;
+        padding-top: 8px;
     }
 
     .icon-text
@@ -925,6 +926,11 @@ iframe
     #header-subtitle
     {
         font-size : 18px;
+    }
+
+    .fa-3x
+    {
+        padding-top: 0px;
     }
 
     .container

@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel = "stylesheet" type = "text/css" href = "service-create.css" >
-
+    <link rel = "stylesheet" type = "text/css" href = "../service-TEMPLATE.css" >
     <!-- FONTS AND ICONS FOR MAIN PAGE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,17 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>    
 
-    <title>Services Search Page</title>
+    <title>Community Catalyst Team</title>
 </head>
 
 <body>
-    <article>
         <nav class="navigation-menu">
             <ul class = "navigation-bar"> 
-                <li class="navigation-button"> <a class="navigation-text" href="index.html" > Home </a> </li>
-                <li class="navigation-button"> <a class="navigation-text" href="services.html" > Services </a> </li>
+                <li class="navigation-button"> <a class="navigation-text" href="../index.html" > Home </a> </li>
+                <li class="navigation-button"> <a class="navigation-text" href="../service-search" > Services </a> </li>
                 <li class="navigation-button"> <a class="navigation-text" href="https://www.mjc.edu/" > MJC </a> </li>
-               <!-- <li class="navigation-button"> <a class="navigation-text" id ="navigation-login" href="login.html" > Login </a> </li> -->
+                <!-- <li class="navigation-button"> <a class="navigation-text" id ="navigation-login" href="login.html" > Login </a> </li> -->
             </ul>
 
             <div class = "navigation-hamburger">
@@ -35,34 +33,73 @@
                 <span class="navigation-line"> </span>
             </div>
         </nav>  
+    
+    <div class="service-container">
 
-        <form action="/apply-for-service" method="POST">
+        <div class="service-title">
+            Service Name
+        </div>
 
-            <div id="introduction-container">
-                <p id="introduction-text">
-                    In order to apply, we will need the following to record you as a new member of our club! Please note
-                    that this information will only be shared with our advisors and MJC faculty.
-                </p>
+        <div class="service-info-container">
+            <div class="service-picture">
+                <img class="MANRRS-picture" src ="../Photos/CommunityCatalystPhoto.jpg">
+            </div>
+        
+            <div class="service-details" id = "service-details">
+                <div class="service-author">Author Name</div>
+                <div class="service-header">Next Meeting Details</div>
+                <!-- Description goes here -->
+            </div>
+        </div>
+    
+        <div class="service-description">
+            Placeholder
+        </div>
+
+
+        <div class="service-info2-container">
+            <div class="service-details" id = "contact-container">
+                <div class="service-author">How to Reach Us</div>
+                <div class="service-header">Contact and Social Media</div>
+                <!-- Contacts goes here -->
             </div>
 
-            <label for="name" class="form-text"> Full Name: </label>
-            <input type="text" placeholder="First Name and Last Name" id="name" name="name" required><br>
-            <div class="error" id="nameError"></div>
+            <div class="sign-up-container">
+                <div class="sign-up-title">
+                    Sign up Today!
+                </div>
 
+                <div class="sign-up-form">
+                    <form action="/apply-for-service" method="POST" id = 'form'>
+                        <div class="form-container">
+                            <div class="text-container" id="name-container">
+                                <label for="name" class="form-text"> Full Name: </label>
+                                <input type="text" placeholder="First and Last Name" id="name" name="name" required><br>
+                                <div class="error" id="nameError"></div>
+                            </div>
 
-            <label for="email" class="form-text"> Email: </label>
-            <input type="email" placeholder="School Email" id="email" name="email" required><br>
-            <div class="error" id="emailError"></div>
+                            <div class="text-container" id="email-container">
+                                <label for="email" class="form-text"> Email: </label>
+                                <input type="email" placeholder="School Email" id="email" name="email" required><br>
+                                <div class="error" id="emailError"></div>
+                            </div>
 
-            <label for="w_number" class="form-text"> W number: </label>
-            <input type="text" placeholder="W#" id="w_number" name="w_number" required><br>
-            <div class="error" id="roleError"></div>
+                            <div class="text-container" id="w-number-container">
+                                <label for="w_number" class="form-text"> W number: </label>
+                                <input type="text" placeholder="W#" id="w_number" name="w_number" required><br>
+                                <div class="error" id="roleError"></div>
+                            </div>
+                        </div> 
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            
-            <input type="submit" value="Submit">
-        </form>
-            
-          
-    </article>
-    <script src = "apply-for-services.js"> </script>
+        <script src = "index.js"> </script> 
+        <script src="services.js"></script>
+        <script src = "apply-for-services.js"> </script>
 </body>
+
+</html>
