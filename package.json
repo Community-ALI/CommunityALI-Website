@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "v18.12.1"
+  },
   "bugs": {
     "url": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-/issues"
   },
