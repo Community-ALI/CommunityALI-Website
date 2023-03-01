@@ -155,7 +155,7 @@ body
 {
     color: white;
     font-size : clamp(36px, 4vw, 60px);
-    font-weight: 500;
+    font-weight: 400;
     font-family: 'Poppins', sans-serif;
     line-height: 110px;
     text-shadow: 0px 2px 3px rgb(0 0 0 / 50%);
@@ -794,7 +794,7 @@ iframe
     {
         margin-bottom : 15px;
         margin-top : 10px;
-        padding : 15px 15px;
+        padding : 15px 10px;
     }
 
     .navigation-bar.active 
@@ -822,12 +822,14 @@ iframe
         line-height: 70px;
         height : 35vh;
         padding: 0px 20px;
-        margin-top: 25%;
+        margin-top: 15%;
     }
 
     #header-subtitle
     {
         font-size: 22px;
+        left: 5%;
+        right: 5%;
     }
 
     .container
@@ -899,6 +901,11 @@ iframe
         padding : 10px 3.5%;
     }
 
+    #header-title
+    {
+        margin-top : 20%;
+    }
+
 }
 
 @media all and (max-width : 480px)
@@ -923,6 +930,9 @@ iframe
     #header-title
     {
         line-height: 60px;
+        height: 40vh;
+        font-size: 32px;
+        margin-top: 15%;
     }
 
     #header-subtitle
@@ -988,11 +998,10 @@ iframe
 
     #header-title
     {
-        font-size : 31px;
-        line-height: 50px;
-        margin-left: 3%;
-        margin-right: 3%;
-        margin-top: 5%;
+        font-size: 30px;
+        height: 50vh;
+        margin-top: 10%;
+        line-height : 55px;
     }
 
     #header-subtitle

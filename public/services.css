@@ -521,14 +521,14 @@ input[type="reset"]
         transition : 0.3s ease-in-out;
     }
 
-    .navigation-button
-    {
-        margin-top : 10px;
-    }
-
     .navigation-bar.active 
     {
         top : 5%;
+    }
+
+    .navigation-button 
+    {
+        padding: 30px 10px;
     }
 
     .results
