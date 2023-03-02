@@ -51,15 +51,15 @@ app.get("/apply-for-service", function (req, res) {
 // dev tools
 
 // test: Display images from the database 
-app.get("/Images", function(req,res){
-  display_all_images(req, res);
-});
+// app.get("/Images", function(req,res){
+//   display_all_images(req, res);
+// });
 
-// View aplications: this is currently meant for devs only
-// TODO: make (part of) this accessible to logged in people
-app.get("/Applications", function (req, res) {
-  display_all_applications(req, res);  
-});
+// // View aplications: this is currently meant for devs only
+// // TODO: make (part of) this accessible to logged in people
+// app.get("/Applications", function (req, res) {
+//   display_all_applications(req, res);  
+// });
 
 // Server configuration
 const port = process.env.PORT || 3000;
