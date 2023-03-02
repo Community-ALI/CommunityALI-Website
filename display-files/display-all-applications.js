@@ -36,7 +36,8 @@ const application_page_display = function(props) {
     React.createElement('a', { href: 'Applications?service=MJC Math and Engineering Club' }, "MJC Math and Engineering Club ----- "),
     React.createElement('a', { href: 'Applications?service=MJC MANRRS Club' }, "MJC MANRRS Club ----- "),
     React.createElement('a', { href: 'Applications?service=MJC Computer Science Club' }, "MJC Computer Science Club ----- "),
-    React.createElement('a', { href: 'Applications?service=Community Catalyst Team' }, "Community Catalyst Team"),
+    React.createElement('a', { href: 'Applications?service=Community Catalyst Team' }, "Community Catalyst Team -----"),
+    React.createElement('a', { href: 'Applications?service=MJC Young Farmers Club' }, "MJC Young Farmers Club"),
     results.map(function(service) {
       
       return React.createElement(SearchResult, {

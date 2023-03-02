@@ -39,7 +39,14 @@ const display_application_page = function(req,res){
         title.innerHTML = selected_service_json.title;
         // find the element with class "service-picture" and set it to the image
         const image = document.querySelector('.service-picture');
-        image.innerHTML = '<img class="MANRRS-picture" src ="../'+selected_service_json.photo+'"></img>' 
+
+        var photo = selected_service_json.photo  
+        if (!fs.existsSync('public/'+selected_service_json.photo) || photo ==''){
+          photo = 'Photos/FarmersClub.jpg' // TODO: put a default image here!
+        }
+      
+
+        image.innerHTML = '<img class="MANRRS-picture" src ="../'+photo+'"></img>' 
 
         // create details array
         detailsHTML = '<div class="service-author"></div><div class="service-header">Next Meeting Details</div>';

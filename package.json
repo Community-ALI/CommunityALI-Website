@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-#readme",
   "dependencies": {
+    "busboy": "^1.6.0",
     "domino": "^2.1.6",
     "express": "^4.18.2",
     "jquery": "^3.6.3",

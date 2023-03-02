@@ -14,9 +14,14 @@ const Services = models.Services;
 
 const SearchResult = function(props) {
   const service = props.service;
+  var photo = service.photo  
+  if (!fs.existsSync('public/'+service.photo) || photo ==''){
+    photo = 'Photos/FarmersClub.jpg' // TODO: put a default image here!
+  }
+
    return React.createElement('div', { className: 'result-container', id: service.title},
     React.createElement('div', { className: 'result-picture-container' },
-        React.createElement('img', { className: 'result-picture', src: service.photo })
+        React.createElement('img', { className: 'result-picture', src: photo })
     ),
     React.createElement('div', { className: 'result-title' }, service.title),
     React.createElement('div', { className: 'result-author' }, service.author_role+": "+service.author),
