@@ -16,7 +16,7 @@ const SearchResult = function(props) {
   const service = props.service;
   var photo = service.photo  
   if (!fs.existsSync('public/'+service.photo) || photo ==''){
-    photo = 'Photos/FarmersClub.jpg' // TODO: put a default image here!
+    photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
   }
 
    return React.createElement('div', { className: 'result-container', id: service.title},
