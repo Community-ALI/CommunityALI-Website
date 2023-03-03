@@ -185,6 +185,11 @@ body
     justify-content: center;
 }
 
+.link
+{
+    color : white;
+}
+
 .service-details
 {
     color: white;
