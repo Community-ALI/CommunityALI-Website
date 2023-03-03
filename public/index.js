@@ -10,3 +10,4 @@ document.querySelectorAll(".navigation-button").forEach(n => n.addEventListener(
     hamburger.classList.remove("active");
     menu.classList.remove("active");
 }))
+
