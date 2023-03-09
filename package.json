@@ -22,6 +22,7 @@
   "dependencies": {
     "busboy": "^1.6.0",
     "domino": "^2.1.6",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jquery": "^3.6.3",
     "mongoose": "^6.8.4",
