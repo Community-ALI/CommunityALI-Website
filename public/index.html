@@ -31,7 +31,7 @@
             <ul class = "navigation-bar"> 
                 <li class="navigation-button"> <a class="navigation-text" href="index.html" > Home </a> </li>
                 <li class="navigation-button"> <a class="navigation-text" href="service-search" > Services </a> </li>
-                <li class="navigation-button"> <a class="navigation-text" href="https://www.mjc.edu/" > MJC </a> </li>
+                <li class="navigation-button"> <a class="navigation-text" href="https://www.mjc.edu"" > MJC </a> </li>
                 <!-- <li class="navigation-button"> <a class="navigation-text" id ="navigation-login" href="login.html" > Login </a> </li> -->
             </ul>
 
@@ -73,69 +73,45 @@
 
 
 <main>
-    <div class ="container-title">
-        <p> Explore a Variety Of Diverse Opportunities According To Your School at MJC </p>
-    </div>
-
     <div class="container">
-        <a class="schools-box" href="https://www.mjc.edu/schools/agge/">
-            <div class="icon"> <i class="fa-solid fa-cow fa-3x"> </i> </div>
-            <span class="icon-text"> School of Agriculture </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/aph/">
-            <div class="icon"> <i class="fa-solid fa-masks-theater fa-3x"> </i> </div>
-            <span class="icon-text"> School of Arts, Performance, & the Humanities  </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/bss/">
-            <div class="icon"> <i class="fa-solid fa-users fa-3x"> </i> </div>
-            <span class="icon-text"> School of Behavioral and Social Science </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/bc/">
-            <div class="icon"> <i class="fa-solid fa-chart-line fa-3x"> </i> </div>
-            <span class="icon-text"> School of Business and Computing </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/fhp/">
-            <div class="icon"> <i class="fa-solid fa-heart-pulse fa-3x"> </i> </div>
-            <span class="icon-text"> School of Fitness and Health Professions </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/it/">
-            <div class="icon"> <i class="fa-solid fa-gears fa-3x"> </i> </div>
-            <span class="icon-text"> School of Industry and Trades </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/lae/">
-            <div class="icon"> <i class="fa-solid fa-book fa-3x"> </i> </div>
-            <span class="icon-text"> School of Language Arts and Education </span>
-        </a>
-
-        <a class="schools-box" href="https://www.mjc.edu/schools/ps/">
-            <div class="icon"> <i class="fa-solid fa-house-chimney-medical fa-3x"> </i> </div>
-            <span class="icon-text"> School of Public Safety </span>
-        </a>
+        <div class ="container-title">
+            <p> Explore a Variety Of Diverse Opportunities From These Categories</p>
+        </div>
         
-        <a class="schools-box" href="https://www.mjc.edu/schools/sm/">
-            <div class="icon"> <i class="fa-solid fa-flask fa-3x"></i> </div>
-            <span class="icon-text"> School of Science and Mathematics </span>
-        </a>
-
-        <a class="schools-box" id="last-box" href="service-search">
-            <div class="icon"> <i class="fa-solid fa-magnifying-glass fa-3x"></i> </div>
-            <span class="icon-text"> Search to Explore more Options </span>
-        </a>
+        <div class="categories-container">
+            <a class = "category-box" id="box1" href="service-search">
+                <div class = "box">
+                    <div class="category-image">
+                        <img id="career" src="Photos/career.jpg">
+                    </div>
+                    <div id="career-text" class="box-header-text">Subject and Career Path</div>
+                </div>
+            </a>
+            <a class="category-box" id="box2" href="service-search">
+                <div class = "box">
+                    <img id="club" src="Photos/clubs.jpg">
+                    <div id="club-text" class="box-header-text"> Clubs and Communities</div>
+                </div>
+            </a>  
+            <div class="category-box" id="box3" href="">
+                <div class = "box">
+                    <img id="volunteer" src="Photos/volunteer.jpg">
+                    <div class="preview-text"> COMING SOON</div>
+                    <div id="volunteer-text" class="box-header-text"> Volunteer & Community Service</div>
+                </div>
+            </div>  
+            <div class="category-box" id="box4" href="">
+                <div class = "box">
+                    <img id="internship" src="Photos/internship.jpg">
+                    <div class="preview-text"> COMING SOON</div>
+                    <div id="volunteer-text" class="box-header-text"> Internships & Work Experience</div>
+                </div>
+            </div>  
+        </div>
     </div>
 
-    <div class ="subtext-container">
-        <a href="https://www.mjc.edu/studentservices/equity/gettingstartedatmjc.php" class="subtext" id="left-subtext"> Need to Apply to MJC? </a>
-        <a href="https://www.mjc.edu/schools/" class="subtext" id="right-subtext"> Learn More About Schools </a>
-    </div>
 
     <div class="description-container">  
-        
         <div class ="description-title">
             <p>
             What Inspired Us to Create Community ALI?
@@ -160,54 +136,6 @@
             </div>
         </div>
     </div>
-
-    <!--
-        <div class="description-curve-container">
-            <svg class = "description-curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#00468D" fill-opacity="1" d="M0,192L48,160C96,128,192,64,288,74.7C384,85,480,171,576,202.7C672,235,768,213,864,186.7C960,160,1056,128,1152,133.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> 
-        </div>
-    </div>
-
-    
-    <div class="diagram-container">
-        <img class="diagram" src="Service-Learning-Diagram.png">
-        
-        <div id="benefits-container">
-            <p>
-            Student Benefits to Service-Learning
-            </p>
-
-            <ul class="benefits-list">
-                <li class="benefits-text">
-                    <a> Provides <u>dynamic experiences</u> in practical environments and situations.</a>
-                </li>
-
-                <li class="benefits-text">
-                    <a> Enriches a <u>reflective understanding</u> of the course content by helping others. </a>
-                </li>
-
-                <li class="benefits-text">
-                    <a> Networks <u>opportunities</u> by involving your interests towards the community. </a>
-                </li>
-
-                <li class="benefits-text">
-                    <a> Increases <u>social development</u> by enhancing mental health and change. </a>
-                </li>
-
-                <li class="benefits-text">
-                    <a> Brings <u>career guidance</u> and preparation for competitive job markets  </a>
-                </li>
-
-                <li class="benefits-text">
-                    <a> Little to <u>no impact on coursework grades</u> and GPA for ANY major. </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#0096C9" fill-opacity="1" d="M0,160L48,165.3C96,171,192,181,288,154.7C384,128,480,64,576,64C672,64,768,128,864,165.3C960,203,1056,213,1152,186.7C1248,160,1344,96,1392,64L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-    -->
 
 </main>
 

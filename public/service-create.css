@@ -28,7 +28,7 @@ article
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 24px;
 
     text-align: right;
     list-style: none;
@@ -117,7 +117,8 @@ form
 {
     width: 800px;
     margin : 0 auto;
-    margin-top: 60px;
+    margin-top: 30px;
+    margin-bottom : 60px;
     padding: 30px;
     border: 2px solid #001E60;
     border-radius: 10px;
@@ -149,8 +150,8 @@ form
 
   .form-text
   {
-    display: block;
     margin-bottom: 10px;
+    margin-right : 10px;
     color :white;
 
     font-size: 18px;
@@ -164,7 +165,7 @@ form
     width: 40%;
     padding: 8px 10px;
     margin-bottom : 30px;
-    margin-top : 1px;
+    margin-top : 10px;
     border: 2px solid #ccc;
     border-radius: 4px;
     font-family: 'Poppins', sans-serif;
@@ -178,20 +179,21 @@ form
     font-family: 'Poppins', sans-serif;
     font-size : 15px;
     margin-bottom: 30px;
+    margin-top : 20px;
   }
 
   .checkbox
   {
     width: 20px;
     height: 20px;
+    margin-top: 30px;
   }
 
   .checkbox-text
   {
     color: white;
     font-family: 'Poppins', sans-serif;
-    font-size : 16px;
-    margin-bottom : 20px;
+    font-size : 18px;
     padding : 5px 5px;
     line-height: 25px;
 
@@ -204,7 +206,7 @@ form
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    margin-top: 30px;
+    margin-top: 50px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -320,7 +322,7 @@ form
   {
     form
     {
-      width: 400px;
+      width: 450px;
       padding : 20px;
     }
 
@@ -336,17 +338,38 @@ form
     }
   }
 
-  @media all and (max-width : 400px)
+  @media all and (max-width : 500px)
   {
     form
     {
-      width: 300px;
+      width: 380px;
+    }
+
+  }
+
+  @media all and (max-width : 420px)
+  {
+    form
+    {
+      width: 340px;
+    }
+
+    .form-text
+    {
+      font-size: 14px;
     }
 
     input[type="text"], input[type="email"] 
     {
       width: 90%;
+      font-size: 14px;
     }
+  }
 
-
+  @media all and (max-width : 350px)
+  {
+    form
+    {
+      width: 300px;
+    }
   }

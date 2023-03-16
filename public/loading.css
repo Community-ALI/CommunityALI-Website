@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body 
+{
+  background-color: #00468D;
+}
+
+.loader 
+{
+  height: 9em;
+  width: 9em;
+  border: 1.8em solid #ffffff;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border-top-color: #ecaa1e;
+  animation: loading 1.5s ease infinite;
+}
+
+
+.loader--hidden 
+{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader::after 
+{
+  content: "";
+  height: 9em;
+  width: 9em;
+  border: 1.8em solid #ffffff;
+  border-top-color: #ecaa1e;
+  border-radius: 50%;
+  animation: loading 1.5s ease infinite;
+}
+
+@keyframes loading 
+{
+  from 
+  {
+    transform: rotate(0turn);
+  }
+  to 
+  {
+    transform: rotate(1turn);
+  }
+}

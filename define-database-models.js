@@ -6,9 +6,9 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 require('dotenv').config()
 
-const DATABASE_LINK = process.env.DATABASE_LINK;
+/* const DATABASE_LINK = process.env.DATABASE_LINK; */
 // OFFICIAL DATABASE (do not mess with this)
- mongoose.connect(DATABASE_LINK, {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://Community_Catalyst:catalyst_2022@cluster0.parasjl.mongodb.net/test", {useNewUrlParser: true});
 
 // TESTING DATABASE (For if you want to test something that might mess up the database)
 // mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});

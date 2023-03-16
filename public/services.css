@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+
 *
 {
     box-sizing: border-box;
@@ -22,8 +24,6 @@ body
     font-weight: 500;
     font-size: 24px;
 
-    text-align: right;
-    list-style: none;
     padding-right : 20px;
 }
 
@@ -31,6 +31,11 @@ body
 {
     display : inline-block;
     padding : 30px 20px;
+}
+
+.navigation-search-bar
+{
+    padding : 0px 40px;
 }
 
 .navigation-text
@@ -69,9 +74,10 @@ body
 
 .navigation-menu
 {
+    display: flex;
     min-height : 50px;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 0px;
 
 }
 
@@ -118,8 +124,7 @@ body
 
 .search-bar
 {
-    width : 100%;
-    max-width : 700px;
+    width : 50rem;
     background : transparent;
     display : flex;
     align-items: center;
@@ -588,6 +593,7 @@ input[type="reset"]
         font-size : 16px;
         margin-top: 10px;
         margin-bottom : 10px;
+        padding: 0px 0px;
     }
 
     .result-author
@@ -619,11 +625,31 @@ input[type="reset"]
     {
         margin : 20px 15px;
         font-size : 14px;
+        padding: 0;
+        width : 90%;
+        display : flex;
+        align-items: center;
+    }
+
+    .result-picture
+    {
+        max-width : 140px;
+    }
+
+    .result-author
+    {
+        margin-bottom : 0px;
+    }
+
+    .button-container
+    {
+        display : none;
     }
 
     .result-title
     {
         height: 35px;
+        margin: 10px 10px;
     }
 
 }
@@ -635,11 +661,6 @@ input[type="reset"]
         margin: 0px 0px;
     }
 
-    .result-container 
-    {
-        width: 8rem;
-    }
-
     .result-title
     {
         font-size : 13px;
@@ -649,7 +670,6 @@ input[type="reset"]
     .result-author
     {
         font-size : 11px;
-        margin-bottom: 40px;
         padding: 0px 5px;
     }
 
