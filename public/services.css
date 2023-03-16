@@ -621,6 +621,13 @@ input[type="reset"]
         width : 50px;
     }
 
+    .result-text-container
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
     .result-container
     {
         margin : 20px 15px;
@@ -633,7 +640,7 @@ input[type="reset"]
 
     .result-picture
     {
-        max-width : 140px;
+        max-width : 160px;
     }
 
     .result-author
@@ -648,8 +655,8 @@ input[type="reset"]
 
     .result-title
     {
-        height: 35px;
-        margin: 10px 10px;
+        height: 30px;
+        margin: 10px 20px;
     }
 
 }
@@ -664,13 +671,18 @@ input[type="reset"]
     .result-title
     {
         font-size : 13px;
-        padding: 0px 5px;
+        margin: 5px 10px;
     }
 
     .result-author
     {
         font-size : 11px;
         padding: 0px 5px;
+    }
+
+    .result-picture
+    {
+        max-width : 130px;
     }
 
     .button
