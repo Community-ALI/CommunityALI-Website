@@ -49,7 +49,7 @@ const display_application_page = function(req,res){
         image.innerHTML = '<img class="MANRRS-picture" src ="../'+photo+'"></img>' 
 
         // create details array
-        detailsHTML = '<div class="service-author"></div><div class="service-header">Next Meeting Details</div>';
+        detailsHTML = '<div class="service-author"></div><div class="service-header">Meeting Details</div>';
         for (detail of selected_service_json.details){
           detailsHTML+='<div>'
           detailsHTML+=detail;
