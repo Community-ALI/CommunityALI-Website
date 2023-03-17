@@ -20,6 +20,7 @@ body
     width: 100%;
     height: 100%;
     min-height: calc(100vh);
+    position: relative;
 }
 
 @keyframes fadeIn 
@@ -393,7 +394,7 @@ body
     justify-content : space-evenly;
     flex-flow : wrap;
     align-items: center;
-    margin-bottom : 10%;
+    padding-bottom : 250px;
     padding-right: 5%;
     padding-left: 5%;
 }
@@ -478,25 +479,34 @@ iframe
     max-width: 40%;
 }
 
-#footer
+footer 
 {
-    color: whitesmoke; background-color : #2e3030; border-bottom:1px solid #3B3B3B; height:160px;
-    margin-top: auto;
-    justify-self: flex-end;
-    width : 100vw;
-    flex-grow: 1;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-
-    place-content: center;
-    place-items : center;
+    background-color: #00468D;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding : 1% 10%;
 }
 
 .footer-text
 {
-    text-align: center;
-    padding-top : 40px;
-    padding-bottom : 40px;
+    margin : 20px 10px;
+}
+
+.footer-container
+{
+    margin : 20px 0px;
+}
+
+.footer-container a
+{
+    color : white;
+    margin : 20px 20px;
+    text-decoration: none;
 }
 
 @media all and (max-width : 2400px)
