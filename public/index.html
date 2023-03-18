@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>
+    <script src="jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
     <title> Community ALI - Apply, Learn, and Implement | Engaging Students with the Community </title>
 </head>
@@ -137,6 +139,17 @@
             </div>
         </div>
     </div>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    
+        <script>
+            $(window).on("load",function()
+            {
+            $(".loader-wrapper").fadeOut("slow");
+            });
+        </script>
 
     <footer>
         <div class="footer-container">
