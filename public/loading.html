@@ -1,94 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<script>
-  window.addEventListener("load", () => {
-  const loader = document.querySelector(".loader");
-
-  loader.classList.add("loader--hidden");
-
-  loader.addEventListener("transitionend", () => {
-    document.body.removeChild(loader);
-  });
-});
-</script>
-
+<html>
   <head>
-        <!-- Translating symbols; Adding compatibility; Proper displaying -->
-      <meta charset="UTF-8"> 
-      <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    
-      <link rel = "stylesheet" type = "text/css" href = "loading.css" >
-    <title> Easy Loader 1 </title>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <script src="jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="loading.css" />
   </head>
-
-
   <body>
-    <div class="loader"></div>
+    <div class="content">
+      <img src="Photos/CommunityCatalystPhoto.jpg" />
+    </div>
 
-    <div class="container">
-      <div class ="container-title">
-          <p> Explore a Variety Of Diverse Opportunities From These Categories</p>
-      </div>
-      
-      <div class="categories-container">
-          <a class = "category-box" id="box1" href="service-search">
-              <div class = "box">
-                  <div class="category-image">
-                      <img id="career" src="Photos/career.jpg">
-                  </div>
-                  <div id="career-text" class="box-header-text">Subject and Career Path</div>
-              </div>
-          </a>
-          <a class="category-box" id="box2" href="service-search">
-              <div class = "box">
-                  <img id="club" src="Photos/clubs.jpg">
-                  <div id="club-text" class="box-header-text"> Clubs and Communities</div>
-              </div>
-          </a>  
-          <div class="category-box" id="box3" href="">
-              <div class = "box">
-                  <img id="volunteer" src="Photos/volunteer.jpg">
-                  <div class="preview-text"> COMING SOON</div>
-                  <div id="volunteer-text" class="box-header-text"> Volunteer & Community Service</div>
-              </div>
-          </div>  
-          <div class="category-box" id="box4" href="">
-              <div class = "box">
-                  <img id="internship" src="Photos/internship.jpg">
-                  <div class="preview-text"> COMING SOON</div>
-                  <div id="volunteer-text" class="box-header-text"> Internships & Work Experience</div>
-              </div>
-          </div>  
-      </div>
-  </div>
+    <div class="description-text">
+      <p>
+      We strive to integrate life experiences with academia to promote educational success and 
+      personal growth by granting students the opportunity to connect with their local community and beyond. 
+      By developing a deeper connection with Modesto Junior College, students can further 
+      their education by understanding the purpose and application of knowledge gained from a 
+      classroom to the real world. Watch our video to learn more about our team!
+      </p>
+    </div>
 
 
-  <div class="description-container">  
-      <div class ="description-title">
-          <p>
-          What Inspired Us to Create Community ALI?
-          </p>
-      </div>
-
-      <div class="text-video-container">
-          <div class="description-text">
-              <p>
-              We strive to integrate life experiences with academia to promote educational success and 
-              personal growth by granting students the opportunity to connect with their local community and beyond. 
-              By developing a deeper connection with Modesto Junior College, students can further 
-              their education by understanding the purpose and application of knowledge gained from a 
-              classroom to the real world. Watch our video to learn more about our team!
-              </p>
-          </div>
-  
-          <div class="description-image">
-              <iframe src="https://www.youtube.com/embed/CkaNT8QOt9U" title="YouTube video player" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
-              picture-in-picture; web-share" allowfullscreen> </iframe>
-          </div>
-      </div>
-  </div>
   </body>
 </html>

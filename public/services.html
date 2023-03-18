@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="x-icon" href="Photos/CClogo.png">
     <link rel = "stylesheet" type = "text/css" href = "services.css" >
+    <script src="jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
     <!-- FONTS AND ICONS FOR MAIN PAGE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +54,17 @@
 
         <script src = "index.js"> </script>
         <script src="services.js"></script>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    
+        <script>
+            $(window).on("load",function()
+            {
+            $(".loader-wrapper").delay(1000).fadeOut("slow");
+            });
+        </script>
 
     <footer>
         <div class="footer-container">
