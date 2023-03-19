@@ -18,10 +18,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script> 
 
+
     <title>Services Search Page</title>
 </head>
 
 <body>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    
+    <script>
+            $(window).on("load",function()
+            {
+            $(".loader-wrapper").fadeOut("slow");
+            });
+    </script>
+    
         <nav class="navigation-menu">
             <div class="navigation-search-bar">
                 <!--
@@ -54,17 +67,6 @@
 
         <script src = "index.js"> </script>
         <script src="services.js"></script>
-
-    <div class="loader-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
-    </div>
-    
-        <script>
-            $(window).on("load",function()
-            {
-            $(".loader-wrapper").fadeOut("slow");
-            });
-        </script>
 
     <footer>
         <div class="footer-container">
