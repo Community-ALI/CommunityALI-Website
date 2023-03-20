@@ -293,3 +293,16 @@ input[type="submit"]:hover
       top : 5%;
   }
 }
+
+@media all and (max-width : 450px)
+{
+  .container
+  {
+    width : 300px;
+  }
+
+  .container form
+  {
+    padding: 0 15px;
+  }
+}
