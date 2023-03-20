@@ -9,9 +9,7 @@
 
 body
 {
-    background-image: linear-gradient(
-        #0096C9 100%, 
-        #2645bf 00% );
+    background :#0096C9 100%;
 
     width: 100%;
     height: 100%;
