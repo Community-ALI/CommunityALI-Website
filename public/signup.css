@@ -11,7 +11,7 @@ body
 {
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg, #0096C9, #2645bf);
+  background: #00468D;
   height: 100vh;
   overflow: hidden;
 }
@@ -57,15 +57,21 @@ body
     color : #0c1c8c;
 }
 
-.navigation-text:after
+#navigation-login
 {
-    content : "";
-    position : absolute;
-    bottom : 0;
-    left : 0;
-    width : 100%;
-    height : 3px;
-    background-color : white;
+    color :#001E60;
+    background-color: #ecaa1e;
+    
+    border-radius : 10px;
+
+    padding : 7px 15px;
+    text-decoration: none;
+}
+
+#navigation-login:hover
+{
+    color : white;
+    background-color :#00468D
 }
 
 .navigation-menu
@@ -228,4 +234,62 @@ input[type="submit"]:hover
 .signup_link a:hover
 {
   text-decoration: underline;
+}
+
+@media all and (max-width : 780px)
+{
+  .navigation-hamburger
+  {
+      z-index : 5;
+      display : block; 
+      position : fixed;
+      justify-content: center;
+      padding-top : 10px; 
+      padding-bottom : 10px;
+      width : 100%;
+
+      background-color: #0096C9;
+  }
+
+  .navigation-hamburger.active .navigation-line:nth-child(2)
+  {
+      opacity : 0;
+  }
+
+  .navigation-hamburger.active .navigation-line:nth-child(1)
+  {
+      transform : translateY(8px) rotate(45deg);
+  }
+
+  .navigation-hamburger.active .navigation-line:nth-child(3)
+  {
+      transform : translateY(-8px) rotate(-45deg);
+  }
+  
+  .navigation-bar
+  {
+      position : fixed;
+      top : -20%;
+      background-color: #0096C9;
+      gap : 0;
+      flex-direction : column;  
+      width : 100%;
+      text-align : center;
+      z-index : 5;
+      padding-right : 0;
+
+      transition : 0.3s ease-in-out;
+  }
+
+  .navigation-button
+  {
+      margin-bottom : 15px;
+      margin-top : 10px;
+      padding : 15px 10px;
+  }
+
+  .navigation-bar.active 
+  {
+      top : 5%;
+  }
 }
