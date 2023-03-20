@@ -10,10 +10,7 @@
 
 body
 {
-    background: linear-gradient(
-    #0096C9 100%, 
-    #00468D 0% 
-      );
+    background: #0096C9;
       
     width: 100%;
     height: 100%;
