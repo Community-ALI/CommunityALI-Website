@@ -28,18 +28,25 @@
 
       <script src = "navbar.js"> </script>
 
+
+	  <!-- <form id="login">
+		<input type="text" autocomplete="off" id="usernameOrEmail" placeholder="Username or Email" />
+		<input type="password" autocomplete="off" id="password" placeholder="Password" />
+		<input type="submit" value="Submit Form" />
+	</form> -->
+
     <div class="container">
       <h1>Login</h1>
-      <form method="post">
+      <form id="login">
 
         <div class="txt_field">
-          <input type="email" required>
+          <input id = usernameOrEmail required>
           <span></span>
-          <label>Email</label>
+          <label>Username or Email</label>
         </div>
 
         <div class="txt_field">
-          <input type="password" required>
+          <input type="password" id = "password" required>
           <span></span>
           <label>Password</label>
         </div>
@@ -55,5 +62,49 @@
 
     <script src = "hamburger.js"> </script>
 
-  </body>
+		<script>
+			const form = document.getElementById('login')
+			form.addEventListener('submit', login)
+
+			async function login(event) {
+				event.preventDefault()
+				const usernameOrEmail = document.getElementById('usernameOrEmail').value;
+				// const username = document.getElementById('usernameOrEmail').value
+				const password = document.getElementById('password').value
+				const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+				let authData
+				if (validEmailRegex.test(usernameOrEmail)) {
+					authData = { usernameOrEmail, password }
+				} else {
+					authData = { usernameOrEmail, password }
+				}
+
+				try {
+					const response = await fetch('/api/login', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(authData)
+					});
+					const result = await response.json();
+
+					if (result.status === 'ok') {
+						//everything is a okay
+						console.log('Got the token: ', result.data)
+						localStorage.setItem('token', result.data)
+                        const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
+						alert('signed in as: '+ decodedToken.username);
+						window.location.href = '/'
+					} else {
+						alert(result.error);
+					}
+				} catch (error) {
+					console.error(error);
+					alert('An error ocurred while logging in.');
+				}
+			}
+		</script>
+	</body>
 </html>

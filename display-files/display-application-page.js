@@ -40,13 +40,15 @@ const display_application_page = function(req,res){
         // find the element with class "service-picture" and set it to the image
         const image = document.querySelector('.service-picture');
 
-        var photo = selected_service_json.photo  
-        if (!fs.existsSync('public/'+selected_service_json.photo) || photo ==''){
-          photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
-        }
+        const imageData = selected_service_json.photo.toString('base64');
+        var imageSrc = `data:${service.photoType};base64,${imageData}`;
+        
+        // if (!fs.existsSync('public/'+selected_service_json.photo) || photo ==''){
+        //   photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
+        // }
+
       
-      
-        image.innerHTML = '<img class="MANRRS-picture" src ="../'+photo+'"></img>' 
+        image.innerHTML = '<img class="MANRRS-picture" src = "'+imageSrc+'"></img>' 
 
         // create details array
         detailsHTML = '<div class="service-author"></div><div class="service-header">Meeting Details</div>';
@@ -66,8 +68,7 @@ const display_application_page = function(req,res){
         // find the element with class "service-description" and set it to the description
         const description = document.querySelector('.service-description');
         description.innerHTML = selected_service_json.description;
-
-
+        
         contactHTML = '<div class="service-author"></div><div class="service-header">Contact and Social Media</div>';
         for (contact of selected_service_json.contacts){
           contactHTML+='<div>'
@@ -82,8 +83,6 @@ const display_application_page = function(req,res){
         res.send(window.document.documentElement.outerHTML);
         });
       };
-
-  
   });
 }
 module.exports = display_application_page;

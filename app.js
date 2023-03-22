@@ -15,12 +15,27 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
 const display_services = require("./display-files/display-services");
-const display_all_applications = require("./display-files/display-all-applications");
-const display_all_images = require("./display-files/display-all-images");
+const display_all_applications = require("./work in progress/display-all-applications");
 const display_application_page = require("./display-files/display-application-page");
 
 const store_application = require("./display-files/store-application");
+const store_service = require("./display-files/store-service");
 const store_images = require("./store-image");
+
+
+const models = require("./define-database-models");
+const User = models.User;
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const session = require('express-session')
+const JWT_SECRET = process.env.JWT_SECRET;
+const SESSION_SECRET = process.env.SESSION_SECRET;
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+
 
 
 // send user to index page when they search our website url
@@ -38,6 +53,11 @@ app.post("/upload-files", upload.array("files"), uploadFiles);
 function uploadFiles(req, res) {
   store_images(req, res)
 }
+app.post("/upload-service", upload.array("files"), storeService);
+function storeService(req, res) {
+  store_service(req, res);
+}
+
 // Display services from the database to the user when they go to the service-search page
 app.get("/service-search", function (req, res) {
     display_services(req,res);
@@ -48,18 +68,139 @@ app.get("/apply-for-service", function (req, res) {
   display_application_page(req,res);
 });
 
-// dev tools
-
-// test: Display images from the database 
-// app.get("/Images", function(req,res){
-//   display_all_images(req, res);
-// });
-
 // // View aplications: this is currently meant for devs only
 // // TODO: make (part of) this accessible to logged in people
-// app.get("/Applications", function (req, res) {
-//   display_all_applications(req, res);  
-// });
+app.get("/Applications", async function (req, res) {
+  if (req.headers.authorization != undefined){
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    display_all_applications(req, res, decodedToken);  
+  }
+  else{
+    res.send("error, not logged in");
+  }
+});
+
+// login
+
+app.post('/api/login', async (req, res) => {
+  const usernameOrEmail = req.body.usernameOrEmail;
+  const password = req.body.password;
+  console.log(usernameOrEmail);
+  const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).lean()
+  console.log(user);
+  if (!user) {
+      return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
+  }
+
+  if(await bcrypt.compare(password, user.password)) {
+      // the username, password combination is successful
+
+      const token = jwt.sign(
+          { 
+              id: user._id, 
+              username: user.username,
+              email: user.email 
+          }, 
+          JWT_SECRET
+      )
+
+      // set the cookie
+      res.cookie('token', token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: 'none',
+          maxAge: 3600000 // 1 hour
+      })
+      
+      req.session.user = {id: user._id, username: user.username, email: user.email };
+      res.json({ status: 'ok', data: token })
+      
+  } else{
+      res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
+  }
+
+  
+})
+
+//register
+app.post('/api/register', async (req, res) => {
+  const { username, password: plainTextPassword, email } = req.body
+  const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if(!username || typeof username !== 'string') {
+      return res.status(400).json({ status: 'error', error: 'Invalid username' })
+  }
+
+  if(!email || !validEmailRegex.test(email)) {
+      return res.status(400).json({ status: 'error', error: 'Invalid email' })
+  }
+
+  if(!plainTextPassword || typeof plainTextPassword !== 'string') {
+      return res.status(400).json({ status: 'error', error: 'Invalid password' })
+  }
+
+  if(plainTextPassword.length < 6) {
+      return res.status(400).json({ status: 'error', error: 'Password should be at least 6 characters' })
+  }
+
+  const password = await bcrypt.hash(plainTextPassword, 10)
+
+  const verificationCode = Math.floor(1000 + Math.random() * 9000) // Generate a 4 digit verification code
+
+  try{
+      const response = await User.create({
+          username,
+          password,
+          email,
+          verified: false,
+          verificationCode: verificationCode // Save the verification code in the database
+
+      })
+      console.log('User created successfully: ', response)
+  } catch(error) {
+      if (error.code === 11000) {
+          //duplicate key
+          return res.json({ status: 'error', error: 'Username or Email already in use' })
+      }
+      throw error
+  }
+
+  //Send verification email to user
+  // const transporter = nodemailer.createTransport({
+  //     host: 'smtp.office365.com',
+  //     port: 587,
+  //     secure: false,
+  //     auth: {
+  //         user: AUTH_EMAIL,
+  //         pass: AUTH_PASS
+  //     }
+  // });
+
+  // const mailOptions =  {
+  //     from: AUTH_EMAIL,
+  //     to: email,
+  //     subject: 'Email Verification',
+  //     text: `Your verification code is: ${verificationCode}`
+  // }
+  
+  // transporter.sendMail(mailOptions);
+
+  // testing success
+  // transporter.verify((error, success) => {
+  //     if(error) {
+  //         console.log(error);
+  //     } else {
+  //         console.log("Ready for messages");
+  //         console.log(success);
+  //     }
+  // })
+
+  res.json({ status: 'ok' })
+
+  // res.redirect('/verification.html'); // Redirect to verification page
+
+})
 
 // Server configuration
 const port = process.env.PORT || 3000;

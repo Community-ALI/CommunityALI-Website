@@ -9,11 +9,19 @@ const Application = models.Application;
 const store_application = function(req, res) { 
     
     // create json data from form
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const seconds = currentDate.getSeconds();
+    const time = hours.toString()+ ':' + minutes.toString()+ ':' + seconds.toString();;
     const apply = new Application({
         service: req.body.service,
         name: req.body.name,
         email: req.body.email,
-        w_number: req.body.w_number
+        w_number: req.body.w_number,
+        date: formattedDate,
+        time: time
       });
       // save json data to the database
       apply.save(function (err) {

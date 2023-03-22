@@ -18,10 +18,11 @@ const SearchResult = function(props) {
   if (!fs.existsSync('public/'+service.photo) || photo ==''){
     photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
   }
-
+  const imageData = service.photo.toString('base64');
+  const imageSrc = `data:${service.photoType};base64,${imageData}`;
    return React.createElement('div', { className: 'result-container', id: service.title},
 
-    React.createElement('img', { className: 'result-picture', src: photo }),
+    React.createElement('img', { className: 'result-picture', src: imageSrc }),
     React.createElement('div', { className: 'result-text-container' },
         React.createElement('div', { className: 'result-title' }, service.title),
         React.createElement('div', { className: 'result-author' }, service.author_role+": "+service.author)

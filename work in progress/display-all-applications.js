@@ -10,9 +10,10 @@ var ReactDomServer = require('react-dom/server');
 // database
 const models = require("../define-database-models");
 const Application = models.Application;
-
+const Services = models.Services;
 // file system allows the server to read html from the client. I think?
 const fs = require('fs');
+const { application } = require('express');
 
 // each individual application to display
 const SearchResult = function(props) {
@@ -33,11 +34,6 @@ const application_page_display = function(props) {
   return React.createElement(
     "div",
     { className: "search-results" },
-    React.createElement('a', { href: 'Applications?service=MJC Math and Engineering Club' }, "MJC Math and Engineering Club ----- "),
-    React.createElement('a', { href: 'Applications?service=MJC MANRRS Club' }, "MJC MANRRS Club ----- "),
-    React.createElement('a', { href: 'Applications?service=MJC Computer Science Club' }, "MJC Computer Science Club ----- "),
-    React.createElement('a', { href: 'Applications?service=Community Catalyst Team' }, "Community Catalyst Team -----"),
-    React.createElement('a', { href: 'Applications?service=MJC Young Farmers Club' }, "MJC Young Farmers Club"),
     results.map(function(service) {
       
       return React.createElement(SearchResult, {
@@ -49,39 +45,41 @@ const application_page_display = function(props) {
 };
 
 // access database, call functions, display page
-const display_all_applications =  function (req, res) {
-  var service_name = req.query.service;
-  var filter = req.query.filter;
-
+const display_all_applications = function (req, res, token) {
+  var username = token.username
+  console.log(username)
   // get database
-  Application.find(function(err, foundServices){
+  Services.find(async function(err, foundServices){
     if(!err){
       
-      // perform the search using the keyword and filter
-      var filteredData = [];
+      // perform the search
+      var filteredServices = [];
       for (service of foundServices){
-        if (service.service == service_name){
-          filteredData.push(service);
-
+        if (service.user == username){
+          filteredServices.push(service);
+          console.log(service.title)
+        }
+        else{
         }
       }
-      //res.render(service_page_display({ results: filteredData }));
-      // res.sendFile(__dirname +'/public/index.html')
-      fs.readFile('public/services.html', 'utf-8', (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        // data now contains the contents of the file
-        var html = ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredData }));
-        let divToReplace = '<div class ="results"></div>';
-        let newDivContent = '<div id="target">' + html + '</div>';
-
-        let newData = data.replace(divToReplace, newDivContent);
-
-        res.send(newData);
-
-        });
+      // get applications
+      var foundApplications = await Application.find({})
+      var filteredApplications = [];
+      // search through applications for services that 
+      for (service of filteredServices){
+        var service_name = service.title;
+          
+          for (apply of foundApplications){
+            if (apply.service == service_name){
+              filteredApplications.push(apply);
+              console.log(apply.service + ' ' +service_name)
+            }
+          }
+      }
+      console.log(filteredApplications)
+      var html = ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredApplications }));
+      let newDivContent = '<div id="target">' + html + '</div>';
+      res.send(newDivContent);
       };
   });
 }

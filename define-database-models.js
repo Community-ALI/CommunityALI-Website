@@ -6,60 +6,56 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 require('dotenv').config()
 
-/* const DATABASE_LINK = process.env.DATABASE_LINK; */
+//const DATABASE_LINK = process.env.DATABASE_LINK;
 // OFFICIAL DATABASE (do not mess with this)
-mongoose.connect("mongodb+srv://Community_Catalyst:catalyst_2022@cluster0.parasjl.mongodb.net/test", {useNewUrlParser: true});
+// mongoose.connect(DATABASE_LINK, {useNewUrlParser: true});
+// mongoose.connect("mongodb+srv://Community_Catalyst:catalyst_2022@cluster0.parasjl.mongodb.net/test", {useNewUrlParser: true});
 
 // TESTING DATABASE (For if you want to test something that might mess up the database)
-// mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
+ mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
 // switch between the two by commenting out one and uncommenting the other
 
 const serviceSchema = {
-  title: String,
+  title: String,  
   author: String,
   author_role: String,
-  photo: String,         // TODO: make photo an image file not string
+  photoType: String,
+  photo: Buffer,        
   details: Array,
   description: String,
-  contacts: Array
-}
+  contacts: Array,
+  date: String,
+  time: String,
+  user: String
+};
 
 const applicationSchema = {
     service: String,
     name: String,
     email: String,
-    w_number: String
-}
+    w_number: String,
+    date: String,
+    time: String
+};
 
-// const imageSchema = {
-//   image: BinData
-// }
+const userSchema = {
+    id: String, 
+    username: String,
+    email: String,
+    password: String,
+    Admin: Boolean, // may the user post services?
+    verified: Boolean,
+    verificationCode: Number // the email verification code
+};
 
 const Application = mongoose.model("applications", applicationSchema);
 
 const Services = mongoose.model("services", serviceSchema);
 
-const imageSchema = {
-  name: {
-    type: String,
-    required: true,
-  },
-  contentType: {
-    type: String,
-    required: true,
-  },
-  data: {
-    type: Buffer,
-    required: true,
-  }
-};
-
-const Image = mongoose.model("Image", imageSchema);
-
+const User = mongoose.model("User",userSchema);
 
 module.exports = {
     Services: Services,
     Application: Application,
-    Image: Image
-    // TODO add something for login
+    User: User
 };

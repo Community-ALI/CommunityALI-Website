@@ -25,7 +25,7 @@
         
         <script src = "navbar.js"> </script>
 
-        <form>
+        <form action="/store-service" method="POST" id = "form">
             
             <div id="introduction-container">
                 <p id="introduction-text">
@@ -34,21 +34,21 @@
                     This information will NOT be shared with anyone else besides our team, Community Catalyst. 
                 </p>
             </div>
-
+            
             <label for="name" class="form-text"> Full Name: </label>
-            <input type="text" placeholder="First Name and Last Name" id="name" name="name" required><br>
+            <input type="text" placeholder="First Name and Last Name" id="personal-name" name="name" required><br>
             <div class="error" id="nameError"></div>
 
             <label for="number" class="form-text"> Contact Number: </label>
-            <input type="text" placeholder="XXX-XXX-XXXX" id="number" name="number" pattern="[0-9]*" required><br>
+            <input type="text" placeholder="XXX-XXX-XXXX" id="number" name="personal-number" pattern="[0-9]*" required><br>
             <div class="error" id="numberError"></div>
 
             <label for="email" class="form-text"> Email: </label>
-            <input type="email" placeholder="Preferred Email" id="email" name="email" required><br>
+            <input type="email" placeholder="Preferred Email" id="personal-email" name="email" required><br>
             <div class="error" id="emailError"></div>
 
             <label for="role" class="form-text"> Your Role in the Club: </label>
-            <input type="text" placeholder="Example: President" id="role" name="role" required><br>
+            <input type="text" placeholder="Example: President" id="personal-role" name="role" required><br>
             <div class="error" id="roleError"></div>
 
             <div id="introduction-container">
@@ -64,15 +64,15 @@
             <div class="error" id="titleError"></div>
 
             <label for="title" class="form-text"> Meeting Location of the Club: </label>
-            <input type="text" placeholder="Example: East Campus CAT Room 213" id="title" name="title" required><br>
+            <input type="text" placeholder="Example: East Campus CAT Room 213" id="details-location" name="title" required><br>
             <div class="error" id="titleError"></div>
 
             <label for="title" class="form-text"> Meeting Days of the Club: </label>
-            <input type="text" placeholder="Example: March 31st / Every Friday " id="title" name="title" required><br>
+            <input type="text" placeholder="Example: March 31st / Every Friday " id="details-date" name="title" required><br>
             <div class="error" id="titleError"></div>
 
             <label for="title" class="form-text"> Meeting Times of the Club: </label>
-            <input type="text" placeholder="Example: 11:00am-12:00pm" id="title" name="title" required><br>
+            <input type="text" placeholder="Example: 11:00am-12:00pm" id="details-times" name="title" required><br>
             <div class="error" id="titleError"></div>
 
             <label for="description" class="form-text"> Description of the Club: (At least 30 words) </label>
@@ -80,38 +80,43 @@
             <div class="error" id="descriptionError"></div>
 
             <label for="capacity" class="form-text"> Full Name of President: </label>
-            <input type="text" placeholder="First Name and Last Name" id="capacity" name="capacity" required><br>
+            <input type="text" placeholder="First Name and Last Name" id="author" name="capacity" required><br>
             <div class="error" id="capacityError"></div>
 
             <label for="email" class="form-text"> President Email: </label>
-            <input type="email" placeholder="School Email" id="email" name="email" required><br>
+            <input type="email" placeholder="School Email" id="president-email" name="email" required><br>
             <div class="error" id="emailError"></div>
 
             <label for="capacity" class="form-text"> Full Name of Vice Pres: </label>
-            <input type="text" placeholder="First Name and Last Name" id="capacity" name="capacity" required><br>
+            <input type="text" placeholder="First Name and Last Name" id="vice-president-name" name="capacity" required><br>
             <div class="error" id="capacityError"></div>
 
             <label for="email" class="form-text"> Vice Pres Email: </label>
-            <input type="email" placeholder="School Email" id="email" name="email" required><br>
+            <input type="email" placeholder="School Email" id="vice-president-email" name="email" required><br>
             <div class="error" id="emailError"></div>
 
             <label for="capacity" class="form-text"> Full Name of ICC Rep: </label>
-            <input type="text" placeholder="First Name and Last Name" id="capacity" name="capacity" required><br>
+            <input type="text" placeholder="First Name and Last Name" id="ICC-rep-name" name="capacity" required><br>
             <div class="error" id="capacityError"></div>
 
             <label for="email" class="form-text"> ICC Rep Email: </label>
-            <input type="email" placeholder="School Email" id="email" name="email" required><br>
+            <input type="email" placeholder="School Email" id="ICC-rep-email" name="email" required><br>
             <div class="error" id="emailError"></div>
 
             <label for="capacity" class="form-text"> Full Name of Advisor: </label>
-            <input type="text" placeholder="First Name and Last Name" id="capacity" name="capacity" required><br>
+            <input type="text" placeholder="First Name and Last Name" id="advisor-name" name="capacity" required><br>
             <div class="error" id="capacityError"></div>
 
             <label for="email" class="form-text"> Advisor Email: </label>
-            <input type="email" placeholder="School Email" id="email" name="email" required><br>
+            <input type="email" placeholder="School Email" id="advisor-email" name="email" required><br>
             <div class="error" id="emailError"></div>
 
-            <input type="checkbox" class="checkbox" required>
+            <div class="input-group">
+                <label for='files'>placeholder text</label>
+                <input id='files' type="file" required>
+            </div>
+            
+            <input type="checkbox" id = 'checkbox' class="checkbox" required>
             <label for="authorization" class="checkbox-text">By checking this box I understand what information WILL and WILL NOT
                 be displayed under this application. I answered these questions to the best of my ability and I allow
                 Community Catalyst to use this information for strictly professional use. My service will be subject to review, in which any 
@@ -122,7 +127,6 @@
             <input type="submit" value="Submit">
         </form>
             
-            <script src = "hamburger.js"> </script>
-          
+        <script src="service-create.js"></script>
     </article>
 </body>
