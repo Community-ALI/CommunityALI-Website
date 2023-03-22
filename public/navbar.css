@@ -28,7 +28,12 @@
     padding-bottom: 5px;
 
     transition : all 0.2s linear; 
+}
 
+/* Enable IF they login*/
+#applicants
+{
+    /* display : none; */
 }
 
 #navigation-login
