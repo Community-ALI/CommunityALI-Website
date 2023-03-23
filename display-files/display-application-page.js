@@ -39,9 +39,15 @@ const display_application_page = function(req,res){
         title.innerHTML = selected_service_json.title;
         // find the element with class "service-picture" and set it to the image
         const image = document.querySelector('.service-picture');
+        
 
-        const imageData = selected_service_json.photo.toString('base64');
-        var imageSrc = `data:${service.photoType};base64,${imageData}`;
+        if (fs.existsSync('public/'+selected_service_json.photo)){
+          imageSrc = selected_service_json.photo // TODO: put a default image here!
+        }
+        else{
+          imageData = selected_service_json.photo.toString('base64');
+          imageSrc = `data:${selected_service_json.photoType};base64,${imageData}`;
+        }
         
         // if (!fs.existsSync('public/'+selected_service_json.photo) || photo ==''){
         //   photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!

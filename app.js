@@ -77,7 +77,7 @@ app.get("/Applications", async function (req, res) {
     display_all_applications(req, res, decodedToken);  
   }
   else{
-    res.send("error, not logged in");
+    res.send("error, login verification failed");
   }
 });
 

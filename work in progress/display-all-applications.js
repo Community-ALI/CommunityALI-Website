@@ -54,7 +54,6 @@ const application_page_display = function(props) {
 // access database, call functions, display page
 const display_all_applications = function (req, res, token) {
   var username = token.username
-  console.log(username)
   // get database
   Services.find(async function(err, foundServices){
     if(!err){
@@ -64,7 +63,6 @@ const display_all_applications = function (req, res, token) {
       for (service of foundServices){
         if (service.user == username){
           filteredServices.push(service);
-          console.log(service.title)
         }
         else{
         }
@@ -79,11 +77,9 @@ const display_all_applications = function (req, res, token) {
           for (apply of foundApplications){
             if (apply.service == service_name){
               filteredApplications.push(apply);
-              console.log(apply.service + ' ' +service_name)
             }
           }
       }
-      console.log(filteredApplications)
       let newDivContent = ''
       for (service of filteredServices){
         newDivContent += ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredApplications, service: service }));

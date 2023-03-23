@@ -14,12 +14,15 @@ const Services = models.Services;
 
 const SearchResult = function(props) {
   const service = props.service;
-  var photo = service.photo
-  if (!fs.existsSync('public/'+service.photo) || photo ==''){
-    photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
+
+  if (fs.existsSync('public/'+service.photo)){
+    imageSrc = service.photo // TODO: put a default image here!
   }
-  const imageData = service.photo.toString('base64');
-  const imageSrc = `data:${service.photoType};base64,${imageData}`;
+  else{
+    imageData = service.photo.toString('base64');
+    imageSrc = `data:${service.photoType};base64,${imageData}`;
+  }
+   
    return React.createElement('div', { className: 'result-container', id: service.title},
 
     React.createElement('img', { className: 'result-picture', src: imageSrc }),
