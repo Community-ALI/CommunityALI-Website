@@ -17,31 +17,38 @@ const { application } = require('express');
 
 // each individual application to display
 const SearchResult = function(props) {
-  const service = props.service;
+  const applicant = props.applicant;
+  if (applicant.service == props.service.title){
   return React.createElement(
     "div",
     { className: "result-container" },
-    React.createElement("p", { className: "applicant-name" }, service.name),
-    React.createElement("p", { className: "applicant-w_number" }, service.w_number),
-    React.createElement("p", { className: "applicant-email" }, service.email),
-    React.createElement("p", { className: "applicant-service" }, service.service)
+    React.createElement("p", { className: "applicant-name" }, applicant.name),
+    React.createElement("p", { className: "applicant-w_number" }, applicant.w_number),
+    React.createElement("p", { className: "applicant-email" }, applicant.email)
   );
+  }
+  else{
+    return undefined
+  }
 };
 
 // create the information required to display the page
 const application_page_display = function(props) {
   const results = props.results;
+  const service = props.service;
   return React.createElement(
-    "div",
-    { className: "search-results" },
-    results.map(function(service) {
-      
+    "section",
+    { className: "applicants" },
+    React.createElement("div", {className: "applicants-title"}, service.title),
+    React.createElement('div', {className: "search-results"},
+    results.map(function(applicant) {
       return React.createElement(SearchResult, {
+        applicant: applicant,
         service: service,
-        key: service.title,
+        key: applicant.name,
       });
     })
-  );
+  ))
 };
 
 // access database, call functions, display page
@@ -77,8 +84,10 @@ const display_all_applications = function (req, res, token) {
           }
       }
       console.log(filteredApplications)
-      var html = ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredApplications }));
-      let newDivContent = '<div id="target">' + html + '</div>';
+      let newDivContent = ''
+      for (service of filteredServices){
+        newDivContent += ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredApplications, service: service }));
+      }
       res.send(newDivContent);
       };
   });
