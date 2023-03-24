@@ -100,6 +100,15 @@ form
     margin-top: 30px;
   }
 
+  .image
+  {
+    font-family: 'Poppins', sans-serif;
+    font-size : 18px;
+    color: white;
+    padding: 10px 10px;
+    font-weight : 500;
+  }
+
   .checkbox-text
   {
     color: white;
