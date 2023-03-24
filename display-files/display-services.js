@@ -51,6 +51,14 @@ const SearchResults = function(props) {
   );
 };
 
+
+// TODO: make this function return only the services from the foundServices array that should be shown
+const search = function(allServices, keyword, filter){
+  filteredData = allServices; // TODO: use 'keyword' and 'filter' to search through services
+  return filteredData; 
+}
+
+
 const display_services = function(req, res) {
   
   var keyword = req.query.keyword;
@@ -60,8 +68,7 @@ const display_services = function(req, res) {
   Services.find(function(err, foundServices){
     if(!err){      
       // TODO: perform the search using the keyword and filter
-      filteredData = foundServices;
-      //res.render(service_page_display({ results: filteredData }));
+      filteredData = search(foundServices, keyword, filter);
 
       fs.readFile('public/services.html', 'utf-8', (err, data) => {
         if (err) {
