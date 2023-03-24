@@ -74,9 +74,12 @@ app.get("/Applications", async function (req, res) {
   if (req.headers.authorization != undefined){
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
+    console.log('application request')
     display_all_applications(req, res, decodedToken);  
+    console.log('applications sent')
   }
   else{
+    console.log('error, login verification failed')
     res.send("error, login verification failed");
   }
 });
@@ -120,8 +123,14 @@ app.post('/api/login', async (req, res) => {
       res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
   }
 
-  
 })
+
+app.post('/api/logout', (req, res) => {
+  res.clearCookie('token');
+  req.session.destroy();
+  console.log("logout");
+  res.json({ status: 'ok', message: 'Logout successful' });
+});
 
 //register
 app.post('/api/register', async (req, res) => {

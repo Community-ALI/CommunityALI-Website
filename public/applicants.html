@@ -38,12 +38,13 @@
 
 
     <script>
-    const token = localStorage.getItem('token');
+    token = localStorage.getItem('token');
     if (token){
-    fetch('/Applications', {
-        headers: {
-        'Authorization': `Bearer ${token}`
-        }
+        console.log("sending request");
+        fetch('/Applications', {
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
     })
     .then(response => response.text())
     .then(html => {
