@@ -22,9 +22,10 @@ const store_service = function(req, res) {
       "<u> Location </u>:  " + req.body.details_location
     ]
     var contacts = [
-      "<u> " + req.body.author + " </u> :  " + req.body.president_email,
-      "<u> " + req.body.vice_president_name + " </u> :  " + req.body.vice_president_email,
-      "<u> " + req.body.ICC_rep_name + " </u> :  " + req.body.ICC_rep_email
+      "<u> President</u> : " + req.body.author + "  :  " + req.body.president_email,
+      "<u> Vice president</u> : " + req.body.vice_president_name + "  :  " + req.body.vice_president_email,
+      "<u> ICC rep</u> : " + req.body.ICC_rep_name + "  :  " + req.body.ICC_rep_email,
+      "<u> Advisor</u> : " + req.body.advisor_name + "  :  " + req.body.advisor_email
     ]
     services_with_images = [];
     for (let file of req.files) {

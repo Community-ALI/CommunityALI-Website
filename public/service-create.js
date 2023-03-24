@@ -69,6 +69,7 @@ form.addEventListener('submit', function (event) {
         .then((res) => console.log(res))
         .catch((err) => ("Error occured", err));
         URL.revokeObjectURL(image.src);
+        window.location.href = '/service-search'
     };
     
 });
