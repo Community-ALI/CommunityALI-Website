@@ -1,0 +1,16 @@
+document.write("    <footer>");
+document.write("        <div class=\"footer-container\">");
+document.write("            <a href=\"https:\/\/www.facebook.com\/profile.php?id=100089185347335&mibextid=ZbWKwL\">");
+document.write("                <i class=\"fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-4x\"><\/i>");
+document.write("            <\/a>");
+document.write("            <a href=\"https:\/\/twitter.com\/Community_ALIs\">");
+document.write("                 <i class=\"fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-4x\"><\/i>");
+document.write("            <\/a>");
+document.write("            <a href=\"https:\/\/www.instagram.com\/community_ali\/\">");
+document.write("            <i class=\"fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-4x\"><\/i>");
+document.write("            <\/a>");
+document.write("        <\/div>");
+document.write("        <div class=\"footer-text\">");
+document.write("            <p> Copyright © 2023 Community Catalyst. All Rights Reserved. <\/p>");
+document.write("        <\/div>");
+document.write("    <\/footer>");
