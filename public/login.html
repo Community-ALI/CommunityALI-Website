@@ -95,8 +95,8 @@
 
 					if (result.status === 'ok') {
 						//everything is a okay
-						console.log('Got the token: ', result.data)
-						localStorage.setItem('token', result.data)
+						console.log('Got the token: ', result.data);
+						localStorage.setItem('token', result.data);
                         const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
 						alert('signed in as: '+ decodedToken.username);
 						window.location.href = '/'

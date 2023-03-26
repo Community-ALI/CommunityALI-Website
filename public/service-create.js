@@ -1,10 +1,9 @@
 const form = document.getElementById('form');
 const files = document.getElementById("files");
-
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-
-
+    
+    // get values
     const title =  document.getElementById("title").value;
     const details_location = document.getElementById("details-location").value;
     const details_times = document.getElementById("details-times").value;
@@ -21,24 +20,23 @@ form.addEventListener('submit', function (event) {
 
     const file = files.files[0]; // get the image file
 
+    // check that image is image
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!allowedTypes.includes(file.type)) {
-    alert('Please upload an image file (JPEG, PNG, or GIF).');
-    return;
+        alert('Please upload an image file (JPEG, PNG, or GIF).');
+        return;
     }
-
+    
     const image = new Image();
     image.src = URL.createObjectURL(file);
     image.onload = function() {
 
-        // ensure that the file is an image
-
-        // Check if the image size is close to 1200 x 800
+        // Check if the image size is "close" to 1200 x 800
         const width = image.naturalWidth;
         const height = image.naturalHeight;
         const aspectRatio = width / height;
         const targetAspectRatio = 1200 / 800;
-        const maxAspectRatioDiff = 0.1; // You can adjust this to fit your needs
+        const maxAspectRatioDiff = 0.1; // the allowable difference
         if (aspectRatio < targetAspectRatio - maxAspectRatioDiff || aspectRatio > targetAspectRatio + maxAspectRatioDiff) {
             alert("The image must be close to 1200 x 800.");
             return;
@@ -59,7 +57,7 @@ form.addEventListener('submit', function (event) {
         formData.append("ICC_rep_email", ICC_rep_email);
         formData.append("advisor_name", advisor_name);
         formData.append("advisor_email", advisor_email);
-
+        
         formData.append("files", file);
 
         fetch("/upload-service", {
@@ -71,5 +69,4 @@ form.addEventListener('submit', function (event) {
         URL.revokeObjectURL(image.src);
         window.location.href = '/service-search'
     };
-    
 });

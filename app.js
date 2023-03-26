@@ -1,5 +1,5 @@
 
-//Require the neccesary libraries and modules 
+// Require the neccesary libraries and modules 
 // set up express
 const express = require("express");
 const app = express();
@@ -27,14 +27,9 @@ const models = require("./define-database-models");
 const User = models.User;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const session = require('express-session')
 const JWT_SECRET = process.env.JWT_SECRET;
-const SESSION_SECRET = process.env.SESSION_SECRET;
-app.use(session({
-  secret: SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-}))
+const SESSION_SECRET = process.env.SESSION_SECRET; 
+
 
 
 
@@ -116,7 +111,6 @@ app.post('/api/login', async (req, res) => {
           maxAge: 3600000 // 1 hour
       })
       
-      req.session.user = {id: user._id, username: user.username, email: user.email };
       res.json({ status: 'ok', data: token })
       
   } else{
@@ -127,7 +121,6 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/logout', (req, res) => {
   res.clearCookie('token');
-  req.session.destroy();
   console.log("logout");
   res.json({ status: 'ok', message: 'Logout successful' });
 });

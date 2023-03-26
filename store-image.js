@@ -2,7 +2,7 @@
 // This file recieves an image file from one of us devs
 // Then, it stores that file in the database
 // this can later be modified into the page that uploads services
-
+  
 const models = require("./define-database-models");
 const Image = models.Image;
 const fs = require('fs');
