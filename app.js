@@ -28,7 +28,7 @@ const User = models.User;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
-const SESSION_SECRET = process.env.SESSION_SECRET; 
+// const SESSION_SECRET = process.env.SESSION_SECRET; 
 
 
 
@@ -66,6 +66,7 @@ app.get("/apply-for-service", function (req, res) {
 // // View aplications: this is currently meant for devs only
 // // TODO: make (part of) this accessible to logged in people
 app.get("/Applications", async function (req, res) {
+  try{
   if (req.headers.authorization != undefined){
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -76,6 +77,11 @@ app.get("/Applications", async function (req, res) {
   else{
     console.log('error, login verification failed')
     res.send("error, login verification failed");
+  }
+  }
+  catch (error){
+    console.log(error)
+    res.send("error, server issue. If this issue persists please contact us, we are actively working on a solution.");
   }
 });
 
