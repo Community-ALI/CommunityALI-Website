@@ -15,7 +15,7 @@ const store_service = function(req, res) {
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
     const seconds = currentDate.getSeconds();
-    const time = hours.toString()+ ':' + minutes.toString()+ ':' + seconds.toString();;
+    const time = hours.toString()+ ':' + minutes.toString()+ ':' + seconds.toString();
     var details = [
       "<u> Time </u>:  " + req.body.details_times,
       "<u> Date </u>:  " + req.body.details_date,
