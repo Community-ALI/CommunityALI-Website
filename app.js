@@ -28,7 +28,7 @@ const User = models.User;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
-const SESSION_SECRET = process.env.SESSION_SECRET; 
+//const SESSION_SECRET = process.env.SESSION_SECRET; 
 
 
 
