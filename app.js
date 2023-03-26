@@ -27,15 +27,25 @@ const models = require("./define-database-models");
 const User = models.User;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+//session storage
 const session = require('express-session')
+const MongoStore = require('connect-mongo');
+
 const JWT_SECRET = process.env.JWT_SECRET;
 const SESSION_SECRET = process.env.SESSION_SECRET;
+const DATABASE_LINK = process.env.DATABASE_LINK;
+
+const store = MongoStore.create({
+  mongoUrl: DATABASE_LINK,
+  collectionName: 'sessions',
+});
+
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
-  saveUninitialized: true
-}))
-
+  saveUninitialized: true,
+  store: store,
+}));
 
 
 // send user to index page when they search our website url
@@ -113,7 +123,7 @@ app.post('/api/login', async (req, res) => {
           httpOnly: true,
           secure: true,
           sameSite: 'none',
-          maxAge: 3600000 // 1 hour
+          maxAge: 86400000 // 1 day
       })
       
       req.session.user = {id: user._id, username: user.username, email: user.email };
