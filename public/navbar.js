@@ -4,12 +4,12 @@
 document.write("    <nav class=\"navigation-menu\">");
 document.write("        <ul class = \"navigation-bar\"> ");
 document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"index.html\" > Home <\/a> <\/li>");
-document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"service-search\" > Services <\/a> <\/li>");
+document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"service-search\" > Explore <\/a> <\/li>");
 
 
 var token = localStorage.getItem('token');
 if (token){
-    document.write("            <li class=\"navigation-button\" id=\"applicants\"> <a class=\"navigation-text\" href=\"applicants.html\" > Applicants <\/a> <\/li>");
+    document.write("            <li class=\"navigation-button\" id=\"applicants\"> <a class=\"navigation-text\" href=\"my-services.html\" > My Services <\/a> <\/li>");
 }
 
 

@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+*
+{
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    scroll-behavior: smooth;
+}
+
+body
+{
+    background: #0096C9;
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh);
+    position: relative;
+}
+
+.username-title
+{
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-family: "Poppins";
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    padding : 10px;
+    min-width: 43%;
+    margin : 1% 10%;
+    
+    background-color: #001E60;
+    border-radius: 10px;
+}
+
+.user-service
+{
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    padding : 20px;
+    min-width: 43%;
+    margin : 3% 20%;
+    
+    background-color: #00468D;
+    border-radius: 10px;   
+}
+
+.option-container
+{
+    display : flex;
+    justify-content: center;
+    margin : 20px 0px
+}
+
+.option-container-service
+{
+    display : flex;
+    justify-content: center;
+    margin : 25px 0px
+}
+
+.user-link
+{
+    text-decoration: none;
+    color : white;
+}
+
+.user-link :hover
+{
+    color : #ecaa1e;
+}
+
+.user-service i
+{
+    padding : 0px 12px;
+    transition : all 0.3s ease-in-out;
+}
+
+.user-service-text
+{
+    text-decoration: none;
+    font-size: 22px;
+    font-family: "Poppins";
+    font-weight: 500;
+    padding-left : 5px;
+    transition : all 0.3s ease-in-out;
+}
+
+
