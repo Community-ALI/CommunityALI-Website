@@ -11,6 +11,6 @@ document.write("            <i class=\"fa fa-instagram fa-lg white-text mr-md-5 
 document.write("            <\/a>");
 document.write("        <\/div>");
 document.write("        <div class=\"footer-text\">");
-document.write("            <p> Copyright © 2023 Community Catalyst. All Rights Reserved. <\/p>");
+document.write("            <p> Copyright © 2023 Community Catalyst. All Rights Reserved. CommunityALI and Community Catalyst is not directly affiliated with MJC or any of its subsidiaries. <\/p>");
 document.write("        <\/div>");
 document.write("    <\/footer>");
