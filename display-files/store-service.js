@@ -7,7 +7,7 @@ const fs = require('fs');
 const models = require("../define-database-models");
 const Service = models.Services;
 
-const store_service = function(req, res) { 
+const store_service = function(req, res, token) { 
     
     // create json data from form
     const currentDate = new Date();
@@ -39,7 +39,8 @@ const store_service = function(req, res) {
           description: req.body.description, 
           contacts: contacts, 
           date: formattedDate, 
-          time: time 
+          time: time, 
+          user: token.username
           });
           services_with_images.push(service_with_image)
         }

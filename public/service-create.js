@@ -1,8 +1,10 @@
 const form = document.getElementById('form');
 const files = document.getElementById("files");
+
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-    
+    token = localStorage.getItem('token');
+    if (token){
     // get values
     const title =  document.getElementById("title").value;
     const details_location = document.getElementById("details-location").value;
@@ -62,11 +64,18 @@ form.addEventListener('submit', function (event) {
 
         fetch("/upload-service", {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${token}`
+                }
         })
         .then((res) => console.log(res))
         .catch((err) => ("Error occured", err));
         URL.revokeObjectURL(image.src);
         window.location.href = '/service-search'
-    };
+      };
+    }
+    else{
+        alert("Account error. Service not posted.")
+    }
 });

@@ -15,12 +15,14 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
 const display_services = require("./display-files/display-services");
-const display_all_applications = require("./work in progress/display-all-applications");
+const display_all_applications = require("./display-files/display-all-applications");
 const display_application_page = require("./display-files/display-application-page");
+const display_my_services = require("./display-files/display-my-services")
 
 const store_application = require("./display-files/store-application");
 const store_service = require("./display-files/store-service");
 const store_images = require("./store-image");
+
 
 
 const models = require("./define-database-models");
@@ -48,9 +50,26 @@ app.post("/upload-files", upload.array("files"), uploadFiles);
 function uploadFiles(req, res) {
   store_images(req, res)
 }
+
+
 app.post("/upload-service", upload.array("files"), storeService);
 function storeService(req, res) {
-  store_service(req, res);
+  try{
+    if (req.headers.authorization != undefined){
+      const token = req.headers.authorization.split(' ')[1];
+      const decodedToken = jwt.verify(token, JWT_SECRET);
+      console.log('service upload')
+      store_service(req, res, decodedToken);
+    }
+    else{
+      console.log('error, login verification failed')
+      res.send("error, login verification failed");
+    }
+  }
+  catch (error){
+    console.log(error)
+    res.send("error");
+  }
 }
 
 // Display services from the database to the user when they go to the service-search page
@@ -63,8 +82,7 @@ app.get("/apply-for-service", function (req, res) {
   display_application_page(req,res);
 });
 
-// // View aplications: this is currently meant for devs only
-// // TODO: make (part of) this accessible to logged in people
+// View aplications
 app.get("/Applications", async function (req, res) {
   try{
   if (req.headers.authorization != undefined){
@@ -81,9 +99,32 @@ app.get("/Applications", async function (req, res) {
   }
   catch (error){
     console.log(error)
+    res.send("error");
+  }
+});
+
+app.get("/view-my-services", async function (req, res) {
+  try{
+  if (req.headers.authorization != undefined){
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    console.log('application request')
+    display_my_services(req, res, decodedToken);  
+    console.log('applications sent')
+  }
+  else{
+    console.log('error, login verification failed')
+    res.send("error, login verification failed");
+  }
+  }
+  catch (error){
+    console.log(error)
     res.send("error, server issue. If this issue persists please contact us, we are actively working on a solution.");
   }
 });
+
+
+
 
 // login
 
