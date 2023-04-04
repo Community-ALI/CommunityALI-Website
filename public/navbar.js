@@ -12,8 +12,7 @@ if (token){
     document.write("            <li class=\"navigation-button\" id=\"applicants\"> <a class=\"navigation-text\" href=\"my-services.html\" > My Services <\/a> <\/li>");
 }
 
-
-
+document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"https://www.mjc.edu/\" target=\"_blank\" > MJC <\/a> <\/li>");
 
 
 if (!token){
