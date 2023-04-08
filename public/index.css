@@ -422,7 +422,7 @@ iframe
     z-index: 1000;
 }
  
-/* CSS FOR PROTOTYPE CODE
+CSS FOR PROTOTYPE CODE
 Ul
 {
 List-style-type: none;
@@ -436,28 +436,6 @@ border-radius: 10px;
 }
 
 
-li
-{
-flex: 1;
-}
-    
-Li a
-{
-Display: block;
-Color: rgb(43, 37, 37);
-Padding: 5%;
-Text-align: center;
-Text-decoration: none;
-}
-    
-li a:hover
-{
-text-decoration: underline;
-text-decoration-thickness: 3px;
-text-underline-offset: 5px;
-color: blue;
-} 
-*/
 
 @media all and (max-width : 1600px)
 {

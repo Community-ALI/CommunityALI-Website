@@ -1,27 +1,61 @@
 // This is the HTML code for the navigation bar
 // Scripted for all the HTML pages
 
-document.write("    <nav class=\"navigation-menu\">");
-document.write("        <ul class = \"navigation-bar\"> ");
-document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"index.html\" > Home <\/a> <\/li>");
-document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"service-search\" > Explore <\/a> <\/li>");
-
-
 var token = localStorage.getItem('token');
-if (token){
-    document.write("            <li class=\"navigation-button\" id=\"applicants\"> <a class=\"navigation-text\" href=\"my-services.html\" > My Services <\/a> <\/li>");
+
+function constructNavigationBarElement() {
+    let navigationMenu = document.createElement('nav');
+    navigationMenu.setAttribute('class', 'navigation-menu');
+
+    let homeNavButton = document.createElement('a');
+    homeNavButton.setAttribute('class', 'navigation-button navigation-text');
+    homeNavButton.setAttribute('href', 'index.html');
+    homeNavButton.innerHTML = 'Home';
+    navigationMenu.appendChild(homeNavButton);
+
+    let serviceSearchNavButton = document.createElement('a');
+    serviceSearchNavButton.setAttribute('class', 'navigation-button navigation-text');
+    serviceSearchNavButton.setAttribute('href', 'service-search');
+    serviceSearchNavButton.innerHTML = 'Explore';
+    navigationMenu.appendChild(serviceSearchNavButton);
+
+    if (token){
+        let myServicesNavButton = document.createElement('a');
+        myServicesNavButton.setAttribute('class', 'navigation-button navigation-text');
+        myServicesNavButton.setAttribute('href', 'my-services.html');
+        myServicesNavButton.setAttribute('id', 'applicants');
+        myServicesNavButton.innerHTML = 'My Services';
+        navigationMenu.appendChild(myServicesNavButton);
+    }
+
+    let mjcNavButton = document.createElement('a');
+    mjcNavButton.setAttribute('class', 'navigation-button navigation-text');
+    mjcNavButton.setAttribute('href', 'https://www.mjc.edu/');
+    mjcNavButton.setAttribute('target', '_blank');
+    mjcNavButton.innerHTML = 'Explore';
+    navigationMenu.appendChild(mjcNavButton);
+
+    if (!token){
+        let loginNavButton = document.createElement('a');
+        loginNavButton.setAttribute('class', 'navigation-button navigation-text');
+        loginNavButton.setAttribute('href', 'login.html');
+        loginNavButton.setAttribute('id', 'navifation-login');
+        loginNavButton.innerHTML = 'Login';
+        navigationMenu.appendChild(loginNavButton);
+    }
+    else{
+        let logoutNavButton = document.createElement('a');
+        logoutNavButton.setAttribute('class', 'navigation-button navigation-text');
+        logoutNavButton.setAttribute('href', 'logout.html');
+        logoutNavButton.setAttribute('id', 'navifation-login');
+        logoutNavButton.innerHTML = 'Logout';
+        navigationMenu.appendChild(logoutNavButton);
+    } 
+      
+    return(navigationMenu);
 }
 
-document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" href=\"https://www.mjc.edu/\" target=\"_blank\" > MJC <\/a> <\/li>");
-
-
-if (!token){
-    document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" id =\"navigation-login\" href=\"login.html\" > Login <\/a> <\/li>");
-}
-else{
-    document.write("            <li class=\"navigation-button\"> <a class=\"navigation-text\" id =\"navigation-login\" href=\"logout.html\" > Logout <\/a> <\/li>");
-} 
-
+document.body.insertBefore(constructNavigationBarElement(), document.body.firstElementChild);
 
 document.write("        <\/ul>");
 document.write("");
