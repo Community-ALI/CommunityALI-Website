@@ -319,7 +319,7 @@ body
 .description-text
 {
     color: white;
-    font-size : clamp(10px, 4vh, 21px);
+    font-size : clamp(10px, 4vh, 19px);
     font-family: 'Poppins', sans-serif;
     font-weight : 400;
     line-height: 50px;
@@ -455,27 +455,6 @@ color: blue;
 } 
 */
 
-@media all and (max-width : 1600px)
-{
-    .description-text
-    {
-        font-size : clamp(10px, 4vh, 19px);
-    }
-
-    .diagram
-    {
-        margin-top : 40px;
-        float : left;
-        max-width: 46%;
-    }
-
-    .benefits-text
-    {
-        font-size : clamp(12px, 2vw, 19px);
-        line-height: 75px; 
-    }
-}
-
 @media all and (max-width : 1320px)
 {
     .description-text
@@ -495,11 +474,6 @@ color: blue;
 
 @media all and (max-width : 1240px)
 {
-    .description-curve
-    {
-        transform: translateY(100px);
-    }
-
     .description-text
     {
         width : 90%;
@@ -560,16 +534,6 @@ color: blue;
     {
         font-size : 16px;
         line-height: 45px;
-    }
-
-    .description-text
-    {
-        padding : 30px;
-    }
-
-    .description-curve
-    {
-        transform: translateY(0px);
     }
 }
 
@@ -694,7 +658,6 @@ color: blue;
     {
         margin-top : 20%;
     }
-
 }
 
 @media all and (max-width : 480px)
