@@ -7,6 +7,19 @@ function constructNavigationBarElement() {
     let navigationMenu = document.createElement('nav');
     navigationMenu.setAttribute('class', 'navigation-menu');
 
+    let communityCatalystLogoLink = document.createElement('a');
+    communityCatalystLogoLink.setAttribute('href', 'index.html');
+    navigationMenu.appendChild(communityCatalystLogoLink);
+    let communityCatalystLogoImg = document.createElement('img');
+    communityCatalystLogoImg.setAttribute('src', 'Photos/CommunityCatalyst_Transparent.png');
+    communityCatalystLogoImg.setAttribute('class', 'navbar-logo');
+    communityCatalystLogoLink.appendChild(communityCatalystLogoImg);
+
+    let searchBar = document.createElement('input');
+    searchBar.setAttribute('placeholder', 'Search . . .');
+    searchBar.setAttribute('id', 'nav-menu-search-bar');
+    navigationMenu.appendChild(searchBar);
+
     let homeNavButton = document.createElement('a');
     homeNavButton.setAttribute('class', 'navigation-button navigation-text');
     homeNavButton.setAttribute('href', 'index.html');
@@ -32,14 +45,14 @@ function constructNavigationBarElement() {
     mjcNavButton.setAttribute('class', 'navigation-button navigation-text');
     mjcNavButton.setAttribute('href', 'https://www.mjc.edu/');
     mjcNavButton.setAttribute('target', '_blank');
-    mjcNavButton.innerHTML = 'Explore';
+    mjcNavButton.innerHTML = 'MJC';
     navigationMenu.appendChild(mjcNavButton);
 
     if (!token){
         let loginNavButton = document.createElement('a');
         loginNavButton.setAttribute('class', 'navigation-button navigation-text');
         loginNavButton.setAttribute('href', 'login.html');
-        loginNavButton.setAttribute('id', 'navifation-login');
+        loginNavButton.setAttribute('id', 'navigation-login');
         loginNavButton.innerHTML = 'Login';
         navigationMenu.appendChild(loginNavButton);
     }
@@ -47,7 +60,7 @@ function constructNavigationBarElement() {
         let logoutNavButton = document.createElement('a');
         logoutNavButton.setAttribute('class', 'navigation-button navigation-text');
         logoutNavButton.setAttribute('href', 'logout.html');
-        logoutNavButton.setAttribute('id', 'navifation-login');
+        logoutNavButton.setAttribute('id', 'navigation-login');
         logoutNavButton.innerHTML = 'Logout';
         navigationMenu.appendChild(logoutNavButton);
     } 
@@ -55,7 +68,16 @@ function constructNavigationBarElement() {
     return(navigationMenu);
 }
 
-document.body.insertBefore(constructNavigationBarElement(), document.body.firstElementChild);
+var navBar = document.body.insertBefore(constructNavigationBarElement(), document.body.firstElementChild);
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 0){
+        navBar.classList.add('scrolled');
+    }
+    else {
+        navBar.classList.remove('scrolled');
+    }
+})
 
 document.write("        <\/ul>");
 document.write("");
