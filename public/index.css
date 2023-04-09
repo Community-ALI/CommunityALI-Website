@@ -298,6 +298,7 @@ body
 {
     width: 650px;
     height: 366px;
+    max-width: 90vw;
 }
 
 .partners-container
