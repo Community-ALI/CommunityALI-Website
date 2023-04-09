@@ -99,16 +99,16 @@ a > .navigation-menu {
     transition: background-color 1s ease;
 }
 
-::placeholder {
+#nav-menu-search-bar::placeholder {
     color: white;
     opacity: 1;
 }
 
-:-ms-input-placeholder{
+#nav-menu-search-bar:-ms-input-placeholder{
     color: white;
 }
 
-::-ms-input-placeholder{
+#nav-menu-search-bar::-ms-input-placeholder{
     color: white;
 }
 
@@ -159,17 +159,31 @@ a > .navigation-menu {
 
 @media all and (max-width : 780px)
 {
+    .navigation-menu {
+        flex-direction: column;
+        width: 75vw;
+    }
+
     .navigation-hamburger
     {
-        z-index : 5;
-        display : block; 
-        position : fixed;
+        z-index : 9999;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         top: 0px;
         padding-top : 10px; 
         padding-bottom : 10px;
         width : 100%;
 
         background-color: #0096C9;
+    }
+
+    .navbar-logo{
+        left: 45vw;
+        top: 12px;
+        position: fixed;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
@@ -190,17 +204,19 @@ a > .navigation-menu {
     .navigation-bar
     {
         position : fixed;
-        top : -30%;
+        left : -75%;
         background-color: #0096C9;
         gap : 0;
         flex-direction : column;  
-        width : 100%;
         text-align : center;
         z-index : 5;
         padding-right : 0;
+        top: 7%;
+        width: 75vw;
 
         transition : 0.3s ease-in-out;
         max-width: 100%;
+        background-color: #001E60;
     }
 
     .navigation-button
@@ -212,6 +228,28 @@ a > .navigation-menu {
 
     .navigation-bar.active 
     {
-        top : 5%;
+        left : 0vw;
+    }
+
+    .navigation-sub-menu{
+        opacity: 100;
+        background-color: #001E60;
+    }
+
+    #nav-menu-search-bar {
+        background-color: white;
+        transition: background-color 1s ease;
+    }
+
+    #nav-menu-search-bar::placeholder {
+        color: black;
+    }
+
+    #nav-menu-search-bar:-ms-input-placeholder{
+        color: black;
+    }
+
+    #nav-menu-search-bar::-ms-input-placeholder{
+        color: black;
     }
 }

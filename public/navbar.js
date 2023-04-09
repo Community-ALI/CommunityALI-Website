@@ -3,17 +3,40 @@
 
 var token = localStorage.getItem('token');
 
-function constructNavigationBarElement() {
-    let navigationMenu = document.createElement('nav');
-    navigationMenu.setAttribute('class', 'navigation-menu');
+function constructLoginNavButton() {
+    if (!token){
+        let loginNavButton = document.createElement('a');
+        loginNavButton.setAttribute('class', 'navigation-button navigation-text');
+        loginNavButton.setAttribute('href', 'login.html');
+        loginNavButton.setAttribute('id', 'navigation-login');
+        loginNavButton.innerHTML = 'Login';
+        return loginNavButton;
+    }
+    else{
+        let logoutNavButton = document.createElement('a');
+        logoutNavButton.setAttribute('class', 'navigation-button navigation-text');
+        logoutNavButton.setAttribute('href', 'logout.html');
+        logoutNavButton.setAttribute('id', 'navigation-login');
+        logoutNavButton.innerHTML = 'Logout';
+        return logoutNavButton;
+    } 
+}
 
+function constructCommunityCatalystLogo() {
     let communityCatalystLogoLink = document.createElement('a');
     communityCatalystLogoLink.setAttribute('href', 'index.html');
-    navigationMenu.appendChild(communityCatalystLogoLink);
     let communityCatalystLogoImg = document.createElement('img');
     communityCatalystLogoImg.setAttribute('src', 'Photos/CommunityCatalyst_Transparent.png');
     communityCatalystLogoImg.setAttribute('class', 'navbar-logo');
     communityCatalystLogoLink.appendChild(communityCatalystLogoImg);
+    return communityCatalystLogoLink;
+}
+
+function constructNavigationBarElement() {
+    let navigationMenu = document.createElement('nav');
+    navigationMenu.setAttribute('class', 'navigation-menu');
+
+    navigationMenu.appendChild(constructCommunityCatalystLogo());
 
     let searchBar = document.createElement('input');
     searchBar.setAttribute('placeholder', 'Search . . .');
@@ -47,24 +70,9 @@ function constructNavigationBarElement() {
     mjcNavButton.setAttribute('target', '_blank');
     mjcNavButton.innerHTML = 'MJC';
     navigationMenu.appendChild(mjcNavButton);
+  
+    navigationMenu.appendChild(constructLoginNavButton());
 
-    if (!token){
-        let loginNavButton = document.createElement('a');
-        loginNavButton.setAttribute('class', 'navigation-button navigation-text');
-        loginNavButton.setAttribute('href', 'login.html');
-        loginNavButton.setAttribute('id', 'navigation-login');
-        loginNavButton.innerHTML = 'Login';
-        navigationMenu.appendChild(loginNavButton);
-    }
-    else{
-        let logoutNavButton = document.createElement('a');
-        logoutNavButton.setAttribute('class', 'navigation-button navigation-text');
-        logoutNavButton.setAttribute('href', 'logout.html');
-        logoutNavButton.setAttribute('id', 'navigation-login');
-        logoutNavButton.innerHTML = 'Logout';
-        navigationMenu.appendChild(logoutNavButton);
-    } 
-      
     return(navigationMenu);
 }
 
@@ -128,14 +136,21 @@ window.addEventListener('scroll', () => {
 })
 
 function constructNavigationHamburger() {
+    let navigationHamburgerWrapper = document.createElement('div');
+    navigationHamburgerWrapper.setAttribute('class', 'navigation-hamburger navigation-menu');
+
     let navigationHamburger = document.createElement('div');
-    navigationHamburger.setAttribute('class', 'navigation-hamburger');
     for (var i = 0; i < 3; i++){
-        let navigationLine = document.createElement('span');
+        let navigationLine = document.createElement('rect');
         navigationLine.setAttribute('class', 'navigation-line');
         navigationHamburger.appendChild(navigationLine);
     }
-    document.body.appendChild(navigationHamburger);
+
+    navigationHamburgerWrapper.appendChild(navigationHamburger);
+    navigationHamburgerWrapper.appendChild(constructCommunityCatalystLogo());
+    navigationHamburgerWrapper.appendChild(constructLoginNavButton());
+
+    document.body.appendChild(navigationHamburgerWrapper);
 }
 
 constructNavigationHamburger();
