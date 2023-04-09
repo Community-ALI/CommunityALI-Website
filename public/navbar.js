@@ -26,7 +26,7 @@ function constructCommunityCatalystLogo() {
     let communityCatalystLogoLink = document.createElement('a');
     communityCatalystLogoLink.setAttribute('href', 'index.html');
     let communityCatalystLogoImg = document.createElement('img');
-    communityCatalystLogoImg.setAttribute('src', 'Photos/CommunityCatalyst_Transparent.png');
+    communityCatalystLogoImg.setAttribute('src', 'Photos/CClogo.png');
     communityCatalystLogoImg.setAttribute('class', 'navbar-logo');
     communityCatalystLogoLink.appendChild(communityCatalystLogoImg);
     return communityCatalystLogoLink;
@@ -39,7 +39,7 @@ function constructNavigationBarElement() {
     navigationMenu.appendChild(constructCommunityCatalystLogo());
 
     let searchBar = document.createElement('input');
-    searchBar.setAttribute('placeholder', 'Search . . .');
+    searchBar.setAttribute('placeholder', 'Search...');
     searchBar.setAttribute('id', 'nav-menu-search-bar');
     navigationMenu.appendChild(searchBar);
 
@@ -95,7 +95,7 @@ function constructSubNavBar() {
     let volunteerAndCommunityServiceButton = document.createElement('a');
     volunteerAndCommunityServiceButton.setAttribute('class', 'coming-soon navigation-button navigation-text');
     clubsAndCommunitiesButton.setAttribute('href', 'service-search');
-    volunteerAndCommunityServiceButton.innerHTML = 'Volunteer & community Service';
+    volunteerAndCommunityServiceButton.innerHTML = 'Volunteer & Community Service';
     subNavBar.appendChild(volunteerAndCommunityServiceButton);
 
     let internshipAndWorkExperienceButton = document.createElement('a');
@@ -104,11 +104,12 @@ function constructSubNavBar() {
     internshipAndWorkExperienceButton.innerHTML = 'Internship & Work Experience';
     subNavBar.appendChild(internshipAndWorkExperienceButton);
 
+    /* TEMPORARILY TAKING THIS OUT UNTIL A FURTHER CATEGORY IS MADE
     let inDevelopmentButton = document.createElement('a');
     inDevelopmentButton.setAttribute('class', 'coming-soon navigation-button navigation-text');
     clubsAndCommunitiesButton.setAttribute('href', 'service-search');
     inDevelopmentButton.innerHTML = 'In Development';
-    subNavBar.appendChild(inDevelopmentButton);
+    subNavBar.appendChild(inDevelopmentButton); */
 
     return subNavBar;
 }
@@ -127,12 +128,14 @@ window.addEventListener('scroll', () => {
         topNavBar.classList.remove('scrolled');
     }
 
+    /* TEMPORARILY TAKING THIS OUT UNTIL FEATURE IS NECESSARY
     if (window.scrollY > 720) {
         bottomNavBar.classList.add('scrolled');
     }
     else {
         bottomNavBar.classList.remove('scrolled');
     }
+    */
 })
 
 function constructNavigationHamburger() {

@@ -2,7 +2,7 @@
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
 
     text-align: right;
     list-style: none;
@@ -24,8 +24,8 @@
     text-underline-offset: 8px;
     line-height: 10px;
 
-    padding-left: 10px ;
-    padding-right: 10px;
+    padding-left: 15px ;
+    padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
 
@@ -49,7 +49,9 @@
     
     border-radius : 10px;
 
-    padding : 7px 15px;
+    padding : 15px 15px;
+    margin-right : 20px;
+    margin-left : 15px;
     text-decoration: none;
 }
 
@@ -66,11 +68,11 @@
 
 .navigation-menu
 {
-    min-height : 50px;
-    justify-content: space-between;
+    min-height : 45px;
+    justify-content: space-evenly;
     align-items: center;
     display: flex;
-    padding: 4px 16px 4px 16px;
+    padding: 0px 25px 0px 25px;
     gap: 16px;
     transition: background-color 0.5s ease;
     width: 100%;
@@ -83,10 +85,15 @@ a > .navigation-menu {
 #nav-menu-search-bar {
     flex-grow: 1;
     background-color: transparent;
-    border: 2px solid #ecaa1e;
+    border: 2px solid white;
     border-radius: 50px;
-    padding: 5px;
+    padding: 8px 15px;
     transition: background-color 1s ease;
+    margin-right: 20px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color : white;
 }
 
 .scrolled {
@@ -97,6 +104,7 @@ a > .navigation-menu {
 .scrolled > #nav-menu-search-bar {
     background-color: white;
     transition: background-color 1s ease;
+    color : #001E60;
 }
 
 #nav-menu-search-bar::placeholder {
@@ -113,20 +121,22 @@ a > .navigation-menu {
 }
 
 .scrolled > #nav-menu-search-bar::placeholder {
-    color: black;
+    color: #001E60;
 
 }
 
 .scrolled > #nav-menu-search-bar:-ms-input-placeholder{
-    color: black;
+    color: #001E60;
 }
 
 .scrolled > #nav-menu-search-bar::-ms-input-placeholder{
-    color: black;
+    color: #001E60;
 }
 
 .navbar-logo {
-    max-height: 50px;
+    max-height: 55px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .navigation-hamburger
@@ -157,11 +167,27 @@ a > .navigation-menu {
     opacity: 100;
 }
 
+
+@media all and (max-width : 1200px)
+{
+    .navigation-menu
+    {
+        gap : 10px;
+        padding: 0px 16px 0px 16px
+    }
+
+    #nav-menu-search-bar
+    {
+        margin-right : 5px;
+    }
+}
+
 @media all and (max-width : 780px)
 {
     .navigation-menu {
         flex-direction: column;
         width: 75vw;
+        padding-top: 50px;
     }
 
     .navigation-hamburger
@@ -181,9 +207,10 @@ a > .navigation-menu {
     }
 
     .navbar-logo{
-        left: 45vw;
         top: 12px;
         position: fixed;
+        margin-top : 0px;
+        margin-bottom: 0px;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
@@ -231,9 +258,16 @@ a > .navigation-menu {
         left : 0vw;
     }
 
+    #navigation-login 
+    {
+        margin-right: 0px;
+        margin-left: 0px; 
+    }
+
     .navigation-sub-menu{
         opacity: 100;
         background-color: #001E60;
+        padding-bottom: 50px;
     }
 
     #nav-menu-search-bar {

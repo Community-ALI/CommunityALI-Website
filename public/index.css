@@ -76,7 +76,8 @@ body
     text-align: center;
     position : relative;
     animation: fadeIn 1s;
-    height : 45vh;
+    height : 50vh;
+    margin-top : 5%;
     color: #fff;
 }
 
@@ -495,9 +496,8 @@ border-radius: 10px;
     #header-title
     {
         line-height: 70px;
-        height : 35vh;
         padding: 0px 20px;
-        margin-top: 12%;
+        margin-top: 15%;
     }
 
     #header-subtitle
@@ -571,11 +571,6 @@ border-radius: 10px;
         margin-right : 10px;
         padding : 10px 3.5%;
     }
-
-    #header-title
-    {
-        margin-top : 20%;
-    }
 }
 
 @media all and (max-width : 480px)
@@ -602,7 +597,7 @@ border-radius: 10px;
         line-height: 60px;
         height: 40vh;
         font-size: 32px;
-        margin-top: 15%;
+        margin-top: 30%;
     }
 
     #header-subtitle
@@ -654,10 +649,9 @@ border-radius: 10px;
 
     #header-title
     {
-        font-size: 30px;
-        height: 50vh;
-        margin-top: 5%;
-        line-height : 55px;
+        line-height : 52px;
+        margin-top: 30%;
+        height: 45vh;
     }
 
     #header-subtitle
