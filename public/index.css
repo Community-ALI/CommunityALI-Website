@@ -33,13 +33,9 @@ body
     min-width: 100%;
     min-height: 100%;
     z-index : -1;
-
     right: 0;
     bottom: 0;
     transform: translateX(calc((100% - 100vw) / 2));
-
-    display : flex;
-    justify-content: center;
     top : -90px;
 }
 
@@ -549,11 +545,6 @@ color: blue;
         padding : 12px 7%;
     }
 
-    #video-background
-    {
-        top : -40px;
-    }
-
     #container-title
     {
         margin-right: 2%;
@@ -611,11 +602,6 @@ color: blue;
         margin-left : 10px;
         margin-right : 10px;
         padding : 12px 7%;
-    }
-
-    #video-background
-    {
-        top : -20px;
     }
 
     #header-title
