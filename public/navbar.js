@@ -68,22 +68,74 @@ function constructNavigationBarElement() {
     return(navigationMenu);
 }
 
-var navBar = document.body.insertBefore(constructNavigationBarElement(), document.body.firstElementChild);
+function constructSubNavBar() {
+    let subNavBar = document.createElement('div');
+    subNavBar.setAttribute('class', 'navigation-sub-menu navigation-menu');
+
+    let subjectAndCareerPathButton = document.createElement('a');
+    subjectAndCareerPathButton.setAttribute('class', 'navigation-button navigation-text');
+    subjectAndCareerPathButton.setAttribute('href', 'service-search');
+    subjectAndCareerPathButton.innerHTML = 'Subject and Career Path';
+    subNavBar.appendChild(subjectAndCareerPathButton);
+
+    let clubsAndCommunitiesButton = document.createElement('a');
+    clubsAndCommunitiesButton.setAttribute('class', 'navigation-button navigation-text');
+    clubsAndCommunitiesButton.setAttribute('href', 'service-search');
+    clubsAndCommunitiesButton.innerHTML = 'Clubs and Communities';
+    subNavBar.appendChild(clubsAndCommunitiesButton);
+
+    let volunteerAndCommunityServiceButton = document.createElement('a');
+    volunteerAndCommunityServiceButton.setAttribute('class', 'coming-soon navigation-button navigation-text');
+    clubsAndCommunitiesButton.setAttribute('href', 'service-search');
+    volunteerAndCommunityServiceButton.innerHTML = 'Volunteer & community Service';
+    subNavBar.appendChild(volunteerAndCommunityServiceButton);
+
+    let internshipAndWorkExperienceButton = document.createElement('a');
+    internshipAndWorkExperienceButton.setAttribute('class', 'coming-soon navigation-button navigation-text');
+    clubsAndCommunitiesButton.setAttribute('href', 'service-search');
+    internshipAndWorkExperienceButton.innerHTML = 'Internship & Work Experience';
+    subNavBar.appendChild(internshipAndWorkExperienceButton);
+
+    let inDevelopmentButton = document.createElement('a');
+    inDevelopmentButton.setAttribute('class', 'coming-soon navigation-button navigation-text');
+    clubsAndCommunitiesButton.setAttribute('href', 'service-search');
+    inDevelopmentButton.innerHTML = 'In Development';
+    subNavBar.appendChild(inDevelopmentButton);
+
+    return subNavBar;
+}
+
+var navBarWrapper = document.createElement('div');
+navBarWrapper.setAttribute('class', 'navigation-bar');
+var topNavBar = navBarWrapper.appendChild(constructNavigationBarElement());
+var bottomNavBar = navBarWrapper.appendChild(constructSubNavBar());
+document.body.insertBefore(navBarWrapper, document.body.firstElementChild);
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0){
-        navBar.classList.add('scrolled');
+        topNavBar.classList.add('scrolled');
     }
     else {
-        navBar.classList.remove('scrolled');
+        topNavBar.classList.remove('scrolled');
+    }
+
+    if (window.scrollY > 720) {
+        bottomNavBar.classList.add('scrolled');
+    }
+    else {
+        bottomNavBar.classList.remove('scrolled');
     }
 })
 
-document.write("        <\/ul>");
-document.write("");
-document.write("        <div class = \"navigation-hamburger\">");
-document.write("            <span class=\"navigation-line\"> <\/span>");
-document.write("            <span class=\"navigation-line\"> <\/span>");
-document.write("            <span class=\"navigation-line\"> <\/span>");
-document.write("        <\/div>");
-document.write("    <\/nav>  ");
+function constructNavigationHamburger() {
+    let navigationHamburger = document.createElement('div');
+    navigationHamburger.setAttribute('class', 'navigation-hamburger');
+    for (var i = 0; i < 3; i++){
+        let navigationLine = document.createElement('span');
+        navigationLine.setAttribute('class', 'navigation-line');
+        navigationHamburger.appendChild(navigationLine);
+    }
+    document.body.appendChild(navigationHamburger);
+}
+
+constructNavigationHamburger();
