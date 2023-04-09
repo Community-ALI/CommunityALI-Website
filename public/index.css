@@ -12,7 +12,6 @@
 body
 {
     background: #0096C9;
-      
     width: 100%;
     height: 100%;
     min-height: calc(100vh);
@@ -33,13 +32,9 @@ body
     min-width: 100%;
     min-height: 100%;
     z-index : -1;
-
     right: 0;
     bottom: 0;
     transform: translateX(calc((100% - 100vw) / 2));
-
-    display : flex;
-    justify-content: center;
     top : -90px;
 }
 
@@ -54,7 +49,6 @@ body
      );
 
     background-repeat : no-repeat;
-
     min-height: 130vh;
     max-height: 130vh;
     position: relative;
@@ -203,25 +197,7 @@ body
     text-align: center;
 }
 
-#career
-{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#club
-{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#volunteer
-{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#internship
+.box img
 {
     max-width: 100%;
     max-height: 100%;
@@ -302,28 +278,10 @@ body
     padding-left: 5%;
 }
 
-.description-title
-{
-    color: white;
-    text-decoration: none;
-    position : relative;
-    margin-bottom : 3%;
-    border-radius: 10px;
-    margin-right : 5%;
-    margin-left : 5%;
-}
-
-.description-title p
-{
-    font-family: 'Poppins', sans-serif;
-    font-size : clamp(18px, 3vw, 40px);
-    text-align: center;
-}
-
 .description-text
 {
     color: white;
-    font-size : clamp(10px, 4vh, 21px);
+    font-size : clamp(10px, 4vh, 19px);
     font-family: 'Poppins', sans-serif;
     font-weight : 400;
     line-height: 50px;
@@ -336,13 +294,7 @@ body
     transition: 300ms ease ;
 }
 
-.description-image
-{
-    background-repeat : no-repeat;
-    position : relative;
-}
-
-iframe
+.description-video
 {
     width: 650px;
     height: 366px;
@@ -379,26 +331,24 @@ iframe
     width : 20%;
 }
 
+/* CSS FOR PROTOTYPE CODE
 .search-bar-container
 {
     position: fixed;
     left: 25px;
     margin-top: 2%;
     z-index: 5000;
-   
- }
+}
  
- 
- .search-bar
- {
+.search-bar
+{
     border: 1.5px solid;
     border-radius: 60px;
     position: fixed;
     width: 96%;
     display: flex;
     z-index: 5000;
- }
- 
+}
  
 .search-bar input
 {
@@ -411,7 +361,6 @@ iframe
     outline: none;
 }
  
- 
 .container2
 {
     position: fixed;
@@ -422,7 +371,6 @@ iframe
     z-index: 1000;
 }
  
-CSS FOR PROTOTYPE CODE
 Ul
 {
 List-style-type: none;
@@ -437,27 +385,6 @@ border-radius: 10px;
 
 
 
-@media all and (max-width : 1600px)
-{
-    .description-text
-    {
-        font-size : clamp(10px, 4vh, 19px);
-    }
-
-    .diagram
-    {
-        margin-top : 40px;
-        float : left;
-        max-width: 46%;
-    }
-
-    .benefits-text
-    {
-        font-size : clamp(12px, 2vw, 19px);
-        line-height: 75px; 
-    }
-}
-
 @media all and (max-width : 1320px)
 {
     .description-text
@@ -466,7 +393,7 @@ border-radius: 10px;
         padding : 18px 25px;      
     }  
 
-    iframe
+    .description-video
     {
         width: 550px;
         height: 309px;
@@ -477,11 +404,6 @@ border-radius: 10px;
 
 @media all and (max-width : 1240px)
 {
-    .description-curve
-    {
-        transform: translateY(100px);
-    }
-
     .description-text
     {
         width : 90%;
@@ -527,17 +449,6 @@ border-radius: 10px;
         padding : 12px 7%;
     }
 
-    #video-background
-    {
-        top : -40px;
-    }
-
-    #container-title
-    {
-        margin-right: 2%;
-        margin-left: 2%;
-    }
-
     #header-title
     {
         line-height: 80px;
@@ -548,21 +459,11 @@ border-radius: 10px;
         font-size : 16px;
         line-height: 45px;
     }
-
-    .description-text
-    {
-        padding : 30px;
-    }
-
-    .description-curve
-    {
-        transform: translateY(0px);
-    }
 }
 
 @media all and (max-width : 850px)
 {
-    iframe
+    .description-video
     {
         width: 450px;
         height: 253px;
@@ -591,11 +492,6 @@ border-radius: 10px;
         padding : 12px 7%;
     }
 
-    #video-background
-    {
-        top : -20px;
-    }
-
     #header-title
     {
         line-height: 70px;
@@ -611,19 +507,13 @@ border-radius: 10px;
         right: 5%;
     }
 
-    #container-title
-    {
-        margin-right: 1%;
-        margin-left: 1%;
-    }
-
     .description-text p
     {
         font-size : 15px;
         line-height: 35px;
     }
 
-    iframe
+    .description-video
     {
         width : 420px;
         height : 236px;
@@ -660,7 +550,7 @@ border-radius: 10px;
         top : -5%;
     }
 
-    iframe
+    .description-video
     {
         width : 400px;
         height : 225px;
@@ -686,13 +576,12 @@ border-radius: 10px;
     {
         margin-top : 20%;
     }
-
 }
 
 @media all and (max-width : 480px)
 {
 
-    iframe
+    .description-video
     {
         width : 320px;
         height : 180px;
@@ -757,7 +646,7 @@ border-radius: 10px;
 
 @media all and (max-width : 380px)
 {
-    iframe
+    .description-video
     {
         width : 280px;
         height : 158px;
