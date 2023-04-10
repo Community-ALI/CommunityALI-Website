@@ -175,7 +175,7 @@ a > .navigation-menu {
         top: 0px;
         padding-top : 10px; 
         padding-bottom : 10px;
-        width : 100%;
+        width : 100vw;
 
         background-color: #0096C9;
     }

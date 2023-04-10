@@ -171,7 +171,6 @@ body
     height : 100%;
     display : flex;
     justify-content: center;
-    flex-flow: wrap;
     padding-right : 5%;
     padding-left : 5%;
 }
@@ -383,7 +382,14 @@ border: 1px solid;
 border-radius: 10px;
 }
 
+.categories-nav-button {
+    width: 50px;
+    visibility: hidden;
+}
 
+.container {
+    overflow: hidden;
+}
 
 @media all and (max-width : 1320px)
 {
@@ -519,6 +525,21 @@ border-radius: 10px;
         height : 236px;
         display:block;
         margin: auto;
+    }
+
+    .category-box
+    {
+        width: 250px;
+        flex-shrink: 0;
+    }
+
+    .categories-container {
+        justify-content: left;
+        overflow: scroll;
+    }
+
+    .box-header-text {
+        width: 100%;
     }
 }
 
