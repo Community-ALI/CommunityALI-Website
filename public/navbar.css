@@ -287,3 +287,8 @@ a > .navigation-menu {
         color: black;
     }
 }
+
+.not-fixed {
+    position: absolute;
+    opacity: 100%;
+}

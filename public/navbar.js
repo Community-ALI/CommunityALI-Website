@@ -2,6 +2,8 @@
 // Scripted for all the HTML pages
 
 var token = localStorage.getItem('token');
+var currentPage = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
+var fixedPages = ['index.html'];
 
 function constructLoginNavButton() {
     if (!token){
@@ -114,28 +116,37 @@ function constructSubNavBar() {
     return subNavBar;
 }
 
+function checkIfNavBarShouldBeFixed() {
+    return fixedPages.includes(currentPage);
+}
+
 var navBarWrapper = document.createElement('div');
 navBarWrapper.setAttribute('class', 'navigation-bar');
 var topNavBar = navBarWrapper.appendChild(constructNavigationBarElement());
 var bottomNavBar = navBarWrapper.appendChild(constructSubNavBar());
+if (!checkIfNavBarShouldBeFixed()) {
+    navBarWrapper.classList.add('class', 'not-fixed');
+}
 document.body.insertBefore(navBarWrapper, document.body.firstElementChild);
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 0){
-        topNavBar.classList.add('scrolled');
-    }
-    else {
-        topNavBar.classList.remove('scrolled');
-    }
-
-    /* TEMPORARILY TAKING THIS OUT UNTIL FEATURE IS NECESSARY
-    if (window.scrollY > 720) {
-        bottomNavBar.classList.add('scrolled');
-    }
-    else {
-        bottomNavBar.classList.remove('scrolled');
-    }
-    */
+    if (checkIfNavBarShouldBeFixed()){
+        if (window.scrollY > 0){
+            topNavBar.classList.add('scrolled');
+        }
+        else {
+            topNavBar.classList.remove('scrolled');
+        }
+    
+        /* TEMPORARILY TAKING THIS OUT UNTIL FEATURE IS NECESSARY
+        if (window.scrollY > 720) {
+            bottomNavBar.classList.add('scrolled');
+        }
+        else {
+            bottomNavBar.classList.remove('scrolled');
+        }
+        */
+        }
 })
 
 function constructNavigationHamburger() {
