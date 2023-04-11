@@ -529,7 +529,7 @@ border-radius: 10px;
 
     .category-box
     {
-        width: 250px;
+        width: 200px;
         flex-shrink: 0;
     }
 
@@ -540,6 +540,12 @@ border-radius: 10px;
 
     .box-header-text {
         width: 100%;
+        font-size: 3vw;
+    }
+
+    .preview-text
+    {
+        font-size: 3vw;
     }
 }
 
