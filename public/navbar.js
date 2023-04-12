@@ -3,7 +3,7 @@
 
 var token = localStorage.getItem('token');
 var currentPage = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
-var fixedPages = ['index.html'];
+var fixedPages = ['index.html', ''];
 
 function constructLoginNavButton() {
     if (!token){
@@ -24,12 +24,16 @@ function constructLoginNavButton() {
     } 
 }
 
-function constructCommunityCatalystLogo() {
+function constructCommunityCatalystLogo(isMobile) {
     let communityCatalystLogoLink = document.createElement('a');
     communityCatalystLogoLink.setAttribute('href', 'index.html');
     let communityCatalystLogoImg = document.createElement('img');
     communityCatalystLogoImg.setAttribute('src', 'Photos/CClogo.png');
     communityCatalystLogoImg.setAttribute('class', 'navbar-logo');
+    if (isMobile)
+    {
+        communityCatalystLogoImg.classList.add('mobileLogo');
+    }
     communityCatalystLogoLink.appendChild(communityCatalystLogoImg);
     return communityCatalystLogoLink;
 }
@@ -38,7 +42,7 @@ function constructNavigationBarElement() {
     let navigationMenu = document.createElement('nav');
     navigationMenu.setAttribute('class', 'navigation-menu');
 
-    navigationMenu.appendChild(constructCommunityCatalystLogo());
+    navigationMenu.appendChild(constructCommunityCatalystLogo(false));
 
     let searchBar = document.createElement('input');
     searchBar.setAttribute('placeholder', 'Search...');
@@ -160,9 +164,11 @@ function constructNavigationHamburger() {
         navigationHamburger.appendChild(navigationLine);
     }
 
+    let communityCatalystLogo = constructCommunityCatalystLogo(true);
+
+
     navigationHamburgerWrapper.appendChild(navigationHamburger);
-    navigationHamburgerWrapper.appendChild(constructCommunityCatalystLogo());
-    navigationHamburgerWrapper.appendChild(constructLoginNavButton());
+    navigationHamburgerWrapper.appendChild(communityCatalystLogo); 
 
     document.body.appendChild(navigationHamburgerWrapper);
 }

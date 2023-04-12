@@ -167,6 +167,11 @@ a > .navigation-menu {
     opacity: 100;
 }
 
+.not-fixed {
+    position: absolute;
+    opacity: 100%;
+}
+
 
 @media all and (max-width : 1200px)
 {
@@ -199,18 +204,25 @@ a > .navigation-menu {
         justify-content: space-between;
         align-items: center;
         top: 0px;
-        padding-top : 10px; 
-        padding-bottom : 10px;
+        padding-top : 20px; 
+        padding-bottom : 20px;
         width : 100vw;
 
         background-color: #0096C9;
     }
 
     .navbar-logo{
-        top: 12px;
-        position: fixed;
+        top: 9px;
+        position: absolute;
         margin-top : 0px;
         margin-bottom: 0px;
+        right : 42%;
+        visibility: hidden;
+    }
+
+    .navbar-logo.mobileLogo
+    {
+        visibility: visible;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
@@ -268,6 +280,7 @@ a > .navigation-menu {
         opacity: 100;
         background-color: #001E60;
         padding-bottom: 50px;
+        visibility: hidden;
     }
 
     #nav-menu-search-bar {
@@ -286,9 +299,10 @@ a > .navigation-menu {
     #nav-menu-search-bar::-ms-input-placeholder{
         color: black;
     }
-}
 
-.not-fixed {
-    position: absolute;
-    opacity: 100%;
+    .not-fixed 
+    {
+        position: fixed;
+        opacity: 100%;
+    }
 }
