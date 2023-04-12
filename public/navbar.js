@@ -9,9 +9,12 @@ function constructLoginNavButton() {
     if (!token){
         let loginNavButton = document.createElement('a');
         loginNavButton.setAttribute('class', 'navigation-button navigation-text');
-        loginNavButton.setAttribute('href', 'login.html');
         loginNavButton.setAttribute('id', 'navigation-login');
         loginNavButton.innerHTML = 'Login';
+        loginNavButton.addEventListener('click', function(){
+            loginPopupMenu.classList.remove('hidden');
+            loginOutside.classList.remove('hidden');        
+        })
         return loginNavButton;
     }
     else{
@@ -175,3 +178,55 @@ function constructNavigationHamburger() {
 }
 
 constructNavigationHamburger();
+//constructPopupLoginMenu();
+
+function constructLoginPopup() {
+
+    let loginContainer = document.createElement('div');
+    loginContainer.classList.add('container-login');
+    loginContainer.innerHTML = `
+    <div class="container">
+      <h1>Login</h1>
+      <form id="login">
+
+        <div class="txt_field">
+          <input id="usernameOrEmail" required="">
+          <span></span>
+          <label>Username or Email</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="password" id="password" required="">
+          <span></span>
+          <label>Password</label>
+        </div>
+
+        <!-- <div class="pass">Forgot Password?</div> -->
+        <input type="submit" value="Login">
+        <!-- <div class="signup_link">
+          Don't have an account? <a href="signup.html">Sign-up</a>
+        </div> -->
+		<div class="signup_link">
+			Do you own a club and can't log into your account? Contact us - communityalis@gmail.com
+		  </div>
+
+      </form>
+    </div>
+    `;
+
+    return loginContainer;
+}
+
+let loginOutside = document.createElement('div');
+loginOutside.id = 'login-popup-background';
+var loginPopupBackground = document.body.insertBefore(loginOutside, document.body.firstElementChild);
+
+var loginPopupMenu = document.body.appendChild(constructLoginPopup())
+
+loginOutside.addEventListener('click', function() {
+    loginPopupMenu.classList.add('hidden');
+    loginOutside.classList.add('hidden');
+    console.log('click');
+})
+
+constructLoginPopup();

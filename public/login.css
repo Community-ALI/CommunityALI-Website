@@ -1,24 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
 
-*
+.container-login
 {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body
-{
-  margin: 0;
-  padding: 0;
-  background: #0096C9;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.container
-{
-  position: absolute;
+  z-index: 9999;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -166,4 +151,18 @@ input[type="submit"]:hover
   {
     padding: 0 15px;
   }
+}
+
+#login-popup-background {
+  background-color:rgb(14, 14, 30);
+  opacity: 50%;
+  z-index: 9997;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
