@@ -164,11 +164,12 @@ function constructNavigationHamburger() {
         navigationHamburger.appendChild(navigationLine);
     }
 
-    let communityCatalystLogo = constructCommunityCatalystLogo(true);
-
+    let communityCatalystLogoMobileWrappper = document.createElement('div');
+    communityCatalystLogoMobileWrappper.setAttribute('class', 'center-content');
+    communityCatalystLogoMobileWrappper.appendChild(constructCommunityCatalystLogo(true));
 
     navigationHamburgerWrapper.appendChild(navigationHamburger);
-    navigationHamburgerWrapper.appendChild(communityCatalystLogo); 
+    navigationHamburgerWrapper.appendChild(communityCatalystLogoMobileWrappper); 
 
     document.body.appendChild(navigationHamburgerWrapper);
 }

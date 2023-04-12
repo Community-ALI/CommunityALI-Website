@@ -135,8 +135,6 @@ a > .navigation-menu {
 
 .navbar-logo {
     max-height: 55px;
-    margin-top: 12px;
-    margin-bottom: 12px;
 }
 
 .navigation-hamburger
@@ -172,6 +170,14 @@ a > .navigation-menu {
     opacity: 100%;
 }
 
+.center-content {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    left: 0px;
+    width: 100%;
+}
 
 @media all and (max-width : 1200px)
 {
@@ -212,11 +218,6 @@ a > .navigation-menu {
     }
 
     .navbar-logo{
-        top: 9px;
-        position: absolute;
-        margin-top : 0px;
-        margin-bottom: 0px;
-        right : 42%;
         visibility: hidden;
     }
 
