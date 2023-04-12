@@ -183,7 +183,7 @@ constructNavigationHamburger();
 function constructLoginPopup() {
 
     let loginContainer = document.createElement('div');
-    loginContainer.classList.add('container-login');
+    loginContainer.setAttribute('class', 'container-login hidden');
     loginContainer.innerHTML = `
     <div class="container">
       <h1>Login</h1>
@@ -218,6 +218,7 @@ function constructLoginPopup() {
 }
 
 let loginOutside = document.createElement('div');
+loginOutside.classList.add('hidden');
 loginOutside.id = 'login-popup-background';
 var loginPopupBackground = document.body.insertBefore(loginOutside, document.body.firstElementChild);
 
