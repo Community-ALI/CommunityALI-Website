@@ -16,11 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>
-    <script src="jquery-2.1.4.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
     <title> Community ALI - Apply, Learn, and Implement | Engaging Students with the Community </title>
 </head>
@@ -32,7 +28,24 @@
             <source src = "Webvideo COMPRESSED.mp4" type="video/mp4">
         </video>
 
-        <script src = "navbar.js"> </script>
+        <script src = "navbar.js"> </script>  
+
+     <!-- PROTOTYPE CODE
+        <div class="search-bar-container" >
+            <form action="https://www.google.com/search", target="_blank" method="get" class="search-bar">
+                <input type="Search" placeholder="Search for a Service" name="q">
+            </form>
+        </div>
+ 
+ 
+            <ul class="container2">
+                <li><a href="https://www.google.com/search">Subject & Career</a></li>
+                <li><a href="https://www.google.com/search">Clubs & Communities</a></li>
+                <li><a href="https://www.google.com/search">Volunteering & Community Service</a></li>
+                <li><a href="https://www.google.com/search">Internships & Work Experience</a></li>
+                <li><a href="https://www.google.com/search">Events & Other</a></li>
+              </ul> 
+        -->
     
         <div id="header-container">
             <div id="header-title">
@@ -44,7 +57,7 @@
         
             <div id="header-subtitle">
                 <p>
-                    Join your personal interests with other students at MJC through our website!
+                    A student social network to link your personal interests with MJC and more!
                 </p>
             </div>
         </div>
@@ -67,7 +80,7 @@
 <main>
     <div class="container">
         <div class ="container-title">
-            <p> Explore a Variety Of Diverse Opportunities From These Categories</p>
+            <p> Explore a Variety Of Opportunities From These Categories</p>
         </div>
         
         <div class="categories-container">
@@ -103,7 +116,7 @@
     </div>
 
     <div class="description-container">  
-        <div class ="description-title">
+        <div class ="container-title">
             <p>
             What Inspired Us to Create Community ALI?
             </p>
@@ -112,26 +125,43 @@
         <div class="text-video-container">
             <div class="description-text">
                 <p>
-                We strive to integrate life experiences with academia to promote educational success and 
-                personal growth by granting students the opportunity to connect with their local community and beyond. 
-                By developing a deeper connection with Modesto Junior College, students can further 
-                their education by understanding the purpose and application of knowledge gained from a 
-                classroom to the real world. Watch our video to learn more about our team!
+                We strive to grant every student with the opportunity to connect with their campus and local community. Whether
+                it's for academic growth, career growth, or personal growth, this platform is made to accessibly reach your interests 
+                and beyond. We're committed to providing the most efficient methods and features because we've struggled to make the most of our 
+                educational journey. 
                 </p>
             </div>
     
-            <div class="description-image">
-                <iframe src="https://www.youtube.com/embed/CkaNT8QOt9U" title="YouTube video player" 
+            <div>
+                <iframe class="description-video" src="https://www.youtube.com/embed/CkaNT8QOt9U" title="YouTube video player" 
                 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
                 picture-in-picture; web-share" allowfullscreen> </iframe>
             </div>
         </div>
     </div>
 
+    <div class="partners-container">  
+        <div class ="container-title">
+            <p>
+                Thank you to our Sponsors and Partners for your Support
+            </p>
+        </div>
+
+        <div class="partners-images-container">
+            <a class="partner-link" href="https://www.fourthworldcooperative.org/" target="_blank">
+                <img id="fourth-world" src="Photos/fourth-world.png">
+            </a>
+            <a class="partner-link" href="https://solvecc.org/" target="_blank">
+                <img id="solvecc" src="Photos/solvecc-dark.png">
+            </a>
+        </div>
+    </div>
+
     <script src = "footer.js"> </script>
+        
 </main>
 
     <script src = "hamburger.js"> </script>
-
+    
 </body>
 </html>

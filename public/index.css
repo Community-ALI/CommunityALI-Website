@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
 *
 {
@@ -11,7 +12,6 @@
 body
 {
     background: #0096C9;
-      
     width: 100%;
     height: 100%;
     min-height: calc(100vh);
@@ -32,13 +32,9 @@ body
     min-width: 100%;
     min-height: 100%;
     z-index : -1;
-
     right: 0;
     bottom: 0;
     transform: translateX(calc((100% - 100vw) / 2));
-
-    display : flex;
-    justify-content: center;
     top : -90px;
 }
 
@@ -53,7 +49,6 @@ body
      );
 
     background-repeat : no-repeat;
-
     min-height: 130vh;
     max-height: 130vh;
     position: relative;
@@ -65,7 +60,6 @@ body
     display: flex;
     flex-direction: column;
 }
-
 
 #header-title
 {
@@ -82,9 +76,7 @@ body
     text-align: center;
     position : relative;
     animation: fadeIn 1s;
-
     height : 45vh;
-
     color: #fff;
 }
 
@@ -153,21 +145,17 @@ body
     color: white;
     text-decoration: none;
     position: relative;
-    min-width: 43%;
     margin-right: 5%;
     margin-left: 5%;
     margin-bottom: 3%;
-    background-color: #001E60;
     border-radius: 10px;
 }
 
 .container-title p
 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: clamp(18px, 3vw, 36px);
+    font-size: clamp(18px, 3vw, 40px);
     text-align: center;
-    padding: 10px 25px;
 }
 
 .container
@@ -209,25 +197,7 @@ body
     text-align: center;
 }
 
-#career
-{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#club
-{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#volunteer
-{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#internship
+.box img
 {
     max-width: 100%;
     max-height: 100%;
@@ -291,7 +261,11 @@ body
 .description-container
 {
     position : relative;
-    margin-top : 5%;
+    margin-top : 8%;
+    margin-bottom : 8%;
+    background-color :#00468D;
+    padding-top : 4%;
+    padding-bottom : 8%;
 }
 
 .text-video-container
@@ -300,40 +274,14 @@ body
     justify-content : space-evenly;
     flex-flow : wrap;
     align-items: center;
-    padding-bottom : 250px;
     padding-right: 5%;
     padding-left: 5%;
-}
-
-.description-title
-{
-    color: white;
-    text-decoration: none;
-
-    position : relative;
-    min-width : 43%;
-
-    margin-right : 5%;
-    margin-left : 5%;
-    margin-bottom : 3%;
-
-    background-color: #001E60;
-    border-radius: 10px;
-}
-
-.description-title p
-{
-    font-family: 'Poppins', sans-serif;
-    font-weight : 300;
-    font-size : clamp(18px, 3vw, 36px);
-    text-align: center;
-    padding : 10px 25px;
 }
 
 .description-text
 {
     color: white;
-    font-size : clamp(10px, 4vh, 21px);
+    font-size : clamp(10px, 4vh, 19px);
     font-family: 'Poppins', sans-serif;
     font-weight : 400;
     line-height: 50px;
@@ -346,170 +294,118 @@ body
     transition: 300ms ease ;
 }
 
-.description-text:hover
-{
-    background-color : #00468D;
-}
-
-.description-image
-{
-    background-repeat : no-repeat;
-    position : relative;
-}
-
-iframe
+.description-video
 {
     width: 650px;
     height: 366px;
 }
 
-
-.description-wrapper
+.partners-container
 {
+    margin-bottom : 10%;
+}
+
+.partners-images-container
+{
+    position : relative;
     display : flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    align-items: center;
+    margin-top : 5%;
+    margin-bottom : 8%;
 }
 
-.description-curve
+.partner-link
 {
-    position : absolute;
-    bottom : 0;
-    left : 0;
-    width : 100%;
-    margin-top : 50px;
+    display : contents;
 }
 
-.diagram
+#solvecc
 {
-    float : left;
-    max-width: 40%;
+    width : 35%;
 }
 
-.loader-wrapper 
+#fourth-world
 {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #00468D;
-  display:flex;
-  justify-content: center;
-  align-items: center;
+    width : 20%;
 }
 
-.loader 
+/* CSS FOR PROTOTYPE CODE
+.search-bar-container
 {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  border: 4px solid #Fff;
-  animation: loader 2s infinite ease;
+    position: fixed;
+    left: 25px;
+    margin-top: 2%;
+    z-index: 5000;
+}
+ 
+.search-bar
+{
+    border: 1.5px solid;
+    border-radius: 60px;
+    position: fixed;
+    width: 96%;
+    display: flex;
+    z-index: 5000;
+}
+ 
+.search-bar input
+{
+    background-color: white;
+    border: none;
+    border-radius: 60px;
+    flex: 1;
+    font-size: 20px;
+    padding: 15px;
+    outline: none;
+}
+ 
+.container2
+{
+    position: fixed;
+    margin-top: 100px;
+    margin-left: auto;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+}
+ 
+Ul
+{
+List-style-type: none;
+Padding: 0px;
+Margin: 0px;
+Overflow: hidden;
+display: flex;
+border-color: rgb(63, 61, 61);
+border: 1px solid;
+border-radius: 10px;
 }
 
-.loader-inner 
+
+li
 {
-  vertical-align: top;
-  display: inline-block;
-  width: 100%;
-  background-color: #fff;
-  animation: loader-inner 2s infinite ease-in;
+flex: 1;
 }
-
-.loader--hidden
-{
-  opacity: 0;
-  visibility: hidden;
-}
-
-@keyframes loader 
-{
-  0% { transform: rotate(0deg);}
-  25% { transform: rotate(180deg);}
-  50% { transform: rotate(180deg);}
-  75% { transform: rotate(360deg);}
-  100% { transform: rotate(360deg);}
-}
-
-@keyframes loader-inner 
-{
-  0% { height: 0%;}
-  25% { height: 0%;}
-  50% { height: 100%;}
-  75% { height: 100%;}
-  100% { height: 0%;}
-}
-
-@media all and (max-width : 2400px)
-{
-    .schools-box
-    {
-        width : 200px;
-        min-height : 200px;
-        padding-top : 30px;
-        margin : 50px;
-    }
-
-    .fa-3x
-    {
-        font-size: 4em;
-        padding-top: 8px;
-    }
-
-    .icon-text
-    {
-        font-size : 18px;
-    }
-}
-
-@media all and (max-width : 1800px)
-{
-    .schools-box
-    {
-        padding-top : 10px;
-        margin : 45px;
-        width : 160px;
-        min-height : 160px;
-    }
-
-    .fa-3x
-    {
-        font-size: 3em;
-    }
-
-    .icon-text
-    {
-        font-size : 14px;
-    }
-}
-
-@media all and (max-width : 1600px)
-{
-    .description-text
-    {
-        font-size : clamp(10px, 4vh, 19px);
-    }
-
-    .diagram
-    {
-        margin-top : 40px;
-        float : left;
-        max-width: 46%;
-    }
-
-    .benefits-text
-    {
-        font-size : clamp(12px, 2vw, 19px);
-        line-height: 75px; 
-    }
-
-    .schools-box
-    {
-        margin : 35px;
-    }
     
+Li a
+{
+Display: block;
+Color: rgb(43, 37, 37);
+Padding: 5%;
+Text-align: center;
+Text-decoration: none;
 }
+    
+li a:hover
+{
+text-decoration: underline;
+text-decoration-thickness: 3px;
+text-underline-offset: 5px;
+color: blue;
+} 
+*/
 
 @media all and (max-width : 1320px)
 {
@@ -519,7 +415,7 @@ iframe
         padding : 18px 25px;      
     }  
 
-    iframe
+    .description-video
     {
         width: 550px;
         height: 309px;
@@ -530,11 +426,6 @@ iframe
 
 @media all and (max-width : 1240px)
 {
-    .description-curve
-    {
-        transform: translateY(100px);
-    }
-
     .description-text
     {
         width : 90%;
@@ -580,32 +471,9 @@ iframe
         padding : 12px 7%;
     }
 
-    #video-background
-    {
-        top : -40px;
-    }
-
-    #container-title
-    {
-        margin-right: 2%;
-        margin-left: 2%;
-    }
-
     #header-title
     {
         line-height: 80px;
-    }
-
-    .schools-box
-    {
-        transform:scale(.8);
-        margin : 0px;
-    }
-
-    .schools-box:hover
-    {
-        transform:scale(.9);
-        margin : 0px;
     }
 
     .description-text p
@@ -613,29 +481,24 @@ iframe
         font-size : 16px;
         line-height: 45px;
     }
-
-    .description-text
-    {
-        padding : 30px;
-    }
-
-    .description-curve
-    {
-        transform: translateY(0px);
-    }
 }
 
 @media all and (max-width : 850px)
 {
-    iframe
+    .description-video
     {
         width: 450px;
         height: 253px;
     }
 
-    .description-text:hover
+    #solvecc
     {
-        background-color :#0096C9;
+        width : 40%;
+    }
+
+    #fourth-world
+    {
+        width : 30%;
     }
 }
 
@@ -649,11 +512,6 @@ iframe
         margin-left : 10px;
         margin-right : 10px;
         padding : 12px 7%;
-    }
-
-    #video-background
-    {
-        top : -20px;
     }
 
     #header-title
@@ -671,24 +529,13 @@ iframe
         right: 5%;
     }
 
-    #last-box
-    {
-        display: none;
-    }
-
-    #container-title
-    {
-        margin-right: 1%;
-        margin-left: 1%;
-    }
-
     .description-text p
     {
         font-size : 15px;
         line-height: 35px;
     }
 
-    iframe
+    .description-video
     {
         width : 420px;
         height : 236px;
@@ -725,17 +572,10 @@ iframe
         top : -5%;
     }
 
-    iframe
+    .description-video
     {
         width : 400px;
         height : 225px;
-    }
-
-    .schools-box
-    {
-        margin : 0px;
-        width : 130px;
-        font-size : 13px;
     }
 
     .description-text p
@@ -758,13 +598,12 @@ iframe
     {
         margin-top : 20%;
     }
-
 }
 
 @media all and (max-width : 480px)
 {
 
-    iframe
+    .description-video
     {
         width : 320px;
         height : 180px;
@@ -793,11 +632,6 @@ iframe
         font-size : 18px;
     }
 
-    .fa-3x
-    {
-        padding-top: 0px;
-    }
-
     .description-text 
     {
         padding : 15px 15px;
@@ -809,28 +643,9 @@ iframe
         line-height: 25px;
     }
 
-    .schools-box
-    {
-        margin : 0px;
-        width : 120px;
-        min-height: 110px;
-        font-size : 12px;
-    }
-
-    .schools-box:hover
-    {
-        transform:scale(.8);
-        margin : 0px;
-    }
-
     #button
     {
-        transform:scale(.9);
-    }
-
-    .icon-text
-    {
-        font-size : 12px;
+        transform:scale(.8);
     }
 
     .categories-container
@@ -838,11 +653,22 @@ iframe
         padding-right : 0%;
         padding-left : 0%;
     }
+
+    #solvecc
+    {
+        width : 70%;
+    }
+
+    #fourth-world
+    {
+        width : 50%;
+        margin-bottom : 10%;
+    }
 }
 
 @media all and (max-width : 380px)
 {
-    iframe
+    .description-video
     {
         width : 280px;
         height : 158px;
@@ -870,19 +696,5 @@ iframe
     {
         font-size : 12px;
         line-height: 25px;
-    }
-
-    .schools-box
-    {
-        margin : 0px;
-        width : 100px;
-        min-height: 110px;
-        font-size : 10px;
-    }
-
-    .icon-text
-    {
-        font-size : 10px;
-        padding-top: 8px;
     }
 }
