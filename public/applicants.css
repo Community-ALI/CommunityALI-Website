@@ -19,7 +19,6 @@ body
 
 .container
 {
-    margin-top: 2%;
     position: relative;
     display : flex;
     flex-direction: column;
@@ -40,6 +39,7 @@ body
     font-size: clamp(24px, 3vw, 36px);
     text-align: center;
     padding: 10px 25px;
+    margin-top: 120px;
 }
 
 .applicants-container
