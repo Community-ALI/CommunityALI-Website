@@ -22,8 +22,8 @@ const display_my_services = require("./display-files/display-my-services")
 const store_application = require("./display-files/store-application");
 const store_service = require("./display-files/store-service");
 const store_images = require("./store-image");
-
-
+const display_service_edit_page = require("./display-files/service-edit");
+const store_edited_service = require("./display-files/database-service-edit");
 
 const models = require("./define-database-models");
 const User = models.User;
@@ -72,6 +72,26 @@ function storeService(req, res) {
   }
 }
 
+app.post("/upload-edited-service", upload.array("files"), editService);
+function editService(req, res) {
+  try{
+    if (req.headers.authorization != undefined){
+      const token = req.headers.authorization.split(' ')[1];
+      const decodedToken = jwt.verify(token, JWT_SECRET);
+      console.log('service edit')
+      store_edited_service(req, res, decodedToken);
+    }
+    else{
+      console.log('error, login verification failed')
+      res.send("error, login verification failed");
+    }
+  }
+  catch (error){
+    console.log(error)
+    res.send("error");
+  }
+}
+
 // Display services from the database to the user when they go to the service-search page
 app.get("/service-search", function (req, res) {
     display_services(req,res);
@@ -80,6 +100,11 @@ app.get("/service-search", function (req, res) {
 // display the sign up/apply for service page
 app.get("/apply-for-service", function (req, res) {
   display_application_page(req,res);
+});
+
+// service edit
+app.get("/service-edit", function (req, res){
+  display_service_edit_page(req, res);
 });
 
 // View aplications
@@ -108,9 +133,9 @@ app.get("/view-my-services", async function (req, res) {
   if (req.headers.authorization != undefined){
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
-    console.log('application request')
+    console.log('my services request')
     display_my_services(req, res, decodedToken);  
-    console.log('applications sent')
+    console.log('my services sent')
   }
   else{
     console.log('error, login verification failed')

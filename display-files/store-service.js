@@ -30,6 +30,10 @@ const store_service = function(req, res, token) {
     services_with_images = [];
     for (let file of req.files) {
         const service_with_image = new Service({
+          personal_name: req.body.personal_name,
+          personal_number: req.body.personal_number,
+          personal_email: req.body.personal_email,
+          personal_role: req.body.personal_role,
           title: req.body.title,  
           author: req.body.author,
           author_role: "President",
