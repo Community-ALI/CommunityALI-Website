@@ -231,3 +231,9 @@ loginOutside.addEventListener('click', function() {
 })
 
 constructLoginPopup();
+
+var loginStylesheet = document.createElement('link');
+loginStylesheet.setAttribute('rel', 'stylesheet');
+loginStylesheet.setAttribute('type', 'text/css');
+loginStylesheet.setAttribute('href', 'login.css');
+document.head.insertBefore(loginStylesheet, document.head.firstElementChild);
