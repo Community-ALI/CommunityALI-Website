@@ -159,7 +159,7 @@ body
     text-align: center;
 }
 
-.container
+.main-container
 {
     position: relative;
     margin-top : 20px;
@@ -388,7 +388,7 @@ border-radius: 10px;
     visibility: hidden;
 }
 
-.container {
+.main-container {
     overflow: hidden;
 }
 
@@ -540,7 +540,7 @@ border-radius: 10px;
 
     .box-header-text {
         width: 100%;
-        font-size: 3vw;
+        font-size: 3.5vw;
     }
 
     .preview-text
