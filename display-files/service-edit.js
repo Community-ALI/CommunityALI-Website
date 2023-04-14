@@ -49,7 +49,7 @@ const display_service_edit_page = function(req,res){
         personal_email.value = selected_service_json.personal_email;
         // your role
         const role = document.getElementById('personal-role');
-        role.value = selected_service_json.role;
+        role.value = selected_service_json.personal_role;
         // club name
         const title = document.getElementById('title');
         title.value = selected_service_json.title;

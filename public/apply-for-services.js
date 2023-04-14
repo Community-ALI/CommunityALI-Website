@@ -14,7 +14,7 @@ form.addEventListener('submit', function (event) {
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    let data = "service="+service+"&name="+name+"&email="+email+"&w_number=";
+    let data = "service="+service+"&name="+name+"&email="+email+"&w_number=NONE";
 
     xhr.onload = () => window.location.href=(xhr.responseText);
 
