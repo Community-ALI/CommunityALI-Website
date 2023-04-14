@@ -181,19 +181,6 @@ input[type="checkbox"]:checked:after
     padding-left : 20px;
 }
 
-input[type="submit"]
-{
-    font-family: 'Poppins', sans-serif;
-    color : white;
-    background: none;
-	border: none;
-    font-weight : 500;
-    font-size : 18px;
-    border-radius : 6px;
-    -webkit-border-radius : 6px;
-    cursor : pointer;
-}
-
 input[type="reset"]
 {
     font-family: 'Poppins', sans-serif;
@@ -339,7 +326,8 @@ input[type="reset"]
 
 .search-result-container
 {
-    padding-bottom : 200px;
+    padding-bottom : 100px;
+    padding-top : 100px;
 }
 
 .loader-wrapper 

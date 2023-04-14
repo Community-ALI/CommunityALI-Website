@@ -17,6 +17,11 @@ body
     position: relative;
 }
 
+#target
+{
+    padding-top : 100px;
+}
+
 .username-title
 {
     color: white;
@@ -26,6 +31,7 @@ body
     font-weight: 400;
     display: flex;
     justify-content: center;
+    text-align: center;
 
     position: relative;
     padding : 10px;
