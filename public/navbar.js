@@ -156,6 +156,46 @@ window.addEventListener('scroll', () => {
         }
 })
 
+async function login(event) {
+    event.preventDefault()
+    const usernameOrEmail = document.getElementById('usernameOrEmail').value;
+    // const username = document.getElementById('usernameOrEmail').value
+    const password = document.getElementById('password').value
+    const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    let authData
+    if (validEmailRegex.test(usernameOrEmail)) {
+        authData = { usernameOrEmail, password }
+    } else {
+        authData = { usernameOrEmail, password }
+    }
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(authData)
+        });
+        const result = await response.json();
+
+        if (result.status === 'ok') {
+            //everything is a okay
+            console.log('Got the token: ', result.data);
+            localStorage.setItem('token', result.data);
+            const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
+            alert('signed in as: '+ decodedToken.username);
+            window.location.href = '/'
+        } else {
+            alert(result.error);
+        }
+    } catch (error) {
+        console.error(error);
+        alert('An error ocurred while logging in.');
+    }
+}
+
 function constructNavigationHamburger() {
     let navigationHamburgerWrapper = document.createElement('div');
     navigationHamburgerWrapper.setAttribute('class', 'navigation-hamburger navigation-menu');
@@ -202,18 +242,16 @@ function constructLoginPopup() {
         </div>
 
         <!-- <div class="pass">Forgot Password?</div> -->
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" id='login'>
         <!-- <div class="signup_link">
           Don't have an account? <a href="signup.html">Sign-up</a>
         </div> -->
 		<div class="signup_link">
 			Do you own a club and can't log into your account? Contact us - communityalis@gmail.com
 		  </div>
-
       </form>
     </div>
     `;
-
     return loginContainer;
 }
 
@@ -223,6 +261,11 @@ loginOutside.id = 'login-popup-background';
 var loginPopupBackground = document.body.insertBefore(loginOutside, document.body.firstElementChild);
 
 var loginPopupMenu = document.body.appendChild(constructLoginPopup())
+
+// listen for the user to select this button
+const form = document.getElementById('login')
+form.addEventListener('submit', login)
+
 
 loginOutside.addEventListener('click', function() {
     loginPopupMenu.classList.add('hidden');
@@ -237,3 +280,6 @@ loginStylesheet.setAttribute('rel', 'stylesheet');
 loginStylesheet.setAttribute('type', 'text/css');
 loginStylesheet.setAttribute('href', 'login.css');
 document.head.insertBefore(loginStylesheet, document.head.firstElementChild);
+
+
+
