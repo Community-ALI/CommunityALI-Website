@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-#readme",
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "busboy": "^1.6.0",
     "connect-mongo": "^5.0.0",
