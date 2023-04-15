@@ -29,6 +29,12 @@ const display_service_edit_page = function(req,res){
         }
       }
       
+      if (selected_service_json == 'ERROR: no service found'){
+        console.error(selected_service_json);
+        res.send(selected_service_json);
+        return
+      }
+      
       fs.readFile('public/service-edit.html', 'utf-8', (err, data) => {
         if (err) {
           console.error(err);
