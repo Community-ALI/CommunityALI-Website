@@ -99,7 +99,9 @@ app.get("/service-search", function (req, res) {
 
 // display the sign up/apply for service page
 app.get("/apply-for-service", function (req, res) {
+  
   display_application_page(req,res);
+  
 });
 
 // service edit
