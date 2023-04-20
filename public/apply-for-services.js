@@ -1,7 +1,6 @@
-const form = document.getElementById('form');
-form.addEventListener('submit', function (event) {
+const submission_form = document.getElementById('form');
+submission_form.addEventListener('submit', function (event) {
     event.preventDefault();
-
     const searchParams = new URLSearchParams(window.location.search);
     const service = searchParams.get('service');
     const name =  document.getElementById("name").value;
