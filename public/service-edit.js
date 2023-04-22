@@ -17,9 +17,14 @@ onLoadFunction = function(image, file){
 
     // If the image size is okay, proceed with the file upload
     // Create a new FormData object
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+    var params = new URLSearchParams(url.search);
+    var oldServiceName = params.get('service');
     const formData = new FormData();
 
     // Append form data to the FormData object
+    formData.append("old_service_name", oldServiceName);
     formData.append("personal_name", document.getElementById("personal-name").value);
     formData.append("personal_number", document.getElementById("personal-number").value);
     formData.append("personal_email", document.getElementById("personal-email").value);
@@ -42,7 +47,7 @@ onLoadFunction = function(image, file){
     
     formData.append("files", file);
 
-    fetch("/upload-service", {
+    fetch("/upload-edited-service", {
         method: 'POST',
         body: formData,
         headers: {
@@ -66,7 +71,6 @@ onLoadFunction = function(image, file){
     .finally(() => {
         URL.revokeObjectURL(image.src);
     });
-
 }
 
 

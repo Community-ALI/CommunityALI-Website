@@ -14,81 +14,90 @@ const fs = require('fs');
 const domino = require('domino');
 
 const display_application_page = function(req,res){
-  var selected_service = req.query.service;
-  // get database data
-  Services.find(function(err, foundServices){
-    if(!err){
-      // find this exact service
-      var selected_service_json = 'ERROR: no service found'
-      for (service of foundServices){
-        if (service.title == selected_service) {
-          selected_service_json = service;
+  try{
+    var selected_service = req.query.service;
+    // get database data
+    Services.find(function(err, foundServices){
+      if(!err){
+        // find this exact service
+        var selected_service_json = 'ERROR: no service found'
+        for (service of foundServices){
+          if (service.title == selected_service) {
+            selected_service_json = service;
+          }
         }
-      }
-      
-      fs.readFile('public/apply-for-service.html', 'utf-8', (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
+        if (selected_service_json == 'ERROR: no service found'){
+          console.error(selected_service_json);
+          res.send(selected_service_json);
+          return
         }
-        const window = domino.createWindow(data);
-        // get the document from the window
-        const document = window.document;
-        // find the element with class "service-title" and set it to the title
-        const title = document.querySelector('.service-title');
-        title.innerHTML = selected_service_json.title;
-        // find the element with class "service-picture" and set it to the image
-        const image = document.querySelector('.service-picture');
+        fs.readFile('public/apply-for-service.html', 'utf-8', (err, data) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          const window = domino.createWindow(data);
+          // get the document from the window
+          const document = window.document;
+          // find the element with class "service-title" and set it to the title
+          const title = document.querySelector('.service-title');
+          title.innerHTML = selected_service_json.title;
+          // find the element with class "service-picture" and set it to the image
+          const image = document.querySelector('.service-picture');
+          
+
+          if (fs.existsSync('public/'+selected_service_json.photo)){
+            imageSrc = selected_service_json.photo // TODO: put a default image here!
+          }
+          else{
+            imageData = selected_service_json.photo.toString('base64');
+            imageSrc = `data:${selected_service_json.photoType};base64,${imageData}`;
+          }
+          
+          // if (!fs.existsSync('public/'+selected_service_json.photo) || photo ==''){
+          //   photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
+          // }
+
         
+          image.innerHTML = '<img class="MANRRS-picture" src = "'+imageSrc+'"></img>' 
 
-        if (fs.existsSync('public/'+selected_service_json.photo)){
-          imageSrc = selected_service_json.photo // TODO: put a default image here!
-        }
-        else{
-          imageData = selected_service_json.photo.toString('base64');
-          imageSrc = `data:${selected_service_json.photoType};base64,${imageData}`;
-        }
-        
-        // if (!fs.existsSync('public/'+selected_service_json.photo) || photo ==''){
-        //   photo = 'Photos/NoPhoto.jpg' // TODO: put a default image here!
-        // }
+          // create details array
+          detailsHTML = '<div class="service-author"></div><div class="service-header">Meeting Details</div>';
+          for (detail of selected_service_json.details){
+            detailsHTML+='<div>'
+            detailsHTML+=detail;
+            detailsHTML+='</div>'
+          };
+          // find the element with class "service-details" and set it to the service details
+          const details = document.getElementById('service-details');
+          details.innerHTML = detailsHTML;
 
-      
-        image.innerHTML = '<img class="MANRRS-picture" src = "'+imageSrc+'"></img>' 
+          // find the element with class "service-author" and set it to the author
+          const author = document.querySelector('.service-author');
+          author.innerHTML = selected_service_json.author;
 
-        // create details array
-        detailsHTML = '<div class="service-author"></div><div class="service-header">Meeting Details</div>';
-        for (detail of selected_service_json.details){
-          detailsHTML+='<div>'
-          detailsHTML+=detail;
-          detailsHTML+='</div>'
+          // find the element with class "service-description" and set it to the description
+          const description = document.querySelector('.service-description');
+          description.innerHTML = selected_service_json.description;
+          
+          contactHTML = '<div class="service-author"></div><div class="service-header">Contact and Social Media</div>';
+          for (contact of selected_service_json.contacts){
+            contactHTML+='<div>'
+            contactHTML+=contact;
+            contactHTML+='</div>'
+          };
+          // find the element with ID "contact-container" and set it to the service details
+          const contacts = document.getElementById('contact-container');
+          contacts.innerHTML = contactHTML;
+
+          // send the modified HTML to the client
+          res.send(window.document.documentElement.outerHTML);
+          });
         };
-        // find the element with class "service-details" and set it to the service details
-        const details = document.getElementById('service-details');
-        details.innerHTML = detailsHTML;
-
-        // find the element with class "service-author" and set it to the author
-        const author = document.querySelector('.service-author');
-        author.innerHTML = selected_service_json.author;
-
-        // find the element with class "service-description" and set it to the description
-        const description = document.querySelector('.service-description');
-        description.innerHTML = selected_service_json.description;
-        
-        contactHTML = '<div class="service-author"></div><div class="service-header">Contact and Social Media</div>';
-        for (contact of selected_service_json.contacts){
-          contactHTML+='<div>'
-          contactHTML+=contact;
-          contactHTML+='</div>'
-        };
-        // find the element with ID "contact-container" and set it to the service details
-        const contacts = document.getElementById('contact-container');
-        contacts.innerHTML = contactHTML;
-
-        // send the modified HTML to the client
-        res.send(window.document.documentElement.outerHTML);
-        });
-      };
-  });
+    });
+    }
+    catch{
+      res.error('page not found');
+    }
 }
 module.exports = display_application_page;
