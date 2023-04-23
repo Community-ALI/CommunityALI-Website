@@ -12,7 +12,11 @@
 
     position: fixed;
     width: 100%;
-    z-index: 9999;}
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .navigation-button
 {
@@ -79,6 +83,7 @@
     gap: 16px;
     transition: background-color 0.5s ease;
     width: 100%;
+    max-width: 1440px;
 }
 
 a > .navigation-menu {
