@@ -86,6 +86,11 @@
     max-width: 1440px;
 }
 
+.wrapper {
+    transition: background-color 0.5s ease;
+    max-width: none;
+}
+
 a > .navigation-menu {
     text-decoration: none;
 }
@@ -107,7 +112,7 @@ a > .navigation-menu {
 
 .scrolled {
     background-color: #001E60;
-    transition: background-color 0.5s ease;
+    transition: background-color 1s ease;
 }
 
 .scrolled > #nav-menu-search-bar {

@@ -135,7 +135,10 @@ function checkIfNavBarShouldBeFixed() {
 
 var navBarWrapper = document.createElement('div');
 navBarWrapper.setAttribute('class', 'navigation-bar');
-var topNavBar = navBarWrapper.appendChild(constructNavigationBarElement());
+var topNavBarWrapper = document.createElement('div');
+topNavBarWrapper.setAttribute('class', 'navigation-bar wrapper');
+var topNavBar = topNavBarWrapper.appendChild(constructNavigationBarElement());
+var topNavBar = navBarWrapper.appendChild(topNavBarWrapper);
 var bottomNavBar = navBarWrapper.appendChild(constructSubNavBar());
 if (!checkIfNavBarShouldBeFixed()) {
     navBarWrapper.classList.add('class', 'not-fixed');
