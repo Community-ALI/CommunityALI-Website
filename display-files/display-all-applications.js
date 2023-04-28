@@ -82,7 +82,7 @@ const display_all_applications = function (req, res, token) {
       }
       let newDivContent = ''
       for (service of filteredServices){
-        newDivContent += ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredApplications, service: service }));
+        newDivContent += ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredApplications.reverse(), service: service }));
       }
       res.send(newDivContent);
       };
