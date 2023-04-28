@@ -1,4 +1,4 @@
-const form = document.getElementById('form');
+const service_form = document.getElementById('form');
 const files = document.getElementById("files");
 
 
@@ -75,7 +75,7 @@ onLoadFunction = function(image, file){
 
 
 
-form.addEventListener('submit', function (event) {
+service_form.addEventListener('submit', function (event) {
     event.preventDefault();
     token = localStorage.getItem('token');
     if (token){
