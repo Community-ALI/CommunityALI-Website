@@ -38,15 +38,14 @@ const my_service_page_display = function(props) {
   html = React.createElement("div", { className: "user-service" }, 
       
       React.createElement("div", { className: "option-container-service" }, 
-          React.createElement("a", { className: "user-link ", href: "service-edit?service="+service.title }, 
-              React.createElement("i", { className: "fa-solid fa-pen-to-square fa-2x" })
-          ),
 
           React.createElement("a", { className: "user-link ", href: "applicants.html" }, 
               React.createElement("i", { className: "fa-solid fa-users fa-2x" })
           ),
 
-          React.createElement("p", { className: "user-service-text" }, service.title)
+          React.createElement("p", { className: "user-service-text" }, service.title),
+
+          React.createElement("a", { className: "user-link edit-button", href: "service-edit?service="+service.title}, "Edit")
       )
     )
   return html

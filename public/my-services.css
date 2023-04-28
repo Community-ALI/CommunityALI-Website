@@ -100,4 +100,13 @@ body
     transition : all 0.3s ease-in-out;
 }
 
-
+.edit-button 
+{
+    margin: 0px 16px 0px 16px;
+    background-color: #ecaa1e;
+    padding: 4px 8px 4px 8px;
+    font-family: "poppins";
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+}
