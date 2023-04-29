@@ -43,7 +43,7 @@ const my_service_page_display = function(props) {
               React.createElement("i", { className: "fa-solid fa-users fa-2x" })
           ),
 
-          React.createElement("p", { className: "user-service-text" }, service.title),
+          React.createElement("a", { className: "user-service-text", href: "applicants.html"}, service.title),
 
           React.createElement("a", { className: "user-link edit-button", href: "service-edit?service="+service.title}, "Edit")
       )
