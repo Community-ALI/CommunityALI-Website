@@ -70,7 +70,8 @@ body
 {
     display : flex;
     justify-content: center;
-    margin : 25px 0px
+    margin : 25px 0px;
+    align-items: center;
 }
 
 .user-link
@@ -100,4 +101,14 @@ body
     transition : all 0.3s ease-in-out;
 }
 
-
+.edit-button 
+{
+    font-size: 32px;
+    margin: 0px 16px 0px 16px;
+    background-color: #ecaa1e;
+    padding: 4px 16px 4px 16px;
+    font-family: "poppins";
+    color: #001E60;
+    font-weight: bold;
+    border-radius: 8px;
+}

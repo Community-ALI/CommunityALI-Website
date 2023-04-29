@@ -1,6 +1,12 @@
 // This is the HTML code for the navigation bar
 // Scripted for all the HTML pages
 
+var loginStylesheet = document.createElement('link');
+loginStylesheet.setAttribute('rel', 'stylesheet');
+loginStylesheet.setAttribute('type', 'text/css');
+loginStylesheet.setAttribute('href', 'login.css');
+document.head.insertBefore(loginStylesheet, document.head.firstElementChild);
+
 var token = localStorage.getItem('token');
 var currentPage = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 var fixedPages = ['index.html', ''];
@@ -129,7 +135,10 @@ function checkIfNavBarShouldBeFixed() {
 
 var navBarWrapper = document.createElement('div');
 navBarWrapper.setAttribute('class', 'navigation-bar');
-var topNavBar = navBarWrapper.appendChild(constructNavigationBarElement());
+var topNavBarWrapper = document.createElement('div');
+topNavBarWrapper.setAttribute('class', 'navigation-bar wrapper');
+var topNavBar = topNavBarWrapper.appendChild(constructNavigationBarElement());
+var topNavBar = navBarWrapper.appendChild(topNavBarWrapper);
 var bottomNavBar = navBarWrapper.appendChild(constructSubNavBar());
 if (!checkIfNavBarShouldBeFixed()) {
     navBarWrapper.classList.add('class', 'not-fixed');
@@ -274,12 +283,3 @@ loginOutside.addEventListener('click', function() {
 })
 
 constructLoginPopup();
-
-var loginStylesheet = document.createElement('link');
-loginStylesheet.setAttribute('rel', 'stylesheet');
-loginStylesheet.setAttribute('type', 'text/css');
-loginStylesheet.setAttribute('href', 'login.css');
-document.head.insertBefore(loginStylesheet, document.head.firstElementChild);
-
-
-

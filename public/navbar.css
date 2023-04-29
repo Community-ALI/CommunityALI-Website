@@ -12,7 +12,11 @@
 
     position: fixed;
     width: 100%;
-    z-index: 9999;}
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .navigation-button
 {
@@ -79,6 +83,12 @@
     gap: 16px;
     transition: background-color 0.5s ease;
     width: 100%;
+    max-width: 1600px;
+}
+
+.wrapper {
+    transition: background-color 0.5s ease;
+    max-width: none;
 }
 
 a > .navigation-menu {
@@ -102,7 +112,7 @@ a > .navigation-menu {
 
 .scrolled {
     background-color: #001E60;
-    transition: background-color 0.5s ease;
+    transition: background-color 1s ease;
 }
 
 .scrolled > #nav-menu-search-bar {
