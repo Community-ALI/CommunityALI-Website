@@ -1,4 +1,3 @@
-
 <html lang="en"><head>
     <!-- Translating symbols; Adding compatibility; Proper displaying -->
     <meta charset="UTF-8">
@@ -30,19 +29,17 @@
 </script></head>
 <!-- Google tag (gtag.js) -->
 
-
-
 <body>
     
     <div class="service-container">
 
         <div class="service-title">
-            <input type="text" placeholder="Name of the Club" class="title" name="title" required><br>
+            <input type="text" placeholder="Name of the Club" class="club-title-text-box" name="title" required><br>
         </div>
 
         <div class="service-info-container">
             <div class="file-container">
-                <header>Photo Uploader</header>
+                <header>Club Photo Uploader</header>
                 <form action="#" class="file-form">
                   <input class="file-input" type="file" name="file" hidden>
                   <i class="fas fa-cloud-upload-alt" id="file-icon"></i>
@@ -54,24 +51,27 @@
             <div class="service-details" id="service-details">
                 <div class="service-author">
                     <input type="text" placeholder="President of the Club" class="meeting-details-title-box" 
-                    id="time" name="time" required><br>
+                    name="subtitle" required><br>
                 </div>
 
                 <div class="service-header">Meeting Details</div>
 
-                <div><u> Time: </u>
+                <div>
+                    <u> Time: </u>
                     <input type="text" placeholder="Include start and end time" class="meeting-details-text-box" 
-                    id="time" name="time" required><br>
+                    name="time" required><br>
                 </div>
 
-                <div><u> Date: </u>
+                <div>
+                    <u> Date: </u>
                     <input type="text" placeholder="Include day and month" class="meeting-details-text-box" 
-                    id="time" name="time" required><br>
+                    name="date" required><br>
                 </div>
 
-                <div><u> Location: </u> 
-                    <input type="text" placeholder="Include building and room number" class="meeting-details-text-box" 
-                    id="time" name="time" required><br>
+                <div>
+                    <u> Location: </u> 
+                    <input type="text" placeholder="Include building and room" class="meeting-details-text-box" 
+                    name="location" required><br>
                 </div>
             </div>
         </div>
@@ -86,7 +86,8 @@
             <div class="service-details" id="contact-container">
                 <div class="service-author"></div>
                 <div class="service-header">Contact and Social Media</div>
-                <div>   
+
+                <div class="contacts-container">   
                     <select class="club-contacts-selection" name="contact-and-social-media">
                         <option value="category" disabled selected> Select Officer</option>
                         <option value="president">President</option>
@@ -96,13 +97,13 @@
                         <option value="teasurer">Treasurer</option>
 
                         <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
-                        id="time" name="time" required><br>
+                        name="contact-name-1" required><br>
 
                         <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
-                        id="time" name="time" required><br>
+                        name="contact-email-1" required><br>
                 </div>
 
-                <div>   
+                <div class="contacts-container">   
                     <select class="club-contacts-selection" name="contact-and-social-media">
                         <option value="category" disabled selected> Select Officer</option>
                         <option value="president">President</option>
@@ -112,13 +113,13 @@
                         <option value="teasurer">Treasurer</option>
 
                         <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
-                        id="time" name="time" required><br>
+                        name="contact-name-2" required><br>
 
                         <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
-                        id="time" name="time" required><br>
+                        name="contact-email-2" required><br>
                 </div>
 
-                <div>   
+                <div class="contacts-container">   
                     <select class="club-contacts-selection" name="contact-and-social-media">
                         <option value="category" disabled selected> Select Officer</option>
                         <option value="president">President</option>
@@ -128,13 +129,13 @@
                         <option value="teasurer">Treasurer</option>
 
                         <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
-                        id="time" name="time" required><br>
+                        name="contact-name-3" required><br>
 
                         <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
-                        id="time" name="time" required><br>
+                        name="contact-email-3" required><br>
                 </div>
 
-                <div>   
+                <div class="contacts-container">   
                     <select class="club-contacts-selection" name="contact-and-social-media">
                         <option value="category" disabled selected> Select Officer</option>
                         <option value="president">President</option>
@@ -144,10 +145,10 @@
                         <option value="teasurer">Treasurer</option>
 
                         <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
-                        id="time" name="time" required><br>
+                        name="contact-name-4" required><br>
 
                         <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
-                        id="time" name="time" required><br>
+                        name="contact-email-4" required><br>
                 </div>
             </div>
 

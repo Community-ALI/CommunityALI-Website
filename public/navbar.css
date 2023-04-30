@@ -246,6 +246,7 @@ a > .navigation-menu {
         top: 0px;
         padding-top : 20px; 
         padding-bottom : 20px;
+        padding-left: 15px;
         width : 100vw;
 
         background-color: #0096C9;
