@@ -1,0 +1,628 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+*
+{
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+}
+
+body
+{
+    background :  #0096C9;
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh);
+}
+
+.service-container
+{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    transition: 300ms ease;
+    position: relative;
+    padding-top: 100px;
+}
+
+.service-title
+{
+    color: white;
+    font-size: clamp(22px, 2.3vw, 32px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    text-align: center;
+    background-color: #001E60;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top : 1%;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 40px;
+}
+
+.service-info-container
+{
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    align-items: center;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.service-info2-container
+{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+    align-items: center;
+    padding-right: 5%;
+    padding-left: 5%;
+    margin-bottom : 8%;
+    padding-bottom: 5%;
+}
+
+.service-author
+{
+    font-size : 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.service-header
+{
+    text-decoration: underline;
+    font-size : 22px;
+    display: flex;
+    justify-content: center;
+}
+
+.service-details
+{
+    color: white;
+    background-color: #00468D;
+    font-size: clamp(8px, 3vh, 20px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 50px;
+    position: relative;
+    width: 45%;
+    padding: 25px 25px;
+    border-radius: 20px;
+    background-size: cover;
+    transition: 300ms ease;
+}
+
+.service-details u
+{
+    text-decoration: none;
+    color: #ecaa1e;
+}
+
+.service-description
+{
+    color: white;
+    background-color: #00468D;
+    font-size: clamp(10px, 4vh, 20px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 50px;
+    position: relative;
+    padding: 18px 25px;
+    border-radius: 20px;
+    margin : 40px 7%;
+}
+
+.meeting-description-text-box
+{
+  width : 100%;
+  padding: 8px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(10px, 4vh, 20px);
+  margin-bottom: 30px;
+  margin-top : 20px;
+  background : none;
+  border : none;
+  outline : none;
+  color : white;
+}
+
+.sign-up-container
+{
+    width : 45%;
+}
+
+.sign-up-title
+{
+    color: white;
+    font-size: clamp(20px, 2.3vw, 32px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    text-align: center;
+    background-color: #001E60;
+    margin-top : 2%;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 40px;
+}
+
+.club-title-text-box
+{
+    padding: 4px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(22px, 3vw, 32px);
+    text-align: center;
+    width : 80%;
+    background : none;
+    border : none;
+    outline : none;
+    color : white;
+}
+
+.meeting-details-title-box
+{
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(15px, 2.3vw, 25px);
+    width : 80%;
+    text-align: center;
+    background : none;
+    border : none;
+    outline : none;
+    color : white;
+}
+
+.meeting-details-text-box
+{
+    padding: 4px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(8px, 3vh, 20px);
+    width : 80%;
+    background : none;
+    border : none;
+    outline : none;
+    color : white;
+}
+
+.contacts-text-box
+{
+    padding: 4px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(8px, 3vh, 20px);
+    width : 60%;
+    background : none;
+    border : none;
+    outline : none;
+    color : white;
+}
+
+.contacts-email-box
+{
+    padding: 4px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(8px, 3vh, 20px);
+    width : 90%;
+    background : none;
+    border : none;
+    outline : none;
+    color : white;
+}
+
+.club-contacts-selection
+{
+    margin-top : 20px;
+    background : none;
+    border : none;
+    outline : none;
+    color : #ecaa1e;
+    font-size: clamp(8px, 3vh, 20px);
+}
+
+.application-buttons
+{
+    width: 100%;
+    background-color: #001E60;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-top: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: 300ms ease;
+    text-align: center;
+}
+
+#submit-button:hover 
+{
+    background-color: #ecaa1e;
+    color : #00468D;
+}
+
+#save-button:hover 
+{
+    background-color: #00468D;
+    color : #ecaa1e;
+}
+
+.file-container
+{
+    width: 40%;
+    background: #00468D;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+
+.file-container header
+{
+    color: white;
+    font-size: clamp(15px, 2.3vw, 25px);
+    font-weight: 500;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.file-form
+{
+    height: 150px;
+    display: flex;
+    cursor: pointer;
+    margin: 30px 0px 20px 0px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px dashed white;
+}
+
+#file-icon
+{
+    font-size: 50px;
+    color: white;
+}
+
+.file-form p
+{
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+
+section .row
+{
+    margin-bottom: 10px;
+    background: #E9F0FF;
+    list-style: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .row i
+{
+    color: white;
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+}
+
+section .details span
+{
+    font-size: 14px;
+}
+
+.progress-area .row .content
+{
+    width: 100%;
+    margin-left: 15px;
+}
+
+.progress-area .details
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+    justify-content: space-between;
+}
+
+.progress-area .content .progress-bar
+{
+    height: 6px;
+    width: 100%;
+    margin-bottom: 4px;
+    background: #fff;
+    border-radius: 30px;
+}
+.content .progress-bar .progress
+{
+    height: 100%;
+    width: 0%;
+    background: #6990F2;
+    border-radius: inherit;
+}
+
+.uploaded-area
+{
+    max-height: 100px;
+    overflow-y: scroll;
+}
+
+.uploaded-area.onprogress
+{
+    max-height: 150px;
+}
+
+.uploaded-area::-webkit-scrollbar
+{
+    width: 0px;
+}
+
+.uploaded-area .row .content
+{
+    display: flex;
+    align-items: center;
+}
+
+.uploaded-area .row .details
+{
+    display: flex;
+    margin-left: 15px;
+    flex-direction: column;
+}
+
+.uploaded-area .row .details .size
+{
+    color: #404040;
+    font-size: 11px;
+}
+
+.uploaded-area i.fa-check
+{
+    font-size: 16px;
+}
+
+@media all and (max-width : 1300px)
+{
+    .meeting-details-text-box
+    {
+        width : 70%
+    }
+}
+
+@media all and (max-width : 1050px)
+{
+    .meeting-details-text-box
+    {
+        font-size: 17px;
+    }
+
+    .meeting-description-text-box
+    {
+        font-size: 17px;
+    }
+
+    .service-info-container
+    {
+        padding-right: 2%;
+        padding-left: 2%;
+    }
+
+    .service-header
+    {
+        font-size: 19px;
+    }
+
+    .service-description
+    {
+        font-size : 17px;
+    }
+
+    .service-details
+    {
+        font-size: 17px;
+        padding: 14px 20px;
+    }
+
+    .contacts-text-box
+    {
+        width : 90%;
+    }
+    
+    .contacts-container input
+    {
+        font-size: 17px;
+    }
+
+    .club-contacts-selection
+    {
+        font-size: 17px;
+    }
+
+    .application-buttons
+    {
+        margin-top : 20px;
+    }
+}
+
+@media all and (max-width : 820px)
+{
+    .file-container
+    {
+        width : 80%;
+        margin-bottom : 30px;
+    }
+
+    .meeting-details-text-box
+    {
+        width : 75%;
+    }
+
+    .service-details
+    {
+        width : 80%;
+        line-height: 40px;
+    }
+
+    .service-description
+    {
+        font-size : 16px;
+        line-height: 40px;
+    }
+
+    .sign-up-container
+    {
+        width : 90%;
+        margin-top : 40px;
+    }
+
+    .application-buttons
+    {
+        margin-top : 50px;
+    }
+}
+
+@media all and (max-width : 480px)
+{
+    .club-title-text-box
+    {
+        width: 95%;
+    }
+
+    .file-container
+    {
+        width : 95%;
+        padding : 20px;
+    }
+
+    .file-form
+    {
+        height: 130px;
+    }
+
+    .meeting-details-text-box
+    {
+        font-size : 15px;
+    }
+
+    .meeting-description-text-box
+    {
+        margin-top : 0px;
+        margin-bottom : 0px;
+        font-size: 15px;
+        padding : 0px 0px;
+    }
+
+    .service-info2-container
+    {
+        padding-right: 2%;
+        padding-left: 2%; 
+    }
+
+    .service-title
+    {
+        margin-top : 20px;
+    }
+
+    .service-details
+    {
+        width : 95%;
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+
+    .service-description
+    {
+        font-size : 15px;
+        line-height: 30px;
+        padding : 10px 15px;
+        margin: 30px 5%;
+    }
+
+    .sign-up-container
+    {
+        font-size: 13px;
+    }
+    
+    .contacts-container input
+    {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .club-contacts-selection
+    {
+        font-size: 15px;
+    }
+
+    .application-buttons
+    {
+        margin-top : 40px;
+        font-size: 15px;
+    }
+
+}
+
+@media all and (max-width : 360px)
+{
+    .file-form
+    {
+        margin: 20px 0px 10px 0px;
+    }
+
+    .service-details
+    {
+        width : 95%;
+        font-size: 13px;
+    }
+
+    .service-description
+    {
+        font-size : 13px;
+    }
+
+    .meeting-details-text-box
+    {
+        font-size : 13px;
+    }
+
+    .meeting-description-text-box
+    {
+        font-size: 13px;
+    }
+
+    .service-details
+    {
+        font-size: 13px;
+    }
+
+    .service-description
+    {
+        font-size : 13px;
+    }
+
+    .sign-up-container
+    {
+        font-size: 12px;
+    }
+    
+    .contacts-container input
+    {
+        font-size: 13px;
+    }
+
+    .club-contacts-selection
+    {
+        font-size: 13px;
+    }
+
+}
