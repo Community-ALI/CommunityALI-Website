@@ -74,6 +74,7 @@ const display_all_my_services = function (req, res, token) {
       );
       newDivContent += ReactDomServer.renderToString(
         React.createElement("div", {className: "user-service"},
+        React.createElement("a", { className: "background-link", href: "service-create.html"}),  
         React.createElement("a", { className: "user-link", href: "service-create.html" }, 
             React.createElement("div", { className: "option-container" }, 
                 React.createElement("i", { className: "fa-solid fa-plus fa-2x" }), 
