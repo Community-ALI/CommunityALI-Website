@@ -140,6 +140,7 @@ topNavBarWrapper.setAttribute('class', 'navigation-bar wrapper');
 var topNavBar = topNavBarWrapper.appendChild(constructNavigationBarElement());
 var topNavBar = navBarWrapper.appendChild(topNavBarWrapper);
 var bottomNavBar = navBarWrapper.appendChild(constructSubNavBar());
+
 if (!checkIfNavBarShouldBeFixed()) {
     navBarWrapper.classList.add('class', 'not-fixed');
 }

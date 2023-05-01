@@ -361,3 +361,7 @@ a > .navigation-menu {
         width: 75vw;
     }
 }
+
+.wrapper {
+    position: absolute;
+}
