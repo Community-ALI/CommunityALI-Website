@@ -1,4 +1,3 @@
-
 // Require the neccesary libraries and modules 
 // set up express
 const express = require("express");
@@ -14,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
+
 const display_services = require("./explore-services-backend/display-services");
 const display_all_applications = require("./my-services-backend/display-view-applicants");
 const display_application_page = require("./explore-services-backend/display-service-info");
@@ -21,7 +21,6 @@ const display_my_services = require("./my-services-backend/display-my-services")
 
 const store_application = require("./explore-services-backend/store-service-signup");
 const store_service = require("./my-services-backend/store-add-service");
-const store_images = require("./store-image");
 const display_service_edit_page = require("./my-services-backend/prefill-service-edit");
 const store_edited_service = require("./my-services-backend/store-service-edit");
 
