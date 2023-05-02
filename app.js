@@ -1,4 +1,3 @@
-
 // Require the neccesary libraries and modules 
 // set up express
 const express = require("express");
@@ -14,16 +13,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
+
 const display_services = require("./explore-services-backend/display-services");
-const display_all_applications = require("./my-services-backend/display-view-applicants");
-const display_application_page = require("./explore-services-backend/display-service-info");
+const display_view_applicants = require("./my-services-backend/display-view-applicants");
+const display_service_info = require("./explore-services-backend/display-service-info");
 const display_my_services = require("./my-services-backend/display-my-services")
 
-const store_application = require("./explore-services-backend/store-service-signup");
-const store_service = require("./my-services-backend/store-add-service");
-const store_images = require("./store-image");
-const display_service_edit_page = require("./my-services-backend/prefill-service-edit");
-const store_edited_service = require("./my-services-backend/store-service-edit");
+const store_service_signup = require("./explore-services-backend/store-service-signup");
+const store_add_service = require("./my-services-backend/store-add-service");
+const prefill_service_edit = require("./my-services-backend/prefill-service-edit");
+const store_service_edit = require("./my-services-backend/store-service-edit");
 
 const models = require("./connect-to-database");
 const User = models.User;
@@ -42,7 +41,7 @@ app.get("/", function (req, res) {
 
 // Store user form data from an application in the database
 app.post('/send-application', upload.none(), function (req, res) {
-    store_application(req, res);
+  store_service_signup(req, res);
 });
 
 // test: this uploads images
@@ -59,7 +58,7 @@ function storeService(req, res) {
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
       console.log('service upload')
-      store_service(req, res, decodedToken);
+      store_add_service(req, res, decodedToken);
     }
     else{
       console.log('error, login verification failed')
@@ -79,7 +78,7 @@ function editService(req, res) {
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
       console.log('service edit')
-      store_edited_service(req, res, decodedToken);
+      store_service_edit(req, res, decodedToken);
     }
     else{
       console.log('error, login verification failed')
@@ -99,14 +98,12 @@ app.get("/service-search", function (req, res) {
 
 // display the sign up/apply for service page
 app.get("/apply-for-service", function (req, res) {
-  
-  display_application_page(req,res);
-  
+  display_service_info(req,res);
 });
 
 // service edit
 app.get("/service-edit", function (req, res){
-  display_service_edit_page(req, res);
+  prefill_service_edit(req, res);
 });
 
 // View aplications
@@ -116,7 +113,7 @@ app.get("/Applications", async function (req, res) {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
     console.log('application request')
-    display_all_applications(req, res, decodedToken);  
+    display_view_applicants(req, res, decodedToken);  
     console.log('applications sent')
   }
   else{
