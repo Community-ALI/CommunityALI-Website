@@ -4,7 +4,7 @@
 
 
 
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Services = models.Services;
 
 // file system allows the server to read html from the client. I think?

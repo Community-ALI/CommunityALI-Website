@@ -3,7 +3,7 @@
 // Then, it stores that application in the database
 // Finally, it sends the user to the signup-success.html page
 
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Application = models.Application;
 
 const store_application = function(req, res) { 

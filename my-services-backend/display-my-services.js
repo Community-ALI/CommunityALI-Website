@@ -1,14 +1,11 @@
 // FILE OVERVIEW:
-// this is a dev tool, and should be commented out in app.js when not on localhost
-// this file is not accessable through the website unless you type in the right url
-// The purpose of this file is to easilly sort through applications based on service
 
 //react modules
 var React = require('react');
 var ReactDomServer = require('react-dom/server');
 
 // database
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Application = models.Application;
 const Services = models.Services;
 // file system allows the server to read html from the client. I think?

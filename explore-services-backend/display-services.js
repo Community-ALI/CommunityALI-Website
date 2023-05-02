@@ -9,7 +9,7 @@ const fs = require('fs');
 var React = require('react');
 var ReactDomServer = require('react-dom/server');
 
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Services = models.Services;
 
 const SearchResult = function(props) {

@@ -1,5 +1,5 @@
 
-function filterData(user_input,foundServices){
+function filterData(user_input, foundServices){
     if (user_input) {
     }
     else{

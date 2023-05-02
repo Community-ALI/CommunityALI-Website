@@ -3,7 +3,7 @@
 // Then, it finds the old service in the database
 // it updates that service with the new information
 const fs = require('fs');
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Service = models.Services;
 
 const store_service = function(req, res, token) { 

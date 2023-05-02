@@ -4,7 +4,7 @@
 // FIXME: this needs to be finalized and explained
 // the code is designed to recieve multiple services, when in reality it should always be one
 const fs = require('fs');
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Service = models.Services;
 
 const store_service = function(req, res, token) { 

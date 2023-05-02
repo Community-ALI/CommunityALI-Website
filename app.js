@@ -14,18 +14,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
-const display_services = require("./display-files/display-services");
-const display_all_applications = require("./display-files/display-all-applications");
-const display_application_page = require("./display-files/display-application-page");
-const display_my_services = require("./display-files/display-my-services")
+const display_services = require("./explore-services-backend/display-services");
+const display_all_applications = require("./my-services-backend/display-view-applicants");
+const display_application_page = require("./explore-services-backend/display-service-info");
+const display_my_services = require("./my-services-backend/display-my-services")
 
-const store_application = require("./display-files/store-application");
-const store_service = require("./display-files/store-service");
+const store_application = require("./explore-services-backend/store-service-signup");
+const store_service = require("./my-services-backend/store-add-service");
 const store_images = require("./store-image");
-const display_service_edit_page = require("./display-files/service-edit");
-const store_edited_service = require("./display-files/database-service-edit");
+const display_service_edit_page = require("./my-services-backend/prefill-service-edit");
+const store_edited_service = require("./my-services-backend/store-service-edit");
 
-const models = require("./define-database-models");
+const models = require("./connect-to-database");
 const User = models.User;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -43,7 +43,7 @@ app.get("/", function (req, res) {
 // Store user form data from an application in the database
 app.post('/send-application', upload.none(), function (req, res) {
     store_application(req, res);
-  });
+});
 
 // test: this uploads images
 app.post("/upload-files", upload.array("files"), uploadFiles);

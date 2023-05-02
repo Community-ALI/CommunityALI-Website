@@ -8,7 +8,7 @@ var React = require('react');
 var ReactDomServer = require('react-dom/server');
 
 // database
-const models = require("../define-database-models");
+const models = require("../connect-to-database");
 const Application = models.Application;
 const Services = models.Services;
 // file system allows the server to read html from the client. I think?
