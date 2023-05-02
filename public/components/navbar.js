@@ -60,7 +60,7 @@ function constructNavigationBarElement() {
 
     let serviceSearchNavButton = document.createElement('a');
     serviceSearchNavButton.setAttribute('class', 'navigation-button navigation-text');
-    serviceSearchNavButton.setAttribute('href', 'service-search');
+    serviceSearchNavButton.setAttribute('href', 'explore-services/main-page');
     serviceSearchNavButton.innerHTML = 'Explore';
     navigationMenu.appendChild(serviceSearchNavButton);
 

@@ -70,7 +70,7 @@ const display_services = function(req, res) {
       // TODO: perform the search using the keyword and filter
       filteredData = search(foundServices, keyword, filter);
 
-      fs.readFile('public/services.html', 'utf-8', (err, data) => {
+      fs.readFile('public/explore-services/main-page.html', 'utf-8', (err, data) => {
         if (err) {
           console.error(err);
           return;

@@ -7,6 +7,25 @@ const fs = require('fs');
 const models = require("../connect-to-database");
 const Service = models.Services;
 
+const store_add_service = function(req, res, token){
+  try{
+    if (req.headers.authorization != undefined){
+      const token = req.headers.authorization.split(' ')[1];
+      const decodedToken = jwt.verify(token, JWT_SECRET);
+      console.log('service upload')
+      store_service(req, res, decodedToken);
+    }
+    else{
+      console.log('error, login verification failed')
+      res.send("error, login verification failed");
+    }
+  }
+  catch (error){
+    console.log(error)
+    res.send("error");
+  }
+}
+
 const store_service = function(req, res, token) { 
     
     // create json data from form
@@ -61,4 +80,4 @@ const store_service = function(req, res, token) {
 
       
  
-module.exports = store_service;
+module.exports = store_add_service;
