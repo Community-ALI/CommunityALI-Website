@@ -89,5 +89,25 @@ const display_all_applications = function (req, res, token) {
   });
 }
 
+
+const display_view_applicants = function(req, res){
+  try{
+    if (req.headers.authorization != undefined){
+      const token = req.headers.authorization.split(' ')[1];
+      const decodedToken = jwt.verify(token, JWT_SECRET);
+      console.log('application request')
+      application_page_display(req, res, decodedToken);  
+      console.log('applications sent')
+    }
+    else{
+      console.log('error, login verification failed')
+      res.send("error, login verification failed");
+    }
+    }
+    catch (error){
+      console.log(error)
+      res.send("error");
+    }
+}
 // export to app.js 
-module.exports = display_all_applications;
+module.exports = display_view_applicants;
