@@ -15,6 +15,11 @@ const Services = models.Services;
 const fs = require('fs');
 const { application } = require('express');
 
+//json web token
+const jwt = require('jsonwebtoken')
+const JWT_SECRET = process.env.JWT_SECRET;
+
+
 // each individual application to display
 const SearchResult = function(props) {
   const applicant = props.applicant;
@@ -96,7 +101,7 @@ const display_view_applicants = function(req, res){
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
       console.log('application request')
-      application_page_display(req, res, decodedToken);  
+      display_all_applications(req, res, decodedToken);  
       console.log('applications sent')
     }
     else{
