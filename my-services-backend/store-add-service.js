@@ -7,7 +7,12 @@ const fs = require('fs');
 const models = require("../connect-to-database");
 const Service = models.Services;
 
-const store_add_service = function(req, res, token){
+//json web token
+const jwt = require('jsonwebtoken')
+const JWT_SECRET = process.env.JWT_SECRET;
+
+
+const store_add_service = function(req, res){
   try{
     if (req.headers.authorization != undefined){
       const token = req.headers.authorization.split(' ')[1];
@@ -75,7 +80,18 @@ const store_service = function(req, res, token) {
             console.log("Service saved to database");
             res.send("/signup-success.html");
           }
+
         });
+
+        // delete the temporary file
+        req.files.forEach((file) => {
+          fs.unlink(file.path, (err) => {
+            if (err) {
+              console.error(err);
+            }
+          });
+        });
+
       };
 
       

@@ -31,7 +31,7 @@ const SearchResult = function(props) {
         React.createElement('div', { className: 'result-author' }, service.author_role+": "+service.author)
     ),
     React.createElement('div', { className: 'button-container' },
-        React.createElement('a', { className: 'button', href: "/apply-for-service?service=" + service.title}, 'Click for more info')
+        React.createElement('a', { className: 'button', href: "/explore-services/service-info?service=" + service.title}, 'Click for more info')
     )
   );
 };

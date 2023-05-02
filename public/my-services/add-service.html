@@ -44,27 +44,33 @@
         </div>
 
         <div class="service-info-container">
-            <div class="file-container" id = "file-container">
+            <div class="file-container" id="file-container">
                 <header>Club Photo Uploader</header>
-            
+              
                 <label for="file-input">
-                    <i class="fas fa-cloud-upload-alt" id="file-icon"></i>
-                    <p>Click to Upload File</p>
+                  <i class="fas fa-cloud-upload-alt" id="file-icon"></i>
+                  <p>Click to Upload File</p>
                 </label>
-                <input id="file-input" type="file" name="file" required style="display:none;">
-            
+                <input class="file-input" id="file-input" type="file" name="file" required>
+              
                 <section class="progress-area"></section>
                 <section class="uploaded-area"></section>
-            </div>
-            
-            <script>
+              </div>
+              
+              <script>
                 const fileContainer = document.getElementById("file-container");
                 const fileInput = document.getElementById("file-input");
-            
-                fileContainer.addEventListener("click", () => {
-                    fileInput.click();
+              
+                fileContainer.addEventListener("click", (event) => {
+                  fileInput.click();
+                  event.preventDefault();
+                  event.stopPropagation();
                 });
-            </script>
+              
+                fileInput.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                });
+              </script>
 
             <div class="service-details" id="service-details">
                 <div class="service-author">

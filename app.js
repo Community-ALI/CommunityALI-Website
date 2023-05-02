@@ -54,7 +54,7 @@ function uploadFiles(req, res) {
 
 app.post("/upload-service", upload.array("files"), storeService);
 function storeService(req, res) {
-  store_add_service(req, res, decodedToken);
+  store_add_service(req, res);
 }
 
 app.post("/upload-edited-service", upload.array("files"), editService);
@@ -83,7 +83,7 @@ app.get("/explore-services/main-page", function (req, res) {
 });
 
 // display the sign up/apply for service page
-app.get("/apply-for-service", function (req, res) {
+app.get("/explore-services/service-info", function (req, res) {
   display_service_info(req,res);
 });
 

@@ -28,7 +28,6 @@ const SearchResult = function(props) {
     "div",
     { className: "result-container" },
     React.createElement("p", { className: "applicant-name" }, applicant.name),
-    React.createElement("p", { className: "applicant-w_number" }, applicant.w_number),
     React.createElement("p", { className: "applicant-email" }, applicant.email)
   );
   }

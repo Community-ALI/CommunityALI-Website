@@ -1,5 +1,5 @@
 const service_form = document.getElementById('form');
-const files = document.getElementById("files");
+const service_image = document.getElementById("file-input");
 
 const fileInputJS2 = document.getElementById('file-input');
 const fileContainerJS2 = document.getElementById('file-container');
@@ -7,7 +7,6 @@ const fileContainerJS2 = document.getElementById('file-container');
 fileInputJS2.addEventListener('change', () => {
   if (fileInput.value) {
     fileContainerJS2.classList.add('file-selected');
-    alert('file detected');
   } else {
     fileContainerJS2.classList.remove('file-selected');
   }
@@ -15,7 +14,7 @@ fileInputJS2.addEventListener('change', () => {
 
 // once image is ready to send
 onLoadFunction = function(image, file){
-    file = files.files[0];
+    file = service_image.files[0];
     // Check if the image size is "close" to 1200 x 800
     const width = image.naturalWidth;
     const height = image.naturalHeight;
@@ -66,7 +65,7 @@ onLoadFunction = function(image, file){
         // Check the response status
         if (res.ok) {
             // Redirect to new window after server response
-            window.location.href = '/service-search';
+            window.location.href = '/explore-services/main-page';
         } else {
             // Handle server error
             console.error("Error occurred", res);
@@ -85,11 +84,10 @@ onLoadFunction = function(image, file){
 // when submit clicked
 service_form.addEventListener('submit', function (event) {
     event.preventDefault();
-    alert('form submitted');
     token = localStorage.getItem('token');
     if (token){
         // get values
-        file = files.files[0]; // get the image file
+        file = service_image.files[0]; // get the image file
         if ( file != undefined){
             // check that image is image
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
@@ -105,7 +103,7 @@ service_form.addEventListener('submit', function (event) {
         }
         else{
             const image = new Image();
-            image.src = 'resources/noPhoto.jpg';
+            image.src = '../resources/noPhoto.jpg';
             image.onload = function() {
                 onLoadFunction(image);
             }

@@ -303,6 +303,10 @@ body
     text-align: center;
     color: white;
 }
+/* hide this element without adding the hidden tag to avoid errors */
+.file-input {
+    opacity: 0; 
+}
 
 section .row
 {
