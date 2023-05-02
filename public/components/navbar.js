@@ -29,7 +29,7 @@ function constructLoginNavButton() {
 
 function constructCommunityCatalystLogo(isMobile) {
     let communityCatalystLogoLink = document.createElement('a');
-    communityCatalystLogoLink.setAttribute('href', 'index.html');
+    communityCatalystLogoLink.setAttribute('href', '../index.html');
     let communityCatalystLogoImg = document.createElement('img');
     communityCatalystLogoImg.setAttribute('src', 'Photos/CClogo.png');
     communityCatalystLogoImg.setAttribute('class', 'navbar-logo');
@@ -54,7 +54,7 @@ function constructNavigationBarElement() {
 
     let homeNavButton = document.createElement('a');
     homeNavButton.setAttribute('class', 'navigation-button navigation-text');
-    homeNavButton.setAttribute('href', 'index.html');
+    homeNavButton.setAttribute('href', '../index.html');
     homeNavButton.innerHTML = 'Home';
     navigationMenu.appendChild(homeNavButton);
 
@@ -67,7 +67,7 @@ function constructNavigationBarElement() {
     if (token){
         let myServicesNavButton = document.createElement('a');
         myServicesNavButton.setAttribute('class', 'navigation-button navigation-text');
-        myServicesNavButton.setAttribute('href', 'my-services.html');
+        myServicesNavButton.setAttribute('href', 'my-services/main-page.html');
         myServicesNavButton.setAttribute('id', 'applicants');
         myServicesNavButton.innerHTML = 'My Services';
         navigationMenu.appendChild(myServicesNavButton);
