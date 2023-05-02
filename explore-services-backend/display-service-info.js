@@ -31,7 +31,7 @@ const display_application_page = function(req,res){
           res.send(selected_service_json);
           return
         }
-        fs.readFile('/public/explore-services/service-info.html', 'utf-8', (err, data) => {
+        fs.readFile('./public/explore-services/service-info.html', 'utf-8', (err, data) => {
           if (err) {
             console.error(err);
             return;
