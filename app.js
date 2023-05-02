@@ -13,12 +13,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
-
+// explore services
 const display_services = require("./explore-services-backend/display-services");
 const display_view_applicants = require("./my-services-backend/display-view-applicants");
 const display_service_info = require("./explore-services-backend/display-service-info");
 const display_my_services = require("./my-services-backend/display-my-services")
 
+// my services
 const store_service_signup = require("./explore-services-backend/store-service-signup");
 const store_add_service = require("./my-services-backend/store-add-service");
 const prefill_service_edit = require("./my-services-backend/prefill-service-edit");
@@ -53,22 +54,7 @@ function uploadFiles(req, res) {
 
 app.post("/upload-service", upload.array("files"), storeService);
 function storeService(req, res) {
-  try{
-    if (req.headers.authorization != undefined){
-      const token = req.headers.authorization.split(' ')[1];
-      const decodedToken = jwt.verify(token, JWT_SECRET);
-      console.log('service upload')
-      store_add_service(req, res, decodedToken);
-    }
-    else{
-      console.log('error, login verification failed')
-      res.send("error, login verification failed");
-    }
-  }
-  catch (error){
-    console.log(error)
-    res.send("error");
-  }
+  store_add_service(req, res, decodedToken);
 }
 
 app.post("/upload-edited-service", upload.array("files"), editService);
@@ -92,7 +78,7 @@ function editService(req, res) {
 }
 
 // Display services from the database to the user when they go to the service-search page
-app.get("/service-search", function (req, res) {
+app.get("/explore-services/main-page", function (req, res) {
     display_services(req,res);
 });
 
