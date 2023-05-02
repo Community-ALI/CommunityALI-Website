@@ -16,7 +16,7 @@ const SearchResult = function(props) {
   const service = props.service;
 
   if (fs.existsSync('public/'+service.photo)){
-    imageSrc = service.photo // TODO: put a default image here!
+    imageSrc = '../'+service.photo // TODO: put a default image here!
   }
   else{
     imageData = service.photo.toString('base64');
