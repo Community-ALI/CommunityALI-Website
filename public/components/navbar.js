@@ -1,11 +1,5 @@
 // This is the HTML code for the navigation bar
-// Scripted for all the HTML pages
-
-var loginStylesheet = document.createElement('link');
-loginStylesheet.setAttribute('rel', 'stylesheet');
-loginStylesheet.setAttribute('type', 'text/css');
-loginStylesheet.setAttribute('href', 'login.css');
-document.head.insertBefore(loginStylesheet, document.head.firstElementChild);
+// Scripted for all the HTML page
 
 var token = localStorage.getItem('token');
 var currentPage = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
