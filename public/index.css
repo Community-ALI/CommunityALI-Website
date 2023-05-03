@@ -29,11 +29,11 @@ body
 #video-background
 {
     position : absolute;
-    min-width: 100%;
-    min-height: 100%;
     z-index : -1;
     right: 0;
     bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
     transform: translateX(calc((100% - 100vw) / 2));
     top : -90px;
 }
@@ -602,6 +602,11 @@ border-radius: 10px;
 
 @media all and (max-width : 480px)
 {
+    .header
+    {
+        min-height: 110vh;
+        max-height: 110vh;
+    }
 
     .description-video
     {
@@ -630,6 +635,12 @@ border-radius: 10px;
     #header-subtitle
     {
         font-size : 18px;
+        bottom : 20%;
+    }
+
+    #video-background
+    {
+        height : 110%;
     }
 
     .description-text 
