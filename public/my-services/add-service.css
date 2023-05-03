@@ -261,6 +261,8 @@ body
     box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
 }
 
+
+
 .file-container header
 {
     color: white;
@@ -268,6 +270,10 @@ body
     font-weight: 500;
     text-align: center;
     font-family: 'Poppins', sans-serif;
+}
+
+.file-container:hover {
+    cursor: pointer;
 }
 
 .file-form
@@ -289,12 +295,17 @@ body
     color: white;
 }
 
+
 .file-form p
 {
     margin-top: 15px;
     font-size: 16px;
     text-align: center;
     color: white;
+}
+/* hide this element without adding the hidden tag to avoid errors */
+.file-input {
+    opacity: 0; 
 }
 
 section .row
@@ -626,3 +637,8 @@ section .details span
     }
 
 }
+
+.file-selected {
+    background-color: #00e238;
+    border: 1px solid #1890ff;
+  }

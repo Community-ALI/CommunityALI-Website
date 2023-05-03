@@ -264,7 +264,7 @@ function constructLoginPopup() {
         </div>
 
         <!-- <div class="pass">Forgot Password?</div> -->
-        <input type="submit" value="Login" id='login'>
+        <input type="submit" value="Login" id='login-submission'>
         <!-- <div class="signup_link">
           Don't have an account? <a href="signup.html">Sign-up</a>
         </div> -->

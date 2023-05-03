@@ -54,7 +54,7 @@ function uploadFiles(req, res) {
 
 app.post("/upload-service", upload.array("files"), storeService);
 function storeService(req, res) {
-  store_add_service(req, res, decodedToken);
+  store_add_service(req, res);
 }
 
 app.post("/upload-edited-service", upload.array("files"), editService);
@@ -83,7 +83,7 @@ app.get("/explore-services/main-page", function (req, res) {
 });
 
 // display the sign up/apply for service page
-app.get("/apply-for-service", function (req, res) {
+app.get("/explore-services/service-info", function (req, res) {
   display_service_info(req,res);
 });
 
@@ -94,23 +94,7 @@ app.get("/service-edit", function (req, res){
 
 // View aplications
 app.get("/Applications", async function (req, res) {
-  try{
-  if (req.headers.authorization != undefined){
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, JWT_SECRET);
-    console.log('application request')
-    display_view_applicants(req, res, decodedToken);  
-    console.log('applications sent')
-  }
-  else{
-    console.log('error, login verification failed')
-    res.send("error, login verification failed");
-  }
-  }
-  catch (error){
-    console.log(error)
-    res.send("error");
-  }
+  display_view_applicants(req, res);  
 });
 
 app.get("/view-my-services", async function (req, res) {

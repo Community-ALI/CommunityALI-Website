@@ -10,6 +10,10 @@ token = localStorage.getItem('token');
     .then(html => {
         const target = document.getElementById('target');
         target.innerHTML = html;
+        // stop loading
+
+        $(".loader-wrapper").fadeOut("slow");   
+
     })
         .catch(error => {
     });

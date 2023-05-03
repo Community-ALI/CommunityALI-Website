@@ -91,6 +91,7 @@ const display_application_page = function(req,res){
           contacts.innerHTML = contactHTML;
 
           // send the modified HTML to the client
+          res.set('Content-Base', 'http://localhost:3000/explore-services/');
           res.send(window.document.documentElement.outerHTML);
           });
         };

@@ -8,10 +8,10 @@ require('dotenv').config()
 
 const DATABASE_LINK = process.env.DATABASE_LINK;
 // OFFICIAL DATABASE (do not mess with this)
- mongoose.connect(DATABASE_LINK, {useNewUrlParser: true});
+// mongoose.connect(DATABASE_LINK, {useNewUrlParser: true});
 
 // TESTING DATABASE (For if you want to test something that might mess up the database)
-// mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
+ mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
 // switch between the two by commenting out one and uncommenting the other
 
 const serviceSchema = {

@@ -9,18 +9,19 @@
     <link rel="icon" type="x-icon" href="../Photos/CClogo.png">
     <link rel = "stylesheet" type = "text/css" href = "../components/navbar.css" >
     <link rel = "stylesheet" type = "text/css" href = "../my-services/main-page.css" >
-    <script src = "navbar.js" defer> </script>  
-    <script src = "hamburger.js" defer> </script> 
+    <script src = "../components/navbar.js" defer> </script>  
+    <script src = "../components/hamburger.js" defer> </script> 
     <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>
 
     <link rel = "stylesheet" type = "text/css" href = "../components/login.css" >
     <link rel = "stylesheet" type = "text/css" href = "../components/footer.css" >
     <link rel = "stylesheet" type = "text/css" href = "../components/navbar.css" >
 
-    <script src = "navbar.js" defer> </script>  
-    <script src = "hamburger.js" defer> </script> 
+    <!-- <script src = "navbar.js" defer> </script>  
+    <script src = "hamburger.js" defer> </script>  -->
 
-    <script src="my-services.js" defer></script>
+    <script src="main-page.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
     <!-- FONTS AND ICONS FOR MAIN PAGE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,13 +44,17 @@
 </script>
 
 <body>
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
     <div id = 'target'>
-        
+        loading...
     </div>
     
 
 </body>
 
-<script src = "footer.js"> </script>
+<script src = "../components/footer.js"> </script>
 
 </html>

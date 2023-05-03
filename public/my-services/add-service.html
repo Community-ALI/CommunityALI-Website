@@ -4,17 +4,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="x-icon" href="Photos/CClogo.png">
-    <link rel="stylesheet" type="text/css" href="service-creation.css">
+    <link rel="stylesheet" type="text/css" href="add-service.css">
 
     <link rel = "stylesheet" type = "text/css" href = "../components/login.css" >
     <link rel = "stylesheet" type = "text/css" href = "../components/footer.css" >
     <link rel = "stylesheet" type = "text/css" href = "../components/navbar.css" >
 
-    <script src = "navbar.js" defer> </script>  
-    <script src = "hamburger.js" defer> </script>
+    <script src = "../components/navbar.js" defer> </script>  
+    <script src = "../components/hamburger.js" defer> </script>
 
-    <script src="services.js" defer></script>
-    <script src="apply-for-services.js" defer> </script>
+    <script src="add-service.js" defer></script>
+    <!-- <script src="main-page.js" defer></script> -->
 
     <!-- FONTS AND ICONS FOR MAIN PAGE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,27 +37,45 @@
 
 <body>
     
-    <div class="service-container">
+    <form action="/store-service" method="POST" class="service-container" id = 'form'>
 
         <div class="service-title">
-            <input type="text" placeholder="Name of the Club" class="club-title-text-box" name="title" required><br>
+            <input type="text" placeholder="Name of the Club" class="club-title-text-box" name="title" id = 'title' required><br>
         </div>
 
         <div class="service-info-container">
-            <div class="file-container">
+            <div class="file-container" id="file-container">
                 <header>Club Photo Uploader</header>
-                <form action="#" class="file-form">
-                  <input class="file-input" type="file" name="file" hidden>
+              
+                <label for="file-input">
                   <i class="fas fa-cloud-upload-alt" id="file-icon"></i>
-                  <p>Browse File to Upload</p>
-                </form>
+                  <p>Click to Upload File</p>
+                </label>
+                <input class="file-input" id="file-input" type="file" name="file" required>
+              
                 <section class="progress-area"></section>
                 <section class="uploaded-area"></section>
-            </div>
+              </div>
+              
+              <script>
+                const fileContainer = document.getElementById("file-container");
+                const fileInput = document.getElementById("file-input");
+              
+                fileContainer.addEventListener("click", (event) => {
+                  fileInput.click();
+                  event.preventDefault();
+                  event.stopPropagation();
+                });
+              
+                fileInput.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                });
+              </script>
+
             <div class="service-details" id="service-details">
                 <div class="service-author">
                     <input type="text" placeholder="President of the Club" class="meeting-details-title-box" 
-                    name="subtitle" required><br>
+                    name="subtitle" id = 'meeting-details-title-box' required><br>
                 </div>
 
                 <div class="service-header">Meeting Details</div>
@@ -65,26 +83,26 @@
                 <div>
                     <u> Time: </u>
                     <input type="text" placeholder="Include start and end time" class="meeting-details-text-box" 
-                    name="time" required><br>
+                    name="time" id = 'details-times' required><br>
                 </div>
 
                 <div>
                     <u> Date: </u>
                     <input type="text" placeholder="Include day and month" class="meeting-details-text-box" 
-                    name="date" required><br>
+                    name="date" id = 'details-date' required><br>
                 </div>
 
                 <div>
                     <u> Location: </u> 
                     <input type="text" placeholder="Include building and room" class="meeting-details-text-box" 
-                    name="location" required><br>
+                    name="location" id = 'details-location' required><br>
                 </div>
             </div>
         </div>
     
         <div class="service-description">
             <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." 
-            class="meeting-description-text-box" name="description" required></textarea>
+            class="meeting-description-text-box" name="description" id = "description" required></textarea>
         </div>
 
 
@@ -166,12 +184,12 @@
                     members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination 
                     against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI. 
                 </label>
-                <input type="submit" value="Save Application" id="save-button" class="application-buttons">
+                <!-- <input type="submit" value="Save Application" id="save-button" class="application-buttons"> -->
                 <input type="submit" value="Submit Application" id="submit-button" class="application-buttons">
             </div>
         </div>
-    </div>
+    </form>
 
-    <script src = "footer.js"> </script>
+    <script src = "../components/footer.js"> </script>
 
 </body></html>
