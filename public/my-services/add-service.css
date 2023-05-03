@@ -117,16 +117,16 @@ body
 
 .meeting-description-text-box
 {
-  width : 100%;
-  padding: 8px 10px;
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(10px, 4vh, 20px);
-  margin-bottom: 30px;
-  margin-top : 20px;
-  background : none;
-  border : none;
-  outline : none;
-  color : white;
+    width : 100%;
+    padding: 8px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(10px, 4vh, 20px);
+    margin-bottom: 30px;
+    margin-top : 20px;
+    background : none;
+    border : none;
+    outline : none;
+    color : white;
 }
 
 .sign-up-container
@@ -293,6 +293,9 @@ body
 {
     font-size: 50px;
     color: white;
+    width : 100%;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -306,6 +309,7 @@ body
 /* hide this element without adding the hidden tag to avoid errors */
 .file-input {
     opacity: 0; 
+    display: none;
 }
 
 section .row
