@@ -30,7 +30,7 @@ const store_application = function(req, res) {
         } else {
           // display success page
           console.log('application from ',req.body.name,' submitted');
-          res.send("/public/explore-services/signup-success.html");
+          res.send("/explore-services/signup-success.html");
         }
       });
     }
