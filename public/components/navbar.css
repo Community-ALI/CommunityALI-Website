@@ -306,6 +306,7 @@ a > .navigation-menu {
     .navigation-bar.active 
     {
         left : 0vw;
+        top: 16px;
     }
 
     #navigation-login 
