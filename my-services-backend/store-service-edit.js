@@ -20,12 +20,8 @@ const store_service = function(req, res, token) {
       "<u> Date </u>:  " + req.body.details_date,
       "<u> Location </u>:  " + req.body.details_location
     ]
-    var contacts = [
-      "<u> President</u> : " + req.body.author + "  :  " + req.body.president_email,
-      "<u> Vice president</u> : " + req.body.vice_president_name + "  :  " + req.body.vice_president_email,
-      "<u> ICC rep</u> : " + req.body.ICC_rep_name + "  :  " + req.body.ICC_rep_email,
-      "<u> Advisor</u> : " + req.body.advisor_name + "  :  " + req.body.advisor_email
-    ]
+     var contacts = JSON.parse(req.body.contacts);
+
     if (req.files[0]==undefined){
         const updateData = { 
           $set: {
@@ -48,9 +44,9 @@ const store_service = function(req, res, token) {
           Service.updateMany(filter, updateData, function(err) {
             if (err) {
               console.log(err);
-              res.status(500).send("Error saving images to database");
+              res.status(500).send("Error saving service to database");
             } else {
-              console.log("Service edited to database");
+              console.log("Service edited in database");
               res.send("/signup-success.html");
             }
           });

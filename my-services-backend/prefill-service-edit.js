@@ -35,7 +35,7 @@ const display_service_edit_page = function(req,res){
         return
       }
       
-      fs.readFile('public/service-edit.html', 'utf-8', (err, data) => {
+      fs.readFile('public/my-services/edit-service.html', 'utf-8', (err, data) => {
         if (err) {
           console.error(err);
           return;
@@ -44,21 +44,14 @@ const display_service_edit_page = function(req,res){
         // get the document from the window
         const document = window.document;
         // find the elements and fill in the previous data
-        // your name
-        const personal_name = document.getElementById('personal-name');
-        personal_name.value = selected_service_json.personal_name;
-        // your contact
-        const personal_number = document.getElementById('personal-number');
-        personal_number.value = selected_service_json.personal_number;
-        // your email
-        const personal_email = document.getElementById('personal-email');
-        personal_email.value = selected_service_json.personal_email;
-        // your role
-        const role = document.getElementById('personal-role');
-        role.value = selected_service_json.personal_role;
+        
         // club name
         const title = document.getElementById('title');
         title.value = selected_service_json.title;
+
+        // fill author
+        const meeting_details_title_box = document.getElementById('meeting-details-title-box');
+        meeting_details_title_box.value = selected_service_json.author;
 
         // decode detail array
         const details = selected_service_json.details;
@@ -77,39 +70,55 @@ const display_service_edit_page = function(req,res){
           // description
           const description = document.getElementById('description');
           description.value = selected_service_json.description;
-          // president
-          const author = document.getElementById('author');
-          author.value = selected_service_json.author;
-          const president_email = document.getElementById('president-email');
-          president_email.value = contacts[0].split(":  ")[1];
-          // vp name
-          const vice_president_name = document.getElementById('vice-president-name');
-          vice_president_name.value = contacts[1].split(": ")[1];
+          // contact 1
+          const contact_role_1 = document.getElementById('contact-role-1');
+          contact_role_1.querySelector(`option[value="${contacts[0].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
+          // name
+          const contact_name_1 = document.getElementById('contact-name-1');
+          contact_name_1.value = contacts[0].split(": ")[1].slice(0,-2);
+          // email
+          const contact_email_1 = document.getElementById('contact-email-1');
+          contact_email_1.value = contacts[0].split(":  ")[1];
+          
 
-          const vice_president_email = document.getElementById('vice-president-email');
-          vice_president_email.value = contacts[1].split(":  ")[1];
+          // contact 2
+          const contact_role_2 = document.getElementById('contact-role-2');
+          contact_role_2.querySelector(`option[value="${contacts[1].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
+          // name
+          const contact_name_2 = document.getElementById('contact-name-2');
+          contact_name_2.value = contacts[1].split(": ")[1].slice(0,-2);
+          // email
+          const contact_email_2 = document.getElementById('contact-email-2');
+          contact_email_2.value = contacts[1].split(":  ")[1];
+          
+          // contact 3
+          const contact_role_3 = document.getElementById('contact-role-3');
+          contact_role_3.querySelector(`option[value="${contacts[2].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
+          // name
+          const contact_name_3 = document.getElementById('contact-name-3');
+          contact_name_3.value = contacts[2].split(": ")[1].slice(0,-2);
+          // email
+          const contact_email_3 = document.getElementById('contact-email-3');
+          contact_email_3.value = contacts[2].split(":  ")[1];
 
-
-          // ICC name
-          const ICC_rep_name = document.getElementById('ICC-rep-name');
-          ICC_rep_name.value = contacts[2].split(": ")[1];
-
-          const ICC_rep_email = document.getElementById('ICC-rep-email');
-          ICC_rep_email.value = contacts[2].split(":  ")[1];
-          // advisor name
-          const advisor_name = document.getElementById('advisor-name');
-          advisor_name.value = contacts[3].split(": ")[1];
-
-          const advisor_email = document.getElementById('advisor-email');
-          advisor_email.value = contacts[3].split(":  ")[1];}
-        catch{
-
+          // contact 4
+          const contact_role_4 = document.getElementById('contact-role-4');
+          contact_role_4.querySelector(`option[value="${contacts[3].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
+          // name
+          const contact_name_4 = document.getElementById('contact-name-4');
+          contact_name_4.value = contacts[3].split(": ")[1].slice(0,-2);
+          // email
+          const contact_email_4 = document.getElementById('contact-email-4');
+          contact_email_4.value = contacts[3].split(":  ")[1];
+        }
+        catch(err){
+          console.log(err);
         }
 
-        const image_label = document.getElementById("service-image-label");
-        image_label.innerHTML = "Service Image: (leaving this blank will keep your old image)"
+        // const image_label = document.getElementById("service-image-label");
+        // image_label.innerHTML = "Service Image: (leaving this blank will keep your old image)"
 
-        const image_upload = document.getElementById("files");
+        const image_upload = document.getElementById("file-input");
         image_upload.removeAttribute("required");
         
         console.log(selected_service_json.title)

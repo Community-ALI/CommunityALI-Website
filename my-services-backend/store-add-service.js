@@ -45,12 +45,8 @@ const store_service = function(req, res, token) {
       "<u> Date </u>:  " + req.body.details_date,
       "<u> Location </u>:  " + req.body.details_location
     ]
-    var contacts = [
-      "<u> President</u> : " + req.body.author + "  :  " + req.body.president_email,
-      "<u> Vice president</u> : " + req.body.vice_president_name + "  :  " + req.body.vice_president_email,
-      "<u> ICC rep</u> : " + req.body.ICC_rep_name + "  :  " + req.body.ICC_rep_email,
-      "<u> Advisor</u> : " + req.body.advisor_name + "  :  " + req.body.advisor_email
-    ]
+    var contacts = JSON.parse(req.body.contacts);
+ 
     services_with_images = [];
     for (let file of req.files) {
         const service_with_image = new Service({
@@ -80,7 +76,6 @@ const store_service = function(req, res, token) {
             console.log("Service saved to database");
             res.send("/signup-success.html");
           }
-
         });
 
         // delete the temporary file

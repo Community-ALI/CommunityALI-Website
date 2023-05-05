@@ -88,7 +88,7 @@ app.get("/explore-services/service-info", function (req, res) {
 });
 
 // service edit
-app.get("/service-edit", function (req, res){
+app.get("/my-services/edit-service", function (req, res){
   prefill_service_edit(req, res);
 });
 

@@ -42,7 +42,7 @@ const my_service_page_display = function(props) {
 
         React.createElement("a", { className: "user-service-text", href: "view-applicants.html"}, service.title),
 
-        React.createElement("a", { className: "user-link edit-button", href: "service-edit?service="+service.title}, "Edit")
+        React.createElement("a", { className: "user-link edit-button", href: "edit-service?service="+service.title}, "Edit")
       )
     )
   return html

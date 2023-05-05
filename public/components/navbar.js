@@ -207,7 +207,7 @@ async function login(event) {
             console.log('Got the token: ', result.data);
             localStorage.setItem('token', result.data);
             const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
-            alert('signed in as: '+ decodedToken.username);
+            console.log('signed in as: '+ decodedToken.username);
             window.location.href = '/'
         } else {
             alert(result.error);

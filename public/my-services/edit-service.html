@@ -1,149 +1,196 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <!-- Translating symbols; Adding compatibility; Proper displaying -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="x-icon" href="Photos/CClogo.png">
-    <link rel = "stylesheet" type = "text/css" href = "service-create.css" >
-
-    <!-- FONTS AND ICONS FOR MAIN PAGE -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" type="text/css" href="add-service.css">
 
     <link rel = "stylesheet" type = "text/css" href = "../components/login.css" >
     <link rel = "stylesheet" type = "text/css" href = "../components/footer.css" >
     <link rel = "stylesheet" type = "text/css" href = "../components/navbar.css" >
 
-    <script src = "navbar.js" defer> </script>  
-    <script src = "hamburger.js" defer> </script> 
+    <script src = "../components/navbar.js" defer> </script>  
+    <script src = "../components/hamburger.js" defer> </script>
 
-    <script src="service-edit.js" defer></script>
+    <script src="edit-service.js" defer></script>
+    <!-- <script src="main-page.js" defer></script> -->
 
-    <title>Services Search Page</title>
-</head>
+    <!-- FONTS AND ICONS FOR MAIN PAGE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&amp;display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>    
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LEMGJMHXZ1%22%3E"></script>
-<script>
+    <title>Service Creation</title>
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LEMGJMHXZ1%22%3E"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
       gtag('config', 'G-LEMGJMHXZ1');
-</script>
+</script></head>
+<!-- Google tag (gtag.js) -->
 
 <body>
-    <article>
+    
+    <form action="/store-service" method="POST" class="service-container" id = 'form'>
 
-        <form action="/store-service" method="POST" id = "form">
-            
-            <div id="introduction-container">
-                <p id="introduction-text">
-                    Before getting started, we would like to know your contact information in case we have any questions
-                    about the answers you share regarding your club in the following section. This information will NOT be public on our website. 
-                    This information will NOT be shared with anyone else besides our team, Community Catalyst. 
-                </p>
+        <div class="service-title">
+            <input type="text" placeholder="Name of the Club" class="club-title-text-box" name="title" id = 'title' required><br>
+        </div>
+
+        <div class="service-info-container">
+            <div class="file-container" id="file-container">
+                <header>Club Photo Uploader</header>
+              
+                <label class = "file-form" for="file-input">
+                  <i class="fas fa-cloud-upload-alt" id="file-icon"></i>
+                  <p>Click to Upload File</p>
+                </label>
+                <input class="file-input" id="file-input" type="file" name="file" required>
+              
+                <section class="progress-area"></section>
+                <section class="uploaded-area"></section>
+              </div>
+              
+              <script>
+                const fileContainer = document.getElementById("file-container");
+                const fileInput = document.getElementById("file-input");
+              
+                fileContainer.addEventListener("click", (event) => {
+                  fileInput.click();
+                  event.preventDefault();
+                  event.stopPropagation();
+                });
+              
+                fileInput.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                });
+              </script>
+
+            <div class="service-details" id="service-details">
+                <div class="service-author">
+                    <input type="text" placeholder="President of the Club" class="meeting-details-title-box" 
+                    name="subtitle" id = 'meeting-details-title-box' required><br>
+                </div>
+
+                <div class="service-header">Meeting Details</div>
+
+                <div>
+                    <u> Time: </u>
+                    <input type="text" placeholder="Include start and end time" class="meeting-details-text-box" 
+                    name="time" id = 'details-times' required><br>
+                </div>
+
+                <div>
+                    <u> Date: </u>
+                    <input type="text" placeholder="Include day and month" class="meeting-details-text-box" 
+                    name="date" id = 'details-date' required><br>
+                </div>
+
+                <div>
+                    <u> Location: </u> 
+                    <input type="text" placeholder="Include building and room" class="meeting-details-text-box" 
+                    name="location" id = 'details-location' required><br>
+                </div>
             </div>
-            
-            <label for="name" class="form-text"> Full Name: </label>
-            <input type="text" placeholder="First Name and Last Name" id="personal-name" name="name" required><br>
-            <div class="error" id="nameError"></div>
+        </div>
+    
+        <div class="service-description">
+            <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." 
+            class="meeting-description-text-box" name="description" id = "description" required></textarea>
+        </div>
 
-            <label for="number" class="form-text"> Contact Number: </label>
-            <input type="text" placeholder="XXX-XXX-XXXX" id="personal-number" name="personal-number" pattern="[0-9]*" required><br>
-            <div class="error" id="numberError"></div>
 
-            <label for="email" class="form-text"> Email: </label>
-            <input type="email" placeholder="Preferred Email" id="personal-email" name="email" required><br>
-            <div class="error" id="emailError"></div>
+        <div class="service-info2-container">
+            <div class="service-details" id="contact-container">
+                <div class="service-author"></div>
+                <div class="service-header">Contact and Social Media</div>
 
-            <label for="role" class="form-text"> Your Role in the Club: </label>
-            <input type="text" placeholder="Example: President" id="personal-role" name="role" required><br>
-            <div class="error" id="roleError"></div>
+                <div class="contacts-container">   
+                    <select class="club-contacts-selection" name="contact-and-social-media" id = 'contact-role-1' required>
+                        <option value=""> Select Officer</option>
+                        <option value="president">President</option>
+                        <option value="vice-president">Vice President</option>
+                        <option value="icc-rep">ICC Rep</option>
+                        <option value="advisor">Advisor</option>
+                        <option value="teasurer">Treasurer</option>
 
-            <div id="introduction-container">
-                <p id="introduction-text">
-                    This section deals with the information needed to post your club onto our website. This information WILL be public on
-                    our website once we authorize that the answers below are correct and appropiate. If you have any questions, please email communityalis@gmail.com
-                    and we will help you as soon as we can. 
-                </p>
+                        <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
+                        name="contact-name-1" id = 'contact-name-1' required><br>
+
+                        <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
+                        name="contact-email-1" id = 'contact-email-1' required><br>
+                        
+                </div>
+
+                <div class="contacts-container">   
+                    <select class="club-contacts-selection" name="contact-and-social-media" id = 'contact-role-2' required>
+                        <option value="" selected> Select Officer</option>
+                        <option value="president">President</option>
+                        <option value="vice-president">Vice President</option>
+                        <option value="icc-rep">ICC Rep</option>
+                        <option value="advisor">Advisor</option>
+                        <option value="teasurer">Treasurer</option>
+
+                        <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
+                        name="contact-name-2" id = 'contact-name-2' required><br>
+
+                        <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
+                        name="contact-email-2" id = 'contact-email-2' required><br>
+                </div>
+
+                <div class="contacts-container">   
+                    <select class="club-contacts-selection" name="contact-and-social-media" id = 'contact-role-3' required>
+                        <option value=""  selected> Select Officer</option>
+                        <option value="president">President</option>
+                        <option value="vice-president">Vice President</option>
+                        <option value="icc-rep">ICC Rep</option>
+                        <option value="advisor">Advisor</option>
+                        <option value="teasurer">Treasurer</option>
+
+                        <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
+                        name="contact-name-3" id = "contact-name-3" required><br>
+
+                        <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
+                        name="contact-email-3" id = "contact-email-3" required><br>
+                </div>
+
+                <div class="contacts-container">   
+                    <select class="club-contacts-selection" name="contact-and-social-media" id = 'contact-role-4' required>
+                        <option value=""  selected> Select Officer</option>
+                        <option value="president">President</option>
+                        <option value="vice-president">Vice President</option>
+                        <option value="icc-rep">ICC Rep</option>
+                        <option value="advisor">Advisor</option>
+                        <option value="teasurer">Treasurer</option>
+
+                        <input type="text" placeholder="Full Name of Officer" class="contacts-text-box" 
+                        name="contact-name-4" id = "contact-name-4" required><br>
+
+                        <input type="email" placeholder="School or Personal Email of Officer" class="contacts-email-box" 
+                        name="contact-email-4" id = "contact-email-4" required><br>
+                </div>
             </div>
 
-            <label for="title" class="form-text"> Name of the Club: </label>
-            <input type="text" placeholder="Example: Computer Science Club" id="title" name="title" required><br>
-            <div class="error" id="titleError"></div>
-
-            <label for="title" class="form-text"> Meeting Location of the Club: </label>
-            <input type="text" placeholder="Example: East Campus CAT Room 213" id="details-location" name="title" required><br>
-            <div class="error" id="titleError"></div>
-
-            <label for="title" class="form-text"> Meeting Days of the Club: </label>
-            <input type="text" placeholder="Example: March 31st / Every Friday " id="details-date" name="title" required><br>
-            <div class="error" id="titleError"></div>
-
-            <label for="title" class="form-text"> Meeting Times of the Club: </label>
-            <input type="text" placeholder="Example: 11:00am-12:00pm" id="details-times" name="title" required><br>
-            <div class="error" id="titleError"></div>
-
-            <label for="description" class="form-text"> Description of the Club: (At least 30 words) </label>
-            <textarea rows="8" type="text" id="description" name="description">  </textarea>
-            <div class="error" id="descriptionError"></div>
-
-            <label for="capacity" class="form-text"> Full Name of President: </label>
-            <input type="text" placeholder="First Name and Last Name" id="author" name="capacity" required><br>
-            <div class="error" id="capacityError"></div>
-
-            <label for="email" class="form-text"> President Email: </label>
-            <input type="email" placeholder="School Email" id="president-email" name="email" required><br>
-            <div class="error" id="emailError"></div>
-
-            <label for="capacity" class="form-text"> Full Name of Vice Pres: </label>
-            <input type="text" placeholder="First Name and Last Name" id="vice-president-name" name="capacity" required><br>
-            <div class="error" id="capacityError"></div>
-
-            <label for="email" class="form-text"> Vice Pres Email: </label>
-            <input type="email" placeholder="School Email" id="vice-president-email" name="email" required><br>
-            <div class="error" id="emailError"></div>
-
-            <label for="capacity" class="form-text"> Full Name of ICC Rep: </label>
-            <input type="text" placeholder="First Name and Last Name" id="ICC-rep-name" name="capacity" required><br>
-            <div class="error" id="capacityError"></div>
-
-            <label for="email" class="form-text"> ICC Rep Email: </label>
-            <input type="email" placeholder="School Email" id="ICC-rep-email" name="email" required><br>
-            <div class="error" id="emailError"></div>
-
-            <label for="capacity" class="form-text"> Full Name of Advisor: </label>
-            <input type="text" placeholder="First Name and Last Name" id="advisor-name" name="capacity" required><br>
-            <div class="error" id="capacityError"></div>
-
-            <label for="email" class="form-text"> Advisor Email: </label>
-            <input type="email" placeholder="School Email" id="advisor-email" name="email" required><br>
-            <div class="error" id="emailError"></div>
-
-            <div class="input-group">
-                <label for='files' class="image" id = 'service-image-label'>Service Image: </label>
-                <input id='files' type="file" required>
+            <div class="sign-up-container">
+                <label for="authorization" class="authorization-text">
+                    By submitting this application I authorize Community ALI to publish all the information of this application for anybody
+                    to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so. 
+                    I understand that this application will be subject to review, in which any inappropriate content associated with the club or its 
+                    members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination 
+                    against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI. 
+                </label>
+                <!-- <input type="submit" value="Save Application" id="save-button" class="application-buttons"> -->
+                <input type="submit" value="Submit Application" id="submit-button" class="application-buttons">
             </div>
-            
-            <input type="checkbox" id = 'checkbox' class="checkbox" required>
-            <label for="authorization" class="checkbox-text">By checking this box I understand what information WILL and WILL NOT
-                be displayed under this application. I answered these questions to the best of my ability and I allow
-                Community Catalyst to use this information for strictly professional use. My service will be subject to review, in which any 
-                inappropriate content within the service will result in immediate termination of the service from the platform. There is no 
-                tolerance for any discrimination against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI. 
-            </label>
-            
-            <input type="submit" value="Submit">
-        </form>
-            
-    </article>
-    <script src = "footer.js"> </script>
+        </div>
+    </form>
 
-</body>
+    <script src = "../components/footer.js"> </script>
+
+</body></html>

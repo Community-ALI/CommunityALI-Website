@@ -29,27 +29,41 @@ onLoadFunction = function(image, file){
     // If the image size is okay, proceed with the file upload
     // Create a new FormData object
     const formData = new FormData();
-
-    // Append form data to the FormData object
-    // formData.append("personal_name", document.getElementById("personal-name").value);
-    // formData.append("personal_number", document.getElementById("personal-number").value);
-    // formData.append("personal_email", document.getElementById("personal-email").value);
-    // formData.append("personal_role", document.getElementById("personal-role").value);
+    
     formData.append("title", document.getElementById("title").value);
     formData.append("details_location", document.getElementById("details-location").value);
     formData.append("details_times", document.getElementById("details-times").value);
     formData.append("details_date", document.getElementById("details-date").value);
     formData.append("description", document.getElementById("description").value);
-    // formData.append("author", document.getElementById("author").value);
-    // formData.append("president_email", document.getElementById("president-email").value);
-    // formData.append("vice_president_name", document.getElementById("vice-president-name").value);
-    // formData.append("vice_president_email", document.getElementById("vice-president-email").value);
-    // formData.append("ICC_rep_name", document.getElementById("ICC-rep-name").value);
-    // formData.append("ICC_rep_email", document.getElementById("ICC-rep-email").value);
-    // formData.append("advisor_name", document.getElementById("advisor-name").value);
-    // formData.append("advisor_email", document.getElementById("advisor-email").value);
+    formData.append("author", document.getElementById("meeting-details-title-box").value);
+    
+
+    const contact_name_1 = document.getElementById("contact-name-1").value;
+    const contact_email_1 = document.getElementById("contact-email-1").value;
+    const contact_role_1 = document.getElementById("contact-role-1").value;
+    const contact1 = "<u> "+contact_role_1 + "</u> : " + contact_name_1 + "  :  " + contact_email_1;
+
+    
+    const contact_name_2 = document.getElementById("contact-name-2").value;
+    const contact_email_2 = document.getElementById("contact-email-2").value;
+    const contact_role_2 = document.getElementById("contact-role-2").value;
+    const contact2 = "<u> "+contact_role_2 + "</u> : " + contact_name_2 + "  :  " + contact_email_2;
+
+    
+    const contact_name_3 = document.getElementById("contact-name-3").value;
+    const contact_email_3 = document.getElementById("contact-email-3").value;
+    const contact_role_3 = document.getElementById("contact-role-3").value;
+    const contact3 = "<u> "+contact_role_3 + "</u> : " + contact_name_3 + "  :  " + contact_email_3;
 
 
+    const contact_name_4 = document.getElementById("contact-name-4").value;
+    const contact_email_4 = document.getElementById("contact-email-4").value;
+    const contact_role_4 = document.getElementById("contact-role-4").value;
+    const contact4 = "<u> "+contact_role_4 + "</u> : " + contact_name_4 + "  :  " + contact_email_4;
+
+
+    var contactsArray = [contact1, contact2, contact3, contact4];
+    formData.append("contacts", JSON.stringify(contactsArray));
     
     formData.append("files", file);
 
