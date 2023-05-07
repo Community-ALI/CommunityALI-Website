@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+.navigation-bar
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+
+    text-align: right;
+    list-style: none;
+
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navigation-button
+{
+    display : inline-block;
+    padding : 30px 20px;
+}
+
+.navigation-text
+{
+    color : white;
+    text-decoration : underline;
+    text-underline-offset: 8px;
+    line-height: 10px;
+
+    padding-left: 15px ;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    transition : all 0.2s linear; 
+    text-decoration: none;
+}
+
+.coming-soon {
+    color: gray;
+}
+
+.nav-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#navigation-login
+{
+    color :#001E60;
+    background-color: #ecaa1e;
+    
+    border-radius : 10px;
+
+    padding : 15px 15px;
+    margin-right : 20px;
+    margin-left : 15px;
+    text-decoration: none;
+}
+
+.navigation-text:hover
+{
+    color : #00468D;
+}
+
+#navigation-login:hover
+{
+    color : white;
+    background-color :#00468D
+}
+
+.navigation-menu
+{
+    min-height : 45px;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    padding: 15px 25px 15px 25px;
+    gap: 16px;
+    transition: background-color 0.5s ease;
+    width: 100%;
+    max-width: 1600px;
+}
+
+.wrapper {
+    transition: background-color 0.5s ease;
+    max-width: none;
+}
+
+a > .navigation-menu {
+    text-decoration: none;
+}
+
+#nav-menu-search-bar {
+    flex-grow: 1;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 10px 15px;
+    transition: background-color 1s ease;
+    margin-right: 10px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color : white;
+    visibility: hidden;
+}
+
+.scrolled {
+    background-color: #001E60;
+    transition: background-color 1s ease;
+}
+
+.scrolled > #nav-menu-search-bar {
+    background-color: white;
+    transition: background-color 1s ease;
+    color : #001E60;
+}
+
+#nav-menu-search-bar::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+#nav-menu-search-bar:-ms-input-placeholder{
+    color: white;
+}
+
+#nav-menu-search-bar::-ms-input-placeholder{
+    color: white;
+}
+
+.scrolled > #nav-menu-search-bar::placeholder {
+    color: #001E60;
+
+}
+
+.scrolled > #nav-menu-search-bar:-ms-input-placeholder{
+    color: #001E60;
+}
+
+.scrolled > #nav-menu-search-bar::-ms-input-placeholder{
+    color: #001E60;
+}
+
+.navbar-logo {
+    max-height: 55px;
+    margin-right : 20px;
+}
+
+.navigation-hamburger
+{
+    display : none;
+    cursor : pointer;
+}
+
+.navigation-line
+{
+    display : block;
+    width : 25px;
+    height : 3px;
+    margin : 5px auto;
+    transition : all 0.3s ease-in-out;
+    background-color : white;
+}
+
+.navigation-sub-menu {
+    opacity: 0;
+    transition: opacity 1s ease;
+    font-size: small;
+    text-align: center;
+    gap: 0;
+}
+
+.navigation-sub-menu.scrolled {
+    opacity: 100;
+}
+
+.not-fixed {
+    position: absolute;
+    opacity: 100%;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    left: 0px;
+    width: 100%;
+}
+
+@media all and (max-width : 1050px)
+{
+    .navigation-bar
+    {
+        font-size: 18px;
+    }
+
+    .navigation-text
+    {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .navigation-menu
+    {
+        padding: 15px 10px 15px 10px;
+        gap: 0px;
+    }
+
+    #navigation-login
+    {
+        margin-right : 0px;
+    }
+
+    #nav-menu-search-bar
+    {
+        margin-right : 0px;
+    }
+
+    .navbar-logo
+    {
+        margin-right : 8px;
+    }
+}
+
+@media all and (max-width : 780px)
+{
+    .navigation-menu {
+        flex-direction: column;
+    }
+
+    .navigation-hamburger
+    {
+        z-index : 9999;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        top: 0px;
+        padding-top : 20px; 
+        padding-bottom : 20px;
+        padding-left: 15px;
+        width : 100vw;
+
+        background-color: #0096C9;
+    }
+
+    .navbar-logo{
+        visibility: hidden;
+        margin-right : 0px;
+    }
+
+    .navbar-logo.mobileLogo
+    {
+        visibility: visible;
+        margin-right : 0px;
+    }
+
+    .navigation-hamburger.active .navigation-line:nth-child(2)
+    {
+        opacity : 0;
+    }
+
+    .navigation-hamburger.active .navigation-line:nth-child(1)
+    {
+        transform : translateY(8px) rotate(45deg);
+    }
+
+    .navigation-hamburger.active .navigation-line:nth-child(3)
+    {
+        transform : translateY(-8px) rotate(-45deg);
+    }
+    
+    .navigation-bar
+    {
+        position : fixed;
+        left : -75%;
+        background-color: #0096C9;
+        gap : 0;
+        flex-direction : column;  
+        text-align : center;
+        z-index : 5;
+        padding-right : 0;
+        top: 7%;
+        width: 40vw;
+
+        transition : 0.3s ease-in-out;
+        max-width: 100%;
+        background-color: #001E60;
+    }
+
+    .navigation-button
+    {
+        margin-bottom : 15px;
+        margin-top : 10px;
+        padding : 15px 10px;
+    }
+
+    .navigation-bar.active 
+    {
+        left : 0vw;
+        top: 16px;
+    }
+
+    #navigation-login 
+    {
+        margin-right: 0px;
+        margin-left: 0px; 
+    }
+
+    .navigation-sub-menu{
+        opacity: 100;
+        background-color: #001E60;
+        padding-bottom: 50px;
+        visibility: hidden;
+    }
+
+    #nav-menu-search-bar {
+        background-color: white;
+        transition: background-color 1s ease;
+    }
+
+    #nav-menu-search-bar::placeholder {
+        color: black;
+    }
+
+    #nav-menu-search-bar:-ms-input-placeholder{
+        color: black;
+    }
+
+    #nav-menu-search-bar::-ms-input-placeholder{
+        color: black;
+    }
+
+    .not-fixed 
+    {
+        position: fixed;
+        opacity: 100%;
+    }
+}
+
+
+@media all and (max-width : 560px)
+{
+    .navigation-bar
+    {
+        width: 60vw;
+    }
+}
+
+@media all and (max-width : 480px)
+{
+    .navigation-bar
+    {
+        width: 75vw;
+    }
+}
+
+.wrapper {
+    position: absolute;
+}

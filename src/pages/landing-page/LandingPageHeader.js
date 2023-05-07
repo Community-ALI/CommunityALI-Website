@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import video from '../../../public/videos//Webvideo ULTRA COMPRESSED.mp4'
 import '../../index.css'
 
-function LandingPage() {
+function LandingPageHeader() {
     return(
         <div className="header">
     
@@ -41,4 +41,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage;
+export default LandingPageHeader;

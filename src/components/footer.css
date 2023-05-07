@@ -1,0 +1,37 @@
+footer 
+{
+    background-color: #00468D;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    width: 100%;
+    padding : 1% 10%;
+}
+
+.footer-text
+{
+    margin : 20px 10px;
+}
+
+.footer-container
+{
+    margin : 20px 0px;
+}
+
+.footer-container a
+{
+    color : white;
+    margin : 20px 20px;
+    text-decoration: none;
+}
+
+@media all and (max-width : 480px)
+{
+    footer
+    {
+        padding : 0% 0%;
+        font-size : 12px;
+    }
+}
