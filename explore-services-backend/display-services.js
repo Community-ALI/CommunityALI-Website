@@ -20,7 +20,7 @@ const SearchResult = function(props) {
   }
   else{
     imageData = service.photo.toString('base64');
-    imageSrc = `data:${service.photoType};base64,${imageData}`;
+    imageSrc = `data:$image/png;base64,${imageData}`;
   }
    
    return React.createElement('div', { className: 'result-container', id: service.title},

@@ -9,7 +9,6 @@ const get_services = function (req, res) {
   
   Services.find(async function(err, foundServices){
     if(!err){
-      console.log(foundServices);
       res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
       res.json(foundServices);
     }

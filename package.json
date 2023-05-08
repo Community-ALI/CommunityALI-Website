@@ -27,12 +27,14 @@
   "dependencies": {
     "autoprefixer": "^10.4.14",
     "bcryptjs": "^2.4.3",
+    "buffer": "^6.0.3",
     "busboy": "^1.6.0",
     "connect-mongo": "^5.0.0",
     "domino": "^2.1.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "image-type": "^5.2.0",
     "jquery": "^3.6.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.10.4",
@@ -42,7 +44,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
-    "react-use-rect": "^2.0.4"
+    "react-use-rect": "^2.0.4",
+    "stream": "^0.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
