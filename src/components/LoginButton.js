@@ -1,16 +1,14 @@
 import React, { Component, useEffect } from 'react';
 import './navbar.css';
 
-function LoginButton(props) {
+function LoginButton(props) {    
 
     if (!props.token){
         return (
             <a 
                 className="navigation-button navigation-text" 
-                onClick={
-                    useEffect( () => {
-                        props.SetIsSHowingLoginPopup(true);
-                    })}
+                onClick={props.ShowLoginPopup}
+                style={{cursor:'pointer'}}
                 id="navigation-login"
             >Login</a>
         )
