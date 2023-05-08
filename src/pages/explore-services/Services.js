@@ -7,7 +7,7 @@ function Services() {
         const fetchData = async () => {
           try {
             console.log('sending request');
-            const response = await fetch('http://localhost:8080/test');
+            const response = await fetch('http://localhost:8080/explore-services/get-services');
             const data = await response.text();
             console.log(data);
           } catch (error) {

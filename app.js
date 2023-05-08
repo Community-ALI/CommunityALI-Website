@@ -14,6 +14,8 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
 // explore services
+const get_services = require("./explore-services-backend/get-services");
+
 const display_services = require("./explore-services-backend/display-services");
 const display_view_applicants = require("./my-services-backend/display-view-applicants");
 const display_service_info = require("./explore-services-backend/display-service-info");
@@ -74,15 +76,13 @@ function editService(req, res) {
   }
 }
 
-app.get("/test", function (req, res){
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
-    console.log("it works!");
-    res.send("Hello world");
+app.get('/explore-services/get-services', function (req, res){
+  get_services(req, res);
 })
 
 // Display services from the database to the user when they go to the service-search page
 app.get("/explore-services/main-page", function (req, res) {
-    display_services(req, res);
+    
 });
 
 // display the sign up/apply for service page
