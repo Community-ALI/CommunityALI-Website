@@ -1,23 +1,20 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
-import LandingPageHeader from './pages/landing-page/LandingPageHeader';
-import LandingPageCommunityAliInformation from './pages/landing-page/LandingPageCommunityAliInformation';
-import LandingPageCatagories from './pages/landing-page/LandingPageCatagories';
-import LandingPagePartners from './pages/landing-page/LandingPagePartners';
-import NavBar from './components/NavBar';
-import Footer from "./components/Footer";
+import LandingPage from "./LandingPage";
+import Services from "./pages/explore-services/Services";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function LandingPage() {
+function App() {
     return (
-        <div>
-            <NavBar isFixedPage={true} />
-            <LandingPageHeader />
-            <LandingPageCatagories />
-            <LandingPageCommunityAliInformation />
-            <LandingPagePartners />
-            <Footer />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<LandingPage />}/>
+                <Route path="/services" element={<Services />}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
-createRoot(document.getElementById('root')).render(<LandingPage />);
+createRoot(document.getElementById('root')).render(
+        <App />
+    );
