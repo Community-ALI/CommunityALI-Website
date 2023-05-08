@@ -49,7 +49,7 @@ function constructCommunityCatalystLogo(isMobile) {
     let communityCatalystLogoLink = document.createElement('a');
     communityCatalystLogoLink.setAttribute('href', pathToRoot + 'index.html');
     let communityCatalystLogoImg = document.createElement('img');
-    communityCatalystLogoImg.setAttribute('src', pathToRoot + 'Photos/CommunityCatalyst_Transparent.png');
+    communityCatalystLogoImg.setAttribute('src', pathToRoot + 'Photos/CClogo.png');
     communityCatalystLogoImg.setAttribute('class', 'navbar-logo');
     if (isMobile)
     {

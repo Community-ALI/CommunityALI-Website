@@ -233,6 +233,7 @@ a > .navigation-menu {
 {
     .navigation-menu {
         flex-direction: column;
+        margin-bottom: 350px;
     }
 
     .navigation-hamburger
