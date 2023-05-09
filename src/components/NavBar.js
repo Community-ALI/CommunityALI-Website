@@ -54,11 +54,11 @@ function NavBar(props) {
                         className="navigation-button navigation-text" 
                         to="/services"
                     >Explore</Link>
-                    <a 
+                    <Link 
                         className="navigation-button navigation-text" 
-                        href="my-services.html" 
+                        to="/my-services"
                         id="applicants"
-                    >My Services</a>
+                    >My Services</Link>
                     <a 
                         className="navigation-button navigation-text" 
                         href="https://www.mjc.edu/" 
