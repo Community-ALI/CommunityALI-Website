@@ -1,8 +1,8 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
 import LandingPage from "./LandingPage";
-import Services from "./pages/explore-services/Services";
 import MyServicesHome from "./pages/my-services/MyServicesHome";
+import Services_Main_Page from "./pages/explore-services/main-page";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import mongoose from "mongoose";
 
@@ -11,8 +11,8 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LandingPage />}/>
-                <Route path="/services" element={<Services />}/>
                 <Route path="/my-services" element={<MyServicesHome />}/>
+                <Route path="/services" element={<Services_Main_Page />}/>
             </Routes>
         </BrowserRouter>
     )

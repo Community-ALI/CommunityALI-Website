@@ -58,7 +58,7 @@ const store_service = function(req, res, token) {
           author: req.body.author,
           author_role: "President",
           photoType: file.mimetype,
-          photo: fs.readFileSync(file.path),         // TODO: make photo an image file not string
+          photo: fs.readFileSync(file.path),
           details: details,
           description: req.body.description, 
           contacts: contacts, 
