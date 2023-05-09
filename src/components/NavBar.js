@@ -39,7 +39,7 @@ function NavBar(props) {
                 <nav 
                     className={"navigation-menu" + (hasScrolled ? ' scrolled' : '')}
                 >
-                    <a href="index.html">
+                    <a href="/">
                         <img src="Photos/CClogo.png" className="navbar-logo"/>
                     </a>
                     <input 
@@ -48,7 +48,7 @@ function NavBar(props) {
                     />
                     <a 
                         className="navigation-button navigation-text" 
-                        href="index.html">
+                        href="/">
                     Home</a>
                     <Link 
                         className="navigation-button navigation-text" 
