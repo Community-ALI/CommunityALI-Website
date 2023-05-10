@@ -46,12 +46,11 @@ function MyServicesHome() {
         const fetchData = async () => {
           try {
             console.log('sending request');
-            const response = await fetch('/view-my-services')
+            const response = await fetch('http://localhost:3000/view-my-services')
               .then(response => response.json())
               .then(data => {
                 // 'data' variable will contain the received object with the data array and tokenUsername
-                 // Do something with the array
-                console.log(data.dataServices);
+                console.log(data);
                 setServices(data.dataServices);
                 setUsername(data.tokenUsername);
               })

@@ -46,8 +46,8 @@ const display_all_my_services = function (req, res, token) {
         else{
         }
       }
-
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+      console.log(username);
+      res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
       res.json({
         dataServices: filteredServices,
         tokenUsername: username});

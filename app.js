@@ -15,6 +15,7 @@ const upload = multer({ dest: "uploads/" });
 
 // explore services
 const get_services = require("./explore-services-backend/get-services");
+const get_service_info = require("./explore-services-backend/get-service-info");
 
 const display_services = require("./explore-services-backend/display-services");
 const display_view_applicants = require("./my-services-backend/display-view-applicants");
@@ -34,22 +35,12 @@ const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
 // const SESSION_SECRET = process.env.SESSION_SECRET; 
 
-// send user to index page when they search our website url
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
+
 
 // Store user form data from an application in the database
-app.post('/send-application', upload.none(), function (req, res) {
+app.post('/store-application', upload.none(), function (req, res) {
   store_service_signup(req, res);
 });
-
-// test: this uploads images
-app.post("/upload-files", upload.array("files"), uploadFiles);
-function uploadFiles(req, res) {
-  store_images(req, res)
-}
-
 
 app.post("/upload-service", upload.array("files"), storeService);
 function storeService(req, res) {
@@ -78,6 +69,7 @@ function editService(req, res) {
 
 app.get('/explore-services/get-services', function (req, res){
   get_services(req, res);
+  console.log('get services');
 })
 
 // Display services from the database to the user when they go to the service-search page
@@ -87,7 +79,7 @@ app.get("/explore-services/main-page", function (req, res) {
 
 // display the sign up/apply for service page
 app.get("/explore-services/service-info", function (req, res) {
-  display_service_info(req,res);
+  get_service_info(req,res);
 });
 
 // service edit
@@ -111,11 +103,14 @@ app.get("/view-my-services", async function (req, res) {
   }
   else{
     console.log('error, login verification failed')
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
     res.send("error, login verification failed");
   }
   }
   catch (error){
+    
     console.log(error)
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
     res.send("error, server issue. If this issue persists please contact us, we are actively working on a solution.");
   }
 });
