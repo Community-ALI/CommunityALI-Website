@@ -5,6 +5,20 @@ import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 import { useRect } from 'react-use-rect';
 
+function MyServicesNavButton(props) {
+    if(props.token){
+        return (
+            <Link 
+                className="navigation-button navigation-text" 
+                to="/my-services"
+                id="applicants"
+            >My Services</Link>
+        )
+    }
+
+    return null;
+}
+
 function NavBar(props) {
     const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
@@ -23,9 +37,11 @@ function NavBar(props) {
         };
     })
 
+    // get token from local storage
     useEffect(() => {
-        setToken(localStorage.getItem('token'));
-    });
+        const token = localStorage.getItem('token');
+        setToken(token);
+      }, [setToken]);
 
     function showLoginPopup() {
         setIsShowingLoginPopup(true);
@@ -54,11 +70,7 @@ function NavBar(props) {
                         className="navigation-button navigation-text" 
                         to="/services"
                     >Explore</Link>
-                    <Link 
-                        className="navigation-button navigation-text" 
-                        to="/my-services"
-                        id="applicants"
-                    >My Services</Link>
+                    <MyServicesNavButton token={token} />
                     <a 
                         className="navigation-button navigation-text" 
                         href="https://www.mjc.edu/" 
