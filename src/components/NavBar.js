@@ -52,35 +52,37 @@ function NavBar(props) {
             <div 
                 className={"navigation-bar" + (props.isFixedPage ? '' : " not-fixed") + (showNavBarMobile ? " active" : "")}
             >
-                <nav 
-                    className={"navigation-menu" + (hasScrolled ? ' scrolled' : '')}
-                >
-                    <a href="/">
-                        <img src="Photos/CClogo.png" className="navbar-logo"/>
-                    </a>
-                    <input 
-                        placeholder="Search..." 
-                        id="nav-menu-search-bar"
-                    />
-                    <a 
-                        className="navigation-button navigation-text" 
-                        href="/">
-                    Home</a>
-                    <Link 
-                        className="navigation-button navigation-text" 
-                        to="/services"
-                    >Explore</Link>
-                    <MyServicesNavButton token={token} />
-                    <a 
-                        className="navigation-button navigation-text" 
-                        href="https://www.mjc.edu/" 
-                        target="_blank"
-                    >MJC</a>
-                    <LoginButton 
-                        ShowLoginPopup={showLoginPopup}
-                        token={token}
-                    />
-                </nav>
+                <div className={'navigation-menu-wrapper' + (hasScrolled ? ' scrolled' : '')}>
+                    <nav 
+                        className={"navigation-menu"}
+                    >
+                        <a href="/">
+                            <img src="Photos/CClogo.png" className="navbar-logo"/>
+                        </a>
+                        <input 
+                            placeholder="Search..." 
+                            id="nav-menu-search-bar"
+                        />
+                        <a 
+                            className="navigation-button navigation-text" 
+                            href="/">
+                        Home</a>
+                        <Link 
+                            className="navigation-button navigation-text" 
+                            to="/services"
+                        >Explore</Link>
+                        <MyServicesNavButton token={token} />
+                        <a 
+                            className="navigation-button navigation-text" 
+                            href="https://www.mjc.edu/" 
+                            target="_blank"
+                        >MJC</a>
+                        <LoginButton 
+                            ShowLoginPopup={showLoginPopup}
+                            token={token}
+                        />
+                    </nav>
+                </div>
                 <div 
                     className="navigation-sub-menu navigation-menu"
                 >

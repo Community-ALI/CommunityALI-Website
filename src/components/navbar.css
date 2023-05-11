@@ -49,6 +49,13 @@
     flex-direction: column;
 }
 
+.navigation-menu-wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.5s ease;
+}
+
 #navigation-login
 {
     color :#001E60;
