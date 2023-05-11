@@ -8,8 +8,8 @@ function LoginPopup(props) {
 
 
         async function login(event) {
-            // event.preventDefault()
-            const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            event.preventDefault();
+            const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             let authData
             if (validEmailRegex.test(usernameOrEmail)) {
@@ -18,13 +18,14 @@ function LoginPopup(props) {
                 authData = { usernameOrEmail, password }
             }
 
+            
             try {
                 const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(authData)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(authData),
                 });
                 const result = await response.json();
 
@@ -53,7 +54,7 @@ function LoginPopup(props) {
                 <div className='container-login'>
                     <div className="container">
                         <h1>Login</h1>
-                        <form id="login">
+                        <form id="login" onSubmit={login}>
                                 <div className="txt_field">
                                 <input 
                                     id="usernameOrEmail" 
@@ -85,7 +86,6 @@ function LoginPopup(props) {
                                 type="submit" 
                                 value="Login" 
                                 id='login-submission'
-                                onClick={() => login}
                             />
                             {/* <!-- <div class="signup_link">
                             Don't have an account? <a href="signup.html">Sign-up</a>
