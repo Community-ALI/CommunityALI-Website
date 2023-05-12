@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    
+    <!-- Translating symbols; Adding compatibility; Proper displaying -->
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="icon" type="x-icon" href="Photos/CClogo.png">
+    
+    <link rel = "stylesheet" type = "text/css" href = "/components/login.css" >
+    <link rel = "stylesheet" type = "text/css" href = "contact-form.css" >
+    <link rel = "stylesheet" type = "text/css" href = "/components/navbar.css" >
+    <link rel = "stylesheet" type = "text/css" href = "/components/footer.css" >
+    
+    <script src = "components/navbar.js" defer> </script>  
+    <script src = "components/hamburger.js" defer> </script>
+    <script src="contact-form.js"> </script>
+    
+    <!-- FONTS AND ICONS FOR MAIN PAGE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>
+
+    <title>Contact Us</title>
+</head>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    
+    <script type="text/javascript">
+   (function(){
+      emailjs.init("pn7YfOec7bHOKYp6Y");
+    })();
+    </script>
+  </head>
+
+  <body>
+    <div class="body-container">
+        <div class="body-header">
+            <h1 class="body-title">Having Questions or Concerns?</h1>
+            <h2 class="body-subtitle"> We aim to create the best experience for our users and we 
+                appreciate all the feedback we can get. Send us a message and
+                we'll respond if further assistance is needed! </h2>
+        </div>
+
+        <div class="contact-container">
+            <h1 class="contact-form-title">Contact form</h1>
+            <div class="form-container">
+                <div class="form-group">
+                    <label class="form-label" for="name"> Full Name </label>
+                    <input
+                        type="text"
+                        class="form-input"
+                        id="name"
+                        placeholder="Enter name" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email"> Email </label>
+                    <input
+                        type="email"
+                        class="form-input"
+                        id="email"
+                        placeholder="Enter email" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="message"> Message </label>
+                    <textarea class="form-text-area" id="message" rows="5" placeholder="Your message"></textarea>
+                </div>
+
+                <button id="form-submit-button" class="btn btn-primary" onclick="sendMail()"> Send </button>
+            </div>
+            <h1 class="contact-form-second-title">Additional Contacts</h1>
+            <div class="form-container" id="right-form-container">
+                <div class="form-email"> Follow our Instagram : <a class="form-link" href="https://www.instagram.com/community_ali/" target="_blank\"> @community_ali </a></div>
+                <div class="form-email"> Follow our Facebook : <a class="form-link" href="https://www.instagram.com/community_ali/" target="_blank\"> @Community_ALIs </a></div>
+                <div class="form-email"> Follow our Twitter : <a class="form-link" href="https://www.facebook.com/profile.php?id=100089185347335&mibextid=ZbWKwL" target="_blank\"> Community Catalyst </a> </div>
+            </div>
+        </div>
+    </div>
+  </body>
+
+  <script src = "components/footer.js"> </script>
+
+</html>

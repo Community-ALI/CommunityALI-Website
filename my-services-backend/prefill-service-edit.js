@@ -75,10 +75,10 @@ const display_service_edit_page = function(req,res){
           contact_role_1.querySelector(`option[value="${contacts[0].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
           // name
           const contact_name_1 = document.getElementById('contact-name-1');
-          contact_name_1.value = contacts[0].split(": ")[1].slice(0,-2);
+          contact_name_1.value = contacts[0].split("- ")[1].slice(0,-2);
           // email
           const contact_email_1 = document.getElementById('contact-email-1');
-          contact_email_1.value = contacts[0].split(":  ")[1];
+          contact_email_1.value = contacts[0].split("-  ")[1];
           
 
           // contact 2
@@ -86,30 +86,30 @@ const display_service_edit_page = function(req,res){
           contact_role_2.querySelector(`option[value="${contacts[1].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
           // name
           const contact_name_2 = document.getElementById('contact-name-2');
-          contact_name_2.value = contacts[1].split(": ")[1].slice(0,-2);
+          contact_name_2.value = contacts[1].split("- ")[1].slice(0,-2);
           // email
           const contact_email_2 = document.getElementById('contact-email-2');
-          contact_email_2.value = contacts[1].split(":  ")[1];
+          contact_email_2.value = contacts[1].split("-  ")[1];
           
           // contact 3
           const contact_role_3 = document.getElementById('contact-role-3');
           contact_role_3.querySelector(`option[value="${contacts[2].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
           // name
           const contact_name_3 = document.getElementById('contact-name-3');
-          contact_name_3.value = contacts[2].split(": ")[1].slice(0,-2);
+          contact_name_3.value = contacts[2].split("- ")[1].slice(0,-2);
           // email
           const contact_email_3 = document.getElementById('contact-email-3');
-          contact_email_3.value = contacts[2].split(":  ")[1];
+          contact_email_3.value = contacts[2].split("-  ")[1];
 
           // contact 4
           const contact_role_4 = document.getElementById('contact-role-4');
           contact_role_4.querySelector(`option[value="${contacts[3].split("</u>")[0].substring(4)}"]`).setAttribute('selected', '');
           // name
           const contact_name_4 = document.getElementById('contact-name-4');
-          contact_name_4.value = contacts[3].split(": ")[1].slice(0,-2);
+          contact_name_4.value = contacts[3].split("- ")[1].slice(0,-2);
           // email
           const contact_email_4 = document.getElementById('contact-email-4');
-          contact_email_4.value = contacts[3].split(":  ")[1];
+          contact_email_4.value = contacts[3].split("-  ")[1];
         }
         catch(err){
           console.log(err);
