@@ -19,42 +19,6 @@ const { application } = require('express');
 const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
 
-
-// each individual application to display
-const SearchResult = function(props) {
-  const applicant = props.applicant;
-  if (applicant.service == props.service.title){
-  return React.createElement(
-    "div",
-    { className: "result-container" },
-    React.createElement("p", { className: "applicant-name" }, applicant.name),
-    React.createElement("p", { className: "applicant-email" }, applicant.email)
-  );
-  }
-  else{
-    return undefined
-  }
-};
-
-// create the information required to display the page
-const application_page_display = function(props) {
-  const results = props.results;
-  const service = props.service;
-  return React.createElement(
-    "section",
-    { className: "applicants" },
-    React.createElement("div", {className: "applicants-title"}, service.title),
-    React.createElement('div', {className: "search-results"},
-    results.map(function(applicant) {
-      return React.createElement(SearchResult, {
-        applicant: applicant,
-        service: service,
-        key: applicant.name,
-      });
-    })
-  ))
-};
-
 // access database, call functions, display page
 const display_all_applications = function (req, res, token) {
   var username = token.username

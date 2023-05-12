@@ -121,9 +121,6 @@ app.get("/view-my-services", async function (req, res) {
   }
 });
 
-
-
-
 // login
 
 app.post('/api/login', async (req, res) => {
@@ -132,6 +129,10 @@ app.post('/api/login', async (req, res) => {
   console.log(usernameOrEmail);
   console.log(password);
   const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).lean()
+
+  const userTest = await User.findOne({ $or: [{ username: "Adrean Cajigas" }, { email: "CS_mjc23" }] }).lean()
+  console.log(userTest);
+
   console.log(user);
   if (!user) {
       return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
