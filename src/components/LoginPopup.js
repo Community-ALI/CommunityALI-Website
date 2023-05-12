@@ -20,7 +20,7 @@ function LoginPopup(props) {
 
             
             try {
-                const response = await fetch('/api/login', {
+                const response = await fetch('http://localhost:3000/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,7 +60,6 @@ function LoginPopup(props) {
                                     id="usernameOrEmail" 
                                     required=""
                                     onChange={e => {
-                                        console.log("enterUsername");
                                         setUsernameOrEmail(e.target.value);
                                     }}
                                     />
@@ -73,7 +72,6 @@ function LoginPopup(props) {
                                     id="password" 
                                     required=""
                                     onChange={e => {
-                                        console.log("enterPassword");
                                         setPassword(e.target.value);
                                     }}
                                     />

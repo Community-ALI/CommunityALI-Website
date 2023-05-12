@@ -1,6 +1,7 @@
 // Require the neccesary libraries and modules 
 // set up express
 const express = require("express");
+const cors = require('cors');
 const app = express();
 app.use(express.static("public"));
 app.use(express.json());
@@ -35,7 +36,12 @@ const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
 // const SESSION_SECRET = process.env.SESSION_SECRET; 
 
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
+app.use(cors(corsOptions));
 
 // Store user form data from an application in the database
 app.post('/store-application', upload.none(), function (req, res) {
@@ -124,6 +130,7 @@ app.post('/api/login', async (req, res) => {
   const usernameOrEmail = req.body.usernameOrEmail;
   const password = req.body.password;
   console.log(usernameOrEmail);
+  console.log(password);
   const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).lean()
   console.log(user);
   if (!user) {
