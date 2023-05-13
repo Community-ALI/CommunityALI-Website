@@ -19,16 +19,38 @@ const { application } = require('express');
 const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
 
+// convert from army time to standard time
+function convertToNormalTime(armyTime) {
+  const [hours, minutes, seconds] = armyTime.split(':');
+  let period = 'am';
+
+  let normalizedHours = parseInt(hours, 10);
+  if (normalizedHours > 12) {
+    normalizedHours -= 12;
+    period = 'pm';
+  }
+
+  const formattedHours = normalizedHours.toString();
+  const formattedMinutes = minutes.padStart(2, '0');
+
+  return `${formattedHours}:${formattedMinutes} ${period}`;
+}
 
 // each individual application to display
 const SearchResult = function(props) {
   const applicant = props.applicant;
+  var normalTime = 'long ago'
+  if (applicant.time){
+    normalTime = convertToNormalTime(applicant.time);
+  }
   if (applicant.service == props.service.title){
   return React.createElement(
     "div",
     { className: "result-container" },
     React.createElement("p", { className: "applicant-name" }, applicant.name),
-    React.createElement("p", { className: "applicant-email" }, applicant.email)
+    React.createElement("p", { className: "applicant-email" }, applicant.email),
+    React.createElement("p", {ClassName: "applicant-time"}, applicant.date),
+    React.createElement("p", {ClassName: "applicant-time"}, normalTime),
   );
   }
   else{
