@@ -27,16 +27,20 @@ footer
     text-decoration: none;
 }
 
-.tech-support
+#tech-support
 {
-    color : white;
+    color : #00468D;
     transition : all 0.3s ease-in-out;
     font-weight: 500;
+    background-color: #ecaa1e;
+    padding : 10px 12px;
+    border-radius : 15px;
 }
 
-.tech-support:hover
+#tech-support:hover
 {
-    color:  #ecaa1e;
+    color: white;
+    background-color: #001E60;
 }
 
 @media all and (max-width : 480px)
