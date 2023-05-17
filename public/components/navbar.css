@@ -5,7 +5,7 @@
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
 
     text-align: right;
     list-style: none;
@@ -107,7 +107,6 @@ a > .navigation-menu {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color : white;
-    visibility: hidden;
 }
 
 .scrolled {
@@ -194,11 +193,11 @@ a > .navigation-menu {
     width: 100%;
 }
 
-@media all and (max-width : 1050px)
+@media all and (max-width : 1200px)
 {
     .navigation-bar
     {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .navigation-text
@@ -217,19 +216,9 @@ a > .navigation-menu {
     {
         margin-right : 0px;
     }
-
-    #nav-menu-search-bar
-    {
-        margin-right : 0px;
-    }
-
-    .navbar-logo
-    {
-        margin-right : 8px;
-    }
 }
 
-@media all and (max-width : 780px)
+@media all and (max-width : 800px)
 {
     .navigation-menu {
         flex-direction: column;
