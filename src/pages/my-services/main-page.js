@@ -6,20 +6,20 @@ function MyServicePageDisplay(props) {
     const service = props.service;
   
     const handleBackgroundClick = () => {
-      window.location.href = 'view-applicants.html';
+      window.location.href = '/view-applicants';
     };
   
     return (
       <div className="user-service" onClick={handleBackgroundClick}>
         <div className="option-container-service">
-          <a className="user-link" href="view-applicants.html">
+          <a className="user-link" href="/view-applicants">
             <i className="fa-solid fa-users fa-2x"></i>
           </a>
-          <a className="user-service-text" href="view-applicants.html">
+          <a className="user-service-text" href="/view-applicants">
             MJC Math and Engineering Club
           </a>
           <a
-            className="user-link edit-button"
+            className="edit-button"
             href={`edit-service?service=${service.title}`}
           >Edit</a>
         </div>
@@ -74,8 +74,8 @@ function MyServicesHome() {
             {"Welcome: " + username}
         </div>
         <div className = "user-service">
-            <a className = "background-link" href = "add-service.html"></a>
-            <a className = "user-link" href = "add-service.html">
+            <a className = "background-link" href = "/add-service"></a>
+            <a className = "user-link" href = "/add-service">
                 <div className = "option-container">
                     <i className = "fa-solid fa-plus fa-2x"></i>
                     <p className = "user-service-text">Add a New Service</p>

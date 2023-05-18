@@ -18,7 +18,7 @@ const get_service_info = function(req,res){
         if (selected_service_json == 'ERROR: no service found'){
           console.error(selected_service_json);
           res.send(selected_service_json);
-          return
+          return 
         }
         // send the service to the client
         console.log('sending data');

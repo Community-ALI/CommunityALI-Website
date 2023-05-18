@@ -5,18 +5,7 @@
 
 //react modules
 import React, { useEffect, useState } from 'react';
-import ReactDOMServer from 'react-dom/server';
 
-// database
-import { Application, Services } from "../connect-to-database";
-
-// file system allows the server to read html from the client. I think?
-import fs from 'fs';
-const { application } = require('express');
-
-//json web token
-import jwt from 'jsonwebtoken';
-const JWT_SECRET = process.env.JWT_SECRET;
 
 // each individual application to display
 function SearchResult(props) {
@@ -51,7 +40,7 @@ function ApplicationPageDisplay(props) {
 };
 
 function ServiceApplicants() {
-    const [token, setToken] = useState(localStorage.getItem('token'));
+    localStorage.getItem('token')
     const [applicants, setApplicants] = useState([]);
     const [services, SetServices] = useState([]);
 
@@ -91,3 +80,5 @@ function ServiceApplicants() {
         </div>
     )
 }
+
+export default ServiceApplicants

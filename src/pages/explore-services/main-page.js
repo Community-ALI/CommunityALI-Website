@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState} from 'react';
 import '../../pages/explore-services/main-page.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
+const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
 const DisplayService = function (props) {
