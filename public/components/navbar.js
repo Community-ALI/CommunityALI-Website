@@ -66,7 +66,7 @@ function constructNavigationBarElement() {
     navigationMenu.appendChild(constructCommunityCatalystLogo(false));
 
     let searchBar = document.createElement('input');
-    searchBar.setAttribute('placeholder', 'Search...');
+    searchBar.setAttribute('placeholder', 'Search');
     searchBar.setAttribute('id', 'nav-menu-search-bar');
     navigationMenu.appendChild(searchBar);
 

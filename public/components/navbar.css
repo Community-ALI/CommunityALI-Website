@@ -215,6 +215,13 @@ a > .navigation-menu {
     #navigation-login
     {
         margin-right : 0px;
+        padding: 10px 10px;
+    }
+
+    #nav-menu-search-bar
+    {
+        font-size: 15px;
+        padding: 8px 12px;
     }
 }
 
