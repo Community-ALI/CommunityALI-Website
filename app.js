@@ -17,6 +17,7 @@ const upload = multer({ dest: "uploads/" });
 // explore services
 const get_services = require("./explore-services-backend/get-services");
 const get_service_info = require("./explore-services-backend/get-service-info");
+const store_application = require("./explore-services-backend/store-application");
 
 const display_services = require("./explore-services-backend/display-services");
 const display_view_applicants = require("./my-services-backend/display-view-applicants");
@@ -45,7 +46,7 @@ app.use(cors(corsOptions));
 
 // Store user form data from an application in the database
 app.post('/store-application', upload.none(), function (req, res) {
-  store_service_signup(req, res);
+  store_application(req, res);
 });
 
 app.post("/upload-service", upload.array("files"), storeService);
@@ -100,6 +101,7 @@ app.get("/Applications", async function (req, res) {
 
 app.get("/view-my-services", async function (req, res) {
   try{
+  console.log(req.headers.authorization)
   if (req.headers.authorization != undefined){
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);

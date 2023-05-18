@@ -30,7 +30,8 @@ const store_application = function(req, res) {
           // display success page
           console.log('application from ',req.body.name,' submitted');
           res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-          res.json("success");
+          res.setHeader("Content-Type", "application/json");
+          res.send(JSON.stringify({ success: true }));
         }
       });
     }

@@ -84,10 +84,16 @@ function ServiceInfo() {
         method: 'POST',
         body: formData
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+      .then(response => {
+        return response.text();
       })
+      .then(data => {
+        window.location.href = '/signup-success'
+      })
+      .catch(error => {
+        console.log(error);
+        
+      });
     }
 
     // return the page

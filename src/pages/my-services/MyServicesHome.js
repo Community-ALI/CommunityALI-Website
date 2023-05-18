@@ -1,41 +1,31 @@
 import React, { Component, useState, useEffect } from "react";
 import './main-page.css';
-
+import NavBar from '../../components/NavBar';
 // create the information required to display the page
 function MyServicePageDisplay(props) {
     const service = props.service;
-
+  
+    const handleBackgroundClick = () => {
+      window.location.href = 'view-applicants.html';
+    };
+  
     return (
-        <div 
-            className="user-service"
-        >
-            <a className = "background-link" href = "view-applicants.html"></a>
-            <div className="option-container-service">
-                <a 
-                    className="user-link " 
-                    href="view-applicants.html"
-                >
-                    <i className="fa-solid fa-users fa-2x"></i>
-                </a>
-                <a className="user-service-text" href = "view-applicants.html">MJC Math and Engineering Club</a>
-                <a className = "user-link edit-button" href = {"edit-service?service="+service.title}></a>
-            </div>
+      <div className="user-service" onClick={handleBackgroundClick}>
+        <div className="option-container-service">
+          <a className="user-link" href="view-applicants.html">
+            <i className="fa-solid fa-users fa-2x"></i>
+          </a>
+          <a className="user-service-text" href="view-applicants.html">
+            MJC Math and Engineering Club
+          </a>
+          <a
+            className="user-link edit-button"
+            href={`edit-service?service=${service.title}`}
+          >Edit</a>
         </div>
-    )
-  };
-
-function DisplaySearchResults(props) {
-    const results = props.services;
-    if (results){
-        return (
-        <div className="results">
-          {results.map(function (service) {
-            return <SearchResult service={service} key={service.title} />;
-          })}
-        </div>
-      );
-      }
-};
+      </div>
+    );
+  }
 
 function MyServicesHome() {
  
@@ -45,18 +35,28 @@ function MyServicesHome() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            console.log('sending request');
-            const response = await fetch('http://localhost:3000/view-my-services')
-              .then(response => response.json())
-              .then(data => {
-                // 'data' variable will contain the received object with the data array and tokenUsername
-                console.log(data);
-                setServices(data.dataServices);
-                setUsername(data.tokenUsername);
-              })
-            
+            var token = localStorage.getItem('token');
+            if (token){
+                console.log('sending request');
+                const response = await fetch('http://localhost:3000/view-my-services',
+                    {headers: {
+                    'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // 'data' variable will contain the received object with the data array and tokenUsername
+                    
+                    setServices(data.dataServices);
+                    setUsername(data.tokenUsername);
+                    console.log('data: ',data.dataServices);
+                })
+            }
+            else{
+                console.log('no token found')
+            }
           } catch (error) {
-           
+           console.log(error)
           }
         };
     
@@ -64,11 +64,12 @@ function MyServicesHome() {
     }, []);        
 
     useEffect(() => {
-        console.log(services);
+        console.log('services: ', services);
       }, [services]);
 
     return (
     <div>
+        <NavBar isFixedPage={true} />,
         <div className = "username-title">
             {"Welcome: " + username}
         </div>
@@ -79,11 +80,13 @@ function MyServicesHome() {
                     <i className = "fa-solid fa-plus fa-2x"></i>
                     <p className = "user-service-text">Add a New Service</p>
                 </div>
-                {services.forEach(service => {
-                    <MyServicePageDisplay service = {service} />
-                })}
+                
             </a>
+            
         </div>
+        {services.map(service => ( // display each service
+                    <MyServicePageDisplay key={service._id} service={service} />
+                ))}
     </div>
  )
 }
