@@ -5,7 +5,7 @@
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
 
     text-align: right;
     list-style: none;
@@ -114,7 +114,6 @@ a > .navigation-menu {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color : white;
-    visibility: hidden;
 }
 
 .scrolled {
@@ -201,45 +200,42 @@ a > .navigation-menu {
     width: 100%;
 }
 
-@media all and (max-width : 1050px)
+@media all and (max-width : 1200px)
 {
     .navigation-bar
     {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .navigation-text
     {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 13px;
+        padding-right: 13px;
     }
 
     .navigation-menu
     {
-        padding: 15px 10px 15px 10px;
         gap: 0px;
     }
 
     #navigation-login
     {
         margin-right : 0px;
+        padding: 10px 10px;
     }
 
     #nav-menu-search-bar
     {
-        margin-right : 0px;
-    }
-
-    .navbar-logo
-    {
-        margin-right : 8px;
+        font-size: 15px;
+        padding: 8px 12px;
     }
 }
 
-@media all and (max-width : 780px)
+@media all and (max-width : 850px)
 {
     .navigation-menu {
         flex-direction: column;
+        margin-bottom: 350px;
     }
 
     .navigation-hamburger

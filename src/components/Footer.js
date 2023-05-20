@@ -28,7 +28,8 @@ function Footer() {
                         className="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-4x" 
                         aria-hidden="true">
                     </i>            
-                </a>        
+                </a>     
+                <a id="tech-support" href="/contact-form"> Technical Support </a>   
             </div>        
             <div 
                 className="footer-text">

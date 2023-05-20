@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+*
+{
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    scroll-behavior: smooth;
+}
+
+body
+{
+    background: #0096C9;
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh);
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.body-container
+{
+    color: white;
+    position: relative;
+    padding-top: 100px;
+    margin-bottom : 200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.body-header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-right: 12%;
+    margin-left: 12%;
+}
+
+.body-title
+{
+    font-weight: 400;
+    margin-bottom : 10px;
+}
+
+.body-subtitle
+{
+    font-weight: 300;
+}
+
+.contact-us-container
+{
+    background-color: #00468D;
+    padding : 30px 40px;
+    width : 60%;
+    margin-top: 50px;
+    border-radius: 15px;
+}
+
+.contact-form-title
+{
+    margin-bottom : 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight : 500;
+}
+
+.contact-form-second-title
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight : 500;
+    text-align: center;
+    margin-bottom : 30px;
+    display: none;
+}
+
+.contact-form-container
+{
+    width: 100%;
+    float : left;
+}
+
+.form-group
+{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom : 30px;
+}
+
+.form-label
+{
+    margin-bottom : 5px;
+    font-size: 20px;
+    color : white;
+}
+
+.form-input
+{
+    width: 50%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    border-bottom : 1px solid white;
+    color : #001E60;
+    background-color: white;
+}
+
+.form-text-area
+{
+    width: 80%;
+    font-size: 16px;
+    border: 1px solid white;
+    background: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    color : #001E60;
+    padding : 10px;
+    margin-top : 10px;
+    background-color: white;
+}
+
+#form-submit-button
+{
+    width: 100%;
+    background-color: #001E60;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: 300ms ease;
+    margin-top : 20px;
+}
+
+#form-submit-button:hover
+{
+    background-color: #ecaa1e;
+    color: #001E60;
+}
+
+#right-form-container
+{
+    border-radius: 15px;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    display: none;
+}
+
+.form-email
+{
+    margin-bottom : 30px;
+    text-align: center;
+}
+
+.form-link
+{
+    text-decoration: underline;
+    color: white;;
+}
+
+::placeholder 
+{
+    color : #001E60;
+    opacity: 1; 
+}
+
+@media all and (max-width : 1250px)
+{
+    .contact-container
+    {
+        width : 80%;
+    }
+
+    .form-input
+    {
+        width : 60%;
+    }
+}
+
+@media all and (max-width : 780px)
+{
+    .contact-container
+    {
+        width : 90%;
+    }
+
+    .form-input
+    {
+        width : 80%;
+    }
+
+    .body-header
+    {
+        margin-left: 8%;
+        margin-right : 8%;
+    }
+}
+
+@media all and (max-width : 540px)
+{
+    .contact-form-title
+    {
+        text-align: center;
+    }
+
+    .form-input
+    {
+        width : 100%;
+    }
+
+    .form-text-area
+    {
+        width : 100%;
+    }
+
+    .body-title
+    {
+        font-size: 25px;
+    }
+
+    .body-subtitle
+    {
+        font-size : 20px;
+    }
+
+    .body-header
+    {
+        margin-left: 5%;
+        margin-right : 5%;
+    }
+}
+
+@media all and (max-width : 450px)
+{
+    .body-title
+    {
+        font-size: 20px;
+    }
+
+    .body-subtitle
+    {
+        font-size : 15px;
+    }
+
+    .contact-container
+    {
+        padding : 20px 20px;
+    }
+
+    .contact-form-title
+    {
+        font-size : 25px;
+        margin-bottom: 20px;
+    }
+
+    .form-label
+    {
+        font-size: 16px;
+    }
+
+    .form-input
+    {
+        font-size : 15px;
+        height: 40px;
+    }
+
+    ::placeholder 
+    {
+        font-size: 14px;
+    }
+}
+

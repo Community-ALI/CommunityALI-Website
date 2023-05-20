@@ -9,6 +9,7 @@ import Signup_Success from "./pages/explore-services/signup-success";
 import My_Services_Main_Page from "./pages/my-services/main-page";
 import Add_Service from "./pages/my-services/add-service";
 import View_Applicants from "./pages/my-services/view-applicants";
+import ContactForm from "./components/contact-form";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/my-services" element={<My_Services_Main_Page />}/>
                 <Route path="/add-service" element={<Add_Service />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
+                <Route path="/contact-form" element={<ContactForm/>}/>
             </Routes>
         </BrowserRouter>
     )

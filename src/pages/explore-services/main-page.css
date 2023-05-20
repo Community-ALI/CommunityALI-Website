@@ -242,7 +242,7 @@ input[type="reset"]
     justify-content: center;
 }
 
-.button
+.service-button
 {
     color: #ecaa1e;
     font-size : 18px;
@@ -262,7 +262,7 @@ input[type="reset"]
     transition : all 0.3s ease-in-out;
 }
 
-.button:hover
+.service-button:hover
 {
     color : white;
     background-color :#00468D
@@ -421,7 +421,7 @@ input[type="reset"]
         margin-bottom: 60px;
     }
 
-    .button
+    .service-button
     {
         font-size : 16px;
     }
@@ -468,7 +468,7 @@ input[type="reset"]
         bottom : 17px;
     }
 
-    .button
+    .service-button
     {
         font-size : 15px;
     }
@@ -500,7 +500,7 @@ input[type="reset"]
         font-size : 13px;
     }
 
-    .button
+    .service-button
     {
         font-size : 12px;
     }
@@ -584,7 +584,7 @@ input[type="reset"]
         max-width : 130px;
     }
 
-    .button
+    .service-button
     {
         font-size : 10px;
         margin-bottom: 5px;
