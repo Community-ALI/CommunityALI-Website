@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 // import '../components/footer.css';
-// import '../components/navbar.css';
+import NavBar from '../../components/NavBar';
+import '../../components/navbar.css';
 import addServiceCss from './add-service.css';
 
 function AddService() {
@@ -100,7 +101,8 @@ function AddService() {
       };
     
   return (
-
+    <div>
+        <NavBar isFixedPage={false} />,
         <form action="/store-service" method="POST" className="service-container" id='form' onSubmit={handleSubmit}>
           <div className="service-title">
             <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' required /><br />
@@ -217,7 +219,7 @@ function AddService() {
             </div>
           </div>
         </form>
-
+      </div>
   );
 }
 

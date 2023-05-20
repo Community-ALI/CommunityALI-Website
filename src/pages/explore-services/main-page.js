@@ -20,7 +20,7 @@ const DisplayService = function (props) {
         </div>
       </div>
       <div className="button-container">
-        <a className="button" href={`/service-info?service=${service.title}`}>
+        <a className="service-button" href={`/service-info?service=${service.title}`}>
           Click for more info
         </a>
       </div>

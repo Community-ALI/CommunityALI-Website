@@ -106,7 +106,7 @@ function ServiceInfo() {
             
             <div className="service-container">
                 <div className="service-title">
-                    {service.title}
+                    {service.title} 
                 </div>
 
                 <div className="service-info-container">
@@ -144,13 +144,13 @@ function ServiceInfo() {
                         <div className="form-container">
                             <div className="text-container" id="name-container">
                             <label htmlFor="name" className="form-text">Full Name:</label>
-                            <input type="text" placeholder="First and Last Name" id="name" name="name" ref = {nameRef} required /><br />
+                            <input className="service-info-text" type="text" placeholder="First and Last Name" id="name" name="name" ref = {nameRef} required /><br />
                             <div className="error" id="nameError"></div>
                             </div>
 
                             <div className="text-container" id="email-container">
                             <label htmlFor="email" className="form-text">Email:</label>
-                            <input type="email" placeholder="School Email" id="email" name="email" ref = {emailRef} required /><br />
+                            <input className="service-info-text" type="email" placeholder="School Email" id="email" name="email" ref = {emailRef} required /><br />
                             <div className="error" id="emailError"></div>
                             </div>
                         </div>

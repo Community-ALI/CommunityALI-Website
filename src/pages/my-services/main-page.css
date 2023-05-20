@@ -116,6 +116,7 @@ body
     color: #001E60;
     font-weight: bold;
     border-radius: 8px;
+    text-decoration: none;
 }
 
 .background-link {

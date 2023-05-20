@@ -56,6 +56,7 @@ function NavBar(props) {
                     <nav 
                         className={"navigation-menu"}
                     >
+
                         <a href="/">
                             <img src="Photos/CClogo.png" className="navbar-logo"/>
                         </a>

@@ -336,74 +336,9 @@ section .details span
     font-size: 14px;
 }
 
-.progress-area .row .content
+::placeholder
 {
-    width: 100%;
-    margin-left: 15px;
-}
-
-.progress-area .details
-{
-    display: flex;
-    align-items: center;
-    margin-bottom: 7px;
-    justify-content: space-between;
-}
-
-.progress-area .content .progress-bar
-{
-    height: 6px;
-    width: 100%;
-    margin-bottom: 4px;
-    background: #fff;
-    border-radius: 30px;
-}
-.content .progress-bar .progress
-{
-    height: 100%;
-    width: 0%;
-    background: #6990F2;
-    border-radius: inherit;
-}
-
-.uploaded-area
-{
-    max-height: 100px;
-    overflow-y: scroll;
-}
-
-.uploaded-area.onprogress
-{
-    max-height: 150px;
-}
-
-.uploaded-area::-webkit-scrollbar
-{
-    width: 0px;
-}
-
-.uploaded-area .row .content
-{
-    display: flex;
-    align-items: center;
-}
-
-.uploaded-area .row .details
-{
-    display: flex;
-    margin-left: 15px;
-    flex-direction: column;
-}
-
-.uploaded-area .row .details .size
-{
-    color: #404040;
-    font-size: 11px;
-}
-
-.uploaded-area i.fa-check
-{
-    font-size: 16px;
+    color : #9c9c9c;
 }
 
 @media all and (max-width : 1300px)

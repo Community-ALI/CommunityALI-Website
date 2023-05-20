@@ -181,7 +181,7 @@ body
     margin-right : 30px;
 }
 
-input[type="text"], input[type="email"] 
+.service-info-text
 {
   padding: 8px 10px;
   margin-bottom : 60px;

@@ -7,7 +7,7 @@ footer
     font-size: 14px;
     position: absolute;
     width: 100%;
-    padding : 1% 10%;
+    padding : 20px 10%;
 }
 
 .footer-text
@@ -17,21 +17,49 @@ footer
 
 .footer-container
 {
-    margin : 20px 0px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .footer-container a
 {
     color : white;
-    margin : 20px 20px;
+    margin : 10px 20px;
     text-decoration: none;
+}
+
+#tech-support
+{
+    color : #00468D;
+    transition : all 0.3s ease-in-out;
+    font-weight: 500;
+    background-color: #ecaa1e;
+    padding : 10px 12px;
+    border-radius : 15px;
+}
+
+#tech-support:hover
+{
+    color: white;
+    background-color: #001E60;
 }
 
 @media all and (max-width : 480px)
 {
     footer
     {
-        padding : 0% 0%;
+        padding : 10px 0%;
         font-size : 12px;
+    }
+}
+
+@media all and (max-width : 360px)
+{
+    .footer-container a
+    {
+        margin : 12px 40px;
     }
 }

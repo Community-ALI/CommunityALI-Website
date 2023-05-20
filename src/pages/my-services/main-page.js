@@ -69,7 +69,7 @@ function MyServicesHome() {
 
     return (
     <div>
-        <NavBar isFixedPage={true} />,
+        <NavBar isFixedPage={false} />,
         <div className = "username-title">
             {"Welcome: " + username}
         </div>
