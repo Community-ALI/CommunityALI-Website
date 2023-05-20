@@ -21,9 +21,11 @@ const get_one_service = require("./get-functions/get-one-service");
 //authorized only get
 const get_user_services = require("./get-functions/get-user-services")
 const get_service_applicants = require("./get-functions/get-service-applicants")
-// set db
+// no authorization needed set db
 const store_application = require("./store-functions/store-application");
 
+// authorized only set
+const store_add_service = require('./store-functions/store-add-service');
 
 const models = require("./connect-to-database");
 const User = models.User;
@@ -138,8 +140,35 @@ app.get("/get-service-applicants", async function (req, res) {
 
 
 app.post("/upload-service", upload.array("files"), storeService);
-function storeService(req, res) {
-  store_add_service(req, res);
+async function storeService(req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    const account = await User.findOne({ username });
+    if (account){ 
+      const success = await store_add_service(req, username);
+      if (success){
+        console.log('new service added by', username);
+        res.json({success: true});
+      }
+      else{
+        console.log('problem uploading service to database');
+        res.json({success: false, error: 'internal detabase error'});
+      }
+      
+    }
+    else{
+      console.log('account does not exist!')
+      res.json({ success: false, error: 'unauthorized' });
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({ success: false, error: 'internal server error' });
+  }
+  // authorize user
+  
+  
 }
 
 app.post("/upload-edited-service", upload.array("files"), editService);

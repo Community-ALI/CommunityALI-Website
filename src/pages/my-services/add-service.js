@@ -39,29 +39,48 @@ function AddService() {
             const contact_name_1 = document.getElementById("contact-name-1").value;
             const contact_email_1 = document.getElementById("contact-email-1").value;
             const contact_role_1 = document.getElementById("contact-role-1").value;
-            const contact1 = "<u> "+contact_role_1 + "</u> : " + contact_name_1 + "  :  " + contact_email_1;
+            const contact1 = {
+              role: contact_role_1,
+              name: contact_name_1,
+              email: contact_email_1
+            };
         
             
             const contact_name_2 = document.getElementById("contact-name-2").value;
             const contact_email_2 = document.getElementById("contact-email-2").value;
             const contact_role_2 = document.getElementById("contact-role-2").value;
-            const contact2 = "<u> "+contact_role_2 + "</u> : " + contact_name_2 + "  :  " + contact_email_2;
+            const contact2 = {
+              role: contact_role_2,
+              name: contact_name_2,
+              email: contact_email_2
+            };
         
             
             const contact_name_3 = document.getElementById("contact-name-3").value;
             const contact_email_3 = document.getElementById("contact-email-3").value;
             const contact_role_3 = document.getElementById("contact-role-3").value;
-            const contact3 = "<u> "+contact_role_3 + "</u> : " + contact_name_3 + "  :  " + contact_email_3;
+            const contact3 = {
+              role: contact_role_3,
+              name: contact_name_3,
+              email: contact_email_3
+            };
         
         
             const contact_name_4 = document.getElementById("contact-name-4").value;
             const contact_email_4 = document.getElementById("contact-email-4").value;
             const contact_role_4 = document.getElementById("contact-role-4").value;
-            const contact4 = "<u> "+contact_role_4 + "</u> : " + contact_name_4 + "  :  " + contact_email_4;
+            const contact4 = {
+              role: contact_role_4,
+              name: contact_name_4,
+              email: contact_email_4
+            };
         
         
             var contactsArray = [contact1, contact2, contact3, contact4];
             formData.append("contacts", JSON.stringify(contactsArray));
+
+            formData.append("files", file);
+
             console.log(formData)
             const token = localStorage.getItem('token');
             await fetch('http://localhost:3000/upload-service',{

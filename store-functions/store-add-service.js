@@ -12,82 +12,62 @@ const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
 
 
-const store_add_service = function(req, res){
-  try{
-    if (req.headers.authorization != undefined){
-      const token = req.headers.authorization.split(' ')[1];
-      const decodedToken = jwt.verify(token, JWT_SECRET);
-      console.log('service upload')
-      store_service(req, res, decodedToken);
-    }
-    else{
-      console.log('error, login verification failed')
-      res.send("error, login verification failed");
-    }
-  }
-  catch (error){
-    console.log(error)
-    res.send("error");
-  }
-}
 
-const store_service = function(req, res, token) { 
-    
-    // create json data from form
+
+const store_add_service = async function(req, username) {
+  try {
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
     const seconds = currentDate.getSeconds();
-    const time = hours.toString()+ ':' + minutes.toString()+ ':' + seconds.toString();
-    var details = [
-      "<u> Time </u>:  " + req.body.details_times,
-      "<u> Date </u>:  " + req.body.details_date,
-      "<u> Location </u>:  " + req.body.details_location
-    ]
+    const time = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString();
+    const meetingTime = req.body.details_times;
+    const meetingDate = req.body.details_date;
+    const location = req.body.details_location;
     var contacts = JSON.parse(req.body.contacts);
- 
-    services_with_images = [];
-    for (let file of req.files) {
-        const service_with_image = new Service({
-          personal_name: req.body.personal_name,
-          personal_number: req.body.personal_number,
-          personal_email: req.body.personal_email,
-          personal_role: req.body.personal_role,
-          title: req.body.title,  
-          author: req.body.author,
-          author_role: "President",
-          photoType: file.mimetype,
-          photo: fs.readFileSync(file.path),
-          details: details,
-          description: req.body.description, 
-          contacts: contacts, 
-          date: formattedDate, 
-          time: time, 
-          user: token.username
-          });
-          services_with_images.push(service_with_image)
+
+    const services_with_images = [];
+    console.log(req.files);
+    for (const file of req.files) {
+      const service_with_image = new Service({
+        personal_name: req.body.personal_name,
+        personal_number: req.body.personal_number,
+        personal_email: req.body.personal_email,
+        personal_role: req.body.personal_role,
+        title: req.body.title,
+        author: req.body.author,
+        author_role: "President",
+        photoType: file.mimetype,
+        photo: fs.readFileSync(file.path),
+        meetingTime: meetingTime,
+        meetingDate: meetingDate,
+        location: location,
+        description: req.body.description,
+        contacts: contacts,
+        date: formattedDate,
+        time: time,
+        user: username
+      });
+      services_with_images.push(service_with_image);
+    }
+
+    await Service.insertMany(services_with_images);
+    req.files.forEach((file) => {
+      fs.unlink(file.path, (err) => {
+        if (err) {
+          console.error(err);
         }
-        Service.insertMany(services_with_images, function(err) {
-          if (err) {
-            console.log(err);
-            res.status(500).send("Error saving images to database");
-          } else {
-            console.log("Service saved to database");
-            res.send("/signup-success.html");
-          }
-        });
+      });
+    });
 
-        // delete the temporary file
-        req.files.forEach((file) => {
-          fs.unlink(file.path, (err) => {
-            if (err) {
-              console.error(err);
-            }
-          });
-        });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
 
-      };
 
       
  
