@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState, useRef} from 'react';
 import '../../pages/explore-services/service-info.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
-
+import { Buffer } from 'buffer';
 const ContactsComponent = (props) => {
     const contacts = props.contacts;
     return (
@@ -45,7 +45,7 @@ function ServiceInfo() {
         // Retrieve a specific parameter value
         const serviceName = urlParams.get('service');
             
-            const response = await fetch('http://localhost:3000/explore-services/service-info?service='+serviceName)
+            const response = await fetch('http://localhost:3000/get-one-service?service='+serviceName)
                 .then(response => response.json())
                 .then(data => {
                     // 'data' variable will contain the received service

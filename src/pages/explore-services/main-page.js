@@ -50,7 +50,7 @@ function Services() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:3000/explore-services/get-services')
+          const response = await fetch('http://localhost:3000/get-all-services')
             .then(response => response.json())
             .then(data => {
               // 'data' variable will contain the received array

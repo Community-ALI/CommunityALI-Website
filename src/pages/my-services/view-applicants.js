@@ -1,35 +1,72 @@
-// FILE OVERVIEW:
-// this is a dev tool, and should be commented out in app.js when not on localhost
-// this file is not accessable through the website unless you type in the right url
-// The purpose of this file is to easilly sort through applications based on service
-
 //react modules
 import React, { useEffect, useState } from 'react';
-
+import './view-applicants.css'
+import Footer from '../../components/Footer'
+import NavBar from '../../components/NavBar';
+function convertToNormalTime(armyTime) {
+    const [hours, minutes, seconds] = armyTime.split(':');
+    let period = 'am';
+  
+    let normalizedHours = parseInt(hours, 10);
+    if (normalizedHours > 12) {
+      normalizedHours -= 12;
+      period = 'pm';
+    }
+  
+    const formattedHours = normalizedHours.toString();
+    const formattedMinutes = minutes.padStart(2, '0');
+  
+    return `${formattedHours}:${formattedMinutes} ${period}`;
+  }
 
 // each individual application to display
-function SearchResult(props) {
+const SearchResult = function(props) {
     const applicant = props.applicant;
-
-    if (applicant.service === props.service.title) {
-        return (
-            <div key={props.index} className="result-container">
-                <p className="applicant-name">{applicant.name}</p>
-                <p className="applicant-email">{applicant.email}</p>
-            </div>
-        );
-    } else {
-        return undefined;
+    var normalTime = 'long ago';
+    if (applicant.time) {
+      normalTime = convertToNormalTime(applicant.time);
     }
-};
+      return (
+        <div className="result-container">
+          <p className="applicant-name">{applicant.name}</p>
+          <p className="applicant-email">{applicant.email}</p>
+          <p className="applicant-time">{applicant.date}</p>
+          <p className="applicant-time">{normalTime}</p>
+        </div>
+      );
+  };
+
+  
+//   const application_page_display = function(props) {
+//     const results = props.results;
+//     const service = props.service;
+  
+//     return (
+//       <section className="applicants">
+//         <div className="applicants-title">{service.title}</div>
+//         <div className="search-results">
+//           {results.map(function(applicant) {
+//             return (
+//               <SearchResult
+//                 applicant={applicant}
+//                 service={service}
+//                 key={applicant.name}
+//               />
+//             );
+//           })}
+//         </div>
+//       </section>
+//     );
+//   };
+  
 
 // create the information required to display the page
 function ApplicationPageDisplay(props) {
-    const service = props.service;
+    const serviceName = props.serviceName;
 
     return (
         <section className="applicants">
-            <div className="applicants-title">{service.title}</div>
+            <div className="applicants-title">{serviceName}</div>
             <div className="search-results">
                 {props.applicants.map((applicant, index) => (
                     <SearchResult key={index} applicant={applicant} />
@@ -40,42 +77,56 @@ function ApplicationPageDisplay(props) {
 };
 
 function ServiceApplicants() {
-    localStorage.getItem('token')
     const [applicants, setApplicants] = useState([]);
-    const [services, SetServices] = useState([]);
 
     useEffect(() => {
-        if (token) {
-            console.log('sending request');
-            fetch('http://localhost:3000/Applications', {
-                headers: {
+        const fetchData = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            if (token){
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const serviceName = urlParams.get('service');
+                const response = await fetch('http://localhost:3000/get-service-applicants?service='+serviceName,
+                    {headers: {
                     'Authorization': `Bearer ${token}`
-                }
-            })
+                    }
+                })
                 .then(response => response.json())
-                .then(data => setApplicants(data.Application))
-                .then(data => SetServices(data.Services))
-                .catch(error => {
-                    // handle the error
-                });
-        } else {
-            alert('There was an error verifying your account. Please log back in to view applicants.');
-        }
-    }, [token]);
+                .then(data => {
+                    // 'data' variable will contain the received object with the data array and tokenUsername
+                    
+                    setApplicants(data);
+                    console.log('data: ',data);
+                })
+            }
+            else{
+                console.log('no token found')
+            }
+          } catch (error) {
+           console.log(error)
+          }
+        };
+    
+        fetchData();
+    }, []);   
 
     useEffect(() => {
         console.log(applicants);
     })
-
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const serviceName = urlParams.get('service');
     return (
-        <div className="container">
-            <div className="container-title">
-                Club Sign-ups
-            </div>
-            <div className="applicants" id="target">
-                {services.map(service => {
-                    <ApplicationPageDisplay service={service} applicants={applicants} />
-                })}
+        <div>
+            <NavBar></NavBar>,
+            <div className="container">
+                <div className="container-title">
+                    Club Sign-ups
+                </div>
+                <div className="applicants" id="target">
+                    <ApplicationPageDisplay serviceName={serviceName} applicants={applicants} />
+                </div>
             </div>
         </div>
     )

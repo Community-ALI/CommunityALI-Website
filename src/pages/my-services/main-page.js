@@ -8,15 +8,15 @@ function MyServicePageDisplay(props) {
     const handleBackgroundClick = () => {
       window.location.href = '/view-applicants';
     };
-  
+     
     return (
       <div className="user-service" onClick={handleBackgroundClick}>
         <div className="option-container-service">
-          <a className="user-link" href="/view-applicants">
+          <a className="user-link" href={`view-applicants?service=${service.title}`}>
             <i className="fa-solid fa-users fa-2x"></i>
           </a>
-          <a className="user-service-text" href="/view-applicants">
-            MJC Math and Engineering Club
+          <a className="user-service-text" href={`view-applicants?service=${service.title}`}>
+            {service.title}
           </a>
           <a
             className="edit-button"
@@ -38,7 +38,7 @@ function MyServicesHome() {
             var token = localStorage.getItem('token');
             if (token){
                 console.log('sending request');
-                const response = await fetch('http://localhost:3000/view-my-services',
+                const response = await fetch('http://localhost:3000/get-user-services',
                     {headers: {
                     'Authorization': `Bearer ${token}`
                     }
@@ -79,14 +79,12 @@ function MyServicesHome() {
                 <div className = "option-container">
                     <i className = "fa-solid fa-plus fa-2x"></i>
                     <p className = "user-service-text">Add a New Service</p>
-                </div>
-                
+                </div> 
             </a>
-            
         </div>
         {services.map(service => ( // display each service
-                    <MyServicePageDisplay key={service._id} service={service} />
-                ))}
+            <MyServicePageDisplay key={service._id} service={service} />
+        ))}
     </div>
  )
 }

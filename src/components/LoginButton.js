@@ -17,7 +17,7 @@ function LoginButton(props) {
     return (
         <a 
             className="navigation-button navigation-text" 
-            href="logout.html" 
+            href="/logout"  
             id="navigation-login"
         >Logout</a>
     )

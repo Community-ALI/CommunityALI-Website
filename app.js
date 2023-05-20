@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 // allow the client to transfer data
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,26 +14,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
-// explore services
-const get_services = require("./explore-services-backend/get-services");
-const get_service_info = require("./explore-services-backend/get-service-info");
-const store_application = require("./explore-services-backend/store-application");
+// get db
+const get_all_services = require("./get-functions/get-all-services");
+const get_one_service = require("./get-functions/get-one-service");
 
-const display_services = require("./explore-services-backend/display-services");
-const display_view_applicants = require("./my-services-backend/display-view-applicants");
-const display_service_info = require("./explore-services-backend/display-service-info");
-const display_my_services = require("./my-services-backend/display-my-services")
+//authorized only get
+const get_user_services = require("./get-functions/get-user-services")
+const get_service_applicants = require("./get-functions/get-service-applicants")
+// set db
+const store_application = require("./store-functions/store-application");
 
-// my services
-const store_service_signup = require("./explore-services-backend/store-service-signup");
-const store_add_service = require("./my-services-backend/store-add-service");
-const prefill_service_edit = require("./my-services-backend/prefill-service-edit");
-const store_service_edit = require("./my-services-backend/store-service-edit");
 
 const models = require("./connect-to-database");
 const User = models.User;
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { error } = require("console");
 const JWT_SECRET = process.env.JWT_SECRET;
 // const SESSION_SECRET = process.env.SESSION_SECRET; 
 
@@ -44,10 +40,102 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Store user form data from an application in the database
-app.post('/store-application', upload.none(), function (req, res) {
-  store_application(req, res);
+
+
+// send the user one service
+app.get("/get-one-service", async function (req, res) {
+  try {
+    const service_name = req.query.service;
+    const service = await get_one_service(service_name);
+    console.log('sending service:', service_name);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.json(service);
+  } catch (error) {
+    console.log(error);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.json({ success: false, error: 'internal server error' });
+  }
 });
+
+// send the user every service
+app.get('/get-all-services', async function (req, res){
+  try {
+    const all_services = await get_all_services();
+    res.json(all_services);
+    console.log("all services sent")
+  } catch (error) {
+    console.log(error)
+    res.json({ success: false, error: 'internal server error' });
+  }
+})
+
+// Store user form data from an application in the database
+app.post('/store-application', upload.none(), async function (req, res) {
+  try {
+    const message = await store_application(req);
+    if (message == 'success'){
+      console.log('application from ', req.body.name,' submitted');
+      res.setHeader("Content-Type", "application/json");
+      res.send(JSON.stringify({ success: true }));
+    }
+    else{
+      error('application not subbmitted')
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, error: 'internal server error' });
+  }
+});
+
+// send a user their services
+app.get("/get-user-services", async function (req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    const user_services = await get_user_services(username);
+    
+    res.json({
+      dataServices: user_services,
+      tokenUsername: username});
+    console.log('services belonging to', username, 'sent')
+  } catch (error) {
+    console.log(error);
+    res.json({
+      dataServices: [],
+      tokenUsername: 'not logged in'});
+  }
+})
+// get the applicants to a service (as long as the user is authorized)
+app.get("/get-service-applicants", async function (req, res) {
+  try {
+    const service_name = req.query.service;
+    const service = await get_one_service(service_name);
+
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    if (service && username && username == service.user){
+      // the user owns this service
+      const applicants = await get_service_applicants(service.title);
+      res.json(applicants);
+      console.log(applicants.length, 'applications sent for', service.title)
+    }
+    else{
+      console.log('unauthorized request')
+      res.json({ success: false, error: 'unauthorized' });
+    }
+    
+  } catch (error) {
+    console.log(error);
+    res.json({
+      dataServices: [],
+      tokenUsername: 'not logged in'});
+  }
+})
+
+
+
 
 app.post("/upload-service", upload.array("files"), storeService);
 function storeService(req, res) {
@@ -74,20 +162,7 @@ function editService(req, res) {
   }
 }
 
-app.get('/explore-services/get-services', function (req, res){
-  get_services(req, res);
-  console.log('get services');
-})
 
-// Display services from the database to the user when they go to the service-search page
-app.get("/explore-services/main-page", function (req, res) {
-    
-});
-
-// display the sign up/apply for service page
-app.get("/explore-services/service-info", function (req, res) {
-  get_service_info(req,res);
-});
 
 // service edit
 app.get("/my-services/edit-service", function (req, res){
@@ -95,33 +170,11 @@ app.get("/my-services/edit-service", function (req, res){
 });
 
 // View aplications
-app.get("/Applications", async function (req, res) {
+app.get("/get-user-applicants", async function (req, res) {
   display_view_applicants(req, res);  
 });
 
-app.get("/view-my-services", async function (req, res) {
-  try{
-  console.log(req.headers.authorization)
-  if (req.headers.authorization != undefined){
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, JWT_SECRET);
-    console.log('my services request')
-    display_my_services(req, res, decodedToken);  
-    console.log('my services sent')
-  }
-  else{
-    console.log('error, login verification failed')
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-    res.send("error, login verification failed");
-  }
-  }
-  catch (error){
-    
-    console.log(error)
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-    res.send("error, server issue. If this issue persists please contact us, we are actively working on a solution.");
-  }
-});
+
 
 // login
 
