@@ -34,7 +34,8 @@ function LoginPopup(props) {
                     console.log('Got the token: ', result.data);
                     localStorage.setItem('token', result.data);
                     const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
-                    alert('signed in as: '+ decodedToken.username);
+                    console.log('signed in as: '+ decodedToken.username);
+                    window.location.href = '/';
                 } else {
                     console.log(result.error);
                     alert(result.error);

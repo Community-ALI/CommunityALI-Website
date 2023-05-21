@@ -2,7 +2,10 @@ import React, { Component, useEffect } from 'react';
 import './navbar.css';
 
 function LoginButton(props) {    
-
+    function Logout(){
+        localStorage.removeItem('token');
+        window.location.href = '/';
+    };
     if (!props.token){
         return (
             <a 
@@ -17,7 +20,7 @@ function LoginButton(props) {
     return (
         <a 
             className="navigation-button navigation-text" 
-            href="/logout"  
+            onClick={Logout}
             id="navigation-login"
         >Logout</a>
     )
