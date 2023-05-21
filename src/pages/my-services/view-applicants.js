@@ -121,7 +121,7 @@ function ServiceApplicants() {
         <div>
             <NavBar></NavBar>,
             <div className="container">
-                <div className="container-title">
+                <div className="applicants-container-title">
                     Club Sign-ups
                 </div>
                 <div className="applicants" id="target">
