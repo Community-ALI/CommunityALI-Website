@@ -26,6 +26,7 @@ const store_application = require("./store-functions/store-application");
 
 // authorized only set
 const store_add_service = require('./store-functions/store-add-service');
+const store_edit_service = require('./store-functions/store-edit-service');
 
 const models = require("./connect-to-database");
 const User = models.User;
@@ -171,24 +172,41 @@ async function storeService(req, res) {
   
 }
 
-app.post("/upload-edited-service", upload.array("files"), editService);
-function editService(req, res) {
-  try{
-    if (req.headers.authorization != undefined){
-      const token = req.headers.authorization.split(' ')[1];
-      const decodedToken = jwt.verify(token, JWT_SECRET);
-      console.log('service edit')
-      store_service_edit(req, res, decodedToken);
+app.post("/edit-service", upload.array("files"), storeService);
+async function storeService(req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    
+    const service_name = req.query.service;
+    const service = await get_one_service(service_name);
+    
+    if (service.user == username){
+      
+      const success = await store_edit_service(req, username);
+      console.log(success)
+      if (success){
+        console.log('service edited by', username);
+        res.json({success: true});
+      }
+      else{
+        console.log('problem uploading service to database');
+        res.json({success: false, error: 'internal detabase error'});
+      }
     }
     else{
-      console.log('error, login verification failed')
-      res.send("error, login verification failed");
+      console.log(service.user, username)
+      console.log('user does not own service!')
+      res.json({ success: false, error: 'unauthorized' });
     }
-  }
-  catch (error){
+  } catch (error) {
     console.log(error)
-    res.send("error");
+    res.json({ success: false, error: 'internal server error' });
   }
+  // authorize user
+  
+  
 }
 
 
