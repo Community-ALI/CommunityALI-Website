@@ -25,7 +25,7 @@ body
     align-items: center;
 }
 
-.container-title
+.applicants-container-title
 {
     color: white;
     position: relative;
@@ -82,7 +82,7 @@ body
     padding: 20px 25px;
 }
 
-.result-container
+.appplicants-result-container
 {
     color: white;
     font-size: clamp(14px, 3vw, 20px);
