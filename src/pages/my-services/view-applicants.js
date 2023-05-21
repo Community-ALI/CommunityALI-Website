@@ -27,7 +27,7 @@ const SearchResult = function(props) {
       normalTime = convertToNormalTime(applicant.time);
     }
       return (
-        <div className="result-container">
+        <div className="applicants-result-container">
           <p className="applicant-name">{applicant.name}</p>
           <p className="applicant-email">{applicant.email}</p>
           <p className="applicant-time">{applicant.date}</p>
