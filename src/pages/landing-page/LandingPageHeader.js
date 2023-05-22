@@ -26,7 +26,7 @@ function LandingPageHeader() {
             </div>
             
             <div id="header-button">
-            <a id="button" href="explore-services/main-page"> Get Started </a>
+            <a id="button" href="/services"> Get Started </a>
             </div>
             
             <div className="curve-container">

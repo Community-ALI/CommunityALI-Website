@@ -12,21 +12,28 @@
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
-.container h1
+.container-for-login h1
 {
   text-align: center;
   padding: 20px 0;
   border-bottom: 1px solid silver;
   font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
-.container form
+.container-for-login 
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.container-for-login form
 {
   padding: 0 40px;
   box-sizing: border-box;
 }
 
-form .txt_field
+form .text-field
 {
   position: relative;
   border-bottom: 2px solid #adadad;
@@ -34,7 +41,7 @@ form .txt_field
   font-family: 'Poppins', sans-serif;
 }
 
-.txt_field input
+.text-field-input
 {
   width: 100%;
   padding: 0 5px;
@@ -46,7 +53,7 @@ form .txt_field
   font-family: 'Poppins', sans-serif;
 }
 
-.txt_field label
+.text-field-label
 {
   position: absolute;
   top: 50%;
@@ -59,7 +66,7 @@ form .txt_field
   font-family: 'Poppins', sans-serif;
 }
 
-.txt_field span::before
+.text-field-span::before
 {
   content: '';
   position: absolute;
@@ -71,15 +78,15 @@ form .txt_field
   transition: .5s;
 }
 
-.txt_field input:focus ~ label,
-.txt_field input:valid ~ label
+.text-field-input:focus ~ label,
+.text-field-input:valid ~ label
 {
   top: -5px;
   color: #2691d9;
 }
 
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before
+.text-field-input:focus ~ span::before,
+.text-field-input:valid ~ span::before
 {
   width: 100%;
 }
