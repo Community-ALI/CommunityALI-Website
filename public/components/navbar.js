@@ -66,8 +66,10 @@ function constructNavigationBarElement() {
     navigationMenu.appendChild(constructCommunityCatalystLogo(false));
 
     let searchBar = document.createElement('input');
+    searchBar.setAttribute('type', 'text');
     searchBar.setAttribute('placeholder', 'Search');
     searchBar.setAttribute('id', 'nav-menu-search-bar');
+    searchBar.setAttribute('onkeyup', 'sendData(this)');
     navigationMenu.appendChild(searchBar);
 
     searchBar.addEventListener('keyup', function(event) {
@@ -118,6 +120,14 @@ function constructNavigationBarElement() {
 
 
 
+
+function sendData(e) {
+    fetch('/explore-services/main-page', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ payload: e.value })
+    });
+}
 
 function constructSubNavBar() {
     let subNavBar = document.createElement('div');
