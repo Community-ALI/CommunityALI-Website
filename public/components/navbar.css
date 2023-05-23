@@ -322,6 +322,7 @@ a > .navigation-menu {
     #nav-menu-search-bar {
         background-color: white;
         transition: background-color 1s ease;
+        color: #001E60;
     }
 
     #nav-menu-search-bar::placeholder {
