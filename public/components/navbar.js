@@ -70,6 +70,19 @@ function constructNavigationBarElement() {
     searchBar.setAttribute('id', 'nav-menu-search-bar');
     navigationMenu.appendChild(searchBar);
 
+    searchBar.addEventListener('keyup', function(event) {
+        console.log(event.key)
+        if (event.keyCode === 13) {
+        // Enter key was pressed
+        var searchText = searchBar.value;
+        // Construct the URL with the search query
+        var url = "/explore-services/main-page?payload=" + encodeURIComponent(searchText);
+        // Redirect to the URL
+        window.location.href = url;
+        }
+    });
+    
+
     let homeNavButton = document.createElement('a');
     homeNavButton.setAttribute('class', 'navigation-button navigation-text');
     homeNavButton.setAttribute('href', pathToRoot + 'index.html');
@@ -102,6 +115,9 @@ function constructNavigationBarElement() {
 
     return(navigationMenu);
 }
+
+
+
 
 function constructSubNavBar() {
     let subNavBar = document.createElement('div');
