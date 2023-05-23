@@ -26,9 +26,10 @@ const prefill_service_edit = require("./my-services-backend/prefill-service-edit
 const store_service_edit = require("./my-services-backend/store-service-edit");
 
 const models = require("./connect-to-database");
+const Services = models.Services;
 const User = models.User;
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 // const SESSION_SECRET = process.env.SESSION_SECRET; 
 
@@ -80,6 +81,13 @@ function editService(req, res) {
 // Display services from the database to the user when they go to the service-search page
 app.get("/explore-services/main-page", function (req, res) {
     display_services(req,res);
+    console.log("explore-services");
+});
+
+app.post('/explore-services/main-page', async (req, res) => {
+  let payload = req.body.payload;
+  console.log(payload);
+  display_services(req, res)
 });
 
 // display the sign up/apply for service page

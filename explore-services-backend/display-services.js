@@ -53,22 +53,49 @@ const SearchResults = function(props) {
 
 
 // TODO: make this function return only the services from the foundServices array that should be shown
-const search = function(allServices, keyword, filter){
-  filteredData = allServices; // TODO: use 'keyword' and 'filter' to search through services
-  return filteredData; 
+function search(keyword,attribute,dbServices,filteredData) {
+  // list of matches
+ for (service of dbServices){
+      //find out if text is in the given attribute
+      text = service[attribute].toLowerCase();
+      if (text.includes(keyword.toLowerCase())){
+          // don't create miltiple copies of the same result if the keyword appears twice
+          if (filteredData.includes(service)){
+
+          }
+          else{
+            filteredData.push(service)
+          }
+          
+      }
+  }
+ return filteredData; 
 }
 
 
 const display_services = function(req, res) {
+  //var inputElemen
   
-  var keyword = req.query.keyword;
+  var keywords = req.body.payload;
   var filter = req.query.filter;
+  var attribute = 'title';
+  var filteredData = [];
+
 
   // get database data
-  Services.find(function(err, foundServices){
+  Services.find(function(err, dbServices){
     if(!err){      
-      // TODO: perform the search using the keyword and filter
-      filteredData = search(foundServices, keyword, filter);
+      
+      if (keywords != undefined){
+        keywords = keywords.trim();
+        var subStrings = keywords.split(" "); 
+        for (subString of subStrings){
+          filteredData = search(subString,attribute,dbServices,filteredData);
+        }
+      }else{
+        // if no query has been made, display all services
+        filteredData = dbServices;
+      }
 
       fs.readFile('public/explore-services/main-page.html', 'utf-8', (err, data) => {
         if (err) {
