@@ -64,6 +64,11 @@ body
     padding-bottom: 5%;
 }
 
+#contact-container
+{
+    margin-bottom : 5%;
+}
+
 .service-author
 {
     font-size : 25px;
@@ -129,9 +134,9 @@ body
     color : white;
 }
 
-.sign-up-container
+.authorization-container
 {
-    width : 45%;
+    width : 90%;
 }
 
 .sign-up-title
@@ -429,7 +434,7 @@ section .details span
         line-height: 40px;
     }
 
-    .sign-up-container
+    .authorization-container
     {
         width : 90%;
         margin-top : 40px;
@@ -498,7 +503,7 @@ section .details span
         margin: 30px 5%;
     }
 
-    .sign-up-container
+    .authorization-container
     {
         font-size: 13px;
     }
@@ -560,7 +565,7 @@ section .details span
         font-size : 13px;
     }
 
-    .sign-up-container
+    .authorization-container
     {
         font-size: 12px;
     }

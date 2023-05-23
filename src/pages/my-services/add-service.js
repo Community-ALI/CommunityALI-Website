@@ -170,7 +170,7 @@ function AddService() {
           <div className="service-info2-container">
             <div className="service-details" id="contact-container">
               <div className="service-author"></div>
-              <div className="service-header">Contact and Social Media</div>
+              <div className="service-header">Contact Us</div>
 
               <div className="contacts-container">
                 <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
@@ -179,7 +179,6 @@ function AddService() {
                   <option value="vice-president">Vice President</option>
                   <option value="icc-rep">ICC Rep</option>
                   <option value="advisor">Advisor</option>
-                  <option value="teasurer">Treasurer</option>
                 </select>
                 <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-1" id='contact-name-1' required /><br />
                 <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
@@ -192,7 +191,6 @@ function AddService() {
                   <option value="vice-president">Vice President</option>
                   <option value="icc-rep">ICC Rep</option>
                   <option value="advisor">Advisor</option>
-                  <option value="teasurer">Treasurer</option>
                 </select>
                 <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-2" id='contact-name-2' required /><br />
                 <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-2" id='contact-email-2' required /><br />
@@ -205,7 +203,6 @@ function AddService() {
                   <option value="vice-president">Vice President</option>
                   <option value="icc-rep">ICC Rep</option>
                   <option value="advisor">Advisor</option>
-                  <option value="teasurer">Treasurer</option>
                 </select>
                 <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-3" id='contact-name-3' required /><br />
                 <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-3" id='contact-email-3' required /><br />
@@ -218,14 +215,67 @@ function AddService() {
                   <option value="vice-president">Vice President</option>
                   <option value="icc-rep">ICC Rep</option>
                   <option value="advisor">Advisor</option>
-                  <option value="teasurer">Treasurer</option>
                 </select>
                 <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
                 <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-4" id='contact-email-4' required /><br />
               </div>
             </div>
 
-            <div className="sign-up-container">
+            <div className="service-details" id="contact-container">
+              <div className="service-author"></div>
+              <div className="service-header">Follow our Social Media</div>
+
+              <div className="contacts-container">
+                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
+                  <option value="" selected> Select Media</option>
+                  <option value="president">Zoom</option>
+                  <option value="vice-president">Discord</option>
+                  <option value="icc-rep">Instagram</option>
+                  <option value="advisor">Facebook</option>
+                </select>
+                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
+                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
+              </div>
+
+              <div className="contacts-container">
+                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-2' required>
+                <option value="" selected> Select Media</option>
+                  <option value="president">Zoom</option>
+                  <option value="vice-president">Discord</option>
+                  <option value="icc-rep">Instagram</option>
+                  <option value="advisor">Facebook</option>
+                </select>
+                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
+                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
+              </div>
+
+              <div className="contacts-container">
+                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-3' required>
+                <option value="" selected> Select Media</option>
+                  <option value="president">Zoom</option>
+                  <option value="vice-president">Discord</option>
+                  <option value="icc-rep">Instagram</option>
+                  <option value="advisor">Facebook</option>
+                </select>
+                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
+                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
+              </div>
+
+              <div className="contacts-container">
+                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-4' required>
+                <option value="" selected> Select Media</option>
+                  <option value="president">Zoom</option>
+                  <option value="vice-president">Discord</option>
+                  <option value="icc-rep">Instagram</option>
+                  <option value="advisor">Facebook</option>
+                </select>
+                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
+                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
+              </div>
+            </div>
+            
+
+            <div className="authorization-container">
               <label htmlFor="authorization" className="authorization-text">
                 By submitting this application I authorize Community ALI to publish all the information of this application for anybody
                 to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
