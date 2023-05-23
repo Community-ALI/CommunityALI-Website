@@ -76,7 +76,7 @@ function search(keyword,attribute,dbServices,filteredData) {
 const display_services = function(req, res) {
   //var inputElemen
   
-  var keywords = req.body.payload;
+  var keywords = req.query.payload;
   var filter = req.query.filter;
   var attribute = 'title';
   var filteredData = [];

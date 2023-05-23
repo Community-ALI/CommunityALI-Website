@@ -72,12 +72,11 @@ function constructNavigationBarElement() {
     navigationMenu.appendChild(searchBar);
 
     searchBar.addEventListener('keyup', function(event) {
-        console.log(event.key)
         if (event.keyCode === 13) {
         // Enter key was pressed
-        var searchText = searchBar.value;
+        var searchText = searchBar.value.trim().split(' ').join('+');
         // Construct the URL with the search query
-        var url = "/explore-services/main-page?payload=" + encodeURIComponent(searchText);
+        var url = "/explore-services/main-page?payload=" + searchText;
         // Redirect to the URL
         window.location.href = url;
         }

@@ -81,14 +81,8 @@ function editService(req, res) {
 // Display services from the database to the user when they go to the service-search page
 app.get("/explore-services/main-page", function (req, res) {
     display_services(req,res);
-    console.log("explore-services");
 });
 
-app.post('/explore-services/main-page', async (req, res) => {
-  let payload = req.body.payload;
-  console.log(payload);
-  display_services(req, res)
-});
 
 // display the sign up/apply for service page
 app.get("/explore-services/service-info", function (req, res) {
