@@ -6,6 +6,43 @@ import addServiceCss from './add-service.css';
 
 function AddService() {
 
+  const [contactData, setContactData] = useState([{contactName:"", contactEmail:""}])
+  const [mediaData, setMediaData] = useState([{mediaName:"", mediaUrl:""}])
+
+  const contactAdd=()=>{
+    setContactData([...contactData,{contactName:"", contactEmail:""}])
+  }
+
+  const mediaAdd=()=>{
+    setMediaData([...mediaData,{mediaName:"", mediaUrl:""}])
+  }
+  
+  const contactDelete=(j)=>{
+    const deleteContactVal = [...contactData]
+    deleteContactVal.splice(j,1)
+    setContactData(deleteContactVal)
+  }
+
+  const mediaDelete=(i)=>{
+    const deleteMediaVal = [...mediaData]
+    deleteMediaVal.splice(i,1)
+    setMediaData(deleteMediaVal)
+  }
+  
+  const contactChange=(h,j)=>{
+    const {name, value} = h.target
+    const onchangeContactVal = [...contactData]
+    onchangeContactVal[j][name] = value
+    setContactData(onchangeContactVal)
+  }
+
+  const mediaChange=(e,i)=>{
+    const {name, value} = e.target
+    const onChangeMediaVal = [...mediaData]
+    onChangeMediaVal[i][name] = value
+    setMediaData(onChangeMediaVal)
+  }
+
       const [file, setFile] = useState(null);
     
       const handleSubmit = (event) => {
@@ -73,7 +110,7 @@ function AddService() {
               role: contact_role_4,
               name: contact_name_4,
               email: contact_email_4
-            };
+            }; 
         
         
             var contactsArray = [contact1, contact2, contact3, contact4];
@@ -172,6 +209,8 @@ function AddService() {
               <div className="service-author"></div>
               <div className="service-header">Contact Us</div>
 
+          {
+              contactData.map((contactVal,j)=>
               <div className="contacts-container">
                 <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
                   <option value="" selected> Select Officer</option>
@@ -180,51 +219,28 @@ function AddService() {
                   <option value="icc-rep">ICC Rep</option>
                   <option value="advisor">Advisor</option>
                 </select>
-                <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-1" id='contact-name-1' required /><br />
-                <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
+                <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contactName" 
+                value={contactVal.contactName} onChange={(h)=> contactChange(h,j)} id='contact-name-1' required /><br />
+                <div className="text-button-container">
+                  <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contactEmail" 
+                  value={contactVal.contactEmail} onChange={(h)=> contactChange(h,j)} id='contact-email-1' required /><br />
+                  <button className="delete-button" onClick={()=>contactDelete(j)}>Delete</button>   
+                </div>
               </div>
-
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-2' required>
-                  <option value="" selected> Select Officer</option>
-                  <option value="president">President</option>
-                  <option value="vice-president">Vice President</option>
-                  <option value="icc-rep">ICC Rep</option>
-                  <option value="advisor">Advisor</option>
-                </select>
-                <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-2" id='contact-name-2' required /><br />
-                <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-2" id='contact-email-2' required /><br />
-              </div>
-
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-3' required>
-                  <option value="" selected> Select Officer</option>
-                  <option value="president">President</option>
-                  <option value="vice-president">Vice President</option>
-                  <option value="icc-rep">ICC Rep</option>
-                  <option value="advisor">Advisor</option>
-                </select>
-                <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-3" id='contact-name-3' required /><br />
-                <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-3" id='contact-email-3' required /><br />
-              </div>
-
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-4' required>
-                  <option value="" selected> Select Officer</option>
-                  <option value="president">President</option>
-                  <option value="vice-president">Vice President</option>
-                  <option value="icc-rep">ICC Rep</option>
-                  <option value="advisor">Advisor</option>
-                </select>
-                <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
-                <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contact-email-4" id='contact-email-4' required /><br />
-              </div>
-            </div>
+            )
+          }
+          <div className="add-button-container">
+            <button className="add-button" onClick={contactAdd}>Add another Contact</button>
+          </div>
+            {/* <p> {JSON.stringify(contactData)} </p> */}
+          </div>
 
             <div className="service-details" id="contact-container">
               <div className="service-author"></div>
               <div className="service-header">Follow our Social Media</div>
-
+            
+            {
+              mediaData.map((mediaVal,i)=>
               <div className="contacts-container">
                 <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
                   <option value="" selected> Select Media</option>
@@ -233,45 +249,20 @@ function AddService() {
                   <option value="icc-rep">Instagram</option>
                   <option value="advisor">Facebook</option>
                 </select>
-                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
-                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
+                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="mediaName" 
+                value={mediaVal.mediaName} onChange={(e)=> mediaChange(e,i)} id='contact-name-4' required /><br />
+                <div className="text-button-container">
+                  <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="mediaUrl" 
+                  value={mediaVal.mediaUrl} onChange={(e)=> mediaChange(e,i)} id='contact-email-1' required /><br />
+                  <button className="delete-button" onClick={()=>mediaDelete(i)}>Delete</button>    
+                </div>
               </div>
-
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-2' required>
-                <option value="" selected> Select Media</option>
-                  <option value="president">Zoom</option>
-                  <option value="vice-president">Discord</option>
-                  <option value="icc-rep">Instagram</option>
-                  <option value="advisor">Facebook</option>
-                </select>
-                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
-                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
-              </div>
-
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-3' required>
-                <option value="" selected> Select Media</option>
-                  <option value="president">Zoom</option>
-                  <option value="vice-president">Discord</option>
-                  <option value="icc-rep">Instagram</option>
-                  <option value="advisor">Facebook</option>
-                </select>
-                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
-                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
-              </div>
-
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-4' required>
-                <option value="" selected> Select Media</option>
-                  <option value="president">Zoom</option>
-                  <option value="vice-president">Discord</option>
-                  <option value="icc-rep">Instagram</option>
-                  <option value="advisor">Facebook</option>
-                </select>
-                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="contact-name-4" id='contact-name-4' required /><br />
-                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="contact-email-1" id='contact-email-1' required /><br />
-              </div>
+              )
+            }
+            <div className="add-button-container">
+              <button className="add-button" onClick={mediaAdd}>Add another Social Media</button>
+            </div>
+            {/* <p> {JSON.stringify(mediaData)} </p> */}
             </div>
             
 
