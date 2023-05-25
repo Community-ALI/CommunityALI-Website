@@ -7,15 +7,15 @@ import { document } from "postcss";
 
 function AddService() {
 
-  const [contactData, setContactData] = useState([{contactName:"", contactEmail:""}])
-  const [mediaData, setMediaData] = useState([{mediaName:"", mediaUrl:""}])
+  const [contactData, setContactData] = useState([{contactRole:"", contactName:"", contactEmail:""}])
+  const [mediaData, setMediaData] = useState([{mediaType:"", mediaName:"", mediaUrl:""}])
 
   const contactAdd=()=>{
-    setContactData([...contactData,{contactName:"", contactEmail:""}])
+    setContactData([...contactData,{contactRole:"", contactName:"", contactEmail:""}])
   }
 
   const mediaAdd=()=>{
-    setMediaData([...mediaData,{mediaName:"", mediaUrl:""}])
+    setMediaData([...mediaData,{mediaType:"", mediaName:"", mediaUrl:""}])
   }
   
   const contactDelete=(j)=>{
@@ -196,166 +196,169 @@ function AddService() {
     
   return (
     <div>
-        <NavBar isFixedPage={false} />,
-        <form action="/store-service" method="POST" 
-        className="service-container" id='form' onSubmit={handleSubmit}>
-          <div className="service-title">
-            <input type="text" placeholder="Name of the Club" 
-            className="club-title-text-box" name="title" id='title' required /><br />
+      <NavBar isFixedPage={false} />,
+      <form action="/store-service" method="POST" 
+      className="service-container" id='form' onSubmit={handleSubmit}>
+        
+        <div className="service-title">
+          <input type="text" placeholder="Name of the Club" 
+          className="club-title-text-box" name="title" id='title' required /><br />
+        </div>
+
+        <div className="service-navbar">
+          <div className="service-navbar-text" id={styleColor1}>
+            <a href="#" onClick={changeVisibility1} >Overview</a>
+          </div>
+          <div className="service-navbar-text" id={styleColor2}>
+            <a href="#" onClick={changeVisibility2} >Contacts & Social Media</a>
+          </div>
+          <div className="service-navbar-text" id={styleColor3}>
+            <a href="#" onClick={changeVisibility3} >Sign Up Today</a>
+          </div>
+        </div>
+
+        <div className="service-info-container" id={stylePage1}>
+          <div className="file-container" id="file-container">
+            <header>Club Photo Uploader</header>
+            <label className="file-form" htmlFor="file-input">
+              <i className="fas fa-cloud-upload-alt" id="file-icon" />
+              <p>Click to Upload File</p>
+            </label>
+            <input className="file-input" id="file-input" type="file" 
+            name="file" onChange={handleFileChange} required />
+            <section className="progress-area" />
+            <section className="uploaded-area" />
           </div>
 
-          <div className="service-navbar">
-            <div className="service-navbar-text" id={styleColor1}>
-              <a href="#" onClick={changeVisibility1} >Overview</a>
-            </div>
-            <div className="service-navbar-text" id={styleColor2}>
-              <a href="#" onClick={changeVisibility2} >Contacts & Social Media</a>
-            </div>
-            <div className="service-navbar-text" id={styleColor3}>
-              <a href="#" onClick={changeVisibility3} >Sign Up Today</a>
-            </div>
-          </div>
-
-          <div className="service-info-container" id={stylePage1}>
-            <div className="file-container" id="file-container">
-              <header>Club Photo Uploader</header>
-              <label className="file-form" htmlFor="file-input">
-                <i className="fas fa-cloud-upload-alt" id="file-icon" />
-                <p>Click to Upload File</p>
-              </label>
-              <input className="file-input" id="file-input" type="file" 
-              name="file" onChange={handleFileChange} required />
-              <section className="progress-area" />
-              <section className="uploaded-area" />
+          <div className="service-details">
+            <div className="service-author">
+              <input type="text" placeholder="President of the Club" 
+              className="meeting-details-title-box" name="subtitle" id='meeting-details-title-box' required /><br />
             </div>
 
-            <div className="service-details">
-              <div className="service-author">
-                <input type="text" placeholder="President of the Club" 
-                className="meeting-details-title-box" name="subtitle" id='meeting-details-title-box' required /><br />
-              </div>
+            <div className="service-header">Meeting Details</div>
 
-              <div className="service-header">Meeting Details</div>
+            <div>
+              <u> Time: </u>
+              <input type="text" placeholder="Include start and end time" 
+              className="meeting-details-text-box" name="time" id='details-times' required /><br />
+            </div>
 
-              <div>
-                <u> Time: </u>
-                <input type="text" placeholder="Include start and end time" 
-                className="meeting-details-text-box" name="time" id='details-times' required /><br />
-              </div>
+            <div>
+              <u> Date: </u>
+              <input type="text" placeholder="Include day and month" 
+              className="meeting-details-text-box" name="date" id='details-date' required /><br />
+            </div>
 
-              <div>
-                <u> Date: </u>
-                <input type="text" placeholder="Include day and month" 
-                className="meeting-details-text-box" name="date" id='details-date' required /><br />
-              </div>
-
-              <div>
-                <u> Location: </u>
-                <input type="text" placeholder="Include building and room" 
-                className="meeting-details-text-box" name="location" id='details-location' required /><br />
-              </div>
+            <div>
+              <u> Location: </u>
+              <input type="text" placeholder="Include building and room" 
+              className="meeting-details-text-box" name="location" id='details-location' required /><br />
             </div>
           </div>
+        </div>
 
-          <div className="service-description" id={stylePage1}>
-            <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." 
-            className="meeting-description-text-box" name="description" id="description" required></textarea>
-          </div>
+        <div className="service-description" id={stylePage1}>
+          <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." 
+          className="meeting-description-text-box" name="description" id="description" required></textarea>
+        </div>
 
-          <div className="service-info2-container" id={stylePage2}>
-            <div className="service-details" id="contact-container">
-              <div className="service-author"></div>
-              <div className="service-header">Contact Us</div>
+        <div className="service-info2-container" id={stylePage2}>
+          <div className="service-details" id="contact-container">
+            <div className="service-author"></div>
+            <div className="service-header">Contact Us</div>
 
-            {
-              contactData.map((contactVal,j)=>
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
-                  <option value="" selected> Select Officer</option>
-                  <option value="president">President</option>
-                  <option value="vice-president">Vice President</option>
-                  <option value="icc-rep">ICC Rep</option>
-                  <option value="advisor">Advisor</option>
-                </select>
-                <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contactName" 
-                value={contactVal.contactName} onChange={(h)=> contactChange(h,j)} id='contact-name-1' required /><br />
-                <div className="text-button-container">
-                  <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contactEmail" 
-                  value={contactVal.contactEmail} onChange={(h)=> contactChange(h,j)} id='contact-email-1' required /><br />
-                  <button className="delete-button" onClick={()=>contactDelete(j)}>Delete</button>   
-                </div>
+          {
+            contactData.map((contactVal,j)=>
+            <div className="contacts-container">
+              <select className="club-contacts-selection" name="contactRole" id='contact-role-1' required
+              value={contactVal.contactRole} onChange={(h)=> contactChange(h,j)}>
+                <option value="" selected> Select Officer</option>
+                <option value="president">President</option>
+                <option value="vice-president">Vice President</option>
+                <option value="icc-rep">ICC Rep</option>
+                <option value="advisor">Advisor</option>
+              </select>
+              <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contactName" 
+              value={contactVal.contactName} onChange={(h)=> contactChange(h,j)} id='contact-name-1' required /><br />
+              <div className="text-button-container">
+                <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contactEmail" 
+                value={contactVal.contactEmail} onChange={(h)=> contactChange(h,j)} id='contact-email-1' required /><br />
+                <button className="delete-button" onClick={()=>contactDelete(j)}>Delete</button>   
               </div>
-              )
-            }
-            <div className="add-button-container">
-              <button className="add-button" onClick={contactAdd}>Add another Contact</button>
             </div>
-            {/* <p> {JSON.stringify(contactData)} </p> */}
+            )
+          }
+          <div className="add-button-container">
+            <button className="add-button" onClick={contactAdd}>Add another Contact</button>
           </div>
+          <p> {JSON.stringify(contactData)} </p> 
+        </div>
 
-            <div className="service-details" id="contact-container">
-              <div className="service-author"></div>
-              <div className="service-header">Follow our Social Media</div>
-            
-            {
-              mediaData.map((mediaVal,i)=>
-              <div className="contacts-container">
-                <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
-                  <option value="" selected> Select Media</option>
-                  <option value="president">Zoom</option>
-                  <option value="vice-president">Discord</option>
-                  <option value="icc-rep">Instagram</option>
-                  <option value="advisor">Facebook</option>
-                </select>
-                <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="mediaName" 
-                value={mediaVal.mediaName} onChange={(e)=> mediaChange(e,i)} id='contact-name-4' required /><br />
-                <div className="text-button-container">
-                  <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="mediaUrl" 
-                  value={mediaVal.mediaUrl} onChange={(e)=> mediaChange(e,i)} id='contact-email-1' required /><br />
-                  <button className="delete-button" onClick={()=>mediaDelete(i)}>Delete</button>    
-                </div>
+          <div className="service-details" id="contact-container">
+            <div className="service-author"></div>
+            <div className="service-header">Follow our Social Media</div>
+          
+          {
+            mediaData.map((mediaVal,i)=>
+            <div className="contacts-container">
+              <select className="club-contacts-selection" name="mediaType" 
+              value={mediaVal.mediaType} onChange={(e)=> mediaChange(e,i)} id='contact-role-1' required>
+                <option value="" selected> Select Media</option>
+                <option value="zoom">Zoom</option>
+                <option value="discord">Discord</option>
+                <option value="instagram">Instagram</option>
+                <option value="facebook">Facebook</option>
+              </select>
+              <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="mediaName" 
+              value={mediaVal.mediaName} onChange={(e)=> mediaChange(e,i)} id='contact-name-4' required /><br />
+              <div className="text-button-container">
+                <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="mediaUrl" 
+                value={mediaVal.mediaUrl} onChange={(e)=> mediaChange(e,i)} id='contact-email-1' required /><br />
+                <button className="delete-button" onClick={()=>mediaDelete(i)}>Delete</button>    
               </div>
-              )
-            }
-            <div className="add-button-container">
-              <button className="add-button" onClick={mediaAdd}>Add another Social Media</button>
             </div>
-            {/* <p> {JSON.stringify(mediaData)} </p> */}
-            </div>
+            )
+          }
+          <div className="add-button-container">
+            <button className="add-button" onClick={mediaAdd}>Add another Social Media</button>
           </div>
+          <p> {JSON.stringify(mediaData)} </p> 
+          </div>
+        </div>
 
-          <div className="sign-up-form" id={stylePage3}>
-                <form action="" id="form">
-                    <div className="sign-up-form-container">
-                        <div className="text-container" id="name-container">
-                            <label for="name" className="sign-up-form-text"> Full Name: </label>
-                            <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
-                            id="name" name="name" readOnly/><br/>
-                        </div>
+        <div className="sign-up-form" id={stylePage3}>
+              <form action="" id="form">
+                  <div className="sign-up-form-container">
+                      <div className="text-container" id="name-container">
+                          <label for="name" className="sign-up-form-text"> Full Name: </label>
+                          <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
+                          id="name" name="name" readOnly/><br/>
+                      </div>
 
-                        <div className="text-container" id="email-container">
-                            <label for="email" className="sign-up-form-text"> Email: </label>
-                            <input type="email" className="sign-up-form-input" placeholder="School Email" 
-                            id="email" name="email" readOnly/><br/>
-                        </div>
-                    </div> 
-                    <input type="submit" class="sign-up-submit-button"/><br/>
-                </form>
-              </div>
-
-            <div className="authorization-container" id={stylePage3}>
-              <label htmlFor="authorization" className="authorization-text">
-                By submitting this application I authorize Community ALI to publish all the information of this application for anybody
-                to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
-                I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
-                members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
-                against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
-              </label>
-              {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
-              <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" />
+                      <div className="text-container" id="email-container">
+                          <label for="email" className="sign-up-form-text"> Email: </label>
+                          <input type="email" className="sign-up-form-input" placeholder="School Email" 
+                          id="email" name="email" readOnly/><br/>
+                      </div>
+                  </div> 
+                  <input type="submit" class="sign-up-submit-button"/><br/>
+              </form>
             </div>
-        </form>
-      </div>
+
+          <div className="authorization-container" id={stylePage3}>
+            <label htmlFor="authorization" className="authorization-text">
+              By submitting this application I authorize Community ALI to publish all the information of this application for anybody
+              to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
+              I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
+              members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
+              against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
+            </label>
+            {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
+            <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" />
+          </div>
+      </form>
+    </div>
   );
 }
 

@@ -102,7 +102,7 @@ function ServiceInfo() {
             <div className="loader-wrapper">
                 <span className="loader"><span className="loader-inner"></span></span>
             </div>
-            <NavBar isFixedPage={true} />
+            <NavBar isFixedPage={false} />
             
             <div className="service-container">
                 <div className="service-title">
