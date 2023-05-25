@@ -3,6 +3,7 @@ import React, { Component, useState, useEffect } from "react";
 import NavBar from '../../components/NavBar';
 import '../../components/navbar.css';
 import addServiceCss from './add-service.css';
+import { document } from "postcss";
 
 function AddService() {
 
@@ -42,6 +43,43 @@ function AddService() {
     onChangeMediaVal[i][name] = value
     setMediaData(onChangeMediaVal)
   }
+
+  const[stylePage1, setStylePage1] = useState("page1Visible");
+  const[stylePage2, setStylePage2] = useState("page2Invisible");
+  const[stylePage3, setStylePage3] = useState("page3Invisible");
+
+  const[styleColor1, setStyleColor1] = useState("overviewColor");
+  const[styleColor2, setStyleColor2] = useState("contactColor");
+  const[styleColor3, setStyleColor3] = useState("signUpColor");
+
+  const changeVisibility1=()=>{
+    setStylePage1("page1Visible");
+    setStylePage2("page2Invisible");
+    setStylePage3("page3Invisible");
+    setStyleColor1("overviewColor");
+    setStyleColor2("contactColor");
+    setStyleColor3("signUpColor");
+  }
+
+  const changeVisibility2=()=>{
+    setStylePage1("page1Invisible");
+    setStylePage2("page2Visible");
+    setStylePage3("page3Invisible");
+    setStyleColor1("overviewChangeColor");
+    setStyleColor2("contactChangeColor");
+    setStyleColor3("signUpColor");
+  }
+
+  const changeVisibility3=()=>{
+    setStylePage1("page1Invisible");
+    setStylePage2("page2Invisible");
+    setStylePage3("page3Visible");
+    setStyleColor1("overviewChangeColor");
+    setStyleColor2("contactColor");
+    setStyleColor3("signUpChangeColor");
+  }
+
+  
 
       const [file, setFile] = useState(null);
     
@@ -159,57 +197,77 @@ function AddService() {
   return (
     <div>
         <NavBar isFixedPage={false} />,
-        <form action="/store-service" method="POST" className="service-container" id='form' onSubmit={handleSubmit}>
+        <form action="/store-service" method="POST" 
+        className="service-container" id='form' onSubmit={handleSubmit}>
           <div className="service-title">
-            <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' required /><br />
+            <input type="text" placeholder="Name of the Club" 
+            className="club-title-text-box" name="title" id='title' required /><br />
           </div>
 
-          <div className="service-info-container">
+          <div className="service-navbar">
+            <div className="service-navbar-text" id={styleColor1}>
+              <a href="#" onClick={changeVisibility1} >Overview</a>
+            </div>
+            <div className="service-navbar-text" id={styleColor2}>
+              <a href="#" onClick={changeVisibility2} >Contacts & Social Media</a>
+            </div>
+            <div className="service-navbar-text" id={styleColor3}>
+              <a href="#" onClick={changeVisibility3} >Sign Up Today</a>
+            </div>
+          </div>
+
+          <div className="service-info-container" id={stylePage1}>
             <div className="file-container" id="file-container">
               <header>Club Photo Uploader</header>
               <label className="file-form" htmlFor="file-input">
                 <i className="fas fa-cloud-upload-alt" id="file-icon" />
                 <p>Click to Upload File</p>
               </label>
-              <input className="file-input" id="file-input" type="file" name="file" onChange={handleFileChange} required />
+              <input className="file-input" id="file-input" type="file" 
+              name="file" onChange={handleFileChange} required />
               <section className="progress-area" />
               <section className="uploaded-area" />
             </div>
 
-            <div className="service-details" id="service-details">
+            <div className="service-details">
               <div className="service-author">
-                <input type="text" placeholder="President of the Club" className="meeting-details-title-box" name="subtitle" id='meeting-details-title-box' required /><br />
+                <input type="text" placeholder="President of the Club" 
+                className="meeting-details-title-box" name="subtitle" id='meeting-details-title-box' required /><br />
               </div>
 
               <div className="service-header">Meeting Details</div>
 
               <div>
                 <u> Time: </u>
-                <input type="text" placeholder="Include start and end time" className="meeting-details-text-box" name="time" id='details-times' required /><br />
+                <input type="text" placeholder="Include start and end time" 
+                className="meeting-details-text-box" name="time" id='details-times' required /><br />
               </div>
 
               <div>
                 <u> Date: </u>
-                <input type="text" placeholder="Include day and month" className="meeting-details-text-box" name="date" id='details-date' required /><br />
+                <input type="text" placeholder="Include day and month" 
+                className="meeting-details-text-box" name="date" id='details-date' required /><br />
               </div>
 
               <div>
                 <u> Location: </u>
-                <input type="text" placeholder="Include building and room" className="meeting-details-text-box" name="location" id='details-location' required /><br />
+                <input type="text" placeholder="Include building and room" 
+                className="meeting-details-text-box" name="location" id='details-location' required /><br />
               </div>
             </div>
           </div>
 
-          <div className="service-description">
-            <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." className="meeting-description-text-box" name="description" id="description" required></textarea>
+          <div className="service-description" id={stylePage1}>
+            <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." 
+            className="meeting-description-text-box" name="description" id="description" required></textarea>
           </div>
 
-          <div className="service-info2-container">
+          <div className="service-info2-container" id={stylePage2}>
             <div className="service-details" id="contact-container">
               <div className="service-author"></div>
               <div className="service-header">Contact Us</div>
 
-          {
+            {
               contactData.map((contactVal,j)=>
               <div className="contacts-container">
                 <select className="club-contacts-selection" name="contact-and-social-media" id='contact-role-1' required>
@@ -227,11 +285,11 @@ function AddService() {
                   <button className="delete-button" onClick={()=>contactDelete(j)}>Delete</button>   
                 </div>
               </div>
-            )
-          }
-          <div className="add-button-container">
-            <button className="add-button" onClick={contactAdd}>Add another Contact</button>
-          </div>
+              )
+            }
+            <div className="add-button-container">
+              <button className="add-button" onClick={contactAdd}>Add another Contact</button>
+            </div>
             {/* <p> {JSON.stringify(contactData)} </p> */}
           </div>
 
@@ -264,9 +322,28 @@ function AddService() {
             </div>
             {/* <p> {JSON.stringify(mediaData)} </p> */}
             </div>
-            
+          </div>
 
-            <div className="authorization-container">
+          <div className="sign-up-form" id={stylePage3}>
+                <form action="" id="form">
+                    <div className="sign-up-form-container">
+                        <div className="text-container" id="name-container">
+                            <label for="name" className="sign-up-form-text"> Full Name: </label>
+                            <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
+                            id="name" name="name" readOnly/><br/>
+                        </div>
+
+                        <div className="text-container" id="email-container">
+                            <label for="email" className="sign-up-form-text"> Email: </label>
+                            <input type="email" className="sign-up-form-input" placeholder="School Email" 
+                            id="email" name="email" readOnly/><br/>
+                        </div>
+                    </div> 
+                    <input type="submit" class="sign-up-submit-button"/><br/>
+                </form>
+              </div>
+
+            <div className="authorization-container" id={stylePage3}>
               <label htmlFor="authorization" className="authorization-text">
                 By submitting this application I authorize Community ALI to publish all the information of this application for anybody
                 to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
@@ -277,7 +354,6 @@ function AddService() {
               {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
               <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" />
             </div>
-          </div>
         </form>
       </div>
   );

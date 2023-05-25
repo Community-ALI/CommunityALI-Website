@@ -87,7 +87,6 @@ body
 
 .service-header
 {
-    text-decoration: underline;
     font-size : 22px;
     display: flex;
     justify-content: center;
@@ -174,11 +173,6 @@ body
     justify-content: flex-start;
     flex-flow: wrap;
     align-items: center;
-}
-
-.text-container
-{
-    margin-right : 30px;
 }
 
 .service-info-text

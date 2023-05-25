@@ -42,6 +42,149 @@ body
     margin-bottom: 40px;
 }
 
+.service-navbar
+{
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    margin-bottom : 60px;
+}
+
+.service-navbar-text
+{
+    padding-bottom : 4px;
+    transition: 300ms ease;
+}
+
+.service-navbar-text a
+{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.sign-up-form
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-form-container
+{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+    align-items: center;
+}
+
+.sign-up-form-text
+{
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.sign-up-form-input
+{
+    padding: 8px 10px;
+    margin-bottom: 60px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    width: 350px;
+}
+
+.sign-up-submit-button {
+    width: 100%;
+    background-color: #00468D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: 300ms ease;
+}
+
+#name-container
+{
+    margin-right : 50px;
+}
+
+#page1Visible
+{
+    display: flex;
+}
+
+#page1Invisible
+{
+    display: none;
+}
+
+#page2Visible
+{
+    display: flex;
+}
+
+#page2Invisible
+{
+    display: none;
+}
+
+#page3Visible
+{
+    display: flex;
+}
+
+#page3Invisible
+{
+    display: none;
+}
+
+#overviewColor
+{
+    border-bottom: 3px solid #001E60;
+}
+
+#contactColor
+{
+    border-bottom: 3px solid white;
+}
+
+#signUpColor
+{
+    border-bottom: 3px solid white;
+}
+
+#overviewChangeColor
+{
+    border-bottom: 3px solid white;
+}
+
+#contactChangeColor
+{
+    border-bottom: 3px solid #001E60;
+}
+
+#signUpChangeColor
+{
+    border-bottom: 3px solid #001E60;
+}
+
 .service-info-container
 {
     display: flex;
@@ -78,7 +221,6 @@ body
 
 .service-header
 {
-    text-decoration: underline;
     font-size : 22px;
     display: flex;
     justify-content: center;
@@ -136,7 +278,10 @@ body
 
 .authorization-container
 {
-    width : 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .sign-up-title
@@ -227,12 +372,12 @@ body
 
 .application-buttons
 {
-    width: 100%;
+    width: 90%;
     background-color: #001E60;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
     margin-top: 40px;
+    margin-bottom: 40px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -243,6 +388,12 @@ body
     letter-spacing: 2px;
     transition: 300ms ease;
     text-align: center;
+}
+
+.authorization-text
+{
+    width : 90%;
+    margin-top : 60px;
 }
 
 #submit-button:hover 
@@ -358,7 +509,7 @@ section .details span
 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     margin-top : 30px;
 }
 
@@ -384,12 +535,90 @@ section .details span
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     text-decoration: none;
-    background-color: #001E60;
+    background-color: transparent;
     border-radius: 10px;
     cursor: pointer;
     padding: 5px 8px;
     border: none;
 }
+
+.wrapper{
+    width: 496px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 25px 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.06);
+  }
+  .wrapper :where(.title, li, li i, .details){
+    display: flex;
+    align-items: center;
+  }
+  .title img{
+    max-width: 21px;
+  }
+  .title h2{
+    font-size: 21px;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+  .wrapper .content{
+    margin: 10px 0;
+  }
+  .content p{
+    font-size: 15px;
+  }
+  .content ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 7px;
+    margin: 12px 0;
+    border-radius: 5px;
+    border: 1px solid #a6a6a6;
+  }
+  .content ul  li{
+    color: #333;
+    margin: 4px 3px;
+    list-style: none;
+    border-radius: 5px;
+    background: #F2F2F2;
+    padding: 5px 8px 5px 10px;
+    border: 1px solid #e3e1e1;
+  }
+  .content ul li i{
+    height: 20px;
+    width: 20px;
+    color: #808080;
+    margin-left: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #dfdfdf;
+    justify-content: center;
+  }
+  .content ul input{
+    flex: 1;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+  .wrapper .details{
+    justify-content: space-between;
+  }
+  .details button{
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 9px 15px;
+    border-radius: 5px;
+    background: #5372F0;
+    transition: background 0.3s ease;
+  }
+  .details button:hover{
+    background: #2c52ed;
+  }
 
 @media all and (max-width : 1300px)
 {
