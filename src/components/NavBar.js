@@ -27,7 +27,9 @@ function NavBar(props) {
     
     useEffect(() => {
         const handleScroll = event => {
-            setHasScrolled(window.scrollY > 0 ? true : false);
+            if (props.isFixedPage){ // prevent it from looking different if the bar is fixed
+                setHasScrolled(window.scrollY > 0 ? true : false);
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
