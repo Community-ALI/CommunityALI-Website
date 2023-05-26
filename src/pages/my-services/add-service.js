@@ -9,6 +9,7 @@ function AddService() {
 
   const [contactData, setContactData] = useState([{contactRole:"", contactName:"", contactEmail:""}])
   const [mediaData, setMediaData] = useState([{mediaType:"", mediaName:"", mediaUrl:""}])
+  const [faqData, setFaqData] = useState([{faqQuestion:"", faqAnswer:""}])
 
   const contactAdd=()=>{
     setContactData([...contactData,{contactRole:"", contactName:"", contactEmail:""}])
@@ -16,6 +17,10 @@ function AddService() {
 
   const mediaAdd=()=>{
     setMediaData([...mediaData,{mediaType:"", mediaName:"", mediaUrl:""}])
+  }
+
+  const faqAdd=()=>{
+    setFaqData([...faqData,{faqQuestion:"", faqAnswer:""}])
   }
   
   const contactDelete=(j)=>{
@@ -28,6 +33,12 @@ function AddService() {
     const deleteMediaVal = [...mediaData]
     deleteMediaVal.splice(i,1)
     setMediaData(deleteMediaVal)
+  }
+
+  const faqDelete=(k)=>{
+    const deleteFaqVal = [...faqData]
+    deleteFaqVal.splice(k,1)
+    setFaqData(deleteFaqVal)
   }
   
   const contactChange=(h,j)=>{
@@ -44,40 +55,67 @@ function AddService() {
     setMediaData(onChangeMediaVal)
   }
 
+  const faqChange=(p,k)=>{
+    const {name, value} = p.target
+    const onChangeFaqVal = [...faqData]
+    onChangeFaqVal[k][name] = value
+    setFaqData(onChangeFaqVal)
+  }
+
   const[stylePage1, setStylePage1] = useState("page1Visible");
   const[stylePage2, setStylePage2] = useState("page2Invisible");
   const[stylePage3, setStylePage3] = useState("page3Invisible");
+  const[stylePage4, setStylePage4] = useState("page4Invisible");
 
   const[styleColor1, setStyleColor1] = useState("overviewColor");
   const[styleColor2, setStyleColor2] = useState("contactColor");
-  const[styleColor3, setStyleColor3] = useState("signUpColor");
+  const[styleColor3, setStyleColor3] = useState("faqColor");
+  const[styleColor4, setStyleColor4] = useState("signUpColor");
 
   const changeVisibility1=()=>{
     setStylePage1("page1Visible");
     setStylePage2("page2Invisible");
     setStylePage3("page3Invisible");
+    setStylePage4("page4Invisible");
     setStyleColor1("overviewColor");
     setStyleColor2("contactColor");
-    setStyleColor3("signUpColor");
+    setStyleColor3("faqColor");
+    setStyleColor4("signUpColor");
   }
 
   const changeVisibility2=()=>{
     setStylePage1("page1Invisible");
     setStylePage2("page2Visible");
     setStylePage3("page3Invisible");
+    setStylePage4("page4Invisible");
     setStyleColor1("overviewChangeColor");
     setStyleColor2("contactChangeColor");
-    setStyleColor3("signUpColor");
+    setStyleColor3("faqColor");
+    setStyleColor4("signUpColor");
   }
 
   const changeVisibility3=()=>{
     setStylePage1("page1Invisible");
     setStylePage2("page2Invisible");
     setStylePage3("page3Visible");
+    setStylePage4("page4Invisible");
     setStyleColor1("overviewChangeColor");
     setStyleColor2("contactColor");
-    setStyleColor3("signUpChangeColor");
+    setStyleColor3("faqChangeColor");
+    setStyleColor4("signUpColor");
   }
+
+  const changeVisibility4=()=>{
+    setStylePage1("page1Invisible");
+    setStylePage2("page2Invisible");
+    setStylePage3("page3Invisible");
+    setStylePage4("page4Visible");
+    setStyleColor1("overviewChangeColor");
+    setStyleColor2("contactColor");
+    setStyleColor3("faqColor");
+    setStyleColor4("signUpChangeColor");
+  }
+
 
   
 
@@ -213,7 +251,10 @@ function AddService() {
             <a href="#" onClick={changeVisibility2} >Contacts & Social Media</a>
           </div>
           <div className="service-navbar-text" id={styleColor3}>
-            <a href="#" onClick={changeVisibility3} >Sign Up Today</a>
+            <a href="#" onClick={changeVisibility3} >FAQ</a>
+          </div>
+          <div className="service-navbar-text" id={styleColor4}>
+            <a href="#" onClick={changeVisibility4} >Sign Up Today</a>
           </div>
         </div>
 
@@ -292,7 +333,7 @@ function AddService() {
           <div className="add-button-container">
             <button className="add-button" onClick={contactAdd}>Add another Contact</button>
           </div>
-          <p> {JSON.stringify(contactData)} </p> 
+          {/* <p> {JSON.stringify(contactData)} </p>  */}
         </div>
 
           <div className="service-details" id="contact-container">
@@ -320,15 +361,40 @@ function AddService() {
             </div>
             )
           }
+
           <div className="add-button-container">
             <button className="add-button" onClick={mediaAdd}>Add another Social Media</button>
           </div>
-          <p> {JSON.stringify(mediaData)} </p> 
+          {/* <p> {JSON.stringify(mediaData)} </p>  */}
           </div>
         </div>
 
-        <div className="sign-up-form" id={stylePage3}>
+        <div id={stylePage3}>
+          <div className="" id="faq-container">
+              <div className="service-header" id="faq-title">Frequently Asked Questions</div>
+            {
+              faqData.map((faqVal,k)=>
+              <div className="contacts-container">
+                <input type="text" placeholder="Insert Question Here" className="contacts-text-box" name="faqQuestion" 
+                value={faqVal.faqQuestion} onChange={(p)=> faqChange(p,k)} id="question-text-box"required /><br />
+                <div className="text-button-container">
+                  <input type="url" placeholder="Insert Answer to the Question Above" className="contacts-email-box" name="faqAnswer" 
+                  value={faqVal.faqAnswer} onChange={(p)=> faqChange(p,k)} id="answer-text-box" required /><br />
+                  <button className="delete-button" onClick={()=>faqDelete(k)}>Delete</button>    
+                </div>
+              </div>
+              )
+            }
+            <div className="add-button-container">
+              <button className="add-button" onClick={faqAdd}>Add another FAQ</button>
+            </div>
+            {/* <p> {JSON.stringify(faqData)} </p>  */}
+          </div>
+        </div>     
+
+        <div className="sign-up-form" id={stylePage4}>
               <form action="" id="form">
+                <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
                   <div className="sign-up-form-container">
                       <div className="text-container" id="name-container">
                           <label for="name" className="sign-up-form-text"> Full Name: </label>
@@ -346,7 +412,7 @@ function AddService() {
               </form>
             </div>
 
-          <div className="authorization-container" id={stylePage3}>
+          <div className="authorization-container" id={stylePage4}>
             <label htmlFor="authorization" className="authorization-text">
               By submitting this application I authorize Community ALI to publish all the information of this application for anybody
               to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
