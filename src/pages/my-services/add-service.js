@@ -390,7 +390,7 @@ function AddService() {
         </div>     
 
         <div className="sign-up-form" id={stylePage4}>
-              <form action="" id="form">
+              <div id="form">
                 <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
                   <div className="sign-up-form-container">
                       <div className="text-container" id="name-container">
@@ -405,8 +405,8 @@ function AddService() {
                           id="email" name="email" readOnly/><br/>
                       </div>
                   </div> 
-                  <input type="submit" class="sign-up-submit-button"/><br/>
-              </form>
+                  <input placeholder="Submit" class="sign-up-submit-button" readOnly/><br/>
+              </div>
             </div>
 
           <div className="authorization-container" id={stylePage4}>

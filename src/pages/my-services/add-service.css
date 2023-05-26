@@ -135,6 +135,7 @@ input[data-autocompleted]
     cursor: pointer;
     letter-spacing: 2px;
     transition: 300ms ease;
+    text-align: center;
 }
 
 #name-container
