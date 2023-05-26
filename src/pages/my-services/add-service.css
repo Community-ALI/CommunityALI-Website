@@ -184,6 +184,16 @@ input[data-autocompleted]
     display: none;
 }
 
+#contactButtonVisible
+{
+    display: flex;
+}
+
+#contactButtonInvisible
+{
+    display: none;
+}
+
 #overviewColor
 {
     border-bottom: 3px solid #001E60;

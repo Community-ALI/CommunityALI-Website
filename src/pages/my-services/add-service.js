@@ -6,36 +6,56 @@ import addServiceCss from './add-service.css';
 import { document } from "postcss";
 
 function AddService() {
+  const maxContactCount = 5;
+  const maxMediaCount = 5;
+  const maxFaqLength = 10;
 
   const [contactData, setContactData] = useState([{contactRole:"", contactName:"", contactEmail:""}])
   const [mediaData, setMediaData] = useState([{mediaType:"", mediaName:"", mediaUrl:""}])
   const [faqData, setFaqData] = useState([{faqQuestion:"", faqAnswer:""}])
 
   const contactAdd=()=>{
+    if (contactData.length>=maxContactCount-1){
+      setContactVisible(false);
+    };
     setContactData([...contactData,{contactRole:"", contactName:"", contactEmail:""}])
+    
+    
   }
 
   const mediaAdd=()=>{
+    if (mediaData.length >=maxMediaCount-1){
+      setSocialMediaVisible(false)
+    }
     setMediaData([...mediaData,{mediaType:"", mediaName:"", mediaUrl:""}])
+    
   }
 
   const faqAdd=()=>{
+    if (faqData.length>=maxFaqLength-1){
+      setFAQVisible(false);
+    }
     setFaqData([...faqData,{faqQuestion:"", faqAnswer:""}])
   }
   
   const contactDelete=(j)=>{
+
+    setContactVisible(true);
+    
     const deleteContactVal = [...contactData]
     deleteContactVal.splice(j,1)
     setContactData(deleteContactVal)
   }
 
   const mediaDelete=(i)=>{
+    setSocialMediaVisible(true);
     const deleteMediaVal = [...mediaData]
     deleteMediaVal.splice(i,1)
     setMediaData(deleteMediaVal)
   }
 
   const faqDelete=(k)=>{
+    setFAQVisible(true);
     const deleteFaqVal = [...faqData]
     deleteFaqVal.splice(k,1)
     setFaqData(deleteFaqVal)
@@ -71,6 +91,10 @@ function AddService() {
   const[styleColor2, setStyleColor2] = useState("contactColor");
   const[styleColor3, setStyleColor3] = useState("faqColor");
   const[styleColor4, setStyleColor4] = useState("signUpColor");
+
+  const[contactVisible, setContactVisible] = useState(true);
+  const[socialMediaVisible, setSocialMediaVisible] = useState(true);
+  const[FAQVisible, setFAQVisible] = useState(true);
 
   const changeVisibility1=()=>{
     setStylePage1("page1Visible");
@@ -327,9 +351,12 @@ function AddService() {
             </div>
             )
           }
+          {contactVisible &&
           <div className="add-button-container">
             <button type="button" className="add-button" onClick={contactAdd}>Add another Contact</button>
           </div>
+          }
+          
           {/* <p> {JSON.stringify(contactData)} </p>  */}
         </div>
 
@@ -358,10 +385,12 @@ function AddService() {
             </div>
             )
           }
-
-          <div className="add-button-container">
+          {socialMediaVisible && 
+            <div className="add-button-container">
             <button type="button" className="add-button" onClick={mediaAdd}>Add another Social Media</button>
           </div>
+          }
+          
           {/* <p> {JSON.stringify(mediaData)} </p>  */}
           </div>
         </div>
@@ -382,9 +411,12 @@ function AddService() {
               </div>
               )
             }
+            { FAQVisible &&
             <div className="add-button-container">
               <button type="button" className="add-button" onClick={faqAdd}>Add another FAQ</button>
             </div>
+            }
+            
             {/* <p> {JSON.stringify(faqData)} </p>  */}
           </div>
         </div>     
