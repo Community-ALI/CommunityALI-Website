@@ -116,9 +116,6 @@ function AddService() {
     setStyleColor4("signUpChangeColor");
   }
 
-
-  
-
       const [file, setFile] = useState(null);
     
       const handleSubmit = (event) => {
@@ -236,11 +233,11 @@ function AddService() {
     <div>
       <NavBar isFixedPage={false} />,
       <form action="/store-service" method="POST" 
-      className="service-container" id='form' onSubmit={handleSubmit}>
+      className="service-container" id='form'>
         
         <div className="service-title">
           <input type="text" placeholder="Name of the Club" 
-          className="club-title-text-box" name="title" id='title' required /><br />
+          className="club-title-text-box" name="title" id='title'/><br />
         </div>
 
         <div className="service-navbar">
@@ -266,7 +263,7 @@ function AddService() {
               <p>Click to Upload File</p>
             </label>
             <input className="file-input" id="file-input" type="file" 
-            name="file" onChange={handleFileChange} required />
+            name="file" onChange={handleFileChange}/>
             <section className="progress-area" />
             <section className="uploaded-area" />
           </div>
@@ -274,7 +271,7 @@ function AddService() {
           <div className="service-details">
             <div className="service-author">
               <input type="text" placeholder="President of the Club" 
-              className="meeting-details-title-box" name="subtitle" id='meeting-details-title-box' required /><br />
+              className="meeting-details-title-box" name="subtitle" id='meeting-details-title-box' /><br />
             </div>
 
             <div className="service-header">Meeting Details</div>
@@ -282,26 +279,26 @@ function AddService() {
             <div>
               <u> Time: </u>
               <input type="text" placeholder="Include start and end time" 
-              className="meeting-details-text-box" name="time" id='details-times' required /><br />
+              className="meeting-details-text-box" name="time" id='details-times' /><br />
             </div>
 
             <div>
               <u> Date: </u>
               <input type="text" placeholder="Include day and month" 
-              className="meeting-details-text-box" name="date" id='details-date' required /><br />
+              className="meeting-details-text-box" name="date" id='details-date' /><br />
             </div>
 
             <div>
               <u> Location: </u>
               <input type="text" placeholder="Include building and room" 
-              className="meeting-details-text-box" name="location" id='details-location' required /><br />
+              className="meeting-details-text-box" name="location" id='details-location' /><br />
             </div>
           </div>
         </div>
 
         <div className="service-description" id={stylePage1}>
           <textarea rows="5" type="text" placeholder="Include a description of what the club does and its mission..." 
-          className="meeting-description-text-box" name="description" id="description" required></textarea>
+          className="meeting-description-text-box" name="description" id="description" ></textarea>
         </div>
 
         <div className="service-info2-container" id={stylePage2}>
@@ -312,7 +309,7 @@ function AddService() {
           {
             contactData.map((contactVal,j)=>
             <div className="contacts-container">
-              <select className="club-contacts-selection" name="contactRole" id='contact-role-1' required
+              <select className="club-contacts-selection" name="contactRole" id='contact-role-1' 
               value={contactVal.contactRole} onChange={(h)=> contactChange(h,j)}>
                 <option value="" selected> Select Officer</option>
                 <option value="president">President</option>
@@ -321,17 +318,17 @@ function AddService() {
                 <option value="advisor">Advisor</option>
               </select>
               <input type="text" placeholder="Full Name of Officer" className="contacts-text-box" name="contactName" 
-              value={contactVal.contactName} onChange={(h)=> contactChange(h,j)} id='contact-name-1' required /><br />
+              value={contactVal.contactName} onChange={(h)=> contactChange(h,j)} id='contact-name-1'  /><br />
               <div className="text-button-container">
                 <input type="email" placeholder="School or Personal Email of Officer" className="contacts-email-box" name="contactEmail" 
-                value={contactVal.contactEmail} onChange={(h)=> contactChange(h,j)} id='contact-email-1' required /><br />
-                <button className="delete-button" onClick={()=>contactDelete(j)}>Delete</button>   
+                value={contactVal.contactEmail} onChange={(h)=> contactChange(h,j)} id='contact-email-1' /><br />
+                <button type="button" className="delete-button" onClick={()=>contactDelete(j)}>Delete</button>   
               </div>
             </div>
             )
           }
           <div className="add-button-container">
-            <button className="add-button" onClick={contactAdd}>Add another Contact</button>
+            <button type="button" className="add-button" onClick={contactAdd}>Add another Contact</button>
           </div>
           {/* <p> {JSON.stringify(contactData)} </p>  */}
         </div>
@@ -344,7 +341,7 @@ function AddService() {
             mediaData.map((mediaVal,i)=>
             <div className="contacts-container">
               <select className="club-contacts-selection" name="mediaType" 
-              value={mediaVal.mediaType} onChange={(e)=> mediaChange(e,i)} id='contact-role-1' required>
+              value={mediaVal.mediaType} onChange={(e)=> mediaChange(e,i)} id='contact-role-1'>
                 <option value="" selected> Select Media</option>
                 <option value="zoom">Zoom</option>
                 <option value="discord">Discord</option>
@@ -352,18 +349,18 @@ function AddService() {
                 <option value="facebook">Facebook</option>
               </select>
               <input type="text" placeholder="Club Account Name" className="contacts-text-box" name="mediaName" 
-              value={mediaVal.mediaName} onChange={(e)=> mediaChange(e,i)} id='contact-name-4' required /><br />
+              value={mediaVal.mediaName} onChange={(e)=> mediaChange(e,i)} id='contact-name-4' /><br />
               <div className="text-button-container">
                 <input type="url" placeholder="Insert link to the Club Account" className="contacts-email-box" name="mediaUrl" 
-                value={mediaVal.mediaUrl} onChange={(e)=> mediaChange(e,i)} id='contact-email-1' required /><br />
-                <button className="delete-button" onClick={()=>mediaDelete(i)}>Delete</button>    
+                value={mediaVal.mediaUrl} onChange={(e)=> mediaChange(e,i)} id='contact-email-1' /><br />
+                <button type="button" className="delete-button" onClick={()=>mediaDelete(i)}>Delete</button>    
               </div>
             </div>
             )
           }
 
           <div className="add-button-container">
-            <button className="add-button" onClick={mediaAdd}>Add another Social Media</button>
+            <button type="button" className="add-button" onClick={mediaAdd}>Add another Social Media</button>
           </div>
           {/* <p> {JSON.stringify(mediaData)} </p>  */}
           </div>
@@ -376,17 +373,17 @@ function AddService() {
               faqData.map((faqVal,k)=>
               <div className="contacts-container">
                 <input type="text" placeholder="Insert Question Here" className="contacts-text-box" name="faqQuestion" 
-                value={faqVal.faqQuestion} onChange={(p)=> faqChange(p,k)} id="question-text-box"required /><br />
+                value={faqVal.faqQuestion} onChange={(p)=> faqChange(p,k)} id="question-text-box" /><br />
                 <div className="text-button-container">
                   <input type="url" placeholder="Insert Answer to the Question Above" className="contacts-email-box" name="faqAnswer" 
-                  value={faqVal.faqAnswer} onChange={(p)=> faqChange(p,k)} id="answer-text-box" required /><br />
-                  <button className="delete-button" onClick={()=>faqDelete(k)}>Delete</button>    
+                  value={faqVal.faqAnswer} onChange={(p)=> faqChange(p,k)} id="answer-text-box" /><br />
+                  <button type="button" className="delete-button" onClick={()=>faqDelete(k)}>Delete</button>    
                 </div>
               </div>
               )
             }
             <div className="add-button-container">
-              <button className="add-button" onClick={faqAdd}>Add another FAQ</button>
+              <button type="button" className="add-button" onClick={faqAdd}>Add another FAQ</button>
             </div>
             {/* <p> {JSON.stringify(faqData)} </p>  */}
           </div>
@@ -421,7 +418,7 @@ function AddService() {
               against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
             </label>
             {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
-            <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" />
+            <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" onClick={handleSubmit} />
           </div>
       </form>
     </div>
