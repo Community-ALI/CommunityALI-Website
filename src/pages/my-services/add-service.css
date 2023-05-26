@@ -506,6 +506,15 @@ input[data-autocompleted]
     color : #ecaa1e;
 }
 
+#file-container-with-file
+{
+    width: 40%;
+    background-color: #001E60;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+
 .file-container
 {
     width: 40%;

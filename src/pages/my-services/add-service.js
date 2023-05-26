@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useRef, Component, useState, useEffect } from "react";
 // import '../components/footer.css';
 import NavBar from '../../components/NavBar';
 import '../../components/navbar.css';
@@ -9,6 +9,9 @@ function AddService() {
   const maxContactCount = 5;
   const maxMediaCount = 5;
   const maxFaqLength = 10;
+
+
+  const fileUploadText = useRef();
 
   const [contactData, setContactData] = useState([{contactRole:"", contactName:"", contactEmail:""}])
   const [mediaData, setMediaData] = useState([{mediaType:"", mediaName:"", mediaUrl:""}])
@@ -80,6 +83,7 @@ function AddService() {
     const onChangeFaqVal = [...faqData]
     onChangeFaqVal[k][name] = value
     setFaqData(onChangeFaqVal)
+    
   }
 
   const[stylePage1, setStylePage1] = useState("page1Visible");
@@ -92,6 +96,7 @@ function AddService() {
   const[styleColor3, setStyleColor3] = useState("faqColor");
   const[styleColor4, setStyleColor4] = useState("signUpColor");
 
+  const[fileContainerID, setFileContainerID] = useState('file-container')
   const[contactVisible, setContactVisible] = useState(true);
   const[socialMediaVisible, setSocialMediaVisible] = useState(true);
   const[FAQVisible, setFAQVisible] = useState(true);
@@ -251,6 +256,16 @@ function AddService() {
       const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         setFile(selectedFile);
+        if (selectedFile){
+          setFileContainerID('file-container-with-file')
+          const element = fileUploadText.current;
+          element.textContent = `File Uploaded! (${selectedFile.name})`
+        }
+        else{
+          setFileContainerID('file-container')
+          const element = fileUploadText.current;
+          element.textContent = `Click to upload a single image File`
+        }
       };
     
   return (
@@ -280,11 +295,12 @@ function AddService() {
         </div>
 
         <div className="service-info-container" id={stylePage1}>
-          <div className="file-container" id="file-container">
+          <div className="file-container" id={fileContainerID} >
             <header>Club Photo Uploader</header>
             <label className="file-form" htmlFor="file-input">
               <i className="fas fa-cloud-upload-alt" id="file-icon" />
-              <p>Click to Upload File</p>
+              <p ref={fileUploadText}>Click to upload a single image File</p>
+
             </label>
             <input className="file-input" id="file-input" type="file" 
             name="file" onChange={handleFileChange}/>
