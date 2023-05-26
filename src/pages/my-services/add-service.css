@@ -462,6 +462,17 @@ body
     margin-top : 60px;
 }
 
+#draft-button
+{
+    margin-bottom : 0px;
+}
+
+#draft-button:hover
+{
+    background-color: #00468D;
+}
+
+
 #submit-button:hover 
 {
     background-color: #ecaa1e;

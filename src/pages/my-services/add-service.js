@@ -418,6 +418,7 @@ function AddService() {
               against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
             </label>
             {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
+            <input type="button" value="Save Draft" id="draft-button" className="application-buttons" />
             <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" onClick={handleSubmit} />
           </div>
       </form>
