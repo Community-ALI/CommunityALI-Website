@@ -2,11 +2,42 @@ import React, { Component, useState, useEffect } from "react";
 import './main-page.css';
 import NavBar from '../../components/NavBar';
 // create the information required to display the page
+
+const handleDeleteService = async (title) => {
+  try {
+    var token = localStorage.getItem("token");
+    alert(`are you sure you want to delete ${title} ?`);
+    const response = await fetch(`http://localhost:3000/delete-service?service=${title}`,
+        {
+          method: 'POST',
+          headers: {
+        'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('yay.')
+    })
+      
+
+    if (!response.ok) {
+      throw new Error('Failed to delete service');
+    }
+
+    // Service deleted successfully, handle the response here
+
+  } catch (error) {
+    console.error(error);
+    // Handle error cases here
+  }
+};
+
+
 function MyServicePageDisplay(props) {
     const service = props.service;
   
     const handleBackgroundClick = () => {
-      window.location.href = '/view-applicants';
+      window.location.href = 'view-applicants?service='+service.title;
     };
      
     return (
@@ -22,6 +53,13 @@ function MyServicePageDisplay(props) {
             className="edit-button"
             href={`edit-service?service=${service.title}`}
           >Edit</a>
+          <button
+            className="service-delete-button"
+            onClick={(event) => {
+              event.stopPropagation(); // Prevent event bubbling
+              handleDeleteService(service.title);
+            }}
+          >Delete</button>
         </div>
       </div>
     );
