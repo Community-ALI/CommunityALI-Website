@@ -76,6 +76,7 @@ function MyServicesHome() {
  
     const [services, setServices] = useState([]);
     const [username, setUsername] = useState('no username associated with token')
+    const [notificaitons, setNotifications] = useState(0); // TODO connect this with backend
 
     useEffect(() => {
         const fetchData = async () => {
@@ -122,7 +123,7 @@ function MyServicesHome() {
         <div className="loader-wrapper">
             <span className="loader"><span className="loader-inner"></span></span>
         </div>,
-        <NavBar isFixedPage={false} />,
+        <NavBar isFixedPage={false} notificaitons={notificaitons} />,
         <div className = "username-title">
             {"Welcome: " + username}
         </div>
@@ -136,7 +137,10 @@ function MyServicesHome() {
             </a>
         </div>
         {services.map(service => ( // display each service
-            <MyServicePageDisplay key={service._id} service={service} />
+            <MyServicePageDisplay 
+              key={service._id} 
+              service={service} 
+              notificaitons={notificaitons} />
         ))}
     </div>
  )
