@@ -1,8 +1,16 @@
 .notification-icon {
     background-color: red;
-    border-radius: 16px;
+    padding: 4px;
+    font-size: medium;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-radius: 32px;
     color: white;
     position: absolute;
     right: -2px;
-    top: -2px;
+    top: -8px;
+}
+
+.relative-container {
+    position: relative;
 }

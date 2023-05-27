@@ -1,6 +1,7 @@
 import React, { useRef, Component, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
+import '../../public/stylesheets/style.css'
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 import { useRect } from 'react-use-rect';
@@ -9,10 +10,17 @@ function MyServicesNavButton(props) {
     if(props.token){
         return (
             <Link 
-                className="navigation-button navigation-text" 
+                className="navigation-button navigation-text relative-container" 
                 to="/my-services"
                 id="applicants"
-            >My Services</Link>
+            >
+                <div 
+                    className={
+                        ' notification-icon' + 
+                        (props.notificaitons < 1) ? ' hidden' : ''
+                    }
+                >{props.notificaitons}</div>
+                My Services</Link>
         )
     }
 
@@ -74,7 +82,7 @@ function NavBar(props) {
                             className="navigation-button navigation-text" 
                             to="/services"
                         >Explore</Link>
-                        <MyServicesNavButton token={token} />
+                        <MyServicesNavButton token={token} notificaitons={props.notificaitons} />
                         <a 
                             className="navigation-button navigation-text" 
                             href="https://www.mjc.edu/" 
