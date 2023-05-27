@@ -11,7 +11,7 @@ function LoginPopup(props) {
             event.preventDefault();
             const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            let authData
+            let authData;
             if (validEmailRegex.test(usernameOrEmail)) {
                 authData = { usernameOrEmail, password }
             } else {

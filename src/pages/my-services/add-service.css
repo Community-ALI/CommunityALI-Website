@@ -15,6 +15,16 @@ body
     min-height: calc(100vh);
 }
 
+input:-webkit-autofill, input:-webkit-autofill:focus 
+{
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+input[data-autocompleted] 
+{
+    background-color: transparent !important;
+}
+
 .service-container
 {
     color: white;
@@ -80,6 +90,13 @@ body
     align-items: center;
 }
 
+#sign-up-header
+{
+    font-size : 25px;
+    font-weight : 400;
+    margin-bottom : 40px;
+}
+
 .sign-up-form-text
 {
     display: block;
@@ -118,6 +135,7 @@ body
     cursor: pointer;
     letter-spacing: 2px;
     transition: 300ms ease;
+    text-align: center;
 }
 
 #name-container
@@ -148,9 +166,30 @@ body
 #page3Visible
 {
     display: flex;
+    justify-content: center;
 }
 
 #page3Invisible
+{
+    display: none;
+}
+
+#page4Visible
+{
+    display: flex;
+}
+
+#page4Invisible
+{
+    display: none;
+}
+
+#contactButtonVisible
+{
+    display: flex;
+}
+
+#contactButtonInvisible
 {
     display: none;
 }
@@ -161,6 +200,11 @@ body
 }
 
 #contactColor
+{
+    border-bottom: 3px solid white;
+}
+
+#faqColor
 {
     border-bottom: 3px solid white;
 }
@@ -176,6 +220,11 @@ body
 }
 
 #contactChangeColor
+{
+    border-bottom: 3px solid #001E60;
+}
+
+#faqChangeColor
 {
     border-bottom: 3px solid #001E60;
 }
@@ -336,6 +385,11 @@ body
     color : white;
 }
 
+.contacts-container
+{
+    margin-bottom: 10px;
+}
+
 .contacts-text-box
 {
     padding: 4px 10px;
@@ -347,6 +401,7 @@ body
     outline : none;
     color : white;
 }
+
 
 .contacts-email-box
 {
@@ -368,6 +423,38 @@ body
     outline : none;
     color : #ecaa1e;
     font-size: clamp(8px, 3vh, 20px);
+}
+
+#question-text-box
+{
+    width : 98%;
+}
+
+#answer-text-box
+{
+    width: 92%;
+    font-size: clamp(8px, 3vh, 18px);
+}
+
+#faq-container
+{
+    color: white;
+    background-color: #00468D;
+    font-size: clamp(8px, 3vh, 20px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 50px;
+    position: relative;
+    padding: 25px 25px;
+    border-radius: 20px;
+    background-size: cover;
+    transition: 300ms ease;
+    width: 80%;
+}
+
+#faq-title 
+{
+    margin-bottom : 10px;
 }
 
 .application-buttons
@@ -396,6 +483,17 @@ body
     margin-top : 60px;
 }
 
+#draft-button
+{
+    margin-bottom : 0px;
+}
+
+#draft-button:hover
+{
+    background-color: #00468D;
+}
+
+
 #submit-button:hover 
 {
     background-color: #ecaa1e;
@@ -406,6 +504,15 @@ body
 {
     background-color: #00468D;
     color : #ecaa1e;
+}
+
+#file-container-with-file
+{
+    width: 40%;
+    background-color: #001E60;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
 }
 
 .file-container
@@ -542,84 +649,6 @@ section .details span
     padding: 5px 8px;
     border: none;
 }
-
-.wrapper{
-    width: 496px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 18px 25px 20px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.06);
-  }
-  .wrapper :where(.title, li, li i, .details){
-    display: flex;
-    align-items: center;
-  }
-  .title img{
-    max-width: 21px;
-  }
-  .title h2{
-    font-size: 21px;
-    font-weight: 600;
-    margin-left: 8px;
-  }
-  .wrapper .content{
-    margin: 10px 0;
-  }
-  .content p{
-    font-size: 15px;
-  }
-  .content ul{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 7px;
-    margin: 12px 0;
-    border-radius: 5px;
-    border: 1px solid #a6a6a6;
-  }
-  .content ul  li{
-    color: #333;
-    margin: 4px 3px;
-    list-style: none;
-    border-radius: 5px;
-    background: #F2F2F2;
-    padding: 5px 8px 5px 10px;
-    border: 1px solid #e3e1e1;
-  }
-  .content ul li i{
-    height: 20px;
-    width: 20px;
-    color: #808080;
-    margin-left: 8px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #dfdfdf;
-    justify-content: center;
-  }
-  .content ul input{
-    flex: 1;
-    padding: 5px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-  }
-  .wrapper .details{
-    justify-content: space-between;
-  }
-  .details button{
-    border: none;
-    outline: none;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 9px 15px;
-    border-radius: 5px;
-    background: #5372F0;
-    transition: background 0.3s ease;
-  }
-  .details button:hover{
-    background: #2c52ed;
-  }
 
 @media all and (max-width : 1300px)
 {
