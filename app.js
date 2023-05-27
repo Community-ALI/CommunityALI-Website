@@ -11,36 +11,13 @@ app.use(cors());
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// fs allows the server to read html from the client. I think?
-const fs = require('fs');
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
-//react stuff
-var React = require('react');
-var ReactDomServer = require('react-dom/server');
+// get db
+const get_all_services = require("./get-functions/get-all-services");
+const get_one_service = require("./get-functions/get-one-service");
 
-<<<<<<< HEAD
-// connect to database
-const mongoose = require("mongoose");
-mongoose.set('strictQuery', false);
-// mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
-mongoose.connect("mongodb+srv://Community_Catalyst:catalyst_2022@cluster0.parasjl.mongodb.net/test", {useNewUrlParser: true});
-// create format for entering applications
-const applicationSchema = {
-    service: String,
-    name: String,
-    email: String,
-    w_number: String
-}
-// create format for entering services
-const serviceSchema = {
-  title: String,
-  author: String,
-  author_role: String,
-  photo: String,         // FIXME: make photo an image file not string
-  details: Array,
-  description: String,
-  contacts: Array
-=======
 //authorized only get
 const get_user_services = require("./get-functions/get-user-services")
 const get_service_applicants = require("./get-functions/get-service-applicants")
@@ -50,7 +27,6 @@ const store_application = require("./store-functions/store-application");
 // authorized only set
 const store_add_service = require('./store-functions/store-add-service');
 const store_edit_service = require('./store-functions/store-edit-service');
-const delete_service = require('./store-functions/delete-service');
 
 const models = require("./connect-to-database");
 const User = models.User;
@@ -63,84 +39,26 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const corsOptions = {
   origin: 'http://localhost:8080',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
->>>>>>> publishment-main
 }
 
-// connect to a specific part of the database (application-DB.applications)
-const Application = mongoose.model("applications", applicationSchema);
-const Services = mongoose.model("services", serviceSchema);
-// require js modules
-var database_search = require('./database-search.js');
-var service_page_display = require("./service-page-display");
-var application_page_display = require("./application-page-display");
-// fire when an application form is submitted
-app.post('/send-application', upload.none(), function (req, res) {
-
-    // create json data from form
-    const apply = new Application({
-      service: req.body.service,
-      name: req.body.name,
-      email: req.body.email,
-      w_number: req.body.w_number
-    });
-    // save json data to the database
-    apply.save(function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        // display success page
-        console.log('application success');
-        res.send("/signup-success.html");
-      }
-    });
-  });
+app.use(cors(corsOptions));
 
 
-// send user to index page when they search our website url
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
 
-<<<<<<< HEAD
-app.get("/service-search", function (req, res) {
-  var keyword = req.query.keyword;
-  var filter = req.query.filter;
-=======
-
-app.post("/delete-service", DeleteService);
-async function DeleteService(req, res) {
+// send the user one service
+app.get("/get-one-service", async function (req, res) {
   try {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, JWT_SECRET);
-    const username = decodedToken.username;
-    
     const service_name = req.query.service;
     const service = await get_one_service(service_name);
-    
-    if (service.user == username){
-      
-      const success = await delete_service(service_name);
-      console.log(success);
-      if (success){
-        //console.log('service deleted by', username);
-        res.json({success: true});
-      }
-      else{
-        //console.log('problem deleting service from database');
-        res.json({success: false, error: 'internal detabase error'});
-      }
-    }
-    else{
-      console.log(service.user, username)
-      console.log('user does not own service!')
-      res.json({ success: false, error: 'unauthorized' });
-    }
+    console.log('sending service:', service_name);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.json(service);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
     res.json({ success: false, error: 'internal server error' });
   }
-  // authorize user
-}
+});
 
 // send the user every service
 app.get('/get-all-services', async function (req, res){
@@ -153,52 +71,72 @@ app.get('/get-all-services', async function (req, res){
     res.json({ success: false, error: 'internal server error' });
   }
 })
->>>>>>> publishment-main
 
-  // get database data
-  Services.find(function(err, foundServices){
-    if(!err){      
-      // TODO: perform the search using the keyword and filter
-      filteredData = foundServices;
-      //res.render(service_page_display({ results: filteredData }));
-
-      fs.readFile('public/services.html', 'utf-8', (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        // var "data" now contains the contents of the file
-        var html = ReactDomServer.renderToString(React.createElement(service_page_display, { results: filteredData }));
-        let divToReplace = '<div class ="results"></div>';
-        let newDivContent = html
-
-        let newData = data.replace(divToReplace, newDivContent);
-
-        res.send(newData);
-        });
-      };
-
-  
-  });
+// Store user form data from an application in the database
+app.post('/store-application', upload.none(), async function (req, res) {
+  try {
+    const message = await store_application(req);
+    if (message == 'success'){
+      console.log('application from ', req.body.name,' submitted');
+      res.setHeader("Content-Type", "application/json");
+      res.send(JSON.stringify({ success: true }));
+    }
+    else{
+      error('application not subbmitted')
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, error: 'internal server error' });
+  }
 });
 
+// send a user their services
+app.get("/get-user-services", async function (req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    const user_services = await get_user_services(username);
+    
+    res.json({
+      dataServices: user_services,
+      tokenUsername: username});
+    console.log('services belonging to', username, 'sent')
+  } catch (error) {
+    console.log(error);
+    res.json({
+      dataServices: [],
+      tokenUsername: 'not logged in'});
+  }
+})
+// get the applicants to a service (as long as the user is authorized)
+app.get("/get-service-applicants", async function (req, res) {
+  try {
+    const service_name = req.query.service;
+    const service = await get_one_service(service_name);
 
-app.get("/apply-for-service", function (req, res) {
-  var selected_service = req.query.service;
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    if (service && username && username == service.user){
+      // the user owns this service
+      const applicants = await get_service_applicants(service.title);
+      res.json(applicants);
+      console.log(applicants.length, 'applications sent for', service.title)
+    }
+    else{
+      console.log('unauthorized request')
+      res.json({ success: false, error: 'unauthorized' });
+    }
+    
+  } catch (error) {
+    console.log(error);
+    res.json({
+      dataServices: [],
+      tokenUsername: 'not logged in'});
+  }
+})
 
-<<<<<<< HEAD
-  console.log(selected_service);
-  // get database data
-  Services.find(function(err, foundServices){
-    if(!err){
-      // find this exact service
-      console.log('Found service:');
-      var selected_service_json = 'ERROR: no service found'
-      for (service of foundServices){
-        if (service.title == selected_service) {
-          selected_service_json = service;
-        }
-=======
 
 
 
@@ -208,7 +146,7 @@ async function storeService(req, res) {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
-    const account = await User.findOne({ username }); 
+    const account = await User.findOne({ username });
     if (account){ 
       const success = await store_add_service(req, username);
       if (success){
@@ -218,109 +156,8 @@ async function storeService(req, res) {
       else{
         console.log('problem uploading service to database');
         res.json({success: false, error: 'internal detabase error'});
->>>>>>> publishment-main
       }
-      console.log(selected_service_json);
       
-<<<<<<< HEAD
-
-      fs.readFile('public/apply-for-service.html', 'utf-8', (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        const window = domino.createWindow(data);
-        // get the document from the window
-        const document = window.document;
-        // find the element with class "service-title" and set it to the title
-        const title = document.querySelector('.service-title');
-        title.innerHTML = selected_service_json.title;
-        // find the element with class "service-picture" and set it to the image
-        const image = document.querySelector('.service-picture');
-        image.innerHTML = '<img class="MANRRS-picture" src ="../'+selected_service_json.photo+'"></img>' 
-
-        // create details array
-        detailsHTML = '<div class="service-author"></div><div class="service-header">Next Meeting Details</div>';
-        for (detail of selected_service_json.details){
-          detailsHTML+='<div>'
-          detailsHTML+=detail;
-          detailsHTML+='</div>'
-        };
-        // find the element with class "service-details" and set it to the service details
-        const details = document.getElementById('service-details');
-        details.innerHTML = detailsHTML;
-
-        // find the element with class "service-author" and set it to the author
-        const author = document.querySelector('.service-author');
-        author.innerHTML = selected_service_json.author;
-
-        // find the element with class "service-description" and set it to the description
-        const description = document.querySelector('.service-description');
-        description.innerHTML = selected_service_json.description;
-
-
-        contactHTML = '<div class="service-author"></div><div class="service-header">Contact and Social Media</div>';
-        for (contact of selected_service_json.contacts){
-          contactHTML+='<div>'
-          contactHTML+=contact;
-          contactHTML+='</div>'
-        };
-        // find the element with ID "contact-container" and set it to the service details
-        const contacts = document.getElementById('contact-container');
-        contacts.innerHTML = contactHTML;
-
-        // send the modified HTML to the client
-        res.send(window.document.documentElement.outerHTML);
-        });
-      };
-
-  
-  });
-});
-
-
-// see aplications
-// app.get("/Applications", function (req, res) {
-//   var keyword = req.query.keyword;
-//   var filter = req.query.filter;
-
-//   // get database
-//   Application.find(function(err, foundServices){
-//     if(!err){
-//       console.log(foundServices[0].name);
-      
-//       // perform the search using the keyword and filter
-//       filteredData = foundServices;
-//       //res.render(service_page_display({ results: filteredData }));
-//       // res.sendFile(__dirname +'/public/index.html')
-//       fs.readFile('public/services.html', 'utf-8', (err, data) => {
-//         if (err) {
-//           console.error(err);
-//           return;
-//         }
-//         // data now contains the contents of the file
-//         var html = ReactDomServer.renderToString(React.createElement(application_page_display, { results: filteredData }));
-//         let divToReplace = '<div class ="results"></div>';
-//         let newDivContent = '<div id="target">' + html + '</div>';
-
-//         let newData = data.replace(divToReplace, newDivContent);
-
-//         res.send(newData);
-
-//         });
-//       };
-
-  
-//   });
-// });
-
-
-let port = process.env.PORT; 
-if ( port == null || port == ""){
-  port = 3000;
-}
-
-=======
     }
     else{
       console.log('account does not exist!')
@@ -331,10 +168,12 @@ if ( port == null || port == ""){
     res.json({ success: false, error: 'internal server error' });
   }
   // authorize user
+  
+  
 }
 
-app.post("/edit-service", upload.array("files"), storeEditService);
-async function storeEditService(req, res) {
+app.post("/edit-service", upload.array("files"), storeService);
+async function storeService(req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -517,7 +356,6 @@ app.post('/api/register', async (req, res) => {
 // Server configuration
 const port = process.env.PORT || 3000;
 
->>>>>>> publishment-main
 app.listen(port, function(){
   console.log(`Server is running on port ${port}`);
 });
