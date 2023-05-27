@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import './main-page.css';
+import '../../../public/stylesheets/style.css'
 import NavBar from '../../components/NavBar';
 // create the information required to display the page
 
@@ -42,6 +43,12 @@ function MyServicePageDisplay(props) {
      
     return (
       <div className="user-service" onClick={handleBackgroundClick}>
+        <div 
+            className={
+                ' notification-icon' + 
+                (props.notificaitons < 1) ? ' hidden' : ''
+            }
+        >{props.notificaitons}</div>
         <div className="option-container-service">
           <a className="user-link" href={`view-applicants?service=${service.title}`}>
             <i className="fa-solid fa-users fa-2x"></i>
