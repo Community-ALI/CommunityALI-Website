@@ -1,0 +1,95 @@
+// FILE OVERVIEW
+// This file recieves an edited service from the user
+// Then, it finds the old service in the database
+// it updates that service with the new information
+const fs = require('fs');
+const models = require("../connect-to-database");
+const Service = models.Services;
+
+const store_service = function (req) {
+    return new Promise((resolve, reject) => {
+      try {
+        console.log('storing service edit?');
+        // create json data from form
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString();
+        const hours = currentDate.getHours();
+        const minutes = currentDate.getMinutes();
+        const seconds = currentDate.getSeconds();
+        const time = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString();
+        const meetingTime = req.body.details_times;
+        const meetingDate = req.body.details_date;
+        const location = req.body.details_location;
+        var contacts = JSON.parse(req.body.contacts);
+  
+        if (req.files[0] === undefined) {
+          const updateData = {
+            $set: {
+              personal_name: req.body.personal_name,
+              personal_number: req.body.personal_number,
+              personal_email: req.body.personal_email,
+              personal_role: req.body.personal_role,
+              title: req.body.title,
+              author: req.body.author,
+              author_role: "President",
+              meetingTime: meetingTime,
+              meetingDate: meetingDate,
+              location: location,
+              description: req.body.description,
+              contacts: contacts,
+              date: formattedDate,
+              time: time
+            }
+          };
+          const filter = { title: req.query.service};
+          console.log(filter)
+          Service.updateMany(filter, updateData, function (err) {
+            if (err) {
+              console.log(err);
+              reject(err);
+            } else {
+              console.log("Service edited in database");
+              resolve(true);
+            }
+          });
+        } else {
+          file = req.files[0];
+          const updateData = {
+            $set: {
+              personal_name: req.body.personal_name,
+              personal_number: req.body.personal_number,
+              personal_email: req.body.personal_email,
+              personal_role: req.body.personal_role,
+              title: req.body.title,
+              author: req.body.author,
+              author_role: "President",
+              photo: fs.readFileSync(file.path),
+              meetingTime: meetingTime,
+              meetingDate: meetingDate,
+              location: location,
+              description: req.body.description,
+              contacts: contacts,
+              date: formattedDate,
+              time: time
+            }
+          };
+          const filter = { title: req.query.service};
+          console.log(filter)
+          Service.updateMany(filter, updateData, function (err) {
+            if (err) {
+              console.log(err);
+              reject(err);
+            } else {
+              console.log("Service edited to database");
+              resolve(true);
+            }
+          });
+        }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+  
+  module.exports = store_service;
+  
