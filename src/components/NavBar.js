@@ -5,8 +5,10 @@ import '../../public/stylesheets/style.css'
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 import { useRect } from 'react-use-rect';
+import Notifications from './Notification';
 
 function MyServicesNavButton(props) {
+
     if(props.token){
         return (
             <Link 
@@ -14,12 +16,7 @@ function MyServicesNavButton(props) {
                 to="/my-services"
                 id="applicants"
             >
-                <div 
-                    className={
-                        ' notification-icon' + 
-                        (props.notificaitons < 1) ? ' hidden' : ''
-                    }
-                >{props.notificaitons}</div>
+                <Notifications notifications={props.notifications} />
                 My Services</Link>
         )
     }
@@ -82,7 +79,7 @@ function NavBar(props) {
                             className="navigation-button navigation-text" 
                             to="/services"
                         >Explore</Link>
-                        <MyServicesNavButton token={token} notificaitons={props.notificaitons} />
+                        <MyServicesNavButton token={token} notifications={props.notifications} />
                         <a 
                             className="navigation-button navigation-text" 
                             href="https://www.mjc.edu/" 
