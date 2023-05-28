@@ -96,6 +96,10 @@ function ServiceInfo() {
       });
     }
 
+    useEffect(() => {
+      document.title = service.title;
+    })
+
     // return the page
     return(
         <div>
