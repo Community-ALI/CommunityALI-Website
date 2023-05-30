@@ -80,9 +80,10 @@ body
     font-size: clamp(20px, 3vw, 30px);
     text-align: center;
     padding: 20px 25px;
+    margin-top: 20px;
 }
 
-.appplicants-result-container
+.applicants-result-container
 {
     color: white;
     font-size: clamp(14px, 3vw, 20px);
@@ -130,6 +131,15 @@ body
     .container
     {
     margin-top: 5%;
+    }
+}
+
+@media all and (max-width : 540px)
+{
+    .search-results
+    {
+        align-content : flex-start;
+        margin-left : 20px;
     }
 }
 

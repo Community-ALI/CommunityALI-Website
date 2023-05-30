@@ -22,8 +22,6 @@ function AddService() {
       setContactVisible(false);
     };
     setContactData([...contactData,{contactRole:"", contactName:"", contactEmail:""}])
-    
-    
   }
 
   const mediaAdd=()=>{
@@ -31,7 +29,6 @@ function AddService() {
       setSocialMediaVisible(false)
     }
     setMediaData([...mediaData,{mediaType:"", mediaName:"", mediaUrl:""}])
-    
   }
 
   const faqAdd=()=>{
@@ -42,9 +39,7 @@ function AddService() {
   }
   
   const contactDelete=(j)=>{
-
     setContactVisible(true);
-    
     const deleteContactVal = [...contactData]
     deleteContactVal.splice(j,1)
     setContactData(deleteContactVal)
@@ -90,6 +85,9 @@ function AddService() {
   const[stylePage2, setStylePage2] = useState("page2Invisible");
   const[stylePage3, setStylePage3] = useState("page3Invisible");
   const[stylePage4, setStylePage4] = useState("page4Invisible");
+
+  const[removePage2, setRemovePage2] = useState("page2");
+  const[removePage3, setRemovePage3] = useState("page3");
 
   const[styleColor1, setStyleColor1] = useState("overviewColor");
   const[styleColor2, setStyleColor2] = useState("contactColor");
@@ -144,6 +142,27 @@ function AddService() {
     setStyleColor3("faqColor");
     setStyleColor4("signUpChangeColor");
   }
+
+  const deletePage2=()=>{
+    setRemovePage2("removePage2");
+  }
+
+  const deletePage3=()=>{
+    setRemovePage3("removePage3");
+  }
+
+  const addPage2=()=>{
+    setRemovePage2("addPage2");
+  }
+
+  const[selectedPage, setSelectedPage] = useState('')
+
+  const handlePageChange = (event) =>{
+    setSelectedPage(event.target.value);
+  }
+
+  const isPage2Visible = selectedPage === 'showPage2';
+  const isPage3Visible = selectedPage === 'showPage3';
 
       const [file, setFile] = useState(null);
     
@@ -280,17 +299,40 @@ function AddService() {
         </div>
 
         <div className="service-navbar">
-          <div className="service-navbar-text" id={styleColor1}>
-            <a href="#" onClick={changeVisibility1} >Overview</a>
+          <div className="service-navbar-text">
+            <a href="#" className="service-navbar-link" onClick={changeVisibility1} 
+            id={styleColor1} >Overview</a>
           </div>
-          <div className="service-navbar-text" id={styleColor2}>
-            <a href="#" onClick={changeVisibility2} >Contacts & Social Media</a>
+          {/* {isPage2Visible && */}
+          <div className="service-navbar-text" id={removePage2}>
+            <a href="#" className="service-navbar-link" onClick={changeVisibility2} 
+            id={styleColor2} >Contacts & Social Media</a>
+            <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
+            onClick={deletePage2}></i>
           </div>
-          <div className="service-navbar-text" id={styleColor3}>
-            <a href="#" onClick={changeVisibility3} >FAQ</a>
+          {/* } */}
+          {/* {isPage3Visible && */}
+          <div className="service-navbar-text" id={removePage3}>
+            <a href="#" className="service-navbar-link" onClick={changeVisibility3} 
+            id={styleColor3}>FAQ</a>
+            <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
+            onClick={deletePage3} ></i>
           </div>
-          <div className="service-navbar-text" id={styleColor4}>
-            <a href="#" onClick={changeVisibility4} >Sign Up Today</a>
+          {/* } */}
+          <div className="service-navbar-text">
+            <a href="#" className="service-navbar-link" onClick={changeVisibility4} 
+            id={styleColor4}>Sign Up Today</a>
+          </div>
+          <div className="service-navbar-plus-container">
+            <i class="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus"
+            ></i> 
+            {/* <select className="club-contacts-selection" id="select-navbar-section" 
+            value={selectedPage} onChange={handlePageChange}
+            >
+                <option value="" selected>Select Section to Add</option>
+                <option value="showPage2">Add Contacts</option>
+                <option value="showPage3">Add FAQs</option>
+            </select> */}
           </div>
         </div>
 

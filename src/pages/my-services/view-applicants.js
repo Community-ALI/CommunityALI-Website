@@ -135,7 +135,7 @@ function ServiceApplicants() {
                 <div className="applicants-container-title">
                     Club Sign-ups
                 </div>
-                <div className="applicants" id="target">
+                <div className="applicants-container">
                     <ApplicationPageDisplay 
                         serviceName={serviceName} 
                         applicants={applicants}/>

@@ -7,6 +7,11 @@
     padding : 0;
 }
 
+*:focus 
+{
+    outline: none;
+}
+
 body
 {
     background :  #0096C9;
@@ -64,6 +69,14 @@ input[data-autocompleted]
 {
     padding-bottom : 4px;
     transition: 300ms ease;
+    position: relative;
+}
+
+.service-navbar-link
+{
+    padding-bottom : 4px;
+    transition: 300ms ease;
+    position: relative;
 }
 
 .service-navbar-text a
@@ -73,6 +86,47 @@ input[data-autocompleted]
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+}
+
+.service-navbar-plus-container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#service-navbar-plus
+{
+    background-color:#001E60;
+    color: #ecaa1e;
+    cursor: pointer;
+    transition: 300ms ease;
+    border-radius: 10000px;
+}
+
+#remove-service-navbar-text
+{
+    position: absolute;
+    margin-left : 8px;
+    text-decoration: none;
+    color:#001E60;
+    background-color: #ecaa1e;
+    border-radius: 10000px;
+    cursor: pointer;
+    transition: 300ms ease;
+    scale: 1.3;
+    top: -5px;
+}
+
+#remove-service-navbar-text:hover
+{
+    background-color:#001E60;
+    color: #ecaa1e;
+}
+
+#select-navbar-section
+{
+    appearance: none;
 }
 
 .sign-up-form
@@ -232,6 +286,26 @@ input[data-autocompleted]
 #signUpChangeColor
 {
     border-bottom: 3px solid #001E60;
+}
+
+#removePage2
+{
+    display : none;
+}
+
+#removePage3
+{
+    display : none;
+}
+
+#addPage2
+{
+    display : block;
+}
+
+#addPage3
+{
+    display: block;
 }
 
 .service-info-container
