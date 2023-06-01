@@ -12,6 +12,12 @@
     outline: none;
 }
 
+:root
+{
+    --navbar-color : white;
+    --navbar-change-color : #001E60;
+}
+
 body
 {
     background :  #0096C9;
@@ -62,7 +68,9 @@ input[data-autocompleted]
     display: flex;
     justify-content: space-evenly;
     flex-flow: wrap;
-    margin-bottom : 60px;
+    margin-bottom : 40px;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .service-navbar-text
@@ -70,6 +78,9 @@ input[data-autocompleted]
     padding-bottom : 4px;
     transition: 300ms ease;
     position: relative;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
 }
 
 .service-navbar-link
@@ -93,6 +104,9 @@ input[data-autocompleted]
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 25px;
 }
 
 #service-navbar-plus
@@ -197,47 +211,6 @@ input[data-autocompleted]
     margin-right : 50px;
 }
 
-#page1Visible
-{
-    display: flex;
-}
-
-#page1Invisible
-{
-    display: none;
-}
-
-#page2Visible
-{
-    display: flex;
-}
-
-#page2Invisible
-{
-    display: none;
-}
-
-#page3Visible
-{
-    display: flex;
-    justify-content: center;
-}
-
-#page3Invisible
-{
-    display: none;
-}
-
-#page4Visible
-{
-    display: flex;
-}
-
-#page4Invisible
-{
-    display: none;
-}
-
 #contactButtonVisible
 {
     display: flex;
@@ -250,42 +223,42 @@ input[data-autocompleted]
 
 #overviewColor
 {
-    border-bottom: 3px solid #001E60;
+    border-bottom: 3px solid var(--navbar-color);
 }
 
 #contactColor
 {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid var(--navbar-color);
 }
 
 #faqColor
 {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid var(--navbar-color);
 }
 
 #signUpColor
 {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid var(--navbar-color);
 }
 
 #overviewChangeColor
 {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid var(--navbar-change-color);
 }
 
 #contactChangeColor
 {
-    border-bottom: 3px solid #001E60;
+    border-bottom: 3px solid var(--navbar-change-color);
 }
 
 #faqChangeColor
 {
-    border-bottom: 3px solid #001E60;
+    border-bottom: 3px solid var(--navbar-change-color);
 }
 
 #signUpChangeColor
 {
-    border-bottom: 3px solid #001E60;
+    border-bottom: 3px solid var(--navbar-change-color);
 }
 
 #removePage2
@@ -298,14 +271,10 @@ input[data-autocompleted]
     display : none;
 }
 
-#addPage2
+.faq
 {
-    display : block;
-}
-
-#addPage3
-{
-    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .service-info-container
@@ -524,6 +493,7 @@ input[data-autocompleted]
     background-size: cover;
     transition: 300ms ease;
     width: 80%;
+    margin-bottom: 100px;
 }
 
 #faq-title 
@@ -603,7 +573,7 @@ input[data-autocompleted]
 .file-container header
 {
     color: white;
-    font-size: clamp(15px, 2.3vw, 25px);
+    font-size: clamp(20px, 2.3vw, 25px);
     font-weight: 500;
     text-align: center;
     font-family: 'Poppins', sans-serif;
@@ -642,6 +612,7 @@ input[data-autocompleted]
     font-size: 16px;
     text-align: center;
     color: white;
+    padding: 0px 10px;
 }
 /* hide this element without adding the hidden tag to avoid errors */
 .file-input {
@@ -812,12 +783,6 @@ section .details span
         line-height: 40px;
     }
 
-    .authorization-container
-    {
-        width : 90%;
-        margin-top : 40px;
-    }
-
     .application-buttons
     {
         margin-top : 50px;
@@ -826,6 +791,14 @@ section .details span
 
 @media all and (max-width : 480px)
 {
+
+    .service-navbar 
+    {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom : 15px;
+    }
+
     .club-title-text-box
     {
         width: 95%;
@@ -852,7 +825,6 @@ section .details span
         margin-top : 0px;
         margin-bottom : 0px;
         font-size: 15px;
-        padding : 0px 0px;
     }
 
     .service-info2-container
@@ -861,16 +833,10 @@ section .details span
         padding-left: 2%; 
     }
 
-    .service-title
-    {
-        margin-top : 20px;
-    }
-
     .service-details
     {
         width : 95%;
         font-size: 15px;
-        padding: 10px 14px;
     }
 
     .service-description
@@ -903,10 +869,36 @@ section .details span
         font-size: 15px;
     }
 
+    .delete-button
+    {
+        font-size : 13px;
+    }
+
+    .add-button
+    {
+        font-size : 13px;
+    }
+
+    #faq-container
+    {
+        width : 90%;
+    }
+
+    #faq-title
+    {
+        margin-bottom : 0px;
+        text-align: center;
+    }
+
 }
 
 @media all and (max-width : 360px)
 {
+    .file-form p
+    {
+        font-size: 12px;
+    }
+
     .file-form
     {
         margin: 20px 0px 10px 0px;
@@ -960,7 +952,3 @@ section .details span
 
 }
 
-.file-selected {
-    background-color: #00e238;
-    border: 1px solid #1890ff;
-  }
