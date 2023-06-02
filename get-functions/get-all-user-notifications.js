@@ -5,7 +5,7 @@ const Applications = models.Application;
 const Services = models.Services;
 
 // access database, call functions, display page
-const get_service_applicants_notifications = async function (username, service_names) {
+const get_service_applicants_notifications = async function (username) {
     try {
         const selected_services = await Services.find({ user: username }).exec();
         const serviceTitles = selected_services.map(service => service.title);
