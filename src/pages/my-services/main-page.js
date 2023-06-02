@@ -44,47 +44,6 @@ function MyServicePageDisplay(props) {
     console.log(applicants);
   })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        var token = localStorage.getItem('token');
-        if (token) {
-          console.log('sending request');
-          const response = await fetch('http://localhost:3000/get-user-services',
-            {
-              headers: {
-                'Authorization': `Bearer ${token}`
-              }
-            })
-            .then(response => response.json())
-            .then(data => {
-              // 'data' variable will contain the received object with the data array and tokenUsername
-
-              setServices(data.dataServices);
-              setUsername(data.tokenUsername);
-              const loaderWrapper = document.querySelector(".loader-wrapper");
-              loaderWrapper.style.transition = "opacity 0.5s";
-              loaderWrapper.style.opacity = "0";
-              setTimeout(() => {
-                loaderWrapper.style.display = "none";
-              }, 500); // fade out duration in milliseconds
-            })
-        }
-        else {
-          console.log('no token found')
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    console.log('services: ', services);
-  }, [services]);
-
   const handleBackgroundClick = () => {
     window.location.href = 'view-applicants?service=' + service.title;
   };
@@ -129,12 +88,53 @@ function MyServicesHome() {
   const [isShowingServiceDeletePopup, setIsShowingServiceDeletePopup] = useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState('');
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        var token = localStorage.getItem('token');
+        if (token) {
+          console.log('sending request');
+          const response = await fetch('http://localhost:3000/get-user-services',
+            {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              // 'data' variable will contain the received object with the data array and tokenUsername
+
+              setServices(data.dataServices);
+              setUsername(data.tokenUsername);
+              const loaderWrapper = document.querySelector(".loader-wrapper");
+              loaderWrapper.style.transition = "opacity 0.5s";
+              loaderWrapper.style.opacity = "0";
+              setTimeout(() => {
+                loaderWrapper.style.display = "none";
+              }, 500); // fade out duration in milliseconds
+            })
+        }
+        else {
+          console.log('no token found')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log('services: ', services);
+  }, [services]);
+
   return (
     <div>
       <div className="loader-wrapper">
         <span className="loader"><span className="loader-inner"></span></span>
       </div>
-      <NavBar isFixedPage={false} notificaitons={notificaitons} />,
+      <NavBar isFixedPage={false} />,
       <DeleteServicePopup isShowingServiceDeletePopup={isShowingServiceDeletePopup} serviceTitle={deleteServiceTitle} />
       <div
         id='login-popup-background'
