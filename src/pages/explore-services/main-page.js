@@ -11,7 +11,7 @@ const DisplayService = function (props) {
   const base64 = buffer.toString('base64');
   const imageUrl = `data:image/png;base64,${base64}`;
   return (
-    <div className="result-container" id={service.title} onClick={() => window.location.href = `/service-info?service=${service.title}` } >
+    <div className="service-result-container" id={service.title} onClick={() => window.location.href = `/service-info?service=${service.title}` } >
       <img className="result-picture" src={imageUrl} />
       <div className="result-text-container">
         <div className="result-title">{service.title}</div>
