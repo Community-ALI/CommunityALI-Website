@@ -1,13 +1,13 @@
 import React, { Component, useEffect, useState } from 'react';
 import './login.css';
 
-function LoginPopup(props) {
+function DeleteServicePopup(props) {
 
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
 
 
-        async function login(event) {
+        async function deleteService(event) {
             event.preventDefault();
             const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,21 +28,31 @@ function LoginPopup(props) {
                 body: JSON.stringify(authData),
                 });
                 const result = await response.json();
-
+                
                 if (result.status === 'ok') {
                     //everything is a okay
                     console.log('Got the token: ', result.data);
-                    localStorage.setItem('token', result.data);
-                    const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
-                    console.log('signed in as: '+ decodedToken.username);
-                    window.location.href = '/';
+                    var token = result.data;
+                    const response = await fetch(`http://localhost:3000/delete-service?service=${props.serviceTitle}`,
+                        {
+                        method: 'POST',
+                        headers: {
+                        'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                    })
+                    
+                    window.location.href = '/services';
+                    
                 } else {
                     console.log(result.error);
                     alert(result.error);
                 }
             } catch (error) {
                 console.error(error);
-                alert('An error ocurred while logging in.');
+                alert('An error ocurred.');
             }
         }
 
@@ -50,15 +60,16 @@ function LoginPopup(props) {
 
     // }
 
-    if (props.isShowingLoginPopup) {
+    if (props.isShowingServiceDeletePopup) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
-                        <h1>Login</h1>
-                        <form id="login" onSubmit={login}>
+                        <h1 id="delete-header" >Are you sure you want to delete "{props.serviceTitle}"?</h1>
+                        <form id="login" onSubmit={deleteService}>
                             <div className="text-field">
                                 <input 
                                     className="text-field-input"
+                                    autoComplete='false'
                                     id="usernameOrEmail" 
                                     required=""
                                     onChange={e => {
@@ -73,6 +84,7 @@ function LoginPopup(props) {
                                     className="text-field-input"
                                     type="password" 
                                     id="password" 
+                                    autoComplete='false'
                                     required=""
                                     onChange={e => {
                                         setPassword(e.target.value);
@@ -85,15 +97,12 @@ function LoginPopup(props) {
                             {/* <!-- <div class="pass">Forgot Password?</div> --> */}
                             <input 
                                 type="submit" 
-                                value="Login" 
+                                value="Delete" 
                                 id='login-submission'
-                                class="login-submit-button"
+                                className='delete-button-service-main-page'
                             />
-                            {/* <!-- <div class="signup_link">
-                            Don't have an account? <a href="signup.html">Sign-up</a>
-                            </div> --> */} 
                             <div className="signup_link">
-                                Do you own a club and can't log into your account? Contact us - techsupport@communityali.org
+                                {/* left this for spacing */}
                             </div>
                         </form>
                     </div>
@@ -104,4 +113,4 @@ function LoginPopup(props) {
     return null;
 }
 
-export default LoginPopup;
+export default DeleteServicePopup;

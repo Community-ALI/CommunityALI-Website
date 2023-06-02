@@ -34,12 +34,18 @@ body
     text-align: center;
 
     position: relative;
-    padding : 10px;
+    padding : 20px;
     min-width: 43%;
     margin : 100px 10% 20px 10%;
     
     background-color: #001E60;
     border-radius: 10px;
+}
+
+.user-service-container
+{
+    display: flex;
+    justify-content: center;
 }
 
 .user-service
@@ -48,12 +54,11 @@ body
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
 
     position: relative;
     padding : 20px;
-    min-width: 43%;
-    margin : 3% 20%;
+    width : 60%;
+    margin : 2% 0%;
     
     background-color: #00468D;
     border-radius: 10px;   
@@ -74,7 +79,6 @@ body
     justify-content: center;
     margin : 25px 0px;
     align-items: center;
-    position: absolute;
     z-index: 2;
 }
 
@@ -102,7 +106,7 @@ body
     font-size: 22px;
     font-family: "Poppins";
     font-weight: 500;
-    padding-left : 5px;
+    padding-left : 10px;
     transition : all 0.3s ease-in-out;
 }
 
@@ -132,6 +136,18 @@ body
     text-decoration: none;
     cursor: pointer;
     border: none;
+}
+
+.user-link-container
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.edit-delete-container
+{
+    display: flex;
 }
 
 .background-link {

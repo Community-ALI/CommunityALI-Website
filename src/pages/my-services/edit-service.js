@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 // import '../components/footer.css';
 import NavBar from '../../components/NavBar';
 import '../../components/navbar.css';
-import addServiceCss from './add-service.css';
+//import './add-club.css';
 import { Buffer } from 'buffer';
 function EditService() {
 

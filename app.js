@@ -29,6 +29,7 @@ const store_application = require("./store-functions/store-application");
 // authorized only set
 const store_add_service = require('./store-functions/store-add-service');
 const store_edit_service = require('./store-functions/store-edit-service');
+const delete_service = require('./store-functions/delete-service');
 
 const models = require("./connect-to-database");
 const User = models.User;
@@ -61,6 +62,42 @@ app.get("/get-one-service", async function (req, res) {
     res.json({ success: false, error: 'internal server error' });
   }
 });
+
+
+app.post("/delete-service", DeleteService);
+async function DeleteService(req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    
+    const service_name = req.query.service;
+    const service = await get_one_service(service_name);
+    
+    if (service.user == username){
+      
+      const success = await delete_service(service_name);
+      console.log(success);
+      if (success){
+        //console.log('service deleted by', username);
+        res.json({success: true});
+      }
+      else{
+        //console.log('problem deleting service from database');
+        res.json({success: false, error: 'internal detabase error'});
+      }
+    }
+    else{
+      console.log(service.user, username)
+      console.log('user does not own service!')
+      res.json({ success: false, error: 'unauthorized' });
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({ success: false, error: 'internal server error' });
+  }
+  // authorize user
+}
 
 // send the user every service
 app.get('/get-all-services', async function (req, res){
@@ -176,7 +213,7 @@ async function storeService(req, res) {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
-    const account = await User.findOne({ username });
+    const account = await User.findOne({ username }); 
     if (account){ 
       const success = await store_add_service(req, username);
       if (success){
@@ -198,12 +235,10 @@ async function storeService(req, res) {
     res.json({ success: false, error: 'internal server error' });
   }
   // authorize user
-  
-  
 }
 
-app.post("/edit-service", upload.array("files"), storeService);
-async function storeService(req, res) {
+app.post("/edit-service", upload.array("files"), storeEditService);
+async function storeEditService(req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);

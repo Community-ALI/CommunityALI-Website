@@ -9,7 +9,7 @@ function LandingPageCatagories() {
             </div>
             
             <div className="categories-container">
-                <a className = "category-box" id="box1" href="explore-services/main-page">
+                <a className = "category-box" id="box1" href="/services">
                     <div className = "box">
                         <div className="category-image">
                             <img id="career" src="photos-optimized/career-opt.jpg"/>
@@ -17,7 +17,7 @@ function LandingPageCatagories() {
                         <div id="career-text" className="box-header-text">Subject and Career Path</div>
                     </div>
                 </a>
-                <a className="category-box" id="box2" href="explore-services/main-page">
+                <a className="category-box" id="box2" href="/services">
                     <div className = "box">
                         <img id="club" src="photos-optimized/clubs-opt.jpg"/>
                         <div id="club-text" className="box-header-text"> Clubs and Communities</div>
