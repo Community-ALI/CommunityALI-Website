@@ -9,7 +9,7 @@ import View_Services from "./pages/explore-services/service-info";
 import Signup_Success from "./pages/explore-services/signup-success";
 
 import My_Services_Main_Page from "./pages/my-services/main-page";
-import Add_Service from "./pages/my-services/add-service";
+import Add_Service from "./pages/my-services/club-components/add-club";
 import Edit_Service from "./pages/my-services/edit-service";
 import View_Applicants from "./pages/my-services/view-applicants";
 
@@ -30,7 +30,7 @@ function App() {
 
                 {/* my services pages */}
                 <Route path="/my-services" element={<My_Services_Main_Page />}/>
-                <Route path="/add-service" element={<Add_Service />}/>
+                <Route path="/add-club" element={<Add_Service />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
 

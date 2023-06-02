@@ -104,7 +104,7 @@ function MyServicesHome() {
     <div>
         <div className="loader-wrapper">
             <span className="loader"><span className="loader-inner"></span></span>
-        </div>,
+        </div>
         <NavBar isFixedPage={false} notificaitons={notificaitons} />,
         <DeleteServicePopup isShowingServiceDeletePopup={isShowingServiceDeletePopup} serviceTitle={deleteServiceTitle}/>
         <div 
@@ -118,8 +118,8 @@ function MyServicesHome() {
             {"Welcome: " + username}
         </div>
         <div className = "user-service">
-            <a className = "background-link" href = "/add-service"></a>
-            <a className = "user-link" href = "/add-service">
+            <a className = "background-link" href = "/add-club"></a>
+            <a className = "user-link" href = "/add-club">
                 <div className = "option-container">
                     <i className = "fa-solid fa-plus fa-2x"></i>
                     <p className = "user-service-text">Add a New Service</p>
