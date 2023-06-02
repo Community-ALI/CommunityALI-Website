@@ -28,7 +28,7 @@ function DeleteServicePopup(props) {
                 body: JSON.stringify(authData),
                 });
                 const result = await response.json();
-
+                
                 if (result.status === 'ok') {
                     //everything is a okay
                     console.log('Got the token: ', result.data);
@@ -69,6 +69,7 @@ function DeleteServicePopup(props) {
                             <div className="text-field">
                                 <input 
                                     className="text-field-input"
+                                    autoComplete='false'
                                     id="usernameOrEmail" 
                                     required=""
                                     onChange={e => {
@@ -83,6 +84,7 @@ function DeleteServicePopup(props) {
                                     className="text-field-input"
                                     type="password" 
                                     id="password" 
+                                    autoComplete='false'
                                     required=""
                                     onChange={e => {
                                         setPassword(e.target.value);
