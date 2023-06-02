@@ -153,7 +153,7 @@ function MyServicesHome() {
       <div className="loader-wrapper">
         <span className="loader"><span className="loader-inner"></span></span>
       </div>,
-      <NavBar isFixedPage={false} notificaitons={notificaitons} />,
+      <NavBar isFixedPage={false} />,
       <div className="username-title">
         {"Welcome: " + username}
       </div>
