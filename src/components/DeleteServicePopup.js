@@ -42,14 +42,10 @@ function DeleteServicePopup(props) {
                     })
                     .then(response => response.json())
                     .then(data => {
-                    alert('yay.')
                     })
-                    if (!response.ok) {
-                        throw new Error('Failed to delete service');
-                    }
-                    else{
-                        window.location.href = '/explore';
-                    }
+                    
+                    window.location.href = '/services';
+                    
                 } else {
                     console.log(result.error);
                     alert(result.error);
