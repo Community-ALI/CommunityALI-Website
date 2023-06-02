@@ -30,7 +30,7 @@ const SearchResult = function (props) {
     }
     return (
         <div className="applicants-result-container">
-        <Notifications notifications={(applicant.is_new_applicant) ? 1 : 0} />
+            <Notifications notifications={(applicant.is_new_applicant) ? 1 : 0} />
             <p className="applicant-name">{applicant.name}</p>
             <p className="applicant-email">{applicant.email}</p>
             <p className="applicant-time">{applicant.date}</p>
@@ -72,8 +72,8 @@ function ApplicationPageDisplay(props) {
             <div className="applicants-title">{serviceName}</div>
             <div className="search-results">
                 {props.applicants.map((applicant, index) => (
-                    <SearchResult 
-                        key={index}    
+                    <SearchResult
+                        key={index}
                         applicant={applicant}
                         notificaiton={false} /> //TODO fill this with is applicant new bool for notification to show up to connect it to back end
                 ))}
@@ -132,9 +132,9 @@ function ServiceApplicants() {
                     Club Sign-ups
                 </div>
                 <div className="applicants" id="target">
-                    <ApplicationPageDisplay 
-                        serviceName={serviceName} 
-                        applicants={applicants}/>
+                    <ApplicationPageDisplay
+                        serviceName={serviceName}
+                        applicants={applicants} />
                 </div>
             </div>
         </div>
