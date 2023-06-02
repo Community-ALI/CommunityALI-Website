@@ -1,4 +1,4 @@
-import '../../public/stylesheets/style.css'
+import '../../public/stylesheets/style.css';
 import React from 'react';
 
 function Notifications(props) {

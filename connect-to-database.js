@@ -3,7 +3,6 @@
 // this file is required by any file that needs to access any part of the database
 
 const mongoose = require("mongoose");
-const { default: Notifications } = require("./src/components/Notification");
 mongoose.set('strictQuery', false);
 require('dotenv').config()
 
