@@ -49,7 +49,7 @@ function MyServicesHome() {
               className="service-delete-button"
               onClick={(event) => {
                 event.stopPropagation(); // Prevent event bubbling
-                window.location.href = 'https://www.youtube.com/watch?v=oHC1230OpOg'
+                // window.location.href = 'https://www.youtube.com/watch?v=oHC1230OpOg'
                 setDeleteServiceTitle(service.title);
                 setIsShowingServiceDeletePopup(true);
               }}
