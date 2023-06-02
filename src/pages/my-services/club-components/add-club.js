@@ -12,42 +12,43 @@ import SignUpPage from "./sign-up-page";
 function AddService() {
 
   const [active, setActive] = useState("OverviewPage")
-  const[styleColor1, setStyleColor1] = useState("overviewChangeColor");
-  const[styleColor2, setStyleColor2] = useState("contactColor");
-  const[styleColor3, setStyleColor3] = useState("faqColor");
-  const[styleColor4, setStyleColor4] = useState("signUpColor");
   const[removePage2, setRemovePage2] = useState("page2");
   const[removePage3, setRemovePage3] = useState("page3");
 
+  const overviewRef = useRef(null);
+  const contactRef = useRef(null);
+  const faqRef = useRef(null);
+  const signUpRef = useRef(null);
+
   const changeVisibility1=()=>{
-    setStyleColor1("overviewChangeColor");
-    setStyleColor2("contactColor");
-    setStyleColor3("faqColor");
-    setStyleColor4("signUpColor");
+    overviewRef.current.style.borderColor = '#001E60';
+    contactRef.current.style.borderColor = 'white';
+    faqRef.current.style.borderColor = 'white';
+    signUpRef.current.style.borderColor = 'white';
     setActive("OverviewPage");
   }
 
   const changeVisibility2=()=>{
-    setStyleColor1("overviewColor");
-    setStyleColor2("contactChangeColor");
-    setStyleColor3("faqColor");
-    setStyleColor4("signUpColor");
+    contactRef.current.style.borderColor = '#001E60';
+    overviewRef.current.style.borderColor = 'white';
+    faqRef.current.style.borderColor = 'white';
+    signUpRef.current.style.borderColor = 'white';
     setActive("ContactsPage");
   }
 
   const changeVisibility3=()=>{
-    setStyleColor1("overviewColor");
-    setStyleColor2("contactColor");
-    setStyleColor3("faqChangeColor");
-    setStyleColor4("signUpColor");
+    faqRef.current.style.borderColor = '#001E60';
+    overviewRef.current.style.borderColor = 'white';
+    contactRef.current.style.borderColor = 'white';
+    signUpRef.current.style.borderColor = 'white';
     setActive("FaqPage");
   }
 
   const changeVisibility4=()=>{
-    setStyleColor1("overviewColor");
-    setStyleColor2("contactColor");
-    setStyleColor3("faqColor");
-    setStyleColor4("signUpChangeColor");
+    signUpRef.current.style.borderColor = '#001E60';
+    overviewRef.current.style.borderColor = 'white';
+    faqRef.current.style.borderColor = 'white';
+    overviewRef.current.style.borderColor = 'white';
     setActive("SignUpPage");
   }
 
@@ -72,31 +73,33 @@ function AddService() {
 
         <div className="service-navbar">
           <div className="service-navbar-text">
-            <a href="#" className="service-navbar-link" 
-            onClick={changeVisibility1} 
-            id={styleColor1} >Overview</a>
+            <a href="#" className="service-navbar-link" ref={overviewRef}
+            onClick={changeVisibility1} id="overviewColor"
+            >Overview</a>
           </div>
 
           <div className="service-navbar-text" id={removePage2}>
-            <a href="#" className="service-navbar-link" 
+            <a href="#" className="service-navbar-link" ref={contactRef}
             onClick={changeVisibility2}
-            id={styleColor2} >Contacts & Social Media</a>
+            >Contacts & Social Media</a>
+
             <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
             onClick={deletePage2}></i>
           </div>
 
           <div className="service-navbar-text" id={removePage3}>
-            <a href="#" className="service-navbar-link" 
+            <a href="#" className="service-navbar-link" ref={faqRef}
             onClick={changeVisibility3} 
-            id={styleColor3}>FAQ</a>
+            >FAQ</a>
+            
             <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
             onClick={deletePage3} ></i>
           </div>
 
           <div className="service-navbar-text">
-            <a href="#" className="service-navbar-link" 
+            <a href="#" className="service-navbar-link" ref={signUpRef}
             onClick={changeVisibility4} 
-            id={styleColor4}>Sign Up Today</a>
+            >Sign Up Today</a>
           </div>
           
           <div className="service-navbar-plus-container">

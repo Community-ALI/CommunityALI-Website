@@ -326,6 +326,7 @@ a > .navigation-menu {
     }
 
     #nav-menu-search-bar {
+        margin-top: 40px;
         background-color: white;
         transition: background-color 1s ease;
     }
@@ -346,6 +347,11 @@ a > .navigation-menu {
     {
         position: fixed;
         opacity: 100%;
+    }
+
+    .scrolled
+    {
+        background-color: transparent;
     }
 }
 
