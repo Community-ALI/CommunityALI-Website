@@ -164,6 +164,7 @@ input[data-autocompleted]
     font-size : 25px;
     font-weight : 400;
     margin-bottom : 40px;
+    text-align: center;
 }
 
 .sign-up-form-text
@@ -185,7 +186,7 @@ input[data-autocompleted]
     border-radius: 4px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    width: 350px;
+    width: 100%;
 }
 
 .sign-up-submit-button {
@@ -209,8 +210,14 @@ input[data-autocompleted]
 
 #name-container
 {
-    margin-right : 50px;
+    width : 45%;
 }
+
+#email-container
+{
+    width : 45%;
+}
+
 
 #contactButtonVisible
 {
@@ -355,6 +362,11 @@ input[data-autocompleted]
     border-radius: 10px;
     padding: 10px 10px;
     margin-bottom: 40px;
+}
+
+.sign-up-form-boxes
+{
+    width : 50%;
 }
 
 .club-title-text-box
@@ -722,6 +734,11 @@ section .details span
     {
         margin-top : 20px;
     }
+
+    .sign-up-form-boxes
+    {
+        width : 80%;
+    }
 }
 
 @media all and (max-width : 820px)
@@ -752,6 +769,21 @@ section .details span
     .application-buttons
     {
         margin-top : 50px;
+    }
+
+    #name-container
+    {
+        width : 100%;
+    }
+
+    #email-container
+    {
+        width : 100%;
+    }
+
+    .sign-up-form-container
+    {
+        justify-content: center;
     }
 }
 

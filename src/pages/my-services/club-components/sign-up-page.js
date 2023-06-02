@@ -112,7 +112,7 @@ function SignUpPage() {
     return(
         <div>
             <div className="sign-up-form">
-              <div id="form">
+              <div id="form" className="sign-up-form-boxes">
                 <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
                   <div className="sign-up-form-container">
                       <div className="text-container" id="name-container">

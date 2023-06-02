@@ -48,7 +48,7 @@ function AddService() {
     signUpRef.current.style.borderColor = '#001E60';
     overviewRef.current.style.borderColor = 'white';
     faqRef.current.style.borderColor = 'white';
-    overviewRef.current.style.borderColor = 'white';
+    contactRef.current.style.borderColor = 'white';
     setActive("SignUpPage");
   }
 
@@ -91,7 +91,7 @@ function AddService() {
             <a href="#" className="service-navbar-link" ref={faqRef}
             onClick={changeVisibility3} 
             >FAQ</a>
-            
+
             <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
             onClick={deletePage3} ></i>
           </div>
