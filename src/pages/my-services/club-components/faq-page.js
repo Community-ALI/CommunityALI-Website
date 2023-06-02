@@ -15,10 +15,10 @@ function FaqPage() {
       }
 
     const faqDelete=(k)=>{
-    setFAQVisible(true);
-    const deleteFaqVal = [...faqData]
-    deleteFaqVal.splice(k,1)
-    setFaqData(deleteFaqVal)
+      setFAQVisible(true);
+      const deleteFaqVal = [...faqData]
+      deleteFaqVal.splice(k,1)
+      setFaqData(deleteFaqVal)
     }
 
     const faqChange=(p,k)=>{
