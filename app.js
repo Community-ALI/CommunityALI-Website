@@ -111,6 +111,7 @@ app.get("/get-user-services", async function (req, res) {
       tokenUsername: 'not logged in'});
   }
 })
+
 // get the applicants to a service (as long as the user is authorized)
 app.get("/get-service-applicants", async function (req, res) {
   try {
@@ -144,14 +145,14 @@ app.get("/get-service-applicants", async function (req, res) {
 app.get("/get-service-notifications", async function (req, res) {
   try {
     const service_name = req.query.service;
-    const service = await get_service_applicants_notifications(service_name);
+    const service = await get_one_service(service_name);
 
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
     if (service && username && username == service.user){
       // the user owns this service
-      const applicants = await get_service_applicants(service.title);
+      const applicants = await get_service_applicants_notifications(service.title);
       res.json(applicants);
       console.log(applicants.length, 'applications sent for', service.title)
     }
