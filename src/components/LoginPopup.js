@@ -87,6 +87,7 @@ function LoginPopup(props) {
                                 type="submit" 
                                 value="Login" 
                                 id='login-submission'
+                                class="login-submit-button"
                             />
                             {/* <!-- <div class="signup_link">
                             Don't have an account? <a href="signup.html">Sign-up</a>

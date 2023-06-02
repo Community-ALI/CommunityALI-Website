@@ -64,7 +64,7 @@ function DeleteServicePopup(props) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
-                        <h1>Are you sure you want to delete "{props.serviceTitle}"?</h1>
+                        <h1 id="delete-header" >Are you sure you want to delete "{props.serviceTitle}"?</h1>
                         <form id="login" onSubmit={deleteService}>
                             <div className="text-field">
                                 <input 
@@ -97,6 +97,7 @@ function DeleteServicePopup(props) {
                                 type="submit" 
                                 value="Delete" 
                                 id='login-submission'
+                                className='delete-button-service-main-page'
                             />
                             <div className="signup_link">
                                 {/* left this for spacing */}
