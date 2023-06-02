@@ -21,6 +21,8 @@ const get_one_service = require("./get-functions/get-one-service");
 //authorized only get
 const get_user_services = require("./get-functions/get-user-services")
 const get_service_applicants = require("./get-functions/get-service-applicants")
+const get_all_user_notifications = require("./get-functions/get-all-user-notifications.js")
+const get_service_applicants_notifications = require("./get-functions/get-service-notification");
 // no authorization needed set db
 const store_application = require("./store-functions/store-application");
 
@@ -138,6 +140,33 @@ app.get("/get-service-applicants", async function (req, res) {
 })
 
 
+// get the applicants to a service (as long as the user is authorized)
+app.get("/get-service-notifications", async function (req, res) {
+  try {
+    const service_name = req.query.service;
+    const service = await get_service_applicants_notifications(service_name);
+
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    if (service && username && username == service.user){
+      // the user owns this service
+      const applicants = await get_service_applicants(service.title);
+      res.json(applicants);
+      console.log(applicants.length, 'applications sent for', service.title)
+    }
+    else{
+      console.log('unauthorized request')
+      res.json({ success: false, error: 'unauthorized' });
+    }
+    
+  } catch (error) {
+    console.log(error);
+    res.json({
+      dataServices: [],
+      tokenUsername: 'not logged in'});
+  }
+})
 
 
 app.post("/upload-service", upload.array("files"), storeService);
