@@ -104,7 +104,7 @@ form .text-field
   text-decoration: underline;
 }
 
-#login input[type="submit"]
+.login-submit-button
 {
   width: 100%;
   height: 50px;
@@ -146,6 +146,19 @@ form .text-field
   text-decoration: underline;
 }
 
+#delete-header
+{
+  font-size : 25px;
+  padding : 20px;
+  margin-bottom : 20px;
+}
+
+#login-submission
+{
+  background: red;
+  color: #e9f4fb;
+}
+
 
 @media all and (max-width : 450px)
 {
@@ -168,6 +181,7 @@ form .text-field
   position: fixed;
   width: 100vw;
   height: 100vh;
+  margin-top: -24px;
 }
 
 .hidden {
