@@ -4,6 +4,7 @@ import './view-applicants.css'
 import '../../../public/stylesheets/style.css'
 import Footer from '../../components/Footer'
 import NavBar from '../../components/NavBar';
+import Notifications from '../../components/Notification';
 function convertToNormalTime(armyTime) {
     const [hours, minutes, seconds] = armyTime.split(':');
     let period = 'am';
@@ -29,12 +30,7 @@ const SearchResult = function (props) {
     }
     return (
         <div className="applicants-result-container">
-            <div
-                className={
-                    ' notification-icon' +
-                        (props.notificaiton) ? ' hidden' : ''
-                }
-            >{props.notificaitons}</div>
+        <Notifications notifications={(applicant.is_new_applicant) ? 1 : 0} />
             <p className="applicant-name">{applicant.name}</p>
             <p className="applicant-email">{applicant.email}</p>
             <p className="applicant-time">{applicant.date}</p>
