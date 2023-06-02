@@ -3,7 +3,7 @@ import React from 'react';
 
 function Notifications(props) {
     console.log(props.notifications);
-    if (props.notifications > 0){
+    if (props.notifications != null && props.notifications > 0){
         return (
             <div
                 className='notification-icon'
