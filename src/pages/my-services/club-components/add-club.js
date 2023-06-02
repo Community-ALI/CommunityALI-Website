@@ -1,117 +1,129 @@
-import React, { useRef, Component, useState, useEffect } from "react";
-// import '../components/footer.css';
+import React, { useRef, useState } from "react";
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import './add-club.css';
-import { document } from "postcss";
 import ContactsPage from "./contacts-page";
 import OverviewPage from "./overview-page";
 import FaqPage from "./faq-page";
 import SignUpPage from "./sign-up-page";
 
 function AddService() {
+  const allPossiblePages = [
+    "Overview",
+    "Contacts",
+    "Faq",
+    "anotherPage",
+    "Signup"
+  ];
 
-  const [active, setActive] = useState("OverviewPage")
-  const[removePage2, setRemovePage2] = useState("page2");
-  const[removePage3, setRemovePage3] = useState("page3");
+  const [allCurrentPages, setAllCurrentPages] = useState([
+    "Overview",
+    "Contacts",
+    "Faq",
+    "Signup"
+  ]);
 
-  const overviewRef = useRef(null);
-  const contactRef = useRef(null);
-  const faqRef = useRef(null);
-  const signUpRef = useRef(null);
+  const removablePages = ["Contacts", "Faq", "anotherPage"];
 
-  const changeVisibility1=()=>{
-    overviewRef.current.style.borderColor = '#001E60';
-    contactRef.current.style.borderColor = 'white';
-    faqRef.current.style.borderColor = 'white';
-    signUpRef.current.style.borderColor = 'white';
-    setActive("OverviewPage");
+  const [showAddButtons, setShowAddButtons] = useState(false);
+
+  const [activePage, setActivePage] = useState("Overview");
+  const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
+    refs[page] = useRef(null);
+    return refs;
+  }, {}));
+
+  const changeVisibility = (page) => {
+    setActivePage(page);
+    Object.keys(pageRefs.current).forEach((key) => {
+      const ref = pageRefs.current[key].current;
+      if (!ref) return;
+      ref.style.borderColor = key === page ? '#001E60' : 'white';
+    });
+  };
+
+  const deletePage = (pageToRemove) => {
+    if (removablePages.includes(pageToRemove)) {
+      if (activePage === pageToRemove) {
+        changeVisibility("OverviewPage");
+      }
+      const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
+      setAllCurrentPages(newArray);
+    }
+  };
+
+  const addPage = (pageToAdd) => {
+    setAllCurrentPages((prevPages) => {
+      const insertIndex = prevPages.findIndex(
+        (page) => allPossiblePages.indexOf(page) > allPossiblePages.indexOf(pageToAdd)
+      );
+      if (insertIndex === -1) {
+        return [...prevPages, pageToAdd];
+      }
+      const updatedPages = [...prevPages];
+      updatedPages.splice(insertIndex, 0, pageToAdd);
+      return updatedPages;
+    });
+  };
+  // these three are 
+  function disapear() {
+    setShowAddButtons(false);
   }
 
-  const changeVisibility2=()=>{
-    contactRef.current.style.borderColor = '#001E60';
-    overviewRef.current.style.borderColor = 'white';
-    faqRef.current.style.borderColor = 'white';
-    signUpRef.current.style.borderColor = 'white';
-    setActive("ContactsPage");
+  function hide() {
+    setTimeout(disapear, 250);
   }
 
-  const changeVisibility3=()=>{
-    faqRef.current.style.borderColor = '#001E60';
-    overviewRef.current.style.borderColor = 'white';
-    contactRef.current.style.borderColor = 'white';
-    signUpRef.current.style.borderColor = 'white';
-    setActive("FaqPage");
-  }
+  const toggleAddButtons = () => {
+    setShowAddButtons((prevState) => !prevState)
+  };
 
-  const changeVisibility4=()=>{
-    signUpRef.current.style.borderColor = '#001E60';
-    overviewRef.current.style.borderColor = 'white';
-    faqRef.current.style.borderColor = 'white';
-    contactRef.current.style.borderColor = 'white';
-    setActive("SignUpPage");
-  }
-
-  const deletePage2=()=>{
-    setRemovePage2("removePage2");
-  }
-
-  const deletePage3=()=>{
-    setRemovePage3("removePage3");
-  }
-    
   return (
     <div>
-      <NavBar isFixedPage={false} />,
-      <form action="/store-service" method="POST" 
-      className="service-container" id='form'>
-
+      <NavBar isFixedPage={false} />
+      <form action="/store-service" method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" 
-          className="club-title-text-box" name="title" id='title'/><br />
+          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' /><br />
         </div>
 
         <div className="service-navbar">
-          <div className="service-navbar-text">
-            <a href="#" className="service-navbar-link" ref={overviewRef}
-            onClick={changeVisibility1} id="overviewColor"
-            >Overview</a>
-          </div>
+          {allCurrentPages.map((page) => (
+            <div className="service-navbar-text" key={page} id={page === "OverviewPage" ? "" : `remove${page}`}>
+              <a href="#" className="service-navbar-link" ref={pageRefs.current[page]} onClick={() => changeVisibility(page)}>{page}</a>
+              {removablePages.includes(page) && <i className="fa-solid fa-circle-xmark" id="remove-service-navbar-text" onClick={() => deletePage(page)}></i>}
+            </div>
+          ))}
 
-          <div className="service-navbar-text" id={removePage2}>
-            <a href="#" className="service-navbar-link" ref={contactRef}
-            onClick={changeVisibility2}
-            >Contacts & Social Media</a>
-
-            <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
-            onClick={deletePage2}></i>
+          <div
+        className="service-navbar-plus-container"
+        onClick={toggleAddButtons}
+        onBlur={hide}
+        tabIndex="0"
+      >
+        <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus"></i>
+        {showAddButtons && (
+          <div className="add-buttons-container">
+            {allPossiblePages
+              .filter((page) => !allCurrentPages.includes(page))
+              .map((page) => (
+                <button
+                  key={page}
+                  onClick={() => addPage(page)}
+                  className="add-page-button"
+                >
+                  Add {page}
+                </button>
+              ))}
           </div>
-
-          <div className="service-navbar-text" id={removePage3}>
-            <a href="#" className="service-navbar-link" ref={faqRef}
-            onClick={changeVisibility3} 
-            >FAQ</a>
-
-            <i class="fa-solid fa-circle-xmark" id="remove-service-navbar-text"
-            onClick={deletePage3} ></i>
-          </div>
-
-          <div className="service-navbar-text">
-            <a href="#" className="service-navbar-link" ref={signUpRef}
-            onClick={changeVisibility4} 
-            >Sign Up Today</a>
-          </div>
-          
-          <div className="service-navbar-plus-container">
-            <i class="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus"></i> 
-          </div>
+        )}
+      </div>
         </div>
-        
-        {active === "OverviewPage" && <OverviewPage/>}
-        {active === "ContactsPage" &&  <ContactsPage/>}
-        {active === "FaqPage" &&  <FaqPage/>}
-        {active === "SignUpPage" &&  <SignUpPage/>}
-      
+
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" />}
+        {activePage === "Faq" && <FaqPage key="FaqPage" />}
+        {activePage === "Signup" && <SignUpPage key="SignUpPage" />}
+
       </form>
     </div>
   );
