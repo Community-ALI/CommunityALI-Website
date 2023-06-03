@@ -34,12 +34,18 @@ body
     text-align: center;
 
     position: relative;
-    padding : 10px;
+    padding : 20px;
     min-width: 43%;
     margin : 100px 10% 20px 10%;
     
     background-color: #001E60;
     border-radius: 10px;
+}
+
+.user-service-container
+{
+    display: flex;
+    justify-content: center;
 }
 
 .user-service
@@ -48,24 +54,31 @@ body
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
 
     position: relative;
     padding : 20px;
-    min-width: 43%;
-    margin : 3% 20%;
+    width : 60%;
+    margin : 2% 0%;
     
     background-color: #00468D;
+    transition : all 0.3s ease-in-out;
     border-radius: 10px;   
+    cursor: pointer;
 
     height: 128px;
+}
+
+.user-service:hover
+{
+    background-color: #001E60;
 }
 
 .option-container
 {
     display : flex;
     justify-content: center;
-    margin : 20px 0px
+    margin : 20px 0px;
+    align-items: center;
 }
 
 .option-container-service
@@ -74,13 +87,13 @@ body
     justify-content: center;
     margin : 25px 0px;
     align-items: center;
-    position: absolute;
     z-index: 2;
 }
 
 .user-link
 {
     text-decoration: none;
+    transition : all 0.3s ease-in-out;
     color : white;
 }
 
@@ -102,7 +115,7 @@ body
     font-size: 22px;
     font-family: "Poppins";
     font-weight: 500;
-    padding-left : 5px;
+    padding-left : 10px;
     transition : all 0.3s ease-in-out;
 }
 
@@ -132,6 +145,18 @@ body
     text-decoration: none;
     cursor: pointer;
     border: none;
+}
+
+.user-link-container
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.edit-delete-container
+{
+    display: flex;
 }
 
 .background-link {
@@ -196,4 +221,114 @@ body
   50% { height: 100%;}
   75% { height: 100%;}
   100% { height: 0%;}
+}
+
+@media all and (max-width : 1250px)
+{
+    .user-service
+    {
+        width : 80%;
+    }
+}
+
+@media all and (max-width : 850px)
+{
+    .username-title
+    {
+        margin: 100px 6% 20px 6%;
+    }
+
+    .user-service
+    {
+        width : 85%;
+    }
+
+    .edit-delete-container
+    {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .user-service-text
+    {
+        font-size: 20px;
+    }
+
+    .edit-button
+    {
+        margin-bottom : 15px;
+        font-size : 16px;
+    }
+
+    .service-delete-button
+    {
+        font-size : 16px;
+    }
+}
+
+@media all and (max-width : 500px)
+{
+
+    .option-container-service
+    {
+        flex-wrap: wrap;
+    }
+
+    .user-link-container
+    {
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .username-title
+    {
+        font-size: 22px;
+        padding: 15px;
+        margin: 80px 4% 20px 4%;
+    }
+
+    .user-service
+    {
+        width : 90%;
+        padding : 10px;
+        margin: 5% 0%;
+    }
+
+    .user-service i 
+    {
+        font-size: 25px;
+    }
+
+    .user-service-text
+    {
+        font-size: 16px;
+        text-align: center;
+        padding-left: 0px;
+    }
+
+    .edit-delete-container
+    {
+        margin-top: 20px;
+    }
+
+    .edit-button
+    {
+        margin: 0px 10px 15px 10px;
+        font-size: 15px;
+    }
+
+    .service-delete-button
+    {
+        margin: 0px 10px 15px 10px;
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width : 380px)
+{
+    .user-service
+    {
+        margin: 7% 0%;
+    }
 }

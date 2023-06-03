@@ -27,33 +27,39 @@ function MyServicesHome() {
       };
        
       return (
-        <div className="user-service" onClick={handleBackgroundClick}>
-          <div 
-              className={
-                  ' notification-icon' + 
-                  (props.notificaitons < 1) ? ' hidden' : ''
-              }
-          >{props.notificaitons}</div>
-          <div className="option-container-service">
-            <a className="user-link" href={`view-applicants?service=${service.title}`}>
-              <i className="fa-solid fa-users fa-2x"></i>
-            </a>
-            <a className="user-service-text" href={`view-applicants?service=${service.title}`}>
-              {service.title}
-            </a>
-            <a
-              className="edit-button"
-              href={`edit-service?service=${service.title}`}
-            >Edit</a>
-            <button
-              className="service-delete-button"
-              onClick={(event) => {
-                event.stopPropagation(); // Prevent event bubbling
-                // window.location.href = 'https://www.youtube.com/watch?v=oHC1230OpOg'
-                setDeleteServiceTitle(service.title);
-                setIsShowingServiceDeletePopup(true);
-              }}
-            >Delete</button>
+        <div className="user-service-container">
+          <div className="user-service" onClick={handleBackgroundClick}>
+            <div 
+                className={
+                    ' notification-icon' + 
+                    (props.notificaitons < 1) ? ' hidden' : ''
+                }
+            >{props.notificaitons}
+            </div>
+
+            <div className="option-container-service">
+              <div className="user-link-container">
+                <a className="user-link" href={`view-applicants?service=${service.title}`}>
+                  <i className="fa-solid fa-users fa-2x"></i>
+                </a>
+                <a className="user-service-text" href={`view-applicants?service=${service.title}`}>
+                  {service.title}
+                </a>
+              </div>
+
+              <div className="edit-delete-container">
+                <a className="edit-button" href={`edit-service?service=${service.title}`}
+                >Edit</a>
+                <button className="service-delete-button"
+                  onClick={(event) => {
+                    event.stopPropagation(); // Prevent event bubbling
+                    // window.location.href = 'https://www.youtube.com/watch?v=oHC1230OpOg'
+                    setDeleteServiceTitle(service.title);
+                    setIsShowingServiceDeletePopup(true);
+                  }}
+                >Delete</button>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -116,16 +122,18 @@ function MyServicesHome() {
             >
         </div>
         <div className = "username-title">
-            {"Welcome: " + username}
+            {"Welcome " + username}
         </div>
-        <div className = "user-service">
-            <a className = "background-link" href = "/add-club"></a>
-            <a className = "user-link" href = "/add-club">
-                <div className = "option-container">
-                    <i className = "fa-solid fa-plus fa-2x"></i>
-                    <p className = "user-service-text">Add a New Service</p>
-                </div> 
-            </a>
+        <div className="user-service-container">
+          <div className = "user-service">
+              <a className = "background-link" href = "/add-club"></a>
+              <a className = "user-link" href = "/add-club">
+                  <div className = "option-container">
+                      <i className = "fa-solid fa-plus fa-2x"></i>
+                      <p className = "user-service-text">Add a New Service</p>
+                  </div> 
+              </a>
+          </div>
         </div>
         {services.map(service => ( // display each service
             <MyServicePageDisplay 
