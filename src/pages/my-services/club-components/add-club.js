@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import './add-club.css';
@@ -44,6 +44,11 @@ function AddService() {
       ref.style.borderColor = key === page ? '#001E60' : 'white';
     });
   };
+
+  
+    useEffect(() => {
+      changeVisibility("Overview"); // Set "Overview" as the active page initially
+    }, []);
 
   const deletePage = (pageToRemove) => {
     if (removablePages.includes(pageToRemove)) {
@@ -125,8 +130,8 @@ function AddService() {
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
-        {activePage === "Faq" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Signup" && <SignUpPage key="SignUpPage" formData={signupFormData} setFormData={setSignupFormData} />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" formData={signupFormData} setFormData={setSignupFormData} />}
 
       </form>
     </div>
