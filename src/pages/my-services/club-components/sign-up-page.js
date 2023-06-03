@@ -2,9 +2,7 @@ import React, { useRef, Component, useState, useEffect } from "react";
 import './add-club.css';
 
 function SignUpPage() {
-    const checkRequired = () => {
-      
-    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if (file) {

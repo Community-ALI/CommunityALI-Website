@@ -12,12 +12,11 @@ function AddService() {
     "Overview",
     "Contacts",
     "Faq",
-    "anotherPage",
     "Signup"
   ];
 
   const [allCurrentPages, setAllCurrentPages] = useState([
-    "Overview",
+    "Overview", 
     "Contacts",
     "Faq",
     "Signup"
@@ -28,6 +27,12 @@ function AddService() {
   const [showAddButtons, setShowAddButtons] = useState(false);
 
   const [activePage, setActivePage] = useState("Overview");
+
+  const [overviewFormData, setOverviewFormData] = useState({});
+  const [contactsFormData, setContactsFormData] = useState({});
+  const [faqFormData, setFaqFormData] = useState({});
+  const [signupFormData, setSignupFormData] = useState({});
+
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
     return refs;
@@ -119,10 +124,10 @@ function AddService() {
       </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" />}
-        {activePage === "Faq" && <FaqPage key="FaqPage" />}
-        {activePage === "Signup" && <SignUpPage key="SignUpPage" />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
+        {activePage === "Faq" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
+        {activePage === "Signup" && <SignUpPage key="SignUpPage" formData={signupFormData} setFormData={setSignupFormData} />}
 
       </form>
     </div>
