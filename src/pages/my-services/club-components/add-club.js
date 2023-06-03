@@ -11,19 +11,16 @@ function AddService() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
-    "Faq",
-    "anotherPage",
-    "Signup"
+    "FAQ",
+    "Sign Up"
   ];
 
   const [allCurrentPages, setAllCurrentPages] = useState([
     "Overview",
-    "Contacts",
-    "Faq",
-    "Signup"
+    "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "Faq", "anotherPage"];
+  const removablePages = ["Contacts", "FAQ"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
@@ -45,7 +42,7 @@ function AddService() {
   const deletePage = (pageToRemove) => {
     if (removablePages.includes(pageToRemove)) {
       if (activePage === pageToRemove) {
-        changeVisibility("OverviewPage");
+        changeVisibility("Overview");
       }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
@@ -100,7 +97,7 @@ function AddService() {
         onBlur={hide}
         tabIndex="0"
       >
-        <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus"></i>
+        <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
         {showAddButtons && (
           <div className="add-buttons-container">
             {allPossiblePages
@@ -116,13 +113,14 @@ function AddService() {
               ))}
           </div>
         )}
+        </i>
       </div>
         </div>
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" />}
-        {activePage === "Faq" && <FaqPage key="FaqPage" />}
-        {activePage === "Signup" && <SignUpPage key="SignUpPage" />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" />}
 
       </form>
     </div>
