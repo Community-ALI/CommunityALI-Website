@@ -29,12 +29,14 @@ const SearchResult = function (props) {
         normalTime = convertToNormalTime(applicant.time);
     }
     return (
-        <div className="applicants-result-container">
-            <Notifications notifications={(applicant.is_new_applicant) ? 1 : 0} />
-            <p className="applicant-name">{applicant.name}</p>
-            <p className="applicant-email">{applicant.email}</p>
-            <p className="applicant-time">{applicant.date}</p>
-            <p className="applicant-time">{normalTime}</p>
+        <div>
+            <div className="applicants-result-container">
+                <Notifications styleLeft={true} notifications={(applicant.is_new_applicant) ? 1 : 0} />
+                <p className="applicant-name">{applicant.name}</p>
+                <p className="applicant-email">{applicant.email}</p>
+                <p className="applicant-time">{applicant.date}</p>
+                <p className="applicant-time">{normalTime}</p>
+            </div>
         </div>
     );
 };

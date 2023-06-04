@@ -9,6 +9,8 @@
     position: absolute;
     right: -2px;
     top: -8px;
+    max-width: 24px;
+    text-align: center;
 }
 
 .relative-container {
@@ -18,4 +20,8 @@
 .hidden {
     display: none;
     visibility: hidden;
-  }
+}
+
+.position-left {
+    left: -2px;
+}
