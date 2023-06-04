@@ -177,6 +177,25 @@ app.get("/get-service-applicants", async function (req, res) {
   }
 })
 
+// send a user their services
+app.get("/get-all-user-notifications", async function (req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    const user_notifications = await get_all_user_notifications(username);
+    
+    res.json({
+      notifications: user_notifications,
+      tokenUsername: username});
+    console.log('application notification belonging to', username, 'sent')
+  } catch (error) {
+    console.log(error);
+    res.json({
+      user_notifications: [],
+      tokenUsername: 'not logged in'});
+  }
+})
 
 // get the applicants to a service (as long as the user is authorized)
 app.get("/get-service-notifications", async function (req, res) {
