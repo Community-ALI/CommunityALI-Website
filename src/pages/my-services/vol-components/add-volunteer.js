@@ -7,7 +7,7 @@ import OverviewPage from "./overview-page";
 import FaqPage from "../general-components/faq-page";
 import SignUpPage from "./sign-up-page";
 
-function AddClub() {
+function AddEvent() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -91,7 +91,7 @@ function AddClub() {
       <NavBar isFixedPage={false} />
       <form action="/store-service" method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' /><br />
+          <input type="text" placeholder="Name of the Volunteer Project" className="club-title-text-box" name="title" id='title' /><br />
         </div>
 
         <div className="service-navbar">
@@ -138,4 +138,4 @@ function AddClub() {
   );
 }
 
-export default AddClub;
+export default AddEvent;

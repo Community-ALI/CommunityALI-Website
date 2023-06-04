@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './add-club.css';
+import '../add-service.css';
 
 function FaqPage({ formData, setFormData }) {
   const maxFaqLength = 10;

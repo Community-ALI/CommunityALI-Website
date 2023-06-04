@@ -34,7 +34,7 @@ function Footer() {
             <div 
                 className="footer-text">
                 <p>
-                     Copyright © 2023 Community Catalyst. All Rights Reserved. Community Catalyst is not directly affiliated with MJC or any of its subsidiaries. 
+                     Copyright © 2023 Community ALI. All Rights Reserved. Community ALI is not directly affiliated with MJC or any of its subsidiaries. 
                 </p>        
             </div>    
         </footer>

@@ -148,8 +148,8 @@ function MyServicesHome() {
       </div>
       <div className="user-service-container">
         <div className="user-service">
-          <a className="background-link" href="/add-club"></a>
-          <a className="user-link" href="/add-club">
+          <a className="background-link" href="/categories-page"></a>
+          <a className="user-link" href="/categories-page">
             <div className="option-container">
               <i className="fa-solid fa-plus fa-2x"></i>
               <p className="user-service-text">Add a New Service</p>

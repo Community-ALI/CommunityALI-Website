@@ -9,7 +9,11 @@ import View_Services from "./pages/explore-services/service-info";
 import Signup_Success from "./pages/explore-services/signup-success";
 
 import My_Services_Main_Page from "./pages/my-services/main-page";
-import Add_Service from "./pages/my-services/club-components/add-club";
+import Add_Service from "./pages/my-services/categories-page";
+import Add_Club from "./pages/my-services/club-components/add-club";
+import Add_Event from "./pages/my-services/event-components/add-event";
+import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
+import Add_Internship from "./pages/my-services/intern-components/add-intern";
 import Edit_Service from "./pages/my-services/edit-service";
 import View_Applicants from "./pages/my-services/view-applicants";
 
@@ -30,7 +34,11 @@ function App() {
 
                 {/* my services pages */}
                 <Route path="/my-services" element={<My_Services_Main_Page />}/>
-                <Route path="/add-club" element={<Add_Service />}/>
+                <Route path="/categories-page" element={<Add_Service />}/>
+                <Route path="/add-club" element={<Add_Club />}/>
+                <Route path="/add-event" element={<Add_Event />}/>
+                <Route path="/add-volunteer" element={<Add_Volunteer />}/>
+                <Route path="/add-intern" element={<Add_Internship />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
 

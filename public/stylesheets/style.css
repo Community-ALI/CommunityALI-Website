@@ -1,11 +1,11 @@
 .notification-icon {
-    background-color: red;
-    padding: 4px;
+    background-color: #ecaa1e;
+    padding: 5px;
     font-size: medium;
     font-weight: bold;
     font-family: sans-serif;
     border-radius: 32px;
-    color: white;
+    color: #001E60;
     position: absolute;
     right: -2px;
     top: -8px;

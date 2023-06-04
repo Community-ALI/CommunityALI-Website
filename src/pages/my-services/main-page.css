@@ -130,6 +130,13 @@ body
     font-weight: bold;
     border-radius: 8px;
     text-decoration: none;
+    transition : all 0.3s ease-in-out;
+}
+
+.edit-button:hover
+{
+    background-color : #00468D;
+    color : white;
 }
 
 .service-delete-button
@@ -145,6 +152,13 @@ body
     text-decoration: none;
     cursor: pointer;
     border: none;
+    transition : all 0.3s ease-in-out;
+}
+
+.service-delete-button:hover
+{
+    background-color : #00468D;
+    color : white;
 }
 
 .user-link-container

@@ -325,11 +325,23 @@ body
 #solvecc
 {
     width : 35%;
+    transition: 300ms ease ;
+}
+
+#solvecc:hover
+{
+    transform: scale(1.05);
 }
 
 #fourth-world
 {
     width : 20%;
+    transition: 300ms ease;
+}
+
+#fourth-world:hover
+{
+    transform: scale(1.05);
 }
 
 .search-bar-container

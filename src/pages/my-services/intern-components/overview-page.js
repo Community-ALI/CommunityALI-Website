@@ -33,7 +33,7 @@ function OverviewPage({ formData, setFormData }) {
     <div>
       <div className="service-info-container">
         <div className="file-container" id={fileContainerID}>
-          <header>Club Photo Uploader</header>
+          <header>Internship Photo Uploader</header>
           <label className="file-form" htmlFor="file-input">
             <i className="fas fa-cloud-upload-alt" id="file-icon" />
             <p ref={fileUploadText}>Click to upload a single image File</p>
@@ -53,7 +53,7 @@ function OverviewPage({ formData, setFormData }) {
           <div className="service-author">
             <input
               type="text"
-              placeholder="President of the Club"
+              placeholder="Organizer of the Internship"
               onChange={handleFormChange}
               name="subtitle"
               value={formData.subtitle || ""}
@@ -63,7 +63,7 @@ function OverviewPage({ formData, setFormData }) {
             <br />
           </div>
 
-          <div className="service-header">Meeting Details</div>
+          <div className="service-header">Internship Details</div>
 
           <div>
             <u> Time: </u>
@@ -97,7 +97,7 @@ function OverviewPage({ formData, setFormData }) {
             <u> Location: </u>
             <input
               type="text"
-              placeholder="Include building and room"
+              placeholder="Include building or room"
               onChange={handleFormChange}
               name="location"
               value={formData.location || ""}
@@ -113,7 +113,7 @@ function OverviewPage({ formData, setFormData }) {
         <textarea
           rows="5"
           type="text"
-          placeholder="Include a description of what the club does and its mission..."
+          placeholder="Include a description of what this internship is and what it's for..."
           onChange={handleFormChange}
           name="description"
           value={formData.description || ""}

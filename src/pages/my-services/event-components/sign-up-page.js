@@ -113,7 +113,7 @@ function SignUpPage() {
         <div>
             <div className="sign-up-form">
               <div id="form" className="sign-up-form-boxes">
-                <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
+                <div className="service-header" id="sign-up-header">Sign up to this Event Today!</div>
                   <div className="sign-up-form-container">
                       <div className="text-container" id="name-container">
                           <label for="name" className="sign-up-form-text"> Full Name: </label>
@@ -134,9 +134,9 @@ function SignUpPage() {
             <div className="authorization-container">
                 <label htmlFor="authorization" className="authorization-text">
                 By submitting this application I authorize Community ALI to publish all the information of this application for anybody
-                to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
-                I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
-                members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
+                to view. I hold responsibility for the information displayed from this application and I represent the event's interest to do so.
+                I understand that this application will be subject to review, in which any inappropriate content associated with the event or its
+                organizers will result in immediate termination of the event from the platform. I understand that there is no tolerance for any discrimination
                 against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
                 </label>
                 {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
