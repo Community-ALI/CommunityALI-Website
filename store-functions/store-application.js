@@ -21,7 +21,8 @@ const store_application = async function(req) {
       email: req.body.email,
       w_number: req.body.w_number,
       date: formattedDate,
-      time: time
+      time: time,
+      is_new_applicant: true
     });
 
     await apply.save(); // Use await to wait for the save operation to complete
