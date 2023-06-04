@@ -7,7 +7,7 @@ import OverviewPage from "./overview-page";
 import FaqPage from "../general-components/faq-page";
 import SignUpPage from "./sign-up-page";
 
-function AddClub() {
+function AddEvent() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -29,13 +29,12 @@ function AddClub() {
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
+  const [signupFormData, setSignupFormData] = useState({});
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
     return refs;
   }, {}));
-
-  const titleRef = useRef(null);
 
   const changeVisibility = (page) => {
     setActivePage(page);
@@ -90,9 +89,9 @@ function AddClub() {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <form method="POST" className="service-container" id='form'>
+      <form action="/store-service" method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} /><br />
+          <input type="text" placeholder="Name of the Volunteer Project" className="club-title-text-box" name="title" id='title' /><br />
         </div>
 
         <div className="service-navbar">
@@ -132,17 +131,11 @@ function AddClub() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" title={titleRef.value} allFormData={
-          {
-            'Overview': overviewFormData,
-            'Contacts': contactsFormData,
-            'FAQ': faqFormData
-          }
-          } />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" formData={signupFormData} setFormData={setSignupFormData} />}
 
       </form>
     </div>
   );
 }
 
-export default AddClub;
+export default AddEvent;

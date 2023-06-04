@@ -4,6 +4,7 @@ import './view-applicants.css'
 import '../../../public/stylesheets/style.css'
 import Footer from '../../components/Footer'
 import NavBar from '../../components/NavBar';
+import Notifications from '../../components/Notification';
 function convertToNormalTime(armyTime) {
     const [hours, minutes, seconds] = armyTime.split(':');
     let period = 'am';
@@ -23,22 +24,39 @@ function convertToNormalTime(armyTime) {
 // each individual application to display
 const SearchResult = function (props) {
     const applicant = props.applicant;
+    const [isNotification, setIsNotification] = useState(applicant.is_new_applicant);
     var normalTime = 'long ago';
     if (applicant.time) {
         normalTime = convertToNormalTime(applicant.time);
     }
+
+    const handleHover = () => {
+        if (isNotification) {
+            setIsNotification(false);
+            fetch('http://localhost:3000/change_notification_status/' + applicant._id, {
+                method: 'POST',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Handle the response data
+                })
+                .catch(error => {
+                    console.error(error);
+                    // Handle the error
+                });
+        }
+    };
+
     return (
-        <div className="applicants-result-container">
-            <div
-                className={
-                    ' notification-icon' +
-                        (props.notificaiton) ? ' hidden' : ''
-                }
-            >{props.notificaitons}</div>
-            <p className="applicant-name">{applicant.name}</p>
-            <p className="applicant-email">{applicant.email}</p>
-            <p className="applicant-time">{applicant.date}</p>
-            <p className="applicant-time">{normalTime}</p>
+        <div onMouseEnter={handleHover}>
+            <div className="applicants-result-container">
+                <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
+                <p className="applicant-name">{applicant.name}</p>
+                <p className="applicant-email">{applicant.email}</p>
+                <p className="applicant-time">{applicant.date}</p>
+                <p className="applicant-time">{normalTime}</p>
+            </div>
         </div>
     );
 };
@@ -76,8 +94,8 @@ function ApplicationPageDisplay(props) {
             <div className="applicants-title">{serviceName}</div>
             <div className="search-results">
                 {props.applicants.map((applicant, index) => (
-                    <SearchResult 
-                        key={index}    
+                    <SearchResult
+                        key={index}
                         applicant={applicant}
                         notificaiton={false} /> //TODO fill this with is applicant new bool for notification to show up to connect it to back end
                 ))}
@@ -136,9 +154,9 @@ function ServiceApplicants() {
                     Club Sign-ups
                 </div>
                 <div className="applicants-container">
-                    <ApplicationPageDisplay 
-                        serviceName={serviceName} 
-                        applicants={applicants}/>
+                    <ApplicationPageDisplay
+                        serviceName={serviceName}
+                        applicants={applicants} />
                 </div>
             </div>
         </div>

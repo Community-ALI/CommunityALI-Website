@@ -1,5 +1,5 @@
 import React, { useRef, Component, useState, useEffect } from "react";
-import './add-club.css';
+import '../add-service.css';
 
 function SignUpPage({mainInfo, allFormData}) {
     console.log(allFormData)

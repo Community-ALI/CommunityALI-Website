@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../add-service.css';
 
-function ContactsPage({ formData, setFormData }) { 
+function ContactsPage({ formData, setFormData }) {
   const maxContactCount = 5;
   const maxMediaCount = 5;
   const [contactData, setContactData] = useState(formData.contacts || [{ contactRole: "", contactName: "", contactEmail: "" }]);
@@ -68,24 +68,9 @@ function ContactsPage({ formData, setFormData }) {
 
           {contactData.map((contactVal, j) => (
             <div className="contacts-container" key={j}>
-              <select
-                className="club-contacts-selection"
-                name="contactRole"
-                id={`contact-role-${j + 1}`}
-                value={contactVal.contactRole}
-                onChange={(h) => contactChange(h, j)}
-              >
-                <option value="">
-                  Select Officer
-                </option>
-                <option value="president">President</option>
-                <option value="vice-president">Vice President</option>
-                <option value="icc-rep">ICC Rep</option>
-                <option value="advisor">Advisor</option>
-              </select>
               <input
                 type="text"
-                placeholder="Full Name of Officer"
+                placeholder="Full Name of the Person or Entity"
                 className="contacts-text-box"
                 name="contactName"
                 value={contactVal.contactName}
@@ -95,7 +80,7 @@ function ContactsPage({ formData, setFormData }) {
               <div className="text-button-container">
                 <input
                   type="email"
-                  placeholder="School or Personal Email of Officer"
+                  placeholder="Insert their Email or Phone Number"
                   className="contacts-email-box"
                   name="contactEmail"
                   value={contactVal.contactEmail}
@@ -131,7 +116,7 @@ function ContactsPage({ formData, setFormData }) {
                 onChange={(e) => mediaChange(e, i)}
                 id={`contact-role-${i + 1}`}
               >
-                <option value="">
+                <option value="" selected>
                   Select Media
                 </option>
                 <option value="zoom">Zoom</option>
@@ -141,7 +126,7 @@ function ContactsPage({ formData, setFormData }) {
               </select>
               <input
                 type="text"
-                placeholder="Club Account Name"
+                placeholder="Event Account Name"
                 className="contacts-text-box"
                 name="mediaName"
                 value={mediaVal.mediaName}
@@ -151,7 +136,7 @@ function ContactsPage({ formData, setFormData }) {
               <div className="text-button-container">
                 <input
                   type="url"
-                  placeholder="Insert link to the Club Account"
+                  placeholder="Insert link to the Social Media Account"
                   className="contacts-email-box"
                   name="mediaUrl"
                   value={mediaVal.mediaUrl}
