@@ -29,12 +29,13 @@ function AddService() {
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
-  const [signupFormData, setSignupFormData] = useState({});
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
     return refs;
   }, {}));
+
+  const titleRef = useRef(null);
 
   const changeVisibility = (page) => {
     setActivePage(page);
@@ -89,9 +90,9 @@ function AddService() {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <form action="/store-service" method="POST" className="service-container" id='form'>
+      <form method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' /><br />
+          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} /><br />
         </div>
 
         <div className="service-navbar">
@@ -131,7 +132,13 @@ function AddService() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" formData={signupFormData} setFormData={setSignupFormData} />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" title={titleRef.value} allFormData={
+          {
+            'Overview': overviewFormData,
+            'Contacts': contactsFormData,
+            'FAQ': faqFormData
+          }
+          } />}
 
       </form>
     </div>

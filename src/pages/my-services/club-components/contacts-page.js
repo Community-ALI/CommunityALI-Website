@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './add-club.css';
 
-function ContactsPage({ formData, setFormData }) {
+function ContactsPage({ formData, setFormData }) { 
   const maxContactCount = 5;
   const maxMediaCount = 5;
   const [contactData, setContactData] = useState(formData.contacts || [{ contactRole: "", contactName: "", contactEmail: "" }]);
@@ -75,7 +75,7 @@ function ContactsPage({ formData, setFormData }) {
                 value={contactVal.contactRole}
                 onChange={(h) => contactChange(h, j)}
               >
-                <option value="" selected>
+                <option value="">
                   Select Officer
                 </option>
                 <option value="president">President</option>
@@ -131,7 +131,7 @@ function ContactsPage({ formData, setFormData }) {
                 onChange={(e) => mediaChange(e, i)}
                 id={`contact-role-${i + 1}`}
               >
-                <option value="" selected>
+                <option value="">
                   Select Media
                 </option>
                 <option value="zoom">Zoom</option>
