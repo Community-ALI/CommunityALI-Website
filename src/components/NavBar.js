@@ -8,6 +8,35 @@ import { useRect } from 'react-use-rect';
 import Notifications from './Notification';
 
 function MyServicesNavButton(props) {
+    const [notifications, setNotifications] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            var token = localStorage.getItem('token');
+            if (token) {
+              console.log('sending request');
+              const response = await fetch('http://localhost:3000/get-all-user-notifications',
+                {
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    setNotifications(data.user_notifications);
+                })
+            }
+            else {
+              console.log('no token found')
+            }
+          } catch (error) {
+            console.log(error)
+          }
+        };
+    
+        fetchData();
+      }, []);
 
     if(props.token){
         return (
@@ -16,7 +45,7 @@ function MyServicesNavButton(props) {
                 to="/my-services"
                 id="applicants"
             >
-                <Notifications notifications={props.notifications} />
+                <Notifications notifications={notifications.length} />
                 My Services</Link>
         )
     }
@@ -79,7 +108,7 @@ function NavBar(props) {
                             className="navigation-button navigation-text" 
                             to="/services"
                         >Explore</Link>
-                        <MyServicesNavButton token={token} notifications={props.notifications} />
+                        <MyServicesNavButton token={token} />
                         <a 
                             className="navigation-button navigation-text" 
                             href="https://www.mjc.edu/" 
