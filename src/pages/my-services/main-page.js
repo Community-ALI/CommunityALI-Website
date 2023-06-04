@@ -51,7 +51,7 @@ function MyServicePageDisplay(props) {
   return (
     <div className="user-service-container">
       <div className="user-service" onClick={handleBackgroundClick}>
-      <Notifications notifications={notifications} />
+      <Notifications notifications={notifications.length} />
 
         <div className="option-container-service">
           <div className="user-link-container">
