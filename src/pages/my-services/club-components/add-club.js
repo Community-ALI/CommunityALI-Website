@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import './add-club.css';
@@ -11,23 +11,26 @@ function AddService() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
-    "Faq",
-    "anotherPage",
-    "Signup"
+    "FAQ",
+    "Sign Up"
   ];
 
   const [allCurrentPages, setAllCurrentPages] = useState([
     "Overview",
-    "Contacts",
-    "Faq",
-    "Signup"
+    "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "Faq", "anotherPage"];
+  const removablePages = ["Contacts", "FAQ"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
   const [activePage, setActivePage] = useState("Overview");
+
+  const [overviewFormData, setOverviewFormData] = useState({});
+  const [contactsFormData, setContactsFormData] = useState({});
+  const [faqFormData, setFaqFormData] = useState({});
+  const [signupFormData, setSignupFormData] = useState({});
+
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
     return refs;
@@ -42,10 +45,15 @@ function AddService() {
     });
   };
 
+  
+    useEffect(() => {
+      changeVisibility("Overview"); // Set "Overview" as the active page initially
+    }, []);
+
   const deletePage = (pageToRemove) => {
     if (removablePages.includes(pageToRemove)) {
       if (activePage === pageToRemove) {
-        changeVisibility("OverviewPage");
+        changeVisibility("Overview");
       }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
@@ -100,7 +108,7 @@ function AddService() {
         onBlur={hide}
         tabIndex="0"
       >
-        <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus"></i>
+        <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
         {showAddButtons && (
           <div className="add-buttons-container">
             {allPossiblePages
@@ -116,13 +124,14 @@ function AddService() {
               ))}
           </div>
         )}
+        </i>
       </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" />}
-        {activePage === "Faq" && <FaqPage key="FaqPage" />}
-        {activePage === "Signup" && <SignUpPage key="SignUpPage" />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" formData={signupFormData} setFormData={setSignupFormData} />}
 
       </form>
     </div>
