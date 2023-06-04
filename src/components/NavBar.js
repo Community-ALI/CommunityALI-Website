@@ -18,7 +18,6 @@ function MyServicesNavButton(props) {
             try {
                 var token = localStorage.getItem('token');
                 if (token) {
-                    console.log('sending request');
                     const response = await fetch('http://localhost:3000/get-all-user-notifications',
                         {
                             headers: {
@@ -40,10 +39,6 @@ function MyServicesNavButton(props) {
 
         fetchData();
     });
-
-    useEffect(() => {
-        console.log(notifications);
-    })
 
     if (props.token) {
         return (
