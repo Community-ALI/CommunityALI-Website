@@ -10,6 +10,9 @@ import Notifications from './Notification';
 function MyServicesNavButton(props) {
     const [notifications, setNotifications] = useState([]);
 
+    // IF PERFORMANCE BECOMES AN ISSUE ON THE WEBSITE THIS IS MOST LIKELY THE CAUSE
+    // REWORK THIS USE EFFECT TO CHANGE ONLY WHEN YOU WANT IT TO CHANGE BY PASSING A STATE
+    // IF PERFORMANCE DROPS, I just don't know what the boss wants exactly so I am leaving it like this
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -36,7 +39,7 @@ function MyServicesNavButton(props) {
         };
 
         fetchData();
-    }, []);
+    });
 
     useEffect(() => {
         console.log(notifications);

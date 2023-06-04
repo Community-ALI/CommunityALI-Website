@@ -24,14 +24,34 @@ function convertToNormalTime(armyTime) {
 // each individual application to display
 const SearchResult = function (props) {
     const applicant = props.applicant;
+    const [isNotification, setIsNotification] = useState(applicant.is_new_applicant);
     var normalTime = 'long ago';
     if (applicant.time) {
         normalTime = convertToNormalTime(applicant.time);
     }
+
+    const handleHover = () => {
+        if (isNotification) {
+            setIsNotification(false);
+            fetch('http://localhost:3000/change_notification_status/' + applicant._id, {
+                method: 'POST',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Handle the response data
+                })
+                .catch(error => {
+                    console.error(error);
+                    // Handle the error
+                });
+        }
+    };
+
     return (
-        <div>
+        <div onMouseEnter={handleHover}>
             <div className="applicants-result-container">
-                <Notifications styleLeft={true} notifications={(applicant.is_new_applicant) ? 1 : 0} />
+                <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
                 <p className="applicant-name">{applicant.name}</p>
                 <p className="applicant-email">{applicant.email}</p>
                 <p className="applicant-time">{applicant.date}</p>
