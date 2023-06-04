@@ -7,7 +7,7 @@ import DeleteServicePopup from '../../components/DeleteServicePopup'
 // create the information required to display the page
 
 function MyServicePageDisplay(props) {
-  const [notifications, setNotifications] = useState(0);
+  const [notifications, setNotifications] = useState([]);
   const service = props.service;
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function MyServicePageDisplay(props) {
   return (
     <div className="user-service-container">
       <div className="user-service" onClick={handleBackgroundClick}>
-      <Notifications notifications={notifications.length} />
+      <Notifications notifications={notifications ? notifications.length : 0} />
 
         <div className="option-container-service">
           <div className="user-link-container">

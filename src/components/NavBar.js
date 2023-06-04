@@ -45,7 +45,7 @@ function MyServicesNavButton(props) {
                 to="/my-services"
                 id="applicants"
             >
-                <Notifications notifications={notifications.length} />
+                <Notifications notifications={notifications ? notifications.length : 0} />
                 My Services</Link>
         )
     }
