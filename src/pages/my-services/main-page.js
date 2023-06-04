@@ -51,11 +51,11 @@ function MyServicePageDisplay(props) {
   return (
     <div className="user-service-container">
       <div className="user-service" onClick={handleBackgroundClick}>
-      <Notifications notifications={notifications ? notifications.length : 0} />
 
         <div className="option-container-service">
           <div className="user-link-container">
-            <a className="user-link" href={`view-applicants?service=${service.title}`}>
+            <a className="user-link relative-container" href={`view-applicants?service=${service.title}`}>
+              <Notifications notifications={notifications ? notifications.length : 0} />
               <i className="fa-solid fa-users fa-2x"></i>
             </a>
             <a className="user-service-text" href={`view-applicants?service=${service.title}`}>
