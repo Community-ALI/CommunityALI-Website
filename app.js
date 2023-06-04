@@ -177,7 +177,7 @@ app.get("/get-service-applicants", async function (req, res) {
   }
 })
 
-// send a user their services
+// send a user their notifications
 app.get("/get-all-user-notifications", async function (req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -186,9 +186,9 @@ app.get("/get-all-user-notifications", async function (req, res) {
     const user_notifications = await get_all_user_notifications(username);
     
     res.json({
-      notifications: user_notifications,
-      tokenUsername: username});
-    console.log('application notification belonging to', username, 'sent')
+      notifications: user_notifications
+    });
+    console.log('application notifications belonging to', username, 'sent')
   } catch (error) {
     console.log(error);
     res.json({
