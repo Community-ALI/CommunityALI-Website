@@ -38,7 +38,7 @@ function MyServicesNavButton(props) {
         };
 
         fetchData();
-    });
+    }, []);
 
     if (props.token) {
         return (
