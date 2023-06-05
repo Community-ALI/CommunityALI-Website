@@ -6,11 +6,11 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 require('dotenv').config()
 
-//const DATABASE_LINK = process.env.DATABASE_LINK;
+const DATABASE_LINK = process.env.DATABASE_LINK;
 // const DATABASE_LINK = process.env.TESTING_DATABASE_LINK;
 // // OFFICIAL DATABASE (do not mess with this)
-// mongoose.connect(DATABASE_LINK, { useNewUrlParser: true });
-mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
+ mongoose.connect(DATABASE_LINK, { useNewUrlParser: true });
+// mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
 const serviceSchema = {
     personal_name: String,
     personal_number: String,
