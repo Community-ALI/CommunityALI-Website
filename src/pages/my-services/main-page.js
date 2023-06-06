@@ -10,39 +10,39 @@ function MyServicePageDisplay(props) {
   const [notifications, setNotifications] = useState([]);
   const service = props.service;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (token) {
-          const response = await fetch('http://localhost:3000/get-service-notifications?service=' + service.title,
-            {
-              headers: {
-                'Authorization': `Bearer ${token}`
-              }
-            })
-            .then(response => response.json())
-            .then(data => {
-              // 'data' variable will contain the received object with the data array and tokenUsername
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const token = localStorage.getItem('token');
+  //       if (token) {
+  //         const response = await fetch('http://localhost:3000/get-service-notifications?service=' + service.title,
+  //           {
+  //             headers: {
+  //               'Authorization': `Bearer ${token}`
+  //             }
+  //           })
+  //           .then(response => response.json())
+  //           .then(data => {
+  //             // 'data' variable will contain the received object with the data array and tokenUsername
 
-              setNotifications(data);
-              console.log('notification data: ', data);
-            })
-        }
-        else {
-          console.log('no token found')
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    };
+  //             setNotifications(data);
+  //             console.log('notification data: ', data);
+  //           })
+  //       }
+  //       else {
+  //         console.log('no token found')
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    console.log(applicants);
-  })
+  // useEffect(() => {
+  //   console.log(applicants);
+  // }, [])
 
   const handleBackgroundClick = () => {
     window.location.href = 'view-applicants?service=' + service.title;
