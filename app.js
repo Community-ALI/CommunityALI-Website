@@ -155,22 +155,22 @@ async function DeleteService(req, res) {
 }
 
 
-// app.post('/change_notification_status/:id', upload.none(), async function (req, res) {
-//   try {
-//     const message = await change_notification_status(req);
-//     if (message == 'success'){
-//       console.log('application from ', req.body.name,' is not longer new');
-//       res.setHeader("Content-Type", "application/json");
-//       res.send(JSON.stringify({ success: true }));
-//     }
-//     else{
-//       error('application notification was not able to change')
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     res.json({ success: false, error: 'internal server error' });
-//   }
-// });
+app.post('/change_notification_status/:id', upload.none(), async function (req, res) {
+  try {
+    const message = await change_notification_status(req);
+    if (message == 'success'){
+      console.log('application from ', req.body.name,' is not longer new');
+      res.setHeader("Content-Type", "application/json");
+      res.send(JSON.stringify({ success: true }));
+    }
+    else{
+      error('application notification was not able to change')
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, error: 'internal server error' });
+  }
+});
 
 // send the user every service
 app.get('/get-all-services', async function (req, res){
@@ -253,52 +253,51 @@ app.get("/get-service-applicants", async function (req, res) {
 })
 
 // send a user their notifications
-// app.get("/get-all-user-notifications", async function (req, res) {
-//   try {
-//     const token = req.headers.authorization.split(' ')[1];
-//     const decodedToken = jwt.verify(token, JWT_SECRET);
-//     const username = decodedToken.username;
-//     const user_notifications = await get_all_user_notifications(username);
+app.get("/get-all-user-notifications", async function (req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    const user_notifications = await get_all_user_notifications(username);
     
-//     res.json({
-//       notifications: user_notifications
-//     });
-//     // console.log('application notifications belonging to', username, 'sent')
-//   } catch (error) {
-//     console.log(error);
-//     res.json({
-//       user_notifications: [],
-//       tokenUsername: 'not logged in'});
-//   }
-// })
+    res.json({
+      notifications: user_notifications
+    });
+    // console.log('application notifications belonging to', username, 'sent')
+  } catch (error) {
+    console.log(error);
+    res.json({
+      user_notifications: [],
+      tokenUsername: 'not logged in'});
+  }
+})
 
-// // get the applicants to a service (as long as the user is authorized)
-// app.get("/get-service-notifications", async function (req, res) {
-//   try {
-//     const service_name = req.query.service;
-//     const service = await get_one_service(service_name);
+app.get("/get-service-notifications", async function (req, res) {
+  try {
+    const service_name = req.query.service;
+    const service = await get_one_service(service_name);
 
-//     const token = req.headers.authorization.split(' ')[1];
-//     const decodedToken = jwt.verify(token, JWT_SECRET);
-//     const username = decodedToken.username;
-//     if (service && username && username == service.user){
-//       // the user owns this service
-//       const applicants = await get_service_applicants_notifications(service.title);
-//       res.json(applicants);
-//       console.log(applicants.length, 'applications sent for', service.title)
-//     }
-//     else{
-//       console.log('unauthorized request')
-//       res.json({ success: false, error: 'unauthorized' });
-//     }
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    if (service && username && username == service.user){
+      // the user owns this service
+      const applicants = await get_service_applicants_notifications(service.title);
+      res.json(applicants);
+      console.log(applicants.length, 'applications sent for', service.title)
+    }
+    else{
+      console.log('unauthorized request')
+      res.json({ success: false, error: 'unauthorized' });
+    }
     
-//   } catch (error) {
-//     console.log(error);
-//     res.json({
-//       dataServices: [],
-//       tokenUsername: 'not logged in'});
-//   }
-// })
+  } catch (error) {
+    console.log(error);
+    res.json({
+      dataServices: [],
+      tokenUsername: 'not logged in'});
+  }
+})
 
 
 app.post("/upload-service", upload.array("files"), storeService);
