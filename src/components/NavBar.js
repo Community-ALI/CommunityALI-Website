@@ -17,21 +17,21 @@ function MyServicesNavButton(props) {
         const fetchData = async () => {
             try {
                 var token = localStorage.getItem('token');
-                // if (token) {
-                //     const response = await fetch('http://localhost:3000/get-all-user-notifications',
-                //         {
-                //             headers: {
-                //                 'Authorization': `Bearer ${token}`
-                //             }
-                //         })
-                //         .then(response => response.json())
-                //         .then(data => {
-                //             setNotifications(data.notifications);
-                //         })
-                // }
-                // else {
-                //     console.log('no token found')
-                // }
+                if (token) {
+                    const response = await fetch('http://localhost:3000/get-all-user-notifications',
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            setNotifications(data.notifications);
+                        })
+                }
+                else {
+                    console.log('no token found')
+                }
             } catch (error) {
                 console.log(error)
             }
