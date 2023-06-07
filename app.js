@@ -47,7 +47,61 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+const sharp = require('sharp');
 
+//const Services = models.Services;
+
+
+// const generateThumbnail = async function (service) {
+//   try {
+//     // Load the photo buffer from the service
+//     const photoBuffer = service.photo;
+
+//     // Create a thumbnail with lower resolution using sharp
+//     const thumbnailBuffer = await sharp(photoBuffer)
+//       .resize(100, 67) // Set the desired thumbnail dimensions
+//       .toBuffer();
+
+//     // Convert the thumbnail buffer to a base64-encoded string
+//     const thumbnailBase64 = thumbnailBuffer.toString('base64');
+
+//     // Create a new Buffer object with the Base64-encoded string
+//     const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
+
+//     // Update the service object with the thumbnail field as BinData
+//     service.thumbnail = thumbnailBinData;
+
+//     // Save the updated service object to the database
+//     await service.save();
+
+//     return service;
+//   } catch (error) {
+//     console.log(error);
+//     return { success: false, error: 'Error generating thumbnail' };
+//   }
+// };
+
+
+
+
+
+// const updateServicesWithThumbnails = async function () {
+//   try {
+//     // Fetch all services from the database
+//     const services = await Services.find();
+
+//     // Iterate over each service and generate a thumbnail
+//     for (const service of services) {
+//       await generateThumbnail(service);
+//     }
+
+//     console.log('Thumbnails added to all services successfully');
+//     return { success: true };
+//   } catch (error) {
+//     console.log(error);
+//     return { success: false, error: 'Error updating services with thumbnails' };
+//   }
+// };
 
 // send the user one service
 app.get("/get-one-service", async function (req, res) {
@@ -120,9 +174,10 @@ async function DeleteService(req, res) {
 
 // send the user every service
 app.get('/get-all-services', async function (req, res){
+  //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title photo author author_role');
+    const all_services = await get_all_services(keywords, 'title photo thumbnail author author_role');
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {

@@ -7,7 +7,7 @@ const Buffer = require('buffer').Buffer;
 // this function creates each individual service
 const DisplayService = function (props) {
   const service = props.service;
-  const buffer = Buffer.from(service.photo.data);
+  const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString('base64');
   const imageUrl = `data:image/png;base64,${base64}`;
   return (
