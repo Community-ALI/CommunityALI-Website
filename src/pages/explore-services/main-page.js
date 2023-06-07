@@ -42,7 +42,6 @@ if (results){
   }
 };
 
-
 function Services() {
     const [services, setServices] = useState([]);
 
@@ -83,8 +82,6 @@ function Services() {
       };
       fetchData();
     }, []);
-
-  
     
     // return the page
     return(
@@ -93,7 +90,7 @@ function Services() {
             <div className="loader-wrapper">
                 <span className="loader"><span className="loader-inner"></span></span>
             </div>
-            <NavBar isFixedPage={true} />
+            <NavBar isFixedPage={false} />
             <div className = "search-result-container">
                 <div className ="results">
                   <DisplayAllServices services = {services}/>

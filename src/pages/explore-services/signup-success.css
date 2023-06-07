@@ -16,6 +16,12 @@ body
     min-height: calc(100vh);
 }
 
+.sign-up-success-container
+{
+    padding-top: 50px;
+    padding-bottom: 200px;
+}
+
 .title
 {
     display: flex;
