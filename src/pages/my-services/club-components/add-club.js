@@ -56,6 +56,12 @@ function AddClub() {
       if (activePage === pageToRemove) {
         changeVisibility("Overview");
       }
+      if (pageToRemove === 'Contacts'){
+        setContactsFormData({})
+      }
+      if (pageToRemove === 'FAQ'){
+        setFaqFormData({})
+      }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
     }
@@ -68,6 +74,13 @@ function AddClub() {
       );
       if (insertIndex === -1) {
         return [...prevPages, pageToAdd];
+      }
+      if (pageToAdd === 'Contacts'){
+        setContactsFormData({"contacts": [{"contactRole": "","contactName": "","contactEmail": ""}],
+        "socialMedia": [{"mediaType": "","mediaName": "","mediaUrl": ""}]})
+      }
+      else if (pageToAdd === 'FAQ'){
+        setFaqFormData({"faq": [{"faqQuestion": "","faqAnswer": ""}]})
       }
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);

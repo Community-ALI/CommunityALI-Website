@@ -2,19 +2,14 @@ import React, { useState } from "react";
 import '../add-service.css';
 
 function ContactsPage({ formData, setFormData }) { 
-  const maxContactCount = 5;
-  const maxMediaCount = 5;
-  const [contactData, setContactData] = useState(formData.contacts || [{ contactRole: "", contactName: "", contactEmail: "" }]);
-  const [mediaData, setMediaData] = useState(formData.socialMedia || [{ mediaType: "", mediaName: "", mediaUrl: "" }]);
-  const [socialMediaVisible, setSocialMediaVisible] = useState(true);
-  const [contactVisible, setContactVisible] = useState(true);
+
 
   const updateFormData = (updatedContactData, updatedMediaData) => {
     setContactData(updatedContactData);
     setMediaData(updatedMediaData);
     setFormData((prevData) => ({ ...prevData, contacts: updatedContactData, socialMedia: updatedMediaData }));
   };
-
+  
   const contactAdd = () => {
     if (contactData.length >= maxContactCount - 1) {
       setContactVisible(false);
@@ -58,7 +53,15 @@ function ContactsPage({ formData, setFormData }) {
     updatedMediaData[i][name] = value;
     updateFormData(contactData, updatedMediaData);
   };
+  const maxContactCount = 5;
+  const maxMediaCount = 5;
+  const [contactData, setContactData] = useState(formData.contacts || [{ contactRole: "", contactName: "", contactEmail: "" }]);
+  const [mediaData, setMediaData] = useState(formData.socialMedia || [{ mediaType: "", mediaName: "", mediaUrl: "" }]);
+  const [socialMediaVisible, setSocialMediaVisible] = useState(true);
+  const [contactVisible, setContactVisible] = useState(true);
 
+  
+  
   return (
     <div>
       <div className="service-info2-container">

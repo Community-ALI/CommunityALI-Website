@@ -44,8 +44,26 @@ function SignUpPage({mainInfo, allFormData}) {
           return false;
         }
       }
+      if (allFormData.FAQ.faq){
+        const FAQ = allFormData.FAQ.faq;
+
+        const faqComplete = FAQ.every(
+          (faq) =>
+          faq.faqQuestion && faq.faqAnswer
+        );
+    
+        if (!faqComplete) {
+          alert('faq is incomplete');
+          return false;
+        }
+      }
       return true;
     };
+
+      
+
+      
+
 
     const handleSubmit = (event) => {
       event.preventDefault();
