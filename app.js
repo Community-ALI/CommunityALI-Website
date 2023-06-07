@@ -59,7 +59,7 @@ const generateThumbnail = async function (service) {
 
     // Create a thumbnail with lower resolution using sharp
     const thumbnailBuffer = await sharp(photoBuffer)
-      .resize(400, 4*67) // Set the desired thumbnail dimensions
+      .resize(600, 6*67) // Set the desired thumbnail dimensions
       .toBuffer();
 
     // Convert the thumbnail buffer to a base64-encoded string
@@ -174,10 +174,10 @@ async function DeleteService(req, res) {
 
 // send the user every service
 app.get('/get-all-services', async function (req, res){
-  // updateServicesWithThumbnails();
+  //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title thumbnail author author_role');
+    const all_services = await get_all_services(keywords, 'title photo thumbnail author author_role');
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {
