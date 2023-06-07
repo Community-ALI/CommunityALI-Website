@@ -177,7 +177,7 @@ app.get('/get-all-services', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title photo thumbnail author author_role');
+    const all_services = await get_all_services(keywords, 'title thumbnail author author_role');
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {
@@ -259,7 +259,6 @@ app.get("/get-all-user-notifications", async function (req, res) {
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
     const user_notifications = await get_all_user_notifications(username);
-    
     res.json({
       notifications: user_notifications
     });
