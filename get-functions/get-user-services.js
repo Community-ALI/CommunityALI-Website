@@ -6,7 +6,7 @@ const Services = models.Services;
 // get all services from database
 const get_services = async function (username) {
   try {
-    const selected_services = await Services.find({ user: username }).exec();
+    const selected_services = await Services.find({ user: username }).select('title').exec();
     return selected_services;
   } catch (error) {
     console.error(error);

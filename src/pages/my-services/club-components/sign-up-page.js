@@ -71,7 +71,7 @@ function SignUpPage({mainInfo, allFormData}) {
         // do stuff
       }
       else{
-        alert('you are missing required information!')
+        
       }
     }
 

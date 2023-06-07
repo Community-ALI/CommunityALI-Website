@@ -23,20 +23,20 @@ function search(keyword,attribute,dbServices,filteredData) {
 
 
 // get all services from database
-const get_services = async function (keywords) {
+const get_services = async function (keywords, fields) {
   try {
     filteredData = [];
-    attribute = 'title';
-    foundServices = await Services.find().exec();
+    foundServices = await Services.find().select(fields).exec();
     
+    filterAttribute = 'title';
     if (keywords != undefined){
         keywords = keywords.trim();
         var subStrings = keywords.split(" "); 
         for (subString of subStrings){
-          filteredData = search(subString,attribute,foundServices,filteredData);
+          filteredData = search(subString, filterAttribute, foundServices, filteredData);
         }
-      }else{
-        // if no query has been made, display all services
+      } else {
+        // if no query has been made, return all services
         filteredData = foundServices;
       }
     return filteredData;
@@ -46,6 +46,8 @@ const get_services = async function (keywords) {
     return { success: false, error: 'internal database error' };
   }
 }
+
+
 
 
 // export to app.js 
