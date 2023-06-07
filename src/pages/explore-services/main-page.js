@@ -50,7 +50,19 @@ function Services() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:3000/get-all-services')
+
+          const queryParams = new URLSearchParams(window.location.search);
+          const keyword = queryParams.get('keyword');
+          console.log(keyword);
+
+          // Create the URL with query parameters
+          let url = 'http://localhost:3000/get-all-services';
+          if (keyword) {
+              url += '?';
+              url += `keyword=${encodeURIComponent(keyword)}`;
+          }
+
+          const response = await fetch(url)
             .then(response => response.json())
             .then(data => {
               // 'data' variable will contain the received array

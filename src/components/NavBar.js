@@ -85,7 +85,34 @@ function NavBar(props) {
         setIsShowingLoginPopup(true);
     }
 
-    return (
+    const searchRef = useRef(null);
+
+    // Add event listener to the search bar
+    useEffect(() => {
+        const handleSearch = (event) => {
+          if (event.key === 'Enter') {
+            // Prevent the form from submitting
+            event.preventDefault();
+    
+            // Perform search logic here
+            const searchText = searchRef.current.value.trim().split(' ').join('+');
+            const url = "/services?keyword=" + searchText;
+            window.location.href = url;
+          }
+        };
+    
+        // Attach the event listener to the search bar
+        searchRef.current.addEventListener('keyup', handleSearch);
+    
+        // Clean up the event listener
+        return () => {
+            if(searchRef.current){
+                searchRef.current.removeEventListener('keyup', handleSearch);
+            }
+        };
+      }, []);
+
+    return(
         <div>
             <div
                 className={"navigation-bar" + (props.isFixedPage ? '' : " not-fixed") + (showNavBarMobile ? " active" : "")}
@@ -98,9 +125,10 @@ function NavBar(props) {
                         <a href="/">
                             <img src="Photos/CClogo.png" className="navbar-logo" />
                         </a>
-                        <input
-                            placeholder="Search..."
+                        <input 
+                            placeholder="Search..." 
                             id="nav-menu-search-bar"
+                            ref={searchRef}
                         />
                         <a
                             className="navigation-button navigation-text"

@@ -121,9 +121,10 @@ async function DeleteService(req, res) {
 // send the user every service
 app.get('/get-all-services', async function (req, res){
   try {
-    const all_services = await get_all_services();
+    var keywords = req.query.keyword;
+    const all_services = await get_all_services(keywords);
     res.json(all_services);
-    console.log("all services sent")
+    console.log("filtered services sent")
   } catch (error) {
     console.log(error)
     res.json({ success: false, error: 'internal server error' });
