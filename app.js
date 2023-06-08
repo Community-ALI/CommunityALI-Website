@@ -59,7 +59,7 @@ const generateThumbnail = async function (service) {
 
     // Create a thumbnail with lower resolution using sharp
     const thumbnailBuffer = await sharp(photoBuffer)
-      .resize(400, 4*67) // Set the desired thumbnail dimensions
+      .resize(600, 6*67) // Set the desired thumbnail dimensions
       .toBuffer();
 
     // Convert the thumbnail buffer to a base64-encoded string
@@ -174,7 +174,7 @@ app.post('/change_notification_status/:id', upload.none(), async function (req, 
 
 // send the user every service
 app.get('/get-all-services', async function (req, res){
-  // updateServicesWithThumbnails();
+  //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
     const all_services = await get_all_services(keywords, 'title thumbnail author author_role');
@@ -259,7 +259,6 @@ app.get("/get-all-user-notifications", async function (req, res) {
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
     const user_notifications = await get_all_user_notifications(username);
-    
     res.json({
       notifications: user_notifications
     });

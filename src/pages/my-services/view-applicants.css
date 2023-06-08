@@ -91,7 +91,6 @@ body
     font-weight: 400;
     position: relative;
     padding: 20px 30px;
-    width: 50%;
 }
 
 @media all and (max-width : 1240px)

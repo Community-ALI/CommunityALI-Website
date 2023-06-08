@@ -21,7 +21,6 @@ function search(keyword,attribute,dbServices,filteredData) {
  return filteredData; 
 }
 
-
 // get all services from database
 const get_services = async function (keywords, fields) {
   try {

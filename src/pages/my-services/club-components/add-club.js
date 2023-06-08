@@ -36,7 +36,7 @@ function AddClub() {
   }, {}));
 
   const titleRef = useRef(null);
-
+  const [titleValue, setTitleValue] = useState('');
   const changeVisibility = (page) => {
     setActivePage(page);
     Object.keys(pageRefs.current).forEach((key) => {
@@ -105,7 +105,7 @@ function AddClub() {
       <NavBar isFixedPage={false} />
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} /><br />
+          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
 
         <div className="service-navbar">
@@ -145,7 +145,10 @@ function AddClub() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" title={titleRef.value} allFormData={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" mainInfo={
+          {'title': titleValue}
+        } 
+        allFormData={
           {
             'Overview': overviewFormData,
             'Contacts': contactsFormData,

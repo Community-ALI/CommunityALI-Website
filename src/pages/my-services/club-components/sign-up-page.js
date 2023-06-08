@@ -4,6 +4,12 @@ import '../add-service.css';
 function SignUpPage({mainInfo, allFormData}) {
     console.log(allFormData)
     const checkRequired = () => {
+      if (
+        !mainInfo.title) {
+        alert('Please provide a club name');
+        return false;
+      }
+
       // Check required fields for Overview
       if (
         !allFormData.Overview.subtitle ||
@@ -68,7 +74,7 @@ function SignUpPage({mainInfo, allFormData}) {
     const handleSubmit = (event) => {
       event.preventDefault();
       if (checkRequired()){
-        // do stuff
+        
       }
       else{
         

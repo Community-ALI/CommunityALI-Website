@@ -58,6 +58,7 @@ function LoginPopup(props) {
                         <form id="login" onSubmit={login}>
                             <div className="text-field">
                                 <input 
+                                    autoComplete="off"
                                     className="text-field-input"
                                     id="usernameOrEmail" 
                                     required=""
@@ -70,6 +71,7 @@ function LoginPopup(props) {
                             </div>
                             <div className="text-field">
                                 <input 
+                                    autoComplete="off"
                                     className="text-field-input"
                                     type="password" 
                                     id="password" 
