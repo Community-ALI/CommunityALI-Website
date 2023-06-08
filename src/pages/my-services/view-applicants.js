@@ -30,9 +30,8 @@ const SearchResult = function (props) {
         normalTime = convertToNormalTime(applicant.time);
     }
 
-    const handleHover = () => {
+    useEffect (() => {
         if (isNotification) {
-            setIsNotification(false);
             fetch('http://localhost:3000/change_notification_status/' + applicant._id, {
                 method: 'POST',
             })
@@ -46,10 +45,10 @@ const SearchResult = function (props) {
                     // Handle the error
                 });
         }
-    };
+    }, [])
 
     return (
-        <div onMouseEnter={handleHover}>
+        <div>
             <div className="applicants-result-container">
                 <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
                 <p className="applicant-name">{applicant.name}</p>
@@ -148,7 +147,7 @@ function ServiceApplicants() {
     const serviceName = urlParams.get('service');
     return (
         <div>
-            <NavBar></NavBar>,
+            <NavBar constantUpdate={true} />,
             <div className="container">
                 <div className="applicants-container-title">
                     Club Sign-ups

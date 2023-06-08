@@ -10,10 +10,7 @@ import Notifications from './Notification';
 function MyServicesNavButton(props) {
     const [notifications, setNotifications] = useState([]);
 
-    // IF PERFORMANCE BECOMES AN ISSUE ON THE WEBSITE THIS IS MOST LIKELY THE CAUSE
-    // REWORK THIS USE EFFECT TO CHANGE ONLY WHEN YOU WANT IT TO CHANGE BY PASSING A STATE
-    // IF PERFORMANCE DROPS, I just don't know what the boss wants exactly so I am leaving it like this
-    useEffect(() => {
+    function fetchNotificationData() {
         const fetchData = async () => {
             try {
                 var token = localStorage.getItem('token');
@@ -38,7 +35,16 @@ function MyServicesNavButton(props) {
         };
 
         fetchData();
-    }, []);
+    }
+
+    if (props.constantUpdate)
+        useEffect(() => {
+            fetchNotificationData();
+        });
+    else
+        useEffect(() => {
+            fetchNotificationData();
+        }, []);
 
     if (props.token) {
         return (
@@ -90,29 +96,29 @@ function NavBar(props) {
     // Add event listener to the search bar
     useEffect(() => {
         const handleSearch = (event) => {
-          if (event.key === 'Enter') {
-            // Prevent the form from submitting
-            event.preventDefault();
-    
-            // Perform search logic here
-            const searchText = searchRef.current.value.trim().split(' ').join('+');
-            const url = "/services?keyword=" + searchText;
-            window.location.href = url;
-          }
+            if (event.key === 'Enter') {
+                // Prevent the form from submitting
+                event.preventDefault();
+
+                // Perform search logic here
+                const searchText = searchRef.current.value.trim().split(' ').join('+');
+                const url = "/services?keyword=" + searchText;
+                window.location.href = url;
+            }
         };
-    
+
         // Attach the event listener to the search bar
         searchRef.current.addEventListener('keyup', handleSearch);
-    
+
         // Clean up the event listener
         return () => {
-            if(searchRef.current){
+            if (searchRef.current) {
                 searchRef.current.removeEventListener('keyup', handleSearch);
             }
         };
-      }, []);
+    }, []);
 
-    return(
+    return (
         <div>
             <div
                 className={"navigation-bar" + (props.isFixedPage ? '' : " not-fixed") + (showNavBarMobile ? " active" : "")}
@@ -125,8 +131,8 @@ function NavBar(props) {
                         <a href="/">
                             <img src="Photos/CClogo.png" className="navbar-logo" />
                         </a>
-                        <input 
-                            placeholder="Search..." 
+                        <input
+                            placeholder="Search..."
                             id="nav-menu-search-bar"
                             ref={searchRef}
                         />
@@ -138,7 +144,7 @@ function NavBar(props) {
                             className="navigation-button navigation-text"
                             to="/services"
                         >Explore</Link>
-                        <MyServicesNavButton token={token} />
+                        <MyServicesNavButton token={token} constantUpdate={props.constantUpdate} />
                         <a
                             className="navigation-button navigation-text"
                             href="https://www.mjc.edu/"
