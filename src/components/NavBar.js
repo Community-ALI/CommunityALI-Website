@@ -6,7 +6,6 @@ import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 import { useRect } from 'react-use-rect';
 import Notifications from './Notification';
-import UserProfileCircle from './user-profile';
 
 function MyServicesNavButton(props) {
 
@@ -68,10 +67,6 @@ function NavBar(props) {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [token, setToken] = useState(false);
     const [showNavBarMobile, setShowNavBarMobile] = useState(false);
-
-    const username = "JohnDoe";
-    const imageUrl = "photos-optimized/user-pic.png";
-
 
     useEffect(() => {
         const handleScroll = event => {
@@ -156,10 +151,7 @@ function NavBar(props) {
                             href="https://www.mjc.edu/"
                             target="_blank"
                         >MJC</a>
-
-                        <a>
-                        <UserProfileCircle username={username} imageUrl={imageUrl} ShowLoginPopup={showLoginPopup} token={token} />
-                        </a>
+                        <LoginButton ShowLoginPopup={showLoginPopup} />
                     </nav>
                 </div>
                 <div

@@ -1,22 +1,28 @@
 import React, { useRef, Component, useEffect, useState } from 'react';
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
-import NavBar from './NavBar';
 
-const UserProfileCircle = ({ username, imageUrl }) => {
+const UserProfileCircle = () => {
 
-    const [showDropdown, setShowDropdown] = useState(false);
+  const username = "JohnDoe";
+  const imageUrl = "photos-optimized/user-pic.png";
 
-    const toggleDropdown = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
-    }
+  }
 
   return (
     <div className="user-profile-circle">
       <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} />
       {showDropdown && (
         <div className="dropdown-menu">
-            <LoginButton/>
+          <a
+            className="navigation-button navigation-text"
+            onClick={Logout}
+            id="navigation-login"
+          >Logout</a>
         </div>
       )}
     </div>
