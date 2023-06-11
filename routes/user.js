@@ -47,4 +47,21 @@ router.get("/get-user-services", async function (req, res) {
     }
 })
 
+router.get("/get-username", async function (req, res) {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const username = decodedToken.username;
+
+        res.json({ tokenUsername: username });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            tokenUsername: 'not logged in'
+        });
+    }
+});
+
+
 module.exports = router;

@@ -36,7 +36,8 @@ function MyServicesNavButton(props) {
         };
 
         fetchData();
-    }
+    };
+    
 
     if (props.constantUpdate)
         useEffect(() => {
