@@ -49,17 +49,21 @@ const UserProfileCircle = (Logout) => {
   };
 
   return (
-    <div className="user-profile-circle">
+    <div className="user-profile-circle relative">
       <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} />
-      {showDropdown && (
-        <div className="dropdown-menu">
-          <a
-            className="navigation-button navigation-text"
-            onClick={Logout}
-            id="navigation-login"
-          >Logout</a>
+      <div className={`flex flex-col absolute dropdown-menu bg-[#001E60] p-4 left-[-36px] top-16 transition-opacity duration-300 z-50 gap-4 w-[184px] ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}>
+        <div onClick={Logout} className='flex justify-center items-center'>
+          <i className="fa-solid fa-user" style={{ color: '#ffffff' }}></i>
+          <p
+            className='px-4 text-white'
+          >Logout</p>
         </div>
-      )}
+        <div className='flex justify-center items-center' href="enter link here">
+          <i className="fa-solid fa-marker" style={{ color: '#ffffff' }}></i>
+          <p className='px-4 text-white'>Edit Profile</p>
+        </div>
+      </div>
     </div>
   );
 };
