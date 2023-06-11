@@ -13,6 +13,11 @@ const UserProfileCircle = (Logout) => {
     setShowDropdown(!showDropdown);
   }
 
+  function Logout() {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+
   return (
     <div className="user-profile-circle">
       <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} />

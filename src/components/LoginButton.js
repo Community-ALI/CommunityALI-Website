@@ -2,11 +2,7 @@ import React, { Component, useEffect } from 'react';
 import './navbar.css';
 import UserProfileCircle from './user-profile';
 
-function LoginButton(props) {    
-    function Logout(){
-        localStorage.removeItem('token');
-        window.location.href = '/';
-    };
+function LoginButton(props) {
     if (!props.token){
         return (
             <a 
