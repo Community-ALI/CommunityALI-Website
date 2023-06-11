@@ -2,7 +2,7 @@ import React, { useRef, Component, useEffect, useState } from 'react';
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 
-const UserProfileCircle = () => {
+const UserProfileCircle = (Logout) => {
 
   const username = "JohnDoe";
   const imageUrl = "photos-optimized/user-pic.png";
