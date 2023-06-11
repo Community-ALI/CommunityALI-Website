@@ -16,7 +16,7 @@ function LoginButton(props) {
     }
 
     return (
-        <UserProfileCircle ShowLoginPopup={showLoginPopup} token={token} Logout={Logout} />
+        <UserProfileCircle ShowLoginPopup={props.showLoginPopup} token={props.token} />
     )
 }
 
