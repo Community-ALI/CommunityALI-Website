@@ -151,7 +151,7 @@ function NavBar(props) {
                             href="https://www.mjc.edu/"
                             target="_blank"
                         >MJC</a>
-                        <LoginButton ShowLoginPopup={showLoginPopup} />
+                        <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
                     </nav>
                 </div>
                 <div
