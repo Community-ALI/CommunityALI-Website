@@ -6,8 +6,10 @@ import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 import { useRect } from 'react-use-rect';
 import Notifications from './Notification';
+import UserProfileCircle from './user-profile';
 
 function MyServicesNavButton(props) {
+
     const [notifications, setNotifications] = useState([]);
 
     function fetchNotificationData() {
@@ -66,6 +68,10 @@ function NavBar(props) {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [token, setToken] = useState(false);
     const [showNavBarMobile, setShowNavBarMobile] = useState(false);
+
+    const username = "JohnDoe";
+    const imageUrl = "photos-optimized/user-pic.png";
+
 
     useEffect(() => {
         const handleScroll = event => {
@@ -150,10 +156,10 @@ function NavBar(props) {
                             href="https://www.mjc.edu/"
                             target="_blank"
                         >MJC</a>
-                        <LoginButton
-                            ShowLoginPopup={showLoginPopup}
-                            token={token}
-                        />
+
+                        <a>
+                        <UserProfileCircle username={username} imageUrl={imageUrl} ShowLoginPopup={showLoginPopup} token={token} />
+                        </a>
                     </nav>
                 </div>
                 <div
@@ -185,7 +191,7 @@ function NavBar(props) {
                     <div className="navigation-line"></div>
                 </div>
                 <div className="center-content">
-                    <a href="index.html">
+                    <a href="/">
                         <img
                             src="Photos/CClogo.png"
                             className="navbar-logo mobileLogo"

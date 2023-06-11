@@ -183,7 +183,7 @@ body
 
 @media all and (max-width : 1250px)
 {
-    .contact-container
+    .contact-us-container
     {
         width : 80%;
     }
@@ -196,7 +196,7 @@ body
 
 @media all and (max-width : 780px)
 {
-    .contact-container
+    .contact-us-container
     {
         width : 90%;
     }
@@ -259,7 +259,7 @@ body
         font-size : 15px;
     }
 
-    .contact-container
+    .contact-us-container
     {
         padding : 20px 20px;
     }

@@ -48,8 +48,8 @@ const SearchResult = function (props) {
     }, [])
 
     return (
-        <div>
-            <div className="applicants-result-container">
+        <div className="applicants-result-container">
+            <div>
                 <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
                 <p className="applicant-name">{applicant.name}</p>
                 <p className="applicant-email">{applicant.email}</p>

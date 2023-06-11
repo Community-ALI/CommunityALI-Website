@@ -91,6 +91,7 @@ body
     font-weight: 400;
     position: relative;
     padding: 20px 30px;
+    width: 50%;
 }
 
 @media all and (max-width : 1240px)
@@ -102,7 +103,7 @@ body
         padding-left: 2%;
     }
 
-    .container-title
+    .applicants-container-title
     {
         width : 95%;
     }
@@ -129,7 +130,12 @@ body
 {
     .container
     {
-    margin-top: 5%;
+        margin-top: 5%;
+    }
+
+    .applicants-container-title
+    {
+        margin-top: 60px;
     }
 }
 
@@ -139,6 +145,14 @@ body
     {
         align-content : flex-start;
         margin-left : 20px;
+    }
+}
+
+@media all and (max-width : 400px)
+{
+    .search-results
+    {
+        margin-left : 0px;
     }
 }
 
