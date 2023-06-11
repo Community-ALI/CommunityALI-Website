@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+*
+{
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    scroll-behavior: smooth;
+}
+
+body
+{
+    background: #0096C9;
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh);
+    position: relative;
+}
+
+#target
+{
+    padding-top : 100px;
+}
+
+.username-title
+{
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-family: "Poppins";
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    position: relative;
+    padding : 20px;
+    min-width: 43%;
+    margin : 100px 10% 20px 10%;
+    
+    background-color: #001E60;
+    border-radius: 10px;
+}
+
+.user-service-container
+{
+    display: flex;
+    justify-content: center;
+}
+
+.user-service
+{
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    position: relative;
+    padding : 20px;
+    width : 60%;
+    margin : 2% 0%;
+    
+    background-color: #00468D;
+    transition : all 0.3s ease-in-out;
+    border-radius: 10px;   
+    cursor: pointer;
+
+    height: 128px;
+}
+
+.user-service:hover
+{
+    background-color: #001E60;
+}
+
+.option-container
+{
+    display : flex;
+    justify-content: center;
+    margin : 20px 0px;
+    align-items: center;
+}
+
+.option-container-service
+{
+    display : flex;
+    justify-content: center;
+    margin : 25px 0px;
+    align-items: center;
+    z-index: 2;
+}
+
+.user-link
+{
+    text-decoration: none;
+    transition : all 0.3s ease-in-out;
+    color : white;
+}
+
+.user-link :hover
+{
+    color : #ecaa1e;
+}
+
+.user-service i
+{
+    padding : 0px 12px;
+    transition : all 0.3s ease-in-out;
+}
+
+.user-service-text
+{
+    color:white;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: "Poppins";
+    font-weight: 500;
+    padding-left : 10px;
+    transition : all 0.3s ease-in-out;
+}
+
+.edit-button 
+{
+    font-size: 22px;
+    margin: 0px 32px 0px 32px;
+    background-color: #ecaa1e;
+    padding: 4px 16px 4px 16px;
+    font-family: "poppins";
+    color: #001E60;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition : all 0.3s ease-in-out;
+}
+
+.edit-button:hover
+{
+    background-color : #00468D;
+    color : white;
+}
+
+.service-delete-button
+{
+    font-size: 22px;
+    margin: 0px 32px 0px 32px;
+    background-color: #ecaa1e;
+    padding: 4px 16px 4px 16px;
+    font-family: "poppins";
+    color: #001E60;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition : all 0.3s ease-in-out;
+}
+
+.service-delete-button:hover
+{
+    background-color : #00468D;
+    color : white;
+}
+
+.user-link-container
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.edit-delete-container
+{
+    display: flex;
+}
+
+.background-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.loader-wrapper 
+{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #00468D;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.loader 
+{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border: 4px solid #Fff;
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner 
+{
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+.loader--hidden
+{
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes loader 
+{
+  0% { transform: rotate(0deg);}
+  25% { transform: rotate(180deg);}
+  50% { transform: rotate(180deg);}
+  75% { transform: rotate(360deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes loader-inner 
+{
+  0% { height: 0%;}
+  25% { height: 0%;}
+  50% { height: 100%;}
+  75% { height: 100%;}
+  100% { height: 0%;}
+}
+
+@media all and (max-width : 1250px)
+{
+    .user-service
+    {
+        width : 80%;
+    }
+}
+
+@media all and (max-width : 850px)
+{
+    .username-title
+    {
+        margin: 100px 6% 20px 6%;
+    }
+
+    .user-service
+    {
+        width : 85%;
+    }
+
+    .edit-delete-container
+    {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .user-service-text
+    {
+        font-size: 20px;
+    }
+
+    .edit-button
+    {
+        margin-bottom : 15px;
+        font-size : 16px;
+    }
+
+    .service-delete-button
+    {
+        font-size : 16px;
+    }
+}
+
+@media all and (max-width : 500px)
+{
+
+    .option-container-service
+    {
+        flex-wrap: wrap;
+    }
+
+    .user-link-container
+    {
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .username-title
+    {
+        font-size: 22px;
+        padding: 15px;
+        margin: 80px 4% 20px 4%;
+    }
+
+    .user-service
+    {
+        width : 90%;
+        padding : 10px;
+        margin: 5% 0%;
+    }
+
+    .user-service i 
+    {
+        font-size: 25px;
+    }
+
+    .user-service-text
+    {
+        font-size: 16px;
+        text-align: center;
+        padding-left: 0px;
+    }
+
+    .edit-delete-container
+    {
+        margin-top: 20px;
+    }
+
+    .edit-button
+    {
+        margin: 0px 10px 15px 10px;
+        font-size: 15px;
+    }
+
+    .service-delete-button
+    {
+        margin: 0px 10px 15px 10px;
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width : 380px)
+{
+    .user-service
+    {
+        margin: 7% 0%;
+    }
+}
