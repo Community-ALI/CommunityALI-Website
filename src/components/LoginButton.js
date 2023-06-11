@@ -3,6 +3,7 @@ import './navbar.css';
 import UserProfileCircle from './user-profile';
 
 function LoginButton(props) {
+
     if (!props.token){
         return (
             <a 
@@ -15,7 +16,7 @@ function LoginButton(props) {
     }
 
     return (
-        <UserProfileCircle username={username} imageUrl={imageUrl} ShowLoginPopup={showLoginPopup} token={token} Logout={Logout} />
+        <UserProfileCircle ShowLoginPopup={showLoginPopup} token={token} Logout={Logout} />
     )
 }
 
