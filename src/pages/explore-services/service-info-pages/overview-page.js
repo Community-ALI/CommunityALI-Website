@@ -1,35 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import '../add-service.css';
 
-function OverviewPage({ formData, setFormData }) {
-  const [file, setFile] = useState(null);
-  const [fileContainerID, setFileContainerID] = useState('file-container');
-  const fileUploadText = useRef();
-
-  useEffect(() => {
-    if (formData.file) {
-      setFileContainerID('file-container-with-file');
-      const element = fileUploadText.current;
-      element.textContent = `File Uploaded! (${formData.file.name})`;
-    } else {
-      setFileContainerID('file-container');
-      const element = fileUploadText.current;
-      element.textContent = 'Click to upload a single image File';
-    }
-  }, [formData.file]);
-
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-   
-    
-    console.log(selectedFile)
-    setFormData((prevData) => ({ ...prevData, file: selectedFile }));
-  };
-
-  const handleFormChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+function OverviewPage({ data }) {
 
   return (
     <div>
