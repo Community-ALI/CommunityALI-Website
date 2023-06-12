@@ -10,7 +10,8 @@
     "backend": "nodemon app.js",
     "frontend": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "build-css": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css --watch"
+    "build-css": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css --watch",
+    "build-css-once": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css"
   },
   "repository": {
     "type": "git",
