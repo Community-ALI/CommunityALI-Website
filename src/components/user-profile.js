@@ -1,7 +1,6 @@
 import React, { useRef, Component, useEffect, useState } from 'react';
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
-import '../../public/stylesheets/style.css'
 
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState('no username associated with token')

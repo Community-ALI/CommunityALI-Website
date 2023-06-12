@@ -18,6 +18,7 @@ import Edit_Service from "./pages/my-services/edit-service";
 import View_Applicants from "./pages/my-services/view-applicants";
 
 import './style.scss';
+import '../public/stylesheets/style.css'
 
 
 
