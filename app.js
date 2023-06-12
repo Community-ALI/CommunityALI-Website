@@ -9,9 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // allow the client to transfer data
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-
 const multer = require("multer");
+
+app.use(bodyParser.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // get db
@@ -84,7 +84,6 @@ const generateThumbnail = async function (service) {
 
 
 
-
 const updateServicesWithThumbnails = async function () {
   try {
     // Fetch all services from the database
@@ -102,6 +101,20 @@ const updateServicesWithThumbnails = async function () {
     return { success: false, error: 'Error updating services with thumbnails' };
   }
 };
+
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  // Access the uploaded file using req.file
+  const uploadedFile = req.file;
+  console.log(uploadedFile)
+  console.log(JSON.parse(req.body.pages))
+  // Process the file as per your requirements
+  // For example, you can store it in a database, perform validation, etc.
+
+  // Send a response back to the client
+  res.json({ message: 'File uploaded successfully!' });
+});
+
 
 // send the user one service
 app.get("/get-one-service", async function (req, res) {
@@ -177,7 +190,7 @@ app.get('/get-all-services', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title thumbnail author author_role');
+    const all_services = await get_all_services(keywords, 'title thumbnail user');
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {
@@ -299,7 +312,7 @@ app.get("/get-service-notifications", async function (req, res) {
 })
 
 
-app.post("/upload-service", upload.array("files"), storeService);
+app.post("/upload-service", upload.single("image"), storeService);
 async function storeService(req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -316,7 +329,6 @@ async function storeService(req, res) {
         console.log('problem uploading service to database');
         res.json({success: false, error: 'internal detabase error'});
       }
-      
     }
     else{
       console.log('account does not exist!')
