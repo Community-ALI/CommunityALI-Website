@@ -17,6 +17,9 @@ import Add_Internship from "./pages/my-services/intern-components/add-intern";
 import Edit_Service from "./pages/my-services/edit-service";
 import View_Applicants from "./pages/my-services/view-applicants";
 
+import './style.scss';
+import '../public/stylesheets/style.css'
+
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";

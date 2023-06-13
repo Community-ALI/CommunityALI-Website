@@ -16,7 +16,7 @@ function MyServicesNavButton(props) {
             try {
                 var token = localStorage.getItem('token');
                 if (token) {
-                    const response = await fetch('http://localhost:3000/get-all-user-notifications',
+                    const response = await fetch('http://localhost:3000/userdata/get-all-user-notifications',
                         {
                             headers: {
                                 'Authorization': `Bearer ${token}`
@@ -36,7 +36,8 @@ function MyServicesNavButton(props) {
         };
 
         fetchData();
-    }
+    };
+    
 
     if (props.constantUpdate)
         useEffect(() => {

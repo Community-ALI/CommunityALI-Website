@@ -6,7 +6,9 @@ function LandingPageHeader() {
     return(
         <div className="header">
     
-            <video poster="Photos/Website PosterImage.jpg" id="video-background" autoPlay muted loop>
+            <video 
+                className='object-cover min-w-[100vw] absolute z-[-1] min-h-full' 
+                poster="Photos/Website PosterImage.jpg" autoPlay muted loop>
                 <source src = {video} type="video/mp4"/>
             </video>
         

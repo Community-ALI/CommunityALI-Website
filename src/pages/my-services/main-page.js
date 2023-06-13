@@ -84,7 +84,7 @@ function MyServicePageDisplay(props) {
 function MyServicesHome() {
   // create the information required to display the page
   const [services, setServices] = useState([]);
-  const [username, setUsername] = useState('no username associated with token')
+  const [username, setUsername] = useState('no username associated with token');
   const [isShowingServiceDeletePopup, setIsShowingServiceDeletePopup] = useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState('');
 
@@ -94,7 +94,7 @@ function MyServicesHome() {
         var token = localStorage.getItem('token');
         if (token) {
           console.log('sending request');
-          const response = await fetch('http://localhost:3000/get-user-services',
+          const response = await fetch('http://localhost:3000/userdata/get-user-services',
             {
               headers: {
                 'Authorization': `Bearer ${token}`
