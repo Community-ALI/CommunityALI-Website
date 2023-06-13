@@ -9,9 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // allow the client to transfer data
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-
 const multer = require("multer");
+
+app.use(bodyParser.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // get db
@@ -48,59 +48,51 @@ app.use(cors(corsOptions));
 
 const sharp = require('sharp');
 
-const Services = models.Services;
 
+const AWS = require('aws-sdk');
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const generateThumbnail = async function (service) {
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'us-west-2'
+});
+
+const transporter = nodemailer.createTransport({
+  SES: new AWS.SES({ apiVersion: '2010-12-01' })
+});
+
+async function sendValidationEmail(email, validationToken) {
+  const mailOptions = {
+    from: 'communityalis@gmail.com',
+    to: email,
+    subject: 'Email Validation',
+    html: `<p>Click the following link to validate your email: <a href="http://localhost:3000/validate?token=${validationToken}">Validate Email</a></p>`
+  };
+
   try {
-    // Load the photo buffer from the service
-    const photoBuffer = service.photo;
-
-    // Create a thumbnail with lower resolution using sharp
-    const thumbnailBuffer = await sharp(photoBuffer)
-      .resize(600, 6*67) // Set the desired thumbnail dimensions
-      .toBuffer();
-
-    // Convert the thumbnail buffer to a base64-encoded string
-    const thumbnailBase64 = thumbnailBuffer.toString('base64');
-
-    // Create a new Buffer object with the Base64-encoded string
-    const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
-
-    // Update the service object with the thumbnail field as BinData
-    service.thumbnail = thumbnailBinData;
-
-    // Save the updated service object to the database
-    await service.save();
-
-    return service;
+    const result = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', result);
   } catch (error) {
-    console.log(error);
-    return { success: false, error: 'Error generating thumbnail' };
+    console.error('Error sending email:', error);
   }
-};
+}
 
 
+app.post('/upload', upload.single('image'), (req, res) => {
+  // Access the uploaded file using req.file
+  const uploadedFile = req.file;
+  console.log(uploadedFile)
+  console.log(JSON.parse(req.body.pages))
+  // Process the file as per your requirements
+  // For example, you can store it in a database, perform validation, etc.
 
+  // Send a response back to the client
+  res.json({ message: 'File uploaded successfully!' });
+});
 
-
-const updateServicesWithThumbnails = async function () {
-  try {
-    // Fetch all services from the database
-    const services = await Services.find();
-
-    // Iterate over each service and generate a thumbnail
-    for (const service of services) {
-      await generateThumbnail(service);
-    }
-
-    console.log('Thumbnails added to all services successfully');
-    return { success: true };
-  } catch (error) {
-    console.log(error);
-    return { success: false, error: 'Error updating services with thumbnails' };
-  }
-};
 
 // send the user one service
 app.get("/get-one-service", async function (req, res) {
@@ -176,7 +168,7 @@ app.get('/get-all-services', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title thumbnail author author_role');
+    const all_services = await get_all_services(keywords, 'title thumbnail user');
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {
@@ -278,7 +270,7 @@ app.get("/get-service-notifications", async function (req, res) {
 })
 
 
-app.post("/upload-service", upload.array("files"), storeService);
+app.post("/upload-service", upload.single("image"), storeService);
 async function storeService(req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -295,7 +287,6 @@ async function storeService(req, res) {
         console.log('problem uploading service to database');
         res.json({success: false, error: 'internal detabase error'});
       }
-      
     }
     else{
       console.log('account does not exist!')
@@ -410,84 +401,68 @@ app.post('/api/logout', (req, res) => {
   res.json({ status: 'ok', message: 'Logout successful' });
 });
 
-//register
+// POST /api/register endpoint
 app.post('/api/register', async (req, res) => {
-  const { username, password: plainTextPassword, email } = req.body
+  const { username, password: plainTextPassword, email } = req.body;
   const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if(!username || typeof username !== 'string') {
-      return res.status(400).json({ status: 'error', error: 'Invalid username' })
+  if (!username || typeof username !== 'string') {
+    return res.status(400).json({ status: 'error', error: 'Invalid username' });
   }
 
-  if(!email || !validEmailRegex.test(email)) {
-      return res.status(400).json({ status: 'error', error: 'Invalid email' })
+  if (!email || !validEmailRegex.test(email)) {
+    return res.status(400).json({ status: 'error', error: 'Invalid email' });
   }
 
-  if(!plainTextPassword || typeof plainTextPassword !== 'string') {
-      return res.status(400).json({ status: 'error', error: 'Invalid password' })
+  if (!plainTextPassword || typeof plainTextPassword !== 'string') {
+    return res.status(400).json({ status: 'error', error: 'Invalid password' });
   }
 
-  if(plainTextPassword.length < 6) {
-      return res.status(400).json({ status: 'error', error: 'Password should be at least 6 characters' })
+  if (plainTextPassword.length < 6) {
+    return res
+      .status(400)
+      .json({ status: 'error', error: 'Password should be at least 6 characters' });
   }
 
-  const password = await bcrypt.hash(plainTextPassword, 10)
+  const password = await bcrypt.hash(plainTextPassword, 10);
 
-  const verificationCode = Math.floor(1000 + Math.random() * 9000) // Generate a 4 digit verification code
+  const verificationCode = Math.floor(1000 + Math.random() * 9000); // Generate a 4 digit verification code
 
-  try{
-      const response = await User.create({
-          username,
-          password,
-          email,
-          verified: false,
-          verificationCode: verificationCode // Save the verification code in the database
+  try {
+    const response = await User.create({
+      username,
+      password,
+      email,
+      verified: false,
+      verificationCode: verificationCode // Save the verification code in the database
+    });
 
-      })
-      console.log('User created successfully: ', response)
-  } catch(error) {
-      if (error.code === 11000) {
-          //duplicate key
-          return res.json({ status: 'error', error: 'Username or Email already in use' })
-      }
-      throw error
+    console.log('User created successfully: ', response);
+
+    // Send verification email to user
+    const mailOptions = {
+      from: 'communityalis@gmail.com', // Replace with your sender email address
+      to: email,
+      subject: 'Community ALI Verification',
+      text: `Your verification code is: ${verificationCode}`
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log('Verification email sent successfully');
+    } catch (error) {
+      console.error('Error sending verification email:', error);
+    }
+  } catch (error) {
+    if (error.code === 11000) {
+      // Duplicate key
+      return res.json({ status: 'error', error: 'Username or Email already in use' });
+    }
+    throw error;
   }
 
-  //Send verification email to user
-  // const transporter = nodemailer.createTransport({
-  //     host: 'smtp.office365.com',
-  //     port: 587,
-  //     secure: false,
-  //     auth: {
-  //         user: AUTH_EMAIL,
-  //         pass: AUTH_PASS
-  //     }
-  // });
-
-  // const mailOptions =  {
-  //     from: AUTH_EMAIL,
-  //     to: email,
-  //     subject: 'Email Verification',
-  //     text: `Your verification code is: ${verificationCode}`
-  // }
-  
-  // transporter.sendMail(mailOptions);
-
-  // testing success
-  // transporter.verify((error, success) => {
-  //     if(error) {
-  //         console.log(error);
-  //     } else {
-  //         console.log("Ready for messages");
-  //         console.log(success);
-  //     }
-  // })
-
-  res.json({ status: 'ok' })
-
-  // res.redirect('/verification.html'); // Redirect to verification page
-
-})
+  res.json({ status: 'ok' });
+});
 
 // Server configuration
 const port = process.env.PORT || 3000;

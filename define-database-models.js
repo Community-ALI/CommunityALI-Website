@@ -14,12 +14,12 @@ mongoose.set('strictQuery', false);
 
 const serviceSchema = {
   title: String,
-  author: String,
-  author_role: String,
-  photo: String,         // TODO: make photo an image file not string
-  details: Array,
-  description: String,
-  contacts: Array
+  thumbnail: String,
+  photo: String,         
+  pages: Array,
+  datePosted: String,
+  timePosted: String,
+  user: String
 }
 
 const applicationSchema = {

@@ -1,17 +1,33 @@
-// FILE OVERVIEW
-// This file recieves a service from the user
-// Then, it stores that service in the database
-// FIXME: this needs to be finalized and explained
-// the code is designed to recieve multiple services, when in reality it should always be one
 const fs = require('fs');
 const models = require("../connect-to-database");
 const Service = models.Services;
 
-//json web token
-const jwt = require('jsonwebtoken')
-const JWT_SECRET = process.env.JWT_SECRET;
+const sharp = require('sharp');
 
+const generateThumbnail = async function (photoBuffer) {
+  try {
+    // Load the photo buffer from the service
 
+    // Create a thumbnail with lower resolution using sharp
+    const thumbnailBuffer = await sharp(photoBuffer)
+      .resize(600, 6*67) // Set the desired thumbnail dimensions
+      .toBuffer();
+
+    // Convert the thumbnail buffer to a base64-encoded string
+    const thumbnailBase64 = thumbnailBuffer.toString('base64');
+
+    // Create a new Buffer object with the Base64-encoded string
+    const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
+
+    // Update the service object with the thumbnail field as BinData
+    
+
+    return thumbnailBinData;
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: 'Error generating thumbnail' };
+  }
+};
 
 
 const store_add_service = async function(req, username) {
@@ -22,43 +38,29 @@ const store_add_service = async function(req, username) {
     const minutes = currentDate.getMinutes();
     const seconds = currentDate.getSeconds();
     const time = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString();
-    const meetingTime = req.body.details_times;
-    const meetingDate = req.body.details_date;
-    const location = req.body.details_location;
-    var contacts = JSON.parse(req.body.contacts);
 
-    const services_with_images = [];
-    console.log(req.files);
-    for (const file of req.files) {
-      const service_with_image = new Service({
-        personal_name: req.body.personal_name,
-        personal_number: req.body.personal_number,
-        personal_email: req.body.personal_email,
-        personal_role: req.body.personal_role,
-        title: req.body.title,
-        author: req.body.author,
-        author_role: "President",
-        photoType: file.mimetype,
-        photo: fs.readFileSync(file.path),
-        meetingTime: meetingTime,
-        meetingDate: meetingDate,
-        location: location,
-        description: req.body.description,
-        contacts: contacts,
-        date: formattedDate,
-        time: time,
-        user: username
-      });
-      services_with_images.push(service_with_image);
-    }
+    const pages = JSON.parse(req.body.pages);
 
-    await Service.insertMany(services_with_images);
-    req.files.forEach((file) => {
-      fs.unlink(file.path, (err) => {
-        if (err) {
-          console.error(err);
-        }
-      });
+    console.log(req.file);
+    const photoBuffer = fs.readFileSync(req.file.path);
+    const thumbnail = await generateThumbnail(photoBuffer)
+    const newService = new Service({
+      title: req.body.title,
+      photo: photoBuffer,
+      thumbnail: thumbnail,
+      pages: pages,
+      datePosted: formattedDate,
+      timePosted: time,
+      user: username
+    });
+    // make a thumbnail
+
+    await newService.save(); // Corrected: Use newService.save() instead of Service.save(newService)
+
+    fs.unlink(req.file.path, (err) => { // Corrected: Use req.file.path instead of req.image.path
+      if (err) {
+        console.error(err);
+      }
     });
 
     return true;
@@ -68,7 +70,4 @@ const store_add_service = async function(req, username) {
   }
 };
 
-
-      
- 
 module.exports = store_add_service;

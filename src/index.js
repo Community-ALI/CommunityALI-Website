@@ -16,6 +16,7 @@ import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
 import Add_Internship from "./pages/my-services/intern-components/add-intern";
 import Edit_Service from "./pages/my-services/edit-service";
 import View_Applicants from "./pages/my-services/view-applicants";
+import Register from "./pages/register";
 
 import './style.scss';
 import '../public/stylesheets/style.css'
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/add-intern" element={<Add_Internship />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
+                <Route path="/register" element={<Register />}/>
 
                 {/* other */}
                 <Route path="/" element={<LandingPage />}/>

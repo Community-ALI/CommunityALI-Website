@@ -18,20 +18,9 @@ function ServiceInfo() {
     const [service, setService] = useState({
       "title": "",
       "author": "",
-      "author_role": "",
-      "meetingTime": "",
-      "meetingDate": "",
-      "location": "",
-      "contacts": [],
       "photo": null,
-      "description": "",
       "user": "",
-      "date": "",
-      "personal_email": "",
-      "personal_name": "",
-      "personal_number": "",
-      "personal_role": "",
-      "time": ""
+      "pages": {}
     }
     
     );

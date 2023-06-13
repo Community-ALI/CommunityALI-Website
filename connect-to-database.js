@@ -12,28 +12,14 @@ const DATABASE_LINK = process.env.TESTING_DATABASE_LINK;
  mongoose.connect(DATABASE_LINK, { useNewUrlParser: true });
 // mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
 const serviceSchema = {
-    personal_name: String,
-    personal_number: String,
-    personal_email: String,
-    personal_role: String,
     title: String,
-    author: String,
-    author_role: String,
-    photoType: String,
-    photo: Buffer,
     thumbnail: Buffer,
-    meetingTime: String,
-    meetingDate: String,
-    location: String,
-    description: String,
-    contacts: Array,
-    date: String,
-    time: String,
-    date_updated: String,
-    time_updated: String,
+    photo: Buffer,         // TODO: make photo an image file not string
+    pages: JSON,
+    datePosted: String,
+    timePosted: String,
     user: String
-};
-
+  }
 const applicationSchema = {
     service: String,
     name: String,
