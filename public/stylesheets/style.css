@@ -573,7 +573,7 @@ video {
 }
 
 .left-\[-48px\] {
-  left: -48px;
+  left: -65px;
 }
 
 .top-16 {
@@ -605,7 +605,7 @@ video {
 }
 
 .w-\[184px\] {
-  width: 184px;
+  width: 190px;
 }
 
 .min-w-\[100vw\] {
@@ -624,9 +624,9 @@ video {
   justify-content: center;
 }
 
-.gap-4 {
+/* .gap-4 {
   gap: 1rem;
-}
+} */
 
 .overflow-auto {
   overflow: auto;
@@ -649,6 +649,8 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-top: .3rem;
+  padding-bottom: .3rem;
 }
 
 .py-4 {
