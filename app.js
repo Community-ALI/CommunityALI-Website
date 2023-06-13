@@ -19,12 +19,11 @@ const get_all_services = require("./get-functions/get-all-services");
 const get_one_service = require("./get-functions/get-one-service");
 
 //authorized only get
-const get_user_services = require("./get-functions/get-user-services")
 const get_service_applicants = require("./get-functions/get-service-applicants")
-const get_all_user_notifications = require("./get-functions/get-all-user-notifications.js")
 const get_service_applicants_notifications = require("./get-functions/get-service-notification");
 // no authorization needed set db
 const store_application = require("./store-functions/store-application");
+const userRouter = require("./routes/user");
 
 // authorized only set
 const store_add_service = require('./store-functions/store-add-service');
@@ -196,26 +195,6 @@ app.post('/store-application', upload.none(), async function (req, res) {
   }
 });
 
-// send a user their services
-app.get("/get-user-services", async function (req, res) {
-  try {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, JWT_SECRET);
-    const username = decodedToken.username;
-    const user_services = await get_user_services(username);
-    
-    res.json({
-      dataServices: user_services,
-      tokenUsername: username});
-    console.log('services belonging to', username, 'sent')
-  } catch (error) {
-    console.log(error);
-    res.json({
-      dataServices: [],
-      tokenUsername: 'not logged in'});
-  }
-})
-
 // get the applicants to a service (as long as the user is authorized)
 app.get("/get-service-applicants", async function (req, res) {
   try {
@@ -357,7 +336,7 @@ async function storeEditService(req, res) {
   
 }
 
-
+app.use('/userdata', userRouter);
 
 // service edit
 app.get("/my-services/edit-service", function (req, res){

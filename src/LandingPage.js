@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 function LandingPage() {
     return (
-        <div>
+        <div className="overflow-auto">
             <NavBar isFixedPage={true} />
             <LandingPageHeader />
             <LandingPageCatagories />

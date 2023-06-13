@@ -26,18 +26,6 @@ body
         transform : translatey(0px); }
 }
 
-#video-background
-{
-    position : absolute;
-    z-index : -1;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    transform: translateX(calc((100% - 100vw) / 2));
-    top : -90px;
-}
-
 .header
 {
     background: linear-gradient(

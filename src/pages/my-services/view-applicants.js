@@ -30,7 +30,7 @@ const SearchResult = function (props) {
         normalTime = convertToNormalTime(applicant.time);
     }
 
-    useEffect (() => {
+    useEffect(() => {
         if (isNotification) {
             fetch('http://localhost:3000/change_notification_status/' + applicant._id, {
                 method: 'POST',
@@ -146,16 +146,18 @@ function ServiceApplicants() {
     const urlParams = new URLSearchParams(queryString);
     const serviceName = urlParams.get('service');
     return (
-        <div>
+        <div >
             <NavBar constantUpdate={true} />,
-            <div className="container">
-                <div className="applicants-container-title">
-                    Club Sign-ups
-                </div>
-                <div className="applicants-container">
-                    <ApplicationPageDisplay
-                        serviceName={serviceName}
-                        applicants={applicants} />
+            <div className='flex justify-center'>
+                <div className="container">
+                    <div className="applicants-container-title">
+                        Club Sign-ups
+                    </div>
+                    <div className="applicants-container">
+                        <ApplicationPageDisplay
+                            serviceName={serviceName}
+                            applicants={applicants} />
+                    </div>
                 </div>
             </div>
         </div>
