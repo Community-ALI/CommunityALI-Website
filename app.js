@@ -223,25 +223,6 @@ app.get("/get-service-applicants", async function (req, res) {
   }
 })
 
-// send a user their notifications
-app.get("/get-all-user-notifications", async function (req, res) {
-  try {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, JWT_SECRET);
-    const username = decodedToken.username;
-    const user_notifications = await get_all_user_notifications(username);
-    res.json({
-      notifications: user_notifications
-    });
-    // console.log('application notifications belonging to', username, 'sent')
-  } catch (error) {
-    console.log(error);
-    res.json({
-      user_notifications: [],
-      tokenUsername: 'not logged in'});
-  }
-})
-
 app.get("/get-service-notifications", async function (req, res) {
   try {
     const service_name = req.query.service;
@@ -347,8 +328,6 @@ app.get("/my-services/edit-service", function (req, res){
 app.get("/get-user-applicants", async function (req, res) {
   display_view_applicants(req, res);  
 });
-
-
 
 // login
 
