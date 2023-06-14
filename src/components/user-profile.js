@@ -61,7 +61,7 @@ const UserProfileCircle = (Logout) => {
           <i className="fa-solid fa-marker" style={{ color: '#ffffff' }}></i>
           <p className='px-4 text-white'>Edit Profile</p>
         </button> */}
-        <button onClick={Logout} className='flex justify-center items-center hover:bg-[#ecaa1e] px-4'>
+        <button onClick={Logout} className='flex justify-center items-center hover:bg-[#00468D] px-4'>
           <i className="fa-solid fa-right-from-bracket" style={{ color: '#ffffff' }}></i>
           <p
             className='px-4 text-white'
