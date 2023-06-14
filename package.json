@@ -11,7 +11,8 @@
     "frontend": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "build-css": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css --watch",
-    "build-css-once": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css"
+    "build-css-once": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css",
+    "dev": "concurrently \"npm run start\" \"npm run build-css\""
   },
   "repository": {
     "type": "git",
