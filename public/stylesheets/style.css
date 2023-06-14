@@ -641,6 +641,11 @@ video {
   background-color: rgb(0 30 96 / var(--tw-bg-opacity));
 }
 
+.bg-ali-darkblue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 30 96 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -664,6 +669,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-regal-blue {
+  --tw-text-opacity: 1;
+  color: rgb(36 60 90 / var(--tw-text-opacity));
 }
 
 .opacity-0 {

@@ -50,10 +50,10 @@ const UserProfileCircle = (Logout) => {
   return (
     <div className="user-profile-circle relative">
       <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} />
-      <div className={`rounded-lg flex flex-col absolute dropdown-menu bg-[#001E60] left-[-48px] py-4 
+      <div className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-48px] py-4 
       top-16 transition-opacity duration-300 z-50 gap-4 w-[165px] ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}>
-        <a className='flex justify-center items-center hover:bg-[#ecaa1e] px-4' href="/profile">
+        <a className='text-regal-blue flex justify-center items-center hover:bg-[#ecaa1e] px-4' href="/profile">
           <i className="fa-solid fa-user" style={{ color: '#ffffff' }}></i>
           <p className='px-4 text-white'>Profile</p>
         </a>
