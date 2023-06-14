@@ -79,14 +79,14 @@ form .text-field
 }
 
 .text-field-input:focus ~ label,
-.text-field-input:valid ~ label
+.text-field-label.focused-field
 {
   top: -5px;
   color: #2691d9;
 }
 
 .text-field-input:focus ~ span::before,
-.text-field-input:valid ~ span::before
+.text-field-span.focused-field
 {
   width: 100%;
 }

@@ -66,8 +66,8 @@ function LoginPopup(props) {
                                         setUsernameOrEmail(e.target.value);
                                     }}
                                     />
-                                <span className="text-field-span"></span>
-                                <label className="text-field-label">Username or Email</label>
+                                <span className={`text-field-span${(usernameOrEmail != '') ? ' focused-field' : ''}`}></span>
+                                <label className={`text-field-label${(usernameOrEmail != '') ? ' focused-field' : ''}`} htmlFor="usernameOrEmail">Username or Email</label>
                             </div>
                             <div className="text-field">
                                 <input 
@@ -80,8 +80,8 @@ function LoginPopup(props) {
                                         setPassword(e.target.value);
                                     }}
                                     />
-                                <span className="text-field-span" ></span>
-                                <label className="text-field-label">Password</label>
+                                <span className={`text-field-span${(password != '') ? ' focused-field' : ''}`}></span>
+                                <label className={`text-field-label${(password != '') ? ' focused-field' : ''}`} htmlFor="password">Password</label>
                             </div>
                     
                             {/* <!-- <div class="pass">Forgot Password?</div> --> */}
