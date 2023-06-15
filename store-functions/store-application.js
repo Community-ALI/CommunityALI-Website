@@ -14,7 +14,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({
   region: 'us-west-2',
   accessKeyId: 'AKIA5XTVYBKVHVNBFVAE',
-  secretAccessKey: 'catalyst_2022',
+  secretAccessKey: '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',
 });
 
 const sns = new AWS.SNS();
@@ -22,9 +22,7 @@ const sns = new AWS.SNS();
 
 function sendNotification(req, user) {
   const messageParams = {
-    Message: `${req.body.name} has signed up to your service: ${req.body.service}`,
-    subject: `${req.body.service} has new applicants`,
-    TopicArn: 'arn:aws:sns:us-west-2:944066005674:serviceApplicantSNS',
+    Message: `Subject: ${req.body.service} - New Applicants\n\n${req.body.name} has signed up to your service: ${req.body.service}`,
     TargetArn: `arn:aws:sns:your-aws-region:your-account-id:endpoint/email/${user.email}`,
   };
 
