@@ -45,7 +45,7 @@ function SignUpPage({mainInfo, allFormData}) {
         const socialMediaComplete = socialMedia.every(
           (media) => media.mediaType && media.mediaName && media.mediaUrl
         );
-    
+
         if (!socialMediaComplete) {
           alert('Social media is incomplete');
           return false;
@@ -88,8 +88,25 @@ function SignUpPage({mainInfo, allFormData}) {
             'location': allFormData.Overview.location,
             'description': allFormData.Overview.description
           }
+          var ContactsData = {}
+          if (allFormData.Contacts.contacts || allFormData.Contacts.socialMedia){
+            ContactsData = {
+              'contacts': allFormData.Contacts.contacts,
+              'socialMedia': allFormData.Contacts.socialMedia
+            }
+          }
+
+          var FAQData = {}
+          if (allFormData.FAQ.faq){
+            FAQData = {
+              'faq': allFormData.FAQ.faq
+            }
+          }
+          
           const JsonData = {
-            'overview': OverviewData
+            'overview': OverviewData,
+            'contacts': ContactsData,
+            'FAQ': FAQData
           }
           const jsonString = JSON.stringify(JsonData);
           // Alternatively, if you want to treat it as a file, you can create a File object
