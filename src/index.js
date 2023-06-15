@@ -5,7 +5,7 @@ import LandingPage from "./LandingPage";
 import ContactForm from "./components/contact-form";
 
 import Services_Main_Page from "./pages/explore-services/main-page";
-import View_Services from "./pages/explore-services/service-info";
+import View_Services from "./pages/explore-services/service-info-pages/club-info";
 import Signup_Success from "./pages/explore-services/signup-success";
 
 import My_Services_Main_Page from "./pages/my-services/main-page";

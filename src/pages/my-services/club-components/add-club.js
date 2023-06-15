@@ -46,20 +46,20 @@ function AddClub() {
     });
   };
 
-  
-    useEffect(() => {
-      changeVisibility("Overview"); // Set "Overview" as the active page initially
-    }, []);
+
+  useEffect(() => {
+    changeVisibility("Overview"); // Set "Overview" as the active page initially
+  }, []);
 
   const deletePage = (pageToRemove) => {
     if (removablePages.includes(pageToRemove)) {
       if (activePage === pageToRemove) {
         changeVisibility("Overview");
       }
-      if (pageToRemove === 'Contacts'){
+      if (pageToRemove === 'Contacts') {
         setContactsFormData({})
       }
-      if (pageToRemove === 'FAQ'){
+      if (pageToRemove === 'FAQ') {
         setFaqFormData({})
       }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
@@ -75,12 +75,14 @@ function AddClub() {
       if (insertIndex === -1) {
         return [...prevPages, pageToAdd];
       }
-      if (pageToAdd === 'Contacts'){
-        setContactsFormData({"contacts": [{"contactRole": "","contactName": "","contactEmail": ""}],
-        "socialMedia": [{"mediaType": "","mediaName": "","mediaUrl": ""}]})
+      if (pageToAdd === 'Contacts') {
+        setContactsFormData({
+          "contacts": [{ "contactRole": "", "contactName": "", "contactEmail": "" }],
+          "socialMedia": [{ "mediaType": "", "mediaName": "", "mediaUrl": "" }]
+        })
       }
-      else if (pageToAdd === 'FAQ'){
-        setFaqFormData({"faq": [{"faqQuestion": "","faqAnswer": ""}]})
+      else if (pageToAdd === 'FAQ') {
+        setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
       }
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
@@ -117,43 +119,43 @@ function AddClub() {
           ))}
 
           <div
-        className="service-navbar-plus-container"
-        onClick={toggleAddButtons}
-        onBlur={hide}
-        tabIndex="0"
-      >
-        <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
-        {showAddButtons && (
-          <div className="add-buttons-container">
-            {allPossiblePages
-              .filter((page) => !allCurrentPages.includes(page))
-              .map((page) => (
-                <button
-                  key={page}
-                  onClick={() => addPage(page)}
-                  className="add-page-button"
-                >
-                  Add {page}
-                </button>
-              ))}
+            className="service-navbar-plus-container"
+            onClick={toggleAddButtons}
+            onBlur={hide}
+            tabIndex="0"
+          >
+            <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
+              {showAddButtons && (
+                <div className="add-buttons-container">
+                  {allPossiblePages
+                    .filter((page) => !allCurrentPages.includes(page))
+                    .map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => addPage(page)}
+                        className="add-page-button"
+                      >
+                        Add {page}
+                      </button>
+                    ))}
+                </div>
+              )}
+            </i>
           </div>
-        )}
-        </i>
-      </div>
         </div>
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" mainInfo={
-          {'title': titleValue}
-        } 
-        allFormData={
-          {
-            'Overview': overviewFormData,
-            'Contacts': contactsFormData,
-            'FAQ': faqFormData
-          }
+          { 'title': titleValue }
+        }
+          allFormData={
+            {
+              'Overview': overviewFormData,
+              'Contacts': contactsFormData,
+              'FAQ': faqFormData
+            }
           } />}
 
       </form>

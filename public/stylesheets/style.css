@@ -572,8 +572,8 @@ video {
   position: relative;
 }
 
-.left-\[-48px\] {
-  left: -48px;
+.left-\[-80px\] {
+  left: -80px;
 }
 
 .top-16 {
@@ -624,10 +624,6 @@ video {
   justify-content: center;
 }
 
-.gap-4 {
-  gap: 1rem;
-}
-
 .overflow-auto {
   overflow: auto;
 }
@@ -654,6 +650,16 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 
 .py-4 {
@@ -734,12 +740,12 @@ video {
   left: -2px;
 }
 
-.hover\:bg-\[\#ecaa1e\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 170 30 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-\[\#00468D\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 70 141 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#ecaa1e\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 170 30 / var(--tw-bg-opacity));
 }

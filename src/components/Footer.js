@@ -9,7 +9,7 @@ function Footer() {
                     href="https://www.facebook.com/profile.php?id=100089185347335&amp;mibextid=ZbWKwL" 
                     target="_blank">               
                     <i 
-                        className="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-4x" 
+                        className="fa fa-facebook white-text mr-md-5 mr-3 fa-lg" 
                         aria-hidden="true">
                     </i>
                 </a>
@@ -17,7 +17,7 @@ function Footer() {
                     href="https://twitter.com/Community_ALIs" 
                     target="_blank">
                     <i 
-                        className="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-4x" 
+                        className="fa fa-twitter white-text mr-md-5 mr-3 fa-lg" 
                         aria-hidden="true">
                     </i>            
                 </a>            
@@ -25,7 +25,7 @@ function Footer() {
                     href="https://www.instagram.com/community_ali/" 
                     target="_blank">            
                     <i 
-                        className="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-4x" 
+                        className="fa fa-instagram white-text mr-md-5 mr-3 fa-lg" 
                         aria-hidden="true">
                     </i>            
                 </a>     

@@ -46,11 +46,13 @@ body
 {
     font-weight: 400;
     margin-bottom : 10px;
+    font-size: 31px;
 }
 
 .body-subtitle
 {
     font-weight: 300;
+    font-size: 24px;
 }
 
 .contact-us-container
@@ -67,6 +69,8 @@ body
     margin-bottom : 30px;
     font-family: 'Poppins', sans-serif;
     font-weight : 500;
+    font-size: 28px;
+    text-align: center;
 }
 
 .contact-form-second-title
@@ -215,11 +219,6 @@ body
 
 @media all and (max-width : 540px)
 {
-    .contact-form-title
-    {
-        text-align: center;
-    }
-
     .form-input
     {
         width : 100%;
