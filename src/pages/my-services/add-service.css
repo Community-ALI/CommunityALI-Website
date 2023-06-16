@@ -796,6 +796,14 @@ section .details span
 
 @media all and (max-width : 820px)
 {
+    .add-buttons-container
+    {
+        left: -150%;
+        margin-left: 0px;
+        flex-direction: row;
+        background-color: #001E60;
+    }
+
     .file-container
     {
         width : 80%;
@@ -849,7 +857,6 @@ section .details span
 
 @media all and (max-width : 480px)
 {
-
     .service-navbar 
     {
         flex-direction: column;
