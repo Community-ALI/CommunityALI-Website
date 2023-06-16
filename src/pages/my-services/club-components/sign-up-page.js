@@ -126,6 +126,7 @@ function SignUpPage({mainInfo, allFormData}) {
             .then(data => {
               // Handle response from the server
               console.log('Upload successful:', data);
+              window.location.href = '/services'
             })
             .catch(error => {
               // Handle error
