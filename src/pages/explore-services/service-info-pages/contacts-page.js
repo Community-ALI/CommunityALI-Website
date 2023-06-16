@@ -55,7 +55,7 @@ function ContactsPage() {
           <div>
             <u className="club-contacts-selection"> Instagram: </u>
             <a 
-            className="service-contact-link" 
+            className="service-contact-link" target="_blank"
             href="https://www.instagram.com/community_ali/">
             @Community_Ali
             </a>
@@ -64,7 +64,7 @@ function ContactsPage() {
           <div>
             <u className="club-contacts-selection"> Youtube: </u>
             <a 
-            className="service-contact-link" 
+            className="service-contact-link" target="_blank"
             href="https://www.youtube.com/@communitycatalyst/videos">
             Community Catalyst
             </a>
@@ -73,7 +73,7 @@ function ContactsPage() {
           <div>
             <u className="club-contacts-selection"> Twitter: </u>
             <a 
-            className="service-contact-link" 
+            className="service-contact-link" target="_blank"
             href="https://twitter.com/Community_ALIs">
             @Community_ALIs
             </a>
