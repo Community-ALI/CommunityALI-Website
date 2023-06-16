@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import '../add-service.css';
 
-function OverviewPage({ formData, setFormData }) {
-  const [file, setFile] = useState(null);
+function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = false}) {
   const [fileContainerID, setFileContainerID] = useState('file-container');
   const fileUploadText = useRef();
 
@@ -10,7 +9,7 @@ function OverviewPage({ formData, setFormData }) {
     if (formData.file) {
       setFileContainerID('file-container-with-file');
       const element = fileUploadText.current;
-      element.textContent = `File Uploaded! (${formData.file.name})`;
+      element.textContent = `File uploaded! (${formData.file.name})`;
     } else {
       setFileContainerID('file-container');
       const element = fileUploadText.current;
@@ -38,8 +37,11 @@ function OverviewPage({ formData, setFormData }) {
           <header>Club Photo Uploader</header>
           <label className="file-form" htmlFor="file-input">
             <i className="fas fa-cloud-upload-alt" id="file-icon" />
-            <p ref={fileUploadText}>Click to upload a single image File</p>
-            <img id="previewImage" src={file} alt="Preview"></img>
+            {editMode === false ? (
+              <p ref={fileUploadText}>Click to upload a single image File</p>
+            ) : (
+              <p ref={fileUploadText}>Click to change {serviceType} thumbnail</p>
+            )}
           </label>
           <input
             className="file-input"
@@ -56,7 +58,7 @@ function OverviewPage({ formData, setFormData }) {
           <div className="service-author">
             <input
               type="text"
-              placeholder="President of the Club"
+              placeholder= {`President of the ${serviceType}`}
               onChange={handleFormChange}
               name="subtitle"
               value={formData.subtitle || ""}

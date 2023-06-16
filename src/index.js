@@ -14,7 +14,7 @@ import Add_Club from "./pages/my-services/club-components/add-club";
 import Add_Event from "./pages/my-services/event-components/add-event";
 import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
 import Add_Internship from "./pages/my-services/intern-components/add-intern";
-import Edit_Service from "./pages/my-services/edit-service";
+import Edit_Service from "./pages/my-services/club-components/edit-club";
 import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
 import Profile from "./components/profile";

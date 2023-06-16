@@ -104,8 +104,8 @@ function EditService() {
             name: contact_name_4,
             email: contact_email_4
           };
-      
-      
+          
+          
           var contactsArray = [contact1, contact2, contact3, contact4];
           formData.append("contacts", JSON.stringify(contactsArray));
 
