@@ -30,17 +30,20 @@ const DisplayService = function (props) {
 
 // this function repeadedly calls Display Service to display all the services in the provided array
 function DisplayAllServices(props) {
-const results = props.services;
-if (results){
-    return (
+  const results = props.services;
+  
+  if (!results || results.length === 0) {
+    return <div>No services found.</div>;
+  }
+  
+  return (
     <div className="results">
       {results.map(function (service) {
         return <DisplayService service={service} key={service.title} />;
       })}
     </div>
   );
-  }
-};
+}
 
 function Services() {
     const [services, setServices] = useState([]);
