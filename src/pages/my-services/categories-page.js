@@ -21,7 +21,8 @@ function categoriesPage() {
                     </p>
                 </a>
 
-                <a className="category-container" href="/add-event">
+                <a className="category-container-unselectable" >
+                {/* href="/add-event" */}
                     <p className="category-header">Add a Local Event</p>
                     <p className="category-text"> 
                         Bring more life to MJC by posting an event to enhance a student's college experience.
@@ -30,7 +31,8 @@ function categoriesPage() {
                     </p>
                 </a>
 
-                <a className="category-container" href="/add-volunteer">
+                <a className="category-container-unselectable" >
+                {/* href="/add-volunteer" */}
                     <p className="category-header">Add Volunteering</p>
                     <p className="category-text"> 
                         Promote acts of civic engagement and community by posting a volunteer activity for
@@ -39,7 +41,8 @@ function categoriesPage() {
                     </p>
                 </a>
 
-                <a className="category-container" href="/add-intern">
+                <a className="category-container-unselectable" >
+                {/* href="/add-intern" */}
                     <p className="category-header">Add an Internship</p>
                     <p className="category-text"> 
                         Including both paid and unpaid internships, they are very valuable to students looking for

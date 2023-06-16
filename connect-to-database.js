@@ -14,7 +14,7 @@ const DATABASE_LINK = process.env.TESTING_DATABASE_LINK;
 const serviceSchema = {
     title: String,
     thumbnail: Buffer,
-    photo: Buffer,         // TODO: make photo an image file not string
+    photo: Buffer,        
     pages: JSON,
     datePosted: String,
     timePosted: String,
