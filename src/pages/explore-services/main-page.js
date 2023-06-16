@@ -80,7 +80,7 @@ function Services() {
             })
           
         } catch (error) {
-          // FIXME: add error handling
+          
         }
       };
       fetchData();
