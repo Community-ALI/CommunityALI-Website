@@ -34,17 +34,12 @@ function ContactsPage({ service }) {
         <div className="service-details" id="social-media-container">
           <div className="service-header">Follow our Social Media</div>
           {socialMedia.map((media, index) => (
-            <div className="contacts-container" key={index}>
-              <div>
-                <u className="club-contacts-selection">{media.mediaType} : </u>
+            <div key={index}>
+              <u className="club-contacts-selection">{media.mediaType} : </u>
+              <a className="service-contact-link" target="_blank" href={media.mediaUrl}>
                 {media.mediaName}
-              </div>
-              <div className="text-button-container">
-                <p className="service-contact-link">
-                  {media.mediaUrl}
-                </p>
+              </a>
             </div>
-          </div>
           ))}
         </div>
       </div>
