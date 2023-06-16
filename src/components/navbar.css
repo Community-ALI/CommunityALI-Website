@@ -180,6 +180,7 @@ a > .navigation-menu {
     font-size: small;
     text-align: center;
     gap: 0;
+    display: none;
 }
 
 .navigation-sub-menu.scrolled {
