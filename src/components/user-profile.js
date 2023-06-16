@@ -53,10 +53,10 @@ const UserProfileCircle = (Logout) => {
       <div className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-80px] py-4 
       top-16 transition-opacity duration-300 z-50 w-[165px] ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}>
-        <a className='transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3' href="/profile">
+        {/* <a className='transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3' href="/profile">
           <i className="fa-solid fa-user" style={{ color: '#ffffff' }}></i>
           <p className='px-4 text-white'>Profile</p>
-        </a>
+        </a> */}
         {/* <button className='flex justify-center items-center hover:bg-[#ecaa1e] px-4' href="enter link here">
           <i className="fa-solid fa-marker" style={{ color: '#ffffff' }}></i>
           <p className='px-4 text-white'>Edit Profile</p>
