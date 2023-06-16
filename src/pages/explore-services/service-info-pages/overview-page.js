@@ -1,8 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import '../../../pages/my-services/add-service.css';
 
-function OverviewPage() {
-
+function OverviewPage({service}) {
+  
+  var overview = {}
+  if (service.pages && service.pages.overview){
+   overview = service.pages.overview
+  }
   return (
     <div>
       <div className="service-info-container">
@@ -20,28 +24,23 @@ function OverviewPage() {
 
           <div>
             <u> Time: </u>
-            9:00am - 11:00am
+              {overview.time}
           </div>
 
           <div>
             <u> Date: </u>       
-            Every Friday   
+              {overview.date}   
           </div>
 
           <div>
             <u> Location: </u>
-            MJC West Campus Study Room
+              {overview.location}
           </div>
         </div>
       </div>
 
       <div className="service-description">
-      We strive to integrate life experiences with academia to promote educational 
-      success and personal growth by granting students the opportunity to connect 
-      with their local community and beyond. By developing a deeper connection with 
-      Modesto Junior College, students can further their education by understanding 
-      the purpose and application of knowledge gained from a classroom to the real 
-      world.
+        {overview.description}
       </div>
     </div>
   )
