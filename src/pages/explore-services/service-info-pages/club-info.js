@@ -4,7 +4,7 @@ import '../../../components/navbar.css';
 import '../service-info.css';
 import ContactsPage from "./contacts-page";
 import OverviewPage from "./overview-page";
-// import FaqPage from "../general-components/faq-page";
+import FaqPage from "./faq-page";
 import SignUpPage from "./sign-up-page";
 import '../../../pages/my-services/add-service.css';
 import '../../../../public/stylesheets/style.css';
@@ -19,6 +19,8 @@ function AddClub() {
 
   const [allCurrentPages, setAllCurrentPages] = useState([
     "Overview",
+    "Contacts",
+    "FAQ",
     "Sign Up"
   ]);
 
@@ -44,34 +46,28 @@ function AddClub() {
 
   return (
     <div>
-      <NavBar isFixedPage={false} />
-      <div className="py-32">
-        <div className="service-title">
-          <h1 className="club-title-text-box" >Name of the Club</h1>
-          <br />
-        </div>
-
-        <div className="service-navbar">
-          {allCurrentPages.map((page) => (
-            <div className="service-navbar-text" key={page} id={page === "OverviewPage" ? "" : `remove${page}`}>
-              <a href="#" className="service-navbar-link" ref={pageRefs.current[page]} onClick={() => changeVisibility(page)}>{page}</a>
-            </div>
-          ))}
-
-          <div
-            className="service-navbar-plus-container"
-            tabIndex="0"
-          >
-          </div>
-        </div>
-
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" />}
+    <NavBar isFixedPage={false} />
+    <form method="POST" className="service-container" id='form'>
+      <div className="service-title">
+       Community ALI
       </div>
-    </div>
-  );
+
+      <div className="service-navbar">
+        {allCurrentPages.map((page) => (
+          <div className="service-navbar-text" key={page} id={page === "OverviewPage" ? "" : `remove${page}`}>
+            <a href="#" className="service-navbar-link" ref={pageRefs.current[page]} onClick={() => changeVisibility(page)}>{page}</a>
+          </div>
+        ))}
+      </div>
+
+      {activePage === "Overview" && <OverviewPage key="OverviewPage" />}
+      {activePage === "Contacts" && <ContactsPage key="ContactsPage" />}
+      {activePage === "FAQ" && <FaqPage key="FaqPage" />}
+      {activePage === "Sign Up" && <SignUpPage key="SignUpPage"/>}
+
+    </form>
+  </div>
+  )
 }
 
 export default AddClub;

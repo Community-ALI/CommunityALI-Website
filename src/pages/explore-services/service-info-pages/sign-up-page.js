@@ -35,23 +35,25 @@ function SignUpPage({ mainInfo, allFormData }) {
   return (
     <div>
       <div className="sign-up-form">
-        <form onSubmit={handleSubmit} method="POST" id="form" className="sign-up-form-boxes">
+        <div id="form" className="sign-up-form-boxes">
           <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
-          <div className="sign-up-form-container">
-            <div className="text-container" id="name-container">
-              <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
-              <input className="service-info-text text-black" type="text" placeholder="First and Last Name" id="name" name="name" ref={nameRef} required /><br />
-            </div>
+            <div className="sign-up-form-container">
+                <div className="text-container" id="name-container">
+                    <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
+                    <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
+                    id="name" name="name"/><br/>
+                </div>
 
-            <div className="text-container" id="email-container">
-              <label htmlFor="email" className="sign-up-form-text"> Email: </label>
-              <input className="service-info-text text-black" type="email" placeholder="School Email" id="email" name="email" ref={emailRef} required /><br />
-            </div>
-          </div>
-          <input type="submit" value="Submit" className="sign-up-submit-button" /><br />
-        </form>
+                <div className="text-container" id="email-container">
+                    <label htmlFor="email" className="sign-up-form-text"> Email: </label>
+                    <input type="email" className="sign-up-form-input" placeholder="School Email" 
+                    id="email" name="email"/><br/>
+                </div>
+            </div> 
+            <input type="submit" value="Submit" className="service-submit-button"/><br/>
+        </div>
       </div>
-    </div>
+  </div>
   )
 }
 

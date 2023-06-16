@@ -5,46 +5,46 @@ function OverviewPage() {
 
   return (
     <div>
-      <div>
-        <div className="service-info-container">
-          <div className="file-container">
-            <img id="previewImage" src={'./Photos/ACE Unity Club.jpg'} alt="Preview"></img>
+      <div className="service-info-container">
+          <img 
+          src="../../../Photos/computerscience.jpg" 
+          id="preview" className="service-image-container">
+          </img>
+          
+        <div className="service-details">
+          <div className="service-author">
+           President Adrean Cajigas
           </div>
 
-          <div className="service-details">
-            <div className="service-author">
-              <h1 className="meeting-details-title-box">President of the Club</h1>
-              <br />
-            </div>
+          <div className="service-header">Meeting Details</div>
 
-            <div className="service-header">Meeting Details</div>
-
-            <div>
-              <u> Time: </u>
-              <h1 className="meeting-details-text-box">Include start and end time</h1>
-              <br />
-            </div>
-
-            <div>
-              <u> Date: </u>
-              <h1 className="meeting-details-text-box">Include day and month</h1>
-              <br />
-            </div>
-
-            <div>
-              <u> Location: </u>
-              <h1 className="meeting-details-text-box">Include building and room</h1>
-              <br />
-            </div>
+          <div>
+            <u> Time: </u>
+            9:00am - 11:00am
           </div>
-        </div>
 
-        <div className="service-description">
-          <p className="meeting-description-text-box">Include a description of what the club does and its mission...</p>
+          <div>
+            <u> Date: </u>       
+            Every Friday   
+          </div>
+
+          <div>
+            <u> Location: </u>
+            MJC West Campus Study Room
+          </div>
         </div>
       </div>
+
+      <div className="service-description">
+      We strive to integrate life experiences with academia to promote educational 
+      success and personal growth by granting students the opportunity to connect 
+      with their local community and beyond. By developing a deeper connection with 
+      Modesto Junior College, students can further their education by understanding 
+      the purpose and application of knowledge gained from a classroom to the real 
+      world.
+      </div>
     </div>
-  );
+  )
 }
 
 export default OverviewPage;

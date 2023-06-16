@@ -2,6 +2,11 @@ import React, { Component, useEffect, useState, useRef } from 'react';
 import '../../pages/explore-services/service-info.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
+import '../add-service.css';
+import ContactsPage from "./contacts-page";
+import OverviewPage from "./overview-page";
+import FaqPage from "../general-components/faq-page";
+import SignUpPage from "./sign-up-page";
 import { Buffer } from 'buffer';
 const ContactsComponent = (props) => {
   const contacts = props.contacts;
