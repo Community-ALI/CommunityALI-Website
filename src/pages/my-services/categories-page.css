@@ -41,6 +41,19 @@ body
     padding: 40px;
 }
 
+.category-container-unselectable
+{
+    position: relative;
+    text-decoration: none;
+    width: 40%;
+    height: 100%;
+    margin: 2%;
+    border-radius: 15px;
+    background-color: #002b57;
+    transition: 300ms ease;
+    padding: 40px;
+}
+
 .category-container-title
 {
     width : 90%;

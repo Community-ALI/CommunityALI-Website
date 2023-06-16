@@ -6,10 +6,12 @@ import Notifications from "../../components/Notification";
 import DeleteServicePopup from '../../components/DeleteServicePopup'
 // create the information required to display the page
 
+
+
+
 function MyServicePageDisplay(props) {
   const [notifications, setNotifications] = useState([]);
   const service = props.service;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -68,10 +70,9 @@ function MyServicePageDisplay(props) {
             >Edit</a>
             <button className="service-delete-button"
               onClick={(event) => {
-                event.stopPropagation(); // Prevent event bubbling
-                // window.location.href = 'https://www.youtube.com/watch?v=oHC1230OpOg'
-                setDeleteServiceTitle(service.title);
-                setIsShowingServiceDeletePopup(true);
+                event.stopPropagation();
+                props.setDeleteServiceTitle(service.title);
+                props.setIsShowingServiceDeletePopup(true);
               }}
             >Delete</button>
           </div>
@@ -160,7 +161,9 @@ function MyServicesHome() {
       {services.map(service => ( // display each service
         <MyServicePageDisplay
           key={service._id}
-          service={service} />
+          service={service} 
+          setDeleteServiceTitle={setDeleteServiceTitle}
+          setIsShowingServiceDeletePopup={setIsShowingServiceDeletePopup}/>
       ))}
     </div >
   )

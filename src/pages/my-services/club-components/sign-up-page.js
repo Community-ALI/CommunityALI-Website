@@ -140,7 +140,6 @@ function SignUpPage({mainInfo, allFormData}) {
 
     return(
         <div>
-          <img id="previewImage" src={file} alt="Preview"></img>
             <div className="sign-up-form">
               <div id="form" className="sign-up-form-boxes">
                 <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
