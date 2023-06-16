@@ -1,23 +1,28 @@
 import React, { useRef, useState, useEffect } from "react";
 import '../../../pages/my-services/add-service.css';
+import { Buffer } from 'buffer';
 
 function OverviewPage({service}) {
   
   var overview = {}
+  var imageUrl = ''
   if (service.pages && service.pages.overview){
    overview = service.pages.overview
+   const buffer = Buffer.from(service.thumbnail.data);
+   const base64 = buffer.toString('base64');
+   imageUrl = `data:image/png;base64,${base64}`;
   }
   return (
     <div>
       <div className="service-info-container">
           <img 
-          src="../../../Photos/computerscience.jpg" 
+          src={imageUrl}
           id="preview" className="service-image-container">
           </img>
           
         <div className="service-details">
           <div className="service-author">
-           President Adrean Cajigas
+            {overview.subtitle}
           </div>
 
           <div className="service-header">Meeting Details</div>
