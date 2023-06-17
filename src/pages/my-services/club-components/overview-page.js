@@ -4,7 +4,7 @@ import '../add-service.css';
 function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = false}) {
   const [fileContainerID, setFileContainerID] = useState('file-container');
   const fileUploadText = useRef();
-
+  console.log(editMode)
   useEffect(() => {
     if (formData.file) {
       setFileContainerID('file-container-with-file');
@@ -13,7 +13,12 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     } else {
       setFileContainerID('file-container');
       const element = fileUploadText.current;
-      element.textContent = 'Click to upload a single image File';
+      if (editMode === false){
+        element.textContent = 'Click to upload a single image File';
+      }
+      else{
+        element.textContent = `Click to change ${serviceType} thumbnail`
+      }
     }
   }, [formData.file]);
 
@@ -37,7 +42,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
           <header>Club Photo Uploader</header>
           <label className="file-form" htmlFor="file-input">
             <i className="fas fa-cloud-upload-alt" id="file-icon" />
-            {editMode === false ? (
+            {editMode === false? (
               <p ref={fileUploadText}>Click to upload a single image File</p>
             ) : (
               <p ref={fileUploadText}>Click to change {serviceType} thumbnail</p>
