@@ -37,7 +37,7 @@ function sendNotification(req, user) {
   });
 }
 
-const store_application = async function (req) { //fix asynic stuffies it keeps sending undefined to sendNotifications
+const store_application = async function (req) {
   try {
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
@@ -46,14 +46,26 @@ const store_application = async function (req) { //fix asynic stuffies it keeps 
     const seconds = currentDate.getSeconds();
     const time = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString();
 
-    await promise.all([
+    console.log("service: " + req.body.service);
+
+    const [serviceArray] = await Promise.all([
       Service.find({ title: req.body.service }).exec(),
-      User.find({ username: applicationService.user }).exec()
-    ]).then((service, user) => {
-      console.log("applicationService:", service);
-      console.log("User:", user);
-      sendNotification(req, user);
-    })
+    ]);
+    
+    const [service] = serviceArray; // Extract the first document from the array
+    
+    const [userArray] = await Promise.all([
+      User.find({ username: service.user }).exec(),
+    ]);
+    
+    const [user] = userArray; // Extract the first document from the array
+    
+    console.log("applicationService:", service.title);
+    console.log("User:", user.username);
+    
+    sendNotification(req, user);
+    
+    
 
     const apply = new Application({
       service: req.body.service,
