@@ -38,7 +38,7 @@ function DisplayAllServices(props) {
     return(
     <div className="no-service-found-container">
       <div className="not-found-container">
-        <i class="fa-solid fa-circle-exclamation fa-2x" id="not-found-exclamation"></i>
+        <i className="fa-solid fa-circle-exclamation fa-2x" id="not-found-exclamation"></i>
         <div className='not-found-text'> No Services Found</div>
       </div>
       <div className='not-found-description'>

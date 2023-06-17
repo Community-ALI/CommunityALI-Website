@@ -19,7 +19,7 @@ body
 
 .no-service-found-container
 {
-    margin: 150px 0px;
+    margin: 140px 0px;
 }
 
 .not-found-container
@@ -444,7 +444,7 @@ input[type="reset"]
 {
     .service-result-container
     {
-        width: 14rem;
+        width: 16rem;
     }
 
     .result-title
@@ -474,11 +474,12 @@ input[type="reset"]
     .results
     {
         justify-content: center;
+        margin: 0px 0px;
     }
 
     .service-result-container
     {
-        width: 12rem;
+        width: 14rem;
     }
 
     .result-title
@@ -510,7 +511,7 @@ input[type="reset"]
     }
 }
 
-@media all and (max-width : 780px)
+@media all and (max-width : 800px)
 {
     .results
     {
@@ -519,31 +520,31 @@ input[type="reset"]
 
     .service-result-container 
     {
-        width: 10rem;
+        width: 16rem;
         margin: 30px 15px;
     }
 
     .result-title
     {
-        font-size : 16px;
+        font-size : 20px;
         margin-top: 10px;
         margin-bottom : 10px;
-        padding: 10px 0px;
+        padding: 10px 10px;
     }
 
     .result-author
     {
-        font-size : 13px;
+        font-size : 15px;
     }
 
     .service-button
     {
-        font-size : 12px;
+        font-size : 14px;
     }
 
 }
 
-@media all and (max-width : 580px)
+@media all and (max-width : 600px)
 {
     .search-bar input
     {
@@ -576,12 +577,13 @@ input[type="reset"]
 
     .result-picture
     {
-        max-width : 160px;
+        max-width : 200px;
     }
 
     .result-author
     {
         margin-bottom : 0px;
+        margin-top : 15px;
     }
 
     .button-container
@@ -603,6 +605,21 @@ input[type="reset"]
 
 }
 
+@media all and (max-width : 500px)
+{
+    .result-picture
+    {
+        max-width : 160px;
+    }
+
+    .result-title
+    {
+        font-size : 16px;
+        margin: 10px 10px;
+        padding: 10px 0px;
+    }
+}
+
 @media all and (max-width : 380px)
 {
     .results
@@ -612,7 +629,7 @@ input[type="reset"]
 
     .result-title
     {
-        font-size : 13px;
+        font-size : 15px;
         margin: 5px 10px;
     }
 
@@ -624,7 +641,7 @@ input[type="reset"]
 
     .result-picture
     {
-        max-width : 130px;
+        max-width : 140px;
     }
 
     .service-button
@@ -638,4 +655,18 @@ input[type="reset"]
         margin-right: 15px;
         margin-left: 15px;
     }
+}
+
+@media all and (max-width : 350px)
+{
+    .result-title
+    {
+        font-size : 14px;
+    }
+
+    .result-picture
+    {
+        max-width : 120px;
+    }
+
 }
