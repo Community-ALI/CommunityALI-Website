@@ -6,10 +6,12 @@ const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
 const DisplayService = function (props) {
+
   const service = props.service;
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString('base64');
   const imageUrl = `data:image/png;base64,${base64}`;
+
   return (
     <div className="service-result-container" id={service.title} onClick={() => window.location.href = `/service-info?service=${service.title}` } >
       <img className="result-picture" src={imageUrl} />
@@ -35,6 +37,10 @@ function DisplayAllServices(props) {
   if (!results || results.length === 0) {
     return <div>No services found.</div>;
   }
+
+  if (!Array.isArray(results) || results.length === 0) {
+    return <div>No services found.</div>;
+  }
   
   return (
     <div className="results">
@@ -52,37 +58,30 @@ function Services() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-
           const queryParams = new URLSearchParams(window.location.search);
           const keyword = queryParams.get('keyword');
           console.log(keyword);
-
-          // Create the URL with query parameters
+  
           let url = 'http://localhost:3000/get-all-services';
           if (keyword) {
-              url += '?';
-              url += `keyword=${encodeURIComponent(keyword)}`;
+            url += `?keyword=${encodeURIComponent(keyword)}`;
           }
-
-          const response = await fetch(url)
-            .then(response => response.json())
-            .then(data => {
-              // 'data' variable will contain the received array
-              setServices(data);
-
-              // show the page
-              const loaderWrapper = document.querySelector(".loader-wrapper");
-              loaderWrapper.style.transition = "opacity 0.5s";
-              loaderWrapper.style.opacity = "0";
-              setTimeout(() => {
-                  loaderWrapper.style.display = "none";
-              }, 500); // fade out duration in milliseconds
-            })
-          
+  
+          const response = await fetch(url);
+          const data = await response.json();
+          setServices(data || []);
+  
+          const loaderWrapper = document.querySelector('.loader-wrapper');
+          loaderWrapper.style.transition = 'opacity 0.5s';
+          loaderWrapper.style.opacity = '0';
+          setTimeout(() => {
+            loaderWrapper.style.display = 'none';
+          }, 500);
         } catch (error) {
-          
+          console.error(error);
         }
       };
+  
       fetchData();
     }, []);
     
