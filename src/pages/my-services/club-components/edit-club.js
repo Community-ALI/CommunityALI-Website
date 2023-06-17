@@ -43,21 +43,21 @@ function AddClub() {
     const fetchData = async () => {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      
-      // Retrieve a specific parameter value
+
       const serviceName = urlParams.get('service');
           
-      const response = await fetch('http://localhost:3000/get-one-service?service='+serviceName)
+      const response = await fetch('http://localhost:3000/get-one-service?service=' + serviceName)
           .then(response => response.json())
           .then(data => {
-              // 'data' variable will contain the received service
-              const buffer = Buffer.from(data.photo.data);
-              const base64 = buffer.toString('base64');
-              const imageUrl = `data:image/png;base64,${base64}`;
-
+              const buffer = Buffer.from(data.photo.data, 'base64');
+              const selectedFile = new File([buffer], 'Previous Image.png', { type: 'image/png' });
+              // title
+              titleRef.current.value = data.title;
+              setTitleValue(data.title);
               // overview
               setOverviewFormData(data.pages.overview); 
-
+              // image
+              setOverviewFormData((prevData) => ({ ...prevData, file: selectedFile }));
               // Contacts
               if (data.pages.contacts){
                 addPage('Contacts');
@@ -195,10 +195,10 @@ function AddClub() {
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} editMode={true}  />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} mainInfo={
           { 'title': titleValue }
         }
           allFormData={

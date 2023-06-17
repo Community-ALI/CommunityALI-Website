@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import '../add-service.css';
 
-function SignUpPage({mainInfo, allFormData}) {
+function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
     const [file, setFile] = useState(null);
     console.log(allFormData)
     const checkRequired = () => {
@@ -109,13 +109,19 @@ function SignUpPage({mainInfo, allFormData}) {
             'FAQ': FAQData
           }
           const jsonString = JSON.stringify(JsonData);
-          // Alternatively, if you want to treat it as a file, you can create a File object
-          // const jsonFile = new File([jsonString], 'data.json', { type: 'application/json' });
 
           // Append the JSON blob or file to the FormData
           sendFormData.append('pages', jsonString);
           const token = localStorage.getItem('token');
-          fetch('http://localhost:3000/upload-service', {
+          var fetchURL = 'http://localhost:3000/upload-service'
+          if (editMode){
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            
+            const serviceName = urlParams.get('service');
+            fetchURL = 'http://localhost:3000/edit-service?service='+serviceName;
+          }
+          fetch(fetchURL, {
             method: 'POST',
             body: sendFormData,
             headers: {
@@ -169,9 +175,12 @@ function SignUpPage({mainInfo, allFormData}) {
                 members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
                 against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
                 </label>
-                {/* <input type="submit" value="Save Application" id="save-button" className="application-buttons"> */}
-                <input type="button" value="Save Draft" id="draft-button" className="application-buttons" />
-                <input type="submit" value="Submit Application" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                {/* <input type="button" value="Save Draft" id="draft-button" className="application-buttons" /> */}
+                {editMode === false?(
+                  <input type="submit" value="Submit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                ) : (
+                  <input type="submit" value="Edit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                )}
             </div>
         </div>
     )

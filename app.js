@@ -280,7 +280,7 @@ async function storeService(req, res) {
   // authorize user
 }
 
-app.post("/edit-service", upload.array("files"), storeEditService);
+app.post("/edit-service", upload.single("image"), storeEditService);
 async function storeEditService(req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -289,7 +289,6 @@ async function storeEditService(req, res) {
     
     const service_name = req.query.service;
     const service = await get_one_service(service_name);
-    
     if (service.user == username){
       
       const success = await store_edit_service(req, username);
@@ -312,9 +311,6 @@ async function storeEditService(req, res) {
     console.log(error)
     res.json({ success: false, error: 'internal server error' });
   }
-  // authorize user
-  
-  
 }
 
 app.use('/userdata', userRouter);
