@@ -33,12 +33,22 @@ const DisplayService = function (props) {
 // this function repeadedly calls Display Service to display all the services in the provided array
 function DisplayAllServices(props) {
   const results = props.services;
-  
-  if (!results || results.length === 0) {
-    return <div>No services found.</div>;
-  }
 
   if (!Array.isArray(results) || results.length === 0) {
+    return(
+    <div className="no-service-found-container">
+      <div className="not-found-container">
+        <i class="fa-solid fa-circle-exclamation fa-2x" id="not-found-exclamation"></i>
+        <div className='not-found-text'> No Services Found</div>
+      </div>
+      <div className='not-found-description'>
+        Please try again or contact technical support for more assistance. 
+      </div>
+    </div>
+    );
+  }
+  
+  if (!results || results.length === 0) {
     return <div>No services found.</div>;
   }
   

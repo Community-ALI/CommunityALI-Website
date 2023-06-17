@@ -17,6 +17,42 @@ body
     position: relative;
 }
 
+.no-service-found-container
+{
+    margin: 150px 0px;
+}
+
+.not-found-container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 500; 
+    color: white;
+}
+
+#not-found-exclamation
+{
+    color: #001E60;
+    background-color: white;
+    border-radius: 500px;
+}
+
+.not-found-text
+{
+    text-align: center;
+    margin-left : 20px;
+}
+
+.not-found-description
+{
+    margin-top : 20px;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
 .search-container
 {
     width : 100%;
