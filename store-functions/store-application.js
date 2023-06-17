@@ -21,9 +21,11 @@ const sns = new AWS.SNS();
 
 
 function sendNotification(req, user) {
+  console.log("User Email:", user.email);
+  console.log("User:", user);
   const messageParams = {
     Message: `Subject: ${req.body.service} - New Applicants\n\n${req.body.name} has signed up to your service: ${req.body.service}`,
-    TargetArn: `arn:aws:sns:your-aws-region:your-account-id:endpoint/email/${user.email}`,
+    TargetArn: `arn:aws:sns:us-west-2:944066005674:endpoint/email/${user.email}`,
   };
 
   sns.publish(messageParams, (err, data) => {
@@ -35,7 +37,7 @@ function sendNotification(req, user) {
   });
 }
 
-const store_application = async function (req) {
+const store_application = async function (req) { //fix asynic stuffies it keeps sending undefined to sendNotifications
   try {
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
@@ -44,10 +46,14 @@ const store_application = async function (req) {
     const seconds = currentDate.getSeconds();
     const time = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString();
 
-    const applicationService = await Service.find({ title: req.body.service }).exec();
-    const user = await User.find({ username: applicationService.user }).exec();
-
-    sendNotification(req, user);
+    await promise.all([
+      Service.find({ title: req.body.service }).exec(),
+      User.find({ username: applicationService.user }).exec()
+    ]).then((service, user) => {
+      console.log("applicationService:", service);
+      console.log("User:", user);
+      sendNotification(req, user);
+    })
 
     const apply = new Application({
       service: req.body.service,

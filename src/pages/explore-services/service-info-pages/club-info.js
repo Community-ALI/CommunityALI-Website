@@ -96,7 +96,7 @@ function AddClub() {
       </div>
 
       <NavBar isFixedPage={false} />
-      <form method="POST" className="service-container" id='form'>
+      <div className="service-container" id='form'>
         <div className="service-title">
         {service.title}
         </div>
@@ -114,7 +114,7 @@ function AddClub() {
         {activePage === "FAQ" && <FaqPage key="FaqPage" service={service} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" service={service}/>}
 
-      </form>
+      </div>
     </div>
   )
 }

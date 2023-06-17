@@ -35,23 +35,26 @@ function SignUpPage({ mainInfo, allFormData }) {
   return (
     <div>
       <div className="sign-up-form">
-        <div id="form" className="sign-up-form-boxes">
+        <form action="http://localhost:3000/store-application" id="form" 
+          className="sign-up-form-boxes" method="POST" onSubmit={handleSubmit}>
           <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
             <div className="sign-up-form-container">
                 <div className="text-container" id="name-container">
                     <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
-                    <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
-                    id="name" name="name"/><br/>
+                    <input type="text" className="sign-up-form-input" 
+                    placeholder="First and Last Name" ref={nameRef}
+                    id="name" name="name" required/><br/>
                 </div>
 
                 <div className="text-container" id="email-container">
                     <label htmlFor="email" className="sign-up-form-text"> Email: </label>
-                    <input type="email" className="sign-up-form-input" placeholder="School Email" 
-                    id="email" name="email"/><br/>
+                    <input type="email" className="sign-up-form-input" 
+                    placeholder="School Email" ref={emailRef}
+                    id="email" name="email" required/><br/>
                 </div>
             </div> 
             <input type="submit" value="Submit" className="service-submit-button"/><br/>
-        </div>
+        </form>
       </div>
   </div>
   )
