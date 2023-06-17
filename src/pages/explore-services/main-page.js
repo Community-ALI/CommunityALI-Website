@@ -37,6 +37,10 @@ function DisplayAllServices(props) {
   if (!results || results.length === 0) {
     return <div>No services found.</div>;
   }
+
+  if (!Array.isArray(results) || results.length === 0) {
+    return <div>No services found.</div>;
+  }
   
   return (
     <div className="results">
