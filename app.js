@@ -168,7 +168,7 @@ app.get('/get-all-services', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title thumbnail user');
+    const all_services = await get_all_services(keywords, 'title thumbnail pages');
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {

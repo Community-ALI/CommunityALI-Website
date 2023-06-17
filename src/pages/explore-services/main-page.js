@@ -18,7 +18,7 @@ const DisplayService = function (props) {
       <div className="result-text-container">
         <div className="result-title">{service.title}</div>
         <div className="result-author">
-           {service.user}
+           {service.pages.overview.subtitle}
         </div>
       </div>
       <div className="button-container">
