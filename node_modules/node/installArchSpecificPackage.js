@@ -1,1 +1,0 @@
-require('node-bin-setup')("19.8.1", require)
