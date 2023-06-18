@@ -12,9 +12,9 @@ const User = models.User;
 const AWS = require('aws-sdk');
 
 AWS.config.update({
-  region: 'us-west-2',
-  accessKeyId: 'AKIA5XTVYBKVHVNBFVAE',
-  secretAccessKey: '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',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'us-west-2'
 });
 
 const sns = new AWS.SNS();
