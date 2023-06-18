@@ -24,7 +24,7 @@ function sendNotification(req, user) {
   console.log("User Email:", user.email);
   console.log("User:", user);
   const messageParams = {
-    Message: `Subject: ${req.body.service} - New Applicants\n\n${req.body.name} has signed up to your service: ${req.body.service}`,
+    Message: `Subject: ${req.body.service} - New Applicant\n\n${req.body.name} has signed up to your service: ${req.body.service}`,
     TargetArn: `arn:aws:sns:us-west-2:944066005674:serviceApplicantSNS`,
     MessageAttributes: {
       user_id: {
