@@ -1,6 +1,5 @@
-import React, { useRef, Component, useEffect, useState } from 'react';
-import LoginButton from './LoginButton';
-import LoginPopup from './LoginPopup';
+import React, {useEffect, useState } from 'react';
+import {BASE_BACKEND_URL} from '../config.js'
 
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState('no username associated with token')
@@ -12,7 +11,7 @@ const UserProfileCircle = (Logout) => {
         var token = localStorage.getItem('token');
         if (token) {
           console.log('sending request');
-          const response = await fetch('http://localhost:3000/userdata/get-username',
+          const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-username`,
             {
               headers: {
                 'Authorization': `Bearer ${token}`

@@ -1,4 +1,5 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, {useState } from 'react';
+import {BASE_BACKEND_URL} from '../config.js'
 import './login.css';
 
 function LoginPopup(props) {
@@ -20,7 +21,7 @@ function LoginPopup(props) {
 
             
             try {
-                const response = await fetch('http://localhost:3000/api/login', {
+                const response = await fetch(`${BASE_BACKEND_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
