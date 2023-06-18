@@ -14,7 +14,8 @@ module.exports = {
 
     plugins: [
         new HTMLWebpackPlugin({
-            template: './src/index.html'
+            template: "./src/index.html",
+            filename: "./index.html"
         })
     ],
 
@@ -68,6 +69,14 @@ module.exports = {
                             name: '[name].[ext]',
                             outputPath: 'fonts/'
                         }
+                    }
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
                     }
                 ]
             }
