@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
 
 function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
@@ -113,13 +114,13 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
           // Append the JSON blob or file to the FormData
           sendFormData.append('pages', jsonString);
           const token = localStorage.getItem('token');
-          var fetchURL = 'http://localhost:3000/upload-service'
+          var fetchURL = `${BASE_BACKEND_URL}/upload-service`
           if (editMode){
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             
             const serviceName = urlParams.get('service');
-            fetchURL = 'http://localhost:3000/edit-service?service='+serviceName;
+            fetchURL = `${BASE_BACKEND_URL}/edit-service?service=`+serviceName;
           }
           fetch(fetchURL, {
             method: 'POST',

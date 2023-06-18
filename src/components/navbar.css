@@ -154,7 +154,7 @@ a > .navigation-menu {
 }
 
 .navbar-logo {
-    max-height: 55px;
+    max-height: 60px;
     margin-right : 20px;
 }
 
@@ -263,7 +263,7 @@ a > .navigation-menu {
         align-items: center;
         top: 0px;
         padding-top : 20px; 
-        padding-bottom : 20px;
+        padding-bottom : 30px;
         padding-left: 15px;
         width : 100vw;
 

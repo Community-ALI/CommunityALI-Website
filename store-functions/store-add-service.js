@@ -2,32 +2,32 @@ const fs = require('fs');
 const models = require("../connect-to-database");
 const Service = models.Services;
 
-const sharp = require('sharp');
+// const sharp = require('sharp');
 
-const generateThumbnail = async function (photoBuffer) {
-  try {
-    // Load the photo buffer from the service
+// const generateThumbnail = async function (photoBuffer) {
+//   try {
+//     // Load the photo buffer from the service
 
-    // Create a thumbnail with lower resolution using sharp
-    const thumbnailBuffer = await sharp(photoBuffer)
-      .resize(600, 6*67) // Set the desired thumbnail dimensions
-      .toBuffer();
+//     // Create a thumbnail with lower resolution using sharp
+//     const thumbnailBuffer = await sharp(photoBuffer)
+//       .resize(600, 6*67) // Set the desired thumbnail dimensions
+//       .toBuffer();
 
-    // Convert the thumbnail buffer to a base64-encoded string
-    const thumbnailBase64 = thumbnailBuffer.toString('base64');
+//     // Convert the thumbnail buffer to a base64-encoded string
+//     const thumbnailBase64 = thumbnailBuffer.toString('base64');
 
-    // Create a new Buffer object with the Base64-encoded string
-    const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
+//     // Create a new Buffer object with the Base64-encoded string
+//     const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
 
-    // Update the service object with the thumbnail field as BinData
+//     // Update the service object with the thumbnail field as BinData
     
 
-    return thumbnailBinData;
-  } catch (error) {
-    console.log(error);
-    return { success: false, error: 'Error generating thumbnail' };
-  }
-};
+//     return thumbnailBinData;
+//   } catch (error) {
+//     console.log(error);
+//     return { success: false, error: 'Error generating thumbnail' };
+//   }
+// };
 
 
 const store_add_service = async function(req, username) {
@@ -43,11 +43,11 @@ const store_add_service = async function(req, username) {
 
     console.log(req.file);
     const photoBuffer = fs.readFileSync(req.file.path);
-    const thumbnail = await generateThumbnail(photoBuffer)
+    // const thumbnail = await generateThumbnail(photoBuffer)
     const newService = new Service({
       title: req.body.title,
       photo: photoBuffer,
-      thumbnail: thumbnail,
+      // thumbnail: thumbnail,
       pages: pages,
       datePosted: formattedDate,
       timePosted: time,
