@@ -1,8 +1,8 @@
 //react modules
 import React, { useEffect, useState } from 'react';
+import {BASE_BACKEND_URL} from '../../config.js'
 import './view-applicants.css'
 import '../../../public/stylesheets/style.css'
-import Footer from '../../components/Footer'
 import NavBar from '../../components/NavBar';
 import Notifications from '../../components/Notification';
 function convertToNormalTime(armyTime) {
@@ -32,7 +32,7 @@ const SearchResult = function (props) {
 
     useEffect(() => {
         if (isNotification) {
-            fetch('http://localhost:3000/change_notification_status/' + applicant._id, {
+            fetch(`${BASE_BACKEND_URL}/change_notification_status/` + applicant._id, {
                 method: 'POST',
             })
                 .then(response => response.json())
@@ -114,7 +114,7 @@ function ServiceApplicants() {
                     const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
                     const serviceName = urlParams.get('service');
-                    const response = await fetch('http://localhost:3000/get-service-applicants?service=' + serviceName,
+                    const response = await fetch(`${BASE_BACKEND_URL}/get-service-applicants?service=` + serviceName,
                         {
                             headers: {
                                 'Authorization': `Bearer ${token}`

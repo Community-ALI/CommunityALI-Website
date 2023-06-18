@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
+import {BASE_BACKEND_URL} from '../../config.js'
 import './main-page.css';
 import '../../../public/stylesheets/style.css'
 import NavBar from '../../components/NavBar';
@@ -17,7 +18,7 @@ function MyServicePageDisplay(props) {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const response = await fetch('http://localhost:3000/get-service-notifications?service=' + service.title,
+          const response = await fetch(`${BASE_BACKEND_URL}/get-service-notifications?service=` + service.title,
             {
               headers: {
                 'Authorization': `Bearer ${token}`
@@ -95,7 +96,7 @@ function MyServicesHome() {
         var token = localStorage.getItem('token');
         if (token) {
           console.log('sending request');
-          const response = await fetch('http://localhost:3000/userdata/get-user-services',
+          const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-user-services`,
             {
               headers: {
                 'Authorization': `Bearer ${token}`
