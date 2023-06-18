@@ -46,9 +46,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const sharp = require('sharp');
-
-
 const AWS = require('aws-sdk');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
