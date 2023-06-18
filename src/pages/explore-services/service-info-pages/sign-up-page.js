@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState, useRef } from 'react';
+import {BASE_BACKEND_URL} from '../../../config.js'
 
 
 function SignUpPage({ mainInfo, allFormData }) {
@@ -16,7 +17,7 @@ function SignUpPage({ mainInfo, allFormData }) {
     formData.append("name", nameRef.current.value);
     formData.append("email", emailRef.current.value);
 
-    fetch("http://localhost:3000/store-application", {
+    fetch(`${BASE_BACKEND_URL}/store-application`, {
       method: 'POST',
       body: formData
     })
@@ -35,7 +36,7 @@ function SignUpPage({ mainInfo, allFormData }) {
   return (
     <div>
       <div className="sign-up-form">
-        <form action="http://localhost:3000/store-application" id="form" 
+        <form action="/store-application" id="form" 
           className="sign-up-form-boxes" method="POST" onSubmit={handleSubmit}>
           <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
             <div className="sign-up-form-container">

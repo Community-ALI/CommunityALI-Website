@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
+import {BASE_BACKEND_URL} from '../../../config.js'
+
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import '../add-service.css';
@@ -46,7 +48,7 @@ function AddClub() {
 
       const serviceName = urlParams.get('service');
           
-      const response = await fetch('http://localhost:3000/get-one-service?service=' + serviceName)
+      const response = await fetch(`${BASE_BACKEND_URL}/get-one-service?service=` + serviceName)
           .then(response => response.json())
           .then(data => {
               const buffer = Buffer.from(data.photo.data, 'base64');

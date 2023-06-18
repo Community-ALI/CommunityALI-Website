@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState} from 'react';
+import {BASE_BACKEND_URL} from '../../config.js'
 import '../../pages/explore-services/main-page.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
@@ -71,8 +72,7 @@ function Services() {
           const queryParams = new URLSearchParams(window.location.search);
           const keyword = queryParams.get('keyword');
           console.log(keyword);
-  
-          let url = 'http://localhost:3000/get-all-services';
+          let url = `${BASE_BACKEND_URL}/get-all-services`;
           if (keyword) {
             url += `?keyword=${encodeURIComponent(keyword)}`;
           }
