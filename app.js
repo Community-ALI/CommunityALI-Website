@@ -33,7 +33,7 @@ const change_notification_status = require('./store-functions/change-notificatio
 
 const models = require("./connect-to-database");
 const User = models.User;
-const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const { error } = require("console");
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -339,31 +339,31 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
   }
 
-  if(await bcrypt.compare(password, user.password)) {
-      // the username, password combination is successful
+  // if(await bcrypt.compare(password, user.password)) {
+  //     // the username, password combination is successful
 
-      const token = jwt.sign(
-          { 
-              id: user._id, 
-              username: user.username,
-              email: user.email 
-          }, 
-          JWT_SECRET
-      )
+  //     const token = jwt.sign(
+  //         { 
+  //             id: user._id, 
+  //             username: user.username,
+  //             email: user.email 
+  //         }, 
+  //         JWT_SECRET
+  //     )
 
-      // set the cookie
-      res.cookie('token', token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: 'none',
-          maxAge: 86400000 // 1 day
-      })
+  //     // set the cookie
+  //     res.cookie('token', token, {
+  //         httpOnly: true,
+  //         secure: true,
+  //         sameSite: 'none',
+  //         maxAge: 86400000 // 1 day
+  //     })
       
-      res.json({ status: 'ok', data: token })
+  //     res.json({ status: 'ok', data: token })
       
-  } else{
-      res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
-  }
+  // } else{
+  //     res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
+  // }
 
 })
 
@@ -396,7 +396,7 @@ app.post('/api/register', async (req, res) => {
       .json({ status: 'error', error: 'Password should be at least 6 characters' });
   }
 
-  const password = await bcrypt.hash(plainTextPassword, 10);
+  const password = ''// await bcrypt.hash(plainTextPassword, 10);
 
   const verificationCode = Math.floor(1000 + Math.random() * 9000); // Generate a 4 digit verification code
 
