@@ -3,10 +3,9 @@
 const express = require("express");
 const cors = require('cors');
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 // allow the client to transfer data
 const bodyParser = require("body-parser");
 const multer = require("multer");
@@ -40,7 +39,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 // const SESSION_SECRET = process.env.SESSION_SECRET; 
 
 const corsOptions = {
-  origin: 'http://localhost:8080',
+  origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
