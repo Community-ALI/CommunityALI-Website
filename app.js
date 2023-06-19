@@ -77,9 +77,6 @@ async function sendValidationEmail(email, validationToken) {
   }
 }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
 
 app.post('/upload', upload.single('image'), (req, res) => {
   // Access the uploaded file using req.file
@@ -438,6 +435,13 @@ app.post('/api/register', async (req, res) => {
 
   res.json({ status: 'ok' });
 });
+
+
+//last route, for routs that fail
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 
 // Server configuration
 const port = process.env.PORT || 3000;
