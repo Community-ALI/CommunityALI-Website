@@ -36,7 +36,6 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "autoprefixer": "^10.4.14",
     "aws-sdk": "^2.1397.0",
-    "bcryptjs": "^2.4.3",
     "buffer": "^6.0.3",
     "busboy": "^1.6.0",
     "connect-mongo": "^5.0.0",
