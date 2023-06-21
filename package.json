@@ -26,6 +26,7 @@
   "bugs": {
     "url": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-/issues"
   },
+
   "homepage": "https://github.com/Adrean-Cajigas/SLW-01-21-23-UPDATED-#readme",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
