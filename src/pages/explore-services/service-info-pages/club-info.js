@@ -85,6 +85,7 @@ function AddClub() {
           setTimeout(() => {
             loaderWrapper.style.display = "none";
           }, 500); // fade out duration in milliseconds
+          document.title = serviceName;
         })
     };
     fetchData();

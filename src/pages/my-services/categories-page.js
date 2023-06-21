@@ -8,6 +8,7 @@ function categoriesPage() {
     return(
         <div>
             <NavBar isFixedPage={false}/>
+            <title> Service Categories </title>
             <div className="service-categories-container">
                 <div className="category-container-title">
                     Select the Category of Your Service

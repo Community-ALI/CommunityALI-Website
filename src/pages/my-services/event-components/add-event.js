@@ -89,6 +89,7 @@ function AddEvent() {
   return (
     <div>
       <NavBar isFixedPage={false} />
+      <title> Event Editor </title>
       <form action="/store-service" method="POST" className="service-container" id='form'>
         <div className="service-title">
           <input type="text" placeholder="Name of the Event" className="club-title-text-box" name="title" id='title' /><br />

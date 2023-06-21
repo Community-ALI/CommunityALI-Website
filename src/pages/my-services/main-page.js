@@ -137,6 +137,7 @@ function MyServicesHome() {
         <span className="loader"><span className="loader-inner"></span></span>
       </div>
       <NavBar isFixedPage={false} />,
+      <title> My Services </title>
       <DeleteServicePopup isShowingServiceDeletePopup={isShowingServiceDeletePopup} serviceTitle={deleteServiceTitle} />
       <div
         id='login-popup-background'

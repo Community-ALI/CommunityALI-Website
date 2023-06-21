@@ -30,8 +30,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                
-                
+ 
                 {/* explore services pages */}
                 <Route path="/services" element={<Services_Main_Page />}/>
                 <Route path="/service-info" element={<View_Services />}/>

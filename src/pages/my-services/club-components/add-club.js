@@ -105,6 +105,7 @@ function AddClub() {
   return (
     <div>
       <NavBar isFixedPage={false} />
+      <title> Club Editor </title>
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">
           <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />

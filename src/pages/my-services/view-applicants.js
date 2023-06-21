@@ -148,6 +148,7 @@ function ServiceApplicants() {
     return (
         <div >
             <NavBar constantUpdate={true} />,
+            <title> My Applicants </title>
             <div className='flex justify-center'>
                 <div className="container">
                     <div className="applicants-container-title">
