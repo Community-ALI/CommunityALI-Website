@@ -89,6 +89,7 @@ function AddInternship() {
   return (
     <div>
       <NavBar isFixedPage={false} />
+      <title> Internship Editor </title>
       <form action="/store-service" method="POST" className="service-container" id='form'>
         <div className="service-title">
           <input type="text" placeholder="Name of the Internship" className="club-title-text-box" name="title" id='title' /><br />

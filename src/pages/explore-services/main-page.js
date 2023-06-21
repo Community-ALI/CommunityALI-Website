@@ -15,6 +15,7 @@ const DisplayService = function (props) {
 
   return (
     <div className="service-result-container" id={service.title} onClick={() => window.location.href = `/service-info?service=${service.title}` } >
+      <title> Explore Page </title>
       <img className="result-picture" src={imageUrl} />
       <div className="result-text-container">
         <div className="result-title">{service.title}</div>

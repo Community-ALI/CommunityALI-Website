@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
+import {BASE_BACKEND_URL} from '../config.js'
 import './login.css';
 
 function DeleteServicePopup(props) {
@@ -20,7 +21,7 @@ function DeleteServicePopup(props) {
 
             
             try {
-                const response = await fetch('http://localhost:3000/api/login', {
+                const response = await fetch(`${BASE_BACKEND_URL}api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ function DeleteServicePopup(props) {
                     //everything is a okay
                     console.log('Got the token: ', result.data);
                     var token = result.data;
-                    const response = await fetch(`http://localhost:3000/delete-service?service=${props.serviceTitle}`,
+                    const response = await fetch(`${BASE_BACKEND_URL}/delete-service?service=${props.serviceTitle}`,
                         {
                         method: 'POST',
                         headers: {

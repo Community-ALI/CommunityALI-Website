@@ -5,7 +5,6 @@ import './navbar.css';
 import '../../public/stylesheets/style.css'
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
-import { useRect } from 'react-use-rect';
 import Notifications from './Notification';
 
 function MyServicesNavButton(props) {

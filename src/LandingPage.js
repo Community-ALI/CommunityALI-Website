@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 function LandingPage() {
     return (
         <div className="overflow-auto">
+        <title> Community ALI - Apply, Learn, and Implement </title>
             <NavBar isFixedPage={true} />
             <LandingPageHeader />
             <LandingPageCatagories />

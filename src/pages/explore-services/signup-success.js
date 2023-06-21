@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 function SignupSuccess() {
     return(
         <div>
+            <title> Sign-Up Success Page </title>
             <NavBar />,
             <div className='sign-up-success-container'>
                 <div className="title">

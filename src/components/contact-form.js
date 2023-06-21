@@ -47,6 +47,7 @@ function ContactForm() {
 
   return (
     <div>
+      <title> Contact Form </title>
       <NavBar isFixedPage={false} />
       <div className="body-container">
         <div className="body-header">
