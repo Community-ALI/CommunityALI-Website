@@ -1,4 +1,5 @@
 import React, { useRef, Component, useEffect, useState } from 'react';
+import {BASE_BACKEND_URL} from '../config.js'
 import { Link } from 'react-router-dom';
 import './navbar.css';
 import '../../public/stylesheets/style.css'
@@ -16,7 +17,7 @@ function MyServicesNavButton(props) {
             try {
                 var token = localStorage.getItem('token');
                 if (token) {
-                    const response = await fetch('http://localhost:3000/userdata/get-all-user-notifications',
+                    const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-all-user-notifications`,
                         {
                             headers: {
                                 'Authorization': `Bearer ${token}`
