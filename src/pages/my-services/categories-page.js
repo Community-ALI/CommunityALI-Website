@@ -82,7 +82,7 @@ function CategoriesPage() {
 
         {/* Box 4 */}
         {decodedToken.internshipAdmin ? (
-          <a className="category-container" href="/add-intern">
+          <a className="category-container" href="/add-internship">
             <p className="category-header">Add an Internship</p>
             <p className="category-text">
               Including both paid and unpaid internships, they are very valuable
