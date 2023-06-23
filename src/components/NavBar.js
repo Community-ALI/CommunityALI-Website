@@ -8,7 +8,12 @@ import LoginPopup from './LoginPopup';
 import Notifications from './Notification';
 
 function MyServicesNavButton(props) {
-
+    var token = localStorage.getItem('token');
+    var decodedToken = {};
+    if (token){
+        decodedToken = JSON.parse(atob(token.split('.')[1]));
+        console.log('token found');
+    }
     const [notifications, setNotifications] = useState([]);
 
     function fetchNotificationData() {
@@ -48,7 +53,7 @@ function MyServicesNavButton(props) {
             fetchNotificationData();
         }, []);
 
-    if (props.token) {
+    if (decodedToken.clubAdmin || decodedToken.eventAdmin || decodedToken.volunteerAdmin || decodedToken.internshipAdmin) {
         return (
             <Link
                 className="navigation-button navigation-text relative-container"
