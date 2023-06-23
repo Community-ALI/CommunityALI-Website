@@ -45,8 +45,20 @@ function AddClub() {
       ref.style.borderColor = key === page ? '#001E60' : 'white';
     });
   };
-
   
+  // notify the user that they will loose progress
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Required for Chrome
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   useEffect(() => {
     changeVisibility("Overview"); // Set "Overview" as the active page initially

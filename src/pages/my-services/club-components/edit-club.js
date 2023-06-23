@@ -41,6 +41,20 @@ function AddClub() {
   const titleRef = useRef(null);
   const [titleValue, setTitleValue] = useState('');
 
+  // notify the user that they will loose progress
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Required for Chrome
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       const queryString = window.location.search;
