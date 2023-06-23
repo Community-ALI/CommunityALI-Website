@@ -11,6 +11,7 @@ function CategoriesPage() {
     console.log("token found");
   }
 
+
   return (
     <div>
       <NavBar isFixedPage={false} />
