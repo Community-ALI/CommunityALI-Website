@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import '../add-service.css';
-import ContactsPage from "./contacts-page";
-import OverviewPage from "./overview-page";
+import ContactsPage from "../general-components/contacts-page";
+import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
 import SignUpPage from "./sign-up-page";
 
@@ -46,6 +46,7 @@ function AddClub() {
     });
   };
 
+  
 
   useEffect(() => {
     changeVisibility("Overview"); // Set "Overview" as the active page initially

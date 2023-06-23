@@ -4,8 +4,8 @@ import {BASE_BACKEND_URL} from '../../../config.js'
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import '../add-service.css';
-import ContactsPage from "./contacts-page";
-import OverviewPage from "./overview-page";
+import ContactsPage from "../general-components/contacts-page.js";
+import OverviewPage from "../general-components/overview-page.js";
 import FaqPage from "../general-components/faq-page";
 import SignUpPage from "./sign-up-page";
 import { Buffer } from 'buffer';
