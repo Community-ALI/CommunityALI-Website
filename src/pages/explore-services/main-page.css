@@ -672,3 +672,100 @@ input[type="reset"]
     }
 
 }
+
+/* Plos css :3 */
+.add-service-button {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 0;
+    width: 20%;
+    height: 5%;
+    cursor: pointer;
+    position: fixed;
+    left: 5%;
+    top: 10%;
+    z-index: 1;
+    background-color: white;
+  }
+
+  .add-service-button .arrow {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .content {
+    position: fixed;
+    top: 15%;
+    left: 5%;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 10px;
+    width: 25%;
+    border-radius: 5px;
+    z-index: 1;
+  }
+
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .collapsible-button {
+    background-color: white;
+    border: none;
+    font-weight: bold;
+  }
+  
+  .collapsible-button .arrow {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .details label {
+    padding-left: 30px;
+  }
+  
+  .right-section {
+    position: fixed;
+    right: 10%;
+    top: 22%;
+    z-index: 1;
+  }
+  
+  .select {
+    border: none;
+    outline: none;
+  }
+  
+  .sort-by {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .sort-by label {
+    margin-right: 5px;
+  }
+  
+  .arrow {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    vertical-align: middle;
+  }
+  
+  .arrow.up {
+    transform: rotate(-45deg);
+  }
+  
+  .arrow.down {
+    transform: rotate(135deg);
+  }
+  

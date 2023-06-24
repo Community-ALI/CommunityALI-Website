@@ -3,6 +3,7 @@ import {BASE_BACKEND_URL} from '../../config.js'
 import '../../pages/explore-services/main-page.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
+import ServiceDropdown from '../../components/service-dropdown.js';
 const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
@@ -104,6 +105,9 @@ function Services() {
                 <span className="loader"><span className="loader-inner"></span></span>
             </div>
             <NavBar isFixedPage={false} />
+
+              <ServiceDropdown />
+
             <div className = "search-result-container">
                 <div className ="results">
                   <DisplayAllServices services = {services}/>
