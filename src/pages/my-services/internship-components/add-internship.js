@@ -162,7 +162,11 @@ function AddInternship() {
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Internship' setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Internship' setFormData={setFaqFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' mainInfo={
-          { 'title': titleValue }
+          { 
+            'title': titleValue,
+            'serviceType': 'Internship'
+          }
+          
         }
           allFormData={
             {

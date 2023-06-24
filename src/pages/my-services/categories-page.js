@@ -8,7 +8,6 @@ function CategoriesPage() {
   let decodedToken = {};
   if (token) {
     decodedToken = JSON.parse(atob(token.split(".")[1]));
-    console.log("token found");
   }
 
 

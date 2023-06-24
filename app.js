@@ -258,7 +258,7 @@ async function storeService(req, res) {
     if (account){ 
       const success = await store_add_service(req, username);
       if (success){
-        console.log('new service added by', username);
+        console.log(`new ${req.body.serviceType} added by ${username}`);
         res.json({success: true});
       }
       else{

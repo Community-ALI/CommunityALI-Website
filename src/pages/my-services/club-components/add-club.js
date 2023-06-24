@@ -162,7 +162,10 @@ function AddClub() {
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" mainInfo={
-          { 'title': titleValue }
+          { 
+            'title': titleValue,
+            'serviceType': 'Club'
+          }
         }
           allFormData={
             {
