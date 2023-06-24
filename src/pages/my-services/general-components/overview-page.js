@@ -17,7 +17,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
         element.textContent = 'Click to upload a single image File';
       }
       else{
-        element.textContent = `Click to change ${serviceType} thumbnail`
+        element.textContent = `Click to change ${serviceType.toLowerCase()} thumbnail`
       }
     }
   }, [formData.file]);
@@ -39,13 +39,13 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     <div>
       <div className="service-info-container">
         <div className="file-container" id={fileContainerID}>
-          <header>Club Photo Uploader</header>
+          <header>{serviceType} Photo Uploader</header>
           <label className="file-form" htmlFor="file-input">
             <i className="fas fa-cloud-upload-alt" id="file-icon" />
             {editMode === false? (
               <p ref={fileUploadText}>Click to upload a single image File</p>
             ) : (
-              <p ref={fileUploadText}>Click to change {serviceType} thumbnail</p>
+              <p ref={fileUploadText}>Click to change {serviceType.toLowerCase()} thumbnail</p>
             )}
           </label>
           <input
@@ -63,7 +63,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
           <div className="service-author">
             <input
               type="text"
-              placeholder= {`President of the ${serviceType}`}
+              placeholder= {`President of the ${serviceType.toLowerCase()}`}
               onChange={handleFormChange}
               name="subtitle"
               value={formData.subtitle || ""}
@@ -123,7 +123,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
         <textarea
           rows="5"
           type="text"
-          placeholder="Include a description of what the club does and its mission..."
+          placeholder={`Include a description of the ${serviceType.toLowerCase()}...`} // used to be: "Include a description of what the club does and its mission..."
           onChange={handleFormChange}
           name="description"
           value={formData.description || ""}

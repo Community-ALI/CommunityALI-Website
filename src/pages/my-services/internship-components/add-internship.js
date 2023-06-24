@@ -7,7 +7,7 @@ import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
 import SignUpPage from "./sign-up-page";
 
-function AddClub() {
+function AddInternship() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -118,10 +118,10 @@ function AddClub() {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <title> Club Editor </title>
+      <title> Internship Editor </title>
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
+          <input type="text" placeholder="Name of the Internship" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
 
         <div className="service-navbar">
@@ -158,10 +158,10 @@ function AddClub() {
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" mainInfo={
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Internship' setFormData={setOverviewFormData} />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Internship' setFormData={setContactsFormData} />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Internship' setFormData={setFaqFormData} />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' mainInfo={
           { 'title': titleValue }
         }
           allFormData={
@@ -177,4 +177,4 @@ function AddClub() {
   );
 }
 
-export default AddClub;
+export default AddInternship;

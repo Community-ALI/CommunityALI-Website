@@ -13,7 +13,7 @@ import Add_Service from "./pages/my-services/categories-page";
 import Add_Club from "./pages/my-services/club-components/add-club";
 import Add_Event from "./pages/my-services/event-components/add-event";
 import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
-import Add_Internship from "./pages/my-services/intern-components/add-intern";
+import Add_Internship from "./pages/my-services/internship-components/add-internship";
 import Edit_Service from "./pages/my-services/club-components/edit-club";
 import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
@@ -43,7 +43,7 @@ function App() {
                 <Route path="/add-club" element={<Add_Club />}/>
                 <Route path="/add-event" element={<Add_Event />}/>
                 <Route path="/add-volunteer" element={<Add_Volunteer />}/>
-                <Route path="/add-intern" element={<Add_Internship />}/>
+                <Route path="/add-internship" element={<Add_Internship />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
                 <Route path="/register" element={<Register />}/>

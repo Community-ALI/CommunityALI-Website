@@ -1,11 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
-import NavBar from '../../../components/NavBar';
+import {BASE_BACKEND_URL} from '../../../config.js'
+
+import NavBar from '../../../components/NavBar.js';
 import '../../../components/navbar.css';
 import '../add-service.css';
-import ContactsPage from "../general-components/contacts-page";
-import OverviewPage from "../general-components/overview-page";
-import FaqPage from "../general-components/faq-page";
-import SignUpPage from "./sign-up-page";
+import ContactsPage from "../general-components/contacts-page.js";
+import OverviewPage from "../general-components/overview-page.js";
+import FaqPage from "../general-components/faq-page.js";
+import SignUpPage from "./sign-up-page.js";
+import { Buffer } from 'buffer';
 
 function AddClub() {
   const allPossiblePages = [
@@ -37,15 +40,7 @@ function AddClub() {
 
   const titleRef = useRef(null);
   const [titleValue, setTitleValue] = useState('');
-  const changeVisibility = (page) => {
-    setActivePage(page);
-    Object.keys(pageRefs.current).forEach((key) => {
-      const ref = pageRefs.current[key].current;
-      if (!ref) return;
-      ref.style.borderColor = key === page ? '#001E60' : 'white';
-    });
-  };
-  
+
   // notify the user that they will loose progress
   useEffect(() => {
     const handleBeforeUnload = (event) => {
@@ -59,6 +54,56 @@ function AddClub() {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      const serviceName = urlParams.get('service');
+          
+      const response = await fetch(`${BASE_BACKEND_URL}/get-one-service?service=` + serviceName)
+          .then(response => response.json())
+          .then(data => {
+              const buffer = Buffer.from(data.photo.data, 'base64');
+              const selectedFile = new File([buffer], 'Previous Image.png', { type: 'image/png' });
+              // title
+              titleRef.current.value = data.title;
+              setTitleValue(data.title);
+              // overview
+              setOverviewFormData(data.pages.overview); 
+              // image
+              setOverviewFormData((prevData) => ({ ...prevData, file: selectedFile }));
+              // Contacts
+              if (data.pages.contacts){
+                addPage('Contacts');
+                setContactsFormData(data.pages.contacts);
+              }
+              if (data.pages.FAQ){
+                addPage('FAQ');
+                setFaqFormData(data.pages.FAQ);
+              }
+              // show the page
+              const loaderWrapper = document.querySelector(".loader-wrapper");
+              loaderWrapper.style.transition = "opacity 0.5s";
+              loaderWrapper.style.opacity = "0";
+              setTimeout(() => {
+                  loaderWrapper.style.display = "none";
+              }, 500); // fade out duration in milliseconds
+          })
+    };
+    fetchData();
+  }, []);
+  
+  const changeVisibility = (page) => {
+    setActivePage(page);
+    Object.keys(pageRefs.current).forEach((key) => {
+      const ref = pageRefs.current[key].current;
+      if (!ref) return;
+      ref.style.borderColor = key === page ? '#001E60' : 'white';
+    });
+  };
+
 
   useEffect(() => {
     changeVisibility("Overview"); // Set "Overview" as the active page initially
@@ -89,13 +134,18 @@ function AddClub() {
         return [...prevPages, pageToAdd];
       }
       if (pageToAdd === 'Contacts') {
-        setContactsFormData({
-          "contacts": [{ "contactRole": "", "contactName": "", "contactEmail": "" }],
-          "socialMedia": [{ "mediaType": "", "mediaName": "", "mediaUrl": "" }]
-        })
+        if (contactsFormData === {}){
+          setContactsFormData({
+            "contacts": [{ "contactRole": "", "contactName": "", "contactEmail": "" }],
+            "socialMedia": [{ "mediaType": "", "mediaName": "", "mediaUrl": "" }]
+          })
+        }
       }
       else if (pageToAdd === 'FAQ') {
-        setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
+        if (faqFormData === {}){
+          setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
+        }
+        
       }
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
@@ -118,8 +168,11 @@ function AddClub() {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <title> Club Editor </title>
       <form method="POST" className="service-container" id='form'>
+      <div className="loader-wrapper">
+          <span className="loader"><span className="loader-inner"></span></span>
+        </div>
+
         <div className="service-title">
           <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
@@ -158,10 +211,10 @@ function AddClub() {
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} editMode={true}  />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} mainInfo={
           { 'title': titleValue }
         }
           allFormData={

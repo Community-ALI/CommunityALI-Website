@@ -144,7 +144,7 @@ function ContactsPage({ formData, setFormData }) {
               </select>
               <input
                 type="text"
-                placeholder="Club Account Name"
+                placeholder="Account Name"
                 className="contacts-text-box"
                 name="mediaName"
                 value={mediaVal.mediaName}
@@ -154,7 +154,7 @@ function ContactsPage({ formData, setFormData }) {
               <div className="text-button-container">
                 <input
                   type="url"
-                  placeholder="Insert link to the Club Account"
+                  placeholder="Insert link to the Account"
                   className="contacts-email-box"
                   name="mediaUrl"
                   value={mediaVal.mediaUrl}
