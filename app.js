@@ -78,19 +78,6 @@ async function sendValidationEmail(email, validationToken) {
 }
 
 
-app.post('/upload', upload.single('image'), (req, res) => {
-  // Access the uploaded file using req.file
-  const uploadedFile = req.file;
-  console.log(uploadedFile)
-  console.log(JSON.parse(req.body.pages))
-  // Process the file as per your requirements
-  // For example, you can store it in a database, perform validation, etc.
-
-  // Send a response back to the client
-  res.json({ message: 'File uploaded successfully!' });
-});
-
-
 // send the user one service
 app.get("/get-one-service", async function (req, res) {
   try {
@@ -323,7 +310,6 @@ app.get("/get-user-applicants", async function (req, res) {
 });
 
 // login
-
 app.post('/api/login', async (req, res) => {
   const usernameOrEmail = req.body.usernameOrEmail;
   const password = req.body.password;
@@ -442,7 +428,7 @@ app.post('/api/register', async (req, res) => {
 });
 
 
-//last route, for routs that fail
+//last route, important for frontend I believe
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
