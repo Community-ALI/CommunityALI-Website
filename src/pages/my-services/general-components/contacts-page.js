@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../add-service.css';
 
-function ContactsPage({ formData, setFormData }) { 
+function ContactsPage({ formData, setFormData, serviceType = 'Club'}) { 
 
 
   const updateFormData = (updatedContactData, updatedMediaData) => {
@@ -59,8 +59,15 @@ function ContactsPage({ formData, setFormData }) {
   const [mediaData, setMediaData] = useState(formData.socialMedia || [{ mediaType: "", mediaName: "", mediaUrl: "" }]);
   const [socialMediaVisible, setSocialMediaVisible] = useState(true);
   const [contactVisible, setContactVisible] = useState(true);
-
-  
+  var personTitle = '';
+  var roleArray = [];
+  if (serviceType === 'Club'){
+    personTitle = 'Officer';
+    var roleArray = ["President", "Vice President", "ICC Rep", "Advisor"];
+  }
+  else if (serviceType === 'Internship'){
+    personTitle = "*FIXME: ADD PERSON TITLE*";
+  }
   
   return (
     <div>
@@ -74,21 +81,18 @@ function ContactsPage({ formData, setFormData }) {
               <select
                 className="club-contacts-selection"
                 name="contactRole"
-                id={`contact-role-${j + 1}`}
                 value={contactVal.contactRole}
-                onChange={(h) => contactChange(h, j)}
-              >
-                <option value="">
-                  Select Officer
-                </option>
-                <option value="president">President</option>
-                <option value="vice-president">Vice President</option>
-                <option value="icc-rep">ICC Rep</option>
-                <option value="advisor">Advisor</option>
+                onChange={(h) => contactChange(h, j)}>
+                <option value="">Select {personTitle}</option>
+                {roleArray.map((role, index) => (
+                  <option key={index} value={role}>
+                    {role}
+                  </option>
+                ))}
               </select>
               <input
                 type="text"
-                placeholder="Full Name of Officer"
+                placeholder={`Full Name of ${personTitle}`}
                 className="contacts-text-box"
                 name="contactName"
                 value={contactVal.contactName}
@@ -98,7 +102,7 @@ function ContactsPage({ formData, setFormData }) {
               <div className="text-button-container">
                 <input
                   type="email"
-                  placeholder="School or Personal Email of Officer"
+                  placeholder={`School or Personal Email of ${personTitle}`}
                   className="contacts-email-box"
                   name="contactEmail"
                   value={contactVal.contactEmail}
