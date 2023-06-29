@@ -42,10 +42,18 @@ function AddClub() {
   const [titleValue, setTitleValue] = useState('');
 
   // notify the user that they will loose progress
+  const [showPrompt, setShowPrompt] = useState(true);
+
+  const handleShowPromptChange = (value) => {
+    setShowPrompt(value);
+  };
+
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = ''; // Required for Chrome
+      if (showPrompt){
+        event.preventDefault();
+        event.returnValue = ''; // Required for Chrome
+      }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -214,7 +222,7 @@ function AddClub() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} editMode={true}  />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} editMode={true} mainInfo={
           { 'title': titleValue }
         }
           allFormData={
