@@ -80,6 +80,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
         if (selectedFile) {
           const sendFormData = new FormData();
           sendFormData.append('title', mainInfo.title);
+          sendFormData.append('serviceType', mainInfo.serviceType);
           sendFormData.append('image', selectedFile);
           const OverviewData = {
             'subtitle': allFormData.Overview.subtitle,

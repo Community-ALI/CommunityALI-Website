@@ -46,19 +46,27 @@ function AddInternship() {
     });
   };
   
-  // notify the user that they will loose progress
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = ''; // Required for Chrome
-    };
+    // notify the user that they will loose progress
+    const [showPrompt, setShowPrompt] = useState(true);
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+    const handleShowPromptChange = (value) => {
+      setShowPrompt(value);
     };
-  }, []);
+  
+    useEffect(() => {
+      const handleBeforeUnload = (event) => {
+        if (showPrompt){
+          event.preventDefault();
+          event.returnValue = ''; // Required for Chrome
+        }
+      };
+  
+      window.addEventListener('beforeunload', handleBeforeUnload);
+  
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []);
 
   useEffect(() => {
     changeVisibility("Overview"); // Set "Overview" as the active page initially
@@ -161,7 +169,7 @@ function AddInternship() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Internship' setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Internship' setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Internship' setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
             'title': titleValue,
             'serviceType': 'Internship'

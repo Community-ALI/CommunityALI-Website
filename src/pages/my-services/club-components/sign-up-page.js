@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
+    let navigate = useNavigate();
     console.log(allFormData)
     const checkRequired = () => {
       if (
@@ -75,11 +77,13 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
     const handleSubmit = (event) => {
       event.preventDefault();
       if (checkRequired()){
+        
         const selectedFile = allFormData.Overview.file;
         
         if (selectedFile) {
           const sendFormData = new FormData();
           sendFormData.append('title', mainInfo.title);
+          sendFormData.append('serviceType', mainInfo.serviceType);
           sendFormData.append('image', selectedFile);
           const OverviewData = {
             'subtitle': allFormData.Overview.subtitle,
@@ -132,7 +136,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             .then(data => {
               // Handle response from the server
               console.log('Upload successful:', data);
-              window.location.href = '/services'
+              navigate('/services'); // Navigate to the new page without triggering beforeunload event
             })
             .catch(error => {
               // Handle error
@@ -141,10 +145,9 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
         }
       }
       else{
-        
+        //FIXME: do something  here
       }
     }
-
     return(
         <div>
             <div className="sign-up-form">
