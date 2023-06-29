@@ -13,6 +13,7 @@ const DATABASE_LINK = process.env.TESTING_DATABASE_LINK;
 // mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
 const serviceSchema = {
     title: String,
+    serviceType: String,
     thumbnail: Buffer,
     photo: Buffer,        
     pages: JSON,
@@ -35,7 +36,9 @@ const userSchema = new mongoose.Schema(
         email: { type: String, required: true, unique: true, index: true },
         username: { type: String, required: true, unique: true, index: true },
         password: { type: String, required: true },
-        verified: { type: Boolean, required: true }
+        verified: { type: Boolean, required: true },
+        clubAdmin: { type: Boolean},
+        internshipAdmin: { type: Boolean}
     }, { collection: 'users' }
 )
 

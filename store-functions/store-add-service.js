@@ -46,6 +46,7 @@ const store_add_service = async function(req, username) {
     const thumbnail = await generateThumbnail(photoBuffer)
     const newService = new Service({
       title: req.body.title,
+      serviceType: req.body.serviceType,
       photo: photoBuffer,
       thumbnail: thumbnail,
       pages: pages,

@@ -243,19 +243,27 @@ async function storeService(req, res) {
     const username = decodedToken.username;
     const account = await User.findOne({ username }); 
     if (account){ 
-      const success = await store_add_service(req, username);
-      if (success){
-        console.log(`new ${req.body.serviceType} added by ${username}`);
-        res.json({success: true});
+      const requestedServiceType = req.body.serviceType;
+      if ((requestedServiceType == 'Club' && account.clubAdmin) || (requestedServiceType == 'Internship' && account.internshipAdmin)){
+        const success = await store_add_service(req, username);
+        if (success){
+          console.log(`new ${req.body.serviceType} added by ${username}`);
+          res.json({success: true});
+        }
+        else{
+          console.log('problem uploading service to database');
+          res.json({success: false, error: 'internal database error'});
+        }
       }
-      else{
-        console.log('problem uploading service to database');
-        res.json({success: false, error: 'internal detabase error'});
+      else {
+        console.error(`${account.username} is not authorized to post ${requestedServiceType} services`)
+        res.json({ success: false, error: 'unauthorized'});
       }
+      
     }
     else{
-      console.log('account does not exist!')
-      res.json({ success: false, error: 'unauthorized' });
+      console.error('account does not exist')
+      res.json({ success: false, error: 'unauthorized'});
     }
   } catch (error) {
     console.log(error)
