@@ -675,17 +675,24 @@ input[type="reset"]
 
 /* Plos css :3 */
 .add-service-button {
-    border: 1px solid;
+    border: 2px solid;
     border-radius: 10px;
-    padding: 0;
+    padding: 0px;
     width: 20%;
-    height: 5%;
+    height: 2%;
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     left: 5%;
-    top: 10%;
+    top: 3%;
     z-index: 1;
-    background-color: white;
+    background-color: #0096C9;
+    color:#fff;
+  }
+
+  .add-service-button:hover{
+    box-shadow: 0 0 2px #00468D, 0 0 5px #00468D, 0 0 5px #00468D;
+    transition: all 0.5s;
+
   }
 
   .add-service-button .arrow {
@@ -694,18 +701,20 @@ input[type="reset"]
   }
 
   .content {
-    position: fixed;
-    top: 15%;
+    position: absolute;
+    top: 5%;
     left: 5%;
-    border: 1px solid;
+    border: 1px solid grey;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: white;
+    background-color: #fff;
     padding: 10px;
-    width: 25%;
+    width: 30%;
     border-radius: 5px;
     z-index: 1;
+    height: 6%;
+    overflow-y: scroll;
   }
 
 
@@ -717,8 +726,10 @@ input[type="reset"]
   
   .collapsible-button {
     background-color: white;
+    color: #000;
     border: none;
-    font-weight: bold;
+    font-weight:500;
+
   }
   
   .collapsible-button .arrow {
@@ -728,18 +739,45 @@ input[type="reset"]
   
   .details label {
     padding-left: 30px;
+    font-weight: bold;
   }
   
-  .right-section {
-    position: fixed;
-    right: 10%;
-    top: 22%;
+  .arrow {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    vertical-align: middle;
+    
+  }
+  
+  .arrow.up {
+    transform: rotate(-45deg);
+  }
+  
+  .arrow.down {
+    transform: rotate(135deg);
+  }
+  
+    .right-section {
+    position: absolute;
+    top: 3%;
+    right: 5%;
     z-index: 1;
   }
   
-  .select {
+  .sort-by select {
     border: none;
     outline: none;
+    background-color: transparent;
+    color: black; 
+    font-weight: bold;
+
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 5px;
+    
   }
   
   .sort-by {
@@ -751,21 +789,14 @@ input[type="reset"]
   .sort-by label {
     margin-right: 5px;
   }
-  
-  .arrow {
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    vertical-align: middle;
-  }
-  
-  .arrow.up {
-    transform: rotate(-45deg);
-  }
-  
-  .arrow.down {
-    transform: rotate(135deg);
-  }
+
+.cont{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cont select{
+    z-index: 1;
+}
   

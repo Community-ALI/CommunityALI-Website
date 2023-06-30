@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const ServiceDropdown = () => {
   const [isContentVisible, setContentVisible] = useState(false);
   const [isButtonCollapsed, setButtonCollapsed] = useState(true);
@@ -7,7 +8,16 @@ const ServiceDropdown = () => {
   const [isButton3Collapsed, setButton3Collapsed] = useState(true)
   const [isButton4Collapsed, setButton4Collapsed] = useState(true)
   const [isButton5Collapsed, setButton5Collapsed] = useState(true)
+
+
+  const [isContOpen, setContOpen] = useState(false);
   const [sortBy, setSortBy] = useState('');
+
+  const toggleCont = () => {
+    setContOpen(isContOpen => !isContOpen);
+  };
+
+ 
 
   const toggleContent = () => {
     setContentVisible(!isContentVisible);
@@ -39,7 +49,10 @@ const ServiceDropdown = () => {
 
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
+    setContOpen(false);
   };
+
+
 
 
     const[checkboxes, setCheckboxes] = useState({
@@ -53,7 +66,6 @@ const ServiceDropdown = () => {
         language: false,
         public: false,
         science: false,
-        engineering: false
       },
       clubsAndCommunities:{
         computerScienceClub: false,
@@ -62,13 +74,13 @@ const ServiceDropdown = () => {
         mannrrsClub: false,
         greatValleyAstronomyClub: false,
         aUnityClub: false,
-        musciciansGuild: false,
+        musiciansGuild: false,
         geologyClub: false,
         filmClub: false,
         electronicMusicClub: false,
         cheerClub: false,
         dungeonsAndDragonsClub: false,
-        americanSignLanguaggeClub: false,
+        americanSignLanguageClub: false,
         parrotsClub: false,
         preHealthClub: false,
         internationalClub: false,
@@ -120,6 +132,7 @@ const ServiceDropdown = () => {
       { id: 2, label: 'Item C', distance: 3 },
       { id: 3, label: 'Item B', distance: 7 },
     ];
+
 
 
   return (
@@ -186,7 +199,7 @@ const ServiceDropdown = () => {
             
             )}
 
-            <button className='collapsible-button' onClick={toggleButton2}> <span className={`arrow ${isButtonCollapsed ? 'down' : 'up'}`}></span>Clubs & Communities  </button>
+            <button className='collapsible-button' onClick={toggleButton2}> <span className={`arrow ${isButton2Collapsed ? 'down' : 'up'}`}></span>Clubs & Communities  </button>
 
             {!isButton2Collapsed && (
               <div className='details'>
@@ -216,7 +229,7 @@ const ServiceDropdown = () => {
                    onChange={() => handleCheckboxChange('clubsAndCommunities', 'aUnityClub')} />  A.C.E Unity Club
                    </label>
                    <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.musciciansGuild} //add the checked attribute here
+                   checked={checkboxes.clubsAndCommunities.musiciansGuild} //add the checked attribute here
                    onChange={() => handleCheckboxChange('clubsAndCommunities', 'musiciansGuild')} />  Musicians' Guild
                    </label>
                    <label><input type="checkbox"
@@ -240,7 +253,7 @@ const ServiceDropdown = () => {
                    onChange={() => handleCheckboxChange('clubsAndCommunities', 'dungeonsAndDragonsClub')} />  Dungeons and Dragons Club
                    </label>
                    <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.americanSignLanguaggeClub} //add the checked attribute here
+                   checked={checkboxes.clubsAndCommunities.americanSignLanguageClub} //add the checked attribute here
                    onChange={() => handleCheckboxChange('clubsAndCommunities', 'americanSignLanguageClub')} />  American Sign Language Club
                    </label>
                    <label><input type="checkbox"
@@ -261,7 +274,7 @@ const ServiceDropdown = () => {
                    </label>
                    <label><input type="checkbox"
                    checked={checkboxes.clubsAndCommunities.businessClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'BusinessClub')} />  Business Club
+                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'businessClub')} />  Business Club
                    </label>
                    <label><input type="checkbox"
                    checked={checkboxes.clubsAndCommunities.anthropologyClub} //add the checked attribute here
@@ -271,7 +284,7 @@ const ServiceDropdown = () => {
                 </div>
             )}
 
-            <button className="collapsible-button" onClick={toggleButton3}> <span className={`arrow ${isButtonCollapsed ? 'down' : 'up'}`}></span>Volunteering & Community Service </button>
+            <button className="collapsible-button" onClick={toggleButton3}> <span className={`arrow ${isButton3Collapsed ? 'down' : 'up'}`}></span>Volunteering & Community Service </button>
 
             {!isButton3Collapsed && (
               <div className='details'>
@@ -279,7 +292,7 @@ const ServiceDropdown = () => {
                 </div>
             )}
 
-            <button className='collapsible-button' onClick={toggleButton4}> <span className={`arrow ${isButtonCollapsed ? 'down' : 'up'}`}></span>Internships & Work Experience </button>
+            <button className='collapsible-button' onClick={toggleButton4}> <span className={`arrow ${isButton4Collapsed ? 'down' : 'up'}`}></span>Internships & Work Experience </button>
 
             {!isButton4Collapsed && (
               <div className='details'>
@@ -288,7 +301,7 @@ const ServiceDropdown = () => {
               </div>
             )}
 
-            <button className='collapsible-button' onClick={toggleButton5}> <span className={`arrow ${isButtonCollapsed ? 'down' : 'up'}`}></span>Events & Other </button>
+            <button className='collapsible-button' onClick={toggleButton5}> <span className={`arrow ${isButton5Collapsed ? 'down' : 'up'}`}></span>Events & Other </button>
 
             {!isButton5Collapsed && (
               <div className='details'>
@@ -300,13 +313,16 @@ const ServiceDropdown = () => {
         )}
 <div className="right-section">
           <div className="sort-by">
-            <label>Sort by:</label>
-            <select value={sortBy} onChange={handleSortByChange}>
+            <label>Sort by: </label>
+            <div className="cont">
+            <select value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
               <option value="">None</option>
               <option value="alphabetical">Alphabetical</option>
               <option value="reverse-alphabetical">Reverse Alphabetical</option>
               <option value="nearest">Nearest to you</option>
             </select>
+            <span className={`arrow ${isContOpen ? 'up' : 'down'}`}></span>
+            </div>
           </div>
         </div>
       </div>
