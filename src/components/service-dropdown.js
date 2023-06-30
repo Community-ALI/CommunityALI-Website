@@ -13,6 +13,10 @@ const ServiceDropdown = () => {
   const [isContOpen, setContOpen] = useState(false);
   const [sortBy, setSortBy] = useState('');
 
+  
+  
+
+
   const toggleCont = () => {
     setContOpen(isContOpen => !isContOpen);
   };
@@ -313,15 +317,16 @@ const ServiceDropdown = () => {
         )}
 <div className="right-section">
           <div className="sort-by">
-            <label>Sort by: </label>
+            <label className='sort-label'>Sort by: </label>
             <div className="cont">
-            <select value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
+            <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
               <option value="">None</option>
               <option value="alphabetical">Alphabetical</option>
               <option value="reverse-alphabetical">Reverse Alphabetical</option>
               <option value="nearest">Nearest to you</option>
             </select>
-            <span className={`arrow ${isContOpen ? 'up' : 'down'}`}></span>
+            <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
+            
             </div>
           </div>
         </div>
