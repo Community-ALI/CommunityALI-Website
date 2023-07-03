@@ -18,6 +18,9 @@ import Edit_Service from "./pages/my-services/club-components/edit-club";
 import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
 import Profile from "./components/profile";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import { Account } from "./components/Account";
 
 import './style.scss';
 import '../public/stylesheets/style.css'
@@ -46,13 +49,17 @@ function App() {
                 <Route path="/add-internship" element={<Add_Internship />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
+                {/* Account */}
+                <Route path="/account" element={<Account />}/>
                 <Route path="/register" element={<Register />}/>
-
                 <Route path="/profile" element={<Profile />}/>
+                <Route path="/signup" element={<Signup />}/>
+                <Route path="/login" element={<Login />}/>
 
                 {/* other */}
                 <Route path="/" element={<LandingPage />}/>
                 <Route path="/contact-form" element={<ContactForm/>}/>
+
             </Routes>
         </BrowserRouter>
     )
