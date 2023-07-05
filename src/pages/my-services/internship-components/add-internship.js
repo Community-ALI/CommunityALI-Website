@@ -5,6 +5,7 @@ import '../add-service.css';
 import ContactsPage from "../general-components/contacts-page";
 import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
+import RequirementsPage from "./requirements-page";
 import SignUpPage from "./sign-up-page";
 
 function AddInternship() {
@@ -12,6 +13,7 @@ function AddInternship() {
     "Overview",
     "Contacts",
     "FAQ",
+    "Requirements",
     "Sign Up"
   ];
 
@@ -20,7 +22,7 @@ function AddInternship() {
     "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ"];
+  const removablePages = ["Contacts", "FAQ", "Requirements"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
@@ -29,6 +31,7 @@ function AddInternship() {
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
+  const [requireFormData, setRequireFormData] = useState({});
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
@@ -83,6 +86,9 @@ function AddInternship() {
       if (pageToRemove === 'FAQ') {
         setFaqFormData({})
       }
+      if (pageToRemove === 'Requirements'){
+        setRequireFormData({})
+      }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
     }
@@ -104,6 +110,9 @@ function AddInternship() {
       }
       else if (pageToAdd === 'FAQ') {
         setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
+      }
+      else if (pageToAdd === 'Requirements') {
+        setFaqFormData({ "Requirements": [{ "RequireTitle": "", "RequireDescription": "" }] })
       }
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
@@ -169,6 +178,7 @@ function AddInternship() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Internship' setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Internship' setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Internship' setFormData={setFaqFormData} />}
+        {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
             'title': titleValue,
@@ -180,6 +190,7 @@ function AddInternship() {
             {
               'Overview': overviewFormData,
               'Contacts': contactsFormData,
+              'Requirements': requireFormData,
               'FAQ': faqFormData
             }
           } />}

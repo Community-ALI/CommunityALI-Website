@@ -20,7 +20,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
         !allFormData.Overview.date ||
         !allFormData.Overview.location ||
         !allFormData.Overview.description ||
-        !allFormData.Overview.file
+        !allFormData.Overview.file ||
+        !allFormData.Overview.categories
       ) {
         alert('Overview is incomplete');
         return false;
@@ -90,6 +91,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             'time': allFormData.Overview.time,
             'date': allFormData.Overview.date,
             'location': allFormData.Overview.location,
+            'categories': allFormData.Overview.categories,
             'description': allFormData.Overview.description
           }
           var ContactsData = {}

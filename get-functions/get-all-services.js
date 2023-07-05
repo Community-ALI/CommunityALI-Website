@@ -10,12 +10,11 @@ function search(keyword,attribute,dbServices,filteredData) {
       if (text.includes(keyword.toLowerCase())){
           // don't create miltiple copies of the same result if the keyword appears twice
           if (filteredData.includes(service)){
-
+              
           }
           else{
             filteredData.push(service)
-          }
-          
+          }  
       }
   }
  return filteredData; 

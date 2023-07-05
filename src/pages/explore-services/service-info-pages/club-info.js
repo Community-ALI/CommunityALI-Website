@@ -9,6 +9,7 @@ import '../service-info.css';
 import ContactsPage from "./contacts-page";
 import OverviewPage from "./overview-page";
 import FaqPage from "./faq-page";
+import RequirementsPage from "./requirements-page.js"
 import SignUpPage from "./sign-up-page";
 import '../../../pages/my-services/add-service.css';
 import '../../../../public/stylesheets/style.css';
@@ -20,6 +21,7 @@ function AddClub() {
     "Overview",
     "Contacts",
     "FAQ",
+    'Requirements',
     "Sign Up"
   ];
 
@@ -27,6 +29,7 @@ function AddClub() {
     "Overview",
     "Contacts",
     "FAQ",
+    'Requirements',
     "Sign Up"
   ]);
   const [service, setService] = useState({})
@@ -78,6 +81,9 @@ function AddClub() {
           if (!data.pages.FAQ){
             removePage("FAQ")
           }
+          if (!data.pages.requirements){
+            removePage("Requirements")
+          }
           // show the page
           const loaderWrapper = document.querySelector(".loader-wrapper");
           loaderWrapper.style.transition = "opacity 0.5s";
@@ -114,6 +120,7 @@ function AddClub() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" service={service} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" service={service} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" service={service} />}
+        {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" service={service} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" service={service}/>}
 
       </div>

@@ -2,6 +2,20 @@ import React, { useRef, useState, useEffect } from "react";
 import '../add-service.css';
 
 function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = false}) {
+
+  const schoolOptions = [
+    "Agriculture",
+    "Art, Performance & The Humanities",
+    "Behavioral & Social Sciences",
+    "Business & Computing",
+    "Fitness & Health Professions",
+    "Industry & Trades",
+    "Language Arts & Education",
+    "Public Safety",
+    "Science, Engineering & Mathematics",
+    "Other"
+  ];
+
   const [fileContainerID, setFileContainerID] = useState('file-container');
   const fileUploadText = useRef();
   console.log(editMode)
@@ -30,10 +44,33 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     setFormData((prevData) => ({ ...prevData, file: selectedFile }));
   };
 
+  // const handleFormChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevData) => ({ ...prevData, [name]: value }));
+  // };
+
   const handleFormChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    event.persist(); // Notify React to persist the event object
+    console.log(formData)
+    const { name, value, type, checked } = event.target;
+  
+    if (type === "checkbox") {
+      
+      setFormData((prevData) => {
+        const selectedValues = prevData.categories || []; // Initialize as an empty array if not defined
+        if (checked) {
+          return { ...prevData, categories: [...selectedValues, name] };
+        } else {
+          return { ...prevData, categories: selectedValues.filter((option) => option !== name) };
+        }
+      });
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
+  
+
+  
 
   return (
     <div>
@@ -114,6 +151,34 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
               className="meeting-details-text-box"
               id="details-location"
             />
+            <br />
+          </div>
+
+          <div>
+          <div>
+            <div>
+              <u>School:</u>
+              {schoolOptions.map((option) => (
+                <div key={option}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      onChange={handleFormChange}
+                      onBlur={() => {}}
+                      name={option}
+                      checked={(formData.categories && formData.categories.includes(option)) || false}
+                      className="category-selection"
+                    />
+                    {option}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+
+
+
             <br />
           </div>
         </div>

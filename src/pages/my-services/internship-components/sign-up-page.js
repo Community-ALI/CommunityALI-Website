@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
+import RequirementsPage from "./requirements-page.js";
 
 function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
     console.log(allFormData)
@@ -64,6 +65,20 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
           return false;
         }
       }
+
+      if (allFormData.Requirements.Requirements){
+        const Requirements = allFormData.Requirements.Requirements;
+
+        const RequirementsComplete = Requirements.every(
+          (require) =>
+          require.RequireTitle && require.RequireDescription
+        );
+    
+        if (!RequirementsComplete) {
+          alert('Requirements are incomplete');
+          return false;
+        }
+      }
       return true;
     };
 
@@ -103,10 +118,18 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
               'faq': allFormData.FAQ.faq
             }
           }
+
+          var RequirementsData = {}
+          if (allFormData.Requirements.Requirements){
+            RequirementsData = {
+              'Requirements': allFormData.Requirements.Requirements
+            }
+          }
           
           const JsonData = {
             'overview': OverviewData,
             'contacts': ContactsData,
+            'requirements': RequirementsData,
             'FAQ': FAQData
           }
           const jsonString = JSON.stringify(JsonData);

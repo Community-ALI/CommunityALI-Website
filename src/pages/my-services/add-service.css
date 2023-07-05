@@ -456,6 +456,16 @@ input[data-autocompleted]
     font-size: clamp(8px, 3vh, 20px);
 }
 
+.category-selection
+{
+    margin-top : 20px;
+    background : none;
+    border : none;
+    outline : none;
+    color : #ecaa1e;
+    font-size: clamp(8px, 3vh, 20px);
+}
+
 .service-contact-link
 {
     text-decoration: underline;
