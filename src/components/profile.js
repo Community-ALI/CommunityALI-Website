@@ -15,7 +15,9 @@ function Profile()
     });
     const [services, setServices] = useState([]);
     const [applications, setApplications] = useState([]);
-    const editMode = false;
+    const [editMode, setEditMode] = useState(false);
+    const [buttonText, setButtonText] = useState('Edit Information');
+    const nameRef = useRef(null);
     // services
     useEffect(() => {
         const fetchData = async () => {
@@ -75,7 +77,7 @@ function Profile()
       }, []);
     
 
-      // account data
+      // get account data
       useEffect(() => {
         const fetchData = async () => {
           try {
@@ -104,7 +106,58 @@ function Profile()
     
         fetchData();
       }, []);
+
+     // set account data
+const uploadData = function () {
+  console.log('sending accoiunt');
+  try {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch(`${BASE_BACKEND_URL}/userdata/set-account-data`, {
+        method: 'POST', // Specify the HTTP method as POST
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ account: account }) // Set the request body here
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('data sent');
+        });
+    } else {
+      console.log('no token found');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
     
+
+    const handleButtonClick = () => {
+      setButtonText(editMode ? 'Edit Information' : 'Save Information');
+      if (!editMode){
+        // edit
+        nameRef.current.focus();
+      }
+      else{
+        // save
+        uploadData();
+      }
+      setEditMode(!editMode);
+      
+      
+    };
+
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setAccount((prevAccount) => ({
+        ...prevAccount,
+        [name]: value,
+      }));
+    };
+
     return(
         <div className="profile-page">
             <NavBar isFixedPage={false}/>
@@ -119,41 +172,57 @@ function Profile()
                 </div>
 
                 <div className="profile-input-container">
-                    <div className="profile-input">
-                        <label className="profile-name-title" htmlFor="name"> Full Name </label>
-                        <input
-                            type="text"
-                            className="profile-name"
-                            id="name"
-                            placeholder="First Last"
-                            value={account.name}
-                            readOnly={!editMode} // Set the readOnly attribute based on the value of editMode
-                            style={{ pointerEvents: !editMode ? "none" : "auto" }} // Disable pointer events when editMode is false
+                  <div className="profile-input">
+                    <label className="profile-name-title" htmlFor="name">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      className="profile-name"
+                      id="username"
+                      name="username"
+                      placeholder="First Last"
+                      onChange={handleInputChange}
+                      value={account.username}
+                      readOnly={!editMode}
+                      style={{ pointerEvents: !editMode ? 'none' : 'auto' }}
+                      ref={nameRef}
+                    />
+                  </div>
 
-                            />
-                    </div>
+                  <div className="profile-input">
+                    <label className="profile-email-title" htmlFor="email">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="profile-email"
+                      id="email"
+                      name="email"
+                      value={account.email}
+                      placeholder="example@example.com"
+                      onChange={handleInputChange}
+                      readOnly={!editMode}
+                      style={{ pointerEvents: !editMode ? 'none' : 'auto' }}
+                    />
+                  </div>
 
-                    <div className="profile-input">
-                        <label className="profile-email-title" htmlFor="email"> Email </label>
-                        <input
-                            type="email"
-                            className="profile-email"
-                            id="email"
-                            value={account.email}
-                            placeholder="example@example.com" 
-                            readOnly={!editMode} // Set the readOnly attribute based on the value of editMode
-                            style={{ pointerEvents: !editMode ? "none" : "auto" }} // Disable pointer events when editMode is false
-                            />
-                            
-                    </div>
-
-                    <div className="profile-description-container">
-                        <label className="profile-description-title" htmlFor="message"> Description </label>
-                        <textarea className="profile-description" rows="5" placeholder="Write about yourself..."
-                        readOnly={!editMode} // Set the readOnly attribute based on the value of editMode
-                        style={{ pointerEvents: !editMode ? "none" : "auto" }} // Disable pointer events when editMode is false
-                        ></textarea>
-                    </div>
+                  <div className="profile-description-container">
+                    <label className="profile-description-title" htmlFor="message">
+                      Description
+                    </label>
+                    <textarea
+                      className="profile-description"
+                      id="message"
+                      name="description"
+                      rows="5"
+                      placeholder="Write about yourself..."
+                      value={account.description}
+                      onChange={handleInputChange}
+                      readOnly={!editMode}
+                      style={{ pointerEvents: !editMode ? 'none' : 'auto' }}
+                    ></textarea>
+                  </div>
 
                     <div className='profile-change-container'>
                         <button className='profile-change'> Change Password </button>
@@ -179,8 +248,16 @@ function Profile()
                 </div>
 
                 <input type="button" className="profile-save-button" 
-                    value="Save Changes">
+                onClick={handleButtonClick}
+                    value={buttonText}>
                 </input>
+
+                {editMode && (<input type="button" className="profile-save-button" 
+                onClick={()=>{location.reload()}}
+                    value='cancel'>
+                </input>)}
+                
+
             </div>
 
             <Footer />
