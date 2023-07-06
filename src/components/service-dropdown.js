@@ -1,21 +1,43 @@
 import React, { useState } from 'react';
 
-
 const ServiceDropdown = () => {
   const [isContentVisible, setContentVisible] = useState(false);
   const [isButtonCollapsed, setButtonCollapsed] = useState(true);
-  const [isButton2Collapsed, setButton2Collapsed] = useState(true)
-  const [isButton3Collapsed, setButton3Collapsed] = useState(true)
-  const [isButton4Collapsed, setButton4Collapsed] = useState(true)
-  const [isButton5Collapsed, setButton5Collapsed] = useState(true)
-
+  const [isButton2Collapsed, setButton2Collapsed] = useState(true);
+  const [isButton3Collapsed, setButton3Collapsed] = useState(true);
+  const [isButton4Collapsed, setButton4Collapsed] = useState(true);
+  const [isButton5Collapsed, setButton5Collapsed] = useState(true);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+  const [isChecked3, setIsChecked3] = useState(false);
+  const [isChecked4, setIsChecked4] = useState(false);
 
   const [isContOpen, setContOpen] = useState(false);
   const [sortBy, setSortBy] = useState('');
 
-  
-  
+  const toggleButton0 = () => {
+    setButtonCollapsed(!isButtonCollapsed);
+  };
 
+  const toggleButton6 = () => {
+    setButton2Collapsed(!isButton2Collapsed);
+    setIsChecked1(!isChecked1);  // Toggle the state of the checkbox
+  };
+
+  const toggleButton7 = () => {
+    setButton3Collapsed(!isButton3Collapsed);
+    setIsChecked2(!isChecked2);  // Toggle the state of the checkbox
+  };
+
+  const toggleButton8 = () => {
+    setButton4Collapsed(!isButton4Collapsed);
+    setIsChecked3(!isChecked3);  // Toggle the state of the checkbox
+  };
+
+  const toggleButton9 = () => {
+    setButton5Collapsed(!isButton5Collapsed);
+    setIsChecked4(!isChecked4);  // Toggle the state of the checkbox
+  };
 
   const toggleCont = () => {
     setContOpen(isContOpen => !isContOpen);
@@ -55,9 +77,16 @@ const ServiceDropdown = () => {
     setSortBy(event.target.value);
     setContOpen(false);
   };
-
-
-
+    
+    const handleCheckboxChange = (category, checkbox) => {
+      setCheckboxes(prevCheckboxes => ({
+        ...prevCheckboxes,
+        [category]: {
+          ...prevCheckboxes[category],
+          [checkbox]: !prevCheckboxes[category][checkbox]
+        }
+      }));
+    };
 
     const[checkboxes, setCheckboxes] = useState({
       subjectAndCareerOriented:{
@@ -70,55 +99,12 @@ const ServiceDropdown = () => {
         language: false,
         public: false,
         science: false,
-      },
-      clubsAndCommunities:{
-        computerScienceClub: false,
-        mathAndEngineeringClub: false,
-        youngFarmersClub: false,
-        mannrrsClub: false,
-        greatValleyAstronomyClub: false,
-        aUnityClub: false,
-        musiciansGuild: false,
-        geologyClub: false,
-        filmClub: false,
-        electronicMusicClub: false,
-        cheerClub: false,
-        dungeonsAndDragonsClub: false,
-        americanSignLanguageClub: false,
-        parrotsClub: false,
-        preHealthClub: false,
-        internationalClub: false,
-        freedomForumClub: false,
-        businessClub: false,
-        anthropologyClub: false,
-      },
-      volunteeriesandCommunityService:{
-        test: false,
-      },
-      internshipsAndworkExperience:{
-        test: false,
-      },
-      eventsAndOther:{
-        test: false,
-      },
-    });
-
-    const handleCheckboxChange = (category, checkbox) => {
-      setCheckboxes(prevCheckboxes => ({
-        ...prevCheckboxes,
-        [category]: {
-          ...prevCheckboxes[category],
-          [checkbox]: !prevCheckboxes[category][checkbox]
-        }
-      }));
-    };
+      }});
 
     const sortItems = (items) => {
       switch (sortBy) {
         case 'alphabetical':
           return items.sort((a, b) => a.label.localeCompare(b.label));
-        case 'reverse-alphabetical':
-          return items.sort((a, b) => b.label.localeCompare(a.label));
         case 'nearest':
           return items.sort((a, b) => a.distance - b.distance);
         default:
@@ -154,7 +140,7 @@ const ServiceDropdown = () => {
             {!isButtonCollapsed && (
               <div className="details">
             
-                <label>
+            <label>
                   <input type="checkbox" 
                    checked={checkboxes.subjectAndCareerOriented.agriculture} 
                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'agriculture')}/> Agriculture
@@ -203,126 +189,58 @@ const ServiceDropdown = () => {
             
             )}
 
-            <button className='collapsible-button' onClick={toggleButton2}> <span className={`arrow ${isButton2Collapsed ? 'down' : 'up'}`}></span>Clubs & Communities  </button>
 
-            {!isButton2Collapsed && (
-              <div className='details'>
-                
-                   <label><input type="checkbox"
-                    checked={checkboxes.clubsAndCommunities.computerScienceClub} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('clubsAndCommunities', 'computerScienceClub')} /> Computer science Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.mathAndEngineeringClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'mathAndEngineeringClub')} />  Math and Engineering Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.youngFarmersClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'youngFarmersClub')} />  Young Farmers Club
-                   </label>
-                   <label><input type="checkbox"
-                    checked={checkboxes.clubsAndCommunities.mannrrsClub} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('clubsAndCommunities', 'mannrrsClub')}/>  MANRRS Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.greatValleyAstronomyClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'greatValleyAstronomyClub')} />  Great Valley Astronomy Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.aUnityClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'aUnityClub')} />  A.C.E Unity Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.musiciansGuild} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'musiciansGuild')} />  Musicians' Guild
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.geologyClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'geologyClub')} />  Geology Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.filmClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'filmClub')} />  Film Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.electronicMusicClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'electronicMusicClub')} />  Electronic Music Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.cheerClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'cheerClub')} />  Cheer Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.dungeonsAndDragonsClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'dungeonsAndDragonsClub')} />  Dungeons and Dragons Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.americanSignLanguageClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'americanSignLanguageClub')} />  American Sign Language Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.parrotsClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'parrotsClub')} />  Parrots Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.preHealthClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'preHealthClub')} />  Pre-Health Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.internationalClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'internationalClub')} />  International Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.freedomForumClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'freedomForumClub')} />  Freedom Forum Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.businessClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'businessClub')} />  Business Club
-                   </label>
-                   <label><input type="checkbox"
-                   checked={checkboxes.clubsAndCommunities.anthropologyClub} //add the checked attribute here
-                   onChange={() => handleCheckboxChange('clubsAndCommunities', 'anthropologyClub')} />  Anthropology Club
-                   </label>
 
-                </div>
-            )}
+<div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked1 ? 'checked' : ''}`}>
+  <input type="checkbox" id="cb1" checked={isChecked1}style={{ marginRight: '10px' }} />
+  <span></span>
+        </label>
+  <label htmlFor="cb1">
+    <button className='collapsible-button' onClick={toggleButton6}>Clubs & Communities</button>
+  </label>
+</div>
 
-            <button className="collapsible-button" onClick={toggleButton3}> <span className={`arrow ${isButton3Collapsed ? 'down' : 'up'}`}></span>Volunteering & Community Service </button>
+<div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked2 ? 'checked' : ''}`}>
+  <input type="checkbox" id="cb2" checked={isChecked2} style={{ marginRight: '10px' }} />
+  <span></span>
+  </label>
+  <label htmlFor="cb2">
+    <button className="collapsible-button" onClick={toggleButton7}>Volunteering & Community Service</button>
+  </label>
+</div>
 
-            {!isButton3Collapsed && (
-              <div className='details'>
-                <label><input type='checkbox' /> Test </label>
-                </div>
-            )}
+<div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked3 ? 'checked' : ''}`}>
+  <input type="checkbox" id="cb3" checked={isChecked3} style={{ marginRight: '10px' }} />
+  <span></span>
+  </label>
+  <label htmlFor="cb3">
+    <button className='collapsible-button' onClick={toggleButton8}>Internships & Work Experience</button>
+  </label>
+</div>
 
-            <button className='collapsible-button' onClick={toggleButton4}> <span className={`arrow ${isButton4Collapsed ? 'down' : 'up'}`}></span>Internships & Work Experience </button>
+<div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked4 ? 'checked' : ''}`}>
+  <input type="checkbox" id="cb4" checked={isChecked4} style={{ marginRight: '10px' }} />
+  <span></span>
+  </label>
+  <label htmlFor="cb4">
+    <button className='collapsible-button' onClick={toggleButton9}>Events & Other</button>
+  </label>
+</div>
 
-            {!isButton4Collapsed && (
-              <div className='details'>
-                <label><input type='checkbox' /> Test </label>
 
-              </div>
-            )}
+</div>
 
-            <button className='collapsible-button' onClick={toggleButton5}> <span className={`arrow ${isButton5Collapsed ? 'down' : 'up'}`}></span>Events & Other </button>
-
-            {!isButton5Collapsed && (
-              <div className='details'>
-                <label><input type='checkbox' /> Test </label>
-
-              </div>
-            )}
-          </div>
         )}
 <div className="right-section">
           <div className="sort-by">
             <label className='sort-label'>Sort by: </label>
             <div className="cont">
             <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
-              <option value="">None</option>
               <option value="alphabetical">Alphabetical</option>
-              <option value="reverse-alphabetical">Reverse Alphabetical</option>
               <option value="nearest">Nearest to you</option>
             </select>
             <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
