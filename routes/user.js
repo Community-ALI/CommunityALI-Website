@@ -92,21 +92,6 @@ router.get("/get-account", async function (req, res) {
 });
 
 
-router.post("/set-account-data", async function (req, res) {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, JWT_SECRET);
-        const username = decodedToken.username;
-        user_data.set_account_data(username, req);
-        console.log('account info for', username, 'updated');
-    } catch (error) {
-        console.log(error);
-        res.json({
-            dataAccount: [],
-            tokenUsername: 'not logged in'
-        });
-    }
-});
 
 
 router.get("/get-username", async function (req, res) {

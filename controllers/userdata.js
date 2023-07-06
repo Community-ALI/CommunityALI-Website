@@ -40,7 +40,7 @@ exports.get_applications = async function (username) {
     return { success: false, error: 'internal database error' };
   }
 }
- 
+
 // get a user's applications from database
 exports.get_account = async function (username) {
   try {
@@ -51,26 +51,3 @@ exports.get_account = async function (username) {
     return { success: false, error: 'internal database error' };
   }
 }
-
-
-exports.set_account_data = async function (username, req) {
-  try {
-    const selected_account = await Users.findOne({ username: username });
-
-    if (selected_account) {
-      // Update only the fields found in req.body.account
-      Object.assign(selected_account, req.body.account);
-
-      // Save the updated account back to the database
-      await selected_account.save();
-
-      return selected_account; // Optional: Return the updated account
-    } else {
-      // Handle case when account with the given username is not found
-      // return an appropriate response or throw an error
-    }
-  } catch (error) {
-    // Handle any errors that occurred during the update process
-    // return an appropriate response or throw an error
-  }
-};
