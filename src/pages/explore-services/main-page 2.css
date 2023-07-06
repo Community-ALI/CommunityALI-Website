@@ -690,22 +690,18 @@ input[type="reset"]
     color:white;
     font-size: medium;
   }
- 
- 
+
   .add-service-button:hover{
     box-shadow: 0 0 2px #00468D, 0 0 5px #00468D, 0 0 5px #00468D;
     transition: all 0.5s;
- 
- 
+
   }
- 
- 
+
   .add-service-button .arrow {
     display: inline-block;
     margin-left: 10px;
   }
- 
- 
+
   .content {
     position: absolute;
     top: 5.7%;
@@ -722,90 +718,92 @@ input[type="reset"]
     height: 6%;
     overflow-y: scroll;
   }
- 
- 
- 
- 
- .details {
+
+
+.details {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-   .collapsible-button {
+  
+  .collapsible-button {
     background-color: white;
     color: #000;
     border: none;
     font-weight:500;
- 
- 
+
   }
-   .collapsible-button .arrow {
+  
+  .collapsible-button .arrow {
     display: inline-block;
     margin-right: 10px;
   }
-   .details label {
+  
+  .details label {
     padding-left: 30px;
     font-weight: bold;
   }
-   .arrow {
+  
+  .arrow {
     display: inline-block;
     width: 5px;
     height: 5px;
     border-top: 1px solid #000;
     border-right: 1px solid #000;
     vertical-align: middle;
-   
-   
+    
+    
   }
-   .arrow.up {
+  
+  .arrow.up {
     transform: rotate(-45deg);
   }
-   .arrow.down {
+  
+  .arrow.down {
     transform: rotate(135deg);
   }
-     .right-section {
+  
+    .right-section {
     position: absolute;
     top: 4.5%;
     right: 1%;
     z-index: 1;
-   
+    
   }
-   .sort-by select {
+  
+  .sort-by select {
     border: none;
     outline: none;
     background-color: transparent;
-    color: black;
+    color: black; 
     font-weight: bold;
- 
- 
+
     appearance: none;
     -webkit-appearance: none;
-   
+    
   }
-   .sort-by {
+  
+  .sort-by {
     display:flex;
   }
-   .sort-by label {
+  
+  .sort-by label {
     margin-right: 5px;
   }
- 
- 
- .cont{
-    position: relative;  
- }
- 
- 
- .cont select{
+
+.cont{
+    position: relative;   
+}
+
+.cont select{
     z-index: 1;
- }
- 
- 
- .sort-label{
+}
+
+.sort-label{
     font-size: larger;
- }
- 
- 
- .sort-select{
+}
+
+.sort-select{
     font-size: larger;
- }
- 
+}
+
