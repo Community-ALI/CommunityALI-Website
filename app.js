@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // get db
-const get_all_services = require("./get-functions/get-all-services");
+const get_all_services = require("./controllers/service-data");
 const get_one_service = require("./get-functions/get-one-service");
 
 //authorized only get
