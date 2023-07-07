@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const ServiceDropdown = () => {
@@ -214,7 +213,9 @@ const ServiceDropdown = () => {
             <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
             <option value="nearest">Most Recent</option>
               <option value="alphabetical">Alphabetical</option>
-              
+
+              <option value="nearest">Most Recently Added</option>
+
             </select>
             <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
             
