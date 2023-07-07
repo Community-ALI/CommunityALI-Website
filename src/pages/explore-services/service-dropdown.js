@@ -46,7 +46,7 @@ const ServiceDropdown = () => {
  
 
   const toggleContent = () => {
-    setContentVisible(!isContentVisible);
+    setContentVisible(!isContentVisible);o
   };
 
   const toggleButton = () => {
@@ -241,7 +241,7 @@ const ServiceDropdown = () => {
             <div className="cont">
             <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
               <option value="alphabetical">Alphabetical</option>
-              <option value="nearest">Nearest to you</option>
+              <option value="nearest">Most Recently Added</option>
             </select>
             <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
             
