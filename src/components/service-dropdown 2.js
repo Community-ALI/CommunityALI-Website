@@ -1,15 +1,12 @@
-
 import React, { useState } from 'react';
 
 const ServiceDropdown = () => {
   const [isContentVisible, setContentVisible] = useState(false);
   const [isButtonCollapsed, setButtonCollapsed] = useState(true);
-
-  const [isButton6Collapsed, setButton6Collapsed] = useState(false);
-  const [isButton7Collapsed, setButton7Collapsed] = useState(false);
-  const [isButton8Collapsed, setButton8Collapsed] = useState(false);
-  const [isButton9Collapsed, setButton9Collapsed] = useState(false);
-
+  const [isButton2Collapsed, setButton2Collapsed] = useState(true);
+  const [isButton3Collapsed, setButton3Collapsed] = useState(true);
+  const [isButton4Collapsed, setButton4Collapsed] = useState(true);
+  const [isButton5Collapsed, setButton5Collapsed] = useState(true);
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [isChecked3, setIsChecked3] = useState(false);
@@ -18,28 +15,29 @@ const ServiceDropdown = () => {
   const [isContOpen, setContOpen] = useState(false);
   const [sortBy, setSortBy] = useState('');
 
-  
-  
+  const toggleButton0 = () => {
+    setButtonCollapsed(!isButtonCollapsed);
+  };
+
   const toggleButton6 = () => {
-    setButton6Collapsed(!isButton6Collapsed);
-    setIsChecked1(!isChecked1);  
+    setButton2Collapsed(!isButton2Collapsed);
+    setIsChecked1(!isChecked1);  // Toggle the state of the checkbox
   };
 
   const toggleButton7 = () => {
-    setButton7Collapsed(!isButton7Collapsed);
-    setIsChecked2(!isChecked2);  
+    setButton3Collapsed(!isButton3Collapsed);
+    setIsChecked2(!isChecked2);  // Toggle the state of the checkbox
   };
 
   const toggleButton8 = () => {
-    setButton8Collapsed(!isButton8Collapsed);
-    setIsChecked3(!isChecked3);  
+    setButton4Collapsed(!isButton4Collapsed);
+    setIsChecked3(!isChecked3);  // Toggle the state of the checkbox
   };
 
   const toggleButton9 = () => {
-    setButton9Collapsed(!isButton9Collapsed);
-    setIsChecked4(!isChecked4);  
+    setButton5Collapsed(!isButton5Collapsed);
+    setIsChecked4(!isChecked4);  // Toggle the state of the checkbox
   };
-
 
   const toggleCont = () => {
     setContOpen(isContOpen => !isContOpen);
@@ -55,6 +53,21 @@ const ServiceDropdown = () => {
     setButtonCollapsed(!isButtonCollapsed);
   };
 
+  const toggleButton2 = () => {
+    setButton2Collapsed(!isButton2Collapsed);
+  };
+
+  const toggleButton3 = () => {
+    setButton3Collapsed(!isButton3Collapsed);
+  };
+
+  const toggleButton4 = () => {
+    setButton4Collapsed(!isButton4Collapsed);
+  };
+
+  const toggleButton5 = () => {
+    setButton5Collapsed(!isButton5Collapsed);
+  };
 
   const handleContentClick = (event) => {
     event.stopPropagation();
@@ -176,33 +189,48 @@ const ServiceDropdown = () => {
             
             )}
 
+
+
 <div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked1 ? 'checked' : ''}`}>
   <input type="checkbox" id="cb1" checked={isChecked1}style={{ marginRight: '10px' }} />
+  <span></span>
+        </label>
   <label htmlFor="cb1">
     <button className='collapsible-button' onClick={toggleButton6}>Clubs & Communities</button>
   </label>
 </div>
 
 <div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked2 ? 'checked' : ''}`}>
   <input type="checkbox" id="cb2" checked={isChecked2} style={{ marginRight: '10px' }} />
+  <span></span>
+  </label>
   <label htmlFor="cb2">
     <button className="collapsible-button" onClick={toggleButton7}>Volunteering & Community Service</button>
   </label>
 </div>
 
 <div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked3 ? 'checked' : ''}`}>
   <input type="checkbox" id="cb3" checked={isChecked3} style={{ marginRight: '10px' }} />
+  <span></span>
+  </label>
   <label htmlFor="cb3">
     <button className='collapsible-button' onClick={toggleButton8}>Internships & Work Experience</button>
   </label>
 </div>
 
 <div className="button-with-checkbox">
+<label className={`custom-checkbox ${isChecked4 ? 'checked' : ''}`}>
   <input type="checkbox" id="cb4" checked={isChecked4} style={{ marginRight: '10px' }} />
+  <span></span>
+  </label>
   <label htmlFor="cb4">
     <button className='collapsible-button' onClick={toggleButton9}>Events & Other</button>
   </label>
 </div>
+
 
 </div>
 
@@ -212,9 +240,8 @@ const ServiceDropdown = () => {
             <label className='sort-label'>Sort by: </label>
             <div className="cont">
             <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
-            <option value="nearest">Most Recent</option>
               <option value="alphabetical">Alphabetical</option>
-              
+              <option value="nearest">Nearest to you</option>
             </select>
             <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
             

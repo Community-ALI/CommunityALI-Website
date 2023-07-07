@@ -152,6 +152,8 @@ input[type="checkbox"]
     border-radius : 10px;
     outline : none;
 
+    border: 0.5px;
+
     align-items: center;
     justify-content: space-around;
 }
@@ -163,7 +165,7 @@ input[type="checkbox"]:hover
 
 input[type="checkbox"]:checked
 {
-    background-color:#00bfff;
+    background-color:#ecaa1e;
 }
 
 input[type="checkbox"]:checked:after
@@ -249,7 +251,7 @@ input[type="reset"]
     justify-content : center;
     flex-flow : wrap;
     margin: 0px 20px;
-    margin-top: 1.5%;
+    margin-top: 2%;
 }
 
 .service-result-container
@@ -676,25 +678,24 @@ input[type="reset"]
 
 /* Plos css :3 */
 .add-service-button {
-    border: 2px solid;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
     width: 18%;
     height: 1.5;
     cursor: pointer;
     position: absolute;
-    left: 3%;
-    top: 4%;
+    left: 4%;
+    top: 3.6%;
     z-index: 1;
-    background-color: #0096C9;
+    background-color: #001E60;
     color:#fff;
     font-size: medium;
   }
  
  
   .add-service-button:hover{
-    box-shadow: 0 0 2px #00468D, 0 0 5px #00468D, 0 0 5px #00468D;
-    transition: all 0.5s;
+    box-shadow: 0 0 2px #00468D;
+    transition: all 0.1s;
  
  
   }
@@ -708,20 +709,38 @@ input[type="reset"]
  
   .content {
     position: absolute;
-    top: 5.7%;
-    left: 3%;
-    border: 1px solid grey;
+    top: 5.5%;
+    left: 3.2%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: #fff;
+    background-color: #001e60f3;
     padding: 10px;
     width: 30%;
-    border-radius: 5px;
+    border-radius: 10px;
     z-index: 1;
-    height: 6%;
+    height: 5%;
     overflow-y: scroll;
   }
+  
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #001E60;
+    border-radius: 10px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: whitesmoke;
+    border-radius: 20px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover{
+    background-color: #ecaa1e;
+  }
+  
  
  
  
@@ -732,8 +751,8 @@ input[type="reset"]
     align-items: flex-start;
   }
    .collapsible-button {
-    background-color: white;
-    color: #000;
+    background-color: #001E60;
+    color: #fff;
     border: none;
     font-weight:500;
  
@@ -745,18 +764,20 @@ input[type="reset"]
   }
    .details label {
     padding-left: 30px;
-    font-weight: bold;
+    color: #fff;
   }
-   .arrow {
+  .arrow {
     display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    vertical-align: middle;
-   
-   
+    position: relative;
+    top: -2px; 
+    align-items: center;
+    width: 9px;
+    height: 9px;
+    border-top: 1.5px solid #fff;
+    border-right: 1.5px solid #fff;
+    margin-left: 8px; 
   }
+  
    .arrow.up {
     transform: rotate(-45deg);
   }
@@ -765,8 +786,8 @@ input[type="reset"]
   }
      .right-section {
     position: absolute;
-    top: 4.5%;
-    right: 1%;
+    top: 5%;
+    right: 3.5%;
     z-index: 1;
    
   }
@@ -789,6 +810,14 @@ input[type="reset"]
     margin-right: 5px;
   }
  
+  .sort-by .arrow{
+    border-top: 1.5px solid #000;
+    border-right: 1.5px solid #000;
+    margin-left: 5px;
+    position: relative;
+    top: -3px;
+    
+  }
  
  .cont{
     position: relative;  
@@ -809,3 +838,40 @@ input[type="reset"]
     font-size: larger;
  }
  
+ @media all and (max-width: 768px) {
+    .dropdown-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    .add-service-button {
+      width: 100%;
+      text-align: left;
+    }
+  
+    .content {
+      position: static;
+      width: 100%;
+      margin-top: 10px;
+      height: auto;
+      overflow-y: visible;
+    }
+  
+    .details label {
+      padding-left: 0;
+    }
+  
+    .sort-by {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .sort-by .arrow {
+      margin-left: 0;
+      margin-top: 5px;
+    }
+  }
+  
