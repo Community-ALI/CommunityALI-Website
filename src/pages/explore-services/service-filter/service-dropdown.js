@@ -17,26 +17,26 @@ const ServiceDropdown = () => {
   const [isContOpen, setContOpen] = useState(false);
   const [sortBy, setSortBy] = useState('');
 
-  
-  
+
+
   const toggleButton6 = () => {
     setButton6Collapsed(!isButton6Collapsed);
-    setIsChecked1(!isChecked1);  
+    setIsChecked1(!isChecked1);
   };
 
   const toggleButton7 = () => {
     setButton7Collapsed(!isButton7Collapsed);
-    setIsChecked2(!isChecked2);  
+    setIsChecked2(!isChecked2);
   };
 
   const toggleButton8 = () => {
     setButton8Collapsed(!isButton8Collapsed);
-    setIsChecked3(!isChecked3);  
+    setIsChecked3(!isChecked3);
   };
 
   const toggleButton9 = () => {
     setButton9Collapsed(!isButton9Collapsed);
-    setIsChecked4(!isChecked4);  
+    setIsChecked4(!isChecked4);
   };
 
 
@@ -150,50 +150,47 @@ const ServiceDropdown = () => {
 
             )}
 
-<div className="button-with-checkbox">
-  <input type="checkbox" id="cb1" checked={isChecked1}style={{ marginRight: '10px' }} />
-  <label htmlFor="cb1">
-    <button className='collapsible-button' onClick={toggleButton6}>Clubs & Communities</button>
-  </label>
-</div>
+            <div className="button-with-checkbox">
+              <input type="checkbox" id="cb1" checked={isChecked1} style={{ marginRight: '10px' }} />
+              <label htmlFor="cb1">
+                <button className='collapsible-button' onClick={toggleButton6}>Clubs & Communities</button>
+              </label>
+            </div>
 
-<div className="button-with-checkbox">
-  <input type="checkbox" id="cb2" checked={isChecked2} style={{ marginRight: '10px' }} />
-  <label htmlFor="cb2">
-    <button className="collapsible-button" onClick={toggleButton7}>Volunteering & Community Service</button>
-  </label>
-</div>
+            <div className="button-with-checkbox">
+              <input type="checkbox" id="cb2" checked={isChecked2} style={{ marginRight: '10px' }} />
+              <label htmlFor="cb2">
+                <button className="collapsible-button" onClick={toggleButton7}>Volunteering & Community Service</button>
+              </label>
+            </div>
 
-<div className="button-with-checkbox">
-  <input type="checkbox" id="cb3" checked={isChecked3} style={{ marginRight: '10px' }} />
-  <label htmlFor="cb3">
-    <button className='collapsible-button' onClick={toggleButton8}>Internships & Work Experience</button>
-  </label>
-</div>
+            <div className="button-with-checkbox">
+              <input type="checkbox" id="cb3" checked={isChecked3} style={{ marginRight: '10px' }} />
+              <label htmlFor="cb3">
+                <button className='collapsible-button' onClick={toggleButton8}>Internships & Work Experience</button>
+              </label>
+            </div>
 
-<div className="button-with-checkbox">
-  <input type="checkbox" id="cb4" checked={isChecked4} style={{ marginRight: '10px' }} />
-  <label htmlFor="cb4">
-    <button className='collapsible-button' onClick={toggleButton9}>Events & Other</button>
-  </label>
-</div>
+            <div className="button-with-checkbox">
+              <input type="checkbox" id="cb4" checked={isChecked4} style={{ marginRight: '10px' }} />
+              <label htmlFor="cb4">
+                <button className='collapsible-button' onClick={toggleButton9}>Events & Other</button>
+              </label>
+            </div>
 
-</div>
+          </div>
 
         )}
         <div className="right-section">
           <div className="sort-by">
             <label className='sort-label'>Sort by: </label>
             <div className="cont">
-            <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
-            <option value="nearest">Most Recent</option>
-              <option value="alphabetical">Alphabetical</option>
+              <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
+                <option value="recent">Most Recent</option>
+                <option value="alphabetical">Alphabetical</option>
+              </select>
+              <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
 
-              <option value="nearest">Most Recently Added</option>
-
-            </select>
-            <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>
-            
             </div>
           </div>
         </div>

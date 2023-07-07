@@ -3,7 +3,7 @@ import {BASE_BACKEND_URL} from '../../config.js'
 import '../../pages/explore-services/main-page.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
-import ServiceDropdown from './service-dropdown.js';
+import ServiceDropdown from './service-filter/service-dropdown.js';
 const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
