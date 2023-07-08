@@ -30,7 +30,7 @@ const find_filter_service = async function (sortingType, serviceType, fields) {
       default:
         sort = 1;
     }
-    services = await Services.find({ serviceType: "Club" })
+    services = await Services.find({ serviceType: serviceType })
       .select(fields)
       .sort({ title: sort })
       .exec();
@@ -46,7 +46,7 @@ const get_services = async function (keywords, fields, sortingType, serviceType)
   try {
     filteredData = [];
     foundServices = find_filter_service(sortingType, serviceType, fields);
-    
+
     filterAttribute = 'title';
     if (keywords != undefined) {
       keywords = keywords.trim();

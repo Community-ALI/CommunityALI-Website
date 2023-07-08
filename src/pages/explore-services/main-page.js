@@ -9,6 +9,7 @@ const Buffer = require('buffer').Buffer;
 // this function creates each individual service
 const DisplayService = function (props) {
 
+
   const service = props.service;
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString('base64');
@@ -66,6 +67,8 @@ function DisplayAllServices(props) {
 
 function Services() {
     const [services, setServices] = useState([]);
+    const [sortingType, setSortingtype] = useState('alphabetical');
+    const [filter, setFilter] = useState([]);
 
     // get services from the backend
     useEffect(() => {
@@ -75,6 +78,7 @@ function Services() {
           const keyword = queryParams.get('keyword');
           console.log(keyword);
           let url = `${BASE_BACKEND_URL}/get-all-services`;
+          url += `/${sortingType}/${filter}`;
           if (keyword) {
             url += `?keyword=${encodeURIComponent(keyword)}`;
           }

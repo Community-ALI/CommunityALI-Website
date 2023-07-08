@@ -148,7 +148,7 @@ app.post('/change_notification_status/:id', upload.none(), async function (req, 
 });
 
 // send the user every service
-app.get('/get-all-services', async function (req, res){
+app.get('/get-all-services/:sorting/:filter', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
