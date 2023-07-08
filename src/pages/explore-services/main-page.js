@@ -68,10 +68,10 @@ function DisplayAllServices(props) {
 function Services() {
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState('alphabetical');
-  const [filterType, setFilterType] = useState([]);
+  const [filterType, setFilterType] = useState(['all']);
 
   useEffect(() => {
-    console.log(`filterType: ${sortingType}, sortingType: ${filterType}`);
+    console.log(`filterType: ${filterType}, sortingType: ${sortingType}`);
   }, [filterType, sortingType]);
 
   // get services from the backend
@@ -103,7 +103,7 @@ function Services() {
     };
 
     fetchData();
-  }, []);
+  }, [filterType, sortingType]);
 
   // return the page
   return (

@@ -64,8 +64,12 @@ const ServiceDropdown = (props) => {
   };
 
   const changeFilter = (input) => {
-    if (!filterType.includes(input)){
-      props.SetFilterType(props.filterType.concat(input));
+    if (!props.filterType.includes(input)) {
+      props.SetFilterType(props.filterType.filter(filter => filter != 'all').concat(input));
+      return;
+    }
+    if (props.filterType.length === 1) {
+      props.SetFilterType(['all']);
       return;
     }
     props.SetFilterType(props.filterType.filter(filterType => filterType != input));
@@ -80,12 +84,16 @@ const ServiceDropdown = (props) => {
 
         {isContentVisible && (
           <div className="content" onClick={handleContentClick}>
-            <button className="collapsible-button" onClick={toggleButton}>
+            {/* <button className="collapsible-button" onClick={toggleButton}>
               <span className={`arrow ${isButtonCollapsed ? 'down' : 'up'}`}></span>Subject & Career Oriented
-            </button>
+            </button> */}
+            <label className='text-white mr-3'>
+              <input  type="checkbox"
+                onChange={() => changeFilter('Club')} /> Clubs & Communities
+            </label>
             {!isButtonCollapsed && (
               <div className="details">
-
+                {/* 
                 <label>
                   <input type="checkbox"
                     onChange={() => changeFilter('agriculture')} /> Agriculture
@@ -121,11 +129,11 @@ const ServiceDropdown = (props) => {
                 <label>
                   <input type="checkbox"
                     onChange={() => changeFilter('science')} /> Science, Engineering & Mathematics
-                </label>
+                </label> */}
               </div>
 
             )}
-
+            {/* 
             <div className="button-with-checkbox">
               <input type="checkbox" id="cb1" checked={isChecked1} style={{ marginRight: '10px' }} />
               <label htmlFor="cb1">
@@ -152,7 +160,7 @@ const ServiceDropdown = (props) => {
               <label htmlFor="cb4">
                 <button className='collapsible-button' onClick={toggleButton9}>Events & Other</button>
               </label>
-            </div>
+            </div> */}
 
           </div>
 
@@ -162,7 +170,7 @@ const ServiceDropdown = (props) => {
             <label className='sort-label'>Sort by: </label>
             <div className="cont">
               <select className='sort-select' value={sortBy} onChange={handleSortByChange} onMouseDown={toggleCont}>
-                <option value="recent">Most Recent</option>
+                {/* <option value="recent">Most Recent</option> */}
                 <option value="alphabetical">Alphabetical</option>
               </select>
               <span className={`arrow ${isContOpen ? 'up' : 'down'}`} ></span>

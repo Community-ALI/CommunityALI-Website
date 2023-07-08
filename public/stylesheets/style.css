@@ -657,6 +657,11 @@ video {
   padding-bottom: 1rem;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-regal-blue {
   --tw-text-opacity: 1;
   color: rgb(36 60 90 / var(--tw-text-opacity));
