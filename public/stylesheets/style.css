@@ -588,6 +588,31 @@ video {
   z-index: -1;
 }
 
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.mx-\[20px\] {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.mx-\[20\%\] {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.mx-\[10\%\] {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.mx-\[8\%\] {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -612,6 +637,10 @@ video {
   min-width: 100vw;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -622,6 +651,14 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .overflow-auto {

@@ -683,7 +683,6 @@ input[type="reset"]
     width: 18%;
     height: 1.5;
     cursor: pointer;
-    position: absolute;
     left: 4%;
     top: 3.6%;
     z-index: 1;
@@ -784,13 +783,7 @@ input[type="reset"]
    .arrow.down {
     transform: rotate(135deg);
   }
-     .right-section {
-    position: absolute;
-    top: 5%;
-    right: 3.5%;
-    z-index: 1;
-   
-  }
+  
    .sort-by select {
     border: none;
     outline: none;

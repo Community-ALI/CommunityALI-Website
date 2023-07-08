@@ -66,6 +66,11 @@ function DisplayAllServices(props) {
 }
 
 function Services() {
+  <ServiceDropdown
+    SetSortingType={setSortingtype}
+    SetFilterType={setFilterType}
+    filterType={filterType}
+  />
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState('alphabetical');
   const [filterType, setFilterType] = useState(['all']);
@@ -114,13 +119,13 @@ function Services() {
       </div>
       <NavBar isFixedPage={false} />
 
-      <ServiceDropdown
-        SetSortingType={setSortingtype}
-        SetFilterType={setFilterType}
-        filterType={filterType}
-      />
 
       <div className="search-result-container">
+          <ServiceDropdown
+            SetSortingType={setSortingtype}
+            SetFilterType={setFilterType}
+            filterType={filterType}
+          />
         <div className="results">
           <DisplayAllServices services={services} />
         </div>

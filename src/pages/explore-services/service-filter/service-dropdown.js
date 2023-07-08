@@ -77,7 +77,7 @@ const ServiceDropdown = (props) => {
 
   return (
     <>
-      <div className="dropdown-container">
+      <div className="flex flex-row justify-between mx-[8%] gap-4">
         <button className="add-service-button" onClick={toggleContent}>
           <b>Add a Service Category</b><span className={`arrow ${isContentVisible ? 'up' : 'down'}`}></span>
         </button>
