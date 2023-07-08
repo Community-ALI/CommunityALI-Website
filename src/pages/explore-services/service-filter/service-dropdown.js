@@ -91,6 +91,10 @@ const ServiceDropdown = (props) => {
               <input  type="checkbox"
                 onChange={() => changeFilter('Club')} /> Clubs & Communities
             </label>
+            <label className='text-white mr-3'>
+              <input  type="checkbox"
+                onChange={() => changeFilter('Internship')} /> Internships & Work Experience
+            </label>
             {!isButtonCollapsed && (
               <div className="details">
                 {/* 
