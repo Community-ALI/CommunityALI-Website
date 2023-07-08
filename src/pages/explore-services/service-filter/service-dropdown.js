@@ -59,21 +59,17 @@ const ServiceDropdown = (props) => {
   };
 
   const handleSortByChange = (event) => {
-    SetSortingType(event.target.value);
+    props.SetSortingType(event.target.value);
     setContOpen(false);
   };
 
-  const handleCheckboxChange = (category, checkbox) => {
-    setCheckboxes(prevCheckboxes => ({
-      ...prevCheckboxes,
-      [category]: {
-        ...prevCheckboxes[category],
-        [checkbox]: !prevCheckboxes[category][checkbox]
-      }
-    }));
+  const changeFilter = (input) => {
+    if (!filterType.includes(input)){
+      props.SetFilterType(props.filterType.concat(input));
+      return;
+    }
+    props.SetFilterType(props.filterType.filter(filterType => filterType != input));
   };
-
-  const [checkboxes, setCheckboxes] = useState([]);
 
   return (
     <>
@@ -92,48 +88,39 @@ const ServiceDropdown = (props) => {
 
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.agriculture}
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'agriculture')} /> Agriculture
+                    onChange={() => changeFilter('agriculture')} /> Agriculture
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.art} //add the checked attribute here 
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'art')} /> Art, Performances & Humanities
+                    onChange={() => changeFilter('art')} /> Art, Performances & Humanities
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.behavioral} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'behavioral')} /> Behavioral & Social Sciences
+                    onChange={() => changeFilter('behavioral')} /> Behavioral & Social Sciences
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.business} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'business')} /> Business & Computing
+                    onChange={() => changeFilter('business')} /> Business & Computing
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.fitness} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'fitness')} /> Fitness & Health Professions
+                    onChange={() => changeFilter('fitness')} /> Fitness & Health Professions
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.industry} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'industry')} /> Industry & Trades
+                    onChange={() => changeFilter('industry')} /> Industry & Trades
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.language} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'language')} /> Language Arts & Education
+                    onChange={() => changeFilter('language')} /> Language Arts & Education
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.public} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'public')} /> Public Safety
+                    onChange={() => changeFilter('public')} /> Public Safety
                 </label>
                 <label>
                   <input type="checkbox"
-                    checked={checkboxes.subjectAndCareerOriented.science} //add the checked attribute here
-                    onChange={() => handleCheckboxChange('subjectAndCareerOriented', 'science')} /> Science, Engineering & Mathematics
+                    onChange={() => changeFilter('science')} /> Science, Engineering & Mathematics
                 </label>
               </div>
 
