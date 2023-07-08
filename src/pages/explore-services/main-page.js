@@ -68,7 +68,11 @@ function DisplayAllServices(props) {
 function Services() {
     const [services, setServices] = useState([]);
     const [sortingType, setSortingtype] = useState('alphabetical');
-    const [filter, setFilter] = useState([]);
+    const [filterType, setFilterType] = useState([]);
+
+  useEffect(() => {
+    console.log(`filterType: ${sortingType}, sortingType: ${filterType}`);
+  }, [filterType, sortingType]);
 
     // get services from the backend
     useEffect(() => {
@@ -78,7 +82,7 @@ function Services() {
           const keyword = queryParams.get('keyword');
           console.log(keyword);
           let url = `${BASE_BACKEND_URL}/get-all-services`;
-          url += `/${sortingType}/${filter}`;
+          url += `/${sortingType}/${filterType}`;
           if (keyword) {
             url += `?keyword=${encodeURIComponent(keyword)}`;
           }
@@ -110,7 +114,7 @@ function Services() {
             </div>
             <NavBar isFixedPage={false} />
 
-              <ServiceDropdown />
+              <ServiceDropdown SetSortingType={setSortingtype} />
 
             <div className = "search-result-container">
                 <div className ="results">

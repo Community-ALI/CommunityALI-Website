@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const ServiceDropdown = () => {
+const ServiceDropdown = (props) => {
+
   const [isContentVisible, setContentVisible] = useState(false);
   const [isButtonCollapsed, setButtonCollapsed] = useState(true);
 
@@ -58,7 +59,7 @@ const ServiceDropdown = () => {
   };
 
   const handleSortByChange = (event) => {
-    setSortBy(event.target.value);
+    SetSortingType(event.target.value);
     setContOpen(false);
   };
 
@@ -72,19 +73,7 @@ const ServiceDropdown = () => {
     }));
   };
 
-  const [checkboxes, setCheckboxes] = useState({
-    subjectAndCareerOriented: {
-      agriculture: false,
-      art: false,
-      behavioral: false,
-      business: false,
-      fitness: false,
-      industry: false,
-      language: false,
-      public: false,
-      science: false,
-    }
-  });
+  const [checkboxes, setCheckboxes] = useState([]);
 
   return (
     <>
