@@ -22,7 +22,8 @@ function search(keyword, attribute, dbServices, filteredData) {
 
 const find_filter_service = async function (sortingType, serviceType, fields) {
   try {
-    console.log(`filterType: ${serviceType}, sortingType: ${sortingType}`);
+    serviceTypes = serviceType.split(',');
+    console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}`);
     var sort;
     switch (sortingType) {
       case 'reverse_alphabetical':
@@ -31,13 +32,13 @@ const find_filter_service = async function (sortingType, serviceType, fields) {
       default:
         sort = 1;
     }
-    if (serviceType.includes('all')) {
+    if (serviceTypes.includes('all')) {
       services = await Services.find()
         .select(fields)
         .sort({ title: sort })
         .exec();
     } else {
-      services = await Services.find({ serviceType: { $in: serviceType } })
+      services = await Services.find({ serviceType: { $in: serviceTypes } })
         .select(fields)
         .sort({ title: sort })
         .exec();
