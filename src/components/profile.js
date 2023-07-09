@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import './profile.css';
 import Footer from "./Footer";
 import {BASE_BACKEND_URL} from '../config'
-
+import ProfilePicturePopup from './profilePicturePopup';
 function Profile()
 {
     const imageUrl = "photos-optimized/user-pic.png";
@@ -17,6 +17,8 @@ function Profile()
     const [applications, setApplications] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [buttonText, setButtonText] = useState('Edit Information');
+    const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
+    const [showUploader, setShowUploader] = useState(false);
     const nameRef = useRef(null);
     // services
     useEffect(() => {
@@ -159,11 +161,13 @@ const uploadData = function () {
     };
 
     return(
+      
         <div className="profile-page">
+            {isShowingProfilePicturePopup && <ProfilePicturePopup isShowingProfilePicturePopup={isShowingProfilePicturePopup} />}
             <NavBar isFixedPage={false}/>
             <div className="profile-container">
                 <div className="profile-picture">
-                    <img className="profile-img" src={imageUrl}/>
+                    <img className="profile-img" src={imageUrl} onClick={()=>{setIsShowingProfilePicturePopup(!isShowingProfilePicturePopup)}}/>
                     <div className="profile-details">
                         <div className='profile-name-display'> {account.username} </div>
                         <div className='profile-email-display'> {account.email}</div>
