@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="24437f79-7efe-4aae-8afa-1da5b4cb1c22" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my-services/club-components/overview-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my-services/club-components/overview-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my-services/club-components/sign-up-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my-services/club-components/sign-up-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store-functions/store-add-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/store-functions/store-add-service.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QzcbFUyXJ6mnEL4F4fEntxTgQL" />
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="24437f79-7efe-4aae-8afa-1da5b4cb1c22" name="Changes" comment="" />
+      <created>1686359923257</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686359923257</updated>
+    </task>
+    <servers />
+  </component>
+</project>

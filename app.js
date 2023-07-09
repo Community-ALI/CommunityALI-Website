@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // get db
-const get_all_services = require("./get-functions/get-all-services");
+const get_all_services = require("./controllers/service-data");
 const get_one_service = require("./get-functions/get-one-service");
 
 //authorized only get
@@ -148,11 +148,13 @@ app.post('/change_notification_status/:id', upload.none(), async function (req, 
 });
 
 // send the user every service
-app.get('/get-all-services', async function (req, res){
+app.get('/get-all-services/:sorting/:serviceType', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
-    const all_services = await get_all_services(keywords, 'title thumbnail pages');
+    const all_services = 
+      await get_all_services(keywords, 'title thumbnail pages',
+      req.params.sorting, req.params.serviceType);
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {
