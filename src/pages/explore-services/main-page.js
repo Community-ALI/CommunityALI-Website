@@ -65,7 +65,7 @@ function DisplayAllServices(props) {
   );
 }
 
-function Services() {
+function Services(props) {
   <ServiceDropdown
     SetSortingType={setSortingtype}
     SetFilterType={setFilterType}
@@ -73,7 +73,7 @@ function Services() {
   />
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState('alphabetical');
-  const [filterType, setFilterType] = useState(['all']);
+  const [filterType, setFilterType] = useState([props.startingfilter]);
 
   useEffect(() => {
     console.log(`filterType: ${filterType}, sortingType: ${sortingType}`);
