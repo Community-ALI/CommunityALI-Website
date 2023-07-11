@@ -46,19 +46,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const AWS = require('aws-sdk');
+const { CognitoIdentityServiceProvider } = require('aws-sdk');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
 
-AWS.config.update({
+
+const cognito = new CognitoIdentityServiceProvider({
+  region: 'us-west-2',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: 'us-west-2'
-});
-
-const transporter = nodemailer.createTransport({
-  SES: new AWS.SES({ apiVersion: '2010-12-01' })
 });
 
 async function sendValidationEmail(email, validationToken) {
@@ -77,6 +74,105 @@ async function sendValidationEmail(email, validationToken) {
   }
 }
 
+
+// User signup
+const crypto = require('crypto');
+
+// send the user one service
+// app.get("/aws/signup", async function (req, res) {
+//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
+//   const redirectUri = 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback'
+//   link = `https://communityali.auth.us-west-2.amazoncognito.com/signup?client_id=${clientId}&response_type=code&scope=email+openid+profile&redirect_uri=${redirectUri}`;
+
+//   res.redirect(link)//'https://alitrial.auth.us-west-2.amazoncognito.com/forgotPassword?client_id=5le7m14munmqdb4154q9d3qmc3&response_type=code&scope=email+openid&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Flogged_in.html');
+// });
+
+// app.get('/aws/login', async function (req, res) {
+//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
+//   const redirectUri = 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback'
+//   link = `https://communityali.auth.us-west-2.amazoncognito.com/login?client_id=${clientId}&response_type=code&scope=email+openid+profile&redirect_uri=${redirectUri}`;
+
+//   res.redirect(link)
+// });
+
+// const axios = require('axios');
+
+// app.get('/aws/callback', async function (req, res) {
+//   const code = req.query.code;
+//   // Make a POST request to exchange the authorization code for tokens
+//   try {
+//     const response = await axios.post('https://communityali.auth.us-west-2.amazoncognito.com/oauth2/token', {
+//       grant_type: 'authorization_code',
+//       client_id: process.env.COGNITO_APP_CLIENT_ID,
+//       code,
+//       redirect_uri: 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Ftoken'
+//     });
+
+//     // Extract the tokens from the response
+//     const accessToken = response.data.access_token;
+//     const refreshToken = response.data.refresh_token;
+//     // You can now use the tokens as needed
+//     // e.g., store them in a session or use them to authenticate requests
+
+//     res.send('Tokens obtained successfully!');
+//   } catch (error) {
+//     // Handle any errors that occur during the token request
+//     console.error('Token request error:', error);
+//     res.status(500).send('Error obtaining tokens');
+//   }
+// });
+
+// app.get("/aws/signup", async function (req, res) {
+//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
+//   const redirectUri = encodeURIComponent('http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback');
+//   const link = `https://communityali.auth.us-west-2.amazoncognito.com/signup?client_id=${clientId}&response_type=token&scope=email+openid+profile&redirect_uri=${redirectUri}`;
+
+//   res.redirect(link);
+// });
+
+// app.get('/aws/login', async function (req, res) {
+//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
+//   const redirectUri = 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback';
+//   const link = `https://communityali.auth.us-west-2.amazoncognito.com/login?client_id=${clientId}&response_type=token&scope=email+openid&redirect_uri=${redirectUri}`;
+
+//   res.redirect(link);
+// });
+
+// app.get('/aws/callback', async function (req, res) {
+//   // Extract the tokens from the URL fragment
+//   const urlFragment = req.url.split('#')[1];
+//   const urlParams = new URLSearchParams(urlFragment);
+//   const accessToken = urlParams.get('access_token');
+//   const idToken = urlParams.get('id_token');
+//   const tokenType = urlParams.get('token_type');
+
+//   // You can now use the tokens as needed
+//   // e.g., store them in a session or use them to authenticate requests
+//   console.log(req);
+//   res.send('Tokens obtained successfully!');
+// });
+ 
+// // app.get('/aws/token', async function (req, res) {
+// //   print('token recieved')
+// // });
+
+// // User logout
+// app.post('/aws/logout', async (req, res) => {
+//   const accessToken = req.body.accessToken; // Assuming the access token is passed in the request body
+
+//   // Call the GlobalSignOut method to invalidate the user's access token and refresh token
+//   const params = {
+//     AccessToken: accessToken
+//   };
+
+//   try {
+//     await cognito.globalSignOut(params).promise();
+//     res.send('User logout successful!');
+//   } catch (error) {
+//     console.error('User logout error:', error);
+//     res.status(500).send('Error logging out user');
+//   }
+// });
 
 // send the user one service
 app.get("/get-one-service", async function (req, res) {

@@ -1,9 +1,9 @@
 import React, { useRef, Component, useEffect, useState } from 'react';
-import '../../public/stylesheets/style.css';
-import NavBar from './NavBar';
+import '../../../public/stylesheets/style.css';
+import NavBar from '../../components/NavBar';
 import './profile.css';
-import Footer from "./Footer";
-import {BASE_BACKEND_URL} from '../config'
+import Footer from "../../components/Footer";
+import {BASE_BACKEND_URL} from '../../config'
 import ProfilePicturePopup from './profilePicturePopup';
 function Profile()
 {
@@ -20,6 +20,7 @@ function Profile()
     const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
     const [showUploader, setShowUploader] = useState(false);
     const nameRef = useRef(null);
+    const popupRef = useRef(null);
     // services
     useEffect(() => {
         const fetchData = async () => {
@@ -49,6 +50,12 @@ function Profile()
     
         fetchData();
       }, []);
+
+      const handleClickOutsidePopup = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+          setIsShowingProfilePicturePopup(false);
+        }
+      };
       // applications
       useEffect(() => {
         const fetchData = async () => {
@@ -112,7 +119,25 @@ function Profile()
     return(
       
         <div className="profile-page">
-            {isShowingProfilePicturePopup && <ProfilePicturePopup isShowingProfilePicturePopup={isShowingProfilePicturePopup} />}
+            {isShowingProfilePicturePopup &&
+            <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            }}
+            onClick={handleClickOutsidePopup}
+          > 
+            <div ref={popupRef}>
+              <ProfilePicturePopup
+                isShowingProfilePicturePopup={isShowingProfilePicturePopup}
+                onClose={() => setIsShowingProfilePicturePopup(false)}
+              />
+            </div>
+          </div>}
             <NavBar isFixedPage={false}/>
             <div className="profile-container">
                 <div className="profile-picture">
