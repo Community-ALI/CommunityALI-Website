@@ -35,7 +35,8 @@ function App() {
             <Routes>
  
                 {/* explore services pages */}
-                <Route path="/services" element={<Services_Main_Page />}/>
+                <Route path="/services" element={<Services_Main_Page startingfilter={'all'} />}/>
+                <Route path="/services-clubs" element={<Services_Main_Page startingfilter={'Club'} />}/>
                 <Route path="/service-info" element={<View_Services />}/>
                 <Route path="/signup-success" element={<Signup_Success />}/>
 

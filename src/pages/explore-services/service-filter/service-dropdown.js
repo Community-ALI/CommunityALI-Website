@@ -89,6 +89,7 @@ const ServiceDropdown = (props) => {
             </button> */}
             <label className='text-white mr-3'>
               <input  type="checkbox"
+                checked={props.filterType.includes('Club')}
                 onChange={() => changeFilter('Club')} /> Clubs & Communities
             </label>
             <label className='text-white mr-3'>
