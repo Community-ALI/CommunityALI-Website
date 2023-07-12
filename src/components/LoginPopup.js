@@ -1,12 +1,17 @@
 import React, {useState } from 'react';
 import {BASE_BACKEND_URL} from '../config.js'
 import './login.css';
-
+import SignupPopup from './SignupPopup.js';
 function LoginPopup(props) {
 
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
 
+    const handleSignupClick = () => {
+        setIsShowingSignupPopup(true);
+      };
+      
 
         async function login(event) {
             event.preventDefault();
@@ -51,7 +56,7 @@ function LoginPopup(props) {
 
     // }
 
-    if (props.isShowingLoginPopup) {
+    if (props.isShowingLoginPopup && !isShowingSignupPopup) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
@@ -90,11 +95,12 @@ function LoginPopup(props) {
                                 type="submit" 
                                 value="Login" 
                                 id='login-submission'
-                                class="login-submit-button"
+                                className="login-submit-button"
                             />
-                            {/* <!-- <div class="signup_link">
-                            Don't have an account? <a href="signup.html">Sign-up</a>
-                            </div> --> */} 
+                            <div class="signup_link">
+                                <p>Don't have an account? </p>
+                                <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSignupClick}>Sign-up</button>
+                            </div> 
                             <div className="signup_link">
                                 Do you own a club and can't log into your account? Contact us - techsupport@communityali.org
                             </div>
@@ -102,6 +108,9 @@ function LoginPopup(props) {
                     </div>
                 </div>
         )
+    }
+    else if (props.isShowingLoginPopup && isShowingSignupPopup){
+        return <SignupPopup setIsShowingSignupPopup={setIsShowingSignupPopup} />
     }
 
     return null;
