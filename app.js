@@ -503,7 +503,7 @@ app.post('/api/register', async (req, res) => {
       dateCreated: new Date().toISOString() // Store the current date/time as ISO string
     });
 
-    console.log('User created successfully: ', response);\
+    console.log('User created successfully: ', response);
 
     
   } catch (error) {
