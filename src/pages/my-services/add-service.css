@@ -464,7 +464,24 @@ input[data-autocompleted]
     outline : none;
     color : #ecaa1e;
     font-size: clamp(8px, 3vh, 20px);
+    margin-right: 5px;
+    
 }
+
+.category-select-button {
+    background-color: #001E60;
+    border-radius: 10px;
+    padding: none;
+    width: 25%;
+    position: relative;
+    top: 10px;
+  }
+
+.cb-label{
+    margin-left: 10px;
+}
+
+
 
 .service-contact-link
 {
