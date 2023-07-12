@@ -14,7 +14,9 @@ import Add_Club from "./pages/my-services/club-components/add-club";
 import Add_Event from "./pages/my-services/event-components/add-event";
 import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
 import Add_Internship from "./pages/my-services/internship-components/add-internship";
-import Edit_Service from "./pages/my-services/club-components/edit-club";
+import Edit_Service from "./pages/my-services/edit-service";
+import Edit_Club from "./pages/my-services/club-components/edit-club";
+import Edit_Internship from "./pages/my-services/internship-components/edit-internship";
 import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
 import Profile from "./pages/account/profile";
@@ -48,6 +50,8 @@ function App() {
                 <Route path="/add-volunteer" element={<Add_Volunteer />}/>
                 <Route path="/add-internship" element={<Add_Internship />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
+                <Route path="/edit-club" element={<Edit_Club />}/>
+                <Route path="/edit-internship" element={<Edit_Internship />}/>
                 <Route path="/view-applicants" element={<View_Applicants />}/>
                 <Route path="/register" element={<Register />}/>
 

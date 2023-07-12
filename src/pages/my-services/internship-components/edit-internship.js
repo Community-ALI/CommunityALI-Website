@@ -10,11 +10,12 @@ import FaqPage from "../general-components/faq-page.js";
 import SignUpPage from "./sign-up-page.js";
 import { Buffer } from 'buffer';
 
-function AddClub() {
+function AddInternship() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
     "FAQ",
+    "Requirements",
     "Sign Up"
   ];
 
@@ -23,7 +24,7 @@ function AddClub() {
     "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ"];
+  const removablePages = ["Contacts", "FAQ", "Requirements"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
@@ -181,7 +182,7 @@ function AddClub() {
         </div>
 
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
+          <input type="text" placeholder="Name of the Internship" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
 
         <div className="service-navbar">
@@ -237,4 +238,4 @@ function AddClub() {
   );
 }
 
-export default AddClub;
+export default AddInternship;
