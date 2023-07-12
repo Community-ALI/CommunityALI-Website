@@ -3,6 +3,8 @@ import '../add-service.css';
 
 function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = false}) {
 
+  const [tisOpen, setTisOpen] = useState(false); 
+
   const schoolOptions = [
     "Agriculture",
     "Art, Performance & The Humanities",
@@ -15,6 +17,10 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     "Science, Engineering & Mathematics",
     "Other"
   ];
+
+  const toggleSelectOption = () => {
+    setTisOpen(!tisOpen);
+  }
 
   const [fileContainerID, setFileContainerID] = useState('file-container');
   const fileUploadText = useRef();
@@ -156,11 +162,12 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
 
           <div>
           <div>
+            <button type='button' onClick={toggleSelectOption} className='category-select-button'> School</button>
+            {tisOpen &&
             <div>
-              <u>School:</u>
               {schoolOptions.map((option) => (
                 <div key={option}>
-                  <label>
+                  <label className='cb-label' >
                     <input
                       type="checkbox"
                       onChange={handleFormChange}
@@ -174,6 +181,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
                 </div>
               ))}
             </div>
+}
           </div>
 
 
