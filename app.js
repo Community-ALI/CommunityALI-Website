@@ -470,7 +470,6 @@ app.post('/api/logout', (req, res) => {
   res.json({ status: 'ok', message: 'Logout successful' });
 });
 
-// POST /api/register endpoint
 app.post('/api/register', async (req, res) => {
   const { username, password: plainTextPassword, email } = req.body;
   const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -495,33 +494,18 @@ app.post('/api/register', async (req, res) => {
 
   const password = await bcrypt.hash(plainTextPassword, 10);
 
-  const verificationCode = Math.floor(1000 + Math.random() * 9000); // Generate a 4 digit verification code
-
   try {
     const response = await User.create({
       username,
       password,
       email,
       verified: false,
-      verificationCode: verificationCode // Save the verification code in the database
+      clubAdmin: false, // Set default value for clubAdmin
+      internshipAdmin: false, // Set default value for internshipAdmin
+      dateCreated: new Date().toISOString() // Store the current date/time as ISO string
     });
 
     console.log('User created successfully: ', response);
-
-    // Send verification email to user
-    const mailOptions = {
-      from: 'communityalis@gmail.com', // Replace with your sender email address
-      to: email,
-      subject: 'Community ALI Verification',
-      text: `Your verification code is: ${verificationCode}`
-    };
-
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log('Verification email sent successfully');
-    } catch (error) {
-      console.error('Error sending verification email:', error);
-    }
   } catch (error) {
     if (error.code === 11000) {
       // Duplicate key

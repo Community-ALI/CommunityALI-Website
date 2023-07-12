@@ -23,7 +23,7 @@ function SignupPopup(props) {
     const authData = { email, username, password };
 
     try {
-      const response = await fetch(`${BASE_BACKEND_URL}/api/signup`, {
+      const response = await fetch(`${BASE_BACKEND_URL}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
