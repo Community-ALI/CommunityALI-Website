@@ -184,7 +184,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
                 {editMode === false?(
                   <input type="submit" value="Submit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 ) : (
-                  <input type="submit" value="Edit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                  <input type="submit" value="Update Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 )}
             </div>
         </div>

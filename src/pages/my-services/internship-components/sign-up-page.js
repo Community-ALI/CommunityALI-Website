@@ -2,13 +2,14 @@ import React, {useState} from "react";
 import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
 import RequirementsPage from "./requirements-page.js";
-
-function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
+import { useNavigate } from 'react-router-dom';
+function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
+  let navigate = useNavigate();
     console.log(allFormData)
     const checkRequired = () => {
       if (
         !mainInfo.title) {
-        alert('Please provide a club name');
+        alert('Please provide an internship name');
         return false;
       }
 
@@ -156,7 +157,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             .then(data => {
               // Handle response from the server
               console.log('Upload successful:', data);
-              window.location.href = '/services'
+              navigate('/services'); // Navigate to the new page without triggering beforeunload event
             })
             .catch(error => {
               // Handle error
@@ -173,7 +174,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
         <div>
             <div className="sign-up-form">
               <div id="form" className="sign-up-form-boxes">
-                <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
+                <div className="service-header" id="sign-up-header">Apply for this Internship Today!</div>
                   <div className="sign-up-form-container">
                       <div className="text-container" id="name-container">
                           <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
@@ -201,9 +202,9 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
                 </label>
                 {/* <input type="button" value="Save Draft" id="draft-button" className="application-buttons" /> */}
                 {editMode === false?(
-                  <input type="submit" value="Submit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                  <input type="submit" value="Submit Internship" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 ) : (
-                  <input type="submit" value="Edit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                  <input type="submit" value="Update Internship" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 )}
             </div>
         </div>
