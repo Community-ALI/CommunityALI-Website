@@ -17,7 +17,9 @@ import Add_Internship from "./pages/my-services/internship-components/add-intern
 import Edit_Service from "./pages/my-services/club-components/edit-club";
 import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
-import Profile from "./components/profile";
+import Profile from "./pages/account/profile";
+
+// import Signup from "./signup"
 
 import './style.scss';
 import '../public/stylesheets/style.css'
@@ -33,7 +35,8 @@ function App() {
             <Routes>
  
                 {/* explore services pages */}
-                <Route path="/services" element={<Services_Main_Page />}/>
+                <Route path="/services" element={<Services_Main_Page startingfilter={'all'} />}/>
+                <Route path="/services-clubs" element={<Services_Main_Page startingfilter={'Club'} />}/>
                 <Route path="/service-info" element={<View_Services />}/>
                 <Route path="/signup-success" element={<Signup_Success />}/>
 
@@ -52,12 +55,12 @@ function App() {
 
                 {/* other */}
                 <Route path="/" element={<LandingPage />}/>
-                <Route path="/contact-form" element={<ContactForm/>}/>
+                {/* <Route path="/contact-form" element={<ContactForm/>}/> */}
             </Routes>
         </BrowserRouter>
     )
 }
 
 createRoot(document.getElementById('root')).render(
-        <App />
-    );
+    <App />
+);

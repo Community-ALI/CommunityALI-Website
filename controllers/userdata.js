@@ -17,6 +17,27 @@ exports.get_all_user_notifications = async function (username) {
   }
 }
 
+exports.set_account_data = async function (username, req) {
+  try {
+    const selected_account = await Users.findOne({ username: username });
+
+    if (selected_account) {
+      // Update only the fields found in req.body.account
+      Object.assign(selected_account, req.body.account);
+
+      // Save the updated account back to the database
+      await selected_account.save();
+
+      return selected_account; // Optional: Return the updated account
+    } else {
+      // Handle case when account with the given username is not found
+      // return an appropriate response or throw an error
+    }
+  } catch (error) {
+    // Handle any errors that occurred during the update process
+    // return an appropriate response or throw an error
+  }
+};
 
 
 // get user services from database

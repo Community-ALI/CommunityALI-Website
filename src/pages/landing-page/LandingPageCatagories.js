@@ -17,7 +17,7 @@ function LandingPageCatagories() {
                         <div id="career-text" className="box-header-text">Subject and Career Path</div>
                     </div>
                 </a>
-                <a className="category-box" id="box2" href="/services">
+                <a className="category-box" id="box2" href="/services-clubs">
                     <div className = "box">
                         <img id="club" src="photos-optimized/clubs-opt.jpg"/>
                         <div id="club-text" className="box-header-text"> Clubs and Communities</div>
