@@ -24,7 +24,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
 
   const [fileContainerID, setFileContainerID] = useState('file-container');
   const fileUploadText = useRef();
-  console.log(editMode)
   useEffect(() => {
     if (formData.file) {
       setFileContainerID('file-container-with-file');
@@ -46,7 +45,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     const selectedFile = event.target.files[0];
    
     
-    console.log(selectedFile)
     setFormData((prevData) => ({ ...prevData, file: selectedFile }));
   };
 
@@ -57,7 +55,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
 
   const handleFormChange = (event) => {
     event.persist(); // Notify React to persist the event object
-    console.log(formData)
     const { name, value, type, checked } = event.target;
   
     if (type === "checkbox") {

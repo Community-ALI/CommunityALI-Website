@@ -34,7 +34,6 @@ function Profile() {
           const data = await response.json();
           setServices(data.dataServices);
         } else {
-          console.log('no token found');
         }
       } catch (error) {
         console.log(error);
@@ -57,7 +56,6 @@ function Profile() {
           const data = await response.json();
           setApplications(data.dataApplications);
         } else {
-          console.log('no token found');
         }
       } catch (error) {
         console.log(error);
@@ -79,7 +77,6 @@ function Profile() {
           });
           const data = await response.json();
           setAccount(data.dataAccount[0]);
-          console.log(data.dataAccount[0]);
           const loaderWrapper = document.querySelector('.loader-wrapper');
           loaderWrapper.style.transition = 'opacity 0.5s';
           loaderWrapper.style.opacity = '0';
@@ -87,7 +84,7 @@ function Profile() {
             loaderWrapper.style.display = 'none';
           }, 500);
         } else {
-          console.log('no token found');
+          console.log('error: not logged in');
         }
       } catch (error) {
         console.log(error);
@@ -98,7 +95,6 @@ function Profile() {
   }, []);
 
   const uploadData = function () {
-    console.log('sending accoiunt');
     try {
       const token = localStorage.getItem('token');
       if (token) {
@@ -115,7 +111,6 @@ function Profile() {
             console.log('data sent');
           });
       } else {
-        console.log('no token found');
       }
     } catch (error) {
       console.log(error);

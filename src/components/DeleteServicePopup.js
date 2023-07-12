@@ -32,7 +32,6 @@ function DeleteServicePopup(props) {
                 
                 if (result.status === 'ok') {
                     //everything is a okay
-                    console.log('Got the token: ', result.data);
                     var token = result.data;
                     const response = await fetch(`${BASE_BACKEND_URL}/delete-service?service=${props.serviceTitle}`,
                         {

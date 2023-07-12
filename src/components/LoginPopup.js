@@ -37,7 +37,6 @@ function LoginPopup(props) {
 
                 if (result.status === 'ok') {
                     //everything is a okay
-                    console.log('Got the token: ', result.data);
                     localStorage.setItem('token', result.data);
                     const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
                     console.log('signed in as: '+ decodedToken.username);

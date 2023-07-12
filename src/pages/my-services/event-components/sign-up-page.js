@@ -76,7 +76,6 @@ function SignUpPage() {
 
             formData.append("files", file);
 
-            console.log(formData)
             const token = localStorage.getItem('token');
             await fetch('http://localhost:3000/upload-service',{
               method: 'POST',

@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
     let navigate = useNavigate();
-    console.log(allFormData)
     const checkRequired = () => {
       if (
         !mainInfo.title) {
@@ -137,7 +136,6 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             .then(response => response.json())
             .then(data => {
               // Handle response from the server
-              console.log('Upload successful:', data);
               navigate('/services'); // Navigate to the new page without triggering beforeunload event
             })
             .catch(error => {

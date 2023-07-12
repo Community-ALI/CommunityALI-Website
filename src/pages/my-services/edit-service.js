@@ -16,8 +16,7 @@ function EditService() {
       const response = await fetch(`${BASE_BACKEND_URL}/get-one-service?service=` + serviceName)
           .then(response => response.json())
           .then(data => {
-            console.log(data);
-            console.log(data.serviceType);
+
             if (data.serviceType == 'Club'){
               window.location.href = `edit-club?service=${serviceName}`
             }

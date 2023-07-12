@@ -10,7 +10,6 @@ const UserProfileCircle = (Logout) => {
       try {
         var token = localStorage.getItem('token');
         if (token) {
-          console.log('sending request');
           const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-username`,
             {
               headers: {

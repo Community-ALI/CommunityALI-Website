@@ -27,9 +27,7 @@ function MyServicePageDisplay(props) {
             .then(response => response.json())
             .then(data => {
               // 'data' variable will contain the received object with the data array and tokenUsername
-
               setNotifications(data);
-              console.log('notification data: ', data);
             })
         }
         else {
@@ -43,9 +41,6 @@ function MyServicePageDisplay(props) {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(applicants);
-  }, [])
 
   const handleBackgroundClick = () => {
     window.location.href = 'view-applicants?service=' + service.title;
@@ -95,7 +90,6 @@ function MyServicesHome() {
       try {
         var token = localStorage.getItem('token');
         if (token) {
-          console.log('sending request');
           const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-user-services`,
             {
               headers: {
@@ -126,10 +120,6 @@ function MyServicesHome() {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log('services: ', services);
-  }, [services]);
 
   return (
     <div>

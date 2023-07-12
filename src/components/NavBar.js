@@ -12,7 +12,6 @@ function MyServicesNavButton(props) {
     var decodedToken = {};
     if (token){
         decodedToken = JSON.parse(atob(token.split('.')[1]));
-        console.log('token found');
     }
     const [notifications, setNotifications] = useState([]);
 
@@ -33,7 +32,7 @@ function MyServicesNavButton(props) {
                         })
                 }
                 else {
-                    console.log('no token found')
+                    
                 }
             } catch (error) {
                 console.log(error)

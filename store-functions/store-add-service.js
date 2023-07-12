@@ -41,7 +41,6 @@ const store_add_service = async function(req, username) {
 
     const pages = JSON.parse(req.body.pages);
 
-    console.log(req.file);
     const photoBuffer = fs.readFileSync(req.file.path);
     const thumbnail = await generateThumbnail(photoBuffer)
     const newService = new Service({

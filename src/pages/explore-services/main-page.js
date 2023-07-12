@@ -75,9 +75,6 @@ function Services(props) {
   const [sortingType, setSortingtype] = useState('alphabetical');
   const [filterType, setFilterType] = useState([props.startingfilter]);
 
-  useEffect(() => {
-    console.log(`filterType: ${filterType}, sortingType: ${sortingType}`);
-  }, [filterType, sortingType]);
 
   // get services from the backend
   useEffect(() => {
@@ -85,7 +82,6 @@ function Services(props) {
       try {
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get('keyword');
-        console.log(keyword);
         let url = `${BASE_BACKEND_URL}/get-all-services`;
         url += `/${sortingType}/${filterType}`;
         if (keyword) {
