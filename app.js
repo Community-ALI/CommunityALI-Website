@@ -423,8 +423,6 @@ app.post('/api/login', async (req, res) => {
   console.log(password);
   const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).lean()
 
-  const userTest = await User.findOne({ $or: [{ username: "Adrean Cajigas" }, { email: "CS_mjc23" }] }).lean()
-  console.log(userTest);
 
   console.log(user);
   if (!user) {
@@ -505,7 +503,9 @@ app.post('/api/register', async (req, res) => {
       dateCreated: new Date().toISOString() // Store the current date/time as ISO string
     });
 
-    console.log('User created successfully: ', response);
+    console.log('User created successfully: ', response);\
+
+    
   } catch (error) {
     if (error.code === 11000) {
       // Duplicate key
@@ -513,8 +513,6 @@ app.post('/api/register', async (req, res) => {
     }
     throw error;
   }
-
-  res.json({ status: 'ok' });
 });
 
 

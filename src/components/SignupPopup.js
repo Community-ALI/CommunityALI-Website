@@ -35,6 +35,7 @@ function SignupPopup(props) {
       if (result.status === 'ok') {
         console.log('Signed up successfully');
         // Handle successful signup
+        window.location.href = '/'
       } else {
         console.log(result.error);
         alert(result.error);
