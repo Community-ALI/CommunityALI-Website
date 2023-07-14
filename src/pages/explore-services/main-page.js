@@ -3,7 +3,7 @@ import { BASE_BACKEND_URL } from '../../config.js'
 import '../../pages/explore-services/main-page.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
-import ServiceDropdown from './service-filter/service-dropdown.js';
+import ServiceDropdown from './service-dropdown.js'
 const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
@@ -82,11 +82,18 @@ function Services(props) {
       try {
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get('keyword');
+        // let url = `${BASE_BACKEND_URL}/get-all-services`;
+        // url += `/${sortingType}/${filterType}`;
+        // if (keyword) {
+        //   url += `?keyword=${encodeURIComponent(keyword)}`;
+
+        // ChatGPT told me to do this instead
         let url = `${BASE_BACKEND_URL}/get-all-services`;
-        url += `/${sortingType}/${filterType}`;
+        url += `/${sortingType}/${filterType.join(',')}`; 
         if (keyword) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
-        }
+          }
+        
 
         const response = await fetch(url);
         const data = await response.json();
