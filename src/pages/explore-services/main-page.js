@@ -66,14 +66,9 @@ function DisplayAllServices(props) {
 }
 
 function Services(props) {
-  <ServiceDropdown
-    SetSortingType={setSortingtype}
-    SetFilterType={setFilterType}
-    filterType={filterType}
-  />
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState('alphabetical');
-  const [filterType, setFilterType] = useState([props.startingfilter]);
+  const [serviceTypeFilter, setServiceTypeFilter] = useState([props.startingfilter]);
 
 
   // get services from the backend
@@ -82,18 +77,12 @@ function Services(props) {
       try {
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get('keyword');
-        // let url = `${BASE_BACKEND_URL}/get-all-services`;
-        // url += `/${sortingType}/${filterType}`;
-        // if (keyword) {
-        //   url += `?keyword=${encodeURIComponent(keyword)}`;
-
-        // ChatGPT told me to do this instead
         let url = `${BASE_BACKEND_URL}/get-all-services`;
-        url += `/${sortingType}/${filterType.join(',')}`; 
+        url += `/${sortingType}/${serviceTypeFilter}`;
         if (keyword) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
-          }
-        
+        }
+
 
         const response = await fetch(url);
         const data = await response.json();
@@ -111,7 +100,7 @@ function Services(props) {
     };
 
     fetchData();
-  }, [filterType, sortingType]);
+  }, [serviceTypeFilter, sortingType]);
 
   // return the page
   return (
@@ -124,11 +113,11 @@ function Services(props) {
 
 
       <div className="search-result-container">
-          <ServiceDropdown
-            SetSortingType={setSortingtype}
-            SetFilterType={setFilterType}
-            filterType={filterType}
-          />
+        <ServiceDropdown
+          SetSortingType={setSortingtype}
+          SetServiceTypeFilter={setServiceTypeFilter}
+          serviceTypeFilter={serviceTypeFilter}
+        />
         <div className="results">
           <DisplayAllServices services={services} />
         </div>
