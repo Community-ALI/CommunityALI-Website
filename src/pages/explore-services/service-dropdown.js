@@ -136,7 +136,7 @@ const ServiceDropdown = (props) => {
             )}
           </div>
 
-          <div className='filter-buttons-container'>Agriculture
+          <div className='filter-buttons-container'>
             <button className="filter-school-button" onClick={toggleContent2} ref={buttonRef2}>
               <b>Filter By School</b><span className={`arrow ${isContentVisible2 ? 'up' : 'down'}`}></span>
             </button>
