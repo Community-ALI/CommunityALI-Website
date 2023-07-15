@@ -244,13 +244,13 @@ app.post('/change_notification_status/:id', upload.none(), async function (req, 
 });
 
 // send the user every service
-app.get('/get-all-services/:sorting/:serviceType', async function (req, res){
+app.get('/get-all-services/:sorting/:serviceType/:categories', async function (req, res){
   //updateServicesWithThumbnails();
   try {
     var keywords = req.query.keyword;
     const all_services = 
       await get_all_services(keywords, 'title thumbnail pages',
-      req.params.sorting, req.params.serviceType);
+      req.params.sorting, req.params.serviceType, req.params.categories);
     res.json(all_services);
     console.log("filtered services sent")
   } catch (error) {

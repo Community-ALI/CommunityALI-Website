@@ -5,6 +5,6 @@ const jwt = require('jsonwebtoken');
 
 const service_data = require('../controllers/servicedata');
 
-router.get("get-clubs-and-communites/:sort", (req, res) => {
-    res.send(service_data(req.params.sort));
+router.get("get-clubs-and-communites/:sort/:service_type/:categories", (req, res) => {
+    res.send(service_data(req.params.sort, req.params.service_type, req.params.categories));
 })
