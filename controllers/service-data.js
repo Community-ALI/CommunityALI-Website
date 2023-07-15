@@ -32,13 +32,27 @@ const find_filter_service = async function (sortingType, serviceType, fields, ca
       default:
         sort = 1;
     }
-    if (serviceTypes.includes('all')) {
-      const services = await Services.find()
+    if (serviceTypes.includes('all') & categories.includes('all')) {
+      services = await Services.find()
+        .select(fields)
+        .sort({ title: sort })
+        .exec();
+    } else if (serviceTypes.includes('all')) {
+      services = await Services.find({
+        categories: { $in: categories }
+      })
+        .select(fields)
+        .sort({ title: sort })
+        .exec();
+    } else if (categories.includes('all')) {
+      services = await Services.find({
+        serviceType: { $in: serviceTypes }
+      })
         .select(fields)
         .sort({ title: sort })
         .exec();
     } else {
-      const services = await Services.find({
+      services = await Services.find({
         serviceType: { $in: serviceTypes },
         categories: { $in: categories }
       })
