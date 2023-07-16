@@ -117,18 +117,10 @@ const ServiceDropdown = (props) => {
                   <label className="category-section">
                     <input
                       type="checkbox"
-                      name="Science"
-                      checked={isCheckedScience}
-                    /> Science, Engineering & Mathematics
-                  </label>
-                  <label className="category-section">
-                    <input
-                      type="checkbox"
                       name="Volunteer"
                       checked={isCheckedVolunteer}
                     /> Volunteering and Services
                   </label>
-
                   <label className="category-section">
                     <input
                       type="checkbox"
@@ -154,8 +146,8 @@ const ServiceDropdown = (props) => {
                 <form className='filter-category-container'>
                   {["Agriculture", "Art", "Behavioral", "Business", "Fitness",
                     "Industry", "Language", "Public", "Science"]
-                    .map((category, index) => <CategorySelector key={index} 
-                      category={category} 
+                    .map((category, index) => <CategorySelector key={index}
+                      category={category}
                       categoriesFilter={props.categoriesFilter}
                       SetCategoriesFilter={props.SetCategoriesFilter}
                       ChangeFilter={changeFilter} />)}
