@@ -1,13 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-function SchoolSelector(props) {
+function CategorySelector(props) {
   return (
     <label className="category-section">
       <input
         type="checkbox"
-        name={props.school}
-        checked={false}
-      /> {props.school}
+        checked={props.categoriesFilter.includes(props.category)}
+        onChange={() => { props.ChangeFilter(props.category, props.categoriesFilter, props.SetCategoriesFilter) }}
+      /> {props.category}
+    </label>
+  )
+}
+
+function ServiceTypeSelector(props) {
+  return (
+    <label className="category-section">
+      <input
+        type="checkbox"
+        checked={props.serviceTypeFilter.includes(props.serviceType)}
+        onChange={() => { props.ChangeFilter(props.serviceType, props.serviceTypeFilter, props.SetServiceTypeFilter) }}
+      /> {props.title}
     </label>
   )
 }
@@ -21,25 +33,9 @@ const ServiceDropdown = (props) => {
   const [isButtonCollapsed2, setButtonCollapsed2] = useState(true);
 
   const [isCheckedVolunteer, setIsCheckedVolunteer] = useState(false);
-  const [isCheckedInternship, setIsCheckedInternship] = useState(false);
 
-  const [isCheckedAgriculture, setIsCheckedAgriculture] = useState(false);
-  const [isCheckedArt, setIsCheckedArt] = useState(false);
-  const [isCheckedBehavioral, setIsCheckedBehavioral] = useState(false);
-  const [isCheckedBusiness, setIsCheckedBusiness] = useState(false);
-  const [isCheckedFitness, setIsCheckedFitness] = useState(false);
-  const [isCheckedIndustry, setIsCheckedIndustry] = useState(false);
-  const [isCheckedLanguage, setIsCheckedLanguage] = useState(false);
-  const [isCheckedPublic, setIsCheckedPublic] = useState(false);
   const [isCheckedScience, setIsCheckedScience] = useState(false);
 
-  <label className="category-section">
-    <input
-      type="checkbox"
-      name="Agriculture"
-      checked={isCheckedAgriculture}
-    /> Agriculture
-  </label>
   const [isContOpen, setContOpen] = useState(false);
   const [sortBy, setSortBy] = useState('');
 
@@ -66,25 +62,26 @@ const ServiceDropdown = (props) => {
     setContOpen(false);
   };
 
-  const changeServiceTypeFilter = (input) => {
-    if (props.serviceTypeFilter.includes(input)) {
-      if (props.serviceTypeFilter.length > 2) {
-        props.SetServiceTypeFilter(['all']);
+  const changeFilter = (input, filter, filterSetState) => {
+    if (filter.includes(input)) {
+      if (filter.length > 2) {
+        filterSetState(['all']);
         return;
       }
-      console.log(`removing ${input} form ${props.serviceTypeFilter}`)
-      props.SetServiceTypeFilter(
-        props.serviceTypeFilter.filter((filterType) => filterType != input));
+      console.log(`removing ${input} form ${filter}`)
+      filterSetState(
+        filter.filter((filterType) => filterType != input));
       return;
     }
     console.log("02: " + props.serviceTypeFilter)
-    props.SetServiceTypeFilter(
-      ...(props.serviceTypeFilter.filter((filterType) => filterType != 'all')), input);
+    filterSetState(
+      ...(filter.filter((filterType) => filterType != 'all')), input);
   };
 
   useEffect(() => {
     console.log(props.serviceTypeFilter)
-  }, []);
+    console.log(props.categoriesFilter)
+  }, [props.serviceTypeFilter, props.categoriesFilter]);
 
   return (
     <>
@@ -98,39 +95,50 @@ const ServiceDropdown = (props) => {
             {isContentVisible1 && (
               <div className="content fadeInDown" ref={contentRef1}>
                 <form className='filter-category-container'>
+                  {[{ serviceType: 'Club', title: 'Clubs & Communities' }]
+                    .map((serviceTypeSelector, index) => {
+                      <ServiceTypeSelector
+                        key={index}
+                        serviceType={serviceTypeSelector.serviceType}
+                        title={serviceTypeSelector.title}
+                        serviceTypeFilter={props.serviceTypeFilter}
+                        SetServiceTypeFilter={props.SetServiceTypeFilter}
+                        ChangeFilter={changeFilter}
+                      />
+                    })}
                   <label className="category-section">
                     <input
                       type="checkbox"
                       name="Club"
                       checked={props.serviceTypeFilter.includes('Club')}
-                      onChange={() => { changeServiceTypeFilter('Club') }}
+                      onChange={() => { changeFilter('Club', props.serviceTypeFilter, props.SetServiceTypeFilter) }}
                     /> Clubs & Communities
                   </label>
-                    <label className="category-section">
-                      <input
-                        type="checkbox"
-                        name="Science"
-                        checked={isCheckedScience}
-                      /> Science, Engineering & Mathematics
-                    </label>
-                    <label className="category-section">
-                      <input
-                        type="checkbox"
-                        name="Volunteer"
-                        checked={isCheckedVolunteer}
-                      /> Volunteering and Services
-                    </label>
+                  <label className="category-section">
+                    <input
+                      type="checkbox"
+                      name="Science"
+                      checked={isCheckedScience}
+                    /> Science, Engineering & Mathematics
+                  </label>
+                  <label className="category-section">
+                    <input
+                      type="checkbox"
+                      name="Volunteer"
+                      checked={isCheckedVolunteer}
+                    /> Volunteering and Services
+                  </label>
 
-                    <label className="category-section">
-                      <input
-                        type="checkbox"
-                        name="Internship"
-                        checked={props.serviceTypeFilter.includes('Internship')}
-                        onChange={() => { changeServiceTypeFilter('Internship') }}
-                      /> Internships & Work Experience
-                    </label>
+                  <label className="category-section">
+                    <input
+                      type="checkbox"
+                      name="Internship"
+                      checked={props.serviceTypeFilter.includes('Internship')}
+                      onChange={() => { changeFilter('Internship', props.serviceTypeFilter, props.SetServiceTypeFilter) }}
+                    /> Internships & Work Experience
+                  </label>
 
-                    <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetServiceTypeFilter(['all']) })}></input>
+                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetServiceTypeFilter(['all']) })}></input>
                 </form>
               </div>
             )}
@@ -146,9 +154,12 @@ const ServiceDropdown = (props) => {
                 <form className='filter-category-container'>
                   {["Agriculture", "Art", "Behavioral", "Business", "Fitness",
                     "Industry", "Language", "Public", "Science"]
-                    .map((school, index) => <SchoolSelector key={index} school={school} />)}
-
-                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => {})}></input>
+                    .map((category, index) => <CategorySelector key={index} 
+                      category={category} 
+                      categoriesFilter={props.categoriesFilter}
+                      SetCategoriesFilter={props.SetCategoriesFilter}
+                      ChangeFilter={changeFilter} />)}
+                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { })}></input>
                 </form>
               </div>
             )}

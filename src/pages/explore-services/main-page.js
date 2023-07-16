@@ -69,6 +69,7 @@ function Services(props) {
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState('alphabetical');
   const [serviceTypeFilter, setServiceTypeFilter] = useState([props.startingfilter]);
+  const [categoriesFilter, setCategoriesFilter] = useState(['all']);
 
 
   // get services from the backend
@@ -78,7 +79,7 @@ function Services(props) {
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get('keyword');
         let url = `${BASE_BACKEND_URL}/get-all-services`;
-        url += `/${sortingType}/${serviceTypeFilter}`;
+        url += `/${sortingType}/${serviceTypeFilter}/${categoriesFilter}`;
         if (keyword) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
         }
@@ -100,7 +101,7 @@ function Services(props) {
     };
 
     fetchData();
-  }, [serviceTypeFilter, sortingType]);
+  }, [serviceTypeFilter, sortingType, categoriesFilter]);
 
   // return the page
   return (
@@ -117,6 +118,8 @@ function Services(props) {
           SetSortingType={setSortingtype}
           SetServiceTypeFilter={setServiceTypeFilter}
           serviceTypeFilter={serviceTypeFilter}
+          SetCategoriesFilter={setCategoriesFilter}
+          categoriesFilter={categoriesFilter}
         />
         <div className="results">
           <DisplayAllServices services={services} />
