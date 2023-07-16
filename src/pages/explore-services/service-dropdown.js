@@ -151,7 +151,7 @@ const ServiceDropdown = (props) => {
                       categoriesFilter={props.categoriesFilter}
                       SetCategoriesFilter={props.SetCategoriesFilter}
                       ChangeFilter={changeFilter} />)}
-                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { })}></input>
+                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetCategoriesFilter(['all']) })}></input>
                 </form>
               </div>
             )}
