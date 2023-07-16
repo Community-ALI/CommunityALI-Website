@@ -64,7 +64,7 @@ const ServiceDropdown = (props) => {
 
   const changeFilter = (input, filter, filterSetState) => {
     if (filter.includes(input)) {
-      if (filter.length > 2) {
+      if (filter.length < 2) {
         filterSetState(['all']);
         return;
       }
@@ -75,7 +75,7 @@ const ServiceDropdown = (props) => {
     }
     console.log("02: " + props.serviceTypeFilter)
     filterSetState(
-      ...(filter.filter((filterType) => filterType != 'all')), input);
+      (filter.filter((filterType) => filterType != 'all')).concat(input));
   };
 
   useEffect(() => {
