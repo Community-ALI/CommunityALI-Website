@@ -59,7 +59,7 @@ function App() {
 
                 {/* other */}
                 <Route path="/" element={<LandingPage />}/>
-                {/* <Route path="/contact-form" element={<ContactForm/>}/> */}
+                <Route path="/contact-form" element={<ContactForm/>}/> 
             </Routes>
         </BrowserRouter>
     )

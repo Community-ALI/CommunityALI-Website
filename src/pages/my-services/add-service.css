@@ -98,6 +98,13 @@ input[data-autocompleted]
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    font-weight: 400;
+    transition: 300ms ease;
+}
+
+.service-navbar-text a:hover
+{
+    color:#001E60;
 }
 
 .service-navbar-plus-container
@@ -263,9 +270,9 @@ input[data-autocompleted]
     display: flex;
     justify-content: space-evenly;
     flex-flow: wrap;
-    align-items: flex-start;
-    padding-right: 5%;
-    padding-left: 5%;
+    align-items: stretch;
+    padding-right: 4%;
+    padding-left: 4%;
 }
 
 .service-info2-container
@@ -332,9 +339,10 @@ input[data-autocompleted]
     font-weight: 400;
     line-height: 50px;
     position: relative;
-    padding: 20px 35px;
+    padding: 25px 45px;
     border-radius: 20px;
-    margin : 50px 7%;
+    margin : 50px 8%;
+    margin-bottom: 100px;
 }
 
 .meeting-description-text-box
@@ -343,8 +351,8 @@ input[data-autocompleted]
     padding: 8px 10px;
     font-family: 'Poppins', sans-serif;
     font-size: clamp(10px, 4vh, 20px);
-    margin-bottom: 30px;
-    margin-top : 20px;
+    margin-bottom: 20px;
+    margin-top : 10px;
     background : none;
     border : none;
     outline : none;
@@ -588,6 +596,10 @@ input[data-autocompleted]
     border-radius: 20px;
     padding: 30px;
     box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
@@ -616,6 +628,7 @@ input[data-autocompleted]
     flex-direction: column;
     border-radius: 5px;
     border: 2px dashed white;
+    width: 80%;
 }
 
 #file-icon
@@ -761,6 +774,20 @@ section .details span
     }
 }
 
+@media all and (max-width : 1200px)
+{
+    .service-info-container
+    {
+        padding-right : 1%;
+        padding-left : 1%;
+    }
+
+    .service-description
+    {
+        margin : 50px 5%;
+    }
+}
+
 @media all and (max-width : 1050px)
 {
     .meeting-details-text-box
@@ -837,6 +864,12 @@ section .details span
         margin-bottom : 30px;
     }
 
+    .service-info-container
+    {
+        padding-right : 0%;
+        padding-left : 0%;
+    }
+
     .service-image-container
     {
         width : 70%;
@@ -859,6 +892,8 @@ section .details span
     {
         font-size : 16px;
         line-height: 40px;
+        margin: 50px 9%;
+        padding : 10px 20px;
     }
 
     .application-buttons
@@ -943,6 +978,7 @@ section .details span
         line-height: 30px;
         padding : 10px 15px;
         margin: 30px 5%;
+        margin-bottom: 100px;
     }
 
     .authorization-container

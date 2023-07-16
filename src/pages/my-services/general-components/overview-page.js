@@ -14,8 +14,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     "Industry & Trades",
     "Language Arts & Education",
     "Public Safety",
-    "Science, Engineering & Mathematics",
-    "Other"
+    "Science, Engineering & Mathematics"
   ];
 
   const toggleSelectOption = () => {
@@ -156,11 +155,25 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
             />
             <br />
           </div>
+        </div>
+      </div>
 
-          <div>
-          <div>
-            <button type='button' onClick={toggleSelectOption} className='category-select-button'> School</button>
-            {tisOpen &&
+      <div className="service-description">
+        <textarea
+          rows="4"
+          type="text"
+          placeholder={`Include a description of the ${serviceType.toLowerCase()}...`} // used to be: "Include a description of what the club does and its mission..."
+          onChange={handleFormChange}
+          name="description"
+          value={formData.description || ""}
+          className="meeting-description-text-box"
+          id="description"
+        ></textarea>
+      </div>
+
+      <div>
+        <button type='button' onClick={toggleSelectOption} className='category-select-button'> School</button>
+          {tisOpen &&
             <div>
               {schoolOptions.map((option) => (
                 <div key={option}>
@@ -178,29 +191,9 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
                 </div>
               ))}
             </div>
-}
-          </div>
-
-
-
-
-            <br />
-          </div>
-        </div>
+          }
       </div>
 
-      <div className="service-description">
-        <textarea
-          rows="5"
-          type="text"
-          placeholder={`Include a description of the ${serviceType.toLowerCase()}...`} // used to be: "Include a description of what the club does and its mission..."
-          onChange={handleFormChange}
-          name="description"
-          value={formData.description || ""}
-          className="meeting-description-text-box"
-          id="description"
-        ></textarea>
-      </div>
     </div>
   );
 }
