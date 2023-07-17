@@ -35,7 +35,7 @@ function SignupPopup(props) {
       if (result.status === 'ok') {
         console.log('Signed up successfully');
         // Handle successful signup
-        window.location.href = '/'
+        window.location.href = `/verify?username=${username}`
       } else {
         console.log(result.error);
         alert(result.error);
@@ -53,7 +53,7 @@ function SignupPopup(props) {
         <form id="signup" onSubmit={signup}>
           <div className="text-field">
             <input
-              autoComplete="off"
+              autoComplete="new-email"
               className="text-field-input"
               id="email"
               required=""
@@ -66,7 +66,7 @@ function SignupPopup(props) {
           </div>
           <div className="text-field">
             <input
-              autoComplete="off"
+              autoComplete="new-username"
               className="text-field-input"
               id="username"
               required=""
@@ -79,7 +79,7 @@ function SignupPopup(props) {
           </div>
           <div className="text-field">
             <input
-              autoComplete="off"
+              autoComplete="new-password"
               className="text-field-input"
               type="password"
               id="password"
@@ -93,7 +93,7 @@ function SignupPopup(props) {
           </div>
           <div className="text-field">
             <input
-              autoComplete="off"
+              autoComplete="new-password-2"
               className="text-field-input"
               type="password"
               id="confirmPassword"

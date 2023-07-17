@@ -4,6 +4,13 @@ const express = require("express");
 const path = require('path');
 const cors = require('cors');
 const app = express();
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,140 +46,57 @@ const { error } = require("console");
 const JWT_SECRET = process.env.JWT_SECRET;
 // const SESSION_SECRET = process.env.SESSION_SECRET; 
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
-app.use(cors(corsOptions));
 
 const { CognitoIdentityServiceProvider } = require('aws-sdk');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const AWS = require('aws-sdk');
 
-const cognito = new CognitoIdentityServiceProvider({
-  region: 'us-west-2',
+AWS.config.update({
+  region: 'us-west-2', 
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-async function sendValidationEmail(email, validationToken) {
-  const mailOptions = {
-    from: 'communityalis@gmail.com',
-    to: email,
-    subject: 'Email Validation',
-    html: `<p>Click the following link to validate your email: <a href="http://localhost:3000/validate?token=${validationToken}">Validate Email</a></p>`
+const ses = new AWS.SES();
+
+function generateSixDigitCode() {
+  var code = "";
+  for (var i = 0; i < 6; i++) {
+    var digit = Math.floor(Math.random() * 10); // Generate a random digit from 0 to 9
+    code += digit.toString(); // Append the digit to the code string
+  }
+  return code;
+}
+
+const sendEmail = async (toAdress, subject, body) => {
+  const params = {
+    Destination: {
+      ToAddresses: [toAdress]
+    },
+    Message: {
+      Body: {
+        Text: {
+          Data: body
+        }
+      },
+      Subject: {
+        Data: subject
+      }
+    },
+    Source: 'communityalis@gmail.com'
   };
 
   try {
-    const result = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', result);
-  } catch (error) {
-    console.error('Error sending email:', error);
+    const data = await ses.sendEmail(params).promise();
+    console.log('Email sent successfully:', data.MessageId);
+  } catch (err) {
+    console.error('Error sending email:', err);
   }
-}
-
-
-// User signup
-const crypto = require('crypto');
-
-// send the user one service
-// app.get("/aws/signup", async function (req, res) {
-//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
-//   const redirectUri = 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback'
-//   link = `https://communityali.auth.us-west-2.amazoncognito.com/signup?client_id=${clientId}&response_type=code&scope=email+openid+profile&redirect_uri=${redirectUri}`;
-
-//   res.redirect(link)//'https://alitrial.auth.us-west-2.amazoncognito.com/forgotPassword?client_id=5le7m14munmqdb4154q9d3qmc3&response_type=code&scope=email+openid&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Flogged_in.html');
-// });
-
-// app.get('/aws/login', async function (req, res) {
-//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
-//   const redirectUri = 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback'
-//   link = `https://communityali.auth.us-west-2.amazoncognito.com/login?client_id=${clientId}&response_type=code&scope=email+openid+profile&redirect_uri=${redirectUri}`;
-
-//   res.redirect(link)
-// });
-
-// const axios = require('axios');
-
-// app.get('/aws/callback', async function (req, res) {
-//   const code = req.query.code;
-//   // Make a POST request to exchange the authorization code for tokens
-//   try {
-//     const response = await axios.post('https://communityali.auth.us-west-2.amazoncognito.com/oauth2/token', {
-//       grant_type: 'authorization_code',
-//       client_id: process.env.COGNITO_APP_CLIENT_ID,
-//       code,
-//       redirect_uri: 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Ftoken'
-//     });
-
-//     // Extract the tokens from the response
-//     const accessToken = response.data.access_token;
-//     const refreshToken = response.data.refresh_token;
-//     // You can now use the tokens as needed
-//     // e.g., store them in a session or use them to authenticate requests
-
-//     res.send('Tokens obtained successfully!');
-//   } catch (error) {
-//     // Handle any errors that occur during the token request
-//     console.error('Token request error:', error);
-//     res.status(500).send('Error obtaining tokens');
-//   }
-// });
-
-// app.get("/aws/signup", async function (req, res) {
-//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
-//   const redirectUri = encodeURIComponent('http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback');
-//   const link = `https://communityali.auth.us-west-2.amazoncognito.com/signup?client_id=${clientId}&response_type=token&scope=email+openid+profile&redirect_uri=${redirectUri}`;
-
-//   res.redirect(link);
-// });
-
-// app.get('/aws/login', async function (req, res) {
-//   const clientId = process.env.COGNITO_APP_CLIENT_ID;
-//   const redirectUri = 'http%3A%2F%2Flocalhost%3A3000%2Faws%2Fcallback';
-//   const link = `https://communityali.auth.us-west-2.amazoncognito.com/login?client_id=${clientId}&response_type=token&scope=email+openid&redirect_uri=${redirectUri}`;
-
-//   res.redirect(link);
-// });
-
-// app.get('/aws/callback', async function (req, res) {
-//   // Extract the tokens from the URL fragment
-//   const urlFragment = req.url.split('#')[1];
-//   const urlParams = new URLSearchParams(urlFragment);
-//   const accessToken = urlParams.get('access_token');
-//   const idToken = urlParams.get('id_token');
-//   const tokenType = urlParams.get('token_type');
-
-//   // You can now use the tokens as needed
-//   // e.g., store them in a session or use them to authenticate requests
-//   console.log(req);
-//   res.send('Tokens obtained successfully!');
-// });
- 
-// // app.get('/aws/token', async function (req, res) {
-// //   print('token recieved')
-// // });
-
-// // User logout
-// app.post('/aws/logout', async (req, res) => {
-//   const accessToken = req.body.accessToken; // Assuming the access token is passed in the request body
-
-//   // Call the GlobalSignOut method to invalidate the user's access token and refresh token
-//   const params = {
-//     AccessToken: accessToken
-//   };
-
-//   try {
-//     await cognito.globalSignOut(params).promise();
-//     res.send('User logout successful!');
-//   } catch (error) {
-//     console.error('User logout error:', error);
-//     res.status(500).send('Error logging out user');
-//   }
-// });
+};
 
 // send the user one service
 app.get("/get-one-service", async function (req, res) {
@@ -205,11 +129,11 @@ async function DeleteService(req, res) {
       const success = await delete_service(service_name);
       console.log(success);
       if (success){
-        //console.log('service deleted by', username);
+        console.log('service deleted by', username);
         res.json({success: true});
       }
       else{
-        //console.log('problem deleting service from database');
+        console.log('problem deleting service from database');
         res.json({success: false, error: 'internal detabase error'});
       }
     }
@@ -428,7 +352,9 @@ app.post('/api/login', async (req, res) => {
   if (!user) {
       return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
   }
-
+  if (!user.verified){
+    return res.status(400).json({ status: 'error', error: 'Account has not been verified.' }) //FIXME: make a way to verify it
+  }
   if(await bcrypt.compare(password, user.password)) {
       // the username, password combination is successful
 
@@ -468,6 +394,53 @@ app.post('/api/logout', (req, res) => {
   res.json({ status: 'ok', message: 'Logout successful' });
 });
 
+app.post('/api/verify', async (req, res) => {
+  try{
+    const username = req.query.username;
+    const enteredCode = req.body.verificationCode;
+    const user = await User.findOne({ username: username });
+    if (user.verified){
+      return res.status(400).json({ status: 'error', error: 'User is already verified' });
+    }
+    if (user.verificationCode === enteredCode){
+      user.verified = true;
+      await user.save();
+      // log the user in now
+      const token = jwt.sign(
+        { 
+            id: user._id, 
+            username: user.username,
+            email: user.email,
+            platformManager: false,
+            clubAdmin: user.clubAdmin,
+            eventAdmin: user.eventAdmin,
+            volunteeringAdmin: user.volunteeringAdmin,
+            internshipAdmin: user.internshipAdmin
+        }, 
+            JWT_SECRET
+        )
+
+        // set the cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            maxAge: 86400000 // 1 day
+        })
+        
+        res.json({ status: 'ok', data: token })
+    }
+    else{
+      res.status(400).json({status: 'error', error: 'wrong code'})
+    }
+  }
+  catch(error){
+    console.log(error);
+    res.status(400).json({status: 'error', error: 'error'});
+  }
+  
+})
+
 app.post('/api/register', async (req, res) => {
   const { username, password: plainTextPassword, email } = req.body;
   const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -492,12 +465,16 @@ app.post('/api/register', async (req, res) => {
 
   const password = await bcrypt.hash(plainTextPassword, 10);
 
+  // verify
+  const verificationCode = generateSixDigitCode()
+  sendEmail(email, 'Verification Code', `Your six digit verification code is: ${verificationCode}.`)
   try {
     const response = await User.create({
       username,
       password,
       email,
       verified: false,
+      verificationCode: verificationCode,
       clubAdmin: false, // Set default value for clubAdmin
       internshipAdmin: false, // Set default value for internshipAdmin
       dateCreated: new Date().toISOString() // Store the current date/time as ISO string
@@ -507,12 +484,15 @@ app.post('/api/register', async (req, res) => {
 
     
   } catch (error) {
+    console.log(error)
     if (error.code === 11000) {
       // Duplicate key
+      console.log('username/email in use')
       return res.json({ status: 'error', error: 'Username or Email already in use' });
     }
     throw error;
   }
+  return res.json({status: 'ok'})
 });
 
 
