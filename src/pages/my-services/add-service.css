@@ -356,7 +356,7 @@ input[data-autocompleted]
 {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     cursor: pointer;
     padding-bottom : 50px;
@@ -834,6 +834,13 @@ section .details span
 
 @media all and (max-width : 1050px)
 {
+
+    .service-category
+    {
+        width : 100%;
+        padding-left : 20px;
+    }
+
     .meeting-details-text-box
     {
         font-size: 17px;
@@ -959,6 +966,23 @@ section .details span
     {
         justify-content: center;
     }
+
+    .service-category-container
+    {
+        font-size : 16px;
+    }
+
+    .service-category-title
+    {
+        font-size : 24px;
+        line-height: 35px;
+    }
+
+    .service-category
+    {
+        padding-left : 0px;
+    }
+
 }
 
 @media all and (max-width : 480px)
