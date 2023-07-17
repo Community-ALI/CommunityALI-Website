@@ -1,6 +1,6 @@
 # Community Ali Website Contributing Guide
 ## Github
-Add a comment prefix and to your commits and keep them short
+Add a comment prefix to your commits and keep them short
 
 Fix: (Very brief explaination of the problem, if people want to know more they can always look at the code)
 ex: Fix: Inconsistent link hover behaviour
