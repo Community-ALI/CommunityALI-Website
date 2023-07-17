@@ -330,6 +330,51 @@ input[data-autocompleted]
     color: #ecaa1e;
 }
 
+.service-category-title
+{
+    text-align: center;
+    margin-bottom : 20px;
+    padding : 10px;
+    font-size: 26px;
+}
+
+.service-category-container
+{
+    color: white;
+    background-color: #00468D;
+    font-size: clamp(10px, 4vh, 20px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 50px;
+    padding: 25px 45px;
+    border-radius: 20px;
+    margin : 0px 8%;
+    margin-bottom: 200px;
+}
+
+.service-categories
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-bottom : 50px;
+}
+
+.service-category
+{
+    width : 45%;
+    border-radius: 15px;
+    margin-right: 20px;
+    transition: 300ms ease;
+}
+
+.service-category:hover
+{
+    background-color: #001E60;
+}
+
 .service-description
 {
     color: white;
@@ -338,11 +383,10 @@ input[data-autocompleted]
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
-    position: relative;
     padding: 25px 45px;
     border-radius: 20px;
     margin : 50px 8%;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 .meeting-description-text-box
