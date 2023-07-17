@@ -23,7 +23,7 @@ body
 {
     color: white;
     position: relative;
-    padding-top: 100px;
+    padding-top: 130px;
     margin-bottom : 200px;
     display: flex;
     justify-content: center;
@@ -106,7 +106,7 @@ body
 .form-input
 {
     width: 50%;
-    padding: 0 5px;
+    padding: 0 10px;
     height: 40px;
     font-size: 16px;
     border: none;
@@ -198,26 +198,7 @@ body
     }
 }
 
-@media all and (max-width : 780px)
-{
-    .contact-us-container
-    {
-        width : 90%;
-    }
-
-    .form-input
-    {
-        width : 80%;
-    }
-
-    .body-header
-    {
-        margin-left: 8%;
-        margin-right : 8%;
-    }
-}
-
-@media all and (max-width : 540px)
+@media all and (max-width : 850px)
 {
     .form-input
     {
@@ -228,7 +209,24 @@ body
     {
         width : 100%;
     }
+}
 
+@media all and (max-width : 780px)
+{
+    .body-header
+    {
+        margin-left: 8%;
+        margin-right : 8%;
+    }
+
+    .body-container
+    {
+        padding-top : 90px;
+    }
+}
+
+@media all and (max-width : 540px)
+{
     .body-title
     {
         font-size: 25px;
@@ -260,7 +258,8 @@ body
 
     .contact-us-container
     {
-        padding : 20px 20px;
+        padding : 30px 20px;
+        width : 90%;
     }
 
     .contact-form-title

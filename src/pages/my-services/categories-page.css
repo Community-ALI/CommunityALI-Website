@@ -102,6 +102,13 @@ body
         padding: 30px;
     }
 
+    .category-container-unselectable
+    {
+        width: 80%;
+        margin: 5% 2%;
+        padding: 30px;
+    }
+
     .category-header
     {
         font-size: 28px;
@@ -111,6 +118,13 @@ body
 @media all and (max-width : 480px)
 {
     .category-container
+    {
+        width: 85%;
+        margin: 6% 2%;
+        padding: 25px;
+    }
+
+    .category-container-unselectable
     {
         width: 85%;
         margin: 6% 2%;

@@ -23,6 +23,7 @@ function search(keyword, attribute, dbServices, filteredData) {
 const find_filter_service = async function (sortingType, serviceType, fields, categories) {
   try {
     serviceTypes = serviceType.split(',');
+    categories = categories.split(',');
     console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}`);
     var sort;
     switch (sortingType) {
