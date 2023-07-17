@@ -637,14 +637,14 @@ input[type="reset"] {
 
 .add-service-button {
     border-radius: 15px;
-    padding: 15px;
+    padding: 12px 40px;
     cursor: pointer;
     z-index: 1;
     background-color: #001E60;
     color: #fff;
     font-size: 15px;
     font-weight: 300;
-    margin-right: 60px;
+    margin-right: 50px;
     transition: 200ms ease;
 }
 
@@ -659,7 +659,7 @@ input[type="reset"] {
 
 .filter-school-button {
     border-radius: 15px;
-    padding: 15px;
+    padding: 12px 40px;
     cursor: pointer;
     z-index: 1;
     background-color: #001E60;
