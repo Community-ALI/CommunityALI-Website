@@ -740,18 +740,18 @@ section .details span
 
 .add-page-button
 {
-    font-size: 15px;
+    font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     color: white;
     cursor: pointer;
     border: none;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
-    margin : 5px 10px;
-    padding : 5px 8px;
+    padding : 15px 10px;
     border-radius: 20px;
+    width: 60%;
 }
 
 .add-page-button:hover
@@ -810,6 +810,71 @@ section .details span
     border: none;
 }
 
+
+.pop-up-container 
+{
+    position: fixed;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+  
+.pop-up-overlay 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+  
+.pop-up-content 
+{
+    background-color:#0096C9;
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 1;
+    width: 50%;
+    padding-bottom: 50px;
+}
+  
+.pop-up-content-title 
+{
+    margin-top : 10px;
+    margin-bottom: 20px;
+    color : white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    padding : 10px 5px;
+    background-color: #001E60;
+    border-radius: 10px;
+}
+
+.pop-up-all-pages
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pop-up-page
+{
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+  
+
 @media all and (max-width : 1300px)
 {
     .meeting-details-text-box
@@ -834,6 +899,10 @@ section .details span
 
 @media all and (max-width : 1050px)
 {
+    .pop-up-content
+    {
+        width : 75%;
+    }
 
     .service-category
     {
@@ -907,6 +976,11 @@ section .details span
         margin-left: 0px;
         flex-direction: row;
         background-color: #001E60;
+    }
+
+    .add-page-button
+    {
+        width: 70%;
     }
 
     .file-container
@@ -987,6 +1061,45 @@ section .details span
 
 @media all and (max-width : 480px)
 {
+
+    .pop-up-content
+    {
+        width : 90%;
+        padding : 20px;
+        padding-bottom : 40px;
+    }
+
+    .pop-up-content-title
+    {
+        font-size : 20px;
+        margin-bottom : 30px;
+    }
+
+    .add-page-button
+    {
+        font-size : 16px;
+        background-color: #00468D;
+        width: 90%;
+        margin-bottom : 20px;
+    }
+
+    .service-category-container
+    {
+        margin: 0px 5%;
+        padding: 25px 25px;
+    }
+
+    .service-category-title
+    {
+        font-size : 20px;
+    }
+
+    .service-category
+    {
+        font-size : 14px;
+        line-height: 25px;
+    }
+
     .service-navbar 
     {
         flex-direction: column;
@@ -1046,7 +1159,6 @@ section .details span
         line-height: 30px;
         padding : 10px 15px;
         margin: 30px 5%;
-        margin-bottom: 100px;
     }
 
     .authorization-container
@@ -1153,4 +1265,3 @@ section .details span
     }
 
 }
-
