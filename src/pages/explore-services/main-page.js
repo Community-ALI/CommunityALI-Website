@@ -79,6 +79,9 @@ function Services(props) {
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get('keyword');
         let url = `${BASE_BACKEND_URL}/get-all-services`;
+        let categoriesFilterUrl = categoriesFilter.reduce(
+          (result, category, index) => (index === 0) ? category
+            : `${result}>${category}`, '')
         url += `/${sortingType}/${serviceTypeFilter}/${categoriesFilter}`;
         if (keyword) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
