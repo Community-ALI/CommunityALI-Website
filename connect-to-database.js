@@ -38,11 +38,13 @@ const userSchema = new mongoose.Schema(
         password: { type: String, required: true },
         description: String,
         verified: { type: Boolean, required: true },
+        verificationCode: {type: String},
         clubAdmin: { type: Boolean},
         internshipAdmin: { type: Boolean},
         dateCreated: String
     }, { collection: 'users' }
 )
+
 
 const Application = mongoose.model("applications", applicationSchema);
 

@@ -98,6 +98,13 @@ input[data-autocompleted]
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    font-weight: 400;
+    transition: 300ms ease;
+}
+
+.service-navbar-text a:hover
+{
+    color:#001E60;
 }
 
 .service-navbar-plus-container
@@ -263,9 +270,9 @@ input[data-autocompleted]
     display: flex;
     justify-content: space-evenly;
     flex-flow: wrap;
-    align-items: flex-start;
-    padding-right: 5%;
-    padding-left: 5%;
+    align-items: stretch;
+    padding-right: 4%;
+    padding-left: 4%;
 }
 
 .service-info2-container
@@ -323,6 +330,51 @@ input[data-autocompleted]
     color: #ecaa1e;
 }
 
+.service-category-title
+{
+    text-align: center;
+    margin-bottom : 20px;
+    padding : 10px;
+    font-size: 26px;
+}
+
+.service-category-container
+{
+    color: white;
+    background-color: #00468D;
+    font-size: clamp(10px, 4vh, 20px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 50px;
+    padding: 25px 45px;
+    border-radius: 20px;
+    margin : 0px 8%;
+    margin-bottom: 200px;
+}
+
+.service-categories
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    cursor: pointer;
+    padding-bottom : 50px;
+}
+
+.service-category
+{
+    width : 45%;
+    border-radius: 15px;
+    margin-right: 20px;
+    transition: 300ms ease;
+}
+
+.service-category:hover
+{
+    background-color: #001E60;
+}
+
 .service-description
 {
     color: white;
@@ -331,10 +383,10 @@ input[data-autocompleted]
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
-    position: relative;
-    padding: 20px 35px;
+    padding: 25px 45px;
     border-radius: 20px;
-    margin : 50px 7%;
+    margin : 50px 8%;
+    margin-bottom: 60px;
 }
 
 .meeting-description-text-box
@@ -343,8 +395,8 @@ input[data-autocompleted]
     padding: 8px 10px;
     font-family: 'Poppins', sans-serif;
     font-size: clamp(10px, 4vh, 20px);
-    margin-bottom: 30px;
-    margin-top : 20px;
+    margin-bottom: 20px;
+    margin-top : 10px;
     background : none;
     border : none;
     outline : none;
@@ -588,6 +640,10 @@ input[data-autocompleted]
     border-radius: 20px;
     padding: 30px;
     box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
@@ -616,6 +672,7 @@ input[data-autocompleted]
     flex-direction: column;
     border-radius: 5px;
     border: 2px dashed white;
+    width: 80%;
 }
 
 #file-icon
@@ -683,18 +740,18 @@ section .details span
 
 .add-page-button
 {
-    font-size: 15px;
+    font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     color: white;
     cursor: pointer;
     border: none;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
-    margin : 5px 10px;
-    padding : 5px 8px;
+    padding : 15px 10px;
     border-radius: 20px;
+    width: 60%;
 }
 
 .add-page-button:hover
@@ -753,6 +810,71 @@ section .details span
     border: none;
 }
 
+
+.pop-up-container 
+{
+    position: fixed;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+  
+.pop-up-overlay 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+  
+.pop-up-content 
+{
+    background-color:#0096C9;
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 1;
+    width: 50%;
+    padding-bottom: 50px;
+}
+  
+.pop-up-content-title 
+{
+    margin-top : 10px;
+    margin-bottom: 20px;
+    color : white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    padding : 10px 5px;
+    background-color: #001E60;
+    border-radius: 10px;
+}
+
+.pop-up-all-pages
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pop-up-page
+{
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+  
+
 @media all and (max-width : 1300px)
 {
     .meeting-details-text-box
@@ -761,8 +883,33 @@ section .details span
     }
 }
 
+@media all and (max-width : 1200px)
+{
+    .service-info-container
+    {
+        padding-right : 1%;
+        padding-left : 1%;
+    }
+
+    .service-description
+    {
+        margin : 50px 5%;
+    }
+}
+
 @media all and (max-width : 1050px)
 {
+    .pop-up-content
+    {
+        width : 75%;
+    }
+
+    .service-category
+    {
+        width : 100%;
+        padding-left : 20px;
+    }
+
     .meeting-details-text-box
     {
         font-size: 17px;
@@ -831,10 +978,21 @@ section .details span
         background-color: #001E60;
     }
 
+    .add-page-button
+    {
+        width: 70%;
+    }
+
     .file-container
     {
         width : 80%;
         margin-bottom : 30px;
+    }
+
+    .service-info-container
+    {
+        padding-right : 0%;
+        padding-left : 0%;
     }
 
     .service-image-container
@@ -859,6 +1017,8 @@ section .details span
     {
         font-size : 16px;
         line-height: 40px;
+        margin: 50px 9%;
+        padding : 10px 20px;
     }
 
     .application-buttons
@@ -880,10 +1040,66 @@ section .details span
     {
         justify-content: center;
     }
+
+    .service-category-container
+    {
+        font-size : 16px;
+    }
+
+    .service-category-title
+    {
+        font-size : 24px;
+        line-height: 35px;
+    }
+
+    .service-category
+    {
+        padding-left : 0px;
+    }
+
 }
 
 @media all and (max-width : 480px)
 {
+
+    .pop-up-content
+    {
+        width : 90%;
+        padding : 20px;
+        padding-bottom : 40px;
+    }
+
+    .pop-up-content-title
+    {
+        font-size : 20px;
+        margin-bottom : 30px;
+    }
+
+    .add-page-button
+    {
+        font-size : 16px;
+        background-color: #00468D;
+        width: 90%;
+        margin-bottom : 20px;
+    }
+
+    .service-category-container
+    {
+        margin: 0px 5%;
+        padding: 25px 25px;
+    }
+
+    .service-category-title
+    {
+        font-size : 20px;
+    }
+
+    .service-category
+    {
+        font-size : 14px;
+        line-height: 25px;
+    }
+
     .service-navbar 
     {
         flex-direction: column;
@@ -1049,4 +1265,3 @@ section .details span
     }
 
 }
-

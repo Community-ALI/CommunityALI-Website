@@ -144,7 +144,7 @@ body
 .container-title p
 {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(18px, 3vw, 40px);
+    font-size: clamp(20px, 3vw, 40px);
     text-align: center;
     margin-bottom: 20px;
 }
@@ -667,6 +667,11 @@ border-radius: 10px;
         padding-left : 0%;
     }
 
+    .partners-images-container
+    {
+        margin-bottom: 40%;
+    }
+
     #solvecc
     {
         width : 70%;
@@ -675,8 +680,8 @@ border-radius: 10px;
     #fourth-world
     {
         width : 50%;
-        margin-bottom : 10%;
-        margin-top: 10px;
+        margin-bottom : 20%;
+        margin-top: 30px;
     }
 }
 

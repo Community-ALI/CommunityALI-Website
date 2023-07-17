@@ -43,7 +43,7 @@ function RequirementsPage({ formData, setFormData }) {
           <div className="contacts-container" key={k}>
             <input
               type="text"
-              placeholder="Title of the requierment (like a 2 word description)"
+              placeholder="Title of the Requierment (Brief Description)"
               className="contacts-text-box"
               name="RequireTitle"
               value={RequireVal.RequireTitle}
@@ -53,7 +53,7 @@ function RequirementsPage({ formData, setFormData }) {
             <div className="text-button-container">
               <input
                 type="url"
-                placeholder="Explanation of the requierment"
+                placeholder="Explanation of the Requierment"
                 className="contacts-email-box"
                 name="RequireDescription"
                 value={RequireVal.RequireDescription}

@@ -20,7 +20,7 @@ import Edit_Internship from "./pages/my-services/internship-components/edit-inte
 import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
 import Profile from "./pages/account/profile";
-
+import Verify from "./pages/account/verify"
 // import Signup from "./signup"
 
 import './style.scss';
@@ -45,21 +45,25 @@ function App() {
                 {/* my services pages */}
                 <Route path="/my-services" element={<My_Services_Main_Page />}/>
                 <Route path="/categories-page" element={<Add_Service />}/>
-                <Route path="/add-club" element={<Add_Club />}/>
-                <Route path="/add-event" element={<Add_Event />}/>
+                <Route path="/view-applicants" element={<View_Applicants />}/>
                 <Route path="/add-volunteer" element={<Add_Volunteer />}/>
                 <Route path="/add-internship" element={<Add_Internship />}/>
                 <Route path="/edit-service" element={<Edit_Service />}/>
+
+                {/* service posting */}
+                <Route path="/add-club" element={<Add_Club />}/>
+                <Route path="/add-event" element={<Add_Event />}/>
                 <Route path="/edit-club" element={<Edit_Club />}/>
                 <Route path="/edit-internship" element={<Edit_Internship />}/>
-                <Route path="/view-applicants" element={<View_Applicants />}/>
+                
+                {/* account pages */}
                 <Route path="/register" element={<Register />}/>
-
                 <Route path="/profile" element={<Profile />}/>
+                <Route path="/verify" element={<Verify />}/>
 
                 {/* other */}
                 <Route path="/" element={<LandingPage />}/>
-                {/* <Route path="/contact-form" element={<ContactForm/>}/> */}
+                <Route path="/contact-form" element={<ContactForm/>}/> 
             </Routes>
         </BrowserRouter>
     )

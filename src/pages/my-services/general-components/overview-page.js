@@ -48,11 +48,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     setFormData((prevData) => ({ ...prevData, file: selectedFile }));
   };
 
-  // const handleFormChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData((prevData) => ({ ...prevData, [name]: value }));
-  // };
-
   const handleFormChange = (event) => {
     event.persist(); // Notify React to persist the event object
     const { name, value, type, checked } = event.target;
@@ -71,8 +66,19 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
-  
 
+
+  const handleCategoryClick = (event) => {
+    const categoryName = event.target.getAttribute("data-category");
+    setFormData((prevData) => {
+      const selectedValues = prevData.categories || [];
+      if (selectedValues.includes(categoryName)) {
+        return { ...prevData, categories: selectedValues.filter((option) => option !== categoryName) };
+      } else {
+        return { ...prevData, categories: [...selectedValues, categoryName] };
+      }
+    });
+  };
   
 
   return (
@@ -156,42 +162,12 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
             />
             <br />
           </div>
-
-          <div>
-          <div>
-            <button type='button' onClick={toggleSelectOption} className='category-select-button'> School</button>
-            {tisOpen &&
-            <div>
-              {schoolOptions.map((option) => (
-                <div key={option}>
-                  <label className='cb-label' >
-                    <input
-                      type="checkbox"
-                      onChange={handleFormChange}
-                      onBlur={() => {}}
-                      name={option}
-                      checked={(formData.categories && formData.categories.includes(option)) || false}
-                      className="category-selection"
-                    />
-                    {option}
-                  </label>
-                </div>
-              ))}
-            </div>
-}
-          </div>
-
-
-
-
-            <br />
-          </div>
         </div>
       </div>
 
       <div className="service-description">
         <textarea
-          rows="5"
+          rows="4"
           type="text"
           placeholder={`Include a description of the ${serviceType.toLowerCase()}...`} // used to be: "Include a description of what the club does and its mission..."
           onChange={handleFormChange}
@@ -201,6 +177,34 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
           id="description"
         ></textarea>
       </div>
+
+      <div className="service-category-container">
+        <div className="service-category-title">
+          Select the Categories that Fits Your {serviceType.toLowerCase()}
+        </div>
+        <div className="service-categories">
+          {schoolOptions.map((option) => (
+            <div className="service-category" 
+            key={option}
+            onClick={handleCategoryClick}
+            data-category={option}
+            >
+              <label className='cb-label' >
+                <input
+                  type="checkbox"
+                  onChange={handleFormChange}
+                  onBlur={() => {}}
+                  name={option}
+                  checked={(formData.categories && formData.categories.includes(option)) || false}
+                  className="category-selection"
+                />
+                {option}
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }
