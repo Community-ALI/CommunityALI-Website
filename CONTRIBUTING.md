@@ -9,7 +9,7 @@ Feature: (Verb like add or implement) (The feature you implemented)<br>
 ex: Feature: Change footer text color to match the default<br>
 ex: Feature: Implement categories filter clear button
 
-Chore: (Verb like add or implement) (What code you refactored) <br>
+Chore: (Verb like rework or remove) (What code you refactored) <br>
 ex: Chore: Drop unused buttons
 
 ## Node.js
