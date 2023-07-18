@@ -72,7 +72,7 @@ const find_filter_service = async function (sortingType, serviceType, fields, ca
 const get_services = async function (keywords, fields, sortingType, serviceType, categories) {
   try {
     filteredData = [];
-    foundServices = find_filter_service(sortingType, serviceType, fields, categories);
+    foundServices = await find_filter_service(sortingType, serviceType, fields, categories);
 
     filterAttribute = 'title';
     if (keywords != undefined) {
