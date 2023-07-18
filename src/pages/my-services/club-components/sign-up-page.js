@@ -176,7 +176,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
 
             <div onClick={toggleAuthorizationPopup} className="sign-up-submit-container">
               <div className="sign-up-submit-button">
-                Submit Club
+                Submit Club Application
               </div>
             </div>
               

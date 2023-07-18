@@ -163,6 +163,7 @@ input[data-autocompleted]
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 }
 
 .sign-up-form-container
@@ -1071,6 +1072,30 @@ section .details span
 
 @media all and (max-width : 820px)
 {
+    .authorization-container-title
+    {
+        font-size: 24px;
+    }
+
+    .authorization-container
+    {
+        margin: 0px 5%;
+        margin-bottom: 50px;
+    }
+
+    .authorization-text
+    {
+        width : 95%;
+        margin-top: 30px
+    }
+
+    .sign-up-return-button
+    {
+        width : 95%;
+        font-size : 18px;
+        margin-top: 60px;
+    }
+
     .add-buttons-container
     {
         left: -150%;
@@ -1124,7 +1149,8 @@ section .details span
 
     .application-buttons
     {
-        margin-top : 50px;
+        font-size : 18px;
+        width : 95%;
     }
 
     #name-container
@@ -1158,6 +1184,14 @@ section .details span
         padding-left : 0px;
     }
 
+}
+
+@media all and (max-width : 600px)
+{
+    .authorization-text
+    {
+        font-size: 14px;
+    }
 }
 
 @media all and (max-width : 480px)
@@ -1262,9 +1296,19 @@ section .details span
         margin: 30px 5%;
     }
 
+    .authorization-container-title 
+    {
+        font-size: 20px;
+    }
+
     .authorization-container
     {
-        font-size: 13px;
+        padding: 10px;
+    }
+
+    .authorization-text
+    {
+        font-size : 12px;
     }
     
     .contacts-container input
@@ -1278,10 +1322,20 @@ section .details span
         font-size: 15px;
     }
 
+    .sign-up-return-button
+    {
+        margin-top: 40px;
+        font-size : 14px;
+        letter-spacing: 1px;
+        width: 100%;
+    }
+
     .application-buttons
     {
-        margin-top : 40px;
-        font-size: 15px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        width: 100%;
+        margin-bottom: 30px;
     }
 
     .delete-button
