@@ -41,7 +41,8 @@ const userSchema = new mongoose.Schema(
         verificationCode: {type: String},
         clubAdmin: { type: Boolean},
         internshipAdmin: { type: Boolean},
-        dateCreated: String
+        dateCreated: String,
+        profileImage: Buffer,
     }, { collection: 'users' }
 )
 

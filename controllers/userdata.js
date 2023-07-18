@@ -1,3 +1,5 @@
+// libraries
+const fs = require('fs');
 // database
 const models = require("../connect-to-database");
 const Applications = models.Application;
@@ -28,16 +30,29 @@ exports.set_account_data = async function (username, req) {
       // Save the updated account back to the database
       await selected_account.save();
 
-      return selected_account; // Optional: Return the updated account
+      return selected_account;
     } else {
-      // Handle case when account with the given username is not found
-      // return an appropriate response or throw an error
+      // TODO: Error handling
     }
   } catch (error) {
-    // Handle any errors that occurred during the update process
-    // return an appropriate response or throw an error
+    // TODO: Error handling
   }
 };
+
+exports.upload_account_image = async function (username, req) {
+  try{
+    const account = await Users.findOne({ username: username });
+    const image = fs.readFileSync(req.file.path);
+    account.profileImage = image;
+    await account.save();
+    console.log('updated profile image for', username);
+    return({success: true})
+  }
+  catch(err){
+    console.log(err);
+    return({success: false, error: err})
+  }
+}
 
 
 // get user services from database
@@ -65,7 +80,7 @@ exports.get_applications = async function (username) {
 // get a user's applications from database
 exports.get_account = async function (username) {
   try {
-    const selected_account = await Users.find({ username: username }).select('username email description dateCreated').exec();
+    const selected_account = await Users.find({ username: username }).select('username email description dateCreated profileImage').exec();
     return selected_account;
   } catch (error) {
     console.error(error);

@@ -5,13 +5,13 @@ import './profile.css';
 import Footer from "../../components/Footer";
 import { BASE_BACKEND_URL } from '../../config';
 import ProfilePicturePopup from './profilePicturePopup';
-
+import { Buffer } from 'buffer';
 function Profile() {
-  const imageUrl = "photos-optimized/user-pic.png";
   const [account, setAccount] = useState({
     username: 'loading...',
     email: 'loading...',
-    role: 'loading...'
+    role: 'loading...',
+    imageUrl: 'photos-optimized/user-pic.png'
   });
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -76,7 +76,18 @@ function Profile() {
             }
           });
           const data = await response.json();
-          setAccount(data.dataAccount[0]);
+          console.log(data.dataAccount[0]);
+          const buffer = Buffer.from(data.dataAccount[0].profileImage.data);
+          const base64 = buffer.toString('base64');
+          const imageUrl = `data:image/png;base64,${base64}`;
+          console.log(imageUrl);
+          await setAccount(
+            {
+            username: data.dataAccount[0].username,
+            email: data.dataAccount[0].email,
+            role: '',
+            imageUrl: imageUrl
+          });
           const loaderWrapper = document.querySelector('.loader-wrapper');
           loaderWrapper.style.transition = 'opacity 0.5s';
           loaderWrapper.style.opacity = '0';
@@ -168,7 +179,7 @@ function Profile() {
       <NavBar isFixedPage={false} />
       <div className="profile-container">
         <div className="profile-picture">
-          <img className="profile-img" src={imageUrl} onClick={() => { setIsShowingProfilePicturePopup(!isShowingProfilePicturePopup) }} />
+          <img className="profile-img" src={account.imageUrl} onClick={() => { setIsShowingProfilePicturePopup(!isShowingProfilePicturePopup) }} />
           <div className="profile-details">
             <div className='profile-name-display'> {account.username} </div>
             <div className='profile-email-display'> {account.email}</div>

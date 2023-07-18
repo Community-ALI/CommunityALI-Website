@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import AvatarEditor from 'react-avatar-editor';
+import { BASE_BACKEND_URL } from '../../config';
 
 const ImageUploadWindow = ({ imageUrl, onClose }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -8,7 +9,7 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
   const editorRef = React.useRef();
 
   const handleDrop = useCallback((acceptedFiles) => {
-    setSelectedImage(URL.createObjectURL(acceptedFiles[0]));
+    setSelectedImage(acceptedFiles[0]);
   }, []);
 
   const handleScaleChange = (e) => {
@@ -49,9 +50,30 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
   const handleSave = () => {
     if (editorRef.current) {
       const canvas = editorRef.current.getImageScaledToCanvas();
-      // Handle the cropped image here
+      canvas.toBlob((blob) => {
+        const formData = new FormData();
+        formData.append('image', blob, 'image.png');
+        const token = localStorage.getItem('token');
+        fetch(`${BASE_BACKEND_URL}/userdata/upload-profile-image`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Handle the response from the server
+            console.log('Image uploaded:', data);
+          })
+          .catch(error => {
+            // Handle any errors
+            console.error('Error uploading image:', error);
+          });
+      }, 'image/png');
     }
   };
+  
 
   useEffect(() => {
     // Disable scrolling on the document body when the component mounts
@@ -66,10 +88,10 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
     accept: 'image/*',
-    noClick: true, // Disable click functionality
+    noClick: true, 
   });
 
-  const defaultImage = 'photos-optimized/user-pic.png'; // Replace 'path_to_default_image' with the path to your default image
+  const defaultImage = 'photos-optimized/user-pic.png'; 
 
   return (
     <div className="container-login" onWheel={handleWheel}>

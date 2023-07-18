@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 
@@ -91,6 +94,28 @@ router.get("/get-account", async function (req, res) {
     }
 });
 
+
+router.post("/upload-profile-image", upload.single("image"), uploadProfileImage);
+async function uploadProfileImage(req, res){
+    try{
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const username = decodedToken.username;
+        const result = await user_data.upload_account_image(username, req);
+        if (result.success){
+            res.json({status: 'ok'});
+        }
+        else{
+            console.log(result.error);
+            res.status(400).json({status: 'error', error: result.error})
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({status: 'error', error: err})
+    }
+    
+}
 
 router.post("/set-account-data", async function (req, res) {
     try {

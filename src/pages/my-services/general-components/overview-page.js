@@ -43,8 +43,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-   
-    
     setFormData((prevData) => ({ ...prevData, file: selectedFile }));
   };
 
