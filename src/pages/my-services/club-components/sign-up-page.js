@@ -4,6 +4,14 @@ import '../add-service.css';
 import { useNavigate } from 'react-router-dom';
 
 function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
+
+  const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
+
+  const toggleAuthorizationPopup = () => 
+  {
+    setShowAuthorizationPopup((prev) => !prev);
+  };
+
     let navigate = useNavigate();
     const checkRequired = () => {
       if (
@@ -25,7 +33,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
         alert('Overview is incomplete');
         return false;
       }
-    
+
       // Check required fields for Contacts
       if (allFormData.Contacts.contacts) {
         const contacts = allFormData.Contacts.contacts;
@@ -68,10 +76,6 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
       }
       return true;
     };
-
-      
-
-      
 
 
     const handleSubmit = (event) => {
@@ -166,25 +170,47 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
                           id="email" name="email" readOnly/><br/>
                       </div>
                   </div> 
-                  <input placeholder="Submit" className="sign-up-submit-button" readOnly/><br/>
+                  {/* <input placeholder="Submit" className="sign-up-submit-button" readOnly/><br/> */}
               </div>
             </div>
 
-            <div className="authorization-container">
-                <label htmlFor="authorization" className="authorization-text">
-                By submitting this application I authorize Community ALI to publish all the information of this application for anybody
-                to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
-                I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
-                members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
-                against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
-                </label>
-                {/* <input type="button" value="Save Draft" id="draft-button" className="application-buttons" /> */}
-                {editMode === false?(
-                  <input type="submit" value="Submit Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
-                ) : (
-                  <input type="submit" value="Update Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
-                )}
+            <div onClick={toggleAuthorizationPopup} className="sign-up-submit-container">
+              <div className="sign-up-submit-button">
+                Submit Club
+              </div>
             </div>
+              
+            {showAuthorizationPopup && (
+            <div className="popup-overlay">
+              <div className="authorization-container">
+                  <div className="authorization-container-title">
+                    Please Read the Following
+                  </div>
+                  <label htmlFor="authorization" className="authorization-text">
+                  By submitting this application I authorize Community ALI to publish all the information of this application for any person
+                  to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
+                  I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
+                  members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
+                  against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
+                  </label>
+
+                  <input
+                    type="button"
+                    value="Return to Editing"
+                    className="sign-up-return-button"
+                    onClick={toggleAuthorizationPopup} // Add the onClick event to close the pop-up
+                  />
+                  {/* <input type="button" value="Save Draft" id="draft-button" className="application-buttons" /> */}
+                  {editMode === false?(
+                    <input type="submit" value="Agree to Terms and Conditions" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                  ) : (
+                    <input type="submit" value="Update Club" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+
+                    
+                  )}
+              </div>
+            </div>
+            )}
         </div>
     )
 }

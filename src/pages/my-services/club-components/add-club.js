@@ -150,6 +150,10 @@ function AddClub() {
               </div>
             ))}
           </div>
+          <div className="pop-up-content-description">
+            Need more pages for your Club? Contact us for suggestions 
+            <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
+          </div>
         </div>
       </div>
     );
