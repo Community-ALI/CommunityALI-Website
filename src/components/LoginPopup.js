@@ -8,10 +8,15 @@ function LoginPopup(props) {
     const [password, setPassword] = useState('');
     const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
 
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
     const handleSignupClick = () => {
         setIsShowingSignupPopup(true);
       };
-      
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible((prev) => !prev);
+      };
 
         async function login(event) {
             event.preventDefault();
@@ -78,13 +83,19 @@ function LoginPopup(props) {
                                 <input 
                                     autoComplete="off"
                                     className="text-field-input"
-                                    type="password" 
+                                    type={passwordVisible ? "text" : "password"} // Use the "text" type when passwordVisible is true
                                     id="password" 
                                     required=""
                                     onChange={e => {
                                         setPassword(e.target.value);
                                     }}
                                     />
+                                    <i
+                                        className={`fa-solid ${passwordVisible ? "fa-eye" : "fa-eye-slash"}`}
+                                        id="password-eye"
+                                        onClick={togglePasswordVisibility} // Add the onClick event to toggle the password visibility
+                                    />
+
                                 <span className={`text-field-span${(password != '') ? ' focused-field' : ''}`}></span>
                                 <label className={`text-field-label${(password != '') ? ' focused-field' : ''}`} htmlFor="password">Password</label>
                             </div>
@@ -98,7 +109,7 @@ function LoginPopup(props) {
                             />
                             <div class="signup_link">
                                 <p>Don't have an account? </p>
-                                <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSignupClick}>Sign-up</button>
+                                <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSignupClick}>Sign Up</button>
                             </div> 
                             <div className="signup_link">
                                 Do you own a club and can't log into your account? Contact us - techsupport@communityali.org

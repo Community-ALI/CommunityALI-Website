@@ -3,7 +3,8 @@ import { BASE_BACKEND_URL } from '../../config.js'
 import '../../pages/explore-services/main-page.css'
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
-import ServiceDropdown from './service-dropdown.js'
+import ServiceDropdown from './service-dropdown.js';
+import MobileServiceDropdown from './mobile-service-dropdown.js';
 const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
@@ -70,6 +71,7 @@ function Services(props) {
   const [sortingType, setSortingtype] = useState('alphabetical');
   const [serviceTypeFilter, setServiceTypeFilter] = useState([props.startingfilter]);
   const [categoriesFilter, setCategoriesFilter] = useState(['all']);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 
 
   // get services from the backend
@@ -106,6 +108,14 @@ function Services(props) {
     fetchData();
   }, [serviceTypeFilter, sortingType, categoriesFilter]);
 
+  useState(() => {
+    console.log(window.innerWidth);
+    window.addEventListener('resize', (() => {
+      console.log(window.innerWidth);
+      setIsMobile(window.innerWidth <= 425)
+    }));
+  })
+
   // return the page
   return (
     <div>
@@ -117,13 +127,21 @@ function Services(props) {
 
 
       <div className="search-result-container">
-        <ServiceDropdown
-          SetSortingType={setSortingtype}
-          SetServiceTypeFilter={setServiceTypeFilter}
-          serviceTypeFilter={serviceTypeFilter}
-          SetCategoriesFilter={setCategoriesFilter}
-          categoriesFilter={categoriesFilter}
-        />
+        {!isMobile &&
+          <ServiceDropdown
+            SetSortingType={setSortingtype}
+            SetServiceTypeFilter={setServiceTypeFilter}
+            serviceTypeFilter={serviceTypeFilter}
+            SetCategoriesFilter={setCategoriesFilter}
+            categoriesFilter={categoriesFilter}
+          />} {isMobile &&
+            <MobileServiceDropdown
+              SetSortingType={setSortingtype}
+              SetServiceTypeFilter={setServiceTypeFilter}
+              serviceTypeFilter={serviceTypeFilter}
+              SetCategoriesFilter={setCategoriesFilter}
+              categoriesFilter={categoriesFilter}
+            />}
         <div className="results">
           <DisplayAllServices services={services} />
         </div>

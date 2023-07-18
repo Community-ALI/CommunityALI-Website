@@ -116,7 +116,7 @@ const ServiceDropdown = (props) => {
       <div className="filter-system-container">
         <div className='filter-both-buttons-container'>
           <div className='filter-buttons-container'>
-            <button className="add-service-button" 
+            <button className="add-service-button mobileFilterServiceButton" 
             onClick={toggleServiceTypeFilterDropDown}
             ref={buttonRef1} >
               <b>Filter Service Category</b><span className={`arrow ${isContentVisible1 ? 'up' : 'down'}`}></span>
