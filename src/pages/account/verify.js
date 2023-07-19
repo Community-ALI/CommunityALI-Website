@@ -3,6 +3,7 @@ import '../../../public/stylesheets/style.css';
 import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
 import { BASE_BACKEND_URL } from '../../config';
+import './verify.css';
 
 
 function VerificationForm() {
@@ -51,16 +52,29 @@ function VerificationForm() {
   }, [verificationCode]);
 
   return (
-    <div>
-      <p>Enter the 6 digit code sent to your email in order to verify that you own it</p>
-        <input
-          className="verification-code"
-          type="text"
-          placeholder="123456"
-          value={verificationCode}
-          onChange={handleVerificationCodeChange}
-          maxLength={6}
-        />
+    <div className='verification-container'>
+      <div className='verification-title'> Almost done! Let's Verify your New Account </div>
+      <div className="verification-text">Enter the 6 digit code sent to your email in order to verify that you own it</div>
+      <div className='verification-code-container'>
+        <div className='verification-security-text'> Security Code: </div>
+          <input
+            className="verification-code"
+            type="number"
+            placeholder="######"
+            value={verificationCode}
+            onChange={handleVerificationCodeChange}
+            maxLength={6}
+          />
+      </div>
+      <div className="verification-no-code">Didn't Receive the Code? 
+        <a className="verification-link" href="">Request another one </a> 
+      </div>
+      <div className='verification-problems-container'>
+        <div className='verification-problems-title'> Still Facing Problems? Click below </div>
+        <div className='verification-problems-link'>
+          <a href='contact-form'>Technical Support </a>
+        </div>
+      </div>
     </div>
     
   );
