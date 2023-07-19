@@ -604,6 +604,17 @@ border-radius: 10px;
 
 @media all and (max-width : 480px)
 {
+    .main-container
+    {
+        margin-bottom: 50px;
+    }
+
+    .container-title p
+    {
+        margin-top : 20px;
+        margin-bottom : 40px;
+    }
+
     .header
     {
         min-height: 110vh;
@@ -614,6 +625,7 @@ border-radius: 10px;
     {
         width : 320px;
         height : 180px;
+        margin-bottom: 30px;
     }
 
     .subtext
@@ -665,6 +677,7 @@ border-radius: 10px;
     {
         padding-right : 0%;
         padding-left : 0%;
+        padding-bottom : 20px;
     }
 
     .partners-images-container

@@ -1,7 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
 import '../../index.css'
+import LazyLoad from 'react-lazy-load';
 
 function LandingPageCommunityAliInformation() {
+
+    const [videoLoaded, setVideoLoaded] = useState(false);
+
+    const handleVideoClick = () => {
+      setVideoLoaded(true);
+    };
+
     return(
         <div className="description-container">  
             <div className ="container-title">
@@ -21,14 +29,23 @@ function LandingPageCommunityAliInformation() {
                 </div>
         
                 <div>
-                    <iframe 
-                        className="description-video" 
-                        src="https://www.youtube.com/embed/CkaNT8QOt9U" 
-                        title="YouTube video player" 
-                        frameBorder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowFullScreen> 
-                    </iframe>
+                {!videoLoaded && (
+                    <div className="video-placeholder" onClick={handleVideoClick}>
+                        <img src="photos-optimized/WebsiteVideoPlaceholder.jpg" className='description-video' />
+                    </div>
+                    )}
+                    {videoLoaded && (
+                    <LazyLoad offsetVertical={300}>
+                        <iframe
+                        className="description-video"
+                        id="description-video-placeholder"
+                        src="https://www.youtube.com/embed/CkaNT8QOt9U"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        />
+                    </LazyLoad>
+                    )}
                 </div>
             </div>
         </div>
