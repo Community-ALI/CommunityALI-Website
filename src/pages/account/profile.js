@@ -77,10 +77,16 @@ function Profile() {
           });
           const data = await response.json();
           console.log(data.dataAccount[0]);
-          const buffer = Buffer.from(data.dataAccount[0].profileImage.data);
-          const base64 = buffer.toString('base64');
-          const imageUrl = `data:image/png;base64,${base64}`;
-          console.log(imageUrl);
+          var imageUrl;
+          try{
+            const buffer = Buffer.from(data.dataAccount[0].profileImage.data);
+            const base64 = buffer.toString('base64');
+            imageUrl = `data:image/png;base64,${base64}`;
+          }
+          catch(err){
+            console.log('no profile image, using default');
+            imageUrl = 'photos-optimized/user-pic.png';
+          }
           await setAccount(
             {
             username: data.dataAccount[0].username,

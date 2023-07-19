@@ -65,6 +65,7 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
           .then(data => {
             // Handle the response from the server
             console.log('Image uploaded:', data);
+            location.reload();
           })
           .catch(error => {
             // Handle any errors
