@@ -78,6 +78,7 @@ function ContactsPage({ formData, setFormData, serviceType = 'Club'}) {
 
           {contactData.map((contactVal, j) => (
             <div className="contacts-container" key={j}>
+              {serviceType === 'Club' ? 
               <select
                 className="club-contacts-selection"
                 name="contactRole"
@@ -90,6 +91,15 @@ function ContactsPage({ formData, setFormData, serviceType = 'Club'}) {
                   </option>
                 ))}
               </select>
+              : 
+              <input className='club-contacts-selection'
+                type='text'
+                placeholder='role' 
+                name='contactRole'
+                value={contactVal.contactRole}
+                onChange={(h) => contactChange(h, j)}
+                  >
+                </input>}
               <input
                 type="text"
                 placeholder={`Full Name of ${personTitle}`}

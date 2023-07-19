@@ -232,9 +232,9 @@ function AddInternship() {
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} editMode={true}  />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} serviceType='Internship' editMode={true}  />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} serviceType='Internship' />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} serviceType='Internship' />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 'title': titleValue }
