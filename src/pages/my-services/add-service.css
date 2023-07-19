@@ -1085,7 +1085,6 @@ section .details span
 
     .authorization-text
     {
-        width : 95%;
         margin-top: 30px
     }
 
@@ -1204,6 +1203,11 @@ section .details span
         padding-bottom : 40px;
     }
 
+    .pop-up-content-description
+    {
+        line-height: 25px;
+    }
+
     .pop-up-content-title
     {
         font-size : 20px;
@@ -1220,7 +1224,7 @@ section .details span
 
     .service-category-container
     {
-        margin: 0px 5%;
+        margin: 0px 3%;
         padding: 25px 25px;
     }
 
@@ -1233,6 +1237,7 @@ section .details span
     {
         font-size : 14px;
         line-height: 25px;
+        margin-right : 0px
     }
 
     .service-navbar 
@@ -1293,7 +1298,7 @@ section .details span
         font-size : 15px;
         line-height: 30px;
         padding : 10px 15px;
-        margin: 30px 5%;
+        margin: 30px 3%;
     }
 
     .authorization-container-title 
@@ -1308,7 +1313,7 @@ section .details span
 
     .authorization-text
     {
-        font-size : 12px;
+        font-size : 11px;
     }
     
     .contacts-container input

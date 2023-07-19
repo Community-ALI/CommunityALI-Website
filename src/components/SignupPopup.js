@@ -51,7 +51,7 @@ function SignupPopup(props) {
       <div className="container-for-login">
         <h1>Sign Up</h1>
         <form id="signup" onSubmit={signup}>
-          <div className="text-field">
+          <div className="text-field" id="sign-up-text-field">
             <input
               autoComplete="new-email"
               className="text-field-input"
@@ -115,9 +115,6 @@ function SignupPopup(props) {
           <div className="signup_link">
             <p>Already have an account? </p>
             <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSwitchToLogin}>Login</button>
-          </div>
-          <div className="signup_link">
-            Do you own a club and can't log into your account? Contact us - techsupport@communityali.org
           </div>
         </form>
       </div>

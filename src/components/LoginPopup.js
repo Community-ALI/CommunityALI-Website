@@ -104,7 +104,6 @@ function LoginPopup(props) {
                             <input 
                                 type="submit" 
                                 value="Login" 
-                                id='login-submission'
                                 className="login-submit-button"
                             />
                             <div class="signup_link">
@@ -112,7 +111,10 @@ function LoginPopup(props) {
                                 <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSignupClick}>Sign Up</button>
                             </div> 
                             <div className="signup_link">
-                                Do you own a club and can't log into your account? Contact us - techsupport@communityali.org
+                                <div> Can't log into your account? Contact us </div>
+                                <a href="mailto: techsupport@communityali.org" style={{ color: 'blue', textDecoration: 'underline' }}>
+                                techsupport@communityali.org
+                                </a>
                             </div>
                         </form>
                     </div>

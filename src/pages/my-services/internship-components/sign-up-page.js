@@ -4,6 +4,14 @@ import '../add-service.css';
 import RequirementsPage from "./requirements-page.js";
 import { useNavigate } from 'react-router-dom';
 function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
+
+  const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
+
+  const toggleAuthorizationPopup = () => 
+  {
+    setShowAuthorizationPopup((prev) => !prev);
+  };
+
   let navigate = useNavigate();
     const checkRequired = () => {
       if (
@@ -169,44 +177,66 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
     }
 
     return(
-        <div>
-            <div className="sign-up-form">
-              <div id="form" className="sign-up-form-boxes">
-                <div className="service-header" id="sign-up-header">Apply for this Internship Today!</div>
-                  <div className="sign-up-form-container">
-                      <div className="text-container" id="name-container">
-                          <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
-                          <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
-                          id="name" name="name" readOnly/><br/>
-                      </div>
+      <div>
+          <div className="sign-up-form">
+            <div id="form" className="sign-up-form-boxes">
+              <div className="service-header" id="sign-up-header">Join this Internship Today!</div>
+                <div className="sign-up-form-container">
+                    <div className="text-container" id="name-container">
+                        <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
+                        <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
+                        id="name" name="name" readOnly/><br/>
+                    </div>
 
-                      <div className="text-container" id="email-container">
-                          <label htmlFor="email" className="sign-up-form-text"> Email: </label>
-                          <input type="email" className="sign-up-form-input" placeholder="School Email" 
-                          id="email" name="email" readOnly/><br/>
-                      </div>
-                  </div> 
-                  <input placeholder="Submit" className="sign-up-submit-button" readOnly/><br/>
-              </div>
+                    <div className="text-container" id="email-container">
+                        <label htmlFor="email" className="sign-up-form-text"> Email: </label>
+                        <input type="email" className="sign-up-form-input" placeholder="School Email" 
+                        id="email" name="email" readOnly/><br/>
+                    </div>
+                </div> 
+                {/* <input placeholder="Submit" className="sign-up-submit-button" readOnly/><br/> */}
             </div>
+          </div>
 
+          <div onClick={toggleAuthorizationPopup} className="sign-up-submit-container">
+            <div className="sign-up-submit-button">
+              Submit Internship Application
+            </div>
+          </div>
+            
+          {showAuthorizationPopup && (
+          <div className="popup-overlay">
             <div className="authorization-container">
+                <div className="authorization-container-title">
+                  Please Read the Following
+                </div>
                 <label htmlFor="authorization" className="authorization-text">
-                By submitting this application I authorize Community ALI to publish all the information of this application for anybody
-                to view. I hold responsibility for the information displayed from this application and I represent the club's interest to do so.
+                By submitting this application I authorize Community ALI to publish all the information of this application for any person
+                to view. I hold responsibility for the information displayed from this application and I represent the organization's interest to do so.
                 I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
-                members will result in immediate termination of the club from the platform. I understand that there is no tolerance for any discrimination
+                members will result in immediate termination of the internship from the platform. I understand that there is no tolerance for any discrimination
                 against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
                 </label>
+
+                <input
+                  type="button"
+                  value="Return to Editing"
+                  className="sign-up-return-button"
+                  onClick={toggleAuthorizationPopup} // Add the onClick event to close the pop-up
+                />
                 {/* <input type="button" value="Save Draft" id="draft-button" className="application-buttons" /> */}
                 {editMode === false?(
-                  <input type="submit" value="Submit Internship" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                  <input type="submit" value="Agree to Terms and Conditions" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 ) : (
                   <input type="submit" value="Update Internship" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+
+                  
                 )}
             </div>
-        </div>
-    )
+          </div>
+          )}
+      </div>
+  )
 }
 
 export default SignUpPage;

@@ -129,11 +129,17 @@ form .text-field
   background: #2691d9;
   border-radius: 25px;
   font-size: 18px;
-  color: #e9f4fb;
+  color: white;
   font-weight: 700;
   cursor: pointer;
   outline: none;
   font-family: 'Poppins', sans-serif;
+  transition: 200ms ease;
+}
+
+.login-submit-button:hover
+{
+  background-color: #001E60;
 }
 
 #login input[type="submit"]:hover
@@ -198,9 +204,14 @@ form .text-field
 @media all and (max-width : 450px)
 {
 
+  #sign-up-text-field
+  {
+    margin-top : 20px;
+  }
+
   .container-login
   {
-    width : 300px;
+    width : 90%;
   }
 
   .container form
@@ -211,6 +222,7 @@ form .text-field
   .container-for-login form
   {
     padding : 0px 20px;
+    padding-bottom: 10px;
   }
 }
 
@@ -226,4 +238,29 @@ form .text-field
 .hidden {
   display: none;
   visibility: hidden;
+}
+
+@media all and (max-width : 380px)
+{
+  .container-for-login h1
+  {
+    font-size: 28px;
+  }
+
+  .text-field-input
+  {
+    font-size : 14px;
+  }
+
+  .text-field-label
+  {
+    font-size : 14px;
+  }
+
+  .signup_link
+  {
+    font-size: 14px;
+    margin: 20px 0px;
+  }
+
 }

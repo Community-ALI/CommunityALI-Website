@@ -159,6 +159,10 @@ function AddInternship() {
               </div>
             ))}
           </div>
+          <div className="pop-up-content-description">
+            Need more pages for your Internship? Contact us for suggestions 
+            <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
+          </div>
         </div>
       </div>
     );
