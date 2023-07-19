@@ -8,6 +8,34 @@ import './verify.css';
 
 function VerificationForm() {
   const [verificationCode, setVerificationCode] = useState('');
+  async function handleResendCode(){
+    console.log('requesting new code');
+    const searchParams = new URLSearchParams(window.location.search);
+    const username = searchParams.get('username');
+    console.log(username);
+      try {
+        const response = await fetch(`${BASE_BACKEND_URL}/api/resend-code?username=${username}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+        });
+        const result = await response.json();
+
+        if (result.status === 'ok') {
+            //everything is a okay
+            alert('New code sent');
+
+        } else {
+            console.log(result.error);
+            alert(result.error);
+        }
+    } catch (error) {
+        console.error(error);
+        alert('An error ocurred while verifying your account.');
+    }
+  }
+
   async function handleSubmit() {
     console.log('Verification code submitted:', verificationCode);
     const searchParams = new URLSearchParams(window.location.search);
@@ -67,7 +95,7 @@ function VerificationForm() {
           />
       </div>
       <div className="verification-no-code">Didn't Receive the Code? 
-        <a className="verification-link" href="">Request another one </a> 
+        <button className="verification-link" onClick={handleResendCode}>Request another one </button> 
       </div>
       <div className='verification-problems-container'>
         <div className='verification-problems-title'> Still Facing Problems? Click below </div>

@@ -444,6 +444,27 @@ app.post('/api/verify', async (req, res) => {
   
 })
 
+app.post('/api/resend-code', async (req, res) => {
+  try{
+    const username = req.query.username;
+    console.log(username)
+    const user = await User.findOne({ username: username });
+    if (user.verified){
+      return res.status(400).json({ status: 'error', error: 'User is already verified' });
+    }
+    const verificationCode = generateSixDigitCode()
+    sendEmail(user.email, 'Verification Code', `Your six digit verification code is: ${verificationCode}.`)
+    user.verificationCode = verificationCode;
+    user.save();
+    res.json({status: 'ok'});
+  }
+  catch(error){
+    console.log(error);
+    res.status(400).json({status: 'error', error: 'error'});
+  }
+  
+})
+
 app.post('/api/register', async (req, res) => {
   const { username, password: plainTextPassword, email } = req.body;
   const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -470,7 +491,7 @@ app.post('/api/register', async (req, res) => {
 
   // verify
   const verificationCode = generateSixDigitCode()
-  sendEmail(email, 'Verification Code', `Your six digit verification code is: ${verificationCode}.`)
+  
   try {
     const response = await User.create({
       username,
@@ -482,6 +503,7 @@ app.post('/api/register', async (req, res) => {
       internshipAdmin: false, // Set default value for internshipAdmin
       dateCreated: new Date().toISOString() // Store the current date/time as ISO string
     });
+    sendEmail(email, 'Verification Code', `Your six digit verification code is: ${verificationCode}.`)
 
     console.log('User created successfully: ', response);
 
