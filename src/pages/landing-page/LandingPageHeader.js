@@ -8,7 +8,8 @@ function LandingPageHeader() {
     
             <video 
                 className='object-cover min-w-[100vw] absolute z-[-1] min-h-full' 
-                poster="photos-optimized/Website PosterImage.jpg" autoPlay muted loop>
+                autoPlay muted loop> 
+                {/* poster="photos-optimized/Website PosterImage.jpg" */}
                 <source src = {video} type="video/mp4"/>
             </video>
         
