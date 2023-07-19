@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import LandingPage from "./LandingPage";
 import ContactForm from "./components/contact-form";
 
+
 import Services_Main_Page from "./pages/explore-services/main-page";
 import View_Services from "./pages/explore-services/service-info-pages/club-info";
 import Signup_Success from "./pages/explore-services/signup-success";
@@ -33,9 +34,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
     return (
         <BrowserRouter>
-
+            
             <Routes>
- 
+
                 {/* explore services pages */}
                 <Route path="/services" element={<Services_Main_Page startingfilter={'all'} />}/>
                 <Route path="/services-clubs" element={<Services_Main_Page startingfilter={'Club'} />}/>
@@ -62,7 +63,7 @@ function App() {
                 <Route path="/verify" element={<Verify />}/>
 
                 {/* other */}
-                <Route path="/" element={<LandingPage />}/>
+                <Route path="/" element={ <LandingPage /> }/>
                 <Route path="/contact-form" element={<ContactForm/>}/> 
             </Routes>
         </BrowserRouter>

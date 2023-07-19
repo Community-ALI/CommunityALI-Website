@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import {BASE_BACKEND_URL} from '../config.js'
+import { Buffer } from 'buffer';
 
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState('no username associated with token')
@@ -31,8 +32,51 @@ const UserProfileCircle = (Logout) => {
 
     fetchData();
   }, []);
+  const [imageUrl, setImageUrl] = useState("photos-optimized/user-pic.png");
 
-  const imageUrl = "photos-optimized/user-pic.png";
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const profileImage = localStorage.getItem('profileImage');
+        if (profileImage){
+          setImageUrl(profileImage);
+        }
+        else{
+          const token = localStorage.getItem('token');
+          if (token) {
+            const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-account`, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+            const data = await response.json();
+            console.log(data.dataAccount[0]);
+            var imageUrl;
+            try{
+              const buffer = Buffer.from(data.dataAccount[0].profileImage.data);
+              const base64 = buffer.toString('base64');
+              imageUrl = `data:image/png;base64,${base64}`;
+            }
+            catch(err){
+              console.log(err);
+              console.log('no profile image, using default');
+              imageUrl = 'photos-optimized/user-pic.png';
+            }
+            setImageUrl(imageUrl);
+            localStorage.setItem('profileImage', imageUrl);
+            
+          } else {
+            console.log('error: not logged in');
+          }
+        }
+        } catch (error) {
+          console.log(error);
+        }
+    };
+
+    fetchData();
+  }, []);
+  
 
   const [showDropdown, setShowDropdown] = useState(false);
 

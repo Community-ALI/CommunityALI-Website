@@ -207,6 +207,7 @@ a > .navigation-menu {
     padding-left: 15px;
     padding-right: 15px;
     padding-top : 5px;
+    border-radius: 50%;
 }
 
 @media all and (max-width : 1200px)

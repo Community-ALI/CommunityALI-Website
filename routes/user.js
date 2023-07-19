@@ -79,7 +79,7 @@ router.get("/get-account", async function (req, res) {
         const decodedToken = jwt.verify(token, JWT_SECRET);
         const username = decodedToken.username;
         const user_account = await user_data.get_account(username);
-
+        
         res.json({
             dataAccount: user_account,
             tokenUsername: username
