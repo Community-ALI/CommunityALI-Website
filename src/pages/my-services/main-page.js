@@ -150,13 +150,27 @@ function MyServicesHome() {
           </a>
         </div>
       </div>
-      {services.map(service => ( // display each service
+
+      {services.length === 0 ? (  // Wanted to Add a Condition if Services Array is Empty
+        <div>Loading...</div>
+      ) : (
+        services.map((service) => (
+          <MyServicePageDisplay
+            key={service._id}
+            service={service}
+            setDeleteServiceTitle={setDeleteServiceTitle}
+            setIsShowingServiceDeletePopup={setIsShowingServiceDeletePopup}
+          />
+        ))
+      )}
+
+      {/* {services.map(service => ( // Old Code for displaying Services
         <MyServicePageDisplay
           key={service._id}
           service={service} 
           setDeleteServiceTitle={setDeleteServiceTitle}
           setIsShowingServiceDeletePopup={setIsShowingServiceDeletePopup}/>
-      ))}
+      ))} */}
     </div >
   )
 }
