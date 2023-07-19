@@ -207,6 +207,7 @@ a > .navigation-menu {
     padding-left: 15px;
     padding-right: 15px;
     padding-top : 5px;
+    padding-bottom : 5px; /* for some reason top and bottom need to be equal or the profile image squishes */
     border-radius: 50%;
 }
 
