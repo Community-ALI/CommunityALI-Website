@@ -8,6 +8,17 @@ function SignupPopup(props) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [passwordVisible2, setPasswordVisible2] = useState(false);
+  const [passwordVisible3, setPasswordVisible3] = useState(false);
+
+  const togglePasswordVisibility2 = () => {
+      setPasswordVisible2((prev) => !prev);
+    };
+
+  const togglePasswordVisibility3 = () => {
+    setPasswordVisible3((prev) => !prev);
+  };
+
   const handleSwitchToLogin = () => {
     props.setIsShowingSignupPopup(false); // Call the parent component's state update function
   };
@@ -81,12 +92,17 @@ function SignupPopup(props) {
             <input
               autoComplete="new-password"
               className="text-field-input"
-              type="password"
+              type={passwordVisible2 ? "text" : "password"}
               id="password"
               required=""
               onChange={e => {
                 setPassword(e.target.value);
               }}
+            />
+            <i
+              className={`fa-solid ${passwordVisible2 ? "fa-eye" : "fa-eye-slash"}`}
+              id="password-eye"
+              onClick={togglePasswordVisibility2} // Add the onClick event to toggle the password visibility
             />
             <span className={`text-field-span${password !== '' ? ' focused-field' : ''}`}></span>
             <label className={`text-field-label${password !== '' ? ' focused-field' : ''}`} htmlFor="password">Password</label>
@@ -95,12 +111,17 @@ function SignupPopup(props) {
             <input
               autoComplete="new-password-2"
               className="text-field-input"
-              type="password"
+              type={passwordVisible3 ? "text" : "password"}
               id="confirmPassword"
               required=""
               onChange={e => {
                 setConfirmPassword(e.target.value);
               }}
+            />
+            <i
+              className={`fa-solid ${passwordVisible3 ? "fa-eye" : "fa-eye-slash"}`}
+              id="password-eye"
+              onClick={togglePasswordVisibility3} // Add the onClick event to toggle the password visibility
             />
             <span className={`text-field-span${confirmPassword !== '' ? ' focused-field' : ''}`}></span>
             <label className={`text-field-label${confirmPassword !== '' ? ' focused-field' : ''}`} htmlFor="confirmPassword">Confirm Password</label>
