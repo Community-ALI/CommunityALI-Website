@@ -22,6 +22,8 @@ import View_Applicants from "./pages/my-services/view-applicants";
 import Register from "./pages/register";
 import Profile from "./pages/account/profile";
 import Verify from "./pages/account/verify"
+import Forgot_Password from './pages/account/forgot-password'
+import Reset_Password from './pages/account/reset-password'
 // import Signup from "./signup"
 
 import './style.scss';
@@ -61,6 +63,8 @@ function App() {
                 <Route path="/register" element={<Register />}/>
                 <Route path="/profile" element={<Profile />}/>
                 <Route path="/verify" element={<Verify />}/>
+                <Route path="/forgot-password" element={<Forgot_Password/>}/>
+                <Route path='reset-password' element={<Reset_Password/>}/>
 
                 {/* other */}
                 <Route path="/" element={ <LandingPage /> }/>

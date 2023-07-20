@@ -106,7 +106,9 @@ function LoginPopup(props) {
                                 value="Login" 
                                 className="login-submit-button"
                             />
+                            
                             <div class="signup_link">
+                                <a style={{ color: 'blue', textDecoration: 'underline' }} href='/forgot-password'>Forgot password</a>
                                 <p>Don't have an account? </p>
                                 <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSignupClick}>Sign Up</button>
                             </div> 

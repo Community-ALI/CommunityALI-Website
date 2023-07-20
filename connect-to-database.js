@@ -7,10 +7,8 @@ mongoose.set('strictQuery', false);
 require('dotenv').config()
 
 const DATABASE_LINK = process.env.TESTING_DATABASE_LINK;
-// const DATABASE_LINK = process.env.TESTING_DATABASE_LINK;
-// // OFFICIAL DATABASE (do not mess with this)
+
  mongoose.connect(DATABASE_LINK, { useNewUrlParser: true });
-// mongoose.connect("mongodb+srv://Ben:test123@cluster0.hcq9y6f.mongodb.net/application-DB", {useNewUrlParser: true});
 const serviceSchema = {
     title: {type: String, unique: true},
     serviceType: String,
@@ -46,6 +44,13 @@ const userSchema = new mongoose.Schema(
     }, { collection: 'users' }
 )
 
+const passwordResetSchema = new mongoose.Schema(
+    {
+        email: { type: String, required: true, unique: true, index: true },
+        username: { type: String, required: false, unique: false},
+        token: String
+    }
+)
 
 const Application = mongoose.model("applications", applicationSchema);
 
@@ -53,8 +58,11 @@ const Services = mongoose.model("services", serviceSchema);
 
 const User = mongoose.model("User", userSchema);
 
+const passwordReset = mongoose.model("passwordreset", passwordResetSchema);
+
 module.exports = {
     Services: Services,
     Application: Application,
-    User: User
+    User: User,
+    passwordReset, passwordReset
 };

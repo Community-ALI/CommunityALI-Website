@@ -40,6 +40,7 @@ const change_notification_status = require('./store-functions/change-notificatio
 
 const models = require("./connect-to-database");
 const User = models.User;
+const passwordReset = models.passwordReset;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const { error } = require("console");
@@ -70,6 +71,22 @@ function generateSixDigitCode() {
     code += digit.toString(); // Append the digit to the code string
   }
   return code;
+}
+
+const crypto = require('crypto');
+
+// Function to generate a cryptographically secure random token
+function generateRandomToken(length) {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(length, (err, buffer) => {
+      if (err) {
+        reject(err);
+      } else {
+        const token = buffer.toString('hex');
+        resolve(token);
+      }
+    });
+  });
 }
 
 const sendEmail = async (toAdress, subject, body) => {
@@ -346,12 +363,7 @@ app.get("/get-user-applicants", async function (req, res) {
 app.post('/api/login', async (req, res) => {
   const usernameOrEmail = req.body.usernameOrEmail;
   const password = req.body.password;
-  console.log(usernameOrEmail);
-  console.log(password);
   const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).lean()
-
-
-  console.log(user);
   if (!user) {
       return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
   }
@@ -462,8 +474,72 @@ app.post('/api/resend-code', async (req, res) => {
     console.log(error);
     res.status(400).json({status: 'error', error: 'error'});
   }
-  
 })
+
+
+
+app.post('/api/forgot-password', async (req, res) => {
+  try{
+    const email = req.body.email;
+    const user = await User.findOne({ email: email });
+    if (user){ // the user account with this email exists
+      const token = await generateRandomToken(32); // generate a cryptographically secure 32 character hexadecimal code
+      const newReset = new passwordReset({
+        email: email,
+        token: token
+      });
+  
+      await newReset.save(); 
+      sendEmail(email, 'Forgot password', `A password reset has been requested for the account associated with this email. If you did not request this email, you can safely ignore it. Otherwise, if you meant to send this email, your link to reset your password is: localhost:8080/reset-password?token=${token}`)
+      res.json({status: 'ok'})
+    }
+    else{
+      res.status(400).json({status: 'error', error: 'email not associated with an account'});
+    }
+  }
+  catch(err){
+    console.log(err);
+    res.status(400).json({status: 'error', error: err});
+  }
+})
+
+app.post('/api/update-password', async (req, res) => {
+  try {
+    const token = req.query.token;
+    const plainTextPassword = req.body.password;
+    
+    // Find the corresponding password reset entry in the database
+    const resetEntry = await passwordReset.findOne({ token: token });
+    
+    if (resetEntry) {
+      const email = resetEntry.email;
+      
+      // Find the user associated with the email in the reset entry
+      const user = await User.findOne({ email: email });
+      
+      if (user) {
+        // Hash the new password with bcrypt
+        const password = await bcrypt.hash(plainTextPassword, 10);
+        
+        // Update the user's password in the database
+        user.password = password;
+        await user.save();
+        
+        // Delete the password reset entry from the database
+        await passwordReset.deleteOne({ token: token });
+        
+        return res.json({ status: 'ok', message: 'Password updated successfully' });
+      } else {
+        return res.status(404).json({ status: 'error', error: 'User not found' });
+      }
+    } else {
+      return res.status(400).json({ status: 'error', error: 'Invalid or expired token' });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ status: 'error', error: 'Something went wrong' });
+  }
+});
 
 app.post('/api/register', async (req, res) => {
   const { username, password: plainTextPassword, email } = req.body;
