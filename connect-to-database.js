@@ -39,16 +39,20 @@ const userSchema = new mongoose.Schema(
         verificationCode: {type: String},
         clubAdmin: { type: Boolean},
         internshipAdmin: { type: Boolean},
-        dateCreated: String,
+        dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,
     }, { collection: 'users' }
 )
 
 const passwordResetSchema = new mongoose.Schema(
     {
-        email: { type: String, required: true, unique: true, index: true },
-        username: { type: String, required: false, unique: false},
-        token: String,
+        email: { type: String, required: true, unique: false, index: true },
+        // I added username because of an error about the 'username' field having to be unique.  
+        // I had no username in the schema, so I was really confused.  Still am.
+        // I don't know why but this line fixed it
+        username: { type: String, required: false, unique: false}, 
+
+        token: String, // the secure token
         createdAt: { type: Date, default: Date.now, expires: '1h' } // Token will expire after 1 hour
     }
 )
