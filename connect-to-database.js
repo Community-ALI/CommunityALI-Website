@@ -48,7 +48,8 @@ const passwordResetSchema = new mongoose.Schema(
     {
         email: { type: String, required: true, unique: true, index: true },
         username: { type: String, required: false, unique: false},
-        token: String
+        token: String,
+        createdAt: { type: Date, default: Date.now, expires: '1h' } // Token will expire after 1 hour
     }
 )
 
