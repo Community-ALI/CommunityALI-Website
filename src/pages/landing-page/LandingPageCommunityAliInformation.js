@@ -31,7 +31,7 @@ function LandingPageCommunityAliInformation() {
                 <div>
                 {!videoLoaded && (
                     <div className="video-placeholder" onClick={handleVideoClick}>
-                        <img src="photos-optimized/WebsiteVideoPlaceholder.jpg" className='description-video' />
+                        <img src="photos-optimized/WebsiteVideoPlaceholder-opt.jpg" className='description-video' />
                     </div>
                     )}
                     {videoLoaded && (

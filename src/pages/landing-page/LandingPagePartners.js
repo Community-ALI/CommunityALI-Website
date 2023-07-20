@@ -12,10 +12,10 @@ function LandingPagePartners() {
     
             <div className="partners-images-container">
                 <a className="partner-link" href="https://www.fourthworldcooperative.org/" target="_blank">
-                    <img id="fourth-world" src="photos-optimized/fourthworld-opt.png"/>
+                    <img id="fourth-world" src="photos-optimized/fourthworld-opt.jpg"/>
                 </a>
                 <a className="partner-link" href="https://solvecc.org/" target="_blank">
-                    <img id="solvecc" src="photos-optimized/solvecc-opt.png"/>
+                    <img id="solvecc" src="photos-optimized/solvecc-opt.jpg"/>
                 </a>
             </div>
         </div>

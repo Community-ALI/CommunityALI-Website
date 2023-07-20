@@ -288,6 +288,14 @@ body
     width: 650px;
     height: 366px;
     max-width: 90vw;
+    transition: 300ms ease ;
+}
+
+.description-video:hover
+{
+    color: #111; 
+    background: #0096C9; 
+    box-shadow: 0 0 100px #0096C9; 
 }
 
 .partners-container
