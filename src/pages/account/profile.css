@@ -31,10 +31,44 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     text-align: center;
 }
 
+
+/* Apply the following styles to the button with class 'file-upload-button' */
+.file-upload-button {
+    /* Add some padding and margin for better spacing */
+    padding: 10px 15px;
+    margin: 5px;
+    
+    /* Remove the default button border and outline */
+    border: none;
+    outline: none;
+    
+    /* Add a background color */
+    background-color: #3498db;
+    
+    /* Set the text color to white */
+    color: #fff;
+    
+    /* Add a border radius to make the button slightly rounded */
+    border-radius: 5px;
+    
+    /* Apply a pointer cursor to indicate interactivity */
+    cursor: pointer;
+  }
+  
+  /* Apply the following styles when hovering over the button */
+  .file-upload-button:hover {
+    /* Darken the background color slightly */
+    background-color: #2980b9;
+  }
+  
+  /* Apply the following styles when the button is clicked/active */
+  .file-upload-button:active {
+    /* Darken the background color even further to give a pressed effect */
+    background-color: #1c638d;
+  }
 
   .profile-picture-editor {
     padding-top: 10px;

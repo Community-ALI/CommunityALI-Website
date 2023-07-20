@@ -7,10 +7,15 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = React.useRef();
+  const fileInputRef = React.useRef(null);
 
   const handleDrop = useCallback((acceptedFiles) => {
     setSelectedImage(acceptedFiles[0]);
   }, []);
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click(); // Trigger the file input dialog when the custom button is clicked
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0]; // Get the first selected file (assuming single file selection)
@@ -108,13 +113,13 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
           <input
             type="file"
             id="imageInput"
-            accept="image/*" // This will only allow image files to be selected
+            accept="image/*"
             onChange={handleImageChange}
+            ref={fileInputRef}
             style={{ display: 'none' }}
           />
-          <label htmlFor="imageInput">
-            <button>click to choose image from files</button>
-          </label>
+          <button className='file-upload-button' onClick={handleButtonClick}>or choose image from files</button>
+          
         </div>
         
         {selectedImage || defaultImage ? (
