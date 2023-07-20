@@ -1,17 +1,40 @@
-import React, { Component } from 'react';
-import video from '../../../public/videos//Webvideo ULTRA COMPRESSED.mp4'
+import React, { Component, useState, useEffect } from 'react';
+import video from '../../../public/videos//Webvideo-opt.mp4'
+import mobileVideo from '../../../public/videos//Webvideo-optMAX.mp4'
 import '../../index.css'
 
 function LandingPageHeader() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => 
+    {
+        // Check the screen width on initial load and when the window is resized
+        const handleScreenSizeChange = () => 
+        {
+          setIsMobile(window.innerWidth <= 500);
+        };
+    
+        handleScreenSizeChange();
+        window.addEventListener('resize', handleScreenSizeChange);
+    
+        return () => 
+        {
+          window.removeEventListener('resize', handleScreenSizeChange);
+        };
+      }, []);
+    
     return(
         <div className="header">
     
-            <video 
-                className='object-cover min-w-[100vw] absolute z-[-1] min-h-full' 
-                autoPlay muted loop> 
-                {/* poster="photos-optimized/Website PosterImage.jpg" */}
-                <source src = {video} type="video/mp4"/>
-            </video>
+        <video
+            className="object-cover min-w-[100vw] absolute z-[-1] min-h-full"
+            autoPlay
+            muted
+            loop
+        >
+            {/* Conditionally render the video source based on screen width */}
+            <source src={isMobile ? mobileVideo : video} type="video/mp4" />
+        </video>
         
             <div id="header-container">
                 <div id="header-title">

@@ -135,7 +135,7 @@ function NavBar(props) {
                     >
 
                         <a href="/">
-                            <img src="Photos/CClogo.png" className="navbar-logo" />
+                            <img src="photos-optimized/CClogo-opt.png" className="navbar-logo" />
                         </a>
                         <input
                             placeholder="Search..."
@@ -190,7 +190,7 @@ function NavBar(props) {
                 <div className="center-content">
                     <a href="/">
                         <img
-                            src="Photos/CClogo.png"
+                            src="photos-optimized/CClogo-opt.png"
                             className="navbar-logo mobileLogo"
                         />
                     </a>

@@ -190,7 +190,7 @@ const ServiceDropdown = (props) => {
           </div>
         </div>
 
-        <div className="right-section">
+        {/* <div className="right-section">
           <div className="sort-by">
             <label className='sort-label'>Sort by: </label>
             <div className="cont">
@@ -201,7 +201,7 @@ const ServiceDropdown = (props) => {
 
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -183,7 +183,7 @@ const ServiceDropdown = (props) => {
           </div>
         }
 
-        <div className='filter-buttons-container'>
+        {/* <div className='filter-buttons-container'>
           {!isContentVisible1 &&
             <button className="filter-school-button"
               onClick={toggleContent2}
@@ -211,7 +211,7 @@ const ServiceDropdown = (props) => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
     </div>
