@@ -368,7 +368,7 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
   }
   if (!user.verified){
-    return res.status(400).json({ status: 'error', error: 'Account has not been verified.' }) //FIXME: make a way to verify it
+    return res.status(400).json({ status: 'unverified', username: user.username, error: 'Account has not been verified.' }) //FIXME: make a way to verify it
   }
   if(await bcrypt.compare(password, user.password)) {
       // the username, password combination is successful

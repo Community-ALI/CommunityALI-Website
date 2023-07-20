@@ -49,6 +49,9 @@ function LoginPopup(props) {
                 } else {
                     console.log(result.error);
                     alert(result.error);
+                    if (result.status === 'unverified'){
+                        window.location.href = `/verify?username=${result.username}`
+                    }
                 }
             } catch (error) {
                 console.error(error);
