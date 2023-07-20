@@ -12,6 +12,11 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
     setSelectedImage(acceptedFiles[0]);
   }, []);
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0]; // Get the first selected file (assuming single file selection)
+    setSelectedImage(file);
+  };
+
   const handleScaleChange = (e) => {
     const newScale = parseFloat(e.target.value);
     updateScale(newScale);
@@ -93,15 +98,25 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
     noClick: true, 
   });
 
-  const defaultImage = 'photos-optimized/user-pic.png'; 
+  const defaultImage = localStorage.getItem('profileImage') || 'photos-optimized/user-pic.png'; 
 
   return (
     <div className="container-login" onWheel={handleWheel}>
       <div {...getRootProps()}> 
         <div  className='picture-upload'>
-          <input {...getInputProps()} />
           <p>Drag and drop profile picture</p>
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/*" // This will only allow image files to be selected
+            onChange={handleImageChange}
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="imageInput">
+            <button>click to choose image from files</button>
+          </label>
         </div>
+        
         {selectedImage || defaultImage ? (
           <div className='profile-picture-editor'>
             <AvatarEditor
