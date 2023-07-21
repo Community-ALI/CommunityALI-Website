@@ -1,15 +1,23 @@
 /* NotFoundPage.css */
 
 /* Styles for the container div */
-.not-found-container {
-
-    text-align: center;
-    flex-direction: column;
-  }
+.page-not-found-container
+{
+  flex-direction: column;
+  margin : 0px 20%;
+  margin-top : 80px;
+  background-color: #00468D;
+  border-radius: 10px;
+  padding: 30px 20px;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+}
   
   /* Styles for the heading */
   .not-found-heading {
-    margin-top: 200px;
     font-size: 2rem;
     margin-bottom: 20px;
   }
@@ -27,10 +35,41 @@
     border-radius: 4px;
     margin-bottom: 20px;
   }
+
+  .go-back-from-not-found {
+    background-color: #ecaa1e;
+    color:#00468D;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  .go-back-from-not-found:hover {
+
+    background-color:#001E60;
+    color: white;
+  }
+  
+
   
   /* Styles for the link */
   .not-found-link {
-    color: #00468d;
-    text-decoration: underline;
+    text-decoration: none;
+  }
+  
+
+  @media only screen and (max-width: 600px) {
+    .page-not-found-container {
+      font-size: 18px;
+      margin : 0px 10%;
+      margin-top : 80px;
+    }
+    
+    .not-found-heading {
+      font-size: 1rem;
+    }
+    
+    .not-found-message {
+      font-size: 0.9rem;
+    }
   }
   
