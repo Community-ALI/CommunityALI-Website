@@ -928,11 +928,15 @@ input[type="reset"] {
         margin-top: 10px;
         height: auto;
         overflow-y: visible;
-        width: 90vw;
+        width: 100vw;
     }
 
     .mobileFilterServiceButton {
         width: 100%;
         text-align: center;
+    }
+
+    .add-service-button {
+        margin: 0;
     }
 }

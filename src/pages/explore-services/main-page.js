@@ -72,6 +72,7 @@ function Services(props) {
   const [serviceTypeFilter, setServiceTypeFilter] = useState([props.startingfilter]);
   const [categoriesFilter, setCategoriesFilter] = useState(['all']);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+  const [showServices, setShowServices] = useState(true)
 
 
   // get services from the backend
@@ -125,7 +126,6 @@ function Services(props) {
       </div>
       <NavBar isFixedPage={false} />
 
-
       <div className="search-result-container">
         {!isMobile &&
           <ServiceDropdown
@@ -141,10 +141,13 @@ function Services(props) {
               serviceTypeFilter={serviceTypeFilter}
               SetCategoriesFilter={setCategoriesFilter}
               categoriesFilter={categoriesFilter}
+              showServices={showServices}
+              SetShowServices={setShowServices}
             />}
-        <div className="results">
-          <DisplayAllServices services={services} />
-        </div>
+        {showServices &&
+          <div className="results">
+            <DisplayAllServices services={services} />
+          </div>}
       </div>
 
       <Footer />
