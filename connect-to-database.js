@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema(
     {
         email: { type: String, required: true, unique: true, index: true },
         username: { type: String, required: true, unique: true, index: true },
+        
         password: { type: String, required: true },
         description: String,
         verified: { type: Boolean, required: true },
@@ -41,6 +42,7 @@ const userSchema = new mongoose.Schema(
         internshipAdmin: { type: Boolean},
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,
+        fullName: String
     }, { collection: 'users' }
 )
 

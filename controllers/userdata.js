@@ -80,7 +80,7 @@ exports.get_applications = async function (username) {
 // get a user's applications from database
 exports.get_account = async function (username) {
   try {
-    const selected_account = await Users.find({ username: username }).select('username email description dateCreated profileImage').exec();
+    const selected_account = await Users.find({ username: username }).select('username email description dateCreated profileImage fullName').exec();
     return selected_account;
   } catch (error) {
     console.error(error);

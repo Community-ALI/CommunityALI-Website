@@ -9,8 +9,10 @@ import { Buffer } from 'buffer';
 function Profile() {
   const [account, setAccount] = useState({
     username: 'loading...',
+    FullName: 'loading...',
     email: 'loading...',
     role: 'loading...',
+    fullName: 'loading...',
     imageUrl: 'photos-optimized/user-pic.png'
   });
   const [services, setServices] = useState([]);
@@ -91,8 +93,11 @@ function Profile() {
             {
             username: data.dataAccount[0].username,
             email: data.dataAccount[0].email,
+            description: data.dataAccount[0].description,
             role: '',
-            imageUrl: imageUrl
+            dateCreated: data.dataAccount[0].dateCreated,
+            imageUrl: imageUrl,
+            fullName: data.dataAccount[0].fullName
           });
           const loaderWrapper = document.querySelector('.loader-wrapper');
           loaderWrapper.style.transition = 'opacity 0.5s';
@@ -126,7 +131,9 @@ function Profile() {
           .then(response => response.json())
           .then(data => {
             console.log('data sent');
+            
           });
+          window.location.reload();
       } else {
       }
     } catch (error) {
@@ -146,16 +153,26 @@ function Profile() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(name);
     setAccount((prevAccount) => ({
       ...prevAccount,
       [name]: value,
     }));
   };
 
+  const handleProfileButtonClick = () => {
+    if (editMode){ 
+      alert('please finish editing full name and description before changing your profile image')
+      return
+    }
+    setIsShowingProfilePicturePopup(true);
+  }
+
   const handleClickOutsidePopup = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
       setIsShowingProfilePicturePopup(false);
     }
+    
   };
 
   return (
@@ -185,11 +202,15 @@ function Profile() {
       <NavBar isFixedPage={false} />
       <div className="profile-container">
         <div className="profile-picture">
-          <img className="profile-img" src={account.imageUrl} onClick={() => { setIsShowingProfilePicturePopup(!isShowingProfilePicturePopup) }} />
+        
+          <img className="profile-img" src={account.imageUrl} alt="Profile Picture" />
+          <button className="profile-image-edit-button" onClick={handleProfileButtonClick}>&#9998;</button> {/* edit button */}
+
+
           <div className="profile-details">
-            <div className='profile-name-display'> {account.username} </div>
+            <div className='profile-name-display'> {account.fullName} </div>
+            <div className='profile-name-display'> ({account.username}) </div>
             <div className='profile-email-display'> {account.email}</div>
-            <div className='profile-role-display'> Role: {account.role} </div>
           </div>
         </div>
 
@@ -199,9 +220,10 @@ function Profile() {
             <input
               type="text"
               className="profile-name"
+              name='fullName'
               id="name"
               placeholder="First Last"
-              value={account.username}
+              value={account.fullName}
               onChange={handleInputChange}
               readOnly={!editMode}
               style={{ pointerEvents: !editMode ? "none" : "auto" }}
@@ -217,8 +239,7 @@ function Profile() {
               id="email"
               value={account.email}
               placeholder="example@example.com"
-              onChange={handleInputChange}
-              readOnly={!editMode}
+              readOnly='true'
               style={{ pointerEvents: !editMode ? "none" : "auto" }}
             />
           </div>
@@ -257,7 +278,7 @@ function Profile() {
 
           <div className="profile-section-container">
             <div className='profile-section-title'> Total Services Applied </div>
-            <div className='profile-section-input'> {applications.length || "loading..."} </div>
+            <div className='profile-section-input'> {applications.length || 0} </div>
           </div>
         </div>
 
