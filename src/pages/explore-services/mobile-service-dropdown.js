@@ -123,11 +123,17 @@ const ServiceDropdown = (props) => {
     return (
       <div>
         <div className="content fadeInDown" ref={contentRef1}>
-          <button className="hover:bg-[#ecaa1e] w-3 h-3 cursor-pointer" 
-            onClick={toggleServiceTypeFilterDropDown}>
-            <i className="fa-solid fa-x text-white py-4"
-            ></i>
-          </button>
+          <div className='flex flex-row justify-between w-[100%] items-center'>
+            <button className="w-6 h-6 cursor-pointer"
+              onClick={toggleServiceTypeFilterDropDown}>
+              <i className="fa-solid fa-x text-white"
+              ></i>
+            </button>
+            <button className="cursor-pointer text-white" onClick={(() => {
+              props.SetCategoriesFilter(['all'])
+              props.SetServiceTypeFilter(['all'])
+            })}>Clear All</button>
+          </div>
           <h1 className='text-white mt-12'>Filter Service Category</h1>
           <form className='filter-category-container'>
             {[{ serviceType: 'Club', title: 'Clubs & Communities' }]
@@ -165,8 +171,7 @@ const ServiceDropdown = (props) => {
               /> Internships & Work Experience
             </label>
 
-            <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetServiceTypeFilter(['all']) })}></input>
-            <hi className='text-white'>Filter By School</hi>
+            <h1 className='text-white'>Filter By School</h1>
           </form>
           <form className='filter-category-container'>
             {["Agriculture", "Art, Performance, & the Humanities ", "Behavioral & Social Sciences", "Business & Computing", "Fitness & Health Professions",
@@ -176,7 +181,6 @@ const ServiceDropdown = (props) => {
                 categoriesFilter={props.categoriesFilter}
                 SetCategoriesFilter={props.SetCategoriesFilter}
                 ChangeFilter={changeFilter} />)}
-            <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetCategoriesFilter(['all']) })}></input>
           </form>
         </div>
       </div>
