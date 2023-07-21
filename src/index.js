@@ -24,6 +24,7 @@ import Profile from "./pages/account/profile";
 import Verify from "./pages/account/verify"
 import Forgot_Password from './pages/account/forgot-password'
 import Reset_Password from './pages/account/reset-password'
+import NotFound from "./NotFound";
 // import Signup from "./signup"
 
 import './style.scss';
@@ -69,6 +70,7 @@ function App() {
                 {/* other */}
                 <Route path="/" element={ <LandingPage /> }/>
                 <Route path="/contact-form" element={<ContactForm/>}/> 
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )

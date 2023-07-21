@@ -1,0 +1,36 @@
+/* NotFoundPage.css */
+
+/* Styles for the container div */
+.not-found-container {
+
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  /* Styles for the heading */
+  .not-found-heading {
+    margin-top: 200px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the paragraph */
+  .not-found-message {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for the code block */
+  .not-found-code {
+    font-family: monospace;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the link */
+  .not-found-link {
+    color: #00468d;
+    text-decoration: underline;
+  }
+  
