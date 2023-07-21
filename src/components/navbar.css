@@ -300,7 +300,7 @@ a > .navigation-menu {
     .navigation-bar
     {
         position : fixed;
-        left : -75%;
+        left : -100%;
         background-color: #0096C9;
         gap : 0;
         flex-direction : column;  
