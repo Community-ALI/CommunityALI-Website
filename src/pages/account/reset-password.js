@@ -52,7 +52,7 @@ function resetPasswordForm() {
   return (
     <div>
         <form onSubmit={handleSubmit}>
-            <p>Enter your new password</p>
+            <div className=''>Enter your new password</div>
             <input autoComplete='new-password' type='password' onChange={handlePasswordChange} placeholder='Password' value={password}></input>
             <p>Confirm new password</p>
             <input autoComplete='new-password' type='password' onChange={handlePasswordChange2} placeholder='Confirm password' value={password2}></input>

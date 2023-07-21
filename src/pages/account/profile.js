@@ -6,6 +6,8 @@ import Footer from "../../components/Footer";
 import { BASE_BACKEND_URL } from '../../config';
 import ProfilePicturePopup from './profilePicturePopup';
 import { Buffer } from 'buffer';
+import PasswordChangePopup from './passwordChangePopup';
+
 function Profile() {
   const [account, setAccount] = useState({
     username: 'loading...',
@@ -15,6 +17,8 @@ function Profile() {
     fullName: 'loading...',
     imageUrl: 'photos-optimized/user-pic.png'
   });
+
+  const [isShowingPasswordPopup, setIsShowingPasswordPopup] = useState(false);
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
   const [editMode, setEditMode] = useState(false);
@@ -22,6 +26,11 @@ function Profile() {
   const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
   const nameRef = useRef(null);
   const popupRef = useRef(null);
+
+  const handlePasswordChangeClick = () => 
+  {
+    setIsShowingPasswordPopup(true);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -199,6 +208,20 @@ function Profile() {
             />
           </div>
         </div>}
+
+      {isShowingPasswordPopup && (
+      <div>
+        <div
+          className="overlay-background"
+          onClick={() => setIsShowingPasswordPopup(false)}
+        />
+        <PasswordChangePopup
+          isShowingPasswordPopup={isShowingPasswordPopup}
+          onClose={() => setIsShowingPasswordPopup(false)}
+        />
+      </div>
+      )}
+
       <NavBar isFixedPage={false} />
       <div className="profile-container">
         <div className="profile-picture">
@@ -260,8 +283,10 @@ function Profile() {
           </div>
 
           <div className='profile-change-container'>
-            <button className='profile-change'> Change Password </button>
-            <button className='profile-change'> Request Role Change </button>
+            <button className='profile-change' onClick={handlePasswordChangeClick}> 
+            Change Password 
+            </button>
+            {/* <button className='profile-change'> Request Role Change </button> */}
           </div>
         </div>
 

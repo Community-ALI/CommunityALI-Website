@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema(
 
 const passwordResetSchema = new mongoose.Schema(
     {
-        email: { type: String, required: true, unique: false, index: true },
+        email: { type: String, required: true, unique: false},
         // I added username because of an error about the 'username' field having to be unique.  
         // I had no username in the schema, so I was really confused.  Still am.
         // I don't know why but this line fixed it

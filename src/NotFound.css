@@ -14,6 +14,7 @@
   font-size: 25px;
   font-weight: 500;
   color: white;
+  text-align: center;
 }
   
   /* Styles for the heading */
@@ -25,7 +26,7 @@
   /* Styles for the paragraph */
   .not-found-message {
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   /* Styles for the code block */
@@ -39,8 +40,13 @@
   .go-back-from-not-found {
     background-color: #ecaa1e;
     color:#00468D;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top : 20px;
+    margin-bottom : 20px;
+    transition: 300ms ease;
   }
 
   .go-back-from-not-found:hover {
@@ -57,7 +63,8 @@
   }
   
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 850px) {
+
     .page-not-found-container {
       font-size: 18px;
       margin : 0px 10%;
@@ -70,6 +77,12 @@
     
     .not-found-message {
       font-size: 0.9rem;
+    }
+
+    .go-back-from-not-found
+    {
+      font-size: 16px;
+      padding: 8px 25px;
     }
   }
   

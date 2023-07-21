@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
 
@@ -287,4 +286,80 @@
 {
     background-color : #ecaa1e;
     color: #001E60;
+}
+
+.password-popup-container
+{
+    position: fixed;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fade-in 0.2s ease-in-out;
+}
+
+.password-popup-content
+{
+    background-color: #0096C9;
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 1;
+    width: 50%;
+    padding-bottom: 35px;
+}
+
+.pop-up-old-password
+{
+    margin-top : 30px;
+    padding : 8px 12px;
+    width: 300px;
+}
+
+.pop-up-cancel
+{
+    font-size : 20px;
+    background-color: #ecaa1e;
+    padding: 6px 16px;
+    font-family: "poppins";
+    color: #001E60;
+    font-weight: bold;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
+    width : 100%;
+}
+
+.pop-up-cancel:hover 
+{
+    color: white;
+    background-color: #00468D;
+}
+
+.pop-up-password-container
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-up-forgot-password
+{
+    margin-top : 20px;
+    margin-bottom : 80px;
+    color: white;
+    transition: 300ms ease;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.pop-up-forgot-password:hover
+{
+    color:#ecaa1e;
 }
