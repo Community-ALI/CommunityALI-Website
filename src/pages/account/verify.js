@@ -32,7 +32,36 @@ function VerificationForm() {
         }
     } catch (error) {
         console.error(error);
-        alert('An error ocurred while verifying your account.');
+        alert('An error ocurred while sending a new code.');
+    }
+  }
+
+  async function handleDeleteAccount(){
+    console.log('deleting account and moving back to account creation');
+    const searchParams = new URLSearchParams(window.location.search);
+    const username = searchParams.get('username');
+    console.log(username);
+      try {
+        const response = await fetch(`${BASE_BACKEND_URL}/api/delete-unverified-account?username=${username}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+        });
+        const result = await response.json();
+
+        if (result.status === 'ok') {
+            //everything is a okay
+            alert('Please retry account creation.  Make sure to use an email you have access to.');
+            window.location.href='/'
+
+        } else {
+            console.log(result.error);
+            alert(result.error);
+        }
+    } catch (error) {
+        console.error(error);
+        alert('An error ocurred while removing your unverified account. If the problem persists, please contact us.');
     }
   }
 
@@ -97,6 +126,10 @@ function VerificationForm() {
       <div className="verification-no-code">Didn't Receive the Code? 
         <button className="verification-link" onClick={handleResendCode}>Request another one </button> 
       </div>
+      <div className='verification-no-code'> Entered invalid email when signing up?
+        <button className="verification-link" onClick={handleDeleteAccount}>Return to account creation </button> 
+      </div>
+
       <div className='verification-problems-container'>
         <div className='verification-problems-title'> Still Facing Problems? Click below </div>
         <div className='verification-problems-link'>

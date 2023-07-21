@@ -476,6 +476,25 @@ app.post('/api/resend-code', async (req, res) => {
   }
 })
 
+app.post('/api/delete-unverified-account', async (req, res) => {
+  try{
+    const username = req.query.username;
+    
+    const user = await User.findOne({ username: username });
+    if (user.verified){
+      return res.status(400).json({ status: 'error', error: 'User is already verified' });
+    }
+    user.delete();
+    console.log('delete', username);
+    res.json({status: 'ok'});
+  }
+  catch(error){
+    console.log(error);
+    res.status(400).json({status: 'error', error: 'error'});
+  }
+})
+
+
 
 
 app.post('/api/forgot-password', async (req, res) => {
