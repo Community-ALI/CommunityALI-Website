@@ -225,6 +225,7 @@ input[type="reset"] {
     flex-flow: wrap;
     margin: 0px 20px;
     margin-top: 1%;
+    max-width: 1600px;
 }
 
 .service-result-container {
@@ -329,6 +330,9 @@ input[type="reset"] {
 .search-result-container {
     padding-bottom: 200px;
     padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .loader-wrapper {

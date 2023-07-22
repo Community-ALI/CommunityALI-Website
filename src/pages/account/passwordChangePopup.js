@@ -9,7 +9,8 @@ function PasswordChangePopup({ isShowingPasswordPopup, onClose }) {
             <div className='pop-up-content-title'> Enter Current Password </div>
             <div className='pop-up-password-container'>
                 <input className="pop-up-old-password" type="password" placeholder="Old Password" />
-                <div className='pop-up-forgot-password'> Forgot Password? </div>
+                <a href="/forgot-password" className='pop-up-forgot-password'> Forgot Password? </a>
+                <button className="pop-up-enter" onClick={onClose}>Enter</button>
                 <button className="pop-up-cancel" onClick={onClose}>Cancel</button>
             </div>
       </div>

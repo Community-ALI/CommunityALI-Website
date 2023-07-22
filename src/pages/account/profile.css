@@ -319,6 +319,27 @@
     width: 300px;
 }
 
+.pop-up-enter
+{
+    font-size : 20px;
+    background-color:#001E60;
+    padding: 6px 16px;
+    font-family: "poppins";
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 20px;
+    width : 100%;
+}
+
+.pop-up-enter:hover
+{
+    color: white;
+    background-color: #00468D;
+}
+
 .pop-up-cancel
 {
     font-size : 20px;
@@ -362,4 +383,56 @@
 .pop-up-forgot-password:hover
 {
     color:#ecaa1e;
+}
+
+@media all and (max-width : 850px)
+{
+    .password-popup-content
+    {
+        width : 80%;
+        margin-top: 80px;
+        padding: 20px;
+    }
+}
+
+@media all and (max-width : 600px)
+{
+    .password-popup-content
+    {
+        width : 90%;
+    }
+}
+
+@media all and (max-width : 480px)
+{
+    .password-popup-content
+    {
+        margin-top : 60px;
+    }
+
+    .pop-up-password-container
+    {
+        margin: 0px 5%;
+    }
+
+    .pop-up-enter
+    {
+        font-size: 14px;
+    }
+
+    .pop-up-cancel
+    {
+        font-size: 14px;
+    }
+
+    .pop-up-forgot-password
+    {
+        font-size: 14px;
+    }
+
+    .pop-up-old-password
+    {
+        font-size: 14px;
+        width : 100%;
+    }
 }
