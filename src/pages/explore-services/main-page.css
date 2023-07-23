@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
 * {
     box-sizing: border-box;
@@ -224,7 +223,6 @@ input[type="reset"] {
     justify-content: center;
     flex-flow: wrap;
     margin: 0px 20px;
-    margin-top: 1%;
     max-width: 1600px;
 }
 
@@ -379,6 +377,8 @@ input[type="reset"] {
     position: relative;
     justify-content: space-between;
     margin-top: 20px;
+
+    display: none;
 }
 
 .filter-category-container 
@@ -552,7 +552,7 @@ input[type="reset"] {
     }
 }
 
-@media all and (max-width : 1700px) {
+@media all and (max-width : 1600px) {
     .filter-container {
         top: 12%;
         left: 67%;
@@ -562,8 +562,9 @@ input[type="reset"] {
     .filter-text {
         font-size: 17px;
         line-height: 45px;
-
     }
+
+
 }
 
 @media all and (max-width : 1380px) {
@@ -952,12 +953,20 @@ input[type="reset"] {
 }
 
 @media all and (max-width: 425px) {
+
+    .search-result-container
+    {
+        padding-top: 70px;
+        align-items: center;
+    }
+
     .content {
         position: static;
         margin-top: 10px;
         height: auto;
         overflow-y: visible;
         width: 100vw;
+        border-radius: 0px;
     }
 
     .mobileFilterServiceButton {
@@ -966,6 +975,11 @@ input[type="reset"] {
     }
 
     .add-service-button {
-        margin: 0;
+        padding : 10px 90px;
+        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        display: none;
     }
 }

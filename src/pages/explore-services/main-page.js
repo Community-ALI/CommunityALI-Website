@@ -112,8 +112,7 @@ function Services(props) {
   useState(() => {
     console.log(window.innerWidth);
     window.addEventListener('resize', (() => {
-      console.log(window.innerWidth);
-      setIsMobile(window.innerWidth <= 425)
+      setIsMobile(window.innerWidth <= 600)
     }));
   })
 
