@@ -522,6 +522,39 @@ app.post('/api/forgot-password', async (req, res) => {
   }
 })
 
+// this one is for people who remember their old password (rename in the rewrite)
+app.post('/api/change-password', async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+    const user = await User.findOne({ username: username });
+    const oldPassword = req.body.oldPassword;
+    if(await bcrypt.compare(oldPassword, user.password)) {
+      // the username, password combination is successful
+      plainTextPassword = req.body.newPassword;
+      if (plainTextPassword.length < 6) {
+        return res.status(400).json({ status: 'error', error: 'Password should be at least 6 characters' });
+      }
+    
+      const newPassword = await bcrypt.hash(plainTextPassword, 10);
+      user.password = newPassword;
+      await user.save();
+      console.log('password updated');
+      res.json({status: 'ok'})
+    }
+    else{
+      res.status(400).json({status: 'error', error: 'Incorrect password'})
+    }
+    
+
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ status: 'error', error: 'Something went wrong' });
+  }
+});
+
+// this one is for people who don't remember their old password (rename in the rewrite)
 app.post('/api/update-password', async (req, res) => {
   try {
     const token = req.query.token;
