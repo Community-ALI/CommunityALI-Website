@@ -4,3 +4,4 @@ Npm-debug.log
 /*.env
 .env
 /dist
+/uploads
