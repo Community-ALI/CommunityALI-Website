@@ -8,9 +8,17 @@ module.exports = {
 
     entry: './src/index.js',
 
+    mode: 'production',
+
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
+    },
+
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
     },
 
     plugins: [

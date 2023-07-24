@@ -50,13 +50,14 @@ function resetPasswordForm() {
   }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <div className=''>Enter your new password</div>
-            <input autoComplete='new-password' type='password' onChange={handlePasswordChange} placeholder='Password' value={password}></input>
-            <p>Confirm new password</p>
-            <input autoComplete='new-password' type='password' onChange={handlePasswordChange2} placeholder='Confirm password' value={password2}></input>
-            <button autoComplete='false' type='submit'>Submit password</button>
+    <div className='password-form-container'>
+        <form className="password-form" onSubmit={handleSubmit}>
+            <div className='password-form-title'> Reset Password</div>
+            <div className='password-form-txt'> Enter your new password</div>
+            <input className="password-form-input" autoComplete='new-password' type='password' onChange={handlePasswordChange} placeholder='Password' value={password}></input>
+            <div className='password-form-txt'> Confirm new password</div>
+            <input className="password-form-input" autoComplete='new-password' type='password' onChange={handlePasswordChange2} placeholder='Confirm password' value={password2}></input>
+            <button className="password-form-submit" autoComplete='false' type='submit'>Submit password</button>
         </form>
     </div>
     

@@ -34,42 +34,25 @@
 }
 
 
-/* Apply the following styles to the button with class 'file-upload-button' */
+
 .file-upload-button {
-    /* Add some padding and margin for better spacing */
     padding: 10px 15px;
     margin: 5px;
-    
-    /* Remove the default button border and outline */
     border: none;
     outline: none;
-    
-    /* Add a background color */
     background-color: #3498db;
-    
-    /* Set the text color to white */
     color: #fff;
-    
-    /* Add a border radius to make the button slightly rounded */
     border-radius: 5px;
-    
-    /* Apply a pointer cursor to indicate interactivity */
     cursor: pointer;
   }
   
-  /* Apply the following styles when hovering over the button */
   .file-upload-button:hover {
-    /* Darken the background color slightly */
     background-color: #2980b9;
   }
   
-  /* Apply the following styles when the button is clicked/active */
   .file-upload-button:active {
-    /* Darken the background color even further to give a pressed effect */
     background-color: #1c638d;
   }
-
-
   
   .profile-picture-editor {
     padding-top: 10px;
@@ -125,8 +108,6 @@
     justify-content: center; 
     align-items: center; 
 }
-
-
 
 .profile-name-display
 {
@@ -385,6 +366,99 @@
     color:#ecaa1e;
 }
 
+.password-form-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top : 100px;
+}
+
+.password-form
+{
+    background-color:#00468D;
+    border-radius: 12px;
+    padding : 20px;
+    width : 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+    color: white;
+}
+
+.password-form-title
+{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom : 40px;
+}
+
+.password-form-subtitle
+{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom : 40px;
+}
+
+.password-form-txt
+{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom : 20px;
+}
+
+.password-form-input
+{
+    width : 50%;
+    padding : 5px 10px;
+    margin-bottom : 50px;
+    color: #001E60;
+}
+
+.password-form-button
+{
+    font-weight: 600;
+    background-color: #ecaa1e;
+    color: #001E60;
+    padding : 8px 20px;
+    width : 50%;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    margin-top: 20px;
+    transition: 300ms ease;
+
+}
+
+.password-form-button:hover
+{
+    color: white;
+    background-color:#001E60;
+}
+
+
+.password-form-submit
+{
+    font-weight: 600;
+    background-color: #ecaa1e;
+    color: #001E60;
+    padding : 8px 20px;
+    width : 50%;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    border-radius: 20px;
+    transition: 300ms ease;
+}
+
+.password-form-submit:hover
+{
+    color: white;
+    background-color:#001E60;
+}
+
 @media all and (max-width : 850px)
 {
     .password-popup-content
@@ -393,6 +467,26 @@
         margin-top: 80px;
         padding: 20px;
     }
+
+    .password-form
+    {
+        width : 80%;
+    }
+
+    .password-form-input
+    {
+        width : 70%;
+    }
+
+    .password-form-submit
+    {
+        width : 70%;
+    }
+
+    .password-form-button
+    {
+        width: 70%;
+    }
 }
 
 @media all and (max-width : 600px)
@@ -400,6 +494,36 @@
     .password-popup-content
     {
         width : 90%;
+    }
+
+    .password-form
+    {
+        width : 85%;
+    }
+
+    .password-form-input
+    {
+        width : 80%;
+    }
+
+    .password-form-submit
+    {
+        width : 80%;
+    }
+
+    .password-form-button
+    {
+        width: 80%;
+    }
+
+    .password-form-subtitle
+    {
+        font-size: 14px;
+    }
+
+    .password-form-txt
+    {
+        font-size: 14px;
     }
 }
 
@@ -434,5 +558,33 @@
     {
         font-size: 14px;
         width : 100%;
+    }
+
+    .password-form
+    {
+        width : 90%;
+    }
+
+    .password-form-input
+    {
+        width : 90%;
+        font-size : 12px;
+    }
+
+    .password-form-submit
+    {
+        width: 90%;
+        font-size : 14px;
+    }
+
+    .password-form-button
+    {
+        width: 90%;
+        font-size : 14px;
+    }
+
+    .password-form-title
+    {
+        font-size: 20px;
     }
 }

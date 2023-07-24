@@ -40,11 +40,12 @@ function ForgotPasswordForm() {
   }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <p>Enter the email address associated with you account</p>
-            <input type='text' onChange={handleEmailChange} placeholder='email@example.com'></input>
-            <button type='submit'>Send password reset link</button>
+    <div className="password-form-container">
+        <form className="password-form" onSubmit={handleSubmit}>
+            <div className='password-form-title'> Forgot Password? </div>
+            <div className='password-form-subtitle'> Enter the email address associated with your account</div>
+            <input className='password-form-input' type='text' onChange={handleEmailChange} placeholder='email@example.com'></input>
+            <button className='password-form-button' type='submit'>Send password reset link</button>
         </form>
     </div>
     
