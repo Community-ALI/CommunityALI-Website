@@ -1,11 +1,15 @@
 /* NotFoundPage.css */
 
 /* Styles for the container div */
-.page-not-found-container
+/* .not-found-page-container
 {
+  position: absolute;
+} */
+
+.page-not-found-container {
+  width: 40%; 
   flex-direction: column;
-  margin : 0px 20%;
-  margin-top : 180px;
+  margin: 0 auto; 
   background-color: #00468D;
   border-radius: 10px;
   padding: 30px 20px;
@@ -15,7 +19,12 @@
   font-weight: 500;
   color: white;
   text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
 }
+
   
   /* Styles for the heading */
   .not-found-heading {
@@ -67,8 +76,8 @@
 
     .page-not-found-container {
       font-size: 18px;
-      margin : 0px 10%;
-      margin-top : 80px;
+      width: 90%; 
+      max-width: 400px; 
     }
     
     .not-found-heading {
