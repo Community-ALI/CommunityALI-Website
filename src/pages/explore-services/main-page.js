@@ -126,7 +126,7 @@ function Services(props) {
       <NavBar isFixedPage={false} />
 
       <div className="search-result-container">
-        {!isMobile &&
+        {/* {!isMobile &&
           <ServiceDropdown
             SetSortingType={setSortingtype}
             SetServiceTypeFilter={setServiceTypeFilter}
@@ -142,7 +142,7 @@ function Services(props) {
               categoriesFilter={categoriesFilter}
               showServices={showServices}
               SetShowServices={setShowServices}
-            />}
+            />} */}
         {showServices &&
           <div className="results">
             <DisplayAllServices services={services} />

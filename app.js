@@ -121,11 +121,9 @@ app.get("/get-one-service", async function (req, res) {
     const service_name = req.query.service;
     const service = await get_one_service(service_name);
     console.log('sending service:', service_name);
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
     res.json(service);
   } catch (error) {
     console.log(error);
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
     res.json({ success: false, error: 'internal server error' });
   }
 });
@@ -509,7 +507,7 @@ app.post('/api/forgot-password', async (req, res) => {
       });
   
       await newReset.save(); 
-      sendEmail(email, 'Forgot password', `A password reset has been requested for the account associated with this email. If you did not request this email, you can safely ignore it. Otherwise, if you meant to send this email, your link to reset your password is: localhost:8080/reset-password?token=${token}`)
+      sendEmail(email, 'Forgot password', `A password reset has been requested for the account associated with this email. If you did not request this email, you can safely ignore it. Otherwise, if you meant to send this email, your link to reset your password is: https://www.communityali.org/reset-password?token=${token}`)
       res.json({status: 'ok'})
     }
     else{
