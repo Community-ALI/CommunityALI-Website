@@ -43,7 +43,9 @@ function ForgotPasswordForm() {
     <div className="password-form-container">
         <form className="password-form" onSubmit={handleSubmit}>
             <div className='password-form-title'> Forgot Password? </div>
-            <div className='password-form-subtitle'> Enter the email address associated with your account</div>
+            <div className='password-form-subtitle'> Enter the email address associated with your account. </div>
+            <div className='password-form-subtitle'> 
+            If you can't find the email in your inbox, please check your spam folder.</div>
             <input className='password-form-input' type='text' onChange={handleEmailChange} placeholder='email@example.com'></input>
             <button className='password-form-button' type='submit'>Send password reset link</button>
         </form>
