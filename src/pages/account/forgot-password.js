@@ -21,7 +21,7 @@ function ForgotPasswordForm() {
 
         if (result.status === 'ok') {
             //everything is a okay
-            alert('Email to reset your password has been sent');
+            alert('An email to reset your password has been sent (check your spam folder)');
             window.location.href = '/';
         } else {
             console.log(result.error);
