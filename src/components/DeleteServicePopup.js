@@ -64,20 +64,21 @@ function DeleteServicePopup(props) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
-                        <h1 id="delete-header" >Are you sure you want to delete "{props.serviceTitle}"? THIS ACTION CANNOT BE UNDONE! </h1>
+                        <h1 id="delete-header" >Are you sure you want to delete "{props.serviceTitle}"? THIS ACTION CANNOT BE UNDONE ONCE DELETED! </h1>
                         <form id="login" onSubmit={deleteService}>
                             <div className="text-field">
                                 <input 
                                     className="text-field-input"
                                     autoComplete='false'
                                     id="usernameOrEmail" 
+                                    placeholder='Enter Username or Email'
                                     required=""
                                     onChange={e => {
                                         setUsernameOrEmail(e.target.value);
                                     }}
                                     />
                                 <span className="text-field-span"></span>
-                                <label className="text-field-label">Username or Email</label>
+                                {/* <label className="text-field-label">Username or Email</label> */}
                             </div>
                             <div className="text-field">
                                 <input 
@@ -85,13 +86,14 @@ function DeleteServicePopup(props) {
                                     type="password" 
                                     id="password" 
                                     autoComplete='false'
+                                    placeholder='Enter Password'
                                     required=""
                                     onChange={e => {
                                         setPassword(e.target.value);
                                     }}
                                     />
                                 <span className="text-field-span" ></span>
-                                <label className="text-field-label">Password</label>
+                                {/* <label className="text-field-label">Password</label> */}
                             </div>
                     
                             {/* <!-- <div class="pass">Forgot Password?</div> --> */}
