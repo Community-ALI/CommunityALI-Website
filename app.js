@@ -41,7 +41,7 @@ const change_notification_status = require('./store-functions/change-notificatio
 const models = require("./connect-to-database");
 const User = models.User;
 const passwordReset = models.passwordReset;
-const bcrypt = require('bcryptjs')
+const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const { error } = require("console");
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -368,7 +368,7 @@ app.post('/api/login', async (req, res) => {
   if (!user.verified){
     return res.status(400).json({ status: 'unverified', username: user.username, error: 'Account has not been verified.' }) //FIXME: make a way to verify it
   }
-  if(await bcrypt.compare(password, user.password)) {
+  if(await bcryptjs.compare(password, user.password)) {
       // the username, password combination is successful
 
       const token = jwt.sign(
@@ -528,14 +528,14 @@ app.post('/api/change-password', async (req, res) => {
     const username = decodedToken.username;
     const user = await User.findOne({ username: username });
     const oldPassword = req.body.oldPassword;
-    if(await bcrypt.compare(oldPassword, user.password)) {
+    if(await bcryptjs.compare(oldPassword, user.password)) {
       // the username, password combination is successful
       plainTextPassword = req.body.newPassword;
       if (plainTextPassword.length < 6) {
         return res.status(400).json({ status: 'error', error: 'Password should be at least 6 characters' });
       }
     
-      const newPassword = await bcrypt.hash(plainTextPassword, 10);
+      const newPassword = await bcryptjs.hash(plainTextPassword, 10);
       user.password = newPassword;
       await user.save();
       console.log('password updated');
@@ -569,7 +569,7 @@ app.post('/api/update-password', async (req, res) => {
       
       if (user) {
         // Hash the new password with bcrypt
-        const password = await bcrypt.hash(plainTextPassword, 10);
+        const password = await bcryptjs.hash(plainTextPassword, 10);
         
         // Update the user's password in the database
         user.password = password;
@@ -613,7 +613,7 @@ app.post('/api/register', async (req, res) => {
       .json({ status: 'error', error: 'Password should be at least 6 characters' });
   }
 
-  const password = await bcrypt.hash(plainTextPassword, 10);
+  const password = await bcryptjs.hash(plainTextPassword, 10);
 
   // verify
   const verificationCode = generateSixDigitCode()
