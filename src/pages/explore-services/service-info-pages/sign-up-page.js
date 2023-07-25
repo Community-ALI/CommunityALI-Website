@@ -38,7 +38,7 @@ function SignUpPage({ mainInfo, allFormData }) {
       <div className="sign-up-form">
         <form action="/store-application" id="form" 
           className="sign-up-form-boxes" method="POST" onSubmit={handleSubmit}>
-          <div className="service-header" id="sign-up-header">Become a New Club Member Today!</div>
+          <div className="service-header" id="sign-up-header">Fill in the Info Below to Sign Up Today!</div>
             <div className="sign-up-form-container">
                 <div className="text-container" id="name-container">
                     <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>

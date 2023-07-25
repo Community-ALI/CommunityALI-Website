@@ -213,7 +213,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                 <label htmlFor="authorization" className="authorization-text">
                 By submitting this application I authorize Community ALI to publish all the information of this application for any person
                 to view. I hold responsibility for the information displayed from this application and I represent the organization's interest to do so.
-                I understand that this application will be subject to review, in which any inappropriate content associated with the club or its
+                I understand that this application will be subject to review, in which any inappropriate content associated with the organization or its
                 members will result in immediate termination of the internship from the platform. I understand that there is no tolerance for any discrimination
                 against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
                 </label>
