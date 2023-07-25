@@ -129,13 +129,15 @@ function Profile() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
+        const accountMinusOneField = { ...account };
+        delete accountMinusOneField.imageUrl;
         fetch(`${BASE_BACKEND_URL}/userdata/set-account-data`, {
           method: 'POST', // Specify the HTTP method as POST
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ account: account }) // Set the request body here
+          body: JSON.stringify({ account: accountMinusOneField }) // Set the request body here
         })
           .then(response => response.json())
           .then(data => {

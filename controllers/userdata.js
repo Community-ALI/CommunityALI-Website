@@ -35,7 +35,7 @@ exports.set_account_data = async function (username, req) {
       // TODO: Error handling
     }
   } catch (error) {
-    // TODO: Error handling
+    console.log(error);
   }
 };
 
