@@ -124,12 +124,14 @@ router.post("/set-account-data", async function (req, res) {
         const username = decodedToken.username;
         user_data.set_account_data(username, req);
         console.log('account info for', username, 'updated');
+        res.json({status: 'ok'});
     } catch (error) {
         console.log(error);
         res.json({
             dataAccount: [],
             tokenUsername: 'not logged in'
         });
+        res.json({status: 'error', error: error});
     }
 });
 

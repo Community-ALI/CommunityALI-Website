@@ -142,9 +142,10 @@ function Profile() {
           .then(response => response.json())
           .then(data => {
             console.log('data sent');
-            
+            alert('account updating...')
+            window.location.reload();
           });
-          window.location.reload();
+          
       } else {
       }
     } catch (error) {
