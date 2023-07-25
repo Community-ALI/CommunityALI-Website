@@ -317,6 +317,7 @@
     z-index: 1;
     width: 50%;
     padding-bottom: 35px;
+    margin-top : 60px;
 }
 
 .pop-up-old-password
@@ -543,7 +544,7 @@
     .password-popup-content
     {
         width : 80%;
-        margin-top: 80px;
+        margin-top: 180px;
         padding: 20px;
     }
 
@@ -677,7 +678,7 @@
 
     .password-popup-content
     {
-        margin-top : 60px;
+        margin-top : 140px;
     }
 
     .pop-up-password-container
