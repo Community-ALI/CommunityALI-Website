@@ -258,6 +258,7 @@
 .profile-section-container
 {
     text-align: center;
+    margin: 0px 20px;
 }
 
 .profile-section-title
@@ -486,15 +487,31 @@
     background-color:#001E60;
 }
 
+#profile-icon-thumbnail
+{
+    width : 250px;
+    height : 250px;
+
+}
+
 
 @media all and (max-width : 1200px)
 {
+    .profile-picture
+    {
+        margin-right: 40px;
+        width : 200px;
+    }
+
+    .profile-input-container
+    {
+        width : 70%;
+    }
 
 }
 
 @media all and (max-width : 850px)
 {
-
     .profile-inputs-section
     {
         flex-direction: column;
@@ -567,6 +584,12 @@
     {
         width: 70%;
     }
+
+    .profile-picture-editor
+    {
+        padding-top : 0px;
+    }
+
 }
 
 @media all and (max-width : 600px)

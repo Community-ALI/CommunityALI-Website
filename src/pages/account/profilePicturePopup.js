@@ -107,7 +107,7 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
 
   return (
     <div className="container-login" onWheel={handleWheel}>
-      <div {...getRootProps()}> 
+      <div className='container-profile-picture' {...getRootProps()}> 
         <div  className='picture-upload'>
           <p>Drag and drop profile picture</p>
           <input
@@ -124,11 +124,9 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
         
         {selectedImage || defaultImage ? (
           <div className='profile-picture-editor'>
-            <AvatarEditor
+            <AvatarEditor id='profile-icon-thumbnail'
               ref={editorRef}
               image={selectedImage || defaultImage}
-              width={250}
-              height={250}
               border={25}
               color={[106, 107, 110, 0.6]}
               scale={scale}
