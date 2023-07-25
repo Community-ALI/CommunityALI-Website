@@ -152,7 +152,7 @@ function MyServicesHome() {
       </div>
 
       {services.length === 0 ? (  // Wanted to Add a Condition if Services Array is Empty
-        <div>Loading...</div>
+        <div></div>
       ) : (
         services.map((service) => (
           <MyServicePageDisplay
