@@ -7,20 +7,26 @@
 }
 
 .save-profile-image-button {
-    width: 50%;
+    width: 70%;
     background-color: #001E60;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 30px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     letter-spacing: 2px;
-    transition: 500ms ease;
+    transition: 300ms ease;
     text-align: center; 
+}
+
+.save-profile-image-button:hover
+{
+    background-color: #ecaa1e;
+    color:#001E60;
 }
 
 .picture-upload {
@@ -36,14 +42,15 @@
 
 
 .file-upload-button {
-    padding: 10px 15px;
-    margin: 5px;
+    padding: 8px 20px;
+    margin: 10px;
     border: none;
     outline: none;
     background-color: #3498db;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: 200ms ease;
   }
   
   .file-upload-button:hover {
@@ -73,7 +80,7 @@
 
 .profile-picture
 {
-    width : 30%;
+    width : 225px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,19 +88,20 @@
     text-align: center;
     color : white;
     position: relative;
+    margin-right: 80px;
 }
 
 .profile-img
 {
-    width : 45%;
+    width : 100%;
     margin-bottom : 20px;
     border-radius: 50%;
 }
 
 .profile-image-edit-button {
     position: absolute;
-    bottom: 30%; 
-    right: 30%; 
+    bottom: 100px;
+    right: 20px;
     background-color: #fff; 
     border: 1px solid #ccc; 
     border-radius: 50%; 
@@ -119,6 +127,13 @@
     margin-bottom : 8px;
 }
 
+.profile-inputs-section
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .profile-change-container
 {
     display: flex;
@@ -131,7 +146,6 @@
 .profile-change
 {
     font-size: 15px;
-    margin: 0px 32px 0px 32px;
     background-color:#001E60;
     padding: 6px 16px 6px 16px;
     font-family: "poppins";
@@ -155,15 +169,27 @@
     display: flex;
     justify-content: center;
     flex-wrap : wrap;
+    justify-content: flex-end;
 }
 
-.profile-input
+.profile-input-name
 {
-    width : 50%;
+    width : 100%;
     display: flex;
     color: white;
     margin-bottom : 40px;
     align-items: center;
+    justify-content: flex-start;
+}
+
+.profile-input-email
+{
+    width : 100%;
+    display: flex;
+    color: white;
+    margin-bottom : 40px;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .profile-name-title
@@ -212,7 +238,7 @@
 
 .profile-description
 {
-    width : 91%;
+    width : 100%;
     padding : 12px 15px;
     color : white;
     border-radius : 10px;
@@ -222,7 +248,7 @@
 .profile-analytics
 {
     display: flex;
-    width: 80%;
+    width: 100%;
     align-items: center;
     justify-content: space-around;
     color : white;
@@ -303,7 +329,7 @@
 .pop-up-enter
 {
     font-size : 20px;
-    background-color:#001E60;
+    background-color:#001e60;
     padding: 6px 16px;
     font-family: "poppins";
     color: white;
@@ -459,8 +485,61 @@
     background-color:#001E60;
 }
 
+
+@media all and (max-width : 1200px)
+{
+
+}
+
 @media all and (max-width : 850px)
 {
+
+    .profile-inputs-section
+    {
+        flex-direction: column;
+    }
+
+    .profile-input-name
+    {
+        justify-content: center;
+    }
+
+    .profile-input-email
+    {
+        justify-content: center;
+    }
+
+    .profile-name
+    {
+        width: 100%;
+    }
+
+    .profile-email
+    {
+        width: 100%;
+    }
+
+    .profile-container
+    {
+        flex-direction: column;
+    }
+
+    .profile-picture
+    {
+        margin-right: 0px;
+        margin-bottom: 50px;
+    }
+
+    .profile-input-container
+    {
+        width: 90%;
+    }
+
+    .profile-save-button
+    {
+        width: 90%;
+    }
+
     .password-popup-content
     {
         width : 80%;
@@ -529,6 +608,73 @@
 
 @media all and (max-width : 480px)
 {
+    .profile-container
+    {
+        padding-top : 100px;
+    }
+
+    .profile-picture
+    {
+        width : 200px;
+    }
+
+    .profile-input-name
+    {
+        flex-direction: column;
+        font-size: 14px;
+    }
+
+    .profile-name-title
+    {
+        margin-right : 0px;
+        margin-bottom : 10px;
+    }
+
+    .profile-input-email
+    {
+        flex-direction: column;
+        font-size: 14px;
+    }
+
+    .profile-email-title
+    {
+        margin-right : 0px;
+        margin-bottom : 10px;
+    }
+
+    .profile-description-container
+    {
+        font-size : 14px;
+        align-items: center;
+    }
+
+    .profile-description
+    {
+        height: 200px;
+    }
+
+    .profile-change-container
+    {
+        justify-content: center;
+        width : 100%;
+    }
+
+    .profile-analytics
+    {
+        flex-direction: column; 
+    }
+
+    .profile-section-container
+    {
+        margin-bottom: 30px;
+    }
+
+    .profile-save-button
+    {
+        margin-top : 40px;
+        font-size : 18px;
+    }
+
     .password-popup-content
     {
         margin-top : 60px;

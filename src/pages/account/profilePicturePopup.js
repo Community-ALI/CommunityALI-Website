@@ -118,7 +118,7 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
             ref={fileInputRef}
             style={{ display: 'none' }}
           />
-          <button className='file-upload-button' onClick={handleButtonClick}>or choose image from files</button>
+          <button className='file-upload-button' onClick={handleButtonClick}>Choose image from files</button>
           
         </div>
         

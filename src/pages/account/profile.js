@@ -198,6 +198,7 @@ function Profile() {
             width: '100%',
             height: '100%',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 100,
           }}
           onClick={handleClickOutsidePopup}
         >
@@ -238,33 +239,35 @@ function Profile() {
         </div>
 
         <div className="profile-input-container">
-          <div className="profile-input">
-            <label className="profile-name-title" htmlFor="name"> Full Name </label>
-            <input
-              type="text"
-              className="profile-name"
-              name='fullName'
-              id="name"
-              placeholder="First Last"
-              value={account.fullName}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-              style={{ pointerEvents: !editMode ? "none" : "auto" }}
-              ref={nameRef}
-            />
-          </div>
+          <div className='profile-inputs-section'>
+            <div className="profile-input-name">
+              <label className="profile-name-title" htmlFor="name"> Username </label>
+              <input
+                type="text"
+                className="profile-name"
+                name='fullName'
+                id="name"
+                placeholder="First Last"
+                value={account.fullName}
+                onChange={handleInputChange}
+                readOnly={!editMode}
+                style={{ pointerEvents: !editMode ? "none" : "auto" }}
+                ref={nameRef}
+              />
+            </div>
 
-          <div className="profile-input">
-            <label className="profile-email-title" htmlFor="email"> Email </label>
-            <input
-              type="email"
-              className="profile-email"
-              id="email"
-              value={account.email}
-              placeholder="example@example.com"
-              readOnly='true'
-              style={{ pointerEvents: !editMode ? "none" : "auto" }}
-            />
+            <div className="profile-input-email">
+              <label className="profile-email-title" htmlFor="email"> Email </label>
+              <input
+                type="email"
+                className="profile-email"
+                id="email"
+                value={account.email}
+                placeholder="example@example.com"
+                readOnly='true'
+                style={{ pointerEvents: !editMode ? "none" : "auto" }}
+              />
+            </div>
           </div>
 
           <div className="profile-description-container">
