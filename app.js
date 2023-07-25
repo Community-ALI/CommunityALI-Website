@@ -623,6 +623,7 @@ app.post('/api/register', async (req, res) => {
       username,
       password,
       email,
+      fullName: username,
       verified: false,
       verificationCode: verificationCode,
       clubAdmin: false, // Set default value for clubAdmin
