@@ -9,8 +9,6 @@ function LoginButton(props) {
             <a 
                 className="navigation-button navigation-text" 
                 onClick={props.ShowLoginPopup}
-                style={{cursor:'pointer'}}
-                id="navigation-login"
             >Login</a>
         )
     }

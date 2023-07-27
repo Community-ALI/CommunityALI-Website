@@ -4,7 +4,7 @@
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 17px;
 
     text-align: right;
     list-style: none;
@@ -37,6 +37,7 @@
 
     transition : all 0.2s linear; 
     text-decoration: none;
+    cursor: pointer;
 }
 
 .coming-soon {
@@ -57,26 +58,29 @@
 
 #navigation-login
 {
-    color :#001E60;
-    background-color: #ecaa1e;
-    
+    color : white;
+    background-color: transparent;
+    border-color: white;
+    border-width: 1px;
     border-radius : 10px;
-
-    padding : 15px 15px;
+    padding : 12px 15px;
     margin-right : 20px;
     margin-left : 15px;
     text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
 }
 
 .navigation-text:hover
 {
-    color : #00468D;
+    color :#ecaa1e
 }
 
 #navigation-login:hover
 {
-    color : white;
-    background-color :#00468D
+    color :#001E60;
+    background-color: #ecaa1e;
+    border-color: #ecaa1e;
 }
 
 .navigation-menu
@@ -113,6 +117,24 @@ a > .navigation-menu {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color : white;
+    position: relative;
+}
+
+.search-bar-input
+{
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    padding-right: 40px;
+}
+
+
+.navbar-search-icon
+{
+    position: absolute;
+    height: 22px;
+    right : 18px;
+    top: 7px;
 }
 
 .scrolled {
@@ -153,7 +175,7 @@ a > .navigation-menu {
 }
 
 .navbar-logo {
-    max-height: 60px;
+    max-height: 55px;
     margin-right : 20px;
 }
 
@@ -214,7 +236,7 @@ a > .navigation-menu {
 {
     .navigation-bar
     {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .navigation-text
@@ -243,6 +265,17 @@ a > .navigation-menu {
 
 @media all and (max-width : 850px)
 {
+    .search-bar-input
+    {
+        color:#001E60;
+        padding-right: 0px;
+    }
+
+    .navbar-search-icon
+    {
+        display: none;
+    }
+
     .navigation-bar
     {
         font-size : 18px;
@@ -280,6 +313,7 @@ a > .navigation-menu {
     {
         visibility: visible;
         margin-right : 0px;
+        max-height: 62px;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)

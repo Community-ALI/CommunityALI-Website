@@ -16,6 +16,7 @@ body
     min-height: calc(100vh);
     position: relative;
     overflow-x: hidden;
+    overscroll-behavior-y: none;
 }
 
 @keyframes fadeIn 
@@ -30,7 +31,7 @@ body
 {
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, .5),
+        rgba(0, 0, 0, .6),
         rgba(0, 40, 96, 0.5),
         rgba(0, 70, 141, 0.5),
         rgba(0, 60, 96, 0.99)
@@ -402,6 +403,25 @@ border-radius: 10px;
     overflow: hidden;
 }
 
+.categories-container
+{
+    padding-left : 0%;
+    justify-content: left;
+    overflow: scroll;
+    overflow-y: hidden;
+    padding-bottom: 12px;
+}
+
+::-webkit-scrollbar
+{
+    height: 0px;
+}
+
+.category-box
+{
+    flex-shrink: 0;
+}
+
 @media all and (max-width : 1320px)
 {
     .description-text
@@ -480,6 +500,21 @@ border-radius: 10px;
 
 @media all and (max-width : 850px)
 {
+
+    .categories-container
+    {
+        padding-left : 2%;
+        justify-content: left;
+        overflow: scroll;
+        overflow-y: hidden;
+        padding-bottom: 12px;
+    }
+
+    ::-webkit-scrollbar
+    {
+        height: 15px;
+    }
+
     .description-video
     {
         width: 450px;
@@ -495,10 +530,7 @@ border-radius: 10px;
     {
         width : 30%;
     }
-}
 
-@media all and (max-width : 780px)
-{
     .subtext
     {
         font-size: 17px;
@@ -543,12 +575,8 @@ border-radius: 10px;
         flex-shrink: 0;
     }
 
-    .categories-container {
-        justify-content: left;
-        overflow: scroll;
-    }
-
-    .box-header-text {
+    .box-header-text 
+    {
         width: 100%;
         font-size: 3.5vw;
     }
@@ -612,6 +640,32 @@ border-radius: 10px;
 
 @media all and (max-width : 480px)
 {
+    #club
+    {
+        content: url('/public/photos-mobile/clubs-mob.webp')
+    }
+
+    #events
+    {
+        content: url('/public/photos-mobile/events-mob.webp')
+    }
+
+    #volunteer
+    {
+        content: url('/public/photos-mobile/volunteer-mob.webp')
+    }
+
+    #internship
+    {
+        content: url('/public/photos-mobile/internship-mob.webp')
+    }
+
+    #career
+    {
+        content: url('/public/photos-mobile/career-mob.webp')
+    }
+
+
     .main-container
     {
         margin-bottom: 50px;

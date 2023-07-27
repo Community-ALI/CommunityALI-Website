@@ -6,6 +6,8 @@ import '../../public/stylesheets/style.css'
 import LoginButton from './LoginButton';
 import LoginPopup from './LoginPopup';
 import Notifications from './Notification';
+import SignupPopup from './SignupPopup';
+import SignUpButton from './SignUpButton.js';
 
 function MyServicesNavButton(props) {
     var token = localStorage.getItem('token');
@@ -137,11 +139,15 @@ function NavBar(props) {
                         <a href="/">
                             <img src="photos-optimized/CClogo-opt.png" className="navbar-logo" />
                         </a>
-                        <input
-                            placeholder="Search..."
-                            id="nav-menu-search-bar"
-                            ref={searchRef}
-                        />
+                        <div id="nav-menu-search-bar">
+                            <input 
+                                className='search-bar-input'
+                                placeholder="Search..."
+                                ref={searchRef}
+                            />
+                            <img src="Photos/search.png" className="navbar-search-icon" /> 
+                        </div>
+
                         <a
                             className="navigation-button navigation-text"
                             href="/">
@@ -157,6 +163,7 @@ function NavBar(props) {
                             target="_blank"
                         >MJC</a>
                         <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
+                        <SignUpButton  token={token}></SignUpButton>
                     </nav>
                 </div>
                 <div

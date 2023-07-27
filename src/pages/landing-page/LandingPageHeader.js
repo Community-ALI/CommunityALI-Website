@@ -31,22 +31,23 @@ function LandingPageHeader() {
             autoPlay
             muted
             loop
+            preload="metadata"
         >
             {/* Conditionally render the video source based on screen width */}
-            <source src={isMobile ? mobileVideo : video} type="video/mp4" />
+            <source src={isMobile ? `${mobileVideo}#t=0.1` : `${video}#t=0.1`} type="video/mp4" />
         </video>
         
             <div id="header-container">
                 <div id="header-title">
                     <p>
-                        Engaging Students with the Community <br/>
+                        Engaging MJC Students with the World <br/>
                         Welcome to Community ALI
                     </p>
                 </div>
             
                 <div id="header-subtitle">
                     <p>
-                        A student social network to link your personal interests with MJC and more!
+                        A student platform to link your personal interests with Modesto Junior College
                     </p>
                 </div>
             </div>

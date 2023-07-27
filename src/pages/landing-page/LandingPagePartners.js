@@ -11,11 +11,17 @@ function LandingPagePartners() {
             </div>
     
             <div className="partners-images-container">
-                <a className="partner-link" href="https://www.fourthworldcooperative.org/" target="_blank">
-                    <img id="fourth-world" src="photos-optimized/fourthworld-opt.jpg"/>
+                <a className="partner-link" href="https://www.fourthworldcooperative.org/" 
+                target="_blank"
+                aria-label="Fourth World">
+                    <img id="fourth-world" src="photos-optimized/fourthworld-opt.webp"
+                    alt="Photos/NoPhoto.webp"/>
                 </a>
-                <a className="partner-link" href="https://solvecc.org/" target="_blank">
-                    <img id="solvecc" src="photos-optimized/solvecc-opt.jpg"/>
+                <a className="partner-link" href="https://solvecc.org/" 
+                target="_blank"
+                aria-label="SolveCC">
+                    <img id="solvecc" src="photos-optimized/solvecc-opt.webp"
+                    alt='Photos/NoPhoto.webp'/>
                 </a>
             </div>
         </div>
