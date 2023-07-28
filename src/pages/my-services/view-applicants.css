@@ -148,3 +148,40 @@ body
     }
 }
 
+
+.search-results{
+    table-layout: fixed;
+    width: 100%;
+}
+
+.search-results thead th{
+    text-align: left;
+    padding: 15px;
+    width: 100vw;
+}
+
+.search-results tbody td{
+    padding: 10px;
+    text-align: left;
+    border: .5px solid;
+    width: 100vw;
+}
+
+.search-results th.applicant-name,
+.search-results tbody td.applicant-name{
+    width: 30%;
+}
+
+.search-results th.applicant-email,
+.search-results tbody td.applicant-email{
+    width: 40%;
+}
+
+
+.search-results th.applicant-date,
+.search-results tbody td.applicant-date {
+    width: 15%;  
+}
+
+
+

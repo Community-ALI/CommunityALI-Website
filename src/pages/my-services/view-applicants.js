@@ -48,18 +48,51 @@ const SearchResult = function (props) {
     }, [])
 
     return (
-        <div className="applicants-result-container">
-            <div>
-                <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
-                <p className="applicant-name">{applicant.name}</p>
-                <p className="applicant-email">{applicant.email}</p>
-                <p className="applicant-time">{applicant.date}</p>
-                <p className="applicant-time">{normalTime}</p>
-            </div>
-        </div>
+        
+        <tr className="applicants-result-container">
+                 <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
+                 
+                <td data-label="name" className="applicant-name">{applicant.name}</td>
+                <td data-label="email"  className="applicant-email">{applicant.email}</td>
+                <td data-label="date"  className="applicant-date">{applicant.date}</td>
+                <td data-label="time"  className="applicant-time">{normalTime}</td>
+        </tr>
     );
 };
 
+
+// create the information required to display the page
+function ApplicationPageDisplay(props) {
+    const serviceName = props.serviceName;
+
+    return (
+        <section className="applicants">
+            <div className="applicants-title">{serviceName}</div>
+            <table className="search-results">
+            
+            <thead>
+                    <tr>
+                        <th className='applicant-name'>Name</th>
+                        <th className='applicant-email'>Email</th>
+                        <th className='applicant-date'>Date</th>
+                        <th className='applicant-time'>Time</th>
+                    </tr>
+                    
+            </thead>
+
+                
+                <tbody>
+                    {props.applicants.map((applicant, index) => (
+                    <SearchResult
+                        key={index}
+                        applicant={applicant}
+                        notificaiton={false} /> //TODO fill this with is applicant new bool for notification to show up to connect it to back end
+                ))}
+                </tbody>
+            </table>
+        </section>
+    );
+};
 
 //   const application_page_display = function(props) {
 //     const results = props.results;
@@ -82,26 +115,6 @@ const SearchResult = function (props) {
 //       </section>
 //     );
 //   };
-
-
-// create the information required to display the page
-function ApplicationPageDisplay(props) {
-    const serviceName = props.serviceName;
-
-    return (
-        <section className="applicants">
-            <div className="applicants-title">{serviceName}</div>
-            <div className="search-results">
-                {props.applicants.map((applicant, index) => (
-                    <SearchResult
-                        key={index}
-                        applicant={applicant}
-                        notificaiton={false} /> //TODO fill this with is applicant new bool for notification to show up to connect it to back end
-                ))}
-            </div>
-        </section>
-    );
-};
 
 function ServiceApplicants() {
     const [applicants, setApplicants] = useState([]);
