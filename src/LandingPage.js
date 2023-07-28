@@ -5,6 +5,7 @@ import LandingPageCatagories from './pages/landing-page/LandingPageCatagories';
 import LandingPagePartners from './pages/landing-page/LandingPagePartners';
 import NavBar from './components/NavBar';
 import Footer from "./components/Footer";
+import LandingPageSchools from './pages/landing-page/LandingPageSchools';
 
 function LandingPage() {
   
@@ -15,8 +16,9 @@ function LandingPage() {
                 <NavBar isFixedPage={true} />
                 <LandingPageHeader />
                 <LandingPageCatagories />
-                <LandingPageCommunityAliInformation />
+                <LandingPageSchools />
                 <LandingPagePartners />
+                {/* <LandingPageCommunityAliInformation />  */}
                 <Footer />
             </div>
         </div>

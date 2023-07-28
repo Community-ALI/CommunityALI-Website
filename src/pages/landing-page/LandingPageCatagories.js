@@ -9,21 +9,21 @@ function LandingPageCatagories() {
             </div>
             
             <div className="categories-container">
-                <a className = "category-box" id="box1" href="/services" aria-label="Subject and Career Path">
+                {/* <a className = "category-box" id="box1" href="/services" aria-label="Subject and Career Path">
                     <div className = "box">
                         <div className="category-image"> 
                             <img id="career" src="photos-optimized/career-opt.webp" alt='Photos/NoCategoryImg.webp'/>
                         </div>
                         <div id="career-text" className="box-header-text">Subject and Career Path</div>
                     </div>
-                </a>
-                <a className="category-box" id="box2" href="/services-clubs" aria-label="Clubs and Communities">
+                </a> */}
+                <a className="category-box" id="box1" href="/services-clubs" aria-label="Clubs and Communities">
                     <div className = "box">
                         <img id="club" src="photos-optimized/clubs-opt.webp" alt='Photos/NoCategoryImg.webp'/>
                         <div id="club-text" className="box-header-text"> Clubs and Communities</div>
                     </div>
                 </a>  
-                <a className="category-box" id="box2" href="" aria-label="Events and Campus Life">
+                <a className="category-box" id="box2" href="/services-clubs" aria-label="Events and Campus Life">
                     <div className = "box">
                         <img id="events" src="photos-optimized/events-opt.webp" alt='Photos/NoCategoryImg.webp'/>
                         <div id="club-text" className="box-header-text"> Events and Campus Life</div>

@@ -249,10 +249,73 @@ body
     bottom : 8%;
 }
 
+.schools-container
+{
+    padding-right: 5%;
+    padding-left: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-flow: wrap;
+    background-color: #00468D;
+    padding-bottom: 100px;
+    padding-top: 50px;
+    margin-top: 100px;
+}
+
+.schools-box 
+{
+    color: white;
+    font-family: 'Poppins', serif;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    margin: 25px;
+    margin-bottom: 40px;
+    padding: 10px;
+    width: 15%;
+    margin-top: 25px;
+}
+
+.icon-text 
+{
+    display: block;
+    padding-top: 15px;
+    letter-spacing: 1.5px;
+}
+
+.icon
+{
+    transition: 200ms ease;
+}
+
+.icon:hover
+{
+    color:#ecaa1e;
+    scale: 1.2;
+}
+
+.schools-container-title
+{
+    color: white;
+    font-size: clamp(20px, 3vw, 40px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center; 
+    margin-top : 20px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+
 .description-container
 {
     position : relative;
-    margin-top : 8%;
+    
     margin-bottom : 8%;
     background-color :#00468D;
     padding-top : 4%;
@@ -303,6 +366,7 @@ body
 .partners-container
 {
     margin-bottom : 10%;
+    padding-top : 80px;
 }
 
 .partners-images-container
@@ -394,32 +458,15 @@ border: 1px solid;
 border-radius: 10px;
 }
 
-.categories-nav-button {
+.categories-nav-button 
+{
     width: 50px;
     visibility: hidden;
 }
 
-.main-container {
+.main-container 
+{
     overflow: hidden;
-}
-
-.categories-container
-{
-    padding-left : 0%;
-    justify-content: left;
-    overflow: scroll;
-    overflow-y: hidden;
-    padding-bottom: 12px;
-}
-
-::-webkit-scrollbar
-{
-    height: 0px;
-}
-
-.category-box
-{
-    flex-shrink: 0;
 }
 
 @media all and (max-width : 1320px)
