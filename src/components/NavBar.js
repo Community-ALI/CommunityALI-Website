@@ -71,6 +71,7 @@ function MyServicesNavButton(props) {
 
 function NavBar(props) {
     const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
+    const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
     const [token, setToken] = useState(false);
     const [showNavBarMobile, setShowNavBarMobile] = useState(false);
@@ -97,6 +98,17 @@ function NavBar(props) {
 
     function showLoginPopup() {
         setIsShowingLoginPopup(true);
+        setIsShowingSignupPopup(false);
+    }
+    
+    function showSignupPopup(){
+        setIsShowingSignupPopup(true);
+        setIsShowingLoginPopup(false);
+    }
+
+    function hidePopups() {
+        setIsShowingLoginPopup(false);
+        setIsShowingSignupPopup(false);
     }
 
     const searchRef = useRef(null);
@@ -163,7 +175,7 @@ function NavBar(props) {
                             target="_blank"
                         >MJC</a>
                         <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
-                        <SignUpButton  token={token}></SignUpButton>
+                        <SignUpButton ShowSignupPopup={showSignupPopup} token={token}></SignUpButton>
                     </nav>
                 </div>
                 <div
@@ -203,11 +215,12 @@ function NavBar(props) {
                     </a>
                 </div>
             </div>
-            <LoginPopup isShowingLoginPopup={isShowingLoginPopup} />
+            <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup}  />
+            <SignupPopup isShowingSignupPopup={isShowingSignupPopup} showLoginPopup={showLoginPopup} />
             <div
                 id='login-popup-background'
-                className={isShowingLoginPopup ? '' : 'hidden'}
-                onClick={() => setIsShowingLoginPopup(false)}
+                className={isShowingLoginPopup || isShowingSignupPopup ? '' : 'hidden'}
+                onClick={hidePopups}
                 style={{ cursor: 'pointer' }}
             >
             </div>

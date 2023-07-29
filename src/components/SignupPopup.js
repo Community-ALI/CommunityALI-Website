@@ -19,10 +19,6 @@ function SignupPopup(props) {
     setPasswordVisible3((prev) => !prev);
   };
 
-  const handleSwitchToLogin = () => {
-    props.setIsShowingSignupPopup(false); // Call the parent component's state update function
-  };
-
   async function signup(event) {
     event.preventDefault();
 
@@ -56,91 +52,95 @@ function SignupPopup(props) {
       alert('An error occurred while signing up.');
     }
   }
+  if (props.isShowingSignupPopup){
+    return (
+      <div className='container-login'>
+        <div className="container-for-login">
+          <h1>Sign Up</h1>
+          <form id="signup" onSubmit={signup}>
+            <div className="text-field" id="sign-up-text-field">
+              <input
+                autoComplete="new-email"
+                className="text-field-input"
+                id="email"
+                required=""
+                onChange={e => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <span className={`text-field-span${email !== '' ? ' focused-field' : ''}`}></span>
+              <label className={`text-field-label${email !== '' ? ' focused-field' : ''}`} htmlFor="email">Email</label>
+            </div>
+            <div className="text-field">
+              <input
+                autoComplete="new-username"
+                className="text-field-input"
+                id="username"
+                required=""
+                onChange={e => {
+                  setUsername(e.target.value);
+                }}
+              />
+              <span className={`text-field-span${username !== '' ? ' focused-field' : ''}`}></span>
+              <label className={`text-field-label${username !== '' ? ' focused-field' : ''}`} htmlFor="username">Username</label>
+            </div>
+            <div className="text-field">
+              <input
+                autoComplete="new-password"
+                className="text-field-input"
+                type={passwordVisible2 ? "text" : "password"}
+                id="password"
+                required=""
+                onChange={e => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <i
+                className={`fa-solid ${passwordVisible2 ? "fa-eye" : "fa-eye-slash"}`}
+                id="password-eye"
+                onClick={togglePasswordVisibility2} // Add the onClick event to toggle the password visibility
+              />
+              <span className={`text-field-span${password !== '' ? ' focused-field' : ''}`}></span>
+              <label className={`text-field-label${password !== '' ? ' focused-field' : ''}`} htmlFor="password">Password</label>
+            </div>
+            <div className="text-field">
+              <input
+                autoComplete="new-password-2"
+                className="text-field-input"
+                type={passwordVisible3 ? "text" : "password"}
+                id="confirmPassword"
+                required=""
+                onChange={e => {
+                  setConfirmPassword(e.target.value);
+                }}
+              />
+              <i
+                className={`fa-solid ${passwordVisible3 ? "fa-eye" : "fa-eye-slash"}`}
+                id="password-eye"
+                onClick={togglePasswordVisibility3} // Add the onClick event to toggle the password visibility
+              />
+              <span className={`text-field-span${confirmPassword !== '' ? ' focused-field' : ''}`}></span>
+              <label className={`text-field-label${confirmPassword !== '' ? ' focused-field' : ''}`} htmlFor="confirmPassword">Confirm Password</label>
+            </div>
 
-  return (
-    <div className='container-login'>
-      <div className="container-for-login">
-        <h1>Sign Up</h1>
-        <form id="signup" onSubmit={signup}>
-          <div className="text-field" id="sign-up-text-field">
             <input
-              autoComplete="new-email"
-              className="text-field-input"
-              id="email"
-              required=""
-              onChange={e => {
-                setEmail(e.target.value);
-              }}
+              type="submit"
+              value="Sign Up"
+              id='signup-submission'
+              className="login-submit-button"
             />
-            <span className={`text-field-span${email !== '' ? ' focused-field' : ''}`}></span>
-            <label className={`text-field-label${email !== '' ? ' focused-field' : ''}`} htmlFor="email">Email</label>
-          </div>
-          <div className="text-field">
-            <input
-              autoComplete="new-username"
-              className="text-field-input"
-              id="username"
-              required=""
-              onChange={e => {
-                setUsername(e.target.value);
-              }}
-            />
-            <span className={`text-field-span${username !== '' ? ' focused-field' : ''}`}></span>
-            <label className={`text-field-label${username !== '' ? ' focused-field' : ''}`} htmlFor="username">Username</label>
-          </div>
-          <div className="text-field">
-            <input
-              autoComplete="new-password"
-              className="text-field-input"
-              type={passwordVisible2 ? "text" : "password"}
-              id="password"
-              required=""
-              onChange={e => {
-                setPassword(e.target.value);
-              }}
-            />
-            <i
-              className={`fa-solid ${passwordVisible2 ? "fa-eye" : "fa-eye-slash"}`}
-              id="password-eye"
-              onClick={togglePasswordVisibility2} // Add the onClick event to toggle the password visibility
-            />
-            <span className={`text-field-span${password !== '' ? ' focused-field' : ''}`}></span>
-            <label className={`text-field-label${password !== '' ? ' focused-field' : ''}`} htmlFor="password">Password</label>
-          </div>
-          <div className="text-field">
-            <input
-              autoComplete="new-password-2"
-              className="text-field-input"
-              type={passwordVisible3 ? "text" : "password"}
-              id="confirmPassword"
-              required=""
-              onChange={e => {
-                setConfirmPassword(e.target.value);
-              }}
-            />
-            <i
-              className={`fa-solid ${passwordVisible3 ? "fa-eye" : "fa-eye-slash"}`}
-              id="password-eye"
-              onClick={togglePasswordVisibility3} // Add the onClick event to toggle the password visibility
-            />
-            <span className={`text-field-span${confirmPassword !== '' ? ' focused-field' : ''}`}></span>
-            <label className={`text-field-label${confirmPassword !== '' ? ' focused-field' : ''}`} htmlFor="confirmPassword">Confirm Password</label>
-          </div>
-
-          <input
-            type="submit"
-            value="Sign Up"
-            id='signup-submission'
-            className="login-submit-button"
-          />
-          <div className="signup_link">
-            <p>Already have an account? </p>
-            <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSwitchToLogin}>Login</button>
-          </div>
-        </form>
+            <div className="signup_link">
+              <p>Already have an account? </p>
+              <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={props.showLoginPopup}>Login</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else {
+    return null;
+  }
 }
 
 export default SignupPopup;

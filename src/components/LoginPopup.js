@@ -1,18 +1,15 @@
 import React, {useState } from 'react';
 import {BASE_BACKEND_URL} from '../config.js'
 import './login.css';
-import SignupPopup from './SignupPopup.js';
+
 function LoginPopup(props) {
 
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
 
     const [passwordVisible, setPasswordVisible] = useState(false);
 
-    const handleSignupClick = () => {
-        setIsShowingSignupPopup(true);
-      };
+
 
     const togglePasswordVisibility = () => {
         setPasswordVisible((prev) => !prev);
@@ -63,7 +60,7 @@ function LoginPopup(props) {
 
     // }
 
-    if (props.isShowingLoginPopup && !isShowingSignupPopup) {
+    if (props.isShowingLoginPopup) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
@@ -113,7 +110,7 @@ function LoginPopup(props) {
                             <div class="signup_link">
                                 <a style={{ color: 'blue', textDecoration: 'underline' }} href='/forgot-password'>Forgot password</a>
                                 <p>Don't have an account? </p>
-                                <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={handleSignupClick}>Sign Up</button>
+                                <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={props.showSignupPopup}>Sign Up</button>
                             </div> 
                             <div className="signup_link">
                                 <div> Can't log into your account? Contact us </div>
@@ -125,9 +122,6 @@ function LoginPopup(props) {
                     </div>
                 </div>
         )
-    }
-    else if (props.isShowingLoginPopup && isShowingSignupPopup){
-        return <SignupPopup setIsShowingSignupPopup={setIsShowingSignupPopup} />
     }
 
     return null;

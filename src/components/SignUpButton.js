@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from 'react';
 import './navbar.css';
-import LoginPopup from './LoginPopup';
 
 function SignUpButton(props) {
 
@@ -9,6 +8,7 @@ function SignUpButton(props) {
             <a 
                 className="navigation-button navigation-text" 
                 id="navigation-login"
+                onClick={props.ShowSignupPopup}
             >Sign Up</a>
         )
     }
