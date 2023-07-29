@@ -251,8 +251,8 @@ body
 
 .schools-container
 {
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-right: 4%;
+    padding-left: 4%;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
@@ -281,19 +281,40 @@ body
 .icon-text 
 {
     display: block;
-    padding-top: 15px;
+    padding-top: 25px;
     letter-spacing: 1.5px;
 }
 
-.icon
+.icon i
 {
     transition: 200ms ease;
+    position: relative;
+    width : 60px;
 }
 
-.icon:hover
+.icon:hover i
 {
     color:#ecaa1e;
-    scale: 1.2;
+    scale: 1.1;
+}
+
+.icon:hover .icon-underline
+{
+    border-top: 2.5px solid #ecaa1e;
+    width: 90px;
+    right: -13px;
+    top: 53px;
+}
+
+.icon-underline
+{
+    border-top: 2.5px solid white;
+    padding: 0 0 8px;
+    position: absolute;
+    right: -5px;
+    top: 55px;
+    width: 70px;
+    transition: 200ms ease;
 }
 
 .schools-container-title
@@ -514,6 +535,8 @@ border-radius: 10px;
     {
         margin : 3% 2%;
     }
+
+
 }
 
 @media all and (max-width : 1030px)
@@ -547,6 +570,16 @@ border-radius: 10px;
 
 @media all and (max-width : 850px)
 {
+    .schools-container
+    {
+        padding-top: 30px;
+    }
+
+    .schools-container-title
+    {
+        margin-bottom : 30px;
+        padding : 0px 0px;
+    }
 
     .categories-container
     {
@@ -554,7 +587,7 @@ border-radius: 10px;
         justify-content: left;
         overflow: scroll;
         overflow-y: hidden;
-        padding-bottom: 12px;
+        padding-bottom: 20px;
     }
 
     ::-webkit-scrollbar
@@ -632,10 +665,39 @@ border-radius: 10px;
     {
         font-size: 3vw;
     }
+
+    .schools-box
+    {
+        width : 22%;
+        margin-bottom: 20px;
+    }
+
+    .icon-text
+    {
+        font-size: 12px;
+    }
+
+    #last-box
+    {
+        display: none;
+    }
 }
 
 @media all and (max-width : 560px)
 {
+    .schools-box
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icon-text
+    {
+        font-size: 11px;
+        width: 100px;
+    }
+
     .category-box
     {
         width : 45%;
@@ -687,6 +749,31 @@ border-radius: 10px;
 
 @media all and (max-width : 480px)
 {
+
+    .icon i
+    {
+        scale: 0.8;
+    }
+
+    .icon:hover i
+    {
+        scale: 0.9;
+    }
+
+    .schools-box
+    {
+        width: 24%;
+        margin : 15px;
+        margin-bottom: 10px;
+        scale: 0.9;
+        padding: 0px;
+    }
+
+    .icon-text
+    {
+        padding-top: 15px;
+    }
+
     #club
     {
         content: url('/public/photos-mobile/clubs-mob.webp')
@@ -808,6 +895,12 @@ border-radius: 10px;
 
 @media all and (max-width : 380px)
 {
+
+    .icon-text
+    {
+        font-size: 10px;
+    }
+
     .description-video
     {
         width : 280px;
@@ -836,5 +929,15 @@ border-radius: 10px;
         font-size : 12px;
         line-height: 25px;
         margin-bottom : 30px;
+    }
+}
+
+@media all and (max-width : 349px)
+{
+    #last-box
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
