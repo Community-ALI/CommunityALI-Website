@@ -8,6 +8,17 @@ import ProfilePicturePopup from './profilePicturePopup';
 import { Buffer } from 'buffer';
 import PasswordChangePopup from './passwordChangePopup';
 
+function dataURItoBlob(dataURI) {
+  const byteString = atob(dataURI.split(',')[1]);
+  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: mimeString });
+}
+
 function Profile() {
   const [account, setAccount] = useState({
     username: 'loading...',
@@ -125,27 +136,32 @@ function Profile() {
     fetchData();
   }, []);
 
-  const uploadData = function () {
+  const uploadData = async function () {
     try {
       const token = localStorage.getItem('token');
       if (token) {
         const accountMinusOneField = { ...account };
         delete accountMinusOneField.imageUrl;
-        fetch(`${BASE_BACKEND_URL}/userdata/set-account-data`, {
-          method: 'POST', // Specify the HTTP method as POST
+        const formData = new FormData();
+        console.log(account.imageUrl)
+        formData.append('image', dataURItoBlob(account.imageUrl), 'image.png');
+        formData.append('account', JSON.stringify(accountMinusOneField));
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/set-account-data`, {
+          method: 'POST', 
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ account: accountMinusOneField }) // Set the request body here
+          // body: JSON.stringify({account: accountMinusOneField}),
+          body: formData
         })
-          .then(response => response.json())
-          .then(data => {
-            console.log('data sent');
-            alert('account updated!');
-            window.location.reload();
-          });
-          
+        const result = await response.json();
+        if (result.status === 'ok') {
+          localStorage.removeItem('profileImage');
+          window.location.reload();
+        }
+        else{
+          alert(result.error);
+        }
       } else {
       }
     } catch (error) {
@@ -173,10 +189,6 @@ function Profile() {
   };
 
   const handleProfileButtonClick = () => {
-    if (editMode){ 
-      alert('please finish editing full name and description before changing your profile image')
-      return
-    }
     setIsShowingProfilePicturePopup(true);
   }
 
@@ -208,6 +220,9 @@ function Profile() {
           <div ref={popupRef}>
             <ProfilePicturePopup
               isShowingProfilePicturePopup={isShowingProfilePicturePopup}
+              uploadData={uploadData}
+              account={account}
+              setAccount={setAccount}
               onClose={() => setIsShowingProfilePicturePopup(false)}
             />
           </div>
@@ -231,7 +246,8 @@ function Profile() {
         <div className="profile-picture">
         
           <img className="profile-img" src={account.imageUrl} alt="Profile Picture" />
-          <button className="profile-image-edit-button" onClick={handleProfileButtonClick}>&#9998;</button> {/* edit button */}
+          {editMode && <button className="profile-image-edit-button" onClick={handleProfileButtonClick}>&#9998;</button>}
+           
 
 
           <div className="profile-details">
@@ -244,7 +260,7 @@ function Profile() {
         <div className="profile-input-container">
           <div className='profile-inputs-section'>
             <div className="profile-input-name">
-              <label className="profile-name-title" htmlFor="name"> Username </label>
+              <label className="profile-name-title" htmlFor="name"> Full name </label>
               <input
                 type="text"
                 className="profile-name"
@@ -253,6 +269,7 @@ function Profile() {
                 placeholder="First Last"
                 value={account.fullName}
                 onChange={handleInputChange}
+                
                 readOnly={!editMode}
                 style={{ pointerEvents: !editMode ? "none" : "auto" }}
                 ref={nameRef}
@@ -267,7 +284,7 @@ function Profile() {
                 id="email"
                 value={account.email}
                 placeholder="example@example.com"
-                readOnly='true'
+                readOnly={true}
                 style={{ pointerEvents: !editMode ? "none" : "auto" }}
               />
             </div>

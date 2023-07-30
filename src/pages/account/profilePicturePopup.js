@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import AvatarEditor from 'react-avatar-editor';
 import { BASE_BACKEND_URL } from '../../config';
 
-const ImageUploadWindow = ({ imageUrl, onClose }) => {
+const ImageUploadWindow = ({ imageUrl, onClose, uploadData, setAccount}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = React.useRef();
@@ -57,32 +57,45 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
     updateScale(newScale);
   };
 
-  const handleSave = () => {
+  const handleSave2 = async function() {
     if (editorRef.current) {
       const canvas = editorRef.current.getImageScaledToCanvas();
-      canvas.toBlob((blob) => {
+      canvas.toBlob(async (blob) => { // <-- Added 'async' here
         const formData = new FormData();
         formData.append('image', blob, 'image.png');
         const token = localStorage.getItem('token');
-        fetch(`${BASE_BACKEND_URL}/userdata/upload-profile-image`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-          method: 'POST',
-          body: formData
-        })
-          .then(response => response.json())
-          .then(data => {
-            // Handle the response from the server
-            console.log('Image uploaded:', data);
-            localStorage.removeItem('profileImage');
-            location.reload();
-          })
-          .catch(error => {
-            // Handle any errors
-            console.error('Error uploading image:', error);
+        try {
+          const response = await fetch(`${BASE_BACKEND_URL}/userdata/upload-profile-image`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            },
+            method: 'POST',
+            body: formData
           });
+  
+          const data = await response.json();
+          // Handle the response from the server
+          console.log('Image uploaded:', data);
+          localStorage.removeItem('profileImage');
+          await uploadData();
+          window.location.reload();
+        } catch (error) {
+          // Handle any errors
+          console.error('Error uploading image:', error);
+        }
       }, 'image/png');
+    }
+  };
+
+  const handleSave = async function() {
+    if (editorRef.current) {
+      const canvas = editorRef.current.getImageScaledToCanvas();
+      const imageDataURL = canvas.toDataURL(); 
+      setAccount(prevAccount => ({
+        ...prevAccount,
+        imageUrl: imageDataURL,
+      }));
+      onClose();
     }
   };
   
@@ -103,7 +116,7 @@ const ImageUploadWindow = ({ imageUrl, onClose }) => {
     noClick: true, 
   });
 
-  const defaultImage = localStorage.getItem('profileImage') || 'photos-optimized/user-pic.png'; 
+  const defaultImage = imageUrl || localStorage.getItem('profileImage') || 'photos-optimized/user-pic.png'; 
 
   return (
     <div className="container-login" onWheel={handleWheel}>

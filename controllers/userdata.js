@@ -25,8 +25,9 @@ exports.set_account_data = async function (username, req) {
 
     if (selected_account) {
       // Update only the fields found in req.body.account
-      Object.assign(selected_account, req.body.account);
-
+      Object.assign(selected_account, JSON.parse(req.body.account));
+      const image = fs.readFileSync(req.file.path);
+      selected_account.profileImage = image;
       // Save the updated account back to the database
       await selected_account.save();
 

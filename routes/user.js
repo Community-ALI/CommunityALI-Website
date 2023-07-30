@@ -94,34 +94,15 @@ router.get("/get-account", async function (req, res) {
     }
 });
 
-
-router.post("/upload-profile-image", upload.single("image"), uploadProfileImage);
-async function uploadProfileImage(req, res){
-    try{
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, JWT_SECRET);
-        const username = decodedToken.username;
-        const result = await user_data.upload_account_image(username, req);
-        if (result.success){
-            res.json({status: 'ok'});
-        }
-        else{
-            console.log(result.error);
-            res.status(400).json({status: 'error', error: result.error})
-        }
-    }
-    catch(err){
-        console.log(err);
-        res.status(400).json({status: 'error', error: err})
-    }
-    
-}
-
-router.post("/set-account-data", async function (req, res) {
+router.post("/set-account-data", upload.single("image"), setAccountData);
+async function setAccountData(req, res){
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
         const username = decodedToken.username;
+        if (req.file) {
+            console.log('File:', req.file.originalname);
+          }
         user_data.set_account_data(username, req);
         console.log('account info for', username, 'updated');
         res.json({status: 'ok'});
@@ -133,7 +114,7 @@ router.post("/set-account-data", async function (req, res) {
         });
         res.json({status: 'error', error: error});
     }
-});
+};
 
 
 router.get("/get-username", async function (req, res) {
