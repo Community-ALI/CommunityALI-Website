@@ -75,6 +75,7 @@ function NavBar(props) {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [token, setToken] = useState(false);
     const [showNavBarMobile, setShowNavBarMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 
     useEffect(() => {
         const handleScroll = event => {
@@ -88,6 +89,13 @@ function NavBar(props) {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
+    })
+
+    useState(() => {
+        console.log(window.innerWidth);
+        window.addEventListener('resize', (() => {
+            setIsMobile(window.innerWidth <= 425)
+        }));
     })
 
     // get token from local storage
@@ -151,7 +159,7 @@ function NavBar(props) {
                         <a href="/">
                             <img src="photos-optimized/CClogo-opt.png" className="navbar-logo" />
                         </a>
-                        {window.innerWidth > 425 &&
+                        {!isMobile &&
                             <div id="nav-menu-search-bar">
                                 <input
                                     className='search-bar-input'
@@ -200,7 +208,7 @@ function NavBar(props) {
                 </div>
             </div>
 
-            {window.innerWidth <= 425 &&
+            {isMobile &&
                 <div id="nav-menu-search-bar">
                     <input
                         className='search-bar-input'
