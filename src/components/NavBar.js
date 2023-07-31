@@ -75,7 +75,7 @@ function NavBar(props) {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [token, setToken] = useState(false);
     const [showNavBarMobile, setShowNavBarMobile] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
         const handleScroll = event => {
@@ -94,7 +94,7 @@ function NavBar(props) {
     useState(() => {
         console.log(window.innerWidth);
         window.addEventListener('resize', (() => {
-            setIsMobile(window.innerWidth <= 425)
+            setIsMobile(window.innerWidth <= 768)
         }));
     })
 

@@ -406,6 +406,12 @@ a > .navigation-menu {
     {
         background-color: transparent;
     }
+
+    #nav-menu-search-bar {
+        height: 40px;
+        padding-bottom: 5px;
+        margin: 80px 8px 12px 8px;
+    }
 }
 
 
@@ -422,12 +428,6 @@ a > .navigation-menu {
     .navigation-bar
     {
         width: 75vw;
-    }
-
-    #nav-menu-search-bar {
-        height: 40px;
-        padding-bottom: 5px;
-        margin: 80px 8px 12px 8px;
     }
 }
 
