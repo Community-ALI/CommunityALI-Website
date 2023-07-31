@@ -9,8 +9,6 @@ const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
 const DisplayService = function (props) {
-
-
   const service = props.service;
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString('base64');
@@ -70,7 +68,12 @@ function Services(props) {
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState('alphabetical');
   const [serviceTypeFilter, setServiceTypeFilter] = useState([props.startingfilter]);
-  const [categoriesFilter, setCategoriesFilter] = useState(['all']);
+  const [categoriesFilter, setCategoriesFilter] = useState(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const categories = queryParams.getAll('filter');
+    return categories.length > 0 ? categories : ['all'];
+  });
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
   const [showServices, setShowServices] = useState(true)
 

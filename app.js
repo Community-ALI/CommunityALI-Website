@@ -186,6 +186,7 @@ app.post('/change_notification_status/:id', upload.none(), async function (req, 
 app.get('/get-all-services/:sorting/:serviceType/:categories', async function (req, res){
   //updateServicesWithThumbnails();
   try {
+    console.log(req.params);
     var keywords = req.query.keyword;
     const all_services = 
       await get_all_services(keywords, 'title thumbnail pages',
