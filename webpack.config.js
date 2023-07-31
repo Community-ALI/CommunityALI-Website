@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 
 module.exports = {
 
@@ -26,15 +27,41 @@ module.exports = {
             template: "./src/index.html",
             filename: "./index.html"
         }),
-        
+
         new CopyWebpackPlugin({
             patterns: [
-              { from: 'public', to: '' },
+                { from: 'public', to: '' },
             ],
-          }),
+        }),
+
+        new RobotstxtPlugin({
+            policy: [
+                {
+                    userAgent: "Googlebot",
+                    allow: "/",
+                    disallow: ["/search"],
+                    crawlDelay: 2,
+                },
+                {
+                    userAgent: "OtherBot",
+                    allow: ["/allow-for-all-bots", "/allow-only-for-other-bot"],
+                    disallow: ["/admin", "/login"],
+                    crawlDelay: 2,
+                },
+                {
+                    userAgent: "*",
+                    allow: "/",
+                    disallow: "/search",
+                    crawlDelay: 10,
+                    cleanParam: "ref /articles/",
+                },
+            ],
+            sitemap: "https://www.communityali.org/sitemap.xml",
+            host: "https://www.communityali.org",
+        })
     ],
 
-    
+
 
     module: {
         rules: [
