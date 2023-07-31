@@ -423,6 +423,12 @@ a > .navigation-menu {
     {
         width: 75vw;
     }
+
+    #nav-menu-search-bar {
+        height: 40px;
+        padding-bottom: 5px;
+        margin: 80px 8px 12px 8px;
+    }
 }
 
 .wrapper {

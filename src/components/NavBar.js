@@ -1,5 +1,5 @@
 import React, { useRef, Component, useEffect, useState } from 'react';
-import {BASE_BACKEND_URL} from '../config.js'
+import { BASE_BACKEND_URL } from '../config.js'
 import { Link } from 'react-router-dom';
 import './navbar.css';
 import '../../public/stylesheets/style.css'
@@ -12,7 +12,7 @@ import SignUpButton from './SignUpButton.js';
 function MyServicesNavButton(props) {
     var token = localStorage.getItem('token');
     var decodedToken = {};
-    if (token){
+    if (token) {
         decodedToken = JSON.parse(atob(token.split('.')[1]));
     }
     const [notifications, setNotifications] = useState([]);
@@ -34,7 +34,7 @@ function MyServicesNavButton(props) {
                         })
                 }
                 else {
-                    
+
                 }
             } catch (error) {
                 console.log(error)
@@ -43,7 +43,7 @@ function MyServicesNavButton(props) {
 
         fetchData();
     };
-    
+
 
     if (props.constantUpdate)
         useEffect(() => {
@@ -100,8 +100,8 @@ function NavBar(props) {
         setIsShowingLoginPopup(true);
         setIsShowingSignupPopup(false);
     }
-    
-    function showSignupPopup(){
+
+    function showSignupPopup() {
         setIsShowingSignupPopup(true);
         setIsShowingLoginPopup(false);
     }
@@ -151,14 +151,16 @@ function NavBar(props) {
                         <a href="/">
                             <img src="photos-optimized/CClogo-opt.png" className="navbar-logo" />
                         </a>
-                        <div id="nav-menu-search-bar">
-                            <input 
-                                className='search-bar-input'
-                                placeholder="Search..."
-                                ref={searchRef}
-                            />
-                            <img src="Photos/search.png" className="navbar-search-icon" /> 
-                        </div>
+                        {window.innerWidth > 425 &&
+                            <div id="nav-menu-search-bar">
+                                <input
+                                    className='search-bar-input'
+                                    placeholder="Search..."
+                                    ref={searchRef}
+                                />
+                                <img src="Photos/search.png" className="navbar-search-icon" />
+                            </div>
+                        }
 
                         <a
                             className="navigation-button navigation-text"
@@ -197,6 +199,16 @@ function NavBar(props) {
                     >Internship &amp; Work Experience</a>
                 </div>
             </div>
+
+            <div id="nav-menu-search-bar">
+                <input
+                    className='search-bar-input'
+                    placeholder="Search..."
+                    ref={searchRef}
+                />
+                <img src="Photos/search.png" className="navbar-search-icon" />
+            </div>
+            
             <div
                 className={"navigation-hamburger navigation-menu" + (showNavBarMobile ? " active" : "")}
                 onClick={() => setShowNavBarMobile(!showNavBarMobile)}
@@ -215,7 +227,7 @@ function NavBar(props) {
                     </a>
                 </div>
             </div>
-            <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup}  />
+            <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup} />
             <SignupPopup isShowingSignupPopup={isShowingSignupPopup} showLoginPopup={showLoginPopup} />
             <div
                 id='login-popup-background'
