@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 require('dotenv').config()
 
-const DATABASE_LINK = process.env.DATABASE_LINK; 
+const DATABASE_LINK = process.env.TESTING_DATABASE_LINK; 
 
  mongoose.connect(DATABASE_LINK, { useNewUrlParser: true });
 const serviceSchema = {
