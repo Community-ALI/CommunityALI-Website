@@ -74,7 +74,7 @@ function Services(props) {
     return categories.length > 0 ? categories : ['all'];
   });
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
   const [showServices, setShowServices] = useState(true)
 
 
@@ -115,7 +115,7 @@ function Services(props) {
   useState(() => {
     console.log(window.innerWidth);
     window.addEventListener('resize', (() => {
-      setIsMobile(window.innerWidth <= 600)
+      setIsMobile(window.innerWidth <= 850)
     }));
   })
 
