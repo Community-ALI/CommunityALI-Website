@@ -200,15 +200,17 @@ function NavBar(props) {
                 </div>
             </div>
 
-            <div id="nav-menu-search-bar">
-                <input
-                    className='search-bar-input'
-                    placeholder="Search..."
-                    ref={searchRef}
-                />
-                <img src="Photos/search.png" className="navbar-search-icon" />
-            </div>
-            
+            {window.innerWidth <= 425 &&
+                <div id="nav-menu-search-bar">
+                    <input
+                        className='search-bar-input'
+                        placeholder="Search..."
+                        ref={searchRef}
+                    />
+                    <img src="Photos/search.png" className="navbar-search-icon" />
+                </div>
+            }
+
             <div
                 className={"navigation-hamburger navigation-menu" + (showNavBarMobile ? " active" : "")}
                 onClick={() => setShowNavBarMobile(!showNavBarMobile)}
