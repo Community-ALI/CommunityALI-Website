@@ -19,7 +19,7 @@ exports.get_all_user_notifications = async function (username) {
   }
 }
 
-exports.set_account_data = async function (username, req) {
+exports.set_user_data = async function (username, req) {
   try {
     const selected_account = await Users.findOne({ username: username });
 
@@ -40,7 +40,7 @@ exports.set_account_data = async function (username, req) {
   }
 };
 
-exports.upload_account_image = async function (username, req) {
+exports.upload_user_image = async function (username, req) {
   try{
     const account = await Users.findOne({ username: username });
     const image = fs.readFileSync(req.file.path);
@@ -57,7 +57,7 @@ exports.upload_account_image = async function (username, req) {
 
 
 // get user services from database
-exports.get_services = async function (username) {
+exports.get_user_services = async function (username) {
   try {
     const selected_services = await Services.find({ user: username }).select('title').exec();
     return selected_services;
@@ -68,7 +68,7 @@ exports.get_services = async function (username) {
 }
 
 // get a user's applications from database
-exports.get_applications = async function (username) {
+exports.get_user_applications = async function (username) {
   try {
     const selected_applications = await Applications.find({ name: username }).select('service').exec();
     return selected_applications;
@@ -79,7 +79,7 @@ exports.get_applications = async function (username) {
 }
 
 // get a user's applications from database
-exports.get_account = async function (username) {
+exports.get_user_data = async function (username) {
   try {
     const selected_account = await Users.find({ username: username }).select('username email description dateCreated profileImage fullName').exec();
     return selected_account;

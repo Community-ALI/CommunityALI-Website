@@ -93,8 +93,5 @@ const get_services = async function (keywords, fields, sortingType, serviceType,
   }
 }
 
-
-
-
 // export to app.js 
 module.exports = get_services;

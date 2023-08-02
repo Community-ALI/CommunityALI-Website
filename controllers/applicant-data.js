@@ -1,7 +1,8 @@
-const models = require("../connect-to-database");
-const Application = models.Application;
 
-const change_notification_status = async function (req) {
+const models = require("../connect-to-database");
+const Applications = models.Application;
+
+exports.change_notification_status = async function (req) {
     try {
         const id = req.params.id;
 
@@ -20,5 +21,3 @@ const change_notification_status = async function (req) {
         throw new Error('Internal server error');
     }
 };
-
-module.exports = change_notification_status;
