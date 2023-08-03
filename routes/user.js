@@ -7,6 +7,56 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 
 const user_data = require('../controllers/userdata');
+const crypto = require('crypto');
+
+function generateSixDigitCode() {
+    var code = "";
+    for (var i = 0; i < 6; i++) {
+        var digit = Math.floor(Math.random() * 10); // Generate a random digit from 0 to 9
+        code += digit.toString(); // Append the digit to the code string
+    }
+    return code;
+}
+
+// Function to generate a cryptographically secure random token
+function generateRandomToken(length) {
+    return new Promise((resolve, reject) => {
+        crypto.randomBytes(length, (err, buffer) => {
+            if (err) {
+                reject(err);
+            } else {
+                const token = buffer.toString('hex');
+                resolve(token);
+            }
+        });
+    });
+}
+
+const sendEmail = async (toAdress, subject, body) => {
+    const params = {
+      Destination: {
+        ToAddresses: [toAdress]
+      },
+      Message: {
+        Body: {
+          Text: {
+            Data: body
+          }
+        },
+        Subject: {
+          Data: subject
+        }
+      },
+      Source: 'communityalis@gmail.com'
+    };
+  
+    try {
+      const data = await ses.sendEmail(params).promise();
+      console.log('Email sent successfully:', data.MessageId);
+    } catch (err) {
+      console.error('Error sending email:', err);
+    }
+  };
 
 // send a user their notifications
 router.get("/get-all-user-notifications", async function (req, res) {
@@ -380,8 +430,7 @@ router.get("/get-account", async function (req, res) {
     }
 });
 
-router.post("/set-account-data", upload.single("image"), setUserData);
-async function setUserData(req, res) {
+router.post("/set-account-data", upload.single("image"), async function (req, res) {
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -400,7 +449,7 @@ async function setUserData(req, res) {
         });
         res.json({ status: 'error', error: error });
     }
-};
+});
 
 router.get("/get-username", async function (req, res) {
     try {
