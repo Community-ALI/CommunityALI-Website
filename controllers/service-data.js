@@ -88,7 +88,7 @@ exports.store_add_service = async function (req, username) {
   }
 };
 
-exports.find_filter_service = async function (sortingType, serviceType, fields, categories) {
+const find_filter_service = async function (sortingType, serviceType, fields, categories) {
   try {
     serviceTypes = serviceType.split(',');
     categories = categories.split('>');

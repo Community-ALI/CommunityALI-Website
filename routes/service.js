@@ -32,7 +32,7 @@ router.get('/get-all-services/:sorting/:serviceType/:categories', async function
         console.log(req.params);
         var keywords = req.query.keyword;
         const all_services =
-            await service_data.get_all_services(keywords, 'title thumbnail pages',
+            await service_data.get_services(keywords, 'title thumbnail pages',
                 req.params.sorting, req.params.serviceType, req.params.categories);
         res.json(all_services);
         console.log("filtered services sent")
