@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
-const service_data = require('../controllers/servicedata');
+const service_data = require('../controllers/service-data');
 const applicant_data = require("../controllers/applicant-data");
 
 router.get("get-clubs-and-communites/:sort/:service_type/:categories", (req, res) => {
@@ -170,3 +172,5 @@ router.get("/get-service-notifications", async function (req, res) {
         });
     }
 })
+
+module.exports = router;

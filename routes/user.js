@@ -3,10 +3,12 @@ var router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
+const dotenv = require('dotenv');
+dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 
-const user_data = require('../controllers/userdata');
+const user_data = require('../controllers/user-data');
 const crypto = require('crypto');
 
 function generateSixDigitCode() {
