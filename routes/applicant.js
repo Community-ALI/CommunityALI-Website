@@ -2,6 +2,8 @@ const application_data = require("../controllers/applicant-data");
 const express = require("express");
 const router = express.router;
 
+const applicant_data = require("../controllers/applicant-data");
+
 router.post('/change_notification_status/:id', upload.none(), async function (req, res) {
     try {
         const message = await change_notification_status(req);
