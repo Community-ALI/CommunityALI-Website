@@ -194,7 +194,7 @@ exports.get_one_service = async function (service_name) {
 };
 
 
-const generateThumbnail = async function (photoBuffer) {
+const generateThumbnail2 = async function (photoBuffer) {
   try {
     // Load the photo buffer from the service
 
@@ -231,7 +231,7 @@ exports.editService = async function (req, username) {
 
     console.log(req.file);
     const photoBuffer = fs.readFileSync(req.file.path);
-    const thumbnail = await generateThumbnail(photoBuffer);
+    const thumbnail = await generateThumbnail2(photoBuffer);
 
     const existingService = await Service.findOne({ title: req.body.title });
 
@@ -261,12 +261,3 @@ exports.editService = async function (req, username) {
   }
 };
 
-exports.get_service_applicants_notifications = async function (service_name) {
-  try {
-      const applicants = await Applications.find({ is_new_applicant: true, service: service_name }).exec();
-      return applicants;
-  } catch (error) {
-      console.error(error);
-      return { success: false, error: 'internal database error' };
-  }
-}
