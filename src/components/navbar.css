@@ -313,7 +313,6 @@ a > .navigation-menu {
     {
         visibility: visible;
         margin-right : 0px;
-        max-height: 62px;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
