@@ -145,13 +145,13 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           // Append the JSON blob or file to the FormData
           sendFormData.append('pages', jsonString);
           const token = localStorage.getItem('token');
-          var fetchURL = `${BASE_BACKEND_URL}/upload-service`
+          var fetchURL = `${BASE_BACKEND_URL}/servicedata/upload-service`
           if (editMode){
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             
             const serviceName = urlParams.get('service');
-            fetchURL = `${BASE_BACKEND_URL}/edit-service?service=`+serviceName;
+            fetchURL = `${BASE_BACKEND_URL}/servicedata/edit-service?service=`+serviceName;
           }
           fetch(fetchURL, {
             method: 'POST',

@@ -25,7 +25,7 @@ function PasswordChangePopup({ isShowingPasswordPopup, onClose }) {
       
       const token = localStorage.getItem('token');
       if (token) {
-        fetch(`${BASE_BACKEND_URL}/api/change-password`, {
+        fetch(`${BASE_BACKEND_URL}/userdata/password-change-password`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

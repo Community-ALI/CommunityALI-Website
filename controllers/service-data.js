@@ -2,6 +2,8 @@
 const fs = require('fs');
 const models = require("../connect-to-database");
 const Services = models.Services;
+const Service = models.Services;
+
 
 function search(keyword, attribute, dbServices, filteredData) {
   // list of matches

@@ -14,7 +14,7 @@ function VerificationForm() {
     const username = searchParams.get('username');
     console.log(username);
       try {
-        const response = await fetch(`${BASE_BACKEND_URL}/api/resend-code?username=${username}`, {
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/api/resend-code?username=${username}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ function VerificationForm() {
     const username = searchParams.get('username');
     console.log(username);
       try {
-        const response = await fetch(`${BASE_BACKEND_URL}/api/delete-unverified-account?username=${username}`, {
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/api/delete-unverified-account?username=${username}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ function VerificationForm() {
     const searchParams = new URLSearchParams(window.location.search);
     const username = searchParams.get('username');
       try {
-        const response = await fetch(`${BASE_BACKEND_URL}/api/verify?username=${username}`, {
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/verify?username=${username}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

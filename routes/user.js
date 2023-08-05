@@ -2,6 +2,15 @@ var express = require('express');
 var router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
+const bcryptjs = require('bcryptjs');
+
+const AWS = require('aws-sdk');
+AWS.config.update({
+  region: 'us-west-2', 
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
+const ses = new AWS.SES();
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -10,6 +19,10 @@ const jwt = require('jsonwebtoken');
 
 const user_data = require('../controllers/user-data');
 const crypto = require('crypto');
+
+const models = require('../connect-to-database');
+User = models.User;
+passwordReset = models.passwordReset;
 
 function generateSixDigitCode() {
     var code = "";
@@ -317,7 +330,7 @@ router.get("/get-user-services", async function (req, res) {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
         const username = decodedToken.username;
-        const user_services = await user_data.get_services(username);
+        const user_services = await user_data.get_user_services(username);
 
         res.json({
             dataServices: user_services,

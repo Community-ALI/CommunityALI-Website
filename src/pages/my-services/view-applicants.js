@@ -32,7 +32,7 @@ const SearchResult = function (props) {
 
     useEffect(() => {
         if (isNotification) {
-            fetch(`${BASE_BACKEND_URL}/change_notification_status/` + applicant._id, {
+            fetch(`${BASE_BACKEND_URL}/applicantdata/change_notification_status/` + applicant._id, {
                 method: 'POST',
             })
                 .then(response => response.json())
@@ -127,7 +127,7 @@ function ServiceApplicants() {
                     const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
                     const serviceName = urlParams.get('service');
-                    const response = await fetch(`${BASE_BACKEND_URL}/get-service-applicants?service=` + serviceName,
+                    const response = await fetch(`${BASE_BACKEND_URL}/applicantdata/get-service-applicants?service=` + serviceName,
                         {
                             headers: {
                                 'Authorization': `Bearer ${token}`

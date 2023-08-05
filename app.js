@@ -36,7 +36,6 @@ AWS.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-const ses = new AWS.SES();
 
 app.use('/userdata', userRouter);
 app.use('/applicantdata', applicantRouter);

@@ -87,7 +87,7 @@ async function storeEditService(req, res) {
         const service = await service_data.get_one_service(service_name);
         if (service.user == username) {
 
-            const success = await service_data.store_edit_service(req, username);
+            const success = await service_data.editService(req, username);
             console.log(success)
             if (success) {
                 console.log('service edited by', username);
