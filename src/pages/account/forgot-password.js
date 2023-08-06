@@ -10,7 +10,7 @@ function ForgotPasswordForm() {
     event.preventDefault();
     console.log('Email submitted:', email);
       try {
-        const response = await fetch(`${BASE_BACKEND_URL}/userdata/token-change-password`, {
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/forgot-password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
