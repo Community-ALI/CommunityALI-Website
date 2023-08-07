@@ -16,7 +16,7 @@ function resetPasswordForm() {
         return
     }
       try {
-        const response = await fetch(`${BASE_BACKEND_URL}/api/update-password?token=${token}`, {
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/api/update-password?token=${token}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ function DeleteServicePopup(props) {
 
             
             try {
-                const response = await fetch(`${BASE_BACKEND_URL}/api/login`, {
+                const response = await fetch(`${BASE_BACKEND_URL}/userdata/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function DeleteServicePopup(props) {
                 if (result.status === 'ok') {
                     //everything is a okay
                     var token = result.data;
-                    const response = await fetch(`${BASE_BACKEND_URL}/delete-service?service=${props.serviceTitle}`,
+                    const response = await fetch(`${BASE_BACKEND_URL}/servicedata/delete-service?service=${props.serviceTitle}`,
                         {
                         method: 'POST',
                         headers: {

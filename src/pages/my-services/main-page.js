@@ -18,7 +18,7 @@ function MyServicePageDisplay(props) {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const response = await fetch(`${BASE_BACKEND_URL}/get-service-notifications?service=` + service.title,
+          const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-service-notifications?service=` + service.title,
             {
               headers: {
                 'Authorization': `Bearer ${token}`

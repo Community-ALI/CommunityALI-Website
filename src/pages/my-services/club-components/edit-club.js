@@ -70,7 +70,7 @@ function AddClub() {
 
       const serviceName = urlParams.get('service');
           
-      const response = await fetch(`${BASE_BACKEND_URL}/get-one-service?service=` + serviceName)
+      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + serviceName)
           .then(response => response.json())
           .then(data => {
               const buffer = Buffer.from(data.photo.data, 'base64');

@@ -28,7 +28,7 @@ function LoginPopup(props) {
 
             
             try {
-                const response = await fetch(`${BASE_BACKEND_URL}/api/login`, {
+                const response = await fetch(`${BASE_BACKEND_URL}/userdata/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
