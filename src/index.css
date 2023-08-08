@@ -53,7 +53,7 @@ body
 #header-title
 {
     color: white;
-    font-size : clamp(36px, 4vw, 60px);
+    font-size : clamp(32px, 4vw, 60px);
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
     line-height: 110px;
@@ -110,8 +110,9 @@ body
     border-color : white;
     border-radius: 10px;
     cursor: pointer;
-
+    
     position : absolute;
+    top: 45%;
     padding : 10px 40px;
     transition : all 0.3s ease-in-out;
 }
@@ -611,6 +612,11 @@ border-radius: 10px;
         width : 30%;
     }
 
+    #button
+    {
+        transform: scale(.9);
+    }
+
     .subtext
     {
         font-size: 17px;
@@ -625,7 +631,7 @@ border-radius: 10px;
     {
         line-height: 70px;
         padding: 0px 20px;
-        margin-top: 15%;
+        margin-top: 12%;
     }
 
     #header-subtitle
@@ -685,6 +691,12 @@ border-radius: 10px;
 
 @media all and (max-width : 560px)
 {
+
+    #header-title
+    {
+        margin-top: 20%;
+    }
+
     .schools-box
     {
         display: flex;
@@ -837,8 +849,9 @@ border-radius: 10px;
     {
         line-height: 60px;
         height: 40vh;
-        font-size: 32px;
-        margin-top: 30%;
+        font-size: 34px;
+        margin-top: 38%;
+        padding: 0px 10px;
     }
 
     #header-subtitle
@@ -866,6 +879,7 @@ border-radius: 10px;
     #button
     {
         transform:scale(.8);
+        top: 58%;
     }
 
     .categories-container
@@ -910,7 +924,6 @@ border-radius: 10px;
     #header-title
     {
         line-height : 52px;
-        margin-top: 30%;
         height: 45vh;
     }
 

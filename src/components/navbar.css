@@ -40,10 +40,6 @@
     cursor: pointer;
 }
 
-.coming-soon {
-    color: gray;
-}
-
 .nav-bar-wrapper {
     display: flex;
     flex-direction: column;
@@ -109,7 +105,7 @@ a > .navigation-menu {
     flex-grow: 1;
     background-color: transparent;
     border: 2px solid white;
-    border-radius: 50px;
+    border-radius: 15px;
     padding: 8px 15px;
     transition: background-color 1s ease;
     margin-right: 10px;
@@ -217,7 +213,6 @@ a > .navigation-menu {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 8px;
     left: 0px;
     width: 100%;
 }
@@ -267,13 +262,7 @@ a > .navigation-menu {
 {
     .search-bar-input
     {
-        color:#001E60;
         padding-right: 0px;
-    }
-
-    .navbar-search-icon
-    {
-        display: none;
     }
 
     .navigation-bar
@@ -287,6 +276,11 @@ a > .navigation-menu {
         margin-bottom: 350px;
     }
 
+    .navigation-menu-wrapper
+    {
+        padding-top: 40px;
+    }
+
     .navigation-hamburger
     {
         z-index : 9999;
@@ -297,8 +291,7 @@ a > .navigation-menu {
         align-items: center;
         top: 0px;
         padding-top : 20px; 
-        padding-bottom : 30px;
-        padding-left: 15px;
+        padding-left: 5%;
         width : 100vw;
 
         background-color: #0096C9;
@@ -313,6 +306,7 @@ a > .navigation-menu {
     {
         visibility: visible;
         margin-right : 0px;
+        max-height: 40px;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
@@ -334,7 +328,6 @@ a > .navigation-menu {
     {
         position : fixed;
         left : -100%;
-        background-color: #0096C9;
         gap : 0;
         flex-direction : column;  
         text-align : center;
@@ -408,8 +401,12 @@ a > .navigation-menu {
 
     #nav-menu-search-bar {
         height: 40px;
-        padding-bottom: 5px;
-        margin: 80px 8px 12px 8px;
+        z-index: 1;
+        background-color: transparent;
+        position: absolute;
+        width: 90%;
+        top: 45px;
+        left: 5%;
     }
 }
 
