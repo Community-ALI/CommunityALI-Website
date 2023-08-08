@@ -144,7 +144,7 @@ function NavBar(props) {
                 searchRef.current.removeEventListener('keyup', handleSearch);
             }
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <div>
