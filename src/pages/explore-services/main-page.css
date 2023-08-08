@@ -944,13 +944,18 @@ input[type="reset"] {
         margin-left: 0;
         margin-top: 5px;
     }
+
+    .search-result-container
+    {
+        padding-top: 120px;
+    }
 }
 
 @media all and (max-width: 425px) {
 
     .search-result-container
     {
-        padding-top: 70px;
+        padding-top: 125px;
         align-items: center;
     }
 
