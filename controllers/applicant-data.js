@@ -2,6 +2,7 @@
 const models = require("../connect-to-database");
 const Service = models.Services;
 const Applications = models.Application;
+const Application = models.Application;
 const User = models.User;
 const sharp = require('sharp');
 
@@ -98,7 +99,6 @@ exports.store_application = async function (req) {
         });
 
         await apply.save(); // Use await to wait for the save operation to complete
-        module.exports = store_application;
 
         return 'success';
     } catch (error) {

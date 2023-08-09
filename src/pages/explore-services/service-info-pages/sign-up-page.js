@@ -17,7 +17,7 @@ function SignUpPage({ mainInfo, allFormData }) {
     formData.append("name", nameRef.current.value);
     formData.append("email", emailRef.current.value);
 
-    fetch(`${BASE_BACKEND_URL}/store-application`, {
+    fetch(`${BASE_BACKEND_URL}/applicantdata/store-application`, {
       method: 'POST',
       body: formData
     })
