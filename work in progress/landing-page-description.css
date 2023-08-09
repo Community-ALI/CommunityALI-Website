@@ -1,0 +1,163 @@
+.description-container
+{
+    position : relative;
+    
+    margin-bottom : 8%;
+    background-color :#00468D;
+    padding-top : 4%;
+    padding-bottom : 8%;
+}
+
+.text-video-container
+{
+    display : flex;
+    justify-content : space-evenly;
+    flex-flow : wrap;
+    align-items: center;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.description-text
+{
+    color: white;
+    font-size : clamp(10px, 4vh, 19px);
+    font-weight : 400;
+    line-height: 50px;
+    position : relative;
+    width : 45%;
+    padding : 18px 25px;
+    border-radius: 20px; 
+    background-size: cover;
+    transition: 300ms ease ;
+}
+
+.description-video
+{
+    width: 650px;
+    height: 366px;
+    max-width: 90vw;
+    transition: 300ms ease ;
+}
+
+.description-video:hover
+{
+    color: #111; 
+    background: #0096C9; 
+    box-shadow: 0 0 100px #0096C9; 
+}
+
+@media all and (max-width : 1320px)
+{
+    .description-text
+    {
+        line-height: 45px;
+        padding : 18px 25px;      
+    }  
+
+    .description-video
+    {
+        width: 550px;
+        height: 309px;
+        display:block;
+        margin: auto;
+    }
+}
+
+@media all and (max-width : 1240px)
+{
+    .description-text
+    {
+        width : 90%;
+        min-height : 20%;
+        padding : 20px;
+    }
+
+    .description-image
+    {
+        padding-top : 5%;
+    }
+}
+
+@media all and (max-width : 1030px)
+{    
+    .description-text p
+    {
+        font-size : 16px;
+        line-height: 45px;
+    }
+}
+
+@media all and (max-width : 850px)
+{
+    .description-text p
+    {
+        font-size : 15px;
+        line-height: 35px;
+    }
+
+    .description-video
+    {
+        width : 420px;
+        height : 236px;
+        display:block;
+        margin: auto;
+    }
+}
+
+@media all and (max-width : 560px)
+{
+    .description-video
+    {
+        width : 400px;
+        height : 225px;
+    }
+
+    .description-text p
+    {
+        font-size : 13px;
+        line-height: 30px;
+    }
+}
+
+@media all and (max-width : 480px)
+{
+    .description-video
+    {
+        width : 320px;
+        height : 180px;
+        margin-bottom: 30px;
+    } 
+
+    .description-text 
+    {
+        padding : 15px 15px;
+    }
+
+    .description-text p
+    {
+        font-size : 12px;
+        line-height: 25px;
+    }
+}
+
+@media all and (max-width : 380px)
+{
+    .description-text 
+    {
+        padding : 5px 5px;
+    }
+
+    .description-text p
+    {
+        font-size : 12px;
+        line-height: 25px;
+        margin-bottom : 30px;
+    }
+
+    .description-video
+    {
+        width : 280px;
+        height : 158px;
+    }
+}

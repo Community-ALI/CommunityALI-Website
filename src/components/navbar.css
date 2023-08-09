@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
-
 .navigation-bar
 {
     font-family: 'Montserrat', sans-serif;
@@ -40,12 +38,14 @@
     cursor: pointer;
 }
 
-.nav-bar-wrapper {
+.nav-bar-wrapper 
+{
     display: flex;
     flex-direction: column;
 }
 
-.navigation-menu-wrapper {
+.navigation-menu-wrapper
+{
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -92,16 +92,19 @@
     max-width: 1600px;
 }
 
-.wrapper {
+.wrapper 
+{
     transition: background-color 0.5s ease;
     max-width: none;
 }
 
-a > .navigation-menu {
+a > .navigation-menu 
+{
     text-decoration: none;
 }
 
-#nav-menu-search-bar {
+#nav-menu-search-bar 
+{
     flex-grow: 1;
     background-color: transparent;
     border: 2px solid white;
@@ -133,44 +136,53 @@ a > .navigation-menu {
     top: 7px;
 }
 
-.scrolled {
+.scrolled 
+{
     background-color: #001E60;
     transition: background-color 1s ease;
 }
 
-.scrolled > #nav-menu-search-bar {
+.scrolled > #nav-menu-search-bar 
+{
     background-color: white;
     transition: background-color 1s ease;
     color : #001E60;
 }
 
-#nav-menu-search-bar::placeholder {
+#nav-menu-search-bar::placeholder 
+{
     color: white;
     opacity: 1;
 }
 
-#nav-menu-search-bar:-ms-input-placeholder{
+#nav-menu-search-bar:-ms-input-placeholder
+{
     color: white;
 }
 
-#nav-menu-search-bar::-ms-input-placeholder{
+#nav-menu-search-bar::-ms-input-placeholder
+{
     color: white;
 }
 
-.scrolled > #nav-menu-search-bar::placeholder {
+.scrolled > #nav-menu-search-bar::placeholder 
+{
     color: #001E60;
 
 }
 
-.scrolled > #nav-menu-search-bar:-ms-input-placeholder{
+.scrolled > #nav-menu-search-bar:-ms-input-placeholder
+{
     color: #001E60;
 }
 
-.scrolled > #nav-menu-search-bar::-ms-input-placeholder{
+.scrolled > #nav-menu-search-bar::-ms-input-placeholder
+{
     color: #001E60;
 }
 
-.navbar-logo {
+.navbar-logo 
+{
     max-height: 55px;
     margin-right : 20px;
 }
@@ -191,7 +203,8 @@ a > .navigation-menu {
     background-color : white;
 }
 
-.navigation-sub-menu {
+.navigation-sub-menu 
+{
     opacity: 0;
     transition: opacity 1s ease;
     font-size: small;
@@ -200,7 +213,8 @@ a > .navigation-menu {
     display: none;
 }
 
-.navigation-sub-menu.scrolled {
+.navigation-sub-menu.scrolled 
+{
     opacity: 100;
 }
 
@@ -209,7 +223,8 @@ a > .navigation-menu {
     opacity: 100%;
 }
 
-.center-content {
+.center-content 
+{
     display: flex;
     justify-content: center;
     position: absolute;
@@ -221,7 +236,35 @@ a > .navigation-menu {
 {
     width : 50px;
     border-radius: 50%;
-    margin-left: 13px;
+}
+
+.search-bar-container
+{
+    position: fixed;
+    left: 25px;
+    margin-top: 2%;
+    z-index: 5000;
+}
+ 
+.search-bar
+{
+    border: 1.5px solid;
+    border-radius: 60px;
+    position: fixed;
+    width: 96%;
+    display: flex;
+    z-index: 5000;
+}
+ 
+.search-bar input
+{
+    background-color: white;
+    border: none;
+    border-radius: 60px;
+    flex: 1;
+    font-size: 20px;
+    padding: 15px;
+    outline: none;
 }
 
 @media all and (max-width : 1200px)
@@ -286,9 +329,6 @@ a > .navigation-menu {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        top: 0px;
-        padding-top : 20px; 
-        padding-left: 5%;
         width : 100vw;
 
         background-color: #0096C9;
@@ -358,30 +398,26 @@ a > .navigation-menu {
         padding : 15px 15px;
     }
 
-    .navigation-sub-menu{
+    .navigation-sub-menu
+    {
         opacity: 100;
         background-color: #001E60;
         padding-bottom: 50px;
         visibility: hidden;
     }
 
-    #nav-menu-search-bar {
-        margin-top: 40px;
-        margin-bottom: 30px;
-        background-color: white;
-        transition: background-color 1s ease;
-        color: #001E60;
-    }
-
-    #nav-menu-search-bar::placeholder {
+    #nav-menu-search-bar::placeholder 
+    {
         color: black;
     }
 
-    #nav-menu-search-bar:-ms-input-placeholder{
+    #nav-menu-search-bar:-ms-input-placeholder
+    {
         color: black;
     }
 
-    #nav-menu-search-bar::-ms-input-placeholder{
+    #nav-menu-search-bar::-ms-input-placeholder
+    {
         color: black;
     }
 
@@ -396,16 +432,18 @@ a > .navigation-menu {
         background-color: transparent;
     }
 
-    #nav-menu-search-bar {
+    #nav-menu-search-bar 
+    {
         height: 40px;
         z-index: 1;
         background-color: transparent;
         width: 90%;
-        top: 45px;
+        top: 80px;
         left: 5%;
+        transition: background-color 1s ease;
+        margin-right: 0px;
     }
 }
-
 
 @media all and (max-width : 560px)
 {
@@ -421,8 +459,4 @@ a > .navigation-menu {
     {
         width: 75vw;
     }
-}
-
-.wrapper {
-    position: absolute;
 }

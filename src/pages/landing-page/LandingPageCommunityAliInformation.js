@@ -12,7 +12,7 @@ function LandingPageCommunityAliInformation() {
 
     return(
         <div className="description-container">  
-            <div className ="container-title">
+            <div className ="landing-page-container-title">
                 <p>
                 What Inspired Us to Create Community ALI?
                 </p>
