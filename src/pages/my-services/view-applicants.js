@@ -1,6 +1,6 @@
 //react modules
 import React, { useEffect, useState } from 'react';
-import {BASE_BACKEND_URL} from '../../config.js'
+import { BASE_BACKEND_URL } from '../../config.js'
 import './view-applicants.css'
 import '../../../public/stylesheets/style.css'
 import NavBar from '../../components/NavBar';
@@ -30,6 +30,14 @@ const SearchResult = function (props) {
         normalTime = convertToNormalTime(applicant.time);
     }
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+    useState(() => {
+        console.log(window.innerWidth);
+        window.addEventListener('resize', (() => {
+            setIsMobile(window.innerWidth <= 850)
+        }));
+    })
+
     useEffect(() => {
         if (isNotification) {
             fetch(`${BASE_BACKEND_URL}/applicantdata/change_notification_status/` + applicant._id, {
@@ -41,22 +49,35 @@ const SearchResult = function (props) {
                     // Handle the response data
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.log(error);
                     // Handle the error
                 });
         }
     }, [])
 
     return (
-        
-        <tr className="applicants-result-container">
-                 <Notifications styleLeft={true} notifications={(isNotification) ? 1 : 0} />
-                 
-                <td data-label="name" className="applicant-name">{applicant.name}</td>
-                <td data-label="email"  className="applicant-email">{applicant.email}</td>
-                <td data-label="date"  className="applicant-date">{applicant.date}</td>
-                <td data-label="time"  className="applicant-time">{normalTime}</td>
-        </tr>
+        <div className='blue-container text-[95%] width-[100%] max-w-[460px] relative flex items-center'>
+            <Notifications styleLeft={false} isRedDot={true} notifications={(isNotification) ? 1 : 0} />
+            <div className='flex items-center justify-between w-max-[100%]'>
+                <img src="Photos/UserTemplateImage.png" className='w-[10%] h-[10%]' />
+                <div className='w-[40%] flex flex-col text-center justify-center'>
+                    <h3 className={`text-[#ecaa1e] ${(isMobile) ? "text-[85%]" : "text-[100%]"}`}>{applicant.name}</h3>
+                    <div className='text-[50%]'>
+                        <p>username-placeholder</p>
+                        <p>{applicant.email}</p>
+                    </div>
+                </div>
+                <div className='flex flex-col w-[15%] text-[70%]'>
+                    <p>{`Date: ${applicant.date}`}</p>
+                    <p>{`Time: ${normalTime}`}</p>
+                </div>
+                <div className={`flex gap-1 justify-between w-[30%] text-[60%] relative ${(isMobile) ? "flex-col" : ""}`}>
+                    <button className={`text-[#23F638] dark-blue-container-with-border p-2 ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>ACCEPT</button>
+                    <button className={`text-[#FE2F2F] dark-blue-container-with-border p-2 ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
+
+                </div>
+            </div>
+        </div>
     );
 };
 
@@ -66,55 +87,15 @@ function ApplicationPageDisplay(props) {
     const serviceName = props.serviceName;
 
     return (
-        <section className="applicants">
-            <div className="applicants-title">{serviceName}</div>
-            <table className="search-results">
-            
-            <thead>
-                    <tr>
-                        <th className='applicant-name'>Name</th>
-                        <th className='applicant-email'>Email</th>
-                        <th className='applicant-date'>Date</th>
-                        <th className='applicant-time'>Time</th>
-                    </tr>
-                    
-            </thead>
-
-                
-                <tbody>
-                    {props.applicants.map((applicant, index) => (
-                    <SearchResult
-                        key={index}
-                        applicant={applicant}
-                        notificaiton={false} /> //TODO fill this with is applicant new bool for notification to show up to connect it to back end
-                ))}
-                </tbody>
-            </table>
-        </section>
+        <div className='flex-row flex flex-wrap gap-4 justify-center'>
+            {props.applicants.map((applicant, index) => (
+                <SearchResult
+                    key={index}
+                    applicant={applicant} />
+            ))}
+        </div>
     );
 };
-
-//   const application_page_display = function(props) {
-//     const results = props.results;
-//     const service = props.service;
-
-//     return (
-//       <section className="applicants">
-//         <div className="applicants-title">{service.title}</div>
-//         <div className="search-results">
-//           {results.map(function(applicant) {
-//             return (
-//               <SearchResult
-//                 applicant={applicant}
-//                 service={service}
-//                 key={applicant.name}
-//               />
-//             );
-//           })}
-//         </div>
-//       </section>
-//     );
-//   };
 
 function ServiceApplicants() {
     const [applicants, setApplicants] = useState([]);
@@ -155,22 +136,48 @@ function ServiceApplicants() {
     useEffect(() => {
         console.log(applicants);
     })
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+    useState(() => {
+        console.log(window.innerWidth);
+        window.addEventListener('resize', (() => {
+            setIsMobile(window.innerWidth <= 850)
+        }));
+    })
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const serviceName = urlParams.get('service');
     return (
         <div >
-            <NavBar constantUpdate={true} />,
-            <title> My Applicants </title>
+            <NavBar />
             <div className='flex justify-center'>
-                <div className="container">
-                    <div className="applicants-container-title">
-                        Club Sign-ups
+                <div className={'max-w-[1600px] w-[100%] flex flex-col px-[25px]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
+                    <div className='flex flex-col gap-3'>
+                        <div className="flex flex-row justify-between gap-3">
+                            <button className='blue-container'>&lt;&lt; BACK</button>
+                            <div className='flex gap-3'>
+                                <button className='blue-container w-[112.766px]'>Filter</button>
+                                {/* <button
+                                className='w-10 h-10 bg-[#00468D] text-white rounded-[50%] p-2'>
+                                ?</button> */}
+                            </div>
+                        </div>
+                        <div className="flex justify-end gap-3">
+                            <button className='blue-container'>Quick Select</button>
+                            <button className='blue-container'>Members &gt;&gt;</button>
+                        </div>
                     </div>
-                    <div className="applicants-container">
-                        <ApplicationPageDisplay
-                            serviceName={serviceName}
-                            applicants={applicants} />
+                    <div className='flex flex-col items-center'>
+                        <div className='w-[100%] mb-5'>
+                            <div className="text-white font-bold ml-8">Club Sign-ups</div>
+                            <hr />
+                        </div>
+                        <div>
+                            <ApplicationPageDisplay
+                                serviceName={serviceName}
+                                applicants={applicants} />
+                        </div>
                     </div>
                 </div>
             </div>

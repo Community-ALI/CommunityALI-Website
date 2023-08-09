@@ -120,11 +120,6 @@ body
 
 @media all and (max-width : 780px)
 {
-    .container
-    {
-        margin-top: 5%;
-    }
-
     .applicants-container-title
     {
         margin-top: 60px;

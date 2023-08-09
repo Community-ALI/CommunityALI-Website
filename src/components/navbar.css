@@ -205,7 +205,7 @@ a > .navigation-menu {
 }
 
 .not-fixed {
-    position: absolute;
+    position: relative;
     opacity: 100%;
 }
 
@@ -219,12 +219,9 @@ a > .navigation-menu {
 
 .user-profile-image
 {
-    width : 80px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top : 5px;
-    padding-bottom : 5px; /* for some reason top and bottom need to be equal or the profile image squishes */
+    width : 50px;
     border-radius: 50%;
+    margin-left: 13px;
 }
 
 @media all and (max-width : 1200px)
@@ -403,7 +400,6 @@ a > .navigation-menu {
         height: 40px;
         z-index: 1;
         background-color: transparent;
-        position: absolute;
         width: 90%;
         top: 45px;
         left: 5%;
