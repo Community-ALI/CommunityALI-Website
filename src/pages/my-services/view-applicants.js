@@ -67,7 +67,7 @@ const SearchResult = function (props) {
                         <p>{applicant.email}</p>
                     </div>
                 </div>
-                <div className='flex flex-col w-[15%] text-[70%]'>
+                <div className='flex flex-col w-[25%] text-[70%] font-semibold gap-2'>
                     <p>{`Date: ${applicant.date}`}</p>
                     <p>{`Time: ${normalTime}`}</p>
                 </div>

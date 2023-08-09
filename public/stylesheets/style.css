@@ -656,6 +656,14 @@ video {
   width: 50%;
 }
 
+.w-\[20\%\]{
+  width: 20%;
+}
+
+.w-\[25\%\]{
+  width: 25%;
+}
+
 .min-w-\[100vw\]{
   min-width: 100vw;
 }
@@ -714,6 +722,10 @@ video {
 
 .gap-4{
   gap: 1rem;
+}
+
+.gap-2{
+  gap: 0.5rem;
 }
 
 .overflow-auto{
@@ -799,8 +811,24 @@ video {
   font-size: 95%;
 }
 
+.text-\[30\%\]{
+  font-size: 30%;
+}
+
+.text-\[75\%\]{
+  font-size: 75%;
+}
+
+.text-\[65\%\]{
+  font-size: 65%;
+}
+
 .font-bold{
   font-weight: 700;
+}
+
+.font-semibold{
+  font-weight: 600;
 }
 
 .text-\[\#23F638\]{
