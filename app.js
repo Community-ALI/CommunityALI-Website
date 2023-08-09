@@ -23,8 +23,6 @@ const userRouter = require("./routes/user");
 const serviceRouter = require("./routes/service");
 const applicantRouter = require("./routes/applicant");
 
-const { CognitoIdentityServiceProvider } = require('aws-sdk');
-const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
 
