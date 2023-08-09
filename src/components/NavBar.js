@@ -137,7 +137,11 @@ function NavBar(props) {
 
         // Attach the event listener to the search bar
         searchRef.current.addEventListener('keyup', handleSearch);
-
+        const queryParams = new URLSearchParams(window.location.search);
+        const keyword = queryParams.get('keyword');
+        if (keyword){
+            searchRef.current.value = keyword;
+        }
         // Clean up the event listener
         return () => {
             if (searchRef.current) {
