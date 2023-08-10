@@ -1,0 +1,25 @@
+.navigation-sub-menu 
+{
+    opacity: 0;
+    transition: opacity 1s ease;
+    font-size: small;
+    text-align: center;
+    gap: 0;
+    display: none;
+}
+
+.navigation-sub-menu.scrolled 
+{
+    opacity: 100;
+}
+
+@media all and (max-width : 850px)
+{
+    .navigation-sub-menu
+    {
+        opacity: 100;
+        background-color: #001E60;
+        padding-bottom: 50px;
+        visibility: hidden;
+    }
+}

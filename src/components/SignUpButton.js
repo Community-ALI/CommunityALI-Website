@@ -6,7 +6,7 @@ function SignUpButton(props) {
     if (!props.token){
         return (
             <a 
-                className="navigation-button navigation-text" 
+                className="navigation-text" 
                 id="navigation-login"
                 onClick={props.ShowSignupPopup}
             >Sign Up</a>

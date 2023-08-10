@@ -9,67 +9,78 @@ import Notifications from './Notification';
 import SignupPopup from './SignupPopup';
 import SignUpButton from './SignUpButton.js';
 
-function MyServicesNavButton(props) {
+function MyServicesNavButton(props) 
+{
     var token = localStorage.getItem('token');
     var decodedToken = {};
-    if (token) {
+    if (token) 
+    {
         decodedToken = JSON.parse(atob(token.split('.')[1]));
     }
     const [notifications, setNotifications] = useState([]);
 
-    function fetchNotificationData() {
+    function fetchNotificationData() 
+    {
         const fetchData = async () => {
-            try {
+            try 
+            {
                 var token = localStorage.getItem('token');
-                if (token) {
+                if (token) 
+                {
                     const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-all-user-notifications`,
+                    {
+                        headers: 
                         {
-                            headers: {
-                                'Authorization': `Bearer ${token}`
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            setNotifications(data.notifications);
-                        })
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => 
+                    {
+                        setNotifications(data.notifications);
+                    })
                 }
-                else {
+                else 
+                {
 
                 }
-            } catch (error) {
-                console.log(error)
-            }
+            } catch (error) 
+                {
+                    console.log(error)
+                }
         };
 
         fetchData();
     };
 
+        if (props.constantUpdate)
+            useEffect(() => {
+                fetchNotificationData();
+            });
+        else
+            useEffect(() => {
+                fetchNotificationData();
+            }, []);
 
-    if (props.constantUpdate)
-        useEffect(() => {
-            fetchNotificationData();
-        });
-    else
-        useEffect(() => {
-            fetchNotificationData();
-        }, []);
-
-    if (decodedToken.clubAdmin || decodedToken.eventAdmin || decodedToken.volunteerAdmin || decodedToken.internshipAdmin) {
-        return (
-            <Link
-                className="navigation-button navigation-text relative-container"
-                to="/my-services"
-                id="applicants"
-            >
-                <Notifications notifications={notifications ? notifications.length : 0} />
-                My Services</Link>
-        )
-    }
+        if (decodedToken.clubAdmin || decodedToken.eventAdmin || decodedToken.volunteerAdmin || decodedToken.internshipAdmin)
+        {
+            return (
+                <Link
+                    className="navigation-button navigation-text relative-container"
+                    to="/my-services"
+                    id="applicants"
+                >
+                    <Notifications notifications={notifications ? notifications.length : 0} />
+                    My Services
+                </Link>
+            )
+        }
 
     return null;
 }
 
-function NavBar(props) {
+function NavBar(props) 
+{
     const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
     const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
@@ -92,7 +103,6 @@ function NavBar(props) {
     })
 
     useState(() => {
-        console.log(window.innerWidth);
         window.addEventListener('resize', (() => {
             setIsMobile(window.innerWidth <= 850)
         }));
@@ -121,7 +131,7 @@ function NavBar(props) {
 
     const searchRef = useRef(null);
 
-    // Add event listener to the search bar
+    // Search Bar Event Listener
     useEffect(() => {
         const handleSearch = (event) => {
             if (event.key === 'Enter') {
@@ -135,7 +145,7 @@ function NavBar(props) {
             }
         };
 
-        // Attach the event listener to the search bar
+        // Attach Event Listener to Search Bar
         searchRef.current.addEventListener('keyup', handleSearch);
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get('keyword');
@@ -151,106 +161,82 @@ function NavBar(props) {
     }, [isMobile]);
 
     return (
-        <div>
-            <div
-                className={"navigation-bar" + (props.isFixedPage ? '' : " not-fixed") + (showNavBarMobile ? " active" : "")}
-            >
-                <div className={'navigation-menu-wrapper' + (hasScrolled ? ' scrolled' : '')}>
-                    <nav
-                        className={"navigation-menu"}
-                    >
+    <>
+        <div className={"navigation-bar" + (props.isFixedPage ? '' : " navigation-bar-not-fixed") + (showNavBarMobile ? " active" : "")} >
+            <nav className={"navigation-menu" + (hasScrolled ? ' navigation-bar-scrolled' : '')} >
+                <a href="/">
+                    <img src="photos-optimized/CClogo-opt.png" className="navbar-logo"/>
+                </a>
 
-                        <a href="/">
-                            <img src="photos-optimized/CClogo-opt.png" className="navbar-logo" />
-                        </a>
-                        {!isMobile &&
-                            <div id="nav-menu-search-bar">
-                                <input
-                                    className='search-bar-input'
-                                    placeholder="Search..."
-                                    ref={searchRef}
-                                />
-                                <img src="Photos/search.png" className="navbar-search-icon" />
-                            </div>
-                        }
-
-                        <a
-                            className="navigation-button navigation-text"
-                            href="/">
-                            Home</a>
-                        <Link
-                            className="navigation-button navigation-text"
-                            to="/services"
-                        >Explore</Link>
-                        <MyServicesNavButton token={token} constantUpdate={props.constantUpdate} />
-                        <a
-                            className="navigation-button navigation-text"
-                            href="https://www.mjc.edu/"
-                            target="_blank"
-                        >MJC</a>
-                        <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
-                        <SignUpButton ShowSignupPopup={showSignupPopup} token={token}></SignUpButton>
-                    </nav>
-                </div>
-                <div
-                    className="navigation-sub-menu navigation-menu"
-                >
-                    <a
-                        className="navigation-button navigation-text"
-                        href="service-search"
-                    >Subject and Career Path</a>
-                    <a
-                        className="navigation-button navigation-text"
-                        href="service-search"
-                    >Clubs and Communities</a>
-                    <a
-                        className="coming-soon navigation-button navigation-text"
-                    >Volunteer &amp; Community Service</a>
-                    <a
-                        className="coming-soon navigation-button navigation-text"
-                    >Internship &amp; Work Experience</a>
-                </div>
-            </div>
-
-            {isMobile &&
-                <div id="nav-menu-search-bar">
-                    <input
-                        className='search-bar-input'
-                        placeholder="Search..."
-                        ref={searchRef}
-                    />
-                    <img src="Photos/search.png" className="navbar-search-icon" />
-                </div>
-            }
-
-            <div
-                className={"navigation-hamburger navigation-menu" + (showNavBarMobile ? " active" : "")}
-                onClick={() => setShowNavBarMobile(!showNavBarMobile)}
-            >
-                <div>
-                    <div className="navigation-line"></div>
-                    <div className="navigation-line"></div>
-                    <div className="navigation-line"></div>
-                </div>
-                <div className="center-content">
-                    <a href="/">
-                        <img
-                            src="photos-optimized/CClogo-opt.png"
-                            className="navbar-logo mobileLogo"
+                {!isMobile &&
+                    <div id="navigation-search-bar">
+                        <input
+                            id='navigation-search-bar-input'
+                            placeholder="Search..."
+                            ref={searchRef}
                         />
-                    </a>
-                </div>
+                        <img src="Photos/search.png" id="navigation-search-bar-icon"/>
+                    </div> 
+                }
+
+                <a className="navigation-text" href="/">
+                    Home
+                </a>
+                    
+                <Link className="navigation-text" to="/services">
+                    Explore
+                </Link>
+
+                <MyServicesNavButton token={token} constantUpdate={props.constantUpdate}/>
+
+                <a className="navigation-text" href="https://www.mjc.edu/" target="_blank">
+                    MJC
+                </a>
+
+                <LoginButton ShowLoginPopup={showLoginPopup} token={token}/>
+                <SignUpButton ShowSignupPopup={showSignupPopup} token={token}></SignUpButton>
+            </nav>
+        </div>
+
+        {isMobile &&
+            <div id="navigation-search-bar">
+                <input
+                    id ='navigation-search-bar-input'
+                    placeholder="Search..."
+                    ref={searchRef}
+                />
+                <img src="Photos/search.png" id="navigation-search-bar-icon" />
             </div>
-            <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup} />
-            <SignupPopup isShowingSignupPopup={isShowingSignupPopup} showLoginPopup={showLoginPopup} />
-            <div
-                id='login-popup-background'
-                className={isShowingLoginPopup || isShowingSignupPopup ? '' : 'hidden'}
-                onClick={hidePopups}
-                style={{ cursor: 'pointer' }}
-            >
+        }
+
+        <div
+            className={"navigation-hamburger" + (showNavBarMobile ? " active" : "")}
+            onClick={() => setShowNavBarMobile(!showNavBarMobile)}
+        >
+            <div>
+                <div className="navigation-line"></div>
+                <div className="navigation-line"></div>
+                <div className="navigation-line"></div>
+            </div>
+
+            <div id="navigation-logo-container">
+                <a href="/">
+                    <img src="photos-optimized/CClogo-opt.png" className="navbar-logo mobileLogo"/>
+                </a>
             </div>
         </div>
+
+        <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup} />
+        <SignupPopup isShowingSignupPopup={isShowingSignupPopup} showLoginPopup={showLoginPopup} />
+        
+        <div
+            id='login-popup-background'
+            className={isShowingLoginPopup || isShowingSignupPopup ? '' : 'hidden'}
+            onClick={hidePopups}
+            style={{ cursor: 'pointer' }}
+        >
+        </div>
+    </>
     )
 }
 

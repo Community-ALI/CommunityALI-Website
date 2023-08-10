@@ -1,55 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
+
 .navigation-bar
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 17px;
-
-    text-align: right;
-    list-style: none;
-
     position: fixed;
-    width: 100%;
-    z-index: 9995;
+    z-index: 999;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
-.navigation-button
+.navigation-menu
 {
-    display : inline-block;
-    padding : 30px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    padding: 15px 25px 15px 25px;
+    gap: 16px;
+    transition: background-color 1s ease;
+    max-width: 1600px;
+    width: 100vw;
 }
 
 .navigation-text
 {
     color : white;
-    text-decoration : underline;
-    text-underline-offset: 8px;
     line-height: 10px;
-
-    padding-left: 15px ;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-
+    margin: 5px 15px 5px 15px;
     transition : all 0.2s linear; 
-    text-decoration: none;
     cursor: pointer;
 }
 
-.nav-bar-wrapper 
+.navigation-text:hover
 {
-    display: flex;
-    flex-direction: column;
-}
-
-.navigation-menu-wrapper
-{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    transition: background-color 0.5s ease;
+    color : #ecaa1e
 }
 
 #navigation-login
@@ -62,14 +52,7 @@
     padding : 12px 15px;
     margin-right : 20px;
     margin-left : 15px;
-    text-decoration: none;
-    cursor: pointer;
     font-size: 15px;
-}
-
-.navigation-text:hover
-{
-    color :#ecaa1e
 }
 
 #navigation-login:hover
@@ -79,47 +62,20 @@
     border-color: #ecaa1e;
 }
 
-.navigation-menu
-{
-    min-height : 45px;
-    justify-content: space-evenly;
-    align-items: center;
-    display: flex;
-    padding: 15px 25px 15px 25px;
-    gap: 16px;
-    transition: background-color 0.5s ease;
-    width: 100%;
-    max-width: 1600px;
-}
-
-.wrapper 
-{
-    transition: background-color 0.5s ease;
-    max-width: none;
-}
-
-a > .navigation-menu 
-{
-    text-decoration: none;
-}
-
-#nav-menu-search-bar 
+#navigation-search-bar 
 {
     flex-grow: 1;
-    background-color: transparent;
     border: 2px solid white;
     border-radius: 15px;
     padding: 8px 15px;
-    transition: background-color 1s ease;
     margin-right: 10px;
-
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color : white;
     position: relative;
 }
 
-.search-bar-input
+#navigation-search-bar-input
 {
     width: 100%;
     background-color: transparent;
@@ -128,57 +84,12 @@ a > .navigation-menu
 }
 
 
-.navbar-search-icon
+#navigation-search-bar-icon
 {
     position: absolute;
     height: 22px;
     right : 18px;
     top: 7px;
-}
-
-.scrolled 
-{
-    background-color: #001E60;
-    transition: background-color 1s ease;
-}
-
-.scrolled > #nav-menu-search-bar 
-{
-    background-color: white;
-    transition: background-color 1s ease;
-    color : #001E60;
-}
-
-#nav-menu-search-bar::placeholder 
-{
-    color: white;
-    opacity: 1;
-}
-
-#nav-menu-search-bar:-ms-input-placeholder
-{
-    color: white;
-}
-
-#nav-menu-search-bar::-ms-input-placeholder
-{
-    color: white;
-}
-
-.scrolled > #nav-menu-search-bar::placeholder 
-{
-    color: #001E60;
-
-}
-
-.scrolled > #nav-menu-search-bar:-ms-input-placeholder
-{
-    color: #001E60;
-}
-
-.scrolled > #nav-menu-search-bar::-ms-input-placeholder
-{
-    color: #001E60;
 }
 
 .navbar-logo 
@@ -191,6 +102,12 @@ a > .navigation-menu
 {
     display : none;
     cursor : pointer;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px 25px 15px 25px;
+    gap: 0px;
+    max-width: 1600px;
+    width: 100vw;
 }
 
 .navigation-line
@@ -203,27 +120,19 @@ a > .navigation-menu
     background-color : white;
 }
 
-.navigation-sub-menu 
+.navigation-bar-not-fixed 
 {
-    opacity: 0;
-    transition: opacity 1s ease;
-    font-size: small;
-    text-align: center;
-    gap: 0;
-    display: none;
-}
-
-.navigation-sub-menu.scrolled 
-{
-    opacity: 100;
-}
-
-.not-fixed {
     position: relative;
     opacity: 100%;
 }
 
-.center-content 
+.navigation-bar-scrolled 
+{
+    background-color: #001E60;
+    transition: background-color 1s ease;
+}
+
+#navigation-logo-container
 {
     display: flex;
     justify-content: center;
@@ -237,52 +146,13 @@ a > .navigation-menu
     width : 50px;
     border-radius: 50%;
 }
-
-.search-bar-container
-{
-    position: fixed;
-    left: 25px;
-    margin-top: 2%;
-    z-index: 5000;
-}
  
-.search-bar
-{
-    border: 1.5px solid;
-    border-radius: 60px;
-    position: fixed;
-    width: 96%;
-    display: flex;
-    z-index: 5000;
-}
- 
-.search-bar input
-{
-    background-color: white;
-    border: none;
-    border-radius: 60px;
-    flex: 1;
-    font-size: 20px;
-    padding: 15px;
-    outline: none;
-}
-
 @media all and (max-width : 1200px)
 {
-    .navigation-bar
-    {
-        font-size: 15px;
-    }
-
-    .navigation-text
-    {
-        padding-left: 13px;
-        padding-right: 13px;
-    }
-
     .navigation-menu
     {
         gap: 0px;
+        font-size: 15px;
     }
 
     #navigation-login
@@ -291,7 +161,7 @@ a > .navigation-menu
         padding: 10px 10px;
     }
 
-    #nav-menu-search-bar
+    #navigation-search-bar
     {
         font-size: 15px;
         padding: 8px 12px;
@@ -300,25 +170,11 @@ a > .navigation-menu
 
 @media all and (max-width : 850px)
 {
-    .search-bar-input
-    {
-        padding-right: 0px;
-    }
-
-    .navigation-bar
-    {
-        font-size : 18px;
-    }
-
     .navigation-menu 
     {
         flex-direction: column;
-        margin-bottom: 350px;
-    }
-
-    .navigation-menu-wrapper
-    {
-        padding-top: 40px;
+        padding-top: 50px;
+        font-size: 18px;
     }
 
     .navigation-hamburger
@@ -326,24 +182,24 @@ a > .navigation-menu
         z-index : 9999;
         position: fixed;
         display: flex;
-        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         width : 100vw;
-
+        top: 0px;
         background-color: #0096C9;
     }
 
-    .navbar-logo{
-        visibility: hidden;
+    .navbar-logo
+    {
+        display: none;
         margin-right : 0px;
     }
 
     .navbar-logo.mobileLogo
     {
-        visibility: visible;
         margin-right : 0px;
         max-height: 40px;
+        display: block;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
@@ -363,32 +219,23 @@ a > .navigation-menu
     
     .navigation-bar
     {
-        position : fixed;
-        left : -100%;
-        gap : 0;
-        flex-direction : column;  
-        text-align : center;
-        z-index : 5;
-        padding-right : 0;
-        top: 7%;
-        width: 40vw;
-
-        transition : 0.3s ease-in-out;
-        max-width: 100%;
         background-color: #001E60;
-    }
-
-    .navigation-button
-    {
-        margin-bottom : 15px;
-        margin-top : 10px;
-        padding : 15px 10px;
+        left : -100%;
+        width: 300px;
+        height: 100vh;
+        transition : 0.5s ease-in-out;
+        padding-top: 50px;
     }
 
     .navigation-bar.active 
     {
         left : 0vw;
-        top: 16px;
+    }
+
+    .navigation-text
+    {
+        padding: 15px 0px;
+        margin: 15px 0px;
     }
 
     #navigation-login 
@@ -398,41 +245,18 @@ a > .navigation-menu
         padding : 15px 15px;
     }
 
-    .navigation-sub-menu
-    {
-        opacity: 100;
-        background-color: #001E60;
-        padding-bottom: 50px;
-        visibility: hidden;
-    }
-
-    #nav-menu-search-bar::placeholder 
-    {
-        color: black;
-    }
-
-    #nav-menu-search-bar:-ms-input-placeholder
-    {
-        color: black;
-    }
-
-    #nav-menu-search-bar::-ms-input-placeholder
-    {
-        color: black;
-    }
-
-    .not-fixed 
+    .navigation-bar-not-fixed
     {
         position: fixed;
         opacity: 100%;
     }
 
-    .scrolled
+    .navigation-bar-scrolled
     {
         background-color: transparent;
     }
 
-    #nav-menu-search-bar 
+    #navigation-search-bar 
     {
         height: 40px;
         z-index: 1;
@@ -445,18 +269,10 @@ a > .navigation-menu
     }
 }
 
-@media all and (max-width : 560px)
-{
-    .navigation-bar
-    {
-        width: 60vw;
-    }
-}
-
 @media all and (max-width : 480px)
 {
     .navigation-bar
     {
-        width: 75vw;
+        width: 250px;
     }
 }
