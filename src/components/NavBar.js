@@ -165,7 +165,7 @@ function NavBar(props)
         <div className={"navigation-bar" + (props.isFixedPage ? '' : " navigation-bar-not-fixed") + (showNavBarMobile ? " active" : "")} >
             <nav className={"navigation-menu" + (hasScrolled ? ' navigation-bar-scrolled' : '')} >
                 <a href="/">
-                    <img src="photos-optimized/CClogo-opt.png" className="navbar-logo"/>
+                    <img src="photos-optimized/TeamLogo-opt.png" className="navbar-logo"/>
                 </a>
 
                 {!isMobile &&
@@ -221,7 +221,7 @@ function NavBar(props)
 
             <div id="navigation-logo-container">
                 <a href="/">
-                    <img src="photos-optimized/CClogo-opt.png" className="navbar-logo mobileLogo"/>
+                    <img src="photos-optimized/TeamLogo-opt.png" className="navbar-logo mobileLogo"/>
                 </a>
             </div>
         </div>

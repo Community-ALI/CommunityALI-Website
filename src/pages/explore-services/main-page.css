@@ -321,7 +321,6 @@ input[type="reset"] {
 
 .search-result-container {
     padding-bottom: 200px;
-    padding-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -371,7 +370,6 @@ input[type="reset"] {
     position: relative;
     justify-content: space-between;
     margin-top: 20px;
-
     display: none;
 }
 

@@ -28,7 +28,12 @@ footer
     color : white;
     margin : 10px 20px;
     text-decoration: none;
-    padding-top: 5px;
+}
+
+.footer-container a i
+{
+    text-align: center;
+    width: 100%;
 }
 
 #tech-support
@@ -51,15 +56,14 @@ footer
 {
     footer
     {
-        padding : 10px 0%;
+        padding : 20px 10px;
         font-size : 12px;
+    }
+
+    .footer-container a i
+    {
+        font-size: 18px;
+        margin-bottom: 15px;
     }
 }
 
-@media all and (max-width : 360px)
-{
-    .footer-container a
-    {
-        margin : 12px 40px;
-    }
-}
