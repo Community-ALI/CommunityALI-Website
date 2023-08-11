@@ -15,7 +15,7 @@
 
 #no-service-found-icon
 {
-    color: #001E60;
+    color: var(--dark-secondary-color);
     background-color: white;
     border-radius: 500px;
 }
@@ -48,7 +48,7 @@
 
 .service-result-card
 {
-    background-color: #00468D;
+    background-color: var(--secondary-color);
     color: white;
     font-weight: 300;
     margin: 40px 20px;
@@ -61,12 +61,12 @@
 
 .service-result-card:hover 
 {
-    background-color: #001E60;
+    background-color: var(--dark-secondary-color);
 }
 
 .service-result-button
 {
-    color: #ecaa1e;
+    color: var(--accent-color);
     font-size: 18px;
     font-weight: 600;
     border-radius: 10px;
@@ -87,7 +87,7 @@
 .service-result-button:hover 
 {
     color: white;
-    background-color: #00468D
+    background-color: var(--secondary-color);
 }
 
 .service-result-thumbnail 
@@ -99,7 +99,7 @@
 
 .service-result-title 
 {
-    color: #ecaa1e;
+    color: var(--accent-color);
     margin: 15px 0px;
     font-weight: 600;
     font-size: clamp(18px, 2vw, 23px);

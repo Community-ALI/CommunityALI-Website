@@ -49,8 +49,8 @@ function ContactForm() {
     <div>
       <title> Contact Form </title>
       <NavBar isFixedPage={false} />
-      <div className="body-container">
-        <div className="body-header">
+      <div className={'text-white flex flex-wrap justify-center pt-5 mb-20'}>
+        <div id="contact-form-header">
           <h1 className="body-title">Having Questions or Concerns?</h1>
           <h2 className="body-subtitle">
             We aim to create the best experience for our users and we appreciate all the feedback we can get.
