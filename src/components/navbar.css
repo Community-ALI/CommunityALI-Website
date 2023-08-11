@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 
+@keyframes NavfadeIn 
+{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 .navigation-bar
 {
     position: fixed;
@@ -26,12 +32,6 @@
     animation: NavfadeIn 1s;
 }
 
-@keyframes NavfadeIn 
-{
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
 .navigation-text
 {
     color : white;
@@ -43,7 +43,7 @@
 
 .navigation-text:hover
 {
-    color : #ecaa1e
+    color : var(--accent-color);
 }
 
 #navigation-login
@@ -57,13 +57,14 @@
     margin-right : 20px;
     margin-left : 15px;
     font-size: 15px;
+    font-weight: 600;
 }
 
 #navigation-login:hover
 {
-    color :#001E60;
-    background-color: #ecaa1e;
-    border-color: #ecaa1e;
+    color : var(--dark-secondary-color);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
 }
 
 #navigation-search-bar 
@@ -73,7 +74,6 @@
     border-radius: 15px;
     padding: 8px 15px;
     margin-right: 10px;
-    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color : white;
     position: relative;
@@ -132,7 +132,7 @@
 
 .navigation-bar-scrolled 
 {
-    background-color: #001E60;
+    background-color: var(--dark-secondary-color);
     transition: background-color 1s ease;
 }
 
@@ -190,7 +190,7 @@
         align-items: center;
         width : 100vw;
         top: 0px;
-        background-color: #001E60;;
+        background-color: var(--dark-secondary-color);
     }
 
     .navbar-logo
@@ -224,7 +224,7 @@
     
     .navigation-bar
     {
-        background-color: #001E60;
+        background-color: var(--dark-secondary-color);
         left : -100%;
         width: 300px;
         height: 100vh;

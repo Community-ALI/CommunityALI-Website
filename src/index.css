@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 
+:root
+{
+    --primary-color: #0096C9;
+    --secondary-color: #00468D;
+    --dark-secondary-color: #001E60;
+    --accent-color: #ecaa1e;
+}
+
+@keyframes fadeIn 
+{
+    0% { opacity: 0;
+        transform : translatey(10px); }
+    100% { opacity: 1;
+        transform : translatey(0px); }
+}
+
 *
 {
     box-sizing: border-box;
@@ -10,7 +26,7 @@
 
 body
 {
-    background: #0096C9;
+    background: var(--primary-color);
     width: 100%;
     height: 100%;
     min-height: calc(100vh);
@@ -18,14 +34,6 @@ body
     overflow-x: hidden;
     overscroll-behavior-y: none;
     font-family: 'Poppins', sans-serif;
-}
-
-@keyframes fadeIn 
-{
-    0% { opacity: 0;
-        transform : translatey(10px); }
-    100% { opacity: 1;
-        transform : translatey(0px); }
 }
 
 #header
@@ -93,10 +101,10 @@ body
 
 #get-started-button
 {
-    color : #001E60;
+    color : var(--dark-secondary-color);
+    background-color : var(--accent-color);
     font-size : 25px;
     font-weight : 600;
-    background-color : #ecaa1e;
     border-radius: 10px;
     position : absolute;
     top: 480px;
@@ -108,7 +116,7 @@ body
 #get-started-button:hover
 {
     color : white;
-    background-color :#00468D;
+    background-color : var(--secondary-color);
 }
 
 #header-curve
@@ -186,7 +194,7 @@ body
     text-align: center;
     font-weight : 600;
     font-size: 2.5vw;
-    background-color: #00468D;
+    background-color: var(--secondary-color);
     position: absolute;
     top : 8%;
     width : 100%;
@@ -198,7 +206,7 @@ body
     justify-content: space-evenly;
     flex-direction: row;
     flex-flow: wrap;
-    background-color: #00468D;
+    background-color: var(--secondary-color);
     padding-top : clamp(30px, 8%, 60px);
 }
 
@@ -234,13 +242,13 @@ body
 
 .landing-page-school-box:hover i
 {
-    color:#ecaa1e;
+    color: var(--accent-color);
     scale: 1.1;
 }
 
 .landing-page-school-box:hover .landing-page-school-underline
 {
-    border-top: 2.5px solid #ecaa1e;
+    border-top: 2.5px solid var(--accent-color);
     width: 100px;
 }
 

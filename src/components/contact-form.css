@@ -1,21 +1,15 @@
-.body-container
+#contact-form-container
 {
     color: white;
-    position: relative;
     padding-top: 20px;
     margin-bottom : 200px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    align-items: center;
 }
 
-.body-header
+#contact-form-header
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
     text-align: center;
     margin-right: 12%;
     margin-left: 12%;
@@ -36,7 +30,7 @@
 
 .contact-us-container
 {
-    background-color: #00468D;
+    background-color: var(--secondary-color);
     padding : 30px 40px;
     width : 60%;
     margin-top: 50px;
@@ -90,7 +84,7 @@
     background: none;
     outline: none;
     border-bottom : 1px solid white;
-    color : #001E60;
+    color : var(--dark-secondary-color);
     background-color: white;
 }
 
@@ -101,7 +95,7 @@
     border: 1px solid white;
     background: none;
     outline: none;
-    color : #001E60;
+    color : var(--dark-secondary-color);
     padding : 10px;
     margin-top : 10px;
     background-color: white;
@@ -110,7 +104,7 @@
 #form-submit-button
 {
     width: 100%;
-    background-color: #001E60;
+    background-color: var(--dark-secondary-color);
     color: white;
     padding: 14px 20px;
     border: none;
@@ -126,8 +120,8 @@
 
 #form-submit-button:hover
 {
-    background-color: #ecaa1e;
-    color: #001E60;
+    background-color: var(--accent-color);
+    color: var(--dark-secondary-color);
 }
 
 #right-form-container
@@ -184,7 +178,7 @@
         width : 100%;
     }
 
-    .body-container
+    #contact-form-container
     {
         padding-top : 110px;
     }
@@ -192,7 +186,7 @@
 
 @media all and (max-width : 780px)
 {
-    .body-header
+    #contact-form-header
     {
         margin-left: 8%;
         margin-right : 8%;
@@ -211,7 +205,7 @@
         font-size : 20px;
     }
 
-    .body-header
+    #contact-form-header
     {
         margin-left: 5%;
         margin-right : 5%;

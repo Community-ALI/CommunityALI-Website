@@ -783,6 +783,14 @@ video {
   padding-bottom: 1rem;
 }
 
+.pt-5{
+  padding-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .text-center{
   text-align: center;
 }

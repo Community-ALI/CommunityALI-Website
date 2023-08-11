@@ -1,6 +1,6 @@
 footer 
 {
-    background-color: #00468D;
+    background-color: var(--secondary-color);
     color: white;
     text-align: center;
     font-size: 14px;
@@ -38,10 +38,10 @@ footer
 
 #tech-support
 {
-    color : #00468D;
+    color : var(--secondary-color);
     transition : all 0.3s ease-in-out;
     font-weight: 500;
-    background-color: #ecaa1e;
+    background-color: var(--accent-color);
     padding : 10px 12px;
     border-radius : 15px;
 }
@@ -49,7 +49,7 @@ footer
 #tech-support:hover
 {
     color: white;
-    background-color: #001E60;
+    background-color: var(--dark-secondary-color);
 }
 
 @media all and (max-width : 480px)
