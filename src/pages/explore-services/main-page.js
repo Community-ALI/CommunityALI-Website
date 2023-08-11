@@ -5,6 +5,8 @@ import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
 import ServiceDropdown from './service-dropdown.js';
 import MobileServiceDropdown from './mobile-service-dropdown.js';
+import '../../components/loading-screen.css'
+import './service-filter.css'
 const Buffer = require('buffer').Buffer;
 
 // this function creates each individual service
@@ -15,48 +17,40 @@ const DisplayService = function (props) {
   const imageUrl = `data:image/png;base64,${base64}`;
 
   return (
-    <div className="service-result-container" id={service.title} onClick={() => window.location.href = `/service-info?service=${service.title}`} >
-      <title> Explore Page </title>
-      <img className="result-picture" src={imageUrl} />
+    <div className="service-result-card" id={service.title} onClick={() => window.location.href = `/service-info?service=${service.title}`} >
+      <img className="service-result-thumbnail" src={imageUrl} />
       <div className="result-text-container">
-        <div className="result-title">{service.title}</div>
-        <div className="result-author">
-          {service.pages.overview.subtitle}
-        </div>
-      </div>
-      <div className="button-container">
-        <a className="service-button" href={`/service-info?service=${service.title}`}>
-          Click for more info
-        </a>
-      </div>
+        <div className="service-result-title">{service.title}</div>
+        <div className="service-result-author">{service.pages.overview.subtitle}</div>
+      </div> 
+      <a className="service-result-button" href={`/service-info?service=${service.title}`}>
+        Click for more info
+      </a>
     </div>
   );
 };
 
-// this function repeadedly calls Display Service to display all the services in the provided array
+// This function repeadedly calls Display Service to display all the services in the provided array
 function DisplayAllServices(props) {
   const results = props.services;
 
-  if (!Array.isArray(results) || results.length === 0) {
+  if (!Array.isArray(results) || results.length === 0) 
+  {
     return (
-      <div className="no-service-found-container">
-        <div className="not-found-container">
-          <i className="fa-solid fa-circle-exclamation fa-2x" id="not-found-exclamation"></i>
-          <div className='not-found-text'> No Services Found</div>
+      <div id="no-service-found-container">
+        <div id="no-service-found-title">
+          <i className="fa-solid fa-circle-exclamation fa-2x" id="no-service-found-icon"></i>
+          <div id='no-service-found-text'> No Services Found</div>
         </div>
-        <div className='not-found-description'>
+        <div id='no-service-found-description'>
           Please try again or contact technical support for more assistance.
         </div>
       </div>
     );
   }
 
-  if (!results || results.length === 0) {
-    return <div>No services found.</div>;
-  }
-
   return (
-    <div className="results">
+    <div id="explore-service-results">
       {results.map(function (service) {
         return <DisplayService service={service} key={service.title} />;
       })}
@@ -113,7 +107,6 @@ function Services(props) {
   }, [serviceTypeFilter, sortingType, categoriesFilter]);
 
   useState(() => {
-    console.log(window.innerWidth);
     window.addEventListener('resize', (() => {
       setIsMobile(window.innerWidth <= 850)
     }));
@@ -121,39 +114,32 @@ function Services(props) {
 
   // return the page
   return (
-    <div>
-
-      <div className="loader-wrapper">
-        <span className="loader"><span className="loader-inner"></span></span>
-      </div>
-      <NavBar isFixedPage={false} />
-
-      <div className="search-result-container">
-        {/* {!isMobile &&
-          <ServiceDropdown
+  <>
+    <title> Explore Services </title>
+    <div className="loader-wrapper">
+      <span className="loader"><span className="loader-inner"></span></span>
+    </div>
+    <NavBar isFixedPage={false} />
+      {/* {!isMobile &&
+        <ServiceDropdown
+          SetSortingType={setSortingtype}
+          SetServiceTypeFilter={setServiceTypeFilter}
+          serviceTypeFilter={serviceTypeFilter}
+          SetCategoriesFilter={setCategoriesFilter}
+          categoriesFilter={categoriesFilter}
+        />} {isMobile &&
+          <MobileServiceDropdown
             SetSortingType={setSortingtype}
             SetServiceTypeFilter={setServiceTypeFilter}
             serviceTypeFilter={serviceTypeFilter}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
-          />} {isMobile &&
-            <MobileServiceDropdown
-              SetSortingType={setSortingtype}
-              SetServiceTypeFilter={setServiceTypeFilter}
-              serviceTypeFilter={serviceTypeFilter}
-              SetCategoriesFilter={setCategoriesFilter}
-              categoriesFilter={categoriesFilter}
-              showServices={showServices}
-              SetShowServices={setShowServices}
-            />} */}
-        {showServices &&
-          <div className="results">
-            <DisplayAllServices services={services} />
-          </div>}
-      </div>
-
-      <Footer />
-    </div>
+            showServices={showServices}
+            SetShowServices={setShowServices}
+          />} */}
+      {showServices && <DisplayAllServices services={services} /> }
+    <Footer/>
+  </>
   )
 }
 

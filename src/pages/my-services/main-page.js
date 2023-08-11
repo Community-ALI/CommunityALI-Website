@@ -2,13 +2,11 @@ import React, { Component, useState, useEffect } from "react";
 import {BASE_BACKEND_URL} from '../../config.js'
 import './main-page.css';
 import '../../../public/stylesheets/style.css'
+import '../../components/loading-screen.css'
 import NavBar from '../../components/NavBar';
 import Notifications from "../../components/Notification";
 import DeleteServicePopup from '../../components/DeleteServicePopup'
 // create the information required to display the page
-
-
-
 
 function MyServicePageDisplay(props) {
   const [notifications, setNotifications] = useState([]);
@@ -122,7 +120,7 @@ function MyServicesHome() {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="loader-wrapper">
         <span className="loader"><span className="loader-inner"></span></span>
       </div>
@@ -136,7 +134,7 @@ function MyServicesHome() {
         style={{ cursor: 'pointer' }}
       >
       </div>
-      <div className="username-title">
+      <div id="my-services-username">
         {"Welcome " + username}
       </div>
       <div className="user-service-container">
@@ -163,15 +161,7 @@ function MyServicesHome() {
           />
         ))
       )}
-
-      {/* {services.map(service => ( // Old Code for displaying Services
-        <MyServicePageDisplay
-          key={service._id}
-          service={service} 
-          setDeleteServiceTitle={setDeleteServiceTitle}
-          setIsShowingServiceDeletePopup={setIsShowingServiceDeletePopup}/>
-      ))} */}
-    </div >
+    </>
   )
 }
 

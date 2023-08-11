@@ -8,12 +8,12 @@ import Footer from "./components/Footer";
 import LandingPageSchools from './pages/landing-page/LandingPageSchools';
 
 function LandingPage() {
-  
+
     return (
         <div>
             <div className="overflow-auto">
                 <title> Community ALI - Modesto Junior College </title>
-                <NavBar isFixedPage={true} />
+                <NavBar isFixedPage={true}/>
                 <LandingPageHeader />
                 <LandingPageCatagories />
                 <LandingPageSchools />

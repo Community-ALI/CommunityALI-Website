@@ -1,24 +1,15 @@
-#target
-{
-    padding-top : 100px;
-}
-
-.username-title
+#my-services-username
 {
     color: white;
     text-decoration: none;
     font-size: 28px;
-    font-family: "Poppins";
     font-weight: 400;
     display: flex;
     justify-content: center;
     text-align: center;
-
     position: relative;
     padding : 20px;
-    min-width: 43%;
-    margin : 100px 10% 20px 10%;
-    
+    margin : 0px 10% 20px 10%;
     background-color: #001E60;
     border-radius: 10px;
 }
@@ -35,17 +26,14 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-
     position: relative;
     padding : 20px;
     width : 60%;
     margin : 2% 0%;
-    
     background-color: #00468D;
     transition : all 0.3s ease-in-out;
     border-radius: 10px;   
     cursor: pointer;
-
     height: 128px;
 }
 
@@ -78,11 +66,6 @@
     color : white;
 }
 
-.user-link :hover
-{
-    color : #ecaa1e;
-}
-
 .user-service i
 {
     padding : 0px 12px;
@@ -94,7 +77,6 @@
     color:white;
     text-decoration: none;
     font-size: 22px;
-    font-family: "Poppins";
     font-weight: 500;
     padding-left : 10px;
     transition : all 0.3s ease-in-out;
@@ -106,7 +88,6 @@
     margin: 0px 32px 0px 32px;
     background-color: #ecaa1e;
     padding: 4px 16px 4px 16px;
-    font-family: "poppins";
     color: #001E60;
     font-weight: bold;
     border-radius: 8px;
@@ -126,7 +107,6 @@
     margin: 0px 32px 0px 32px;
     background-color: #ecaa1e;
     padding: 4px 16px 4px 16px;
-    font-family: "poppins";
     color: #001E60;
     font-weight: bold;
     border-radius: 8px;
@@ -154,70 +134,6 @@
     display: flex;
 }
 
-.background-link {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.loader-wrapper 
-{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #00468D;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.loader 
-{
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  border: 4px solid #Fff;
-  animation: loader 2s infinite ease;
-}
-
-.loader-inner 
-{
-  vertical-align: top;
-  display: inline-block;
-  width: 100%;
-  background-color: #fff;
-  animation: loader-inner 2s infinite ease-in;
-}
-
-.loader--hidden
-{
-  opacity: 0;
-  visibility: hidden;
-}
-
-@keyframes loader 
-{
-  0% { transform: rotate(0deg);}
-  25% { transform: rotate(180deg);}
-  50% { transform: rotate(180deg);}
-  75% { transform: rotate(360deg);}
-  100% { transform: rotate(360deg);}
-}
-
-@keyframes loader-inner 
-{
-  0% { height: 0%;}
-  25% { height: 0%;}
-  50% { height: 100%;}
-  75% { height: 100%;}
-  100% { height: 0%;}
-}
-
 @media all and (max-width : 1250px)
 {
     .user-service
@@ -228,7 +144,7 @@
 
 @media all and (max-width : 850px)
 {
-    .username-title
+    #my-services-username
     {
         margin: 100px 6% 20px 6%;
     }
@@ -276,7 +192,7 @@
         margin-top: 15px;
     }
 
-    .username-title
+    #my-services-username
     {
         font-size: 22px;
         padding: 15px;

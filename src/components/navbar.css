@@ -2,9 +2,6 @@
 
 .navigation-bar
 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 17px;
     position: fixed;
     z-index: 999;
     display: flex;
@@ -26,6 +23,13 @@
     transition: background-color 1s ease;
     max-width: 1600px;
     width: 100vw;
+    animation: NavfadeIn 1s;
+}
+
+@keyframes NavfadeIn 
+{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .navigation-text
@@ -200,6 +204,7 @@
         margin-right : 0px;
         max-height: 42px;
         display: block;
+        animation: NavfadeIn 1s;
     }
 
     .navigation-hamburger.active .navigation-line:nth-child(2)
