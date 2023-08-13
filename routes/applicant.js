@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const applicant_data = require("../controllers/applicant-data");
 const service_data = require("../controllers/service-data");
 
-router.get('/change_notification_status/:id', async function (req, res) {
+router.post('/change_notification_status/:id', async function (req, res) {
     try {
         const message = await applicant_data.change_notification_status(req);
         if (message == 'success') {
