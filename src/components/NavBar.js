@@ -71,7 +71,7 @@ function MyServicesNavButton(props)
                     id="applicants"
                 >
                     <Notifications notifications={notifications ? notifications.length : 0} />
-                    My Services
+                    Manage
                 </Link>
             )
         }

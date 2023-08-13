@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./NotFound.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./NavBar";
 
 const getRandomSadFace = () => {
   const sadFaces = [":(", "D:", ":'(", "):", "),:", ":/", '=(', ":-(",":[", "/:"];

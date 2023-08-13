@@ -19,14 +19,12 @@ import Edit_Service from "./pages/my-services/edit-service";
 import Edit_Club from "./pages/my-services/club-components/edit-club";
 import Edit_Internship from "./pages/my-services/internship-components/edit-internship";
 import View_Applicants from "./pages/my-services/view-applicants";
-import Register from "./pages/register";
 import Profile from "./pages/account/profile";
 import Verify from "./pages/account/verify"
 import Forgot_Password from './pages/account/forgot-password'
 import Reset_Password from './pages/account/reset-password'
-import NotFound from "./NotFound";
+import NotFound from "./components/NotFound";
 import SignupPopup from "./components/SignupPopup";
-// import Signup from "./signup"
 
 import './style.scss';
 import '../public/stylesheets/style.css'
@@ -63,7 +61,6 @@ function App() {
                 <Route path="/edit-internship" element={<Edit_Internship />}/>
                 
                 {/* account pages */}
-                <Route path="/register" element={<Register />}/>
                 <Route path="/profile" element={<Profile />}/>
                 <Route path="/verify" element={<Verify />}/>
                 <Route path="/forgot-password" element={<Forgot_Password/>}/>
