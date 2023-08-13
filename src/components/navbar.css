@@ -9,11 +9,12 @@
 .navigation-bar
 {
     position: fixed;
-    z-index: 999;
+    z-index: 99;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100vw;
 }
 
 .navigation-menu
@@ -49,6 +50,7 @@
 #navigation-login
 {
     color : white;
+    position: relative;
     background-color: transparent;
     border-color: white;
     border-width: 1px;
@@ -58,13 +60,38 @@
     margin-left : 15px;
     font-size: 15px;
     font-weight: 600;
+    overflow: hidden;
+    z-index: 999;
 }
 
 #navigation-login:hover
 {
     color : var(--dark-secondary-color);
-    background-color: var(--accent-color);
     border-color: var(--accent-color);
+    z-index: 999;
+}
+
+#navigation-login::after
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius : 9px;
+    background-color: var(--accent-color);
+    z-index: -1;
+    transform-origin: top right;
+    transform: scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+  #navigation-login:hover::after
+{
+    transform: scaleX(1);
+    transform-origin: top left;
 }
 
 #navigation-search-bar 

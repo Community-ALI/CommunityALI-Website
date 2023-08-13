@@ -5,11 +5,11 @@ function SignUpButton(props) {
 
     if (!props.token){
         return (
-            <a 
+            <button 
                 className="navigation-text" 
                 id="navigation-login"
                 onClick={props.ShowSignupPopup}
-            >Sign Up</a>
+            >Sign Up</button>
         )
     }
 

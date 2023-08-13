@@ -1,100 +1,82 @@
-.sign-up-success-container
+#sign-up-success-container
 {
-    padding-top: 50px;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
 }
 
-.title
+#sign-up-success-title
 {
     display: flex;
     justify-content: center;
 }
 
-.title p
+#sign-up-success-title p
 {
     color: white;
-    text-decoration: none;
-    background-color: #001E60;
-    border-radius: 10px;
-    padding : 10px;
-    font-family: 'Poppins', sans-serif;
     font-weight : 600;
-    font-size : clamp(2vw, 2.6vw, 2.6vw);
+    font-size : clamp(21px, 3vw, 40px);
     text-align: center;
-    margin-top : 5%;
+    margin-top : 4%;
+    padding: 0px 10px;
 }
 
-.description
+#sign-up-success-description
 {
     display: flex;
     justify-content: center;
 }
 
-.description p
+#sign-up-success-description p
 {
     color: white;
-    text-decoration: none;
-    background-color: #00468D;
-    border-radius: 10px;
-    padding : 10px;
-    font-family: 'Poppins', sans-serif;
+    padding : 30px;
     font-weight : 500;
-    font-size : clamp(1.4vw, 1.5vw, 1.5vw);
+    font-size : clamp(16px, 1.5vw, 26px);
     text-align: center;
-    margin-top : 3%;
     line-height: 45px;
 }
 
-.button-container
+#sign-up-success-button-container
 {
-    text-align: center;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
 }
 
-.button
+#sign-up-success-button
 {
     color: white;
-    background-color: #001E60;
+    background-color: var(--dark-secondary-color);
     font-size : clamp(1.6vw, 1.8vw, 1.8vw);
-    font-family: 'Poppins', sans-serif;
     font-weight : 600;
     text-decoration: none;
-
-    border-color : white;
-    border-radius: 10px;
+    border-radius: 30px;
     cursor: pointer;
     padding: 10px 20px;
     margin-top : 4%;
-
     text-align: center;
     transition : all 0.3s ease-in-out;
 }
 
-.button:hover
+#sign-up-success-button:hover
 {
-    background-color :#00468D
+    background-color : var(--secondary-color);
+}
+
+@media all and (max-width : 850px)
+{
+    #sign-up-success-container
+    {
+        padding-top: 90px;
+    }
 }
 
 @media all and (max-width : 780px)
 {
-    .title p
+    #sign-up-success-description p
     {
-        font-size : 20px;
-        margin-top : 40px;
-        margin-left : 40px;
-        margin-right : 40px;
-    }
-
-    .description p
-    {
-        margin : 40px 10%;
-        font-size : 16px;
         line-height: 30px;
     }
 
-    .button
+    #sign-up-success-button
     {
         font-size : 20px;
     }

@@ -8,26 +8,23 @@ function SignupSuccess() {
         <div>
             <title> Sign-Up Success Page </title>
             <NavBar />,
-            <div className='sign-up-success-container'>
-                <div className="title">
+            <div id ='sign-up-success-container'>
+                <div id="sign-up-success-title">
                     <p>
                     Your application has been sent successfully
                     </p>
-                </div>,
-
-                <div className="description">
+                </div>
+                <div id="sign-up-success-description">
                     <p>
-                    Thank for using Community ALI. The service will contact you for more details. 
+                    Thank for using Community ALI. You will be contacted for further details. 
                     <br></br>
-                    Click this button to head back to our main page!
+                    Click this button to head back to our home page!
                     </p>
-                </div>,
-
-                <div className="button-container">
-                    <a className="button" href="/"> Main Page </a>
+                </div>
+                <div id="sign-up-success-button-container">
+                    <a id="sign-up-success-button" href="/"> Home Page </a>
                 </div> 
-            </div>,
-            <Footer />
+            </div>
         </div>
     )
 }

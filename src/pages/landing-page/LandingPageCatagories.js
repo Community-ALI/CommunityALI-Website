@@ -11,11 +11,11 @@ function LandingPageCatagories() {
             <div id="landing-page-categories">
                 <a className="landing-page-category-box" href="/services-clubs" aria-label="Clubs and Communities">
                     <img src="photos-optimized/clubs-opt.webp" alt='Photos/NoCategoryImg.webp'/>
-                    <div className="landing-page-category-title-top"> Clubs and Communities </div>
+                    <div className="landing-page-category-title-top"> Clubs and Campus Life </div>
                 </a>  
                 <a className="landing-page-category-box" href="/services-clubs" aria-label="Events and Campus Life">
-                    <img src="photos-optimized/events-opt.webp" alt='Photos/NoCategoryImg.webp'/>
-                    <div className="landing-page-category-title-top"> Events and Campus Life </div>
+                    <img src="photos-optimized/student-opt.webp" alt='Photos/NoCategoryImg.webp'/>
+                    <div className="landing-page-category-title-top"> Student Aid and Support</div>
                 </a>  
                 <div className="landing-page-category-box" id="box3">
                     <img src="photos-optimized/volunteer-opt.webp" alt='Photos/NoCategoryImg.webp'/>

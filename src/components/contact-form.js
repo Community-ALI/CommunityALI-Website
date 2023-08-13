@@ -46,26 +46,27 @@ function ContactForm() {
   };
 
   return (
-    <div>
+    <>
       <title> Contact Form </title>
       <NavBar isFixedPage={false} />
-      <div className={'text-white flex flex-wrap justify-center pt-5 mb-20'}>
-        <div id="contact-form-header">
-          <h1 className="body-title">Having Questions or Concerns?</h1>
-          <h2 className="body-subtitle">
+      <div className = {'text-white flex flex-wrap justify-center pt-5 mb-20 max-[850px]:pt-[100px]'}>
+        <div className = {'text-center mx-[12%] max-[480px]:mx-[30px]'}>
+          <h1 id='contact-form-title'> Having Questions or Concerns? </h1>
+          <h2 id='contact-form-subtitle'>
             We aim to create the best experience for our users and we appreciate all the feedback we can get.
             Send us a message and we'll respond if further assistance is needed!
           </h2>
         </div>
 
-        <form className="contact-us-container" ref={form} onSubmit={sendMail}>
-          <h1 className="contact-form-title">Contact form</h1>
-          <div className="contact-form-container">
-            <div className="form-group">
-              <label className="form-label" htmlFor="name"> Full Name </label>
+        <form className = {'bg-[color:var(--secondary-color)] px-[30px] py-[40px] w-[60%] mt-[50px] rounded-[15px] max-[1280px]:w-[80%] max-[480px]:w-[90%] max-[480px]:px-[20px] max-[480px]:py-[30px]'} 
+        ref={form} onSubmit={sendMail}>
+          <h1 className = {'font-[400] text-[28px] text-center mb-[30px] max-[480px]:text-[26px]'}>Contact form</h1>
+          <div className = {'w-[100%] float-left'}>
+            <div className = 'contact-form-group'>
+              <label className = 'contact-form-label' htmlFor="name"> Full Name </label>
               <input
                 type="text"
-                className="form-input"
+                className="contact-form-input"
                 id="name"
                 placeholder="Enter name"
                 value={name}
@@ -73,11 +74,11 @@ function ContactForm() {
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="email"> Email </label>
+            <div className = "contact-form-group">
+              <label className = "contact-form-label" htmlFor="email"> Email </label>
               <input
                 type="email"
-                className="form-input"
+                className="contact-form-input"
                 id="email"
                 placeholder="Enter email"
                 value={email}
@@ -85,13 +86,13 @@ function ContactForm() {
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="message"> Message </label>
+            <div className="contact-form-group">
+              <label className="contact-form-label" htmlFor="message"> Message </label>
               <textarea
-                className="form-text-area"
+                className="contact-form-message"
                 id="message"
                 rows="5"
-                placeholder="Your message"
+                placeholder="Describe the concern or question you have"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
@@ -100,21 +101,8 @@ function ContactForm() {
             <input type="submit" value="Send" id="form-submit-button" className="btn btn-primary" />
           </div>
         </form>
-
-        <h1 className="contact-form-second-title">Additional Contacts</h1>
-        <div className="contact-form-container" id="right-form-container">
-          <div className="form-email">
-            Follow our Instagram: <a className="form-link" href="https://www.instagram.com/community_ali/" target="_blank">@community_ali</a>
-          </div>
-          <div className="form-email">
-            Follow our Facebook: <a className="form-link" href="https://www.instagram.com/community_ali/" target="_blank">@Community_ALIs</a>
-          </div>
-          <div className="form-email">
-            Follow our Twitter: <a className="form-link" href="https://www.facebook.com/profile.php?id=100089185347335&mibextid=ZbWKwL" target="_blank">Community Catalyst</a>
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 

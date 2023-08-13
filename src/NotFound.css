@@ -1,89 +1,81 @@
-.page-not-found-container {
+.page-not-found-container 
+{
   width: 40%; 
   flex-direction: column;
-  margin: 0 auto; 
-  background-color: #00468D;
+  background-color: var(--secondary-color);
   border-radius: 10px;
   padding: 30px 20px;
   display: flex;
   align-items: center;
-  font-size: 25px;
-  font-weight: 500;
   color: white;
   text-align: center;
   position: absolute;
   left: 50%;
   top: 35%;
   transform: translate(-50%, -50%);
+  margin-top: 40px;
+  min-width: 500px;
 }
 
+.not-found-heading 
+{
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 20px;
+}
   
-  /* Styles for the heading */
-  .not-found-heading {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
+.not-found-message 
+{
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+  margin-bottom: 20px;
+}
   
-  /* Styles for the paragraph */
-  .not-found-message {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Styles for the code block */
-  .not-found-code {
-    font-family: monospace;
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
+.not-found-code 
+{
+  font-family: monospace;
+  padding: 5px 5px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
 
-  .go-back-from-not-found {
-    background-color: #ecaa1e;
-    color:#00468D;
-    padding: 10px 30px;
-    border-radius: 20px;
-    font-size: 20px;
-    font-weight: 500;
-    margin-top : 20px;
-    margin-bottom : 20px;
-    transition: 300ms ease;
-  }
+.go-back-from-not-found 
+{
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top : 20px;
+  margin-bottom : 20px;
+  transition: 300ms ease;
+}
 
-  .go-back-from-not-found:hover {
-
-    background-color:#001E60;
-    color: white;
-  }
+.go-back-from-not-found:hover
+{
+  background-color: var(--dark-secondary-color);
+  color: white;
+}
   
-
-  
-  /* Styles for the link */
-  .not-found-link {
-    text-decoration: none;
-  }
+.not-found-link 
+{
+  text-decoration: none;
+}
   
 
-  @media only screen and (max-width: 850px) {
-
-    .page-not-found-container {
-      font-size: 18px;
+  @media only screen and (max-width: 850px) 
+  {
+    .page-not-found-container
+    {
       width: 90%; 
       max-width: 400px; 
-    }
-    
-    .not-found-heading {
-      font-size: 1rem;
-    }
-    
-    .not-found-message {
-      font-size: 0.9rem;
+      margin-top: 50px;
+      min-width: 100px;
     }
 
     .go-back-from-not-found
     {
-      font-size: 16px;
+      font-size: 15px;
       padding: 8px 25px;
     }
-  }
+}
   

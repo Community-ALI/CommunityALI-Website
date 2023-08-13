@@ -100,7 +100,6 @@ function LoginPopup(props) {
                                 <label className={`text-field-label${(password != '') ? ' focused-field' : ''}`} htmlFor="password">Password</label>
                             </div>
                     
-                            {/* <!-- <div class="pass">Forgot Password?</div> --> */}
                             <input 
                                 type="submit" 
                                 value="Login" 

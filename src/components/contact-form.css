@@ -1,65 +1,16 @@
-#contact-form-container
+#contact-form-title
 {
-    color: white;
-    padding-top: 20px;
-    margin-bottom : 200px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    font-size: clamp(25px, 4vw, 30px);
+    margin-bottom: 10px;
 }
 
-#contact-form-header
+#contact-form-subtitle
 {
-    text-align: center;
-    margin-right: 12%;
-    margin-left: 12%;
+    font-size: clamp(16px, 4vw, 24px);
 }
 
-.body-title
-{
-    font-weight: 400;
-    margin-bottom : 10px;
-    font-size: 31px;
-}
 
-.body-subtitle
-{
-    font-weight: 300;
-    font-size: 24px;
-}
-
-.contact-us-container
-{
-    background-color: var(--secondary-color);
-    padding : 30px 40px;
-    width : 60%;
-    margin-top: 50px;
-    border-radius: 15px;
-}
-
-.contact-form-title
-{
-    margin-bottom : 30px;
-    font-weight : 500;
-    font-size: 28px;
-    text-align: center;
-}
-
-.contact-form-second-title
-{
-    font-weight : 500;
-    text-align: center;
-    margin-bottom : 30px;
-    display: none;
-}
-
-.contact-form-container
-{
-    width: 100%;
-    float : left;
-}
-
-.form-group
+.contact-form-group
 {
     display: flex;
     justify-content: flex-start;
@@ -67,14 +18,14 @@
     margin-bottom : 30px;
 }
 
-.form-label
+.contact-form-label
 {
     margin-bottom : 5px;
     font-size: 20px;
     color : white;
 }
 
-.form-input
+.contact-form-input
 {
     width: 50%;
     padding: 0 10px;
@@ -88,7 +39,7 @@
     background-color: white;
 }
 
-.form-text-area
+.contact-form-message
 {
     width: 80%;
     font-size: 16px;
@@ -107,15 +58,13 @@
     background-color: var(--dark-secondary-color);
     color: white;
     padding: 14px 20px;
-    border: none;
     border-radius: 4px;
-    cursor: pointer;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     letter-spacing: 2px;
-    transition: 300ms ease;
     margin-top : 20px;
+    transition: 300ms ease;
 }
 
 #form-submit-button:hover
@@ -124,43 +73,15 @@
     color: var(--dark-secondary-color);
 }
 
-#right-form-container
-{
-    border-radius: 15px;
-    padding: 0px 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    display: none;
-}
-
-.form-email
-{
-    margin-bottom : 30px;
-    text-align: center;
-}
-
-.form-link
-{
-    text-decoration: underline;
-    color: white;;
-}
-
 ::placeholder 
 {
-    color : #001E60;
+    color : var(--dark-secondary-color);
     opacity: 1; 
 }
 
 @media all and (max-width : 1250px)
 {
-    .contact-us-container
-    {
-        width : 80%;
-    }
-
-    .form-input
+    .contact-form-input
     {
         width : 60%;
     }
@@ -168,80 +89,25 @@
 
 @media all and (max-width : 850px)
 {
-    .form-input
+    .contact-form-input
     {
         width : 100%;
     }
 
-    .form-text-area
+    .contact-form-message
     {
         width : 100%;
-    }
-
-    #contact-form-container
-    {
-        padding-top : 110px;
-    }
-}
-
-@media all and (max-width : 780px)
-{
-    #contact-form-header
-    {
-        margin-left: 8%;
-        margin-right : 8%;
-    }
-}
-
-@media all and (max-width : 540px)
-{
-    .body-title
-    {
-        font-size: 25px;
-    }
-
-    .body-subtitle
-    {
-        font-size : 20px;
-    }
-
-    #contact-form-header
-    {
-        margin-left: 5%;
-        margin-right : 5%;
     }
 }
 
 @media all and (max-width : 450px)
 {
-    .body-title
-    {
-        font-size: 20px;
-    }
-
-    .body-subtitle
-    {
-        font-size : 15px;
-    }
-
-    .contact-us-container
-    {
-        padding : 30px 20px;
-        width : 90%;
-    }
-
-    .contact-form-title
-    {
-        font-size : 25px;
-        margin-bottom: 20px;
-    }
-
-    .form-label
+    .contact-form-label
     {
         font-size: 16px;
     }
 
-    .form-input
+    .contact-form-input
     {
         font-size : 15px;
         height: 40px;

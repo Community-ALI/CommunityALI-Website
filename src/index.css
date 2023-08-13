@@ -68,16 +68,6 @@ body
     padding : 0px 15px;
 }
 
-#header-title p strong
-{
-    font-family: 'Montserrat', sans-serif;;
-    letter-spacing: 1.2px;
-    background-image: linear-gradient(45deg, white, white);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;  
-}
-
 #header-subtitle
 {
     color: white;
@@ -117,6 +107,8 @@ body
 {
     color : white;
     background-color : var(--secondary-color);
+    letter-spacing: 1.2px;
+    box-shadow: 0 0 35px var(--dark-secondary-color);
 }
 
 #header-curve
@@ -390,7 +382,6 @@ body
         width: 90px;
     }
 
-
     #solvecc-image
     {
         width : 70%;
@@ -419,26 +410,6 @@ body
     #get-started-button
     {
         transform: scale(.8);
-    }
-
-    #club
-    {
-        content: url('/public/photos-mobile/clubs-mob.webp')
-    }
-
-    #events
-    {
-        content: url('/public/photos-mobile/events-mob.webp')
-    }
-
-    #volunteer
-    {
-        content: url('/public/photos-mobile/volunteer-mob.webp')
-    }
-
-    #internship
-    {
-        content: url('/public/photos-mobile/internship-mob.webp')
     }
 
     .landing-page-school-box
