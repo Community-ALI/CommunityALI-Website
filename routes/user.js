@@ -115,6 +115,7 @@ router.post('/login', async (req, res) => {
                 platformManager: false,
                 clubAdmin: user.clubAdmin,
                 eventAdmin: user.eventAdmin,
+                administrator: user.administrator,
                 volunteeringAdmin: user.volunteeringAdmin,
                 internshipAdmin: user.internshipAdmin
             },
