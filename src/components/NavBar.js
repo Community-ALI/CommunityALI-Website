@@ -54,11 +54,11 @@ function MyServicesNavButton(props) {
             fetchNotificationData();
         }, []);
 
-    if (decodedToken.administartor) {
+    if (decodedToken.administrator) {
         return (
             <Link
                 className="navigation-button navigation-text relative-container"
-                to="/administartor-my-service-selection"
+                to="/administrator-my-service-selection"
                 id="applicants"
             >
                 <Notifications notifications={notifications ? notifications.length : 0} />
