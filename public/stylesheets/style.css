@@ -1,3 +1,88 @@
+.notification-icon {
+  background-color: #ecaa1e;
+  font-size: medium;
+  font-weight: bold;
+  font-family: sans-serif;
+  border-radius: 50%;
+  color: #001E60;
+  position: absolute;
+  right: -2px;
+  top: -8px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.red-notification-icon {
+  background-color: #FF3939;
+  font-size: medium;
+  font-weight: bold;
+  font-family: sans-serif;
+  border-radius: 50%;
+  color: #001E60;
+  position: absolute;
+  right: -4px;
+  top: -8px;
+  width: 20px;
+  height: 20px;
+}
+
+.relative-container {
+  position: relative;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.position-left {
+  left: -4px;
+}
+
+.blue-container {
+  background-color: #00468D;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.hoverable-blue-container {
+  background-color: #00468D;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.hoverable-blue-container:hover {
+  background-color: #001E60;
+}
+
+.dark-blue-container {
+  background-color: #001E60;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.blue-container>p {
+  font-size: 100%;
+}
+
+.dark-blue-container-with-border {
+  background: #001E60;
+  border-color: #ecaa1e;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+}
+
 /*
 ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
@@ -570,6 +655,15 @@ video {
   float: left;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
+.mx-\[10vw\] {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
 .mx-\[12\%\] {
   margin-left: 12%;
   margin-right: 12%;
@@ -631,6 +725,10 @@ video {
   height: 10%;
 }
 
+.h-\[89px\] {
+  height: 89px;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -665,6 +763,10 @@ video {
 
 .w-\[30\%\] {
   width: 30%;
+}
+
+.w-\[341px\] {
+  width: 341px;
 }
 
 .w-\[40\%\] {
@@ -801,6 +903,11 @@ video {
   padding-right: 30px;
 }
 
+.px-\[50px\] {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -809,6 +916,11 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .py-\[40px\] {
@@ -822,6 +934,16 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-\[100\%\] {
@@ -934,70 +1056,6 @@ video {
   transition-duration: 300ms;
 }
 
-.notification-icon {
-  background-color: #ecaa1e;
-  font-size: medium;
-  font-weight: bold;
-  font-family: sans-serif;
-  border-radius: 50%;
-  color: #001E60;
-  position: absolute;
-  right: -2px;
-  top: -8px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.red-notification-icon {
-  background-color: #FF3939;
-  font-size: medium;
-  font-weight: bold;
-  font-family: sans-serif;
-  border-radius: 50%;
-  color: #001E60;
-  position: absolute;
-  right: -4px;
-  top: -8px;
-  width: 20px;
-  height: 20px;
-}
-
-.relative-container {
-  position: relative;
-}
-
-.hidden {
-  display: none;
-  visibility: hidden;
-}
-
-.position-left {
-  left: -4px;
-}
-
-.blue-container {
-  background-color: #00468D;
-  color: white;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.blue-container>p {
-  font-size: 100%;
-}
-
-.dark-blue-container-with-border {
-  background: #001E60;
-  border-color: #ecaa1e;
-  border-radius: 8px;
-  border-style: solid;
-  border-width: 1px;
-}
-
 .hover\:bg-\[\#00468D\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 70 141 / var(--tw-bg-opacity));
@@ -1008,40 +1066,8 @@ video {
   background-color: rgb(236 170 30 / var(--tw-bg-opacity));
 }
 
-@media (max-width: 1280px) {
-  .max-\[1280px\]\:w-\[80\%\] {
-    width: 80%;
-  }
-}
-
 @media (max-width: 850px) {
-  .max-\[850px\]\:pt-\[100px\] {
-    padding-top: 100px;
+  .md\:mt-32 {
+    margin-top: 8rem;
   }
 }
-
-@media (max-width: 480px) {
-  .max-\[480px\]\:mx-\[30px\] {
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-
-  .max-\[480px\]\:w-\[90\%\] {
-    width: 90%;
-  }
-
-  .max-\[480px\]\:px-\[20px\] {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .max-\[480px\]\:py-\[30px\] {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  .max-\[480px\]\:text-\[26px\] {
-    font-size: 26px;
-  }
-}
-
