@@ -43,6 +43,11 @@ function Profile() {
     setIsShowingPasswordPopup(true);
   };
 
+  useEffect(() => 
+  {
+    document.title = 'My Profile | Community ALI';
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

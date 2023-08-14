@@ -53,6 +53,7 @@ const SearchResult = function (props) {
                     // Handle the error
                 });
         }
+        
     }, [])
 
     return (
@@ -99,6 +100,11 @@ function ApplicationPageDisplay(props) {
 
 function ServiceApplicants() {
     const [applicants, setApplicants] = useState([]);
+
+    useEffect(() => 
+    {
+      document.title = 'Service Applicants | Community ALI';
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
