@@ -600,6 +600,18 @@
 
 @media all and (max-width : 600px)
 {
+
+    .profile-picture
+    {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .profile-details
+    {
+        margin-left: 0px;
+    }
+
     .password-popup-content
     {
         width : 90%;
@@ -640,7 +652,7 @@
 {
     .profile-container
     {
-        padding-top : 100px;
+        padding: 110px 10px 150px 10px;
     }
 
     .profile-picture

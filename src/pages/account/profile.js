@@ -265,7 +265,7 @@ function Profile() {
 
           <div className="profile-details">
             <div className='profile-name-display'> {account.fullName} </div>
-            <div className='profile-name-display'> ({account.username}) </div>
+            <div className='profile-name-display'> Username: {account.username} </div>
             <div className='profile-email-display'> {account.email}</div>
           </div>
         </div>
