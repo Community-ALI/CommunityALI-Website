@@ -26,7 +26,7 @@ input[data-autocompleted]
     font-weight: 300;
     transition: 300ms ease;
     position: relative;
-    padding-top: 100px;
+    padding-top: 30px;
 }
 
 .service-title

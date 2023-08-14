@@ -5,7 +5,6 @@ import {BASE_BACKEND_URL} from '../../../config.js'
 
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
-import '../service-info.css';
 import ContactsPage from "./contacts-page";
 import OverviewPage from "./overview-page";
 import FaqPage from "./faq-page";
