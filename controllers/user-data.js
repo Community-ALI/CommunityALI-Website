@@ -81,8 +81,19 @@ exports.get_user_applications = async function (username) {
 // get a user's applications from database
 exports.get_user_data = async function (username) {
   try {
-    const selected_account = await Users.find({ username: username }).select('username email description dateCreated profileImage fullName').exec();
+    const selected_account = await Users.find({ username: username })
+      .select('username email description dateCreated profileImage fullName').exec();
     return selected_account;
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: 'internal database error' };
+  }
+}
+
+exports.get_all_users = async function () {
+  try {
+    const users = await Users.find().exec();
+    return users;
   } catch (error) {
     console.error(error);
     return { success: false, error: 'internal database error' };

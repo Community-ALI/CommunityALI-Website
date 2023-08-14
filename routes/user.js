@@ -97,12 +97,16 @@ router.get("/get-all-user-notifications", async function (req, res) {
 router.post('/login', async (req, res) => {
     const usernameOrEmail = req.body.usernameOrEmail;
     const password = req.body.password;
-    const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).lean()
+    const user = await User.findOne({ $or: [{ username: usernameOrEmail }, 
+        { email: usernameOrEmail }] }).lean()
     if (!user) {
-        return res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
+        return res.status(400).json({ status: 'error',
+             error: 'Invalid username or email/password combination' })
     }
     if (!user.verified) {
-        return res.status(400).json({ status: 'unverified', username: user.username, error: 'Account has not been verified.' }) //FIXME: make a way to verify it
+        return res.status(400).json({ status: 'unverified',
+             username: user.username, error: 'Account has not been verified.' }) 
+             //FIXME: make a way to verify it
     }
     if (await bcryptjs.compare(password, user.password)) {
         // the username, password combination is successful
@@ -133,7 +137,8 @@ router.post('/login', async (req, res) => {
         res.json({ status: 'ok', data: token })
 
     } else {
-        res.status(400).json({ status: 'error', error: 'Invalid username or email/password combination' })
+        res.status(400).json({ status: 'error', 
+            error: 'Invalid username or email/password combination' })
     }
 
 })
@@ -511,5 +516,15 @@ router.get("/get-username", async function (req, res) {
         });
     }
 });
+
+router.get("/get-all-users", async function(req, res) {
+    try {
+        const users = await user_data.get_all_users();
+        res.json({users: users});
+    } catch (error) {
+        console.log(error);        
+        res.status(500).json({ status: 'error', error: 'Something went wrong' });
+    }
+})
 
 module.exports = router;
