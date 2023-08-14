@@ -83,10 +83,9 @@ exports.store_add_service = async function (req, username) {
       }
     });
 
-    return true;
+    return {success: true};
   } catch (error) {
-    console.log(error);
-    return false;
+    return {success: false, error: error};
   }
 };
 
@@ -235,12 +234,13 @@ exports.editService = async function (req, username) {
     const photoBuffer = fs.readFileSync(req.file.path);
     const thumbnail = await generateThumbnail2(photoBuffer);
 
-    const existingService = await Service.findOne({ title: req.body.title });
+    const existingService = await Service.findOne({ title: req.query.service });
 
     if (!existingService) {
       throw new Error('Service with matching title not found');
     }
 
+    existingService.title = req.body.title;
     existingService.photo = photoBuffer;
     existingService.thumbnail = thumbnail;
     existingService.pages = pages;
@@ -256,10 +256,9 @@ exports.editService = async function (req, username) {
       }
     });
 
-    return true;
+    return {success: true};
   } catch (error) {
-    console.log(error);
-    return false;
+    return {success: false, error: error};
   }
 };
 
