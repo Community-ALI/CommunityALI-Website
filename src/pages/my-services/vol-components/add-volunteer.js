@@ -45,6 +45,11 @@ function AddEvent() {
     });
   };
 
+  useEffect(() => 
+  {
+    document.title = 'Volunteer Editor | Community ALI';
+  }, []);
+
   
     useEffect(() => {
       changeVisibility("Overview"); // Set "Overview" as the active page initially

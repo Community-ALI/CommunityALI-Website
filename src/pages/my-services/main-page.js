@@ -11,6 +11,12 @@ import DeleteServicePopup from '../../components/DeleteServicePopup'
 function MyServicePageDisplay(props) {
   const [notifications, setNotifications] = useState([]);
   const service = props.service;
+
+  useEffect(() => 
+  {
+    document.title = 'Manage Services | Community ALI';
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

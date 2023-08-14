@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
 import "./categories-page.css";
 import "../../../public/stylesheets/style.css";
 import NavBar from "../../components/NavBar";
 
 function CategoriesPage() {
+
+  useEffect(() => 
+  {
+    document.title = 'Service Category | Community ALI';
+  }, []);
+
   const token = localStorage.getItem("token");
   let decodedToken = {};
   if (token) {

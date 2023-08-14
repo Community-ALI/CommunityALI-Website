@@ -45,6 +45,10 @@ function AddEvent() {
     });
   };
 
+  useEffect(() => 
+  {
+    document.title = 'Event Editor | Community ALI';
+  }, []);
   
     useEffect(() => {
       changeVisibility("Overview"); // Set "Overview" as the active page initially

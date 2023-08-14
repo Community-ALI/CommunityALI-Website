@@ -72,6 +72,11 @@ function Services(props) {
   const [showServices, setShowServices] = useState(true)
 
 
+  useEffect(() => 
+  {
+    document.title = 'Explore Page | Community ALI';
+  }, []);
+
   // get services from the backend
   useEffect(() => {
     const fetchData = async () => {

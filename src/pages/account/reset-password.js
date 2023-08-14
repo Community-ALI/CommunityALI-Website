@@ -39,6 +39,11 @@ function resetPasswordForm() {
     }
   };
 
+  useEffect(() => 
+  {
+    document.title = 'Reset Password | Community ALI';
+  }, []);
+
   const handlePasswordChange = (event) => {
     const code = event.target.value;
     setPassword(code);
