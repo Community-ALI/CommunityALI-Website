@@ -106,7 +106,7 @@ function Profile() {
             imageUrl = `data:image/png;base64,${base64}`;
           }
           catch(err){
-            console.log('no profile image, using default');
+            console.log('no profile image, usinFullNamesetg default');
             imageUrl = 'photos-optimized/user-pic.png';
           }
           await setAccount(
@@ -140,6 +140,17 @@ function Profile() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
+        const wordsInName = account.fullName.split(' ');
+        if (wordsInName.length > 2){
+          alert('Full name must be 2 words or shorter');
+          throw('too many words');
+        }
+
+        if (account.fullName.length > 40){
+          alert('Full name must be 40 characters or less');
+          throw('too many characters');
+        }
+        
         const accountMinusOneField = { ...account };
         delete accountMinusOneField.imageUrl;
         const formData = new FormData();
@@ -170,13 +181,15 @@ function Profile() {
   };
 
   const handleButtonClick = () => {
-    setButtonText(editMode ? 'Edit Information' : 'Save Information');
+    
     if (!editMode) {
+      setButtonText(editMode ? 'Edit Information' : 'Save Information');
       nameRef.current.focus();
+      setEditMode(!editMode);
     } else {
       uploadData();
     }
-    setEditMode(!editMode);
+    
   };
 
   const handleInputChange = (event) => {
