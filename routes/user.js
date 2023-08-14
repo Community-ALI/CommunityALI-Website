@@ -265,8 +265,14 @@ router.post('/password-change-password', async (req, res) => {
         if (await bcryptjs.compare(oldPassword, user.password)) {
             // the username, password combination is successful
             plainTextPassword = req.body.newPassword;
-            if (plainTextPassword.length < 6) {
-                return res.status(400).json({ status: 'error', error: 'Password should be at least 6 characters' });
+            if (plainTextPassword.length < 8) {
+                return res.status(400).json({ status: 'error', error: 'Password should be at least 8 characters' });
+            }
+
+            // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
+            const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/; // this could be used for special characters (?=.*[@$!%*?&])
+            if (!passwordComplexityRegex.test(plainTextPassword)) {
+                return res.status(400).json({ status: 'error', error: 'Password should contain at least one uppercase letter, one lowercase letter and one digit' });
             }
 
             const newPassword = await bcryptjs.hash(plainTextPassword, 10);
@@ -290,7 +296,16 @@ router.post('/password-change-password', async (req, res) => {
 router.post('/token-change-password', async (req, res) => {
     try {
         const token = req.query.token;
-        const plainTextPassword = req.body.password;
+        plainTextPassword = req.body.newPassword;
+        if (plainTextPassword.length < 8) {
+            return res.status(400).json({ status: 'error', error: 'Password should be at least 8 characters' });
+        }
+
+        // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
+        const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/; // this could be used for special characters (?=.*[@$!%*?&])
+        if (!passwordComplexityRegex.test(plainTextPassword)) {
+            return res.status(400).json({ status: 'error', error: 'Password should contain at least one uppercase letter, one lowercase letter and one digit' });
+        }
 
         // Find the corresponding password reset entry in the database
         const resetEntry = await passwordReset.findOne({ token: token });
@@ -351,22 +366,36 @@ router.post('/api/register', async (req, res) => {
     const { username, password: plainTextPassword, email } = req.body;
     const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (!email || !validEmailRegex.test(email)) {
+        return res.status(400).json({ status: 'error', error: 'Invalid email' });
+    }
+
     if (!username || typeof username !== 'string') {
         return res.status(400).json({ status: 'error', error: 'Invalid username' });
     }
 
-    if (!email || !validEmailRegex.test(email)) {
-        return res.status(400).json({ status: 'error', error: 'Invalid email' });
+    const usernameRegex = /^[a-zA-Z0-9_-]+$/; // Example regex for allowed characters
+    if (!usernameRegex.test(username)) {
+        const allowedCharacters = "letters (both uppercase and lowercase), numbers, underscores, and hyphens";
+        return res.status(400).json({ status: 'error', error: `Invalid characters in username. Only ${allowedCharacters} are allowed.` });
+    }
+
+    if (username.length < 3 || username.length > 20) {
+        return res.status(400).json({ status: 'error', error: 'Username length should be between 3 and 20 characters' });
     }
 
     if (!plainTextPassword || typeof plainTextPassword !== 'string') {
         return res.status(400).json({ status: 'error', error: 'Invalid password' });
     }
 
-    if (plainTextPassword.length < 6) {
-        return res
-            .status(400)
-            .json({ status: 'error', error: 'Password should be at least 6 characters' });
+    if (plainTextPassword.length < 8) {
+        return res.status(400).json({ status: 'error', error: 'Password should be at least 8 characters' });
+    }
+
+    // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
+    const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/; // this could be used for special characters (?=.*[@$!%*?&])
+    if (!passwordComplexityRegex.test(plainTextPassword)) {
+        return res.status(400).json({ status: 'error', error: 'Password should contain at least one uppercase letter, one lowercase letter and one digit' });
     }
 
     const password = await bcryptjs.hash(plainTextPassword, 10);

@@ -16,12 +16,12 @@ function resetPasswordForm() {
         return
     }
       try {
-        const response = await fetch(`${BASE_BACKEND_URL}/userdata/api/update-password?token=${token}`, {
+        const response = await fetch(`${BASE_BACKEND_URL}/userdata/token-change-password?token=${token}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ password })
+        body: JSON.stringify({ newPassword: password })
         });
         const result = await response.json();
 
