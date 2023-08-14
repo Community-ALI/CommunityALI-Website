@@ -362,7 +362,7 @@ router.get("/get-user-services", async function (req, res) {
     }
 })
 
-router.post('/api/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     const { username, password: plainTextPassword, email } = req.body;
     const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
