@@ -9,10 +9,10 @@ function User(props) {
             <img src={user.profileImage}
                 alt="photos-optimized/user-pic.png" />
             <div className='flex flex-col'>
-                <h1>{user.username}</h1>
+                <h1>{user.fullName}</h1>
                 <div className='text-[#465985]'>
                     <p>{user.username}</p>
-                    <p>{user.gmail}</p>
+                    <p>{user.email}</p>
                 </div>
             </div>
         </button>
