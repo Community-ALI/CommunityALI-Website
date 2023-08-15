@@ -161,7 +161,7 @@ function ServiceApplicants() {
                 <div className={'max-w-[1600px] w-[100%] flex flex-col px-[25px]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
                     <div className='flex flex-col gap-3'>
                         <div className="flex flex-row justify-between gap-3">
-                            <button className='blue-container'>&lt;&lt; BACK</button>
+                            <button className='blue-container' onClick={() => {window.location.href = '/my-services'}}>&lt;&lt; BACK</button>
                             <div className='flex gap-3'>
                                 <button className='blue-container w-[112.766px]'>Filter</button>
                                 {/* <button

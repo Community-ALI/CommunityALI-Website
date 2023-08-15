@@ -90,7 +90,7 @@ function MyServicesHome() {
   const [username, setUsername] = useState('no username associated with token');
   const [isShowingServiceDeletePopup, setIsShowingServiceDeletePopup] = useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState('');
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -141,7 +141,7 @@ function MyServicesHome() {
           <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px]'}>
               <div className='flex flex-col gap-3'>
                   <div className="flex flex-row justify-between gap-3">
-                      <button className='blue-container px-[15px]'>&lt;&lt; BACK</button>
+                      <button className='blue-container px-[15px]' onClick={() => {window.location.href = '/'}}>&lt;&lt; BACK</button>
                       <div className='flex gap-3'>
                         <button className='blue-container px-[25px]'>Filter</button>
                       </div>
