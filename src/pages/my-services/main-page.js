@@ -6,11 +6,15 @@ import '../../components/loading-screen.css'
 import NavBar from '../../components/NavBar';
 import Notifications from "../../components/Notification";
 import DeleteServicePopup from '../../components/DeleteServicePopup'
+const Buffer = require('buffer').Buffer;
 // create the information required to display the page
 
 function MyServicePageDisplay(props) {
   const [notifications, setNotifications] = useState([]);
   const service = props.service;
+  // const buffer = Buffer.from(service.thumbnail.data);
+  // const base64 = buffer.toString('base64');
+  // const imageUrl = `data:image/png;base64,${base64}`;
 
   useEffect(() => 
   {
@@ -52,22 +56,18 @@ function MyServicePageDisplay(props) {
 
   return (
     <div className="user-service-container">
-      <div className="user-service" onClick={handleBackgroundClick}>
-
-        <div className="option-container-service">
-          <div className="user-link-container">
-            <a className="user-link relative-container" href={`view-applicants?service=${service.title}`}>
-              <Notifications notifications={notifications ? notifications.length : 0} />
-              <i className="fa-solid fa-users fa-2x"></i>
+      <div className="flex items-center w-[80%] my-[20px] mx-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)]" id={service.title} onClick={handleBackgroundClick} >
+        <img className="w-[230px] rounded-[20px]" src="photos-optimized/WebsiteVideoPlaceholder-opt.webp"/>
+        <div className="flex justify-between w-[100%] px-[30px]">
+          <div className="text-white text-[24px] font-medium  text-center overflow-hidden overflow-ellipsis max-w-[500px] w-[100%]">{service.title}</div>
+          <Notifications notifications={notifications ? notifications.length : 0} />
+          <div className="flex items-center">
+            <a href={`edit-service?service=${service.title}`}>
+              <img className='h-[50px] mr-[30px]' src="photos/EditIcon.png"></img>
             </a>
-            <a className="user-service-text" href={`view-applicants?service=${service.title}`}>
-              {service.title}
+            <a href={`view-applicants?service=${service.title}`}>
+              <img className='h-[50px] mr-[10px]' src="photos/ApplicantsIcon.png"></img>
             </a>
-          </div>
-
-          <div className="edit-delete-container">
-            <a className="edit-button" href={`edit-service?service=${service.title}`}
-            >Edit</a>
             <button className="service-delete-button"
               onClick={(event) => {
                 event.stopPropagation();
@@ -75,9 +75,11 @@ function MyServicePageDisplay(props) {
                 props.setIsShowingServiceDeletePopup(true);
               }}
             >Delete</button>
-          </div>
         </div>
+        </div> 
       </div>
+        
+
     </div>
   );
 }
@@ -131,7 +133,30 @@ function MyServicesHome() {
         <span className="loader"><span className="loader-inner"></span></span>
       </div>
       <NavBar isFixedPage={false} />,
-      <title> My Services </title>
+
+      <div className='flex justify-center'>
+          <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px]'}>
+              <div className='flex flex-col gap-3'>
+                  <div className="flex flex-row justify-between gap-3">
+                      <button className='blue-container px-[15px]'>&lt;&lt; BACK</button>
+                      <div className='flex gap-3'>
+                        <button className='blue-container px-[25px]'>Filter</button>
+                      </div>
+                  </div>
+                  <div className="flex justify-end gap-3">
+                      <a className='blue-container px-[24px] py-[10px]' href="/categories-page"> Create a New Service + </a>
+                  </div>
+              
+              </div>
+              <div className='flex flex-col items-center'>
+                  <div className='w-[100%] mb-5'>
+                      <div className="text-white font-medium text-[24px] ml-8 mb-[5px]"> {"Services Owned By " + username} </div>
+                      <hr/>
+                  </div>
+              </div>
+          </div>
+       </div>
+
       <DeleteServicePopup isShowingServiceDeletePopup={isShowingServiceDeletePopup} serviceTitle={deleteServiceTitle} />
       <div
         id='login-popup-background'
@@ -139,20 +164,6 @@ function MyServicesHome() {
         onClick={() => setIsShowingServiceDeletePopup(false)}
         style={{ cursor: 'pointer' }}
       >
-      </div>
-      <div id="my-services-username">
-        {"Welcome " + username}
-      </div>
-      <div className="user-service-container">
-        <div className="user-service">
-          <a className="background-link" href="/categories-page"></a>
-          <a className="user-link" href="/categories-page">
-            <div className="option-container">
-              <i className="fa-solid fa-plus fa-2x"></i>
-              <p className="user-service-text">Add a New Service</p>
-            </div>
-          </a>
-        </div>
       </div>
 
       {services.length === 0 ? (  // Wanted to Add a Condition if Services Array is Empty

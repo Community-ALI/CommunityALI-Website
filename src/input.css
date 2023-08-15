@@ -49,6 +49,12 @@
     border-radius: 8px;
     padding: 8px;
     text-align: center;
+    transition: 300ms ease;
+}
+
+.blue-container:hover
+{
+    background-color: var(--dark-secondary-color);
 }
 
 .hoverable-blue-container {

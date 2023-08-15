@@ -155,7 +155,7 @@ function ServiceApplicants() {
     const urlParams = new URLSearchParams(queryString);
     const serviceName = urlParams.get('service');
     return (
-        <div >
+        <>
             <NavBar />
             <div className='flex justify-center'>
                 <div className={'max-w-[1600px] w-[100%] flex flex-col px-[25px]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
@@ -187,7 +187,7 @@ function ServiceApplicants() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
