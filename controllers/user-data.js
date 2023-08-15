@@ -57,9 +57,12 @@ exports.upload_user_image = async function (username, req) {
 
 
 // get user services from database
-exports.get_user_services = async function (username) {
+exports.get_user_services = async function (username, requestedServices) {
   try {
-    const selected_services = await Services.find({ user: username }).select('title').exec();
+    if (requestedServices === undefined){ 
+      requestedServices = 'title';
+    }
+    const selected_services = await Services.find({ user: username }).select(requestedServices).exec();
     return selected_services;
   } catch (error) {
     console.error(error);

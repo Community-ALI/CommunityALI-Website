@@ -12,10 +12,10 @@ const Buffer = require('buffer').Buffer;
 function MyServicePageDisplay(props) {
   const [notifications, setNotifications] = useState([]);
   const service = props.service;
-  // const buffer = Buffer.from(service.thumbnail.data);
-  // const base64 = buffer.toString('base64');
-  // const imageUrl = `data:image/png;base64,${base64}`;
-
+  console.log(service);
+  const buffer = Buffer.from(service.thumbnail.data);
+  const base64 = buffer.toString('base64');
+  const imageUrl = `data:image/png;base64,${base64}`;
   useEffect(() => 
   {
     document.title = 'Manage Services | Community ALI';
@@ -57,7 +57,7 @@ function MyServicePageDisplay(props) {
   return (
     <div className="user-service-container">
       <div className="flex items-center w-[80%] my-[20px] mx-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)]" id={service.title} onClick={handleBackgroundClick} >
-        <img className="w-[230px] rounded-[20px]" src="photos-optimized/WebsiteVideoPlaceholder-opt.webp"/>
+        <img className="w-[230px] rounded-[20px]" src={imageUrl}/>
         <div className="flex justify-between w-[100%] px-[30px]">
           <div className="text-white text-[24px] font-medium  text-center overflow-hidden overflow-ellipsis max-w-[500px] w-[100%]">{service.title}</div>
           <Notifications notifications={notifications ? notifications.length : 0} />
@@ -98,9 +98,12 @@ function MyServicesHome() {
         if (token) {
           const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-user-services`,
             {
+              method: 'POST',
               headers: {
-                'Authorization': `Bearer ${token}`
-              }
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ requestedFields: 'title thumbnail'})
             })
             .then(response => response.json())
             .then(data => {
