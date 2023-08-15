@@ -56,17 +56,18 @@ function MyServicePageDisplay(props) {
 
   return (
     <div className="user-service-container">
-      <div className="flex items-center w-[80%] my-[20px] mx-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)]" id={service.title} onClick={handleBackgroundClick} >
-        <img className="w-[230px] rounded-[20px]" src={imageUrl}/>
+      <div className="flex items-center w-[80%] my-[20px] mx-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
+      duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer" id={service.title} onClick={handleBackgroundClick} >
+        <img className="w-[210px] rounded-[20px]" src={imageUrl}/>
         <div className="flex justify-between w-[100%] px-[30px]">
-          <div className="text-white text-[24px] font-medium  text-center overflow-hidden overflow-ellipsis max-w-[500px] w-[100%]">{service.title}</div>
+          <div className="text-white text-[140%] md:text-[110%] font-medium text-center overflow-hidden overflow-ellipsis max-w-[500px] w-[100%]">{service.title}</div>
           <Notifications notifications={notifications ? notifications.length : 0} />
           <div className="flex items-center">
             <a href={`edit-service?service=${service.title}`}>
-              <img className='h-[50px] mr-[30px]' src="photos/EditIcon.png"></img>
+              <img className='h-[50px] mr-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/EditIcon.png"></img>
             </a>
             <a href={`view-applicants?service=${service.title}`}>
-              <img className='h-[50px] mr-[10px]' src="photos/ApplicantsIcon.png"></img>
+              <img className='h-[50px] mr-[10px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/ApplicantsIcon.png"></img>
             </a>
             <button className="service-delete-button"
               onClick={(event) => {
@@ -142,19 +143,16 @@ function MyServicesHome() {
               <div className='flex flex-col gap-3'>
                   <div className="flex flex-row justify-between gap-3">
                       <button className='blue-container px-[15px]' onClick={() => {window.location.href = '/'}}>&lt;&lt; BACK</button>
-                      <div className='flex gap-3'>
-                        <button className='blue-container px-[25px]'>Filter</button>
+                      <div className="flex justify-end gap-3">
+                        <a className='blue-container px-[24px] py-[10px]' href="/categories-page"> Create a New Service + </a>
                       </div>
                   </div>
-                  <div className="flex justify-end gap-3">
-                      <a className='blue-container px-[24px] py-[10px]' href="/categories-page"> Create a New Service + </a>
-                  </div>
-              
+    
               </div>
               <div className='flex flex-col items-center'>
                   <div className='w-[100%] mb-5'>
-                      <div className="text-white font-medium text-[24px] ml-8 mb-[5px]"> {"Services Owned By " + username} </div>
-                      <hr/>
+                      <div className="text-white font-medium text-[28px] ml-8 mb-[10px] mt-[40px]"> {"Services Owned By " + username} </div>
+                      <hr className="border-[1.5px]"/>
                   </div>
               </div>
           </div>
