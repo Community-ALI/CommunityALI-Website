@@ -35,7 +35,7 @@ router.get('/get-all-services/:sorting/:serviceType/:categories', async function
             await service_data.get_services(keywords, 'title thumbnail pages',
                 req.params.sorting, req.params.serviceType, req.params.categories);
         res.json(all_services);
-        console.log("filtered services sent")
+        console.log("filtered services sent");
     } catch (error) {
         console.log(error)
         res.json({ success: false, error: 'internal server error' });

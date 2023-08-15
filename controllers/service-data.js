@@ -41,8 +41,6 @@ const generateThumbnail = async function (photoBuffer) {
     const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
 
     // Update the service object with the thumbnail field as BinData
-
-
     return thumbnailBinData;
   } catch (error) {
     console.log(error);
@@ -62,18 +60,20 @@ exports.store_add_service = async function (req, username) {
     const pages = JSON.parse(req.body.pages);
 
     const photoBuffer = fs.readFileSync(req.file.path);
-    const thumbnail = await generateThumbnail(photoBuffer)
+    // make a thumbnail
+    const thumbnail = await generateThumbnail(photoBuffer);
     const newService = new Service({
       title: req.body.title,
       serviceType: req.body.serviceType,
       photo: photoBuffer,
       thumbnail: thumbnail,
       pages: pages,
+      categories: pages.overview.categories,
       datePosted: formattedDate,
       timePosted: time,
       user: username
     });
-    // make a thumbnail
+    
 
     await newService.save();
 
@@ -142,7 +142,7 @@ exports.get_services = async function (keywords, fields, sortingType, serviceTyp
   try {
     filteredData = [];
     foundServices = await find_filter_service(sortingType, serviceType, fields, categories);
-
+    
     filterAttribute = 'title';
     if (keywords != undefined) {
       keywords = keywords.trim();
@@ -244,6 +244,7 @@ exports.editService = async function (req, username) {
     existingService.photo = photoBuffer;
     existingService.thumbnail = thumbnail;
     existingService.pages = pages;
+    existingService.categories = pages.overview.categories;
     existingService.datePosted = formattedDate;
     existingService.timePosted = time;
     existingService.user = username;
