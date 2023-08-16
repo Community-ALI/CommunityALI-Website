@@ -219,6 +219,7 @@
         width : 100vw;
         top: 0px;
         background-color: var(--dark-secondary-color);
+        padding: 12px 25px 12px 25px;
     }
 
     .navbar-logo
@@ -258,6 +259,7 @@
         height: 100vh;
         transition : 0.5s ease-in-out;
         padding-top: 50px;
+        align-items: center;
     }
 
     .navigation-bar.active 
@@ -299,6 +301,14 @@
         left: 5%;
         transition: background-color 1s ease;
         margin-right: 0px;
+    }
+
+    .user-profile-image
+    {
+        width : 42px;
+        margin: 0px;
+        border-color: white;
+        border-width: 1.5px;
     }
 }
 

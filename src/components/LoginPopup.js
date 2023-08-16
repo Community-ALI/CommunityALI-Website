@@ -106,13 +106,13 @@ function LoginPopup(props) {
                                 className="login-submit-button"
                             />
                             
-                            <div class="signup_link">
+                            <div className="signup_link">
                                 <a style={{ color: 'blue', textDecoration: 'underline' }} href='/forgot-password'>Forgot password</a>
                                 <p>Don't have an account? </p>
                                 <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={props.showSignupPopup}>Sign Up</button>
                             </div> 
                             <div className="signup_link">
-                                <div> Can't log into your account? Contact us </div>
+                                <div> Can't log into your account?</div>
                                 <a href="mailto: techsupport@communityali.org" style={{ color: 'blue', textDecoration: 'underline' }}>
                                 techsupport@communityali.org
                                 </a>

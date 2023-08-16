@@ -36,9 +36,7 @@ function Footer() {
             </div>        
             <div 
                 className="footer-text">
-                <p>
-                     Copyright © 2023 Community ALI. All Rights Reserved. Community ALI is not directly affiliated with MJC or any of its subsidiaries. 
-                </p>        
+                <p> Community ALI is not directly affiliated with Modesto Junior College or any of its subsidiaries. </p>        
             </div>    
         </footer>
     )

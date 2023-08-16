@@ -15,7 +15,6 @@
   text-align: center;
   padding: 20px 0;
   border-bottom: 1px solid silver;
-  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 34px;
 }
@@ -200,8 +199,7 @@ form .text-field
 
   .container-login
   {
-    width : 90%;
-    margin-top: 20px;
+    width : 85%;
   }
 
   .container form
@@ -214,13 +212,23 @@ form .text-field
     padding : 0px 20px;
     padding-bottom: 10px;
   }
-}
 
-@media all and (max-width : 380px)
-{
   .container-for-login h1
   {
-    font-size: 28px;
+    padding: 20px 0px 20px 0px;
+    font-size : 30px;
+  }
+
+  .login-submit-button
+  {
+    height: 40px;
+    font-size: 17px;
+  }
+
+  .signup_link
+  {
+    font-size: 13px;
+    margin: 20px 0px;
   }
 
   .text-field-input
@@ -232,10 +240,17 @@ form .text-field
   {
     font-size : 14px;
   }
+}
 
-  .signup_link
+@media all and (max-width : 340px)
+{
+  .container-login
   {
-    font-size: 14px;
-    margin: 20px 0px;
+    width : 90%;
+  }
+
+  .container-for-login h1
+  {
+    font-size: 26px;
   }
 }

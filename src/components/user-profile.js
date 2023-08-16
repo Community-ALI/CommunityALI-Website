@@ -5,6 +5,7 @@ import { Buffer } from 'buffer';
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState('no username associated with token')
   const dropdownRef = useRef(null);
+  const dropdownIconRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,9 +82,14 @@ const UserProfileCircle = (Logout) => {
 
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const closeDropdown = () => 
+  {
+    setShowDropdown(false);
+  };
+
   const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  }
+    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
+  };
 
   function Logout() {
     localStorage.removeItem('token');
@@ -93,8 +99,12 @@ const UserProfileCircle = (Logout) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowDropdown(false);
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        event.target !== dropdownIconRef.current
+      ) {
+        closeDropdown();
       }
     };
 
@@ -107,7 +117,7 @@ const UserProfileCircle = (Logout) => {
 
   return (
     <div className="user-profile-circle relative">
-      <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} />
+      <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} ref={dropdownIconRef} />
       <div ref={dropdownRef} className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-100px] py-4 --tw-shadow-color: #000
       top-16 transition-opacity duration-300 z-50 w-[165px] ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
         <a className='transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3' href="/profile">

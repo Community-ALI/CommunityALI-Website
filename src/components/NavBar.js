@@ -195,7 +195,7 @@ function NavBar(props) {
                         MJC
                     </a>
 
-                    <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
+                    <LoginButton ShowLoginPopup={showLoginPopup} token={token}/>
                     <SignUpButton ShowSignupPopup={showSignupPopup} token={token}></SignUpButton>
                 </nav>
             </div>
@@ -213,18 +213,21 @@ function NavBar(props) {
 
             <div
                 className={"navigation-hamburger" + (showNavBarMobile ? " active" : "")}
-                onClick={() => setShowNavBarMobile(!showNavBarMobile)}
             >
-                <div>
+                <div className='mr-[12px]' onClick={() => setShowNavBarMobile(!showNavBarMobile)}>
                     <div className="navigation-line"></div>
                     <div className="navigation-line"></div>
                     <div className="navigation-line"></div>
                 </div>
 
-                <div id="navigation-logo-container">
+               
                     <a href="/">
                         <img src="photos-optimized/TeamLogo-opt.png" alt='Photos/NoPhoto.webp' className="navbar-logo mobileLogo" />
                     </a>
+                
+
+                <div>
+                    <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
                 </div>
             </div>
 
