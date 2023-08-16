@@ -25,6 +25,7 @@ import Reset_Password from "./pages/account/reset-password";
 import NotFound from "./components/NotFound";
 import SignupPopup from "./components/SignupPopup";
 import ManagementSelectionPage from "./pages/administrator/managementSelectionPage";
+import Administration from "./pages/administrator/administration";
 
 import "./style.scss";
 import "../public/stylesheets/style.css";
@@ -53,6 +54,7 @@ function App() {
           path="/administrator-my-service-selection"
           element={<ManagementSelectionPage />}
         />
+        <Route path="/administration" element={<Administration />} />
 
         {/* my services pages */}
         <Route path="/my-services" element={<My_Services_Main_Page />} />
