@@ -128,7 +128,7 @@ function Services(props) {
 
   // return the page
   return (
-    <>
+    <div>
       <title> Explore Services </title>
       <div className="loader-wrapper">
         <span className="loader">
@@ -153,8 +153,8 @@ function Services(props) {
               SetShowServices={setShowServices}
             />} */}
       {showServices && <DisplayAllServices services={services} />}
-    </>
+    </div>
   );
 }
 
-export default Services;
+export default ServicesDisplay;
