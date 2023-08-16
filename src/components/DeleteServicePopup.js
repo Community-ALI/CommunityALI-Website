@@ -64,7 +64,7 @@ function DeleteServicePopup(props) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
-                        <h1 id="delete-header" >Are you sure you want to delete "{props.serviceTitle}"? THIS ACTION CANNOT BE UNDONE ONCE DELETED! </h1>
+                        <h1 id="delete-header" >Are you sure you want to delete {props.serviceTitle}? THIS ACTION CANNOT BE UNDONE! </h1>
                         <form id="login" onSubmit={deleteService}>
                             <div className="text-field">
                                 <input 
