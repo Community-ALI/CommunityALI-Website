@@ -12,6 +12,8 @@ module.exports = {
       'sm': {'max': '480px'},
       'xsm': {'max': '350px'},
       // => @media (max-width: 850px)
+
+      'mdd': {'min': '480px'},
     },
     extend: {
       colors: {

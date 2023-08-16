@@ -56,15 +56,14 @@ function MyServicePageDisplay(props) {
 
   return (
     <div className="user-service-container px-[5%] lr:flex-col lr:items-center">
-
-      <div className="flex items-center w-[80%] my-[20px] mx-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
-        duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:w-[86%] lr:w-[92%]" id={service.title} onClick={handleBackgroundClick} >
-        <img className="w-[210px] rounded-[20px] xlr:w-[180px] lr:w-[160px]" src={imageUrl}/>
+      <div className="flex items-center w-[80%] my-[20px] mx-[15px] max-w-[1200px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
+        duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:w-[86%] lr:w-[92%] md:w-[95%]" id={service.title} onClick={handleBackgroundClick} >
+        <img className="w-[210px] rounded-[20px] xlr:w-[180px] lr:w-[160px] sm:w-[130px] xsm:w-[100px]" src={imageUrl}/>
         <div className="flex justify-between w-[100%] px-[30px] xlr:px-[20px] md:flex-col md:px-[10px] md:py-[10px]">
           <div className="text-white text-[140%] xxlr:text-[120%] xlr:text-[110%] lr:text-[100%] xlr:items-center font-medium text-left overflow-hidden 
-          overflow-ellipsis w-[60%] xxlr:text-start xxlr:max-w-[400px] xlr:max-w-[300px] md:w-[100%] md:text-center md:line-clamp-2">{service.title}</div>
+          overflow-ellipsis w-[60%] xxlr:text-start xxlr:max-w-[400px] xlr:max-w-[300px] md:w-[100%] md:text-center md:line-clamp-2 sm:text-[90%] xms:text-[60%]">{service.title}</div>
           <Notifications notifications={notifications ? notifications.length : 0} />
-          <div className="flex items-center flex-wrap lr:justify-end md:justify-center md:mt-[10px]">
+          <div className="flex items-center flex-wrap lr:justify-end md:justify-center md:mt-[10px] sm:hidden">
             <a href={`edit-service?service=${service.title}`}>
               <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/EditIcon.png"></img>
             </a>
@@ -81,11 +80,22 @@ function MyServicePageDisplay(props) {
         </div> 
       </div>
 
-      <div className="flex items-center content-center flex-wrap text-center justify-center text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
-        duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%]">
+      <div className="flex items-center content-center flex-wrap text-center justify-center max-w-[300px] text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white 
+        rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
+        xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] mdd:hidden">
+         <a href={`edit-service?service=${service.title}`}>
+              <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/EditIcon.png"></img>
+            </a>
+            <a href={`view-applicants?service=${service.title}`}>
+              <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/ApplicantsIcon.png"></img>
+            </a>
+      </div>
+
+      <div className="flex items-center content-center flex-wrap text-center justify-center max-w-[300px] text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white 
+        rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
+        xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] sm:text-[80%] xsm:text-[80%]">
         <p> Manage <span className="text-[var(--accent-color)] text-[110%]"> Members </span> and Send <span className="text-[var(--accent-color)] text-[110%]"> Updates </span> </p>
       </div>
-        
     </div>
   );
 }
@@ -144,19 +154,19 @@ function MyServicesHome() {
       <NavBar isFixedPage={false} />,
 
       <div className='flex justify-center lr:mt-[100px]'>
-          <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px]'}>
+          <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] sm:px-[10px]'}>
               <div className='flex flex-col gap-3'>
-                  <div className="flex flex-row justify-between gap-3">
+                  <div className="flex flex-row justify-between gap-3 sm:flex-col">
                       <button className='blue-container px-[15px]' onClick={() => {window.location.href = '/'}}>&lt;&lt; BACK</button>
-                      <div className="flex justify-end gap-3">
-                        <a className='blue-container px-[24px] py-[10px]' href="/categories-page"> Create a New Service + </a>
-                      </div>
+                      <button className="blue-container flex justify-center gap-3">
+                        <a className='px-[24px]' href="/categories-page"> Create a New Service + </a>
+                      </button>
                   </div>
     
               </div>
               <div className='flex flex-col items-center'>
                   <div className='w-[100%] mb-5'>
-                      <div className="text-white font-medium text-[28px] ml-8 mb-[10px] mt-[40px] lr:text-[22px]"> {"Services Owned By " + username} </div>
+                      <div className="text-white font-medium text-[28px] ml-8 mb-[10px] mt-[40px] lr:text-[22px] sm:text-[18px] md:text-center md:ml-0"> {"Services Owned By " + username} </div>
                       <hr className="border-[1.5px]"/>
                   </div>
               </div>
