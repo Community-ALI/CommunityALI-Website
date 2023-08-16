@@ -10,7 +10,7 @@ function Services(props) {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <ServicesDisplay />
+      <ServicesDisplay  startingfilter={props.startingfilter}/>
       <Footer />
     </div>
   );

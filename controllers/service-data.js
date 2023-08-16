@@ -110,7 +110,7 @@ const find_filter_service = async function (sortingType, serviceTypeStr,
       ...(categories.includes('all')) ? {}
         : { categories: { $in: categories } },
       ...(users.includes('all')) ? {} 
-        : { user: user }
+        : { user: users }
     }
     services = await Services.find(query)
       .select(fields)

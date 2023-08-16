@@ -67,14 +67,14 @@ function DisplayAllServices(props) {
   );
 }
 
-function Services(props) {
+function ServicesDisplay(props) {
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState("alphabetical");
   const [serviceTypeFilter, setServiceTypeFilter] = useState([
     props.startingfilter,
   ]);
   const [userFilter, setUserFilter] = useState(
-    (props.userFilter) ? props.userFilter : ['all']
+    props.userFilter ? props.userFilter : ["all"]
   );
   const [categoriesFilter, setCategoriesFilter] = useState(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -102,8 +102,11 @@ function Services(props) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
         }
 
+
         const response = await fetch(url);
+        console.log(response);
         const data = await response.json();
+        console.log(data);
         setServices(data || []);
 
         const loaderWrapper = document.querySelector(".loader-wrapper");
