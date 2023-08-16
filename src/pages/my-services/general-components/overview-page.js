@@ -2,8 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import '../add-service.css';
 
 function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = false}) {
-
-  const [tisOpen, setTisOpen] = useState(false); 
+  const fileInputRef = useRef(null);
 
   const schoolOptions = [
     "Agriculture",
@@ -18,28 +17,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     "Other"
   ];
 
-  const toggleSelectOption = () => {
-    setTisOpen(!tisOpen);
-  }
-
-  const [fileContainerID, setFileContainerID] = useState('file-container');
-  const fileUploadText = useRef();
-  useEffect(() => {
-    if (formData.file) {
-      setFileContainerID('file-container-with-file');
-      const element = fileUploadText.current;
-      element.textContent = `File uploaded! (${formData.file.name})`;
-    } else {
-      setFileContainerID('file-container');
-      const element = fileUploadText.current;
-      if (editMode === false){
-        element.textContent = 'Click to upload a single image File';
-      }
-      else{
-        element.textContent = `Click to change ${serviceType.toLowerCase()} thumbnail`
-      }
-    }
-  }, [formData.file]);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -79,29 +56,30 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
   };
   
 
+  const uploadClicked = () => {
+    fileInputRef.current.click();
+  }
+
   return (
     <div>
-      <div className="service-info-container">
-        <div className="file-container" id={fileContainerID}>
+      <div className="service-info-container" >
+      {formData.file ? <img onClick={uploadClicked} className="service-image-container" src={formData.file ? URL.createObjectURL(formData.file) : ""} alt="" />
+      : <div className="file-container" onClick={uploadClicked}>
           <header>{serviceType} Photo Uploader</header>
-          <label className="file-form" htmlFor="file-input">
-            <i className="fas fa-cloud-upload-alt" id="file-icon" />
-            {editMode === false? (
-              <p ref={fileUploadText}>Click to upload a single image File</p>
-            ) : (
-              <p ref={fileUploadText}>Click to change {serviceType.toLowerCase()} thumbnail</p>
-            )}
-          </label>
-          <input
-            className="file-input"
-            id="file-input"
-            type="file"
-            name="file"
-            onChange={handleFileChange}
-          />
-          <section className="progress-area" />
-          <section className="uploaded-area" />
-        </div>
+          <i className="fas fa-cloud-upload-alt" id="file-icon" />
+          <p >Click to upload a single image File</p>
+      </div>
+          
+    }
+    <input
+      className="file-input"
+      id="file-input"
+      type="file"
+      name="file"
+      onChange={handleFileChange}
+      ref={fileInputRef}
+    />
+
 
         <div className="service-details">
           <div className="service-author">

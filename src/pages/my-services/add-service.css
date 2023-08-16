@@ -100,7 +100,9 @@ input[data-autocompleted]
 .service-image-container
 {
     width : 40%;
+    max-height: 350px;
     border-radius : 20px;
+    object-fit: cover;
 }
 
 #service-navbar-plus
@@ -1077,7 +1079,9 @@ section .details span
     .service-image-container
     {
         width : 70%;
+        max-height: 350px;
         margin-bottom: 40px;
+        object-fit: cover;
     }
 
 
@@ -1215,6 +1219,8 @@ section .details span
     .service-image-container
     {
         width : 90%;
+        max-height: 350px;
+        object-fit: cover;
     }
 
 
