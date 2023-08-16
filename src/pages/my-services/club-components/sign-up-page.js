@@ -139,8 +139,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
           })
             .then(response => response.json())
             .then(data => {
-              // Handle response from the server
-              navigate('/services'); // Navigate to the new page without triggering beforeunload event
+              if (data.success){
+                navigate('/services'); // Navigate to the new page without triggering beforeunload event
+              }
+              else{
+                alert(data.error);
+              }
             })
             .catch(error => {
               // Handle error

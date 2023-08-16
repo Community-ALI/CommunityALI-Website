@@ -1,10 +1,10 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {BASE_BACKEND_URL} from '../config.js'
 import { Buffer } from 'buffer';
 
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState('no username associated with token')
-
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +32,7 @@ const UserProfileCircle = (Logout) => {
 
     fetchData();
   }, []);
+
   const [imageUrl, setImageUrl] = useState("photos-optimized/user-pic.png");
 
   useEffect(() => {
@@ -90,24 +91,33 @@ const UserProfileCircle = (Logout) => {
     window.location.href = '/';
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="user-profile-circle relative">
       <img className="user-profile-image" src={imageUrl} alt={username} onClick={toggleDropdown} />
-      <div className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-100px] py-4 --tw-shadow-color: #000
+      <div ref={dropdownRef} className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-100px] py-4 --tw-shadow-color: #000
       top-16 transition-opacity duration-300 z-50 w-[165px] ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
         <a className='transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3' href="/profile">
           <i className="fa-solid fa-user" style={{ color: '#ffffff' }}></i>
           <p className='px-4 text-white'>Profile</p>
         </a> 
-        {/* <button className='flex justify-center items-center hover:bg-[#ecaa1e] px-4' href="enter link here">
-          <i className="fa-solid fa-marker" style={{ color: '#ffffff' }}></i>
-          <p className='px-4 text-white'>Edit Profile</p>
-        </button> */}
+
         <button onClick={Logout} className=' transition-colors flex justify-center items-center hover:bg-[#00468D] px-4 py-3'>
           <i className="fa-solid fa-right-from-bracket" style={{ color: '#ffffff' }}></i>
-          <p
-            className='px-4 text-white'
-          >Logout</p>
+          <p className='px-4 text-white'>Logout</p>
         </button>
       </div>
     </div>

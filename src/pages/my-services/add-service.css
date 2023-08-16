@@ -22,18 +22,16 @@ input[data-autocompleted]
 .service-container
 {
     color: white;
-    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     transition: 300ms ease;
     position: relative;
-    padding-top: 100px;
+    padding-top: 30px;
 }
 
 .service-title
 {
     color: white;
     font-size: clamp(25px, 2.3vw, 32px);
-    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     text-decoration: none;
     text-align: center;
@@ -79,7 +77,6 @@ input[data-autocompleted]
     text-decoration: none;
     color: white;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
     cursor: pointer;
     font-weight: 400;
     transition: 300ms ease;
@@ -171,7 +168,6 @@ input[data-autocompleted]
     margin-bottom: 10px;
     color: white;
     font-size: 18px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     cursor: pointer;
 }
@@ -182,7 +178,6 @@ input[data-autocompleted]
     margin-bottom: 60px;
     border: 2px solid #ccc;
     border-radius: 4px;
-    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     width: 100%;
     color: #001E60;
@@ -209,7 +204,6 @@ input[data-autocompleted]
     border-radius: 4px;
     cursor: pointer;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
     transition: 300ms ease;
@@ -233,7 +227,6 @@ input[data-autocompleted]
     border-radius: 4px;
     cursor: pointer;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     cursor: pointer;
     letter-spacing: 2px;
@@ -310,7 +303,6 @@ input[data-autocompleted]
     color: white;
     background-color: #00468D;
     font-size: clamp(8px, 3vh, 20px);
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
     position: relative;
@@ -340,7 +332,6 @@ input[data-autocompleted]
     color: white;
     background-color: #00468D;
     font-size: clamp(10px, 4vh, 20px);
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
     padding: 25px 45px;
@@ -377,7 +368,6 @@ input[data-autocompleted]
     color: white;
     background-color: #00468D;
     font-size: clamp(10px, 4vh, 20px);
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
     padding: 25px 45px;
@@ -390,7 +380,6 @@ input[data-autocompleted]
 {
     width : 100%;
     padding: 8px 10px;
-    font-family: 'Poppins', sans-serif;
     font-size: clamp(10px, 4vh, 20px);
     margin-bottom: 20px;
     margin-top : 10px;
@@ -425,7 +414,6 @@ input[data-autocompleted]
 {
     color: white;
     font-size: clamp(20px, 2.3vw, 32px);
-    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     text-decoration: none;
     text-align: center;
@@ -444,7 +432,6 @@ input[data-autocompleted]
 .club-title-text-box
 {
     padding: 4px 10px;
-    font-family: 'Poppins', sans-serif;
     font-size: clamp(22px, 3vw, 32px);
     text-align: center;
     width : 80%;
@@ -456,7 +443,6 @@ input[data-autocompleted]
 
 .meeting-details-title-box
 {
-    font-family: 'Poppins', sans-serif;
     font-size: clamp(15px, 2.3vw, 25px);
     width : 80%;
     text-align: center;
@@ -469,7 +455,6 @@ input[data-autocompleted]
 .meeting-details-text-box
 {
     padding: 4px 10px;
-    font-family: 'Poppins', sans-serif;
     font-size: clamp(8px, 3vh, 20px);
     width : 80%;
     background : none;
@@ -486,7 +471,6 @@ input[data-autocompleted]
 .contacts-text-box
 {
     padding: 4px 10px;
-    font-family: 'Poppins', sans-serif;
     font-size: clamp(8px, 3vh, 20px);
     width : 60%;
     background : none;
@@ -499,7 +483,6 @@ input[data-autocompleted]
 .contacts-email-box
 {
     padding: 4px 10px;
-    font-family: 'Poppins', sans-serif;
     font-size: clamp(8px, 3vh, 20px);
     width : 82%;
     background : none;
@@ -564,7 +547,6 @@ input[data-autocompleted]
     color: white;
     background-color: #00468D;
     font-size: clamp(8px, 3vh, 20px);
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 50px;
     position: relative;
@@ -593,7 +575,6 @@ input[data-autocompleted]
     border-radius: 4px;
     cursor: pointer;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
     transition: 300ms ease;
@@ -611,7 +592,6 @@ input[data-autocompleted]
     border-radius: 4px;
     cursor: pointer;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
     transition: 300ms ease;
@@ -682,7 +662,6 @@ input[data-autocompleted]
     font-size: clamp(20px, 2.3vw, 25px);
     font-weight: 500;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
 }
 
 .file-container:hover {
@@ -743,7 +722,6 @@ section .row i
 {
     color: white;
     font-size: 30px;
-    font-family: 'Poppins', sans-serif;
 }
 
 section .details span
@@ -769,7 +747,6 @@ section .details span
 .add-page-button
 {
     font-size: 18px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     text-decoration: none;
     color: white;
@@ -813,7 +790,6 @@ section .details span
 {
     color: #001E60;
     font-size: 15px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     text-decoration: none;
     background-color: #ecaa1e;
@@ -829,7 +805,6 @@ section .details span
 {
     color: white;
     font-size: 15px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     text-decoration: none;
     background-color: transparent;

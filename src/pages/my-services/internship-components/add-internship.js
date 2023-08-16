@@ -58,6 +58,11 @@ function AddInternship() {
     const handleShowPromptChange = (value) => {
       setShowPrompt(value);
     };
+
+    useEffect(() => 
+    {
+      document.title = 'Internship Editor | Community ALI';
+    }, []);
   
     useEffect(() => {
       const handleBeforeUnload = (event) => {

@@ -6,6 +6,11 @@ import { BASE_BACKEND_URL } from '../../config';
 function ForgotPasswordForm() {
   const [email, setEmail] = useState('');
 
+  useEffect(() => 
+  {
+    document.title = 'Forgot Password | Community ALI';
+  }, []);
+
   async function handleSubmit(event) {
     event.preventDefault();
     console.log('Email submitted:', email);

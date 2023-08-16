@@ -56,6 +56,11 @@ function AddClub() {
     setShowPrompt(value);
   };
 
+  useEffect(() => 
+  {
+    document.title = 'Club Editor | Community ALI';
+  }, []);
+
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       if (showPrompt){

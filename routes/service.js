@@ -36,7 +36,7 @@ router.get('/get-all-services/:sorting/:serviceType/:categories/:users', async f
                 req.params.sorting, req.params.serviceType, req.params.categories,
                 req.params.users);
         res.json(all_services);
-        console.log("filtered services sent")
+        console.log("filtered services sent");
     } catch (error) {
         console.log(error)
         res.json({ success: false, error: 'internal server error' });
@@ -88,15 +88,18 @@ async function storeEditService(req, res) {
         const service = await service_data.get_one_service(service_name);
         if (service.user == username) {
 
-            const success = await service_data.editService(req, username);
-            console.log(success)
-            if (success) {
+            const result = await service_data.editService(req, username);
+            if (result.success) {
                 console.log('service edited by', username);
                 res.json({ success: true });
             }
-            else {
-                console.log('problem uploading service to database');
-                res.json({ success: false, error: 'internal detabase error' });
+            else{
+                console.log(result.error);
+                if (result.error.code === 11000) {
+                    res.json({ success: false, error: `We're sorry, but another service with the name "${req.body.title}" already exists.  Please choose a different name, or use your original service name.` });
+                } else {
+                    res.json({ success: false, error: 'An error occurred while updating the service. Please try again later!' });
+                }
             }
         }
         else {
@@ -105,12 +108,13 @@ async function storeEditService(req, res) {
             res.json({ success: false, error: 'unauthorized' });
         }
     } catch (error) {
-        console.log(error)
-        res.json({ success: false, error: 'internal server error' });
+        console.log(error);
+        res.json({ success: false, error: 'An error occurred while updating the service. Please try again later!' });
     }
 }
 
 router.post("/upload-service", upload.single("image"), async function (req, res) {
+    console.log('service uploading...');
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -119,14 +123,19 @@ router.post("/upload-service", upload.single("image"), async function (req, res)
         if (account) {
             const requestedServiceType = req.body.serviceType;
             if ((requestedServiceType == 'Club' && account.clubAdmin) || (requestedServiceType == 'Internship' && account.internshipAdmin)) {
-                const success = await service_data.store_add_service(req, username);
-                if (success) {
+                const result = await service_data.store_add_service(req, username);
+                if (result.success) {
                     console.log(`new ${req.body.serviceType} added by ${username}`);
                     res.json({ success: true });
                 }
-                else {
-                    console.log('problem uploading service to database');
-                    res.json({ success: false, error: 'internal database error' });
+                else{
+                    console.log(result.error.code);
+                    if (result.error.code === 11000) {
+                        res.status(400).json({ success: false, error: `We're sorry, but another service with the name "${req.body.title}" already exists.  Please choose a different name.` });
+                    } 
+                    else{
+                        res.status(500).json({ success: false, error: 'An error occurred while adding the service. Please try again later.' });
+                    }
                 }
             }
             else {
@@ -140,10 +149,10 @@ router.post("/upload-service", upload.single("image"), async function (req, res)
             res.json({ success: false, error: 'unauthorized' });
         }
     } catch (error) {
-        console.log(error)
-        res.json({ success: false, error: 'internal server error' });
+        console.log(error);
+        res.status(500).json({ success: false, error: 'An error occurred while adding the service. Please try again later.' });
+
     }
-    // authorize user
 });
 
 router.get("/get-service-notifications", async function (req, res) {

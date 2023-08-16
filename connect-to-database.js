@@ -15,6 +15,7 @@ const serviceSchema = {
     thumbnail: Buffer,
     photo: Buffer,        
     pages: JSON,
+    categories: Array,
     datePosted: String,
     timePosted: String,
     user: String

@@ -4,6 +4,12 @@ import NavBar from '../../components/NavBar';
 import Footer from "../../components/Footer";
 
 function SignupSuccess() {
+
+    useEffect(() => 
+    {
+      document.title = 'Signup Sucess | Community ALI';
+    }, []);
+
     return(
         <div>
             <title> Sign-Up Success Page </title>

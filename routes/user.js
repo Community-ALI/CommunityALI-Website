@@ -346,12 +346,13 @@ router.post('/token-change-password', async (req, res) => {
 });
 
 // send a user their services
-router.get("/get-user-services", async function (req, res) {
+router.post("/get-user-services", async function (req, res) {
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
         const username = decodedToken.username;
-        const user_services = await user_data.get_user_services(username);
+        console.log(req.body);
+        const user_services = await user_data.get_user_services(username, req.body.requestedFields);
 
         res.json({
             dataServices: user_services,

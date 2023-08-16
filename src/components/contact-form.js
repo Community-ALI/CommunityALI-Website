@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './contact-form.css';
 import NavBar from './NavBar';
 import emailjs from 'emailjs-com';
@@ -14,6 +14,11 @@ function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
+  useEffect(() => 
+  {
+    document.title = 'Contact Form | Community ALI';
+  }, []);
 
   const sendMail = (e) => {
     e.preventDefault();
@@ -47,7 +52,6 @@ function ContactForm() {
 
   return (
     <>
-      <title> Contact Form </title>
       <NavBar isFixedPage={false} />
       <div className = {'text-white flex flex-wrap justify-center pt-5 mb-20 max-[850px]:pt-[100px]'}>
         <div className = {'text-center mx-[12%] max-[480px]:mx-[30px]'}>

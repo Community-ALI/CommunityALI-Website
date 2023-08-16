@@ -167,7 +167,7 @@ function NavBar(props) {
             <div className={"navigation-bar" + (props.isFixedPage ? '' : " navigation-bar-not-fixed") + (showNavBarMobile ? " active" : "")} >
                 <nav className={"navigation-menu" + (hasScrolled ? ' navigation-bar-scrolled' : '')} >
                     <a href="/">
-                        <img src="photos-optimized/TeamLogo-opt.png" alt='Photos/NoPhoto.webp' className="navbar-logo" />
+                        <img src="/photos-optimized/TeamLogo-opt.png" alt='ALI logo' className="navbar-logo" />
                     </a>
 
                     {!isMobile &&
@@ -177,7 +177,7 @@ function NavBar(props) {
                                 placeholder="Search..."
                                 ref={searchRef}
                             />
-                            <img src="Photos/search.png" alt='Photos/NoPhoto.webp' id="navigation-search-bar-icon" />
+                            <img src="/Photos/search.png" alt='Search icon' id="navigation-search-bar-icon" />
                         </div>
                     }
 
