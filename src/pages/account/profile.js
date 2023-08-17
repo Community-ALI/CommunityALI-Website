@@ -340,15 +340,15 @@ function Profile() {
             <div className='profile-section-input'> {new Date(account.dateCreated).toLocaleDateString()} </div>
           </div>
 
-          <div className="profile-section-container">
+          {/* <div className="profile-section-container">
             <div className='profile-section-title'> Total Services Owned </div>
             <div className='profile-section-input'> {services.length || 0} </div>
-          </div>
+          </div> */}
 
-          <div className="profile-section-container">
+          {/* <div className="profile-section-container">
             <div className='profile-section-title'> Total Services Applied </div>
             <div className='profile-section-input'> {applications.length || 0} </div>
-          </div>
+          </div> */}
         </div>
 
         <input type="button" className="profile-save-button"
