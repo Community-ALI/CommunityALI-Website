@@ -236,9 +236,8 @@ function AddClub() {
             onBlur={hide}
             tabIndex="0"
           >
-            <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
-              {showPopUp && <PopUp />}
-            </i>
+            <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus" />
+            {showPopUp && <PopUp />}
           </div>
         </div>
 

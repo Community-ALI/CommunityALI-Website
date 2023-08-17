@@ -214,7 +214,10 @@ function NavBar(props) {
                         MJC
                     </a>
 
-                    <LoginButton ShowLoginPopup={showLoginPopup} token={token}/>
+                    {isMobile && window.innerWidth <= 850 ? null : (
+                        <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
+                    )}
+                    
                     <SignUpButton ShowSignupPopup={showSignupPopup} token={token}></SignUpButton>
                 </nav>
             </div>
@@ -230,6 +233,7 @@ function NavBar(props) {
                 </div>
             }
 
+
             <div
                 className={"navigation-hamburger" + (showNavBarMobile ? " active" : "")}
             >
@@ -239,12 +243,10 @@ function NavBar(props) {
                     <div className="navigation-line"></div>
                 </div>
 
-               
                     <a href="/">
                         <img src="photos-optimized/TeamLogo-opt.png" alt='Photos/NoPhoto.webp' className="navbar-logo mobileLogo" />
                     </a>
                 
-
                 <div>
                     <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
                 </div>
