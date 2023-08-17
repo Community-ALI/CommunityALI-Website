@@ -89,10 +89,12 @@ exports.store_add_service = async function (req, username) {
   }
 };
 
-const find_filter_service = async function (sortingType, serviceType, fields, categories) {
+const find_filter_service = async function (sortingType, serviceTypeStr,
+  fields, categoriesStr, usersStr) {
   try {
-    serviceTypes = serviceType.split(',');
-    categories = categories.split('>');
+    const serviceTypes = serviceTypeStr.split(',');
+    const users = usersStr.split(',');
+    const categories = categoriesStr.split('>');
     console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}`);
     var sort;
     switch (sortingType) {
@@ -102,34 +104,19 @@ const find_filter_service = async function (sortingType, serviceType, fields, ca
       default:
         sort = 1;
     }
-    if (serviceTypes.includes('all') & categories.includes('all')) {
-      services = await Services.find()
-        .select(fields)
-        .sort({ title: sort })
-        .exec();
-    } else if (serviceTypes.includes('all')) {
-      services = await Services.find({
-        categories: { $in: categories }
-      })
-        .select(fields)
-        .sort({ title: sort })
-        .exec();
-    } else if (categories.includes('all')) {
-      services = await Services.find({
-        serviceType: { $in: serviceTypes }
-      })
-        .select(fields)
-        .sort({ title: sort })
-        .exec();
-    } else {
-      services = await Services.find({
-        serviceType: { $in: serviceTypes },
-        categories: { $in: categories }
-      })
-        .select(fields)
-        .sort({ title: sort })
-        .exec();
+    const query = {
+      ...(serviceTypes.includes('all')) ? {}
+        : { serviceType: { $in: serviceTypes } },
+      ...(categories.includes('all')) ? {}
+        : { categories: { $in: categories } },
+      ...(users.includes('all')) ? {} 
+        : { user: users }
     }
+    services = await Services.find(query)
+      .select(fields)
+      .sort({ title: sort })
+      .exec();
+
     return services;
   } catch (err) {
     console.log(err);
@@ -138,11 +125,13 @@ const find_filter_service = async function (sortingType, serviceType, fields, ca
 }
 
 // get all services from database
-exports.get_services = async function (keywords, fields, sortingType, serviceType, categories) {
+exports.get_services = async function (keywords, fields, sortingType,
+  serviceType, categories, users) {
   try {
     filteredData = [];
-    foundServices = await find_filter_service(sortingType, serviceType, fields, categories);
-    
+    foundServices = await find_filter_service(sortingType, serviceType,
+      fields, categories, users);
+
     filterAttribute = 'title';
     if (keywords != undefined) {
       keywords = keywords.trim();
@@ -211,7 +200,7 @@ const generateThumbnail2 = async function (photoBuffer) {
     const thumbnailBinData = Buffer.from(thumbnailBase64, 'base64');
 
     // Update the service object with the thumbnail field as BinData
-    
+
     return thumbnailBinData;
   } catch (error) {
     console.log(error);

@@ -25,7 +25,7 @@ export default function ManagementSelectionPage() {
                 </div>
                 <div className='flex flex-wrap justify-center'>
                     <Link className='flex m-8 hoverable-blue-container' 
-                        to='/administation'>
+                        to='/administration'>
                             <div className='flex flex-col items-center
                             w-[341px] px-[50px] py-8 gap-3'>
                                 <img src='/Photos/admin.png'/>

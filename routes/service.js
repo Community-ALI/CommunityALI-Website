@@ -26,14 +26,15 @@ router.get("/get-one-service", async function (req, res) {
 });
 
 // send the user every service
-router.get('/get-all-services/:sorting/:serviceType/:categories', async function (req, res) {
+router.get('/get-all-services/:sorting/:serviceType/:categories/:users', async function (req, res) {
     //updateServicesWithThumbnails();
     try {
         console.log(req.params);
         var keywords = req.query.keyword;
         const all_services =
             await service_data.get_services(keywords, 'title thumbnail pages',
-                req.params.sorting, req.params.serviceType, req.params.categories);
+                req.params.sorting, req.params.serviceType, req.params.categories,
+                req.params.users);
         res.json(all_services);
         console.log("filtered services sent");
     } catch (error) {
