@@ -95,11 +95,11 @@ function MyServicePageDisplay(props) {
         rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
         xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] mdd:hidden sm:p-[5px]">
          <a href={`edit-service?service=${service.title}`}>
-            <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/EditIcon.png"></img>
+            <img src="Photos/EditIcon.png" className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]'></img>
           </a> 
           <a className='relative' href={`view-applicants?service=${service.title}`}> 
           <Notifications notifications={notifications ? notifications.length : 0} /> 
-            <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/ApplicantsIcon.png"></img>
+            <img src="Photos/ApplicantsIcon.png" className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]'></img>
           </a>
           {/* <a href={`view-applicants?service=${service.title}`}>
             <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/SendIcon.png"></img>
