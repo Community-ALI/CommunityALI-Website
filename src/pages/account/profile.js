@@ -54,10 +54,13 @@ function Profile() {
         const token = localStorage.getItem('token');
         if (token) {
           const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-user-services`, {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ requestedFields: 'title'})
+            });
           const data = await response.json();
           setServices(data.dataServices);
         } else {
