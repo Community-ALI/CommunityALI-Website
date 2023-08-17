@@ -57,17 +57,17 @@ const SearchResult = function (props) {
     }, [])
 
     return (
-        <div className='blue-container text-[95%] w-[100%] max-w-[600px] relative flex items-center'>
+        <div className='blue-container text-[95%] w-[100%] max-w-[600px] relative flex items-center xsm:w-[90%]'>
             <Notifications styleLeft={false} isRedDot={true} notifications={(isNotification) ? 1 : 0} />
             <div className='flex items-center justify-center w-[100%]'>
                 <img src="Photos/UserTemplateImage.png" className='w-[10%] h-[10%] py-[10px] px-[5px]' />
-                <div className='w-[100%] flex flex-col text-center justify-center px-[10px]'>
+                <div className='w-[100%] flex flex-col text-center justify-center px-[10px] sm:w-[60%] xsm:p-[0xp]'>
                     <h3 className={`text-[#ecaa1e] ${(isMobile) ? "text-[85%]" : "text-[100%]"}`}>{applicant.name}</h3>
-                    <div className='text-[12px]'>
+                    <div className='text-[12px] overflow-x-hidden overflow-auto'>
                         <p>{applicant.email}</p>
                     </div>
                 </div>
-                <div className='flex flex-col w-[100%] text-[80%] font-semibold gap-2'>
+                <div className='flex flex-col w-[50%] text-[80%] font-semibold gap-2 sm:text-[70%]'>
                     <p>{`Date: ${applicant.date}`}</p>
                     <p>{`Time: ${normalTime}`}</p>
                 </div>
@@ -156,8 +156,8 @@ function ServiceApplicants() {
     return (
         <>
             <NavBar />
-            <div className='flex justify-center'>
-                <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] lr:mt-[120px]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
+            <div className='flex justify-center mb-[60px]'>
+                <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] lr:mt-[120px] sm:px-[10px]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
                     <div className='flex flex-col gap-3'>
                         <div className="flex flex-row justify-between gap-3">
                             <button className='blue-container' onClick={() => {window.location.href = '/my-services'}}>&lt;&lt; BACK</button>
