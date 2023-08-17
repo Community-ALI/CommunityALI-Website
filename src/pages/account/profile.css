@@ -99,8 +99,8 @@
 
 .profile-image-edit-button {
     position: absolute;
-    bottom: 110px;
-    right: 30px;
+    bottom: 120px;
+    right: 20px;
     background-color: #fff; 
     border: 1px solid #ccc; 
     border-radius: 50%; 
@@ -114,6 +114,7 @@
     display: flex;
     justify-content: center; 
     align-items: center; 
+    scale: 1.1;
 }
 
 .profile-name-display
@@ -490,7 +491,11 @@
 {
     width : 250px;
     height : 250px;
+}
 
+#profile-cancel-button
+{
+    margin-top: 40px;
 }
 
 
@@ -536,10 +541,15 @@
         width: 100%;
     }
 
+    .profile-img
+    {
+        width : 70%;
+    }
+
     .profile-container
     {
         flex-direction: column;
-        padding-top: 100px;
+        padding-top: 110px;
     }
 
     .profile-details
@@ -596,6 +606,12 @@
         padding-top : 0px;
     }
 
+    .profile-image-edit-button
+    {
+        scale: 1.0;
+        bottom: 40px;
+        left: 10px;
+    }
 }
 
 @media all and (max-width : 600px)
@@ -603,13 +619,12 @@
 
     .profile-picture
     {
-        flex-direction: column;
         margin-bottom: 20px;
     }
 
-    .profile-details
+    .profile-img
     {
-        margin-left: 0px;
+        width : 70%;
     }
 
     .password-popup-content
@@ -658,6 +673,12 @@
     .profile-picture
     {
         width : 200px;
+    }
+
+    .profile-details
+    {
+        font-size: 14px;
+        margin-left: 15px;
     }
 
     .profile-input-name
@@ -717,6 +738,11 @@
         font-size: 14px;
     }
 
+    .profile-img 
+    {
+        width: 60%;
+    }
+
     .profile-analytics
     {
         margin-top: 40px;
@@ -724,8 +750,9 @@
 
     .profile-save-button
     {
-        margin-top : 40px;
-        font-size : 18px;
+        margin-top : 60px;
+        font-size : 16px;
+        padding: 12px 10px;
     }
 
     .password-popup-content
@@ -785,5 +812,38 @@
     .password-form-title
     {
         font-size: 20px;
+    }
+
+    .profile-image-edit-button
+    {
+        scale: 0.9;
+        bottom: 35px;
+        left: 25px;
+    }
+}
+
+@media all and (max-width : 360px)
+{
+    .profile-picture
+    {
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+
+    .profile-details
+    {
+        margin-left: 0px;
+    }
+
+    .profile-img
+    {
+        width: 70%;
+    }
+
+    .profile-image-edit-button
+    {
+        scale: 1;
+        top: 85px;
+        left: 140px;
     }
 }

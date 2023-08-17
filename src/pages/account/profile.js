@@ -353,7 +353,7 @@ function Profile() {
           value={buttonText}
         />
         {editMode &&
-          <input type="button" className="profile-save-button"
+          <input type="button" className="profile-save-button" id='profile-cancel-button'
             onClick={() => { location.reload() }}
             value='Cancel Edits'
           />
