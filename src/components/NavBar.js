@@ -89,6 +89,7 @@ function NavBar(props) {
     const [token, setToken] = useState(false);
     const [showNavBarMobile, setShowNavBarMobile] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+    const navigationMenuRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = event => {
@@ -103,6 +104,24 @@ function NavBar(props) {
             window.removeEventListener('scroll', handleScroll);
         };
     })
+
+    useEffect(() => {
+        const handleDocumentClick = (event) => {
+          if (
+            navigationMenuRef.current &&
+            !navigationMenuRef.current.contains(event.target) &&
+            event.target.className !== 'navigation-menu'
+          ) {
+            setShowNavBarMobile(false);
+          }
+        };
+    
+        document.addEventListener('click', handleDocumentClick);
+    
+        return () => {
+          document.removeEventListener('click', handleDocumentClick);
+        };
+      }, []);
 
     useState(() => {
         window.addEventListener('resize', (() => {
@@ -165,7 +184,7 @@ function NavBar(props) {
     return (
         <>
             <div className={"navigation-bar" + (props.isFixedPage ? '' : " navigation-bar-not-fixed") + (showNavBarMobile ? " active" : "")} >
-                <nav className={"navigation-menu" + (hasScrolled ? ' navigation-bar-scrolled' : '')} >
+                <nav className={"navigation-menu" + (hasScrolled ? ' navigation-bar-scrolled' : '')}>
                     <a href="/">
                         <img src="/photos-optimized/TeamLogo-opt.png" alt='ALI logo' className="navbar-logo" />
                     </a>
@@ -214,7 +233,7 @@ function NavBar(props) {
             <div
                 className={"navigation-hamburger" + (showNavBarMobile ? " active" : "")}
             >
-                <div className='mr-[12px]' onClick={() => setShowNavBarMobile(!showNavBarMobile)}>
+                <div className='mr-[12px]' onClick={() => setShowNavBarMobile(!showNavBarMobile)} ref={navigationMenuRef}>
                     <div className="navigation-line"></div>
                     <div className="navigation-line"></div>
                     <div className="navigation-line"></div>

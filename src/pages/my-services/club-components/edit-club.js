@@ -27,7 +27,9 @@ function AddClub() {
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
+  const [additionalPages, setAdditionalPages] = useState([]);
   const [activePage, setActivePage] = useState("Overview");
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
@@ -170,7 +172,42 @@ function AddClub() {
   }
 
   const toggleAddButtons = () => {
-    setShowAddButtons((prevState) => !prevState)
+    if (showAddButtons) {
+      setShowPopUp(false);
+    } else {
+      setAdditionalPages(
+        allPossiblePages.filter((page) => !allCurrentPages.includes(page))
+      );
+      setShowPopUp(true);
+    }
+    setShowAddButtons((prevState) => !prevState);
+  };
+
+  
+
+
+  const PopUp = () => {
+    return (
+      <div className="pop-up-container">
+        <div className="pop-up-overlay" />
+        <div className="pop-up-content">
+          <div className="pop-up-content-title">Select a New Page</div>
+          <div className="pop-up-all-pages">
+            {additionalPages.map((page) => (
+              <div className="pop-up-page" key={page}>
+                <button onClick={() => addPage(page)} className="add-page-button">
+                  Add {page} Page
+                </button>
+              </div>
+            ))}
+          </div>
+          <div className="pop-up-content-description">
+            Need more pages for your Club? Contact us for suggestions 
+            <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -200,21 +237,7 @@ function AddClub() {
             tabIndex="0"
           >
             <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
-              {showAddButtons && (
-                <div className="add-buttons-container">
-                  {allPossiblePages
-                    .filter((page) => !allCurrentPages.includes(page))
-                    .map((page) => (
-                      <button
-                        key={page}
-                        onClick={() => addPage(page)}
-                        className="add-page-button"
-                      >
-                        Add {page}
-                      </button>
-                    ))}
-                </div>
-              )}
+              {showPopUp && <PopUp />}
             </i>
           </div>
         </div>

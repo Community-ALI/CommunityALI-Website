@@ -61,7 +61,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
   }
 
   return (
-    <div>
+    <div className="mb-[100px]">
       <div className="service-info-container" >
       {formData.file ? <img onClick={uploadClicked} className="service-image-container" src={formData.file ? URL.createObjectURL(formData.file) : ""} alt="" style={{ cursor: 'pointer' }} onMouseOver={(e) => e.target.style.filter = 'brightness(70%)'} onMouseOut={(e) => e.target.style.filter = 'brightness(100%)'}/>
 

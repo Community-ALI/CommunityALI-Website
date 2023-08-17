@@ -207,6 +207,7 @@
         flex-direction: column;
         padding-top: 50px;
         font-size: 18px;
+        width: 50vw
     }
 
     .navigation-hamburger

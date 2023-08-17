@@ -72,7 +72,7 @@
     line-height: 20px;
 }
 
-@media all and (max-width : 820px)
+@media all and (max-width : 850px)
 {
     .category-container
     {
@@ -91,6 +91,11 @@
     .category-header
     {
         font-size: 28px;
+    }
+
+    .service-categories-container
+    {
+        padding-top: 120px;
     }
 }
 
