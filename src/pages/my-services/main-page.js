@@ -195,16 +195,7 @@ function MyServicesHome() {
                       <hr className="border-[1.5px]"/>
                   </div>
               </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-[100%] mb-5">
-              <div className="text-white font-medium text-[28px] ml-8 mb-[10px] mt-[40px] lr:text-[22px] sm:text-[18px] md:text-center md:ml-0">
-                {" "}
-                {"Services Owned By " + username}{" "}
-              </div>
-              <hr className="border-[1.5px]" />
-            </div>
-          </div>
+        </div>
         </div>
       <div>
         <DeleteServicePopup
