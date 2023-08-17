@@ -54,10 +54,13 @@ function Profile() {
         const token = localStorage.getItem('token');
         if (token) {
           const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-user-services`, {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ requestedFields: 'title'})
+            });
           const data = await response.json();
           setServices(data.dataServices);
         } else {
@@ -337,15 +340,15 @@ function Profile() {
             <div className='profile-section-input'> {new Date(account.dateCreated).toLocaleDateString()} </div>
           </div>
 
-          <div className="profile-section-container">
+          {/* <div className="profile-section-container">
             <div className='profile-section-title'> Total Services Owned </div>
             <div className='profile-section-input'> {services.length || 0} </div>
-          </div>
+          </div> */}
 
-          <div className="profile-section-container">
+          {/* <div className="profile-section-container">
             <div className='profile-section-title'> Total Services Applied </div>
             <div className='profile-section-input'> {applications.length || 0} </div>
-          </div>
+          </div> */}
         </div>
 
         <input type="button" className="profile-save-button"

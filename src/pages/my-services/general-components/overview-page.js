@@ -63,7 +63,8 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
   return (
     <div>
       <div className="service-info-container" >
-      {formData.file ? <img onClick={uploadClicked} className="service-image-container" src={formData.file ? URL.createObjectURL(formData.file) : ""} alt="" />
+      {formData.file ? <img onClick={uploadClicked} className="service-image-container" src={formData.file ? URL.createObjectURL(formData.file) : ""} alt="" style={{ cursor: 'pointer' }} onMouseOver={(e) => e.target.style.filter = 'brightness(70%)'} onMouseOut={(e) => e.target.style.filter = 'brightness(100%)'}/>
+
       : <div className="file-container" onClick={uploadClicked}>
           <header>{serviceType} Photo Uploader</header>
           <i className="fas fa-cloud-upload-alt" id="file-icon" />
