@@ -73,7 +73,7 @@ function MyServicePageDisplay(props) {
             <a href={`edit-service?service=${service.title}`}>
               <img
                 className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]"
-                src="photos/EditIcon.png"
+                src="Photos/EditIcon.png"
               ></img>
             </a>
             <a className='relative' href={`view-applicants?service=${service.title}`}>
