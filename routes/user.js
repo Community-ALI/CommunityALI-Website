@@ -270,7 +270,7 @@ router.post("/forgot-password", async (req, res) => {
       sendEmail(
         email,
         "Forgot password",
-        `A password reset has been requested for the account associated with this email. If you did not request this email, you can safely ignore it. Otherwise, if you meant to send this email, your link to reset your password is: https://www.communityali.org/reset-password?token=${token}`
+        `A password reset has been requested for the account associated with this email. If you did not request this email, you can safely ignore it. Otherwise, if you meant to send this email, your link to reset your password is: https://www.communityali.com/reset-password?token=${token}`
       );
       res.json({ status: "ok" });
     } else {
