@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
 import {BASE_BACKEND_URL} from '../../config.js'
-import './main-page.css';
 import '../../../public/stylesheets/style.css'
 import '../../components/loading-screen.css'
 import NavBar from '../../components/NavBar';

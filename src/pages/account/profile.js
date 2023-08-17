@@ -333,7 +333,7 @@ function Profile() {
 
         <div className='profile-analytics'>
           <div className='profile-section-container'>
-            <div className='profile-section-title'> Profile Created </div>
+            <div className='profile-section-title'> Profile Made On</div>
             <div className='profile-section-input'> {new Date(account.dateCreated).toLocaleDateString()} </div>
           </div>
 
@@ -355,7 +355,7 @@ function Profile() {
         {editMode &&
           <input type="button" className="profile-save-button"
             onClick={() => { location.reload() }}
-            value='cancel'
+            value='Cancel Edits'
           />
         }
       </div>

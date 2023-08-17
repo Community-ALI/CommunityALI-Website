@@ -701,14 +701,25 @@
         width : 100%;
     }
 
-    .profile-analytics
-    {
-        flex-direction: column; 
-    }
-
     .profile-section-container
     {
         margin-bottom: 30px;
+        margin: 0px 10px;
+    }
+
+    .profile-section-title
+    {
+        font-size: 14px;
+    }
+
+    .profile-section-input
+    {
+        font-size: 14px;
+    }
+
+    .profile-analytics
+    {
+        margin-top: 40px;
     }
 
     .profile-save-button
