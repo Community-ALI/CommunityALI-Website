@@ -31,6 +31,7 @@ import "./style.scss";
 import "../public/stylesheets/style.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MemberManagement from "./pages/my-services/memberManagement";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <Route path="/add-volunteer" element={<Add_Volunteer />} />
         <Route path="/add-internship" element={<Add_Internship />} />
         <Route path="/edit-service" element={<Edit_Service />} />
+        <Route path="/member-management" element={<MemberManagement />} />
 
         {/* service posting */}
         <Route path="/add-club" element={<Add_Club />} />

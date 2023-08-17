@@ -685,11 +685,6 @@ video {
   margin-bottom: 20px;
 }
 
-.my-\[5px\] {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -787,7 +782,11 @@ video {
 }
 
 .h-\[\] {
-  height: 0 ;
+  height: ;
+}
+
+.h-\[0px\] {
+  height: 0px;
 }
 
 .min-h-full {
