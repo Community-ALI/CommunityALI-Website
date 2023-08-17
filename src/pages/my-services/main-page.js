@@ -55,7 +55,7 @@ function MyServicePageDisplay(props) {
   };
 
   return (
-    <div className="flex content-center px-[5%] lr:flex-col lr:items-center sm:mb-[30px]">
+    <div className="flex content-center justify-center px-[5%] lr:flex-col lr:items-center sm:mb-[30px]">
       <div
         className="flex items-center w-[80%] my-[20px] mx-[15px] max-w-[1200px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
         duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:w-[86%] lr:w-[92%] md:w-[95%]"
