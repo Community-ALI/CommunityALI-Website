@@ -32,7 +32,7 @@ export default function UserManagement(props) {
             <div className='w-[60%] h-[100%] flex flex-col'>
                 <div className='h-8 bg-white'></div>
 
-                <div className='flex flex-col items-center justify-center bg-[#C5C5C5] h-[]'>
+                <div className='flex flex-col items-center justify-center bg-[#C5C5C5] h-[0px]'>
                     <img src="/Photos/selectUser.png" alt="" />
                     <p>Select an Account to Manage</p>
                 </div>
