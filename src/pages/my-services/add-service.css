@@ -742,7 +742,6 @@ section .details span
     flex-wrap: wrap;
     flex-direction: column;
     margin-left : 20px;
-   
     padding : 10px 10px;
     border-radius: 20px;
     bottom: -160%;
