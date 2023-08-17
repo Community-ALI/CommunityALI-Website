@@ -131,7 +131,7 @@ function ServicesDisplay(props) {
 
   // return the page
   return (
-    <div>
+    <div className="flex justify-center">
       <title> Explore Services </title>
       <div className="loader-wrapper">
         <span className="loader">

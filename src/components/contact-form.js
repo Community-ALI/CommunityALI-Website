@@ -53,7 +53,7 @@ function ContactForm() {
   return (
     <>
       <NavBar isFixedPage={false} />
-      <div className = {'text-white flex flex-wrap justify-center pt-5 mb-20 max-[850px]:pt-[100px]'}>
+      <div className = {'text-white flex flex-wrap justify-center pt-5 mb-20 max-[850px]:pt-[100px] lr:pt-[110px]'}>
         <div className = {'text-center mx-[12%] max-[480px]:mx-[30px]'}>
           <h1 id='contact-form-title'> Having Questions or Concerns? </h1>
           <h2 id='contact-form-subtitle'>
@@ -62,7 +62,7 @@ function ContactForm() {
           </h2>
         </div>
 
-        <form className = {'bg-[color:var(--secondary-color)] px-[30px] py-[40px] w-[60%] mt-[50px] rounded-[15px] max-[1280px]:w-[80%] max-[480px]:w-[90%] max-[480px]:px-[20px] max-[480px]:py-[30px]'} 
+        <form className = 'bg-[color:var(--secondary-color)] px-[30px] py-[40px] w-[60%] mt-[50px] rounded-[15px] max-[1280px]:w-[80%] max-[480px]:w-[90%] max-[480px]:px-[20px] max-[480px]:py-[30px] lr:w-[80%] sm:w-[90%]'
         ref={form} onSubmit={sendMail}>
           <h1 className = {'font-[400] text-[28px] text-center mb-[30px] max-[480px]:text-[26px]'}>Contact form</h1>
           <div className = {'w-[100%] float-left'}>

@@ -71,7 +71,11 @@ exports.store_add_service = async function (req, username) {
       categories: pages.overview.categories,
       datePosted: formattedDate,
       timePosted: time,
-      user: username
+      user: username,
+      collaborators: [username],  // the user who created the service is automatically a collaborator 
+      members: [username], // the user who created the service is automatically a member
+      applicants: [], 
+      messages: [] 
     });
     
 
