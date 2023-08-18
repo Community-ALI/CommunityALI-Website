@@ -12,6 +12,7 @@ import My_Services_Main_Page from "./pages/my-services/main-page";
 import Add_Service from "./pages/my-services/categories-page";
 import Add_Club from "./pages/my-services/club-components/add-club";
 import Add_Event from "./pages/my-services/event-components/add-event";
+import Add_Resource from "./pages/my-services/resource-components/add-resource";
 import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
 import Add_Internship from "./pages/my-services/internship-components/add-internship";
 import Edit_Service from "./pages/my-services/edit-service";
@@ -63,6 +64,7 @@ function App() {
         <Route path="/view-applicants" element={<View_Applicants />} />
         <Route path="/add-volunteer" element={<Add_Volunteer />} />
         <Route path="/add-internship" element={<Add_Internship />} />
+        <Route path="/add-resource" element={<Add_Resource />} />
         <Route path="/edit-service" element={<Edit_Service />} />
         <Route path="/member-management" element={<MemberManagement />} />
 

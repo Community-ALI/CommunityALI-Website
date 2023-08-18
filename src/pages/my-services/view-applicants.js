@@ -1,7 +1,6 @@
 //react modules
 import React, { useEffect, useState } from 'react';
 import { BASE_BACKEND_URL } from '../../config.js'
-import './view-applicants.css'
 import '../../../public/stylesheets/style.css'
 import NavBar from '../../components/NavBar';
 import Notifications from '../../components/Notification';

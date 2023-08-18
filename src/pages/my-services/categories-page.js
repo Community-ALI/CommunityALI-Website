@@ -20,10 +20,10 @@ function CategoriesPage() {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <title>Service Categories</title>
       <div className="service-categories-container">
         <div className="category-container-title">
-          Select the Category of Your Service
+          <p className="mb-[15px]">Select the Category of Your New Service</p>
+          <hr className="border-[1.5px] w-[95%]"/>
         </div>
 
         {/* Box 1 */}
@@ -46,7 +46,7 @@ function CategoriesPage() {
           </div>
         )}
 
-        {/* Box 2 */}
+        {/* Box 2
         {decodedToken.eventAdmin ? (
           <a className="category-container" href="/add-event">
             <p className="category-header">Add a Local Event</p>
@@ -62,6 +62,26 @@ function CategoriesPage() {
             <p className="category-header">Add a Local Event</p>
             <p className="category-text">
               You do not have permission to add a local event.
+            </p>
+          </div>
+        )} */}
+
+          {/* Box 2 */}
+          {decodedToken.eventAdmin ? (
+          <a className="category-container" href="/add-resource">
+            <p className="category-header">Add a Student Resource</p>
+            <p className="category-text">
+              Promote programs, support, and other categories of student aid by posting a
+              student resource for students to find. This can consist
+              of an on-campus or off-campus setting, and can be entirely based on the student's 
+              financial situation, major, cultural background, and more!
+            </p>
+          </a>
+        ) : (
+          <div className="category-container-unselectable">
+            <p className="category-header">Add a Student Resource</p>
+            <p className="category-text">
+              You do not have permission to add a student resource.
             </p>
           </div>
         )}

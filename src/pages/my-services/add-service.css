@@ -1156,6 +1156,11 @@ section .details span
     {
         font-size: 14px;
     }
+
+    .sign-up-submit-button 
+    {
+        width: 80%;
+    }
 }
 
 @media all and (max-width : 480px)

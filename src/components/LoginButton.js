@@ -6,10 +6,10 @@ function LoginButton(props) {
 
     if (!props.token){
         return (
-            <a 
+            <button 
                 className="navigation-text" 
                 onClick={props.ShowLoginPopup}
-            >Login</a>
+            >Login</button>
         )
     }
 
