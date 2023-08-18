@@ -42,7 +42,8 @@ function LoginPopup(props) {
                     localStorage.setItem('token', result.data);
                     const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
                     console.log('signed in as: '+ decodedToken.username);
-                    window.location.href = '/';
+                    // reload the page
+                    window.location.reload();
                 } else {
                     console.log(result.error);
                     alert(result.error);

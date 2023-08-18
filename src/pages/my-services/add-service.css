@@ -148,6 +148,11 @@ input[data-autocompleted]
     margin-top: 50px;
 }
 
+.hidden
+{
+    display: none;
+}
+
 .sign-up-form-container
 {
     display: flex;

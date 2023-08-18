@@ -4,7 +4,6 @@ const Service = models.Services;
 const Applications = models.Application;
 const Application = models.Application;
 const User = models.User;
-const sharp = require('sharp');
 
 exports.change_notification_status = async function (req) {
     try {
@@ -39,7 +38,7 @@ const sns = new AWS.SNS();
 
 function sendNotification(req, user) {
     console.log("User Email:", user.email);
-    console.log("User:", user);
+    console.log("User:", user.username);
     const messageParams = {
         Message: `Subject: ${req.body.service} - New Applicant\n\n${req.body.name} has signed up to your service: ${req.body.service}`,
         TargetArn: `arn:aws:sns:us-west-2:944066005674:serviceApplicantSNS`,
@@ -60,7 +59,7 @@ function sendNotification(req, user) {
     });
 }
 
-exports.store_application = async function (req) {
+exports.store_application = async function (req, user_id) {
     try {
         const currentDate = new Date();
         const formattedDate = currentDate.toLocaleDateString();
@@ -86,7 +85,7 @@ exports.store_application = async function (req) {
         console.log("applicationService:", service.title);
         console.log("User:", user.username);
 
-        sendNotification(req, user);
+        // sendNotification(req, user);
 
         const apply = new Application({
             service: req.body.service,
@@ -98,12 +97,12 @@ exports.store_application = async function (req) {
             is_new_applicant: true
         });
 
-        await apply.save(); // Use await to wait for the save operation to complete
+        await apply.save();
 
-        return 'success';
+        return {success: true, application_id: apply._id};
     } catch (error) {
         console.log(error);
-        return 'failure';
+        return {success: false, error: error};
     }
 };
 
