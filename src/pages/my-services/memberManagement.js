@@ -3,9 +3,11 @@ import NavBar from "../../components/NavBar";
 import EntityManagementSelection from "../../components/messager/entityManagementSelection";
 import MessagingUI from "../../components/messager/messagingUI";
 import { BASE_BACKEND_URL } from "../../config";
+import { response } from "express";
 
 export default function MemberManagement() {
   const [service, setService] = useState();
+  const [users, setUsers] = useState([]);
 
   useEffect(
     () =>
@@ -30,13 +32,24 @@ export default function MemberManagement() {
             .catch((error) => {
               console.error(`Fetch error: ${error}`);
             });
+
+          await fetch(`${BASE_BACKEND_URL}/userdata/get-service-members`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(`Fetched users: ${data}`);
+              setUsers(data);
+            });
+            
         } catch (error) {
           console.error(`Fetch error: ${error}`);
         }
       }
   );
-  
-  //TODO: Fetch all the user accounts that are members of this service
 
   return (
     <div>

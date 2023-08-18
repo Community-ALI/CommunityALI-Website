@@ -18,7 +18,6 @@ const serviceSchema = {
     categories: Array,
     datePosted: String,
     timePosted: String,
-    user: String,
     user: String, // the username of the user who posted the service
     collaborators: Array, // the usernames of the users who have access to edit the service
     members: Array, // the usernames of the users who have joined the service
