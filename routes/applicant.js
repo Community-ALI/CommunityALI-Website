@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const applicant_data = require("../controllers/applicant-data");
 const service_data = require("../controllers/service-data");
+const { ObjectId } = require('mongodb');
 
 router.post('/change_notification_status/:id', async function (req, res) {
     try {
@@ -29,13 +30,17 @@ router.post('/change_notification_status/:id', async function (req, res) {
 router.post('/store-application', upload.none(), async function (req, res) {
     try {
         const message = await applicant_data.store_application(req);
-        if (message == 'success') {
+        if (message.success) {
             console.log('application from ', req.body.name, ' submitted');
             res.setHeader("Content-Type", "application/json");
+            // add the application to the service's list of applicants using the application id
+            const service = await service_data.get_one_service(req.body.service);
+            service.applicants.push(new ObjectId(message.application_id));
+            await service.save();
             res.send(JSON.stringify({ success: true }));
         }
         else {
-            error('application not subbmitted')
+            error(message.error)
         }
     } catch (error) {
         console.log(error);
