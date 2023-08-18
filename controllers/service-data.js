@@ -256,3 +256,20 @@ exports.editService = async function (req, username) {
   }
 };
 
+// exports.get_service_users = async function (serviceName) {
+//   try {
+//     users = await Services.find({title: serviceName})
+//       .select('members')
+//       .populate()
+//       .exec();
+
+//       if (!users) {
+//         console.error(`No service found with the name '${serviceName}'.`);
+//         return { success: false, error: 'no service with the provided name' };
+//       }
+
+//       return users;
+//   } catch (error) {
+//     return {success: false, error: error};
+//   }
+// }

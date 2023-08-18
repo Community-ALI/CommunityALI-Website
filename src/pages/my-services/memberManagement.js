@@ -3,7 +3,6 @@ import NavBar from "../../components/NavBar";
 import EntityManagementSelection from "../../components/messager/entityManagementSelection";
 import MessagingUI from "../../components/messager/messagingUI";
 import { BASE_BACKEND_URL } from "../../config";
-import { response } from "express";
 
 export default function MemberManagement() {
   const [service, setService] = useState();
@@ -33,7 +32,7 @@ export default function MemberManagement() {
               console.error(`Fetch error: ${error}`);
             });
 
-          await fetch(`${BASE_BACKEND_URL}/userdata/get-service-members`)
+          await fetch(`${BASE_BACKEND_URL}/servicedata/get-service-members`)
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Network response was not ok");
@@ -59,7 +58,7 @@ export default function MemberManagement() {
           entityType={"user"}
           entities={service.users}
         />
-        {/* <MessagingUI /> */}
+        <MessagingUI />
       </div>
     </div>
   );

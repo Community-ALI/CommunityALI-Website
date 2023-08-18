@@ -183,4 +183,17 @@ router.get("/get-service-notifications", async function (req, res) {
     }
 })
 
+// router.get("/get-service-members/:serviceTitle", async function (req, res) {
+//     try {
+//         users = await service_data.get_service_users(req.params.serviceTitle);
+//         if (users) {
+//             console.log(`Members for ${serviceTitle} sent`);
+//             res.json(users);
+//         }
+//     } catch (error) {
+//         console.error(error)
+//         res.json( {success: false, error: "Failed to fetch service members"});
+//     }
+//   })
+
 module.exports = router;
