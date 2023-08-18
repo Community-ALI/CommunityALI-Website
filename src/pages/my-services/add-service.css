@@ -148,6 +148,11 @@ input[data-autocompleted]
     margin-top: 50px;
 }
 
+.hidden
+{
+    display: none;
+}
+
 .sign-up-form-container
 {
     display: flex;
@@ -1155,6 +1160,11 @@ section .details span
     .authorization-text
     {
         font-size: 14px;
+    }
+
+    .sign-up-submit-button 
+    {
+        width: 80%;
     }
 }
 

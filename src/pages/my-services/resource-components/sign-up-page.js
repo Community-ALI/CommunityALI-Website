@@ -180,7 +180,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
       <div>
           <div className="sign-up-form">
             <div id="form" className="sign-up-form-boxes">
-              <div className="service-header" id="sign-up-header">Join this Internship Today!</div>
+              <div className="service-header" id="sign-up-header">Join this Program Today!</div>
                 <div className="sign-up-form-container">
                     <div className="text-container" id="name-container">
                         <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
@@ -193,6 +193,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                         <input type="email" className="sign-up-form-input" placeholder="School Email" 
                         id="email" name="email" readOnly/><br/>
                     </div>
+
+                    <div className="text-container" id="name-container">
+                        <label htmlFor="name" className="sign-up-form-text"> Phone Number: </label>
+                        <input type="text" className="sign-up-form-input" placeholder="XXX-XXX-XXXX" 
+                        id="name" name="name" readOnly/><br/>
+                    </div>
                 </div> 
                 {/* <input placeholder="Submit" className="sign-up-submit-button" readOnly/><br/> */}
             </div>
@@ -200,7 +206,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
 
           <div onClick={toggleAuthorizationPopup} className="sign-up-submit-container">
             <div className="sign-up-submit-button">
-              Submit Internship Application
+              Submit Program Application
             </div>
           </div>
             
@@ -228,7 +234,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                 {editMode === false?(
                   <input type="submit" value="Agree to Terms and Conditions" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 ) : (
-                  <input type="submit" value="Update Internship" id="submit-button" className="application-buttons" onClick={handleSubmit} />
+                  <input type="submit" value="Update Program" id="submit-button" className="application-buttons" onClick={handleSubmit} />
 
                   
                 )}

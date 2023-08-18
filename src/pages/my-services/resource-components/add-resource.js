@@ -8,7 +8,7 @@ import FaqPage from "../general-components/faq-page";
 import RequirementsPage from "../general-components/requirements-page";
 import SignUpPage from "./sign-up-page";
 
-function AddInternship() {
+function AddResource() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -61,7 +61,7 @@ function AddInternship() {
 
     useEffect(() => 
     {
-      document.title = 'Internship Editor | Community ALI';
+      document.title = 'Resource Editor | Community ALI';
     }, []);
   
     useEffect(() => {
@@ -165,7 +165,7 @@ function AddInternship() {
             ))}
           </div>
           <div className="pop-up-content-description">
-            Need more pages for your Internship? Contact us for suggestions 
+            Need more pages for your Resource? Contact us for suggestions 
             <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
           </div>
         </div>
@@ -177,10 +177,9 @@ function AddInternship() {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <title> Internship Editor </title>
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Internship" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
+          <input type="text" placeholder="Name of the Program" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
 
         <div className="service-navbar">
@@ -202,11 +201,11 @@ function AddInternship() {
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Internship' setFormData={setOverviewFormData} />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Internship' setFormData={setContactsFormData} />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Internship' setFormData={setFaqFormData} />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Program' setFormData={setOverviewFormData} />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Program' setFormData={setContactsFormData} />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Program' setFormData={setFaqFormData} />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Program' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
             'title': titleValue,
             'serviceType': 'Internship'
@@ -227,4 +226,4 @@ function AddInternship() {
   );
 }
 
-export default AddInternship;
+export default AddResource;

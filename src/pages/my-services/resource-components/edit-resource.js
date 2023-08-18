@@ -6,12 +6,13 @@ import '../../../components/navbar.css';
 import '../add-service.css';
 import ContactsPage from "../general-components/contacts-page.js";
 import OverviewPage from "../general-components/overview-page.js";
-import RequirementsPage from "../general-components/requirements-page.js";
+import RequirementsPage from "./requirements-page";
 import FaqPage from "../general-components/faq-page.js";
 import SignUpPage from "./sign-up-page.js";
 import { Buffer } from 'buffer';
+import AddResource from "./add-resource.js";
 
-function AddInternship() {
+function AddResouce() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -253,4 +254,4 @@ function AddInternship() {
   );
 }
 
-export default AddInternship;
+export default AddResource;
