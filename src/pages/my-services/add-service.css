@@ -52,6 +52,7 @@ input[data-autocompleted]
     margin-bottom : 40px;
     margin-right: 5%;
     margin-left: 5%;
+    padding-top: 10px;
 }
 
 .service-navbar-text
@@ -102,7 +103,6 @@ input[data-autocompleted]
     width : 40%;
     max-height: 350px;
     border-radius : 20px;
-    object-fit: cover;
 }
 
 #service-navbar-plus
@@ -151,6 +151,11 @@ input[data-autocompleted]
 .hidden
 {
     display: none;
+}
+
+.file-container p
+{
+    text-align: center;
 }
 
 .sign-up-form-container
@@ -267,7 +272,7 @@ input[data-autocompleted]
     display: flex;
     justify-content: space-evenly;
     flex-flow: wrap;
-    align-items: stretch;
+    align-items: flex-start;
     padding-right: 4%;
     padding-left: 4%;
 }
@@ -661,6 +666,7 @@ input[data-autocompleted]
     flex-direction: column;
     justify-content: space-evenly;
     cursor: pointer;
+    height: 322px;
     transition: 300ms ease;
 }
 
@@ -1035,6 +1041,32 @@ section .details span
 
 @media all and (max-width : 850px)
 {
+    ::-webkit-scrollbar
+    {
+        height: 8px;
+    }
+
+    .service-navbar
+    {
+        justify-content: space-between;
+        overflow: visible;
+        flex-wrap: nowrap;
+        overflow-y: hidden;
+        margin-right: 8%;
+        margin-left: 8%;
+    }
+
+    .service-navbar-text
+    {
+        margin-left: 0px;
+        margin-right: 60px;
+    }
+
+    .service-navbar-link
+    {
+        white-space: nowrap;
+    }
+
     .service-title
     {
         margin-top: 90px;
@@ -1093,7 +1125,6 @@ section .details span
         width : 70%;
         max-height: 350px;
         margin-bottom: 40px;
-        object-fit: cover;
     }
 
 
@@ -1166,16 +1197,42 @@ section .details span
     {
         width: 80%;
     }
+
+    .service-navbar-text a
+    {
+        font-size: 16px;
+    }
 }
 
 @media all and (max-width : 480px)
 {
+    .file-container
+    {
+        height: 280px;
+        padding: 15px;
+    }
+
+    .service-categories
+    {
+        padding-bottom: 10px;
+    }
+
+    .service-navbar-text 
+    {
+        margin-right: 40px;
+    }
+
+    .service-navbar-text a
+    {
+        font-size: 15px;
+    }
 
     .pop-up-content
     {
         width : 90%;
         padding : 20px;
         padding-bottom : 40px;
+        margin-top: 40px;
     }
 
     .pop-up-content-description
@@ -1215,13 +1272,6 @@ section .details span
         margin-right : 0px
     }
 
-    .service-navbar 
-    {
-        flex-direction: column;
-        align-items: center;
-        margin-bottom : 15px;
-    }
-
     .club-title-text-box
     {
         width: 95%;
@@ -1230,14 +1280,12 @@ section .details span
     .file-container
     {
         width : 95%;
-        padding : 20px;
     }
 
     .service-image-container
     {
         width : 90%;
         max-height: 350px;
-        object-fit: cover;
     }
 
 
