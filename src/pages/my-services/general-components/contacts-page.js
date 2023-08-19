@@ -78,7 +78,7 @@ function ContactsPage({ formData, setFormData, serviceType = 'Club'}) {
 
           {contactData.map((contactVal, j) => (
             <div className="contacts-container" key={j}>
-              {/* {serviceType === 'Club' ? 
+              {serviceType === 'Club' ? 
               <select
                 className="club-contacts-selection"
                 name="contactRole"
@@ -99,7 +99,7 @@ function ContactsPage({ formData, setFormData, serviceType = 'Club'}) {
                 value={contactVal.contactRole}
                 onChange={(h) => contactChange(h, j)}
                   >
-                </input>} */}
+                </input>}
               <input
                 type="text"
                 placeholder={'Enter the Full Name'}

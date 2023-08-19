@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {BASE_BACKEND_URL} from '../../../config.js'
-
+import SignupPopup from "../../../components/SignupPopup.js"
+import SignUpButton from "../../../components/SignUpButton.js"
 
 function SignUpPage() {
   // variable to record wether the user is logged in or not
@@ -19,7 +20,6 @@ function SignUpPage() {
     const formData = new FormData();
     const searchParams = new URLSearchParams(window.location.search);
     formData.append("service", searchParams.get('service'));
-
     formData.append("name", nameRef.current.value);
     formData.append("email", emailRef.current.value);
     
@@ -78,8 +78,9 @@ function SignUpPage() {
     <div>
       
       {!loggedIn && 
-        <div className="sign-up-form">
-         <div className="service-header" id="sign-up-header">You must be logged in to sign up for a service</div>
+        <div className="sign-up-form flex-col">
+         <div className="service-header px-[5%] font-[500] text-center">Wanna Sign Up? Make a New Account today or Login to Start your Journey!</div>
+         <button className='service-create-account'>Create an Account</button>
        </div>
       } 
       {/* keep this invisible until loggedIn === true */}
