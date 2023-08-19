@@ -98,7 +98,7 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => {
     noClick: true, 
   });
 
-  const defaultImage = imageUrl ||  'photos-optimized/user-pic.png'; 
+  const defaultImage = imageUrl ||  'Photos/PhotoUploaderDefault.png'; 
 
   const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
