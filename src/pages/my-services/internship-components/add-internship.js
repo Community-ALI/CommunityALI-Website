@@ -211,7 +211,6 @@ function AddInternship() {
             'title': titleValue,
             'serviceType': 'Internship'
           }
-          
         }
           allFormData={
             {
