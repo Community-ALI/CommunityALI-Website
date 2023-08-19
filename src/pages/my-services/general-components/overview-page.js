@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import '../add-service.css';
+import ImageUploaderPopup from './image-uploader-popup';
 
 function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = false}) {
   const fileInputRef = useRef(null);
-
+  const popupRef = useRef(null);
+  const [isShowingImageUploaderPopup, setIsShowingImageUploaderPopup] = useState(false);
   const schoolOptions = [
     "Agriculture",
     "Art, Performance & The Humanities",
@@ -60,10 +62,17 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     fileInputRef.current.click();
   }
 
+  const handleClickOutsidePopup = (event) => {
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+      setIsShowingImageUploaderPopup(false);
+    }
+    
+  };
+
   return (
     <div className="mb-[100px]">
       <div className="service-info-container" >
-      {formData.file ? <img onClick={uploadClicked} className="service-image-container" src={formData.file ? URL.createObjectURL(formData.file) : ""} alt="" style={{ cursor: 'pointer' }} onMouseOver={(e) => e.target.style.filter = 'brightness(70%)'} onMouseOut={(e) => e.target.style.filter = 'brightness(100%)'}/>
+      {formData.file ? <img onClick={() => {setIsShowingImageUploaderPopup(!isShowingImageUploaderPopup)}} className="service-image-container" src={formData.file ? URL.createObjectURL(formData.file) : ""} alt="" style={{ cursor: 'pointer' }} onMouseOver={(e) => e.target.style.filter = 'brightness(70%)'} onMouseOut={(e) => e.target.style.filter = 'brightness(100%)'}/>
 
       : <div className="file-container" onClick={uploadClicked}>
           <header>{serviceType} Photo Uploader</header>
@@ -71,6 +80,29 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
           <p >Click to upload a single image File</p>
       </div>
           
+    }
+    {isShowingImageUploaderPopup &&  
+    <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      zIndex: 100000,
+    }}
+    onClick={handleClickOutsidePopup}
+  >
+    <div ref={popupRef}>
+      <ImageUploaderPopup
+        imageUrl={formData.file ? URL.createObjectURL(formData.file)  : ""}
+        isShowingImageUploaderPopup={isShowingImageUploaderPopup}
+        setFormData={setFormData}
+        onClose={() => setIsShowingImageUploaderPopup(false)}
+      />
+    </div>
+    </div>
     }
     <input
       className="file-input"
