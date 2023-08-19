@@ -41,6 +41,7 @@ export default function MemberManagement() {
               console.log(`Fetched users: ${data}`);
               setUsers(data);
             });
+            //TODO: Turn the user profiles into the correct format
         });
     } catch (error) {
       console.error(`Fetch error: ${error}`);
@@ -55,14 +56,14 @@ export default function MemberManagement() {
   return (
     <div>
       <NavBar />
-      <div className="mt-24 h-[80%]">
+      <div className="mt-24 h-[80vh]">
         <EntityManagementSelection
           entityType={"user"}
           entities={users}
         />
-        {/* <MessagingUI /> */}
+        <MessagingUI />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
