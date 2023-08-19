@@ -101,15 +101,15 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => {
   const defaultImage = imageUrl ||  'Photos/PhotoUploaderDefault.png'; 
 
   const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
+  const screenHeight = window.innerHeight;
 
-let desiredWidth = screenWidth * 0.5;
-let desiredHeight = (desiredWidth * 2) / 3;
+  let desiredWidth = screenWidth * 0.5;
+  let desiredHeight = (desiredWidth * 2) / 3;
 
-if (desiredHeight > screenHeight * 0.5) {
-  desiredHeight = screenHeight * 0.5;
-  desiredWidth = (desiredHeight * 3) / 2;
-}
+  if (desiredHeight > screenHeight * 0.5) {
+    desiredHeight = screenHeight * 0.5;
+    desiredWidth = (desiredHeight * 3) / 2;
+  }
 
   return (
     <div className="container-login" onWheel={handleWheel}>
@@ -140,7 +140,7 @@ if (desiredHeight > screenHeight * 0.5) {
               width={desiredWidth} 
               height={desiredHeight} 
                
-               style={{ borderRadius: '2%' }} // Apply CSS styling for the circle shape
+               style={{ borderRadius: '2%' }} // make it slightly round
             />
             <input className='zoom-slider' type="range" min="1" max="2" step="0.1" value={scale} onChange={handleScaleChange} />
             <button className='save-profile-image-button' onClick={handleSave}>Save</button>
