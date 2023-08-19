@@ -25,7 +25,7 @@ function EntityManagementButton(props) {
 }
 
 function EntityList(props) {
-  console.log(props.entities);
+  // console.log(props.entities);
   if (props.entityType == "user") {
     return (
       <div>
