@@ -15,12 +15,12 @@ function AddClub() {
     "Overview",
     "Contacts",
     "FAQ",
-    "Sign Up"
+    "Sign-Up"
   ];
 
   const [allCurrentPages, setAllCurrentPages] = useState([
     "Overview",
-    "Sign Up"
+    "Sign-Up"
   ]);
 
   const removablePages = ["Contacts", "FAQ"];

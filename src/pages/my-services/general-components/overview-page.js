@@ -118,7 +118,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
           <div className="service-author">
             <input
               type="text"
-              placeholder= {`President of the ${serviceType.toLowerCase()}`}
+              placeholder= {`President of the ${serviceType}`}
               onChange={handleFormChange}
               name="subtitle"
               value={formData.subtitle || ""}
@@ -189,7 +189,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
 
       <div className="service-category-container">
         <div className="service-category-title">
-          Select the Categories that Fits Your {serviceType.toLowerCase()}
+          Select the Categories that Fits Your {serviceType}
         </div>
         <div className="service-categories">
           {schoolOptions.map((option) => (

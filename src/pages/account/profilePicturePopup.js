@@ -144,8 +144,8 @@ const ImageUploadWindow = ({ imageUrl, onClose, uploadData, setAccount}) => {
               color={[106, 107, 110, 0.6]}
               scale={scale}
               rotate={0}
-              borderRadius={125} // Set the borderRadius to half of width/height to create a circle
-              style={{ borderRadius: '50%' }} // Apply CSS styling for the circle shape
+              borderRadius={125} 
+              style={{ borderRadius: '50%' }} 
             />
             <input className='zoom-slider' type="range" min="1" max="2" step="0.1" value={scale} onChange={handleScaleChange} />
             <button className='save-profile-image-button' onClick={handleSave}>Save</button>
