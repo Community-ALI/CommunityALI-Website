@@ -60,10 +60,10 @@ const userSchema = new mongoose.Schema(
 //TODO implement message schema
 const messageSchema = new mongoose.Schema(
     {
-        sender: { type: Schema.Types.ObjectId },
-        timeSend: { type: Date },
-        header: { type: String },
-        body: { type: String, required: true }
+        sender: { type: Schema.Types.ObjectId, required: true },
+        createdAt: { type: Date, required: true },
+        title: { type: String, required: true },
+        content: { type: String, required: true }
     }
 )
 

@@ -3,17 +3,24 @@ const Message = database.Message;
 
 //TODO: Make message post funtion
 
-// exports.post_message = async function () {};
-
-//TODO: Make message get function
+exports.save_service_message = async function (message) {
+  try {
+    newMessage = new Message(message);
+    await newMessage.save();
+    console.log("New message saved");
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
 
 exports.get_service_messages = async function (serviceId) {
   try {
     const message = await Message.find({ sender: serviceId }).exec();
 
     if (!message) {
-        console.error(`No service uses the ID: ${serviceId}`);
-        return {success: false, error: "No service uses inputted ID" }
+      console.error(`No service uses the ID: ${serviceId}`);
+      return { success: false, error: "No service uses inputted ID" };
     }
   } catch (error) {
     console.error(error);
