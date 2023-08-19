@@ -69,11 +69,10 @@ function CategoriesPage() {
           {/* Box 2 */}
           {decodedToken.eventAdmin ? (
           <a className="category-container" href="/add-resource">
-            <p className="category-header">Add a Student Resource</p>
+            <p className="category-header">Add an MJC Program</p>
             <p className="category-text">
-              Promote programs, support, and other categories of student aid by posting a
-              student resource for students to find. This can consist
-              of an on-campus or off-campus setting, and can be entirely based on the student's 
+              Promote programs, support, and other resources of student aid by posting a
+              student resource for students to find. This includes on-campus or off-campus settings, and can be entirely based on the student's 
               financial situation, major, cultural background, and more!
             </p>
           </a>

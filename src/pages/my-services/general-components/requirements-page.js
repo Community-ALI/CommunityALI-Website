@@ -40,30 +40,19 @@ function RequirementsPage({ formData, setFormData }) {
         Requirements
         </div>
         {RequireData.map((RequireVal, k) => (
-          <div className="contacts-container" key={k}>
-            <input
+          <div className="contacts-container" id='requirements-container' key={k}>
+              <input
               type="text"
-              placeholder="Title of the Requierment (Brief Description)"
+              placeholder="Brief Description of the Requirment"
               className="contacts-text-box"
               name="RequireTitle"
               value={RequireVal.RequireTitle}
               onChange={(p) => RequireChange(p, k)}
               id="question-text-box"
-            /><br />
-            <div className="text-button-container">
-              <input
-                type="url"
-                placeholder="Explanation of the Requierment"
-                className="contacts-email-box"
-                name="RequireDescription"
-                value={RequireVal.RequireDescription}
-                onChange={(p) => RequireChange(p, k)}
-                id="answer-text-box"
-              /><br />
+            />
               <button type="button" className="delete-button" onClick={() => RequireDelete(k)}>
                 Delete
               </button>
-            </div>
           </div>
         ))}
         {RequireVisible && (

@@ -17,11 +17,11 @@ function RequirementsPage({ service }) {
             <div className="contacts-text-box" id="question-text-box">
               {RequirementItem.RequireTitle}
             </div>
-            <div className="text-button-container">
+            {/* <div className="text-button-container">
               <div className="contacts-email-box" id="answer-text-box">
                 {RequirementItem.RequireDescription}
               </div>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>
