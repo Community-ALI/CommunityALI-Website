@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema(
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,
         fullName: String,
-        emailNotifications: { type: Boolean, default: true },
+        sendNotifications: { type: Boolean},
         lastNotificationCheck: { type: Date, default: Date.now },
     }, { collection: 'users' }
 )
