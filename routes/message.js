@@ -3,19 +3,18 @@ const router = express.Router();
 const message_data = require("../controllers/message-data");
 const sanitizeHtml = require("sanitize-html");
 
-//TODO: Fix not returning anything
 router.get("get-service-messages/:serviceId", async function (req, res) {
   serviceId = req.params.serviceId;
   try {
     const messages = await message_data.get_service_messages(serviceId);
     console.log(`Sending ${serviceId}'s messages`);
+    res.json(messages);
   } catch (error) {
     console.error(error);
     res.json({ success: false, error: "internal server error" });
   }
 });
 
-// TODO: develop message validation middleware
 function validateMessage(req, res, next) {
   const messageContent = req.body.content;
   const messageTitle = req.body.title;
@@ -28,7 +27,6 @@ function validateMessage(req, res, next) {
   next();
 }
 
-//TODO: sanitize post
 router.post("post-message", validateMessage, async function (req, res) {
   const sanitizedObject = {
     title: sanitizeHtml(req.body.title.trim()),
