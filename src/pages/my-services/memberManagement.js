@@ -55,7 +55,7 @@ export default function MemberManagement() {
   return (
     <div>
       <NavBar />
-      <div className="mt-24">
+      <div className="mt-24 h-[80%]">
         <EntityManagementSelection
           entityType={"user"}
           entities={users}

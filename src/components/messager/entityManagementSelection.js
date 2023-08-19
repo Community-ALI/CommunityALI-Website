@@ -4,7 +4,7 @@ function EntityManagementButton(props) {
   const entity = props.entity;
 
   return (
-    <div className="relative text-white px-4 py-2">
+    <div className="relative text-white px-4 py-2 border-black border-b-2">
       <button
         className="bg-[#ECAA1E] absolute right-4 top-[50%] translate-y-[-50%]"
         onClick={props.OnSettingsClick}
@@ -66,7 +66,7 @@ export default function EntityManagementSelection(props) {
   console.log(props.entities);
   return (
     <div className="max-w-[600px] bg-[#00468D]">
-      <div>
+      <div className="border-b-2 border-black"> 
         <button className="w-[10%]">Back</button>
         <div className="w-[90%] bg-transparent">
           <input
