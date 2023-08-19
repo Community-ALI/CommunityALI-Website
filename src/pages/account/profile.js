@@ -354,8 +354,8 @@ function Profile() {
             </button>
             {account.sendNotifications 
             ? 
-            <button className='profile-change' onClick={toggleNotifications}> Notifications Enabled </button>
-            : <button className='profile-change' onClick={toggleNotifications}> Notifications Disabled </button>
+            <button className='profile-change' onClick={toggleNotifications}> Email Notifications Enabled </button>
+            : <button className='profile-change' onClick={toggleNotifications}> Email Notifications Disabled </button>
             }
             
           </div>
