@@ -8,6 +8,9 @@ router.get('get-service-messages/:serviceId', async function(req, res) {
     try {
         const messages = await message_data.get_service_messages(serviceId);
         console.log(`Sending ${serviceId}'s messages`);
+    } catch (error) {
+        console.error(error);
+        res.json({success: false, error: 'internal server error'});
     }
 })
 
