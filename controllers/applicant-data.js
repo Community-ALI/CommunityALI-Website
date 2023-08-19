@@ -62,6 +62,7 @@ function sendNotification(req, user) {
 exports.store_application = async function (req, user_id) {
     try {
         const currentDate = new Date();
+        const isoDate = currentDate.toISOString(); // Convert to ISO date and time string
         const formattedDate = currentDate.toLocaleDateString();
         const hours = currentDate.getHours();
         const minutes = currentDate.getMinutes();
@@ -87,6 +88,7 @@ exports.store_application = async function (req, user_id) {
 
         // sendNotification(req, user);
 
+
         const apply = new Application({
             service: req.body.service,
             name: req.body.name,
@@ -94,6 +96,7 @@ exports.store_application = async function (req, user_id) {
             w_number: req.body.w_number,
             date: formattedDate,
             time: time,
+            isoDate: isoDate, // we should try to use this instead of date and time
             is_new_applicant: true
         });
 

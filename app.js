@@ -34,10 +34,20 @@ AWS.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
+const periodicTasks = require('./periodicTasks');
+// check for new applicants when the server starts (in case the server restarts)
+periodicTasks.send_email_notifications();
+// check for new applicants every 24 hours
+setInterval(() => {
+  console.log('checking for new applicants');
+  periodicTasks.send_email_notifications();
+}, 86400000);
+
 
 app.use('/userdata', userRouter);
 app.use('/applicantdata', applicantRouter);
 app.use('/servicedata', serviceRouter);
+
 
 //last route, important for frontend I believe
 app.get('*', (req, res) => {

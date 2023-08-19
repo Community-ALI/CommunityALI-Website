@@ -32,6 +32,7 @@ const applicationSchema = {
     w_number: String,
     date: String,
     time: String,
+    isoDate: String, // we should try to use this instead of date and time
     is_new_applicant: Boolean
 };
 
@@ -49,7 +50,9 @@ const userSchema = new mongoose.Schema(
         administrator: { type: Boolean},
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,
-        fullName: String
+        fullName: String,
+        emailNotifications: { type: Boolean, default: true },
+        lastNotificationCheck: { type: Date, default: Date.now },
     }, { collection: 'users' }
 )
 
