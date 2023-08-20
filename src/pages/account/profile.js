@@ -7,6 +7,7 @@ import { BASE_BACKEND_URL } from '../../config';
 import ProfilePicturePopup from './profilePicturePopup';
 import { Buffer } from 'buffer';
 import PasswordChangePopup from './passwordChangePopup';
+import { useNavigate } from 'react-router-dom';
 
 function dataURItoBlob(dataURI) {
   const byteString = atob(dataURI.split(',')[1]);
@@ -20,13 +21,15 @@ function dataURItoBlob(dataURI) {
 }
 
 function Profile() {
+  let navigate = useNavigate();
   const [account, setAccount] = useState({
     username: 'loading...',
     FullName: 'loading...',
     email: 'loading...',
     role: 'loading...',
     fullName: 'loading...',
-    imageUrl: 'photos-optimized/user-pic.png'
+    imageUrl: 'photos-optimized/user-pic.png',
+    sendNotifications: false,
   });
 
   const [isShowingPasswordPopup, setIsShowingPasswordPopup] = useState(false);
@@ -125,7 +128,8 @@ function Profile() {
             role: '',
             dateCreated: data.dataAccount[0].dateCreated,
             imageUrl: imageUrl,
-            fullName: data.dataAccount[0].fullName
+            fullName: data.dataAccount[0].fullName,
+            sendNotifications: data.dataAccount[0].sendNotifications
           });
           const loaderWrapper = document.querySelector('.loader-wrapper');
           loaderWrapper.style.transition = 'opacity 0.5s';
@@ -162,15 +166,14 @@ function Profile() {
         const accountMinusOneField = { ...account };
         delete accountMinusOneField.imageUrl;
         const formData = new FormData();
-        console.log(account.imageUrl)
         formData.append('image', dataURItoBlob(account.imageUrl), 'image.png');
         formData.append('account', JSON.stringify(accountMinusOneField));
+        setEditMode(false);
         const response = await fetch(`${BASE_BACKEND_URL}/userdata/set-account-data`, {
           method: 'POST', 
           headers: {
             'Authorization': `Bearer ${token}`
           },
-          // body: JSON.stringify({account: accountMinusOneField}),
           body: formData
         })
         const result = await response.json();
@@ -217,7 +220,26 @@ function Profile() {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
       setIsShowingProfilePicturePopup(false);
     }
+  };
+
+  const toggleNotifications = () => {
+    if (!editMode) {
+      setEditMode(true);
+      setButtonText(editMode ? 'Edit Information' : 'Save Information');
+    }
+      console.log(name);
+      setAccount((prevAccount) => ({
+        ...prevAccount,
+        sendNotifications: !account.sendNotifications,
+      }));
     
+  };
+
+  // confirm that the user wants to leave the page if they have unsaved changes
+  window.onbeforeunload = function () {
+    if (editMode) {
+      return true;
+    }
   };
 
   return (
@@ -330,7 +352,12 @@ function Profile() {
             <button className='profile-change' onClick={handlePasswordChangeClick}> 
             Change Password 
             </button>
-            {/* <button className='profile-change'> Request Role Change </button> */}
+            {account.sendNotifications 
+            ? 
+            <button className='profile-change' onClick={toggleNotifications}> Email Notifications Enabled </button>
+            : <button className='profile-change' onClick={toggleNotifications}> Email Notifications Disabled </button>
+            }
+            
           </div>
         </div>
 
@@ -357,7 +384,8 @@ function Profile() {
         />
         {editMode &&
           <input type="button" className="profile-save-button" id='profile-cancel-button'
-            onClick={() => { location.reload() }}
+            
+            onClick={() => { setEditMode(false); navigate('/profile'); }}
             value='Cancel Edits'
           />
         }

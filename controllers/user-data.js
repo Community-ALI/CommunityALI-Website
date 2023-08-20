@@ -107,7 +107,7 @@ exports.get_user_applications = async function (username) {
 exports.get_user_data = async function (username) {
   try {
     const selected_account = await Users.find({ username: username })
-      .select("username email description dateCreated profileImage fullName")
+      .select("username email description dateCreated profileImage fullName sendNotifications")
       .exec();
     return selected_account;
   } catch (error) {
