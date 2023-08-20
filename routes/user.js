@@ -638,8 +638,6 @@ router.post(
   }
 );
 
-//TODO: make function that finds all services that have the user as 
-  // part of their member array
 router.get("/get_services_user_is_member/:userId", async function (req, res) {
   try {
     const services = user_data.get_services_user_is_member(req.params.userId);

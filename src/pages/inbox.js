@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../components/NavBar";
-import EntityManagementSelection from "../../components/messager/entityManagementSelection";
-import MessagingUI from "../../components/messager/messagingUI";
-import Footer from "../../components/Footer";
-import { BASE_BACKEND_URL } from "../../config";
+import NavBar from "../components/NavBar";
+import EntityManagementSelection from "../components/messager/entityManagementSelection";
+import MessagingUI from "../components/messager/messagingUI";
+import Footer from "../components/Footer";
+import { BASE_BACKEND_URL } from "../config";
 
 export default function Inbox() {
   const [user, setUser] = useState();
@@ -39,7 +39,6 @@ export default function Inbox() {
     }
   };
 
-  //TODO: fetch services that have the user as a member
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");

@@ -33,6 +33,7 @@ import "../public/stylesheets/style.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MemberManagement from "./pages/my-services/memberManagement";
+import Inbox from "./pages/inbox";
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/contact-form" element={<ContactForm />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/inbox" element={<Inbox />} />
       </Routes>
     </BrowserRouter>
   );
