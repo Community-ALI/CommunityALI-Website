@@ -26,7 +26,6 @@ export default function MemberManagement() {
           return response.json();
         })
         .then(async (data) => {
-          console.log(data);
           setService(data);
           await fetch(
             `${BASE_BACKEND_URL}/servicedata/get-service-members/${serviceTitle}`
@@ -38,7 +37,7 @@ export default function MemberManagement() {
               return response.json();
             })
             .then((data) => {
-              console.log(`Fetched users: ${data}`);
+              console.log(`Fetched users: ${data.length}`);
               setUsers(data);
             });
             //TODO: Turn the user profiles into the correct format
@@ -52,10 +51,8 @@ export default function MemberManagement() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(service._id);  
-  }, [service])
-
+  //TODO: Add page loading so users can't interact with elements
+    //before all the data has been set up
   //TODO: Connect backend data to elements
   //TODO: Add mobile support
   return (

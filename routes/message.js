@@ -3,7 +3,8 @@ const router = express.Router();
 const message_data = require("../controllers/message-data");
 const sanitizeHtml = require("sanitize-html");
 
-router.get("/get-service-messages/:serviceId", async function (req, res) {
+router.get("/get_service_messages/:serviceId", async function (req, res) {
+    console.log('attempting to send messages...');
   serviceId = req.params.serviceId;
   try {
     const messages = await message_data.get_service_messages(serviceId);

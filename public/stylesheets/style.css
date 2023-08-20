@@ -825,6 +825,14 @@ video {
   max-height: 100%;
 }
 
+.max-h-\[80\%\] {
+  max-height: 80%;
+}
+
+.max-h-\[80vh\] {
+  max-height: 80vh;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -950,6 +958,10 @@ video {
   flex-direction: column;
 }
 
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -958,8 +970,16 @@ video {
   align-content: center;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
 }
 
 .justify-end {
@@ -996,6 +1016,10 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .overflow-x-hidden {

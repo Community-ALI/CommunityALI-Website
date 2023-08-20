@@ -18,18 +18,17 @@ function MessageForm(props) {
   const [message, setMessage] = useState({
     content: "",
     title: "UPDATE:",
-    senderId: props.senderId
+    senderId: props.senderId,
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const postData = async function () {
-      console.log(message);
       try {
         fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
-          headers: {'content-Type': 'application/json'},
+          headers: { "content-Type": "application/json" },
           body: JSON.stringify(message),
         })
           .then((response) => {
@@ -40,6 +39,7 @@ function MessageForm(props) {
               console.error("Error:", data.error);
             } else {
               console.log("Message successfully sent");
+              window.location.reload();
             }
           })
           .catch((error) => {
@@ -54,14 +54,14 @@ function MessageForm(props) {
   };
 
   function updateSenderId() {
-    console.log(props.senderId);
-    setMessage({...message, ["senderId"]: props.senderId});
+    setMessage({ ...message, ["senderId"]: props.senderId });
   }
 
-  useEffect(() => {updateSenderId()}, [props.senderId])
+  useEffect(() => {
+    updateSenderId();
+  }, [props.senderId]);
 
   const handleInputChange = (event) => {
-    console.log(event.target);
     const { name, value } = {
       name: event.target.name,
       value: event.target.value,
@@ -82,39 +82,58 @@ function MessageForm(props) {
 }
 
 export default function MessagingUI(props) {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      title: "Loading",
+      content: "",
+      _id: "Loading",
+      createdAt: "Loading",
+    },
+  ]);
 
   async function fetchMessages() {
     try {
+      console.log("fetching database with id: " + props.senderId);
       const response = await fetch(
-        `${BASE_BACKEND_URL}/messagedata/get_service_messages`
-      ).then((response) => {
-        console.log(`Fetched ${response.length}`);
-        setMessages(response);
-      });
+        `${BASE_BACKEND_URL}/messagedata/get_service_messages/${props.senderId}`
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.error) {
+            console.error(data.error);
+          } else {
+            console.log(`Fetched ${data.length} many messages`);
+            setMessages(data);
+          }
+        });
     } catch (error) {
       console.error(error);
     }
   }
 
   useEffect(() => {
-    fetchMessages;
-  }, []);
+    if (props.senderId) fetchMessages();
+    else {
+      console.log("Sender id is undefined");
+    }
+  }, [props.senderId]);
 
+  //TODO: reverse scroll on message flex box
   return (
-    <div className="flex flex-col flex-1">
+    <div className="flex flex-col flex-1 max-h-[100%]">
       <div className="bg-[#001E60] h-[126px] text-white flex p-4 items-center">
         <h1>{props.serviceTitle}</h1>
       </div>
-      <div className="flex flex-col flex-1">
-        <div className="bg-[#00468D] flex-1 p-4 px-8">
-          {messages.map((message) => {
-            return <Message message={message} />;
-          })}
-        </div>
-        <div>
-          <MessageForm senderId={props.senderId}/>
-        </div>
+      <div className="bg-[#00468D] flex-1 flex overflow-scroll w-[100%] 
+        flex-col-reverse p-4 px-8">
+        {messages.map((message) => {
+          return <Message message={message} key={message._id} />;
+        })}
+      </div>
+      <div>
+        <MessageForm senderId={props.senderId} />
       </div>
     </div>
   );
