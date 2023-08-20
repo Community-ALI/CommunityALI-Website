@@ -120,7 +120,6 @@ export default function MessagingUI(props) {
     }
   }, [props.senderId]);
 
-  //TODO: reverse scroll on message flex box
   return (
     <div className="flex flex-col flex-1 max-h-[100%]">
       <div className="bg-[#001E60] h-[126px] text-white flex p-4 items-center">

@@ -45,6 +45,16 @@ exports.set_user_data = async function (username, req) {
   }
 };
 
+exports.get_services_user_is_member = async function (userId) {
+  try {
+    const services = await Services.find({ members: { $in: userId } });
+    return services;
+  } catch (error) {
+    console.error("Failed to fetch services", error);
+    return { success: false, error: error };
+  }
+};
+
 exports.upload_user_image = async function (username, req) {
   try {
     const account = await Users.findOne({ username: username });
@@ -107,7 +117,9 @@ exports.get_user_applications = async function (username) {
 exports.get_user_data = async function (username) {
   try {
     const selected_account = await Users.find({ username: username })
-      .select("username email description dateCreated profileImage fullName sendNotifications")
+      .select(
+        "username email description dateCreated profileImage fullName sendNotifications"
+      )
       .exec();
     return selected_account;
   } catch (error) {
