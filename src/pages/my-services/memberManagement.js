@@ -52,6 +52,10 @@ export default function MemberManagement() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(service._id);  
+  }, [service])
+
   //TODO: Connect backend data to elements
   //TODO: Add mobile support
   return (
@@ -64,7 +68,7 @@ export default function MemberManagement() {
             entities={users}
           />
         </div>
-        <MessagingUI serviceTitle={service.title} />
+        <MessagingUI serviceTitle={service.title} senderId={service._id} />
       </div>
       <Footer />
     </div>

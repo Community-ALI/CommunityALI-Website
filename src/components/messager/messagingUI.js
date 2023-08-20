@@ -18,12 +18,12 @@ function MessageForm(props) {
   const [message, setMessage] = useState({
     content: "",
     title: "UPDATE:",
+    senderId: props.senderId
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //TODO: fix 400 error when fetching
     const postData = async function () {
       console.log(message);
       try {
@@ -52,6 +52,13 @@ function MessageForm(props) {
 
     postData();
   };
+
+  function updateSenderId() {
+    console.log(props.senderId);
+    setMessage({...message, ["senderId"]: props.senderId});
+  }
+
+  useEffect(() => {updateSenderId()}, [props.senderId])
 
   const handleInputChange = (event) => {
     console.log(event.target);
@@ -106,7 +113,7 @@ export default function MessagingUI(props) {
           })}
         </div>
         <div>
-          <MessageForm />
+          <MessageForm senderId={props.senderId}/>
         </div>
       </div>
     </div>

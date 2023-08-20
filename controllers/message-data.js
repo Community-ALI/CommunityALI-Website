@@ -3,6 +3,7 @@ const Message = database.Message;
 
 exports.save_service_message = async function (message) {
   try {
+    console.log(`Message being saved: ${message}`)
     newMessage = new Message(message);
     await newMessage.save();
     console.log("New message saved");
