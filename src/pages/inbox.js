@@ -74,11 +74,8 @@ export default function Inbox() {
     fetchData();
   }, []);
 
-  //TODO: feed user services into entityManagementSelection
   //TODO: link selected service to messaging ui to display that
   // service's messages
-
-  //TODO: Make select service page when no service is selected
   return (
     <div>
       <NavBar />
@@ -87,6 +84,8 @@ export default function Inbox() {
           <EntityManagementSelection
             entityType={"service"}
             entities={services}
+            SelectEntity={setSelectedService}
+            selectedId={(selectedService) ? selectedService._id : false}
           />
         </div>
         {selectedService && 
