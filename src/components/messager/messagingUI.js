@@ -25,14 +25,21 @@ function MessageForm(props) {
 
     //TODO: fix 400 error when fetching
     const postData = async function () {
+      console.log(message);
       try {
         fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
-          body: message,
+          headers: {'content-Type': 'application/json'},
+          body: JSON.stringify(message),
         })
           .then((response) => {
-            if (response.status === 200) {
-              console.log(`Message sent!`);
+            return response.json();
+          })
+          .then((data) => {
+            if (data.error) {
+              console.error("Error:", data.error);
+            } else {
+              console.log("Message successfully sent");
             }
           })
           .catch((error) => {
@@ -43,20 +50,22 @@ function MessageForm(props) {
       }
     };
 
-    postData()
+    postData();
   };
 
-  //TODO: implement this input handlers into form
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    console.log(event.target);
+    const { name, value } = {
+      name: event.target.name,
+      value: event.target.value,
+    };
     setMessage({ ...message, [name]: value });
   };
 
   return (
     <div className="bg-[#001E60]">
       <form onSubmit={handleSubmit}>
-        <input type="text" name="content" />
-        <input type="hidden" name="title" value="UPDATE:" />
+        <input type="text" name="content" onChange={handleInputChange} />
         <button type="submit" className="bg-[#ECAA1E]">
           <img src="Photos/Send_fill.png" alt="" />
         </button>
@@ -91,7 +100,7 @@ export default function MessagingUI(props) {
         <h1>{props.serviceTitle}</h1>
       </div>
       <div className="flex flex-col flex-1">
-        <div className="bg-[#00468D] flex-1 p-4 px-8"> 
+        <div className="bg-[#00468D] flex-1 p-4 px-8">
           {messages.map((message) => {
             return <Message message={message} />;
           })}
