@@ -25,7 +25,7 @@ function EntityManagementButton(props) {
 }
 
 function EntityList(props) {
-  // console.log(props.entities);
+  console.log("entites: ", props.entities);
   if (props.entityType == "user") {
     return (
       <div>
@@ -46,7 +46,7 @@ function EntityList(props) {
   } else {
     return (
       <div>
-        {props.services.map((service) => {
+        {props.entities.map((service) => {
           return (
             <EntityManagementButton
               entity={{
@@ -54,6 +54,8 @@ function EntityList(props) {
                 name: service.title,
                 subtext: [],
               }}
+              isSelected={(props.selectedId === service._id)}
+              key={service._id}
             />
           );
         })}
@@ -65,7 +67,7 @@ function EntityList(props) {
 export default function EntityManagementSelection(props) {
   console.log(props.entities);
   return (
-    <div className="bg-[#00468D]">
+    <div className="bg-[#00468D] h-[100%]">
       <div className="border-b-2 border-black"> 
         <button className="w-[10%]">Back</button>
         <div className="w-[90%] bg-transparent">

@@ -81,6 +81,7 @@ function MessageForm(props) {
   );
 }
 
+//TODO: make it so that users can't send messages
 export default function MessagingUI(props) {
   const [messages, setMessages] = useState([
     {

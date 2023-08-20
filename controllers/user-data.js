@@ -2,6 +2,7 @@
 const fs = require("fs");
 // database
 const models = require("../connect-to-database");
+const {ObjectId} = require('mongodb');
 const Applications = models.Application;
 const Services = models.Services;
 const Users = models.User;
@@ -47,7 +48,12 @@ exports.set_user_data = async function (username, req) {
 
 exports.get_services_user_is_member = async function (userId) {
   try {
-    const services = await Services.find({ members: { $in: userId } });
+    const services = await Services.find({ members: { $in: new ObjectId(userId) } });
+    if (services.length === 0) {
+      console.log("No services found for the user.", services);
+    } else {
+      console.log("Services found:", services);
+    }
     return services;
   } catch (error) {
     console.error("Failed to fetch services", error);

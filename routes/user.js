@@ -640,7 +640,7 @@ router.post(
 
 router.get("/get_services_user_is_member/:userId", async function (req, res) {
   try {
-    const services = user_data.get_services_user_is_member(req.params.userId);
+    const services = await user_data.get_services_user_is_member(req.params.userId);
     console.log(`services for ${req.params.userId} sent`);
     res.json(services);
   } catch (error) {
