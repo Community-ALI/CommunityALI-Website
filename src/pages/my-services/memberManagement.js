@@ -7,7 +7,7 @@ import { BASE_BACKEND_URL } from "../../config";
 
 //TODO make a get function for a fully populated service
 export default function MemberManagement() {
-  const [service, setService] = useState();
+  const [service, setService] = useState({ title: "Loading..."});
   const [users, setUsers] = useState([]);
 
   const fetchData = async () => {
@@ -53,15 +53,18 @@ export default function MemberManagement() {
   }, []);
 
   //TODO: Connect backend data to elements
+  //TODO: Add mobile support
   return (
     <div>
       <NavBar />
-      <div className="mt-24 h-[80vh]">
-        <EntityManagementSelection
-          entityType={"user"}
-          entities={users}
-        />
-        <MessagingUI />
+      <div className="lr:mt-24 h-[80vh] flex">
+        <div className="max-w-[40%]">
+          <EntityManagementSelection
+            entityType={"user"}
+            entities={users}
+          />
+        </div>
+        <MessagingUI serviceTitle={service.title} />
       </div>
       <Footer />
     </div>

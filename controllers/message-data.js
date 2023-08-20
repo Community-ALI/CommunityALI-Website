@@ -1,7 +1,5 @@
-import database from "../connect-to-database";
+const database = require("../connect-to-database");
 const Message = database.Message;
-
-//TODO: Make message post funtion
 
 exports.save_service_message = async function (message) {
   try {
@@ -16,7 +14,9 @@ exports.save_service_message = async function (message) {
 
 exports.get_service_messages = async function (serviceId) {
   try {
-    const message = await Message.find({ sender: serviceId }).exec();
+    const message = await Message.find({ sender: serviceId })
+      .sort({ createdAt: 1 })
+      .exec();
 
     if (!message) {
       console.error(`No service uses the ID: ${serviceId}`);

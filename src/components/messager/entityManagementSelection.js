@@ -65,7 +65,7 @@ function EntityList(props) {
 export default function EntityManagementSelection(props) {
   console.log(props.entities);
   return (
-    <div className="max-w-[600px] bg-[#00468D]">
+    <div className="bg-[#00468D]">
       <div className="border-b-2 border-black"> 
         <button className="w-[10%]">Back</button>
         <div className="w-[90%] bg-transparent">
