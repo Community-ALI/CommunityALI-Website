@@ -27,7 +27,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
         !allFormData.Overview.date ||
         !allFormData.Overview.location ||
         !allFormData.Overview.description ||
-        !allFormData.Overview.file
+        !allFormData.Overview.file,
+        !allFormData.Overview.categories
       ) {
         alert('Overview is incomplete');
         return false;
@@ -110,6 +111,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
             'time': allFormData.Overview.time,
             'date': allFormData.Overview.date,
             'location': allFormData.Overview.location,
+            'categories': allFormData.Overview.categories,
             'description': allFormData.Overview.description
           }
           var ContactsData = {}

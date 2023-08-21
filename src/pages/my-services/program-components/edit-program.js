@@ -1,18 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import {BASE_BACKEND_URL} from '../../../config.js'
 
-import NavBar from '../../../components/NavBar.js';
+import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import '../add-service.css';
 import ContactsPage from "../general-components/contacts-page.js";
 import OverviewPage from "../general-components/overview-page.js";
-import RequirementsPage from "./requirements-page";
-import FaqPage from "../general-components/faq-page.js";
-import SignUpPage from "./sign-up-page.js";
+import RequirementsPage from "../general-components/requirements-page.js";
+import FaqPage from "../general-components/faq-page";
+import SignUpPage from "./sign-up-page";
 import { Buffer } from 'buffer';
-import AddResource from "./add-resource.js";
 
-function AddResouce() {
+function AddProgram() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -26,16 +25,19 @@ function AddResouce() {
     "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ", "Requirements"];
+  const removablePages = ["Contacts", "FAQ"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
+  const [additionalPages, setAdditionalPages] = useState([]);
   const [activePage, setActivePage] = useState("Overview");
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
-  const [requireFormData, setRequireFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
+  const [requireFormData, setRequireFormData] = useState({});
+
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
@@ -45,27 +47,28 @@ function AddResouce() {
   const titleRef = useRef(null);
   const [titleValue, setTitleValue] = useState('');
 
-    // notify the user that they will loose progress
-    const [showPrompt, setShowPrompt] = useState(true);
+  // notify the user that they will loose progress
+  const [showPrompt, setShowPrompt] = useState(true);
 
-    const handleShowPromptChange = (value) => {
-      setShowPrompt(value);
+  const handleShowPromptChange = (value) => {
+    setShowPrompt(value);
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (showPrompt){
+        event.preventDefault();
+        event.returnValue = ''; // Required for Chrome
+      }
     };
-  
-    useEffect(() => {
-      const handleBeforeUnload = (event) => {
-        if (showPrompt){
-          event.preventDefault();
-          event.returnValue = ''; // Required for Chrome
-        }
-      };
-  
-      window.addEventListener('beforeunload', handleBeforeUnload);
-  
-      return () => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-      };
-    }, []);
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       const queryString = window.location.search;
@@ -93,10 +96,6 @@ function AddResouce() {
               if (data.pages.FAQ){
                 addPage('FAQ');
                 setFaqFormData(data.pages.FAQ);
-              }
-              if (data.pages.requirements){
-                addPage('Requirements');
-                setRequireFormData(data.pages.requirements);
               }
               // show the page
               const loaderWrapper = document.querySelector(".loader-wrapper");
@@ -132,9 +131,6 @@ function AddResouce() {
       if (pageToRemove === 'Contacts') {
         setContactsFormData({})
       }
-      if (pageToRemove === 'Requirements'){
-        setRequireFormData({})
-      }
       if (pageToRemove === 'FAQ') {
         setFaqFormData({})
       }
@@ -165,10 +161,6 @@ function AddResouce() {
         }
         
       }
-      else if (pageToAdd === 'Requirements') {
-        setFaqFormData({ "Requirements": [{ "RequireTitle": "", "RequireDescription": "" }] })
-      }
-
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
       return updatedPages;
@@ -184,7 +176,42 @@ function AddResouce() {
   }
 
   const toggleAddButtons = () => {
-    setShowAddButtons((prevState) => !prevState)
+    if (showAddButtons) {
+      setShowPopUp(false);
+    } else {
+      setAdditionalPages(
+        allPossiblePages.filter((page) => !allCurrentPages.includes(page))
+      );
+      setShowPopUp(true);
+    }
+    setShowAddButtons((prevState) => !prevState);
+  };
+
+  
+
+
+  const PopUp = () => {
+    return (
+      <div className="pop-up-container">
+        <div className="pop-up-overlay" />
+        <div className="pop-up-content">
+          <div className="pop-up-content-title">Select a New Page</div>
+          <div className="pop-up-all-pages">
+            {additionalPages.map((page) => (
+              <div className="pop-up-page" key={page}>
+                <button onClick={() => addPage(page)} className="add-page-button">
+                  Add {page} Page
+                </button>
+              </div>
+            ))}
+          </div>
+          <div className="pop-up-content-description">
+            Need more pages for your Program? Contact us for suggestions 
+            <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -196,7 +223,7 @@ function AddResouce() {
         </div>
 
         <div className="service-title">
-          <input type="text" placeholder="Name of the Internship" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
+          <input type="text" placeholder="Name of the Program" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
 
         <div className="service-navbar">
@@ -213,45 +240,30 @@ function AddResouce() {
             onBlur={hide}
             tabIndex="0"
           >
-            <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus">
-              {showAddButtons && (
-                <div className="add-buttons-container">
-                  {allPossiblePages
-                    .filter((page) => !allCurrentPages.includes(page))
-                    .map((page) => (
-                      <button
-                        key={page}
-                        onClick={() => addPage(page)}
-                        className="add-page-button"
-                      >
-                        Add {page}
-                      </button>
-                    ))}
-                </div>
-              )}
-            </i>
+            <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus" />
+            {showPopUp && <PopUp />}
           </div>
         </div>
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} serviceType='Internship' editMode={true}  />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} serviceType='Internship' />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} serviceType='Internship' />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} serviceType='Program' />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 'title': titleValue }
         }
-        allFormData={
-          {
-            'Overview': overviewFormData,
-            'Contacts': contactsFormData,
-            'Requirements': requireFormData,
-            'FAQ': faqFormData
-          }
-        } />}
+          allFormData={
+            {
+              'Overview': overviewFormData,
+              'Contacts': contactsFormData,
+              'FAQ': faqFormData,
+              'Requirements': requireFormData,
+            }
+          } />}
 
       </form>
     </div>
   );
 }
 
-export default AddResource;
+export default AddProgram;
