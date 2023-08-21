@@ -73,7 +73,7 @@ function EntityList(props) {
     );
   } else {
     return (
-      <div>
+      <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
         {props.entities.map((service) => {
           return (
             <EntityManagementButton
@@ -98,10 +98,18 @@ function EntityList(props) {
 // TODO: implement searchbar
 export default function EntityManagementSelection(props) {
   console.log(props.entities);
+
+  const handleBackClick = () => {
+    window.history.back();
+  };
+
   return (
     <div className="bg-[#00468D] h-[100%]">
       <div className="border-b-2 border-black">
-        <button className="text-white p-2 border-[1px] border-black">
+        <button
+          className="text-white p-2 border-[1px] border-black"
+          onClick={handleBackClick}
+        >
           Back
         </button>
         {/* <div className="w-[90%] bg-transparent">

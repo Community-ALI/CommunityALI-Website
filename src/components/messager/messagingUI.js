@@ -13,9 +13,6 @@ function Message(props) {
   );
 }
 
-// TODO: Remove tile
-// TODO: Make new line on enter
-// TODO: Make text field
 function MessageForm(props) {
   const [message, setMessage] = useState({
     content: "",
@@ -27,7 +24,7 @@ function MessageForm(props) {
 
     const postData = async function () {
       try {
-        fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
+        await fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
           headers: { "content-Type": "application/json" },
           body: JSON.stringify(message),
@@ -40,7 +37,6 @@ function MessageForm(props) {
               console.error("Error:", data.error);
             } else {
               console.log("Message successfully sent");
-              window.location.reload();
             }
           })
           .catch((error) => {
