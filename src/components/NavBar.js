@@ -66,7 +66,7 @@ function MyServicesNavButton(props) {
             </Link>
             )
     }
-    else if (decodedToken.clubAdmin || decodedToken.eventAdmin || decodedToken.volunteerAdmin || decodedToken.internshipAdmin) {
+    else if (decodedToken.clubAdmin || decodedToken.internshipAdmin || decodedToken.programAdmin) {
         return (
             <Link
                 className="navigation-button navigation-text relative-container"

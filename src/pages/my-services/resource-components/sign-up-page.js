@@ -3,7 +3,7 @@ import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
 import RequirementsPage from "../general-components/requirements-page.js";
 import { useNavigate } from 'react-router-dom';
-function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
+function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = false}) {
 
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
 
@@ -16,7 +16,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
     const checkRequired = () => {
       if (
         !mainInfo.title) {
-        alert('Please provide an internship name');
+        alert('Please provide a program name');
         return false;
       }
 
@@ -216,11 +216,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                   Please Read the Following
                 </div>
                 <label htmlFor="authorization" className="authorization-text">
-                By submitting this application I authorize Community ALI to publish all the information of this application for any person
-                to view. I hold responsibility for the information displayed from this application and I represent the organization's interest to do so.
-                I understand that this application will be subject to review, in which any inappropriate content associated with the organization or its
-                members will result in immediate termination of the internship from the platform. I understand that there is no tolerance for any discrimination
-                against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
+                FIME: This is a disclaimer that the information you are submitting is accurate and true.
                 </label>
 
                 <input

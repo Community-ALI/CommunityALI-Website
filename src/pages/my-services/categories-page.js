@@ -67,7 +67,7 @@ function CategoriesPage() {
         )} */}
 
           {/* Box 2 */}
-          {decodedToken.eventAdmin ? (
+          {decodedToken.programAdmin ? (
           <a className="category-container" href="/add-resource">
             <p className="category-header">Add an MJC Program</p>
             <p className="category-text">

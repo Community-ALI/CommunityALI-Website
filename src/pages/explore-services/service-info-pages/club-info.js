@@ -6,6 +6,7 @@ import {BASE_BACKEND_URL} from '../../../config.js'
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import ContactsPage from "./contacts-page";
+import SocialMediaPage from "./social-media-page";
 import OverviewPage from "./overview-page";
 import FaqPage from "./faq-page";
 import RequirementsPage from "./requirements-page.js"
@@ -19,6 +20,7 @@ function AddClub() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
+    "Social Media",
     "FAQ",
     'Requirements',
     "Sign Up"
@@ -27,6 +29,7 @@ function AddClub() {
   const [allCurrentPages, setAllCurrentPages] = useState([
     "Overview",
     "Contacts",
+    "Social Media",
     "FAQ",
     'Requirements',
     "Sign Up"
@@ -83,6 +86,9 @@ function AddClub() {
           if (!data.pages.requirements){
             removePage("Requirements")
           }
+          if (!data.pages.socialMedia){
+            removePage("Social Media")
+          }
           // show the page
           const loaderWrapper = document.querySelector(".loader-wrapper");
           loaderWrapper.style.transition = "opacity 0.5s";
@@ -118,6 +124,7 @@ function AddClub() {
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" service={service} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" service={service} />}
+        {activePage === "Social Media" && <SocialMediaPage key="SocialMediaPage" service={service} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" service={service} />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" service={service} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" service={service}/>}

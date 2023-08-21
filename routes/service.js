@@ -122,7 +122,7 @@ router.post("/upload-service", upload.single("image"), async function (req, res)
         const account = await User.findOne({ username });
         if (account) {
             const requestedServiceType = req.body.serviceType;
-            if ((requestedServiceType == 'Club' && account.clubAdmin) || (requestedServiceType == 'Internship' && account.internshipAdmin)) {
+            if ((requestedServiceType == 'Club' && account.clubAdmin) || (requestedServiceType == 'Internship' && account.internshipAdmin) || (requestedServiceType == 'Program' && account.programAdmin)) {
                 const result = await service_data.store_add_service(req, username);
                 if (result.success) {
                     console.log(`new ${req.body.serviceType} added by ${username}`);

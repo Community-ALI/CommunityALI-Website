@@ -209,7 +209,7 @@ function AddResource() {
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Program' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
             'title': titleValue,
-            'serviceType': 'Internship'
+            'serviceType': 'Program'
           }
           
         }

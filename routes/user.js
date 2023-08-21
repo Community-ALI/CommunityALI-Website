@@ -130,11 +130,11 @@ router.post("/login", async (req, res) => {
         username: user.username,
         email: user.email,
         platformManager: false,
-        clubAdmin: user.clubAdmin,
-        eventAdmin: user.eventAdmin,
         administrator: user.administrator,
-        volunteeringAdmin: user.volunteeringAdmin,
+        clubAdmin: user.clubAdmin,
         internshipAdmin: user.internshipAdmin,
+        programAdmin: user.programAdmin,
+        // volunteeringAdmin: user.volunteeringAdmin,
       },
       JWT_SECRET
     );
