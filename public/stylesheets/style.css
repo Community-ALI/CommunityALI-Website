@@ -1034,6 +1034,10 @@ video {
   gap: 2rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -1304,6 +1308,11 @@ video {
 
 .text-\[95\%\] {
   font-size: 95%;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-\[300\] {

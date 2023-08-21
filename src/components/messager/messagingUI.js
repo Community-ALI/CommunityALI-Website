@@ -5,8 +5,8 @@ function Message(props) {
   const message = props.message;
   return (
     <div>
-      <p>{message.createdAt}</p>
-      <div className="bg-[#001E60] text-white p-4">
+      <p className="text-center text-white text-xs">{message.createdAt}</p>
+      <div className="bg-[#001E60] rounded-lg text-white p-4">
         <p>{message.content}</p>
       </div>
     </div>
@@ -138,7 +138,7 @@ export default function MessagingUI(props) {
       </div>
       <div
         className="bg-[#00468D] flex-1 flex overflow-scroll overflow-x-hidden
-        w-[100%] flex-col-reverse p-4 px-8"
+        w-[100%] flex-col-reverse p-4 px-8 gap-4"
       >
         {messages.map((message) => {
           return <Message message={message} key={message._id} />;
