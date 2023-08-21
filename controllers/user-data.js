@@ -45,6 +45,18 @@ exports.set_user_data = async function (username, req) {
   }
 };
 
+exports.unsubscribe_user = async function (email) {
+  try {
+    const selected_account = await Users.findOne({ email: email });
+    selected_account.sendNotifications = false;
+    await selected_account.save();
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: error };
+  }
+};
+
 exports.upload_user_image = async function (username, req) {
   try {
     const account = await Users.findOne({ username: username });

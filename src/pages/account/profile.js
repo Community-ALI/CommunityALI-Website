@@ -389,7 +389,7 @@ function Profile() {
             value='Cancel Edits'
           />
         }
-      </div>
+    </div>
       <Footer />
     </div>
   );

@@ -27,6 +27,7 @@ import NotFound from "./components/NotFound";
 import SignupPopup from "./components/SignupPopup";
 import ManagementSelectionPage from "./pages/administrator/managementSelectionPage";
 import Administration from "./pages/administrator/administration";
+import Unsubscribe from "./pages/account/unsubscribe";
 
 import "./style.scss";
 import "../public/stylesheets/style.css";
@@ -79,6 +80,7 @@ function App() {
         <Route path="/verify" element={<Verify />} />
         <Route path="/forgot-password" element={<Forgot_Password />} />
         <Route path="reset-password" element={<Reset_Password />} />
+        <Route path="/unsubscribe" element={<Unsubscribe />} />
 
         {/* other */}
         <Route path="/" element={<LandingPage />} />
