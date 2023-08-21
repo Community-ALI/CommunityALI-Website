@@ -7,7 +7,6 @@ function Message(props) {
     <div>
       <p>{message.createdAt}</p>
       <div className="bg-[#001E60] text-white p-4">
-        <h1 className="mb-6">{message.title + ":"}</h1>
         <p>{message.content}</p>
       </div>
     </div>
@@ -20,7 +19,6 @@ function Message(props) {
 function MessageForm(props) {
   const [message, setMessage] = useState({
     content: "",
-    title: "UPDATE:",
     senderId: props.senderId,
   });
 
