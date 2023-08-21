@@ -36,7 +36,7 @@ router.post("/post_message", validateMessage, async function (req, res) {
   };
   try {
     await message_data.save_service_message(sanitizedObject);
-    res.status(200);
+    res.status(200).json({ message: "Message saved successfully" });
   } catch (error) {
     console.error(error);
   }

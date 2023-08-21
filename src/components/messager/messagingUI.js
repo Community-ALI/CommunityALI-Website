@@ -19,6 +19,10 @@ function MessageForm(props) {
     senderId: props.senderId,
   });
 
+  const clearInput = () => {
+    setMessage({ ...message, ["content"]: "" });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -37,6 +41,8 @@ function MessageForm(props) {
               console.error("Error:", data.error);
             } else {
               console.log("Message successfully sent");
+              props.updateMessages();
+              clearInput();
             }
           })
           .catch((error) => {
@@ -50,6 +56,8 @@ function MessageForm(props) {
     postData();
   };
 
+  // TODO: this is unecessary, remove it and prevent users from
+    // sending messages their _id is undefined
   function updateSenderId() {
     setMessage({ ...message, ["senderId"]: props.senderId });
   }
@@ -69,7 +77,7 @@ function MessageForm(props) {
   return (
     <div className="bg-[#001E60] rounded-lg h-[59px]">
       <form onSubmit={handleSubmit} className='flex items-center h-[100%]'>
-        <input type="text" className="bg-transparent text-white flex-1 px-4" placeholder="Message..." name="content" onChange={handleInputChange} />
+        <input type="text" className="bg-transparent text-white flex-1 px-4" value={message.content} placeholder="Message..." name="content" onChange={handleInputChange} />
         <button type="submit" className="bg-[#ECAA1E] rounded-lg">
           <img src="Photos/Send_fill.png" alt="" />
         </button>
@@ -78,7 +86,6 @@ function MessageForm(props) {
   );
 }
 
-// TODO: disable form when canSendMessage is false
 export default function MessagingUI(props) {
   const [messages, setMessages] = useState([
     {
@@ -142,7 +149,7 @@ export default function MessagingUI(props) {
       </div>
       {props.canSendMessages && (
         <div className="bg-[#00468D] p-4 px-8">
-          <MessageForm senderId={props.senderId} />
+          <MessageForm senderId={props.senderId} updateMessages={fetchMessages} />
         </div>
       )}
     </div>
