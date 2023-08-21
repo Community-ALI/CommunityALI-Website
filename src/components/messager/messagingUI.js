@@ -71,10 +71,10 @@ function MessageForm(props) {
   };
 
   return (
-    <div className="bg-[#001E60]">
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="content" onChange={handleInputChange} />
-        <button type="submit" className="bg-[#ECAA1E]">
+    <div className="bg-[#001E60] rounded-lg h-[59px]">
+      <form onSubmit={handleSubmit} className='flex items-center h-[100%]'>
+        <input type="text" className="bg-transparent text-white flex-1 px-4" placeholder="Message..." name="content" onChange={handleInputChange} />
+        <button type="submit" className="bg-[#ECAA1E] rounded-lg">
           <img src="Photos/Send_fill.png" alt="" />
         </button>
       </form>
@@ -145,7 +145,7 @@ export default function MessagingUI(props) {
         })}
       </div>
       {props.canSendMessages && (
-        <div>
+        <div className="bg-[#00468D] p-4 px-8">
           <MessageForm senderId={props.senderId} />
         </div>
       )}
