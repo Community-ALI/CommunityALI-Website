@@ -86,6 +86,7 @@ export default function Inbox() {
             entities={services}
             SelectEntity={setSelectedService}
             selectedId={(selectedService) ? selectedService._id : false}
+            canSendMessages={false}
           />
         </div>
         {selectedService && 

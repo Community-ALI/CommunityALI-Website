@@ -81,7 +81,7 @@ function MessageForm(props) {
   );
 }
 
-//TODO: make it so that users can't send messages
+// TODO: disable form when canSendMessage is false
 export default function MessagingUI(props) {
   const [messages, setMessages] = useState([
     {
@@ -126,15 +126,19 @@ export default function MessagingUI(props) {
       <div className="bg-[#001E60] h-[126px] text-white flex p-4 items-center">
         <h1>{props.serviceTitle}</h1>
       </div>
-      <div className="bg-[#00468D] flex-1 flex overflow-scroll w-[100%] 
-        flex-col-reverse p-4 px-8">
+      <div
+        className="bg-[#00468D] flex-1 flex overflow-scroll w-[100%] 
+        flex-col-reverse p-4 px-8"
+      >
         {messages.map((message) => {
           return <Message message={message} key={message._id} />;
         })}
       </div>
-      <div>
-        <MessageForm senderId={props.senderId} />
-      </div>
+      {props.canSendMessages && (
+        <div>
+          <MessageForm senderId={props.senderId} />
+        </div>
+      )}
     </div>
   );
 }

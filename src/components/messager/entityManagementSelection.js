@@ -74,16 +74,17 @@ function EntityList(props) {
   }
 }
 
+// TODO: implement searchbar
 export default function EntityManagementSelection(props) {
   console.log(props.entities);
   return (
     <div className="bg-[#00468D] h-[100%]">
       <div className="border-b-2 border-black">
         <button className="w-[10%]">Back</button>
-        <div className="w-[90%] bg-transparent">
+        {/* <div className="w-[90%] bg-transparent">
           <input placeholder="Search" type="search" />
           <img src="Photos/search.png" alt="" />
-        </div>
+        </div> */}
       </div>
       <div>
         <EntityList

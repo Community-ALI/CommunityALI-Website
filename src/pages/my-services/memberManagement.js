@@ -7,7 +7,7 @@ import { BASE_BACKEND_URL } from "../../config";
 
 //TODO make a get function for a fully populated service
 export default function MemberManagement() {
-  const [service, setService] = useState({ title: "Loading..."});
+  const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
 
   const fetchData = async () => {
@@ -40,7 +40,7 @@ export default function MemberManagement() {
               console.log(`Fetched users: ${data.length}`);
               setUsers(data);
             });
-            //TODO: Turn the user profiles into the correct format
+          //TODO: Turn the user profiles into the correct format
         });
     } catch (error) {
       console.error(`Fetch error: ${error}`);
@@ -52,7 +52,7 @@ export default function MemberManagement() {
   }, []);
 
   //TODO: Add page loading so users can't interact with elements
-    //before all the data has been set up
+  //before all the data has been set up
   //TODO: Connect backend data to elements
   //TODO: Add mobile support
   return (
@@ -60,12 +60,13 @@ export default function MemberManagement() {
       <NavBar />
       <div className="lr:mt-24 h-[80vh] flex">
         <div className="max-w-[40%]">
-          <EntityManagementSelection
-            entityType={"user"}
-            entities={users}
-          />
+          <EntityManagementSelection entityType={"user"} entities={users} />
         </div>
-        <MessagingUI serviceTitle={service.title} senderId={service._id} />
+        <MessagingUI
+          serviceTitle={service.title}
+          senderId={service._id}
+          canSendMessages={true}
+        />
       </div>
       <Footer />
     </div>
