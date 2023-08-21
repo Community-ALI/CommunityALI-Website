@@ -16,7 +16,7 @@ function Message(props) {
 
 // TODO: Remove tile
 // TODO: Make new line on enter
-// TODO: Make text field  
+// TODO: Make text field
 function MessageForm(props) {
   const [message, setMessage] = useState({
     content: "",
@@ -127,11 +127,20 @@ export default function MessagingUI(props) {
   return (
     <div className="flex flex-col flex-1 max-h-[100%]">
       <div className="bg-[#001E60] h-[126px] text-white flex p-4 items-center">
+        <img
+          src={
+            props.serviceImage
+              ? props.serviceImage
+              : "Photos/DefaultServiceImage.png"
+          }
+          alt=""
+          className="mr-4 h-[82px]"
+        />
         <h1>{props.serviceTitle}</h1>
       </div>
       <div
-        className="bg-[#00468D] flex-1 flex overflow-scroll w-[100%] 
-        flex-col-reverse p-4 px-8"
+        className="bg-[#00468D] flex-1 flex overflow-scroll overflow-x-hidden
+        w-[100%] flex-col-reverse p-4 px-8"
       >
         {messages.map((message) => {
           return <Message message={message} key={message._id} />;
