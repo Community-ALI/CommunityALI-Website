@@ -36,13 +36,13 @@ function EntityManagementButton(props) {
         <img src="/Photos/Setting_fill.png" className=" max-h-[100%] " />
       </button> */}
       <button
-        className="flex gap-8 w-[100%] h-[100%]"
+        className="flex gap-4 items-center w-[100%] h-[100%]"
         onClick={() => {
           props.SelectEntity(props.entireEntity);
         }}
       >
         <img className="w-[82px]" src={entityImageUrl} />
-        <div className="flex flex-col">
+        <div className="flex flex-col text-left">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
             <p className="text-white">{entity.subtext}</p>
@@ -57,7 +57,7 @@ function EntityList(props) {
   console.log("entites: ", props.entities);
   if (props.entityType == "user") {
     return (
-      <div>
+      <div className='flex flex-col overflow-scroll overflow-x-hidden h-[100%]'>
         {props.entities.map((user) => {
           return (
             <EntityManagementButton
@@ -109,14 +109,12 @@ export default function EntityManagementSelection(props) {
           <img src="Photos/search.png" alt="" />
         </div> */}
       </div>
-      <div>
         <EntityList
           SelectEntity={props.SelectEntity}
           entityType={props.entityType}
           entities={props.entities}
           selectedId={props.selectedId}
         />
-      </div>
     </div>
   );
 }
