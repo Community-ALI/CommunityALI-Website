@@ -239,12 +239,6 @@ function NavBar(props) {
             constantUpdate={props.constantUpdate}
           />
 
-          {token && (
-            <Link className="navigation-text" to="/inbox">
-              Inbox
-            </Link>
-          )}
-
           <a
             className="navigation-text"
             href="https://www.mjc.edu/"

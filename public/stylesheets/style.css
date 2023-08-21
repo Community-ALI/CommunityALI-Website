@@ -825,6 +825,10 @@ video {
   max-height: 100%;
 }
 
+.max-h-\[101px\] {
+  max-height: 101px;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -1036,6 +1040,14 @@ video {
 
 .border-\[1\.5px\] {
   border-width: 1.5px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-\[1px\] {
+  border-width: 1px;
 }
 
 .border-b-2 {

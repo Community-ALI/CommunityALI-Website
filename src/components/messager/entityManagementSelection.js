@@ -1,26 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Buffer } from "buffer";
 
+// TODO: Implement member management
 function EntityManagementButton(props) {
+  const [entityImageUrl, setEntityImageUrl] = useState(
+    "Photos/UserTemplateImage.png"
+  );
   const entity = props.entity;
+
+  function convertImageToUrl() {
+    const buffer = Buffer.from(entity.profileImage);
+    const base64 = buffer.toString("base64");
+    imageUrl = `data:image/png;base64,${base64}`;
+    entityImageUrl(imageUrl);
+  }
+
+  useEffect(() => {
+    if (entity.profileImage) {
+      convertImageToUrl();
+      console.log(entity.profileImage);
+    } else {
+      console.log('profile image is: ', entity.profileImage);
+    }
+  }, [entity.profileImage]);
 
   return (
     <div
-      className={`relative text-white px-4 py-2 border-black border-b-2
+      className={`relative max-h-[101px] text-white px-4 py-2 border-black border-b-2
       ${props.isSelected ? "bg-[#2C6BAC]" : ""}`}
     >
-      <button
+      {/* <button
         className="bg-[#ECAA1E] absolute right-4 top-[50%] translate-y-[-50%]"
         onClick={props.OnSettingsClick}
       >
         <img src="/Photos/Setting_fill.png" className=" max-h-[100%] " />
-      </button>
+      </button> */}
       <button
         className="flex gap-8 w-[100%] h-[100%]"
         onClick={() => {
           props.SelectEntity(props.entireEntity);
         }}
       >
-        <img className="w-[82px]" src={entity.image} />
+        <img className="w-[82px]" src={entityImageUrl} />
         <div className="flex flex-col">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
@@ -41,7 +62,7 @@ function EntityList(props) {
           return (
             <EntityManagementButton
               entity={{
-                image: user.profile,
+                image: user.profileImage,
                 name: user.fullName,
                 subtext: [user.email],
               }}
@@ -80,7 +101,9 @@ export default function EntityManagementSelection(props) {
   return (
     <div className="bg-[#00468D] h-[100%]">
       <div className="border-b-2 border-black">
-        <button className="w-[10%]">Back</button>
+        <button className="text-white p-2 border-[1px] border-black">
+          Back
+        </button>
         {/* <div className="w-[90%] bg-transparent">
           <input placeholder="Search" type="search" />
           <img src="Photos/search.png" alt="" />

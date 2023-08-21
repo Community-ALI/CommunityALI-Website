@@ -52,7 +52,7 @@ exports.get_services_user_is_member = async function (userId) {
     if (services.length === 0) {
       console.log("No services found for the user.", services);
     } else {
-      console.log("Services found:", services);
+      console.log("Services found:", services.length);
     }
     return services;
   } catch (error) {

@@ -14,6 +14,9 @@ function Message(props) {
   );
 }
 
+// TODO: Remove tile
+// TODO: Make new line on enter
+// TODO: Make text field  
 function MessageForm(props) {
   const [message, setMessage] = useState({
     content: "",
