@@ -26,6 +26,9 @@ input[data-autocompleted]
     transition: 300ms ease;
     position: relative;
     padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
 }
 
 .service-title
@@ -96,6 +99,11 @@ input[data-autocompleted]
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 25px;
+}
+
+#overview-meeting-details
+{
+    width: 45%;
 }
 
 .service-image-container
@@ -318,7 +326,7 @@ input[data-autocompleted]
     font-weight: 400;
     line-height: 50px;
     position: relative;
-    width: 45%;
+    width: 75%;
     padding: 25px 25px;
     border-radius: 20px;
     background-size: cover;

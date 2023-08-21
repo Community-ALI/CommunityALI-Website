@@ -252,6 +252,15 @@ body
     margin-top: 12px;
 }
 
+#tutoring-container
+{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-flow: wrap;
+    padding-top: clamp(30px, 8%, 60px);
+}
+
 #partners-container
 {
     padding-top : clamp(30px, 8%, 60px);

@@ -114,7 +114,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
     />
 
 
-        <div className="service-details">
+        <div className="service-details" id='overview-meeting-details'>
           <div className="service-author">
             <input
               type="text"

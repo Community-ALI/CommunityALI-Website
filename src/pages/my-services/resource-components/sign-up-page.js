@@ -40,7 +40,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
         // Check required fields for each contact
         const contactsComplete = contacts.every(
           (contact) =>
-            contact.contactRole && contact.contactName && contact.contactEmail
+            contact.contactName && contact.contactEmail
         );
     
         if (!contactsComplete) {
@@ -48,9 +48,9 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           return false;
         }
       }
-      if (allFormData.Contacts.socialMedia){
+      if (allFormData.socialMedia){
         // Check required fields for social media
-        const socialMedia = allFormData.Contacts.socialMedia
+        const socialMedia = allFormData.socialMedia
         const socialMediaComplete = socialMedia.every(
           (media) => media.mediaType && media.mediaName && media.mediaUrl
         );
@@ -116,7 +116,6 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           if (allFormData.Contacts.contacts || allFormData.Contacts.socialMedia){
             ContactsData = {
               'contacts': allFormData.Contacts.contacts,
-              'socialMedia': allFormData.Contacts.socialMedia
             }
           }
 

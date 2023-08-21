@@ -119,6 +119,7 @@ function AddResource() {
       else if (pageToAdd === 'FAQ') {
         setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
       }
+
       else if (pageToAdd === 'Requirements') {
         setFaqFormData({ "Requirements": [{ "RequireTitle": "", "RequireDescription": "" }] })
       }

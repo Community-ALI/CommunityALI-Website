@@ -5,12 +5,14 @@ import '../add-service.css';
 import ContactsPage from "../general-components/contacts-page";
 import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
+import MediaPage from "../general-components/media-page";
 import SignUpPage from "./sign-up-page";
 
 function AddClub() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
+    "Social Media",
     "FAQ",
     "Sign Up"
   ];
@@ -20,7 +22,7 @@ function AddClub() {
     "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ"];
+  const removablePages = ["Contacts", "FAQ", "Social Media"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
@@ -194,6 +196,7 @@ function AddClub() {
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
+        {activePage === "Social Media" && <MediaPage key="MediaPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
