@@ -24,7 +24,7 @@ exports.get_service_messages = async function (serviceId) {
       return { success: false, error: "No service uses inputted ID" };
     }
 
-    console.log("Messages successfully retrived from database :" + message);
+    console.log("Messages successfully retrived from database");
     return message;
   } catch (error) {
     console.error(error);

@@ -3,9 +3,7 @@ import { Buffer } from "buffer";
 
 // TODO: Implement member management
 function EntityManagementButton(props) {
-  const [entityImageUrl, setEntityImageUrl] = useState(
-    "Photos/UserTemplateImage.png"
-  );
+  const [entityImageUrl, setEntityImageUrl] = useState(props.defaultImage);
   const entity = props.entity;
 
   function convertImageToUrl() {
@@ -20,7 +18,7 @@ function EntityManagementButton(props) {
       convertImageToUrl();
       console.log(entity.profileImage);
     } else {
-      console.log('profile image is: ', entity.profileImage);
+      console.log("profile image is: ", entity.profileImage);
     }
   }, [entity.profileImage]);
 
@@ -57,7 +55,7 @@ function EntityList(props) {
   console.log("entites: ", props.entities);
   if (props.entityType == "user") {
     return (
-      <div className='flex flex-col overflow-scroll overflow-x-hidden h-[100%]'>
+      <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
         {props.entities.map((user) => {
           return (
             <EntityManagementButton
@@ -66,6 +64,7 @@ function EntityList(props) {
                 name: user.fullName,
                 subtext: [user.email],
               }}
+              defaultImage={"/Photos/UserTemplateImage.png"}
               key={user._id}
             />
           );
@@ -87,6 +86,7 @@ function EntityList(props) {
               isSelected={props.selectedId === service._id}
               key={service._id}
               SelectEntity={props.SelectEntity}
+              defaultImage={"/Photos/DefaultServiceImage.png"}
             />
           );
         })}
@@ -109,12 +109,12 @@ export default function EntityManagementSelection(props) {
           <img src="Photos/search.png" alt="" />
         </div> */}
       </div>
-        <EntityList
-          SelectEntity={props.SelectEntity}
-          entityType={props.entityType}
-          entities={props.entities}
-          selectedId={props.selectedId}
-        />
+      <EntityList
+        SelectEntity={props.SelectEntity}
+        entityType={props.entityType}
+        entities={props.entities}
+        selectedId={props.selectedId}
+      />
     </div>
   );
 }
