@@ -1,269 +1,344 @@
-import React, { useRef, Component, useEffect, useState } from 'react';
-import { BASE_BACKEND_URL } from '../config.js'
-import { Link } from 'react-router-dom';
-import './navbar.css';
-import '../../public/stylesheets/style.css'
-import LoginButton from './LoginButton';
-import LoginPopup from './LoginPopup';
-import Notifications from './Notification';
-import SignupPopup from './SignupPopup';
-import SignUpButton from './SignUpButton.js';
+import React, { useRef, Component, useEffect, useState } from "react";
+import { BASE_BACKEND_URL } from "../config.js";
+import { Link } from "react-router-dom";
+import "./navbar.css";
+import "../../public/stylesheets/style.css";
+import LoginButton from "./LoginButton";
+import LoginPopup from "./LoginPopup";
+import Notifications from "./Notification";
+import SignupPopup from "./SignupPopup";
+import SignUpButton from "./SignUpButton.js";
 
 function MyServicesNavButton(props) {
-    var token = localStorage.getItem('token');
-    var decodedToken = {};
-    if (token) {
-        decodedToken = JSON.parse(atob(token.split('.')[1]));
-    }
-    const [notifications, setNotifications] = useState([]);
+  var token = localStorage.getItem("token");
+  var decodedToken = {};
+  if (token) {
+    decodedToken = JSON.parse(atob(token.split(".")[1]));
+  }
+  const [notifications, setNotifications] = useState([]);
 
-    function fetchNotificationData() {
-        const fetchData = async () => {
-            try {
-                var token = localStorage.getItem('token');
-                if (token) {
-                    const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-all-user-notifications`,
-                        {
-                            headers:
-                            {
-                                'Authorization': `Bearer ${token}`
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            setNotifications(data.notifications);
-                        })
-                }
-                else {
-
-                }
-            } catch (error) {
-                console.log(error)
+  function fetchNotificationData() {
+    const fetchData = async () => {
+      try {
+        var token = localStorage.getItem("token");
+        if (token) {
+          const response = await fetch(
+            `${BASE_BACKEND_URL}/userdata/get-all-user-notifications`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             }
-        };
-
-        fetchData();
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              setNotifications(data.notifications);
+            });
+        } else {
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
 
-    if (props.constantUpdate)
-        useEffect(() => {
-            fetchNotificationData();
-        });
-    else
-        useEffect(() => {
-            fetchNotificationData();
-        }, []);
+    fetchData();
+  }
 
-    if (decodedToken.administrator) {
-        return (
-            <Link
-                className="navigation-button navigation-text relative-container"
-                to="/administrator-my-service-selection"
-                id="applicants"
-            >
-                <Notifications notifications={notifications ? notifications.length : 0} />
-                Manage
-            </Link>
-            )
-    }
-    else if (decodedToken.clubAdmin || decodedToken.internshipAdmin || decodedToken.programAdmin) {
-        return (
-            <Link
-                className="navigation-button navigation-text relative-container"
-                to="/my-services"
-                id="applicants"
-            >
-                <Notifications notifications={notifications ? notifications.length : 0} />
-                Manage
-            </Link>
-        )
-    }
+  if (decodedToken.administrator) {
+    return (
+      <Link
+        className="navigation-button navigation-text relative-container"
+        to="/administrator-my-service-selection"
+        id="applicants"
+      >
+        <Notifications
+          notifications={notifications ? notifications.length : 0}
+        />
+        Manage
+      </Link>
+    );
+  } else if (
+    decodedToken.clubAdmin ||
+    decodedToken.internshipAdmin ||
+    decodedToken.programAdmin
+  ) {
+    return (
+      <Link
+        className="navigation-button navigation-text relative-container"
+        to="/my-services"
+        id="applicants"
+      >
+        <Notifications
+          notifications={notifications ? notifications.length : 0}
+        />
+        Manage
+      </Link>
+    );
+  }
 
-    return null;
+  if (decodedToken.administrator) {
+    return (
+      <Link
+        className="navigation-button navigation-text relative-container"
+        to="/administrator-my-service-selection"
+        id="applicants"
+      >
+        <Notifications
+          notifications={notifications ? notifications.length : 0}
+        />
+        Manage
+      </Link>
+    );
+  } else if (
+    decodedToken.clubAdmin ||
+    decodedToken.eventAdmin ||
+    decodedToken.volunteerAdmin ||
+    decodedToken.internshipAdmin
+  ) {
+    return (
+      <Link
+        className="navigation-button navigation-text relative-container"
+        to="/my-services"
+        id="applicants"
+      >
+        <Notifications
+          notifications={notifications ? notifications.length : 0}
+        />
+        Manage
+      </Link>
+    );
+  }
+
+  return null;
 }
 
 function NavBar(props) {
-    const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
-    const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
-    const [hasScrolled, setHasScrolled] = useState(false);
-    const [token, setToken] = useState(false);
-    const [showNavBarMobile, setShowNavBarMobile] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
-    const navigationMenuRef = useRef(null);
+  const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
+  const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [token, setToken] = useState(false);
+  const [showNavBarMobile, setShowNavBarMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  const navigationMenuRef = useRef(null);
 
-    useEffect(() => {
-        const handleScroll = event => {
-            if (props.isFixedPage) { // prevent it from looking different if the bar is fixed
-                setHasScrolled(window.scrollY > 0 ? true : false);
-            }
-        };
+  useEffect(() => {
+    const handleScroll = (event) => {
+      if (props.isFixedPage) {
+        // prevent it from looking different if the bar is fixed
+        setHasScrolled(window.scrollY > 0 ? true : false);
+      }
+    };
 
-        window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    })
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
-    useEffect(() => {
-        const handleDocumentClick = (event) => {
-          if (
-            navigationMenuRef.current &&
-            !navigationMenuRef.current.contains(event.target) &&
-            event.target.className !== 'navigation-menu'
-          ) {
-            setShowNavBarMobile(false);
-          }
-        };
-    
-        document.addEventListener('click', handleDocumentClick);
-    
-        return () => {
-          document.removeEventListener('click', handleDocumentClick);
-        };
-      }, []);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        navigationMenuRef.current &&
+        !navigationMenuRef.current.contains(event.target) &&
+        event.target.className !== "navigation-menu"
+      ) {
+        setShowNavBarMobile(false);
+      }
+    };
 
-    useState(() => {
-        window.addEventListener('resize', (() => {
-            setIsMobile(window.innerWidth <= 850)
-        }));
-    })
+    document.addEventListener("click", handleDocumentClick);
 
-    // get token from local storage
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        setToken(token);
-    }, [setToken]);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
-    function showLoginPopup() {
-        setIsShowingLoginPopup(true);
-        setIsShowingSignupPopup(false);
+  useState(() => {
+    window.addEventListener("resize", () => {
+      setIsMobile(window.innerWidth <= 850);
+    });
+  });
+
+  // get token from local storage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setToken(token);
+  }, [setToken]);
+
+  function showLoginPopup() {
+    setIsShowingLoginPopup(true);
+    setIsShowingSignupPopup(false);
+  }
+
+  function showSignupPopup() {
+    setIsShowingSignupPopup(true);
+    setIsShowingLoginPopup(false);
+  }
+
+  function hidePopups() {
+    setIsShowingLoginPopup(false);
+    setIsShowingSignupPopup(false);
+  }
+
+  const searchRef = useRef(null);
+
+  // Search Bar Event Listener
+  useEffect(() => {
+    const handleSearch = (event) => {
+      if (event.key === "Enter") {
+        // Prevent the form from submitting
+        event.preventDefault();
+
+        // Perform search logic here
+        const searchText = searchRef.current.value.trim().split(" ").join("+");
+        const url = "/services?keyword=" + searchText;
+        window.location.href = url;
+      }
+    };
+
+    // Attach Event Listener to Search Bar
+    searchRef.current.addEventListener("keyup", handleSearch);
+    const queryParams = new URLSearchParams(window.location.search);
+    const keyword = queryParams.get("keyword");
+    if (keyword) {
+      searchRef.current.value = keyword;
     }
+    // Clean up the event listener
+    return () => {
+      if (searchRef.current) {
+        searchRef.current.removeEventListener("keyup", handleSearch);
+      }
+    };
+  }, [isMobile]);
 
-    function showSignupPopup() {
-        setIsShowingSignupPopup(true);
-        setIsShowingLoginPopup(false);
-    }
-
-    function hidePopups() {
-        setIsShowingLoginPopup(false);
-        setIsShowingSignupPopup(false);
-    }
-
-    const searchRef = useRef(null);
-
-    // Search Bar Event Listener
-    useEffect(() => {
-        const handleSearch = (event) => {
-            if (event.key === 'Enter') {
-                // Prevent the form from submitting
-                event.preventDefault();
-
-                // Perform search logic here
-                const searchText = searchRef.current.value.trim().split(' ').join('+');
-                const url = "/services?keyword=" + searchText;
-                window.location.href = url;
-            }
-        };
-
-        // Attach Event Listener to Search Bar
-        searchRef.current.addEventListener('keyup', handleSearch);
-        const queryParams = new URLSearchParams(window.location.search);
-        const keyword = queryParams.get('keyword');
-        if (keyword) {
-            searchRef.current.value = keyword;
+  return (
+    <>
+      <div
+        className={
+          "navigation-bar" +
+          (props.isFixedPage ? "" : " navigation-bar-not-fixed") +
+          (showNavBarMobile ? " active" : "")
         }
-        // Clean up the event listener
-        return () => {
-            if (searchRef.current) {
-                searchRef.current.removeEventListener('keyup', handleSearch);
-            }
-        };
-    }, [isMobile]);
+      >
+        <nav
+          className={
+            "navigation-menu" + (hasScrolled ? " navigation-bar-scrolled" : "")
+          }
+        >
+          <a href="/">
+            <img
+              src="/photos-optimized/TeamLogo-opt.png"
+              alt="ALI logo"
+              className="navbar-logo"
+            />
+          </a>
 
-    return (
-        <>
-            <div className={"navigation-bar" + (props.isFixedPage ? '' : " navigation-bar-not-fixed") + (showNavBarMobile ? " active" : "")} >
-                <nav className={"navigation-menu" + (hasScrolled ? ' navigation-bar-scrolled' : '')}>
-                    <a href="/">
-                        <img src="/photos-optimized/TeamLogo-opt.png" alt='ALI logo' className="navbar-logo" />
-                    </a>
-
-                    {!isMobile &&
-                        <div id="navigation-search-bar">
-                            <input
-                                id='navigation-search-bar-input'
-                                placeholder="Search..."
-                                ref={searchRef}
-                            />
-                            <img src="/Photos/search.png" alt='Search icon' id="navigation-search-bar-icon" />
-                        </div>
-                    }
-
-                    <a className="navigation-text" href="/">
-                        Home
-                    </a>
-
-                    <Link className="navigation-text" to="/services">
-                        Explore
-                    </Link>
-
-                    <MyServicesNavButton token={token} constantUpdate={props.constantUpdate} />
-
-                    <a className="navigation-text" href="https://www.mjc.edu/" target="_blank">
-                        MJC
-                    </a>
-
-                    {isMobile && window.innerWidth <= 850 ? null : (
-                        <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
-                    )}
-                    
-                    <SignUpButton ShowSignupPopup={showSignupPopup} token={token}></SignUpButton>
-                </nav>
+          {!isMobile && (
+            <div id="navigation-search-bar">
+              <input
+                id="navigation-search-bar-input"
+                placeholder="Search..."
+                ref={searchRef}
+              />
+              <img
+                src="/Photos/search.png"
+                alt="Search icon"
+                id="navigation-search-bar-icon"
+              />
             </div>
+          )}
 
-            {isMobile &&
-                <div id="navigation-search-bar">
-                    <input
-                        id='navigation-search-bar-input'
-                        placeholder="Search..."
-                        ref={searchRef}
-                    />
-                    <img src="Photos/search.png" alt='Photos/NoPhoto.webp' id="navigation-search-bar-icon" />
-                </div>
-            }
+          <a className="navigation-text" href="/">
+            Home
+          </a>
 
+          <Link className="navigation-text" to="/services">
+            Explore
+          </Link>
 
-            <div
-                className={"navigation-hamburger" + (showNavBarMobile ? " active" : "")}
-            >
-                <div className='mr-[12px]' onClick={() => setShowNavBarMobile(!showNavBarMobile)} ref={navigationMenuRef}>
-                    <div className="navigation-line"></div>
-                    <div className="navigation-line"></div>
-                    <div className="navigation-line"></div>
-                </div>
+          <MyServicesNavButton
+            token={token}
+            constantUpdate={props.constantUpdate}
+          />
 
-                    <a href="/">
-                        <img src="photos-optimized/TeamLogo-opt.png" alt='Photos/NoPhoto.webp' className="navbar-logo mobileLogo" />
-                    </a>
-                
-                <div>
-                    <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
-                </div>
-            </div>
+          <a
+            className="navigation-text"
+            href="https://www.mjc.edu/"
+            target="_blank"
+          >
+            MJC
+          </a>
 
-            <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup} />
-            <SignupPopup isShowingSignupPopup={isShowingSignupPopup} showLoginPopup={showLoginPopup} />
+          {isMobile && window.innerWidth <= 850 ? null : (
+            <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
+          )}
 
-            <div
-                id='login-popup-background'
-                className={isShowingLoginPopup || isShowingSignupPopup ? '' : 'hidden'}
-                onClick={hidePopups}
-                style={{ cursor: 'pointer' }}
-            >
-            </div>
-        </>
-    )
+          <SignUpButton
+            ShowSignupPopup={showSignupPopup}
+            token={token}
+          ></SignUpButton>
+        </nav>
+      </div>
+
+      {isMobile && (
+        <div id="navigation-search-bar">
+          <input
+            id="navigation-search-bar-input"
+            placeholder="Search..."
+            ref={searchRef}
+          />
+          <img
+            src="Photos/search.png"
+            alt="Photos/NoPhoto.webp"
+            id="navigation-search-bar-icon"
+          />
+        </div>
+      )}
+
+      <div
+        className={"navigation-hamburger" + (showNavBarMobile ? " active" : "")}
+      >
+        <div
+          className="mr-[12px]"
+          onClick={() => setShowNavBarMobile(!showNavBarMobile)}
+          ref={navigationMenuRef}
+        >
+          <div className="navigation-line"></div>
+          <div className="navigation-line"></div>
+          <div className="navigation-line"></div>
+        </div>
+
+        <a href="/">
+          <img
+            src="photos-optimized/TeamLogo-opt.png"
+            alt="Photos/NoPhoto.webp"
+            className="navbar-logo mobileLogo"
+          />
+        </a>
+
+        <div>
+          <LoginButton ShowLoginPopup={showLoginPopup} token={token} />
+        </div>
+      </div>
+
+      <LoginPopup
+        isShowingLoginPopup={isShowingLoginPopup}
+        showSignupPopup={showSignupPopup}
+      />
+      <SignupPopup
+        isShowingSignupPopup={isShowingSignupPopup}
+        showLoginPopup={showLoginPopup}
+      />
+
+      <div
+        id="login-popup-background"
+        className={isShowingLoginPopup || isShowingSignupPopup ? "" : "hidden"}
+        onClick={hidePopups}
+        style={{ cursor: "pointer" }}
+      ></div>
+    </>
+  );
 }
 
 export default NavBar;

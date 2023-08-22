@@ -5,6 +5,7 @@
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 require('dotenv').config()
+const Schema = mongoose.Schema;
 
 const DATABASE_LINK = process.env.DATABASE_LINK; 
 
@@ -18,13 +19,13 @@ const serviceSchema = {
     categories: Array,
     datePosted: String,
     timePosted: String,
-    user: String,
     user: String, // the username of the user who posted the service
     collaborators: Array, // the usernames of the users who have access to edit the service
     members: Array, // the usernames of the users who have joined the service
     applicants: Array, // the usernames of the users who have applied to join the service
     messages: Array // notifications to service members
   }
+
 const applicationSchema = {
     service: String,
     name: String,
@@ -57,6 +58,15 @@ const userSchema = new mongoose.Schema(
     }, { collection: 'users' }
 )
 
+//TODO implement message schema
+const messageSchema = new mongoose.Schema(
+    {
+        sender: { type: Schema.Types.ObjectId, required: true },
+        createdAt: { type: Date, required: true },
+        content: { type: String, required: true }
+    }
+)
+
 const passwordResetSchema = new mongoose.Schema(
     {
         email: { type: String, required: true, unique: false},
@@ -70,6 +80,8 @@ const passwordResetSchema = new mongoose.Schema(
     }
 )
 
+const Message = mongoose.model("messages", messageSchema);
+
 const Application = mongoose.model("applications", applicationSchema);
 
 const Services = mongoose.model("services", serviceSchema);
@@ -82,5 +94,6 @@ module.exports = {
     Services: Services,
     Application: Application,
     User: User,
-    passwordReset, passwordReset
+    passwordReset: passwordReset,
+    Message: Message
 };

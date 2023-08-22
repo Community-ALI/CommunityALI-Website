@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const userRouter = require("./routes/user");
 const serviceRouter = require("./routes/service");
 const applicantRouter = require("./routes/applicant");
+const messageRouter = require("./routes/message");
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -47,6 +48,7 @@ setInterval(() => {
 app.use('/userdata', userRouter);
 app.use('/applicantdata', applicantRouter);
 app.use('/servicedata', serviceRouter);
+app.use('/messagedata', messageRouter);
 
 
 //last route, important for frontend I believe

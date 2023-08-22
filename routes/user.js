@@ -650,4 +650,15 @@ router.post(
   }
 );
 
+router.get("/get_services_user_is_member/:userId", async function (req, res) {
+  try {
+    const services = await user_data.get_services_user_is_member(req.params.userId);
+    console.log(`services for ${req.params.userId} sent`);
+    res.json(services);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json( { status: 'error', error: "Something went wrong"});
+  }
+})
+
 module.exports = router;
