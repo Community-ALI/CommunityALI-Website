@@ -177,7 +177,7 @@ export default function MessagingUI(props) {
               : "Photos/DefaultServiceImage.png"
           }
           alt=""
-          className="mr-4 h-[82px]"
+          className="mr-4 rounded-lg h-[82px]"
         />
         <h1>{props.serviceTitle}</h1>
       </div>

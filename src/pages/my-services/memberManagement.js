@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar";
 import EntityManagementSelection from "../../components/messager/entityManagementSelection";
 import MessagingUI from "../../components/messager/messagingUI";
 import Footer from "../../components/Footer";
+import { Buffer } from "buffer";
 import { BASE_BACKEND_URL } from "../../config";
 
 //TODO make a get function for a fully populated service
@@ -26,7 +27,27 @@ export default function MemberManagement() {
           return response.json();
         })
         .then(async (data) => {
-          setService(data);
+          try {
+            const convertImageToUrl = async function (image) {
+              try {
+                const buffer = Buffer.from(image.data);
+                const base64 = buffer.toString("base64");
+                return `data:image/png;base64,${base64}`;
+              } catch (err) {
+                console.log(err);
+                console.error("no profile image, using default");
+                return "photos-optimized/user-pic.png";
+              }
+            };
+            const imageUrl = await convertImageToUrl(data.thumbnail);
+            const service = {
+              ...data,
+              ["thumbnail"]: imageUrl,
+            };
+            setService(service);
+          } catch (err) {
+            console.log(err);
+          }
           await fetch(
             `${BASE_BACKEND_URL}/servicedata/get-service-members/${serviceTitle}`
           )
@@ -66,6 +87,7 @@ export default function MemberManagement() {
           serviceTitle={service.title}
           senderId={service._id}
           canSendMessages={true}
+          serviceImage={service.thumbnail}
         />
       </div>
       <Footer />
