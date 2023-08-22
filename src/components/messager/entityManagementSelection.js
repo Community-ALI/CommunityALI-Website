@@ -46,11 +46,12 @@ function EntityList(props) {
           return (
             <EntityManagementButton
               entity={{
-                image: user.profileImage,
+                image: user.profileImage
+                  ? user.profileImage
+                  : "/Photos/UserTemplateImage.png",
                 name: user.fullName,
                 subtext: [user.email],
               }}
-              defaultImage={"/Photos/UserTemplateImage.png"}
               key={user._id}
             />
           );
@@ -64,7 +65,9 @@ function EntityList(props) {
           return (
             <EntityManagementButton
               entity={{
-                image: service.image,
+                image: service.image
+                  ? service.image
+                  : "/Photos/DefaultServiceImage.png",
                 name: service.title,
                 subtext: [],
               }}
@@ -72,7 +75,6 @@ function EntityList(props) {
               isSelected={props.selectedId === service._id}
               key={service._id}
               SelectEntity={props.SelectEntity}
-              defaultImage={"/Photos/DefaultServiceImage.png"}
             />
           );
         })}
