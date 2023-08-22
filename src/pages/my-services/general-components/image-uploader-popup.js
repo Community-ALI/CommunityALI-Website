@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import AvatarEditor from 'react-avatar-editor';
 
-const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => {
+const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => { // imageUrl could be used to set the default image if we want to
   const [selectedImage, setSelectedImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = React.useRef();
@@ -26,6 +26,11 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => {
     const newScale = parseFloat(e.target.value);
     updateScale(newScale);
   };
+
+  // when the component mounts, have the user upload a file
+  useEffect(() => {
+    handleButtonClick();
+  }, []);
 
   const updateScale = (newScale) => {
     if (editorRef.current) {
@@ -98,7 +103,7 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => {
     noClick: true, 
   });
 
-  const defaultImage = imageUrl ||  'Photos/PhotoUploaderDefault.png'; 
+  const defaultImage =  'Photos/PhotoUploaderDefault.png'; 
 
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
