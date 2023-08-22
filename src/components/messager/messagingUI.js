@@ -82,12 +82,14 @@ function MessageForm(props) {
       name: event.target.name,
       value: event.target.value,
     };
+    if (value.length > 10000) return;
     setMessage({ ...message, [name]: value });
     resizeTextarea();
   };
 
   const [isSingleLine, setIsSingleLine] = useState(true);
   const textareaRef = useRef(null);
+  const worldLimit = 10000;
 
   function resizeTextarea() {
     textareaRef.current.style.height = "auto";
@@ -98,6 +100,7 @@ function MessageForm(props) {
 
   return (
     <div>
+      <p className={`text-white text-xs`}>{`Word limit: (${message.content.length}/${worldLimit})`}</p>
       <div className="bg-[#001E60] rounded-lg">
         <form
           onSubmit={handleSubmit}
