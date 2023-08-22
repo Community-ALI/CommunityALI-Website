@@ -44,14 +44,37 @@ function MyServicesNavButton(props) {
     fetchData();
   }
 
-  if (props.constantUpdate)
-    useEffect(() => {
-      fetchNotificationData();
-    });
-  else
-    useEffect(() => {
-      fetchNotificationData();
-    }, []);
+  if (decodedToken.administrator) {
+    return (
+      <Link
+        className="navigation-button navigation-text relative-container"
+        to="/administrator-my-service-selection"
+        id="applicants"
+      >
+        <Notifications
+          notifications={notifications ? notifications.length : 0}
+        />
+        Manage
+      </Link>
+    );
+  } else if (
+    decodedToken.clubAdmin ||
+    decodedToken.internshipAdmin ||
+    decodedToken.programAdmin
+  ) {
+    return (
+      <Link
+        className="navigation-button navigation-text relative-container"
+        to="/my-services"
+        id="applicants"
+      >
+        <Notifications
+          notifications={notifications ? notifications.length : 0}
+        />
+        Manage
+      </Link>
+    );
+  }
 
   if (decodedToken.administrator) {
     return (

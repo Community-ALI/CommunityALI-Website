@@ -5,15 +5,15 @@ import '../add-service.css';
 import ContactsPage from "../general-components/contacts-page";
 import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
-import MediaPage from "../general-components/media-page";
+import RequirementsPage from "../general-components/requirements-page";
 import SignUpPage from "./sign-up-page";
 
-function AddClub() {
+function AddResource() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
-    "Social Media",
     "FAQ",
+    "Requirements",
     "Sign Up"
   ];
 
@@ -22,18 +22,19 @@ function AddClub() {
     "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ", "Social Media"];
-
-  const [showAddButtons, setShowAddButtons] = useState(false);
-
   const [showPopUp, setShowPopUp] = useState(false);
   const [additionalPages, setAdditionalPages] = useState([]);
+  
+  const removablePages = ["Contacts", "FAQ", "Requirements"];
+
+  const [showAddButtons, setShowAddButtons] = useState(false);
 
   const [activePage, setActivePage] = useState("Overview");
 
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
+  const [requireFormData, setRequireFormData] = useState({});
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
@@ -51,32 +52,32 @@ function AddClub() {
     });
   };
   
-  // notify the user that they will loose progress
-  const [showPrompt, setShowPrompt] = useState(true);
+    // notify the user that they will loose progress
+    const [showPrompt, setShowPrompt] = useState(true);
 
-  const handleShowPromptChange = (value) => {
-    setShowPrompt(value);
-  };
-
-  useEffect(() => 
-  {
-    document.title = 'Club Editor | Community ALI';
-  }, []);
-
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      if (showPrompt){
-        event.preventDefault();
-        event.returnValue = ''; // Required for Chrome
-      }
+    const handleShowPromptChange = (value) => {
+      setShowPrompt(value);
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
+    useEffect(() => 
+    {
+      document.title = 'Resource Editor | Community ALI';
+    }, []);
+  
+    useEffect(() => {
+      const handleBeforeUnload = (event) => {
+        if (showPrompt){
+          event.preventDefault();
+          event.returnValue = ''; // Required for Chrome
+        }
+      };
+  
+      window.addEventListener('beforeunload', handleBeforeUnload);
+  
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []);
 
   useEffect(() => {
     changeVisibility("Overview"); // Set "Overview" as the active page initially
@@ -92,6 +93,9 @@ function AddClub() {
       }
       if (pageToRemove === 'FAQ') {
         setFaqFormData({})
+      }
+      if (pageToRemove === 'Requirements'){
+        setRequireFormData({})
       }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
@@ -114,6 +118,10 @@ function AddClub() {
       }
       else if (pageToAdd === 'FAQ') {
         setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
+      }
+
+      else if (pageToAdd === 'Requirements') {
+        setFaqFormData({ "Requirements": [{ "RequireTitle": "", "RequireDescription": "" }] })
       }
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
@@ -158,7 +166,7 @@ function AddClub() {
             ))}
           </div>
           <div className="pop-up-content-description">
-            Need more pages for your Club? Contact us for suggestions 
+            Need more pages for your Resource? Contact us for suggestions 
             <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
           </div>
         </div>
@@ -166,13 +174,13 @@ function AddClub() {
     );
   };
 
+
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <title> Club Editor </title>
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">
-          <input type="text" placeholder="Name of the Club" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
+          <input type="text" placeholder="Name of the Program" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
 
         <div className="service-navbar">
@@ -189,25 +197,27 @@ function AddClub() {
             onBlur={hide}
             tabIndex="0"
           >
-             <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus" />
+            <i className="fa-solid fa-circle-plus fa-2x" id="service-navbar-plus" />
             {showPopUp && <PopUp />}
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
-        {activePage === "Social Media" && <MediaPage key="MediaPage" formData={contactsFormData} setFormData={setContactsFormData} />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} mainInfo={
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Program' setFormData={setOverviewFormData} />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Program' setFormData={setContactsFormData} />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Program' setFormData={setFaqFormData} />}
+        {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Program' handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
             'title': titleValue,
-            'serviceType': 'Club'
+            'serviceType': 'Program'
           }
+          
         }
           allFormData={
             {
               'Overview': overviewFormData,
               'Contacts': contactsFormData,
+              'Requirements': requireFormData,
               'FAQ': faqFormData
             }
           } />}
@@ -217,4 +227,4 @@ function AddClub() {
   );
 }
 
-export default AddClub;
+export default AddResource;

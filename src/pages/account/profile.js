@@ -242,6 +242,17 @@ function Profile() {
     }
   };
 
+  // function to determine whether or not to send the imageUrl to the popup
+  // if the user has uploaded a new image, send the new image url
+  // otherwise, send the default image url
+  const getImageUrl = () => {
+    if (account.imageUrl === (localStorage.getItem('profileImage'))) {
+      return false;
+    } else {
+      return account.imageUrl;
+    }
+  };
+
   return (
     <div className="profile-page">
       <div className="loader-wrapper">
@@ -263,6 +274,8 @@ function Profile() {
           <div ref={popupRef}>
             <ProfilePicturePopup
               isShowingProfilePicturePopup={isShowingProfilePicturePopup}
+              // pass the result of getImageUrl() to the popup
+              imageUrl={getImageUrl()}
               uploadData={uploadData}
               account={account}
               setAccount={setAccount}
@@ -389,7 +402,7 @@ function Profile() {
             value='Cancel Edits'
           />
         }
-      </div>
+    </div>
       <Footer />
     </div>
   );

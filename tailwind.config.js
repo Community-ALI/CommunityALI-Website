@@ -14,6 +14,7 @@ module.exports = {
       // => @media (max-width: 850px)
 
       'mdd': {'min': '480px'},
+      'lrr': {'min': '600px'},
     },
     extend: {
       colors: {

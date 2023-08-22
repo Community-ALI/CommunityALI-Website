@@ -19,6 +19,10 @@
   font-size: 34px;
 }
 
+.login-title-h1 {
+  color: black;
+}
+
 .container-for-login 
 {
   display: flex;

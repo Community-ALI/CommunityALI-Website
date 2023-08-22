@@ -1,14 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
+import {BASE_BACKEND_URL} from '../../../config.js'
+
 import NavBar from '../../../components/NavBar';
 import '../../../components/navbar.css';
 import '../add-service.css';
-import ContactsPage from "../general-components/contacts-page";
-import OverviewPage from "../general-components/overview-page";
+import ContactsPage from "../general-components/contacts-page.js";
+import OverviewPage from "../general-components/overview-page.js";
+import RequirementsPage from "../general-components/requirements-page.js";
 import FaqPage from "../general-components/faq-page";
-import RequirementsPage from "../general-components/requirements-page";
 import SignUpPage from "./sign-up-page";
+import { Buffer } from 'buffer';
 
-function AddResource() {
+function AddProgram() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
@@ -22,19 +25,19 @@ function AddResource() {
     "Sign Up"
   ]);
 
-  const [showPopUp, setShowPopUp] = useState(false);
-  const [additionalPages, setAdditionalPages] = useState([]);
-  
-  const removablePages = ["Contacts", "FAQ", "Requirements"];
+  const removablePages = ["Contacts", "FAQ"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
+  const [additionalPages, setAdditionalPages] = useState([]);
   const [activePage, setActivePage] = useState("Overview");
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const [overviewFormData, setOverviewFormData] = useState({});
   const [contactsFormData, setContactsFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
   const [requireFormData, setRequireFormData] = useState({});
+
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
@@ -43,6 +46,69 @@ function AddResource() {
 
   const titleRef = useRef(null);
   const [titleValue, setTitleValue] = useState('');
+
+  // notify the user that they will loose progress
+  const [showPrompt, setShowPrompt] = useState(true);
+
+  const handleShowPromptChange = (value) => {
+    setShowPrompt(value);
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (showPrompt){
+        event.preventDefault();
+        event.returnValue = ''; // Required for Chrome
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      const serviceName = urlParams.get('service');
+          
+      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + serviceName)
+          .then(response => response.json())
+          .then(data => {
+              const buffer = Buffer.from(data.photo.data, 'base64');
+              const selectedFile = new File([buffer], 'Previous Image.png', { type: 'image/png' });
+              // title
+              titleRef.current.value = data.title;
+              setTitleValue(data.title);
+              // overview
+              setOverviewFormData(data.pages.overview); 
+              // image
+              setOverviewFormData((prevData) => ({ ...prevData, file: selectedFile }));
+              // Contacts
+              if (data.pages.contacts){
+                addPage('Contacts');
+                setContactsFormData(data.pages.contacts);
+              }
+              if (data.pages.FAQ){
+                addPage('FAQ');
+                setFaqFormData(data.pages.FAQ);
+              }
+              // show the page
+              const loaderWrapper = document.querySelector(".loader-wrapper");
+              loaderWrapper.style.transition = "opacity 0.5s";
+              loaderWrapper.style.opacity = "0";
+              setTimeout(() => {
+                  loaderWrapper.style.display = "none";
+              }, 500); // fade out duration in milliseconds
+          })
+    };
+    fetchData();
+  }, []);
+  
   const changeVisibility = (page) => {
     setActivePage(page);
     Object.keys(pageRefs.current).forEach((key) => {
@@ -51,33 +117,7 @@ function AddResource() {
       ref.style.borderColor = key === page ? '#001E60' : 'white';
     });
   };
-  
-    // notify the user that they will loose progress
-    const [showPrompt, setShowPrompt] = useState(true);
 
-    const handleShowPromptChange = (value) => {
-      setShowPrompt(value);
-    };
-
-    useEffect(() => 
-    {
-      document.title = 'Resource Editor | Community ALI';
-    }, []);
-  
-    useEffect(() => {
-      const handleBeforeUnload = (event) => {
-        if (showPrompt){
-          event.preventDefault();
-          event.returnValue = ''; // Required for Chrome
-        }
-      };
-  
-      window.addEventListener('beforeunload', handleBeforeUnload);
-  
-      return () => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-      };
-    }, []);
 
   useEffect(() => {
     changeVisibility("Overview"); // Set "Overview" as the active page initially
@@ -94,9 +134,6 @@ function AddResource() {
       if (pageToRemove === 'FAQ') {
         setFaqFormData({})
       }
-      if (pageToRemove === 'Requirements'){
-        setRequireFormData({})
-      }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
     }
@@ -111,16 +148,18 @@ function AddResource() {
         return [...prevPages, pageToAdd];
       }
       if (pageToAdd === 'Contacts') {
-        setContactsFormData({
-          "contacts": [{ "contactRole": "", "contactName": "", "contactEmail": "" }],
-          "socialMedia": [{ "mediaType": "", "mediaName": "", "mediaUrl": "" }]
-        })
+        if (contactsFormData === {}){
+          setContactsFormData({
+            "contacts": [{ "contactRole": "", "contactName": "", "contactEmail": "" }],
+            "socialMedia": [{ "mediaType": "", "mediaName": "", "mediaUrl": "" }]
+          })
+        }
       }
       else if (pageToAdd === 'FAQ') {
-        setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
-      }
-      else if (pageToAdd === 'Requirements') {
-        setFaqFormData({ "Requirements": [{ "RequireTitle": "", "RequireDescription": "" }] })
+        if (faqFormData === {}){
+          setFaqFormData({ "faq": [{ "faqQuestion": "", "faqAnswer": "" }] })
+        }
+        
       }
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
@@ -148,6 +187,8 @@ function AddResource() {
     setShowAddButtons((prevState) => !prevState);
   };
 
+  
+
 
   const PopUp = () => {
     return (
@@ -165,7 +206,7 @@ function AddResource() {
             ))}
           </div>
           <div className="pop-up-content-description">
-            Need more pages for your Resource? Contact us for suggestions 
+            Need more pages for your Program? Contact us for suggestions 
             <a href="mailto:communityalis@gmail.com"> communityalis@gmail.com </a>
           </div>
         </div>
@@ -173,11 +214,14 @@ function AddResource() {
     );
   };
 
-
   return (
     <div>
       <NavBar isFixedPage={false} />
       <form method="POST" className="service-container" id='form'>
+      <div className="loader-wrapper">
+          <span className="loader"><span className="loader-inner"></span></span>
+        </div>
+
         <div className="service-title">
           <input type="text" placeholder="Name of the Program" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />
         </div>
@@ -201,23 +245,19 @@ function AddResource() {
           </div>
         </div>
 
-        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} serviceType='Program' setFormData={setOverviewFormData} />}
-        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Program' setFormData={setContactsFormData} />}
-        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Program' setFormData={setFaqFormData} />}
+        {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} serviceType='Internship' editMode={true}  />}
+        {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} serviceType='Internship' />}
+        {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} serviceType='Program' />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Program' handleShowPromptChange={handleShowPromptChange} mainInfo={
-          { 
-            'title': titleValue,
-            'serviceType': 'Internship'
-          }
-          
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
+          { 'title': titleValue }
         }
           allFormData={
             {
               'Overview': overviewFormData,
               'Contacts': contactsFormData,
+              'FAQ': faqFormData,
               'Requirements': requireFormData,
-              'FAQ': faqFormData
             }
           } />}
 
@@ -226,4 +266,4 @@ function AddResource() {
   );
 }
 
-export default AddResource;
+export default AddProgram;

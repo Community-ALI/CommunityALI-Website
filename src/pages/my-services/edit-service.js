@@ -23,6 +23,9 @@ function EditService() {
             else if (data.serviceType == 'Internship'){
               window.location.href = `edit-internship?service=${serviceName}`
             }
+            else if (data.serviceType == 'Program'){
+              window.location.href = `edit-program?service=${serviceName}`
+            }
             
           })
     };

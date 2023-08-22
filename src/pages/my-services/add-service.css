@@ -26,6 +26,9 @@ input[data-autocompleted]
     transition: 300ms ease;
     position: relative;
     padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
 }
 
 .service-title
@@ -96,6 +99,11 @@ input[data-autocompleted]
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 25px;
+}
+
+#overview-meeting-details
+{
+    width: 45%;
 }
 
 .service-image-container
@@ -318,7 +326,7 @@ input[data-autocompleted]
     font-weight: 400;
     line-height: 50px;
     position: relative;
-    width: 45%;
+    width: 75%;
     padding: 25px 25px;
     border-radius: 20px;
     background-size: cover;
@@ -467,7 +475,7 @@ input[data-autocompleted]
 
 .meeting-details-text-box
 {
-    padding: 4px 10px;
+    padding: 4px 5px;
     font-size: clamp(8px, 3vh, 20px);
     width : 80%;
     background : none;
@@ -1038,6 +1046,12 @@ section .details span
         padding: 14px 20px;
     }
 
+    #overview-meeting-details
+    {
+        font-size: 17px;
+        padding: 14px 20px;
+    }
+
     .contacts-text-box
     {
         width : 90%;
@@ -1163,6 +1177,13 @@ section .details span
         width : 80%;
         line-height: 40px;
     }
+
+    #overview-meeting-details
+    {
+        width: 80%;
+        line-height: 40px;
+    }
+
 
     .service-description
     {
@@ -1343,6 +1364,12 @@ section .details span
         font-size: 15px;
     }
 
+    #overview-meeting-details
+    {
+        width: 95%;
+        font-size: 15px;
+    }
+
     .service-description
     {
         font-size : 15px;
@@ -1431,6 +1458,12 @@ section .details span
     .service-details
     {
         width : 95%;
+        font-size: 13px;
+    }
+
+    #overview-meeting-details
+    {
+        width: 95%;
         font-size: 13px;
     }
 

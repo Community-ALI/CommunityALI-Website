@@ -67,8 +67,8 @@ function CategoriesPage() {
         )} */}
 
           {/* Box 2 */}
-          {decodedToken.eventAdmin ? (
-          <a className="category-container" href="/add-resource">
+          {decodedToken.programAdmin ? (
+          <a className="category-container" href="/add-program">
             <p className="category-header">Add an MJC Program</p>
             <p className="category-text">
               Promote programs, support, and other resources of student aid by posting a

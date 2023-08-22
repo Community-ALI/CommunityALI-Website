@@ -6,6 +6,7 @@ import LandingPagePartners from './pages/landing-page/LandingPagePartners';
 import NavBar from './components/NavBar';
 import Footer from "./components/Footer";
 import LandingPageSchools from './pages/landing-page/LandingPageSchools';
+import LandingPageTutoring from './pages/landing-page/LandingPageTutoring';
 
 function LandingPage() {
 
@@ -17,6 +18,7 @@ function LandingPage() {
                 <LandingPageHeader />
                 <LandingPageCatagories />
                 <LandingPageSchools />
+                {/* <LandingPageTutoring /> */}
                 <LandingPagePartners />
                 {/* <LandingPageCommunityAliInformation />  */}
                 <Footer />

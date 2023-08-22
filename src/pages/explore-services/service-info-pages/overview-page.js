@@ -20,7 +20,7 @@ function OverviewPage({service}) {
           id="preview" className="service-image-container">
           </img>
           
-        <div className="service-details">
+        <div className="service-details" id='overview-meeting-details'>
           <div className="service-author">
             {overview.subtitle}
           </div>

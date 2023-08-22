@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema(
         verificationCode: {type: String},
         clubAdmin: { type: Boolean},
         internshipAdmin: { type: Boolean},
+        programAdmin: { type: Boolean},
         administrator: { type: Boolean},
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,

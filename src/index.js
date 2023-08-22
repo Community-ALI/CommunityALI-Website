@@ -12,12 +12,13 @@ import My_Services_Main_Page from "./pages/my-services/main-page";
 import Add_Service from "./pages/my-services/categories-page";
 import Add_Club from "./pages/my-services/club-components/add-club";
 import Add_Event from "./pages/my-services/event-components/add-event";
-import Add_Resource from "./pages/my-services/resource-components/add-resource";
+import Add_Program from "./pages/my-services/program-components/add-program";
 import Add_Volunteer from "./pages/my-services/vol-components/add-volunteer";
 import Add_Internship from "./pages/my-services/internship-components/add-internship";
 import Edit_Service from "./pages/my-services/edit-service";
 import Edit_Club from "./pages/my-services/club-components/edit-club";
 import Edit_Internship from "./pages/my-services/internship-components/edit-internship";
+import Edit_Program from "./pages/my-services/program-components/edit-program";
 import View_Applicants from "./pages/my-services/view-applicants";
 import Profile from "./pages/account/profile";
 import Verify from "./pages/account/verify";
@@ -27,6 +28,7 @@ import NotFound from "./components/NotFound";
 import SignupPopup from "./components/SignupPopup";
 import ManagementSelectionPage from "./pages/administrator/managementSelectionPage";
 import Administration from "./pages/administrator/administration";
+import Unsubscribe from "./pages/account/unsubscribe";
 
 import "./style.scss";
 import "../public/stylesheets/style.css";
@@ -65,7 +67,7 @@ function App() {
         <Route path="/view-applicants" element={<View_Applicants />} />
         <Route path="/add-volunteer" element={<Add_Volunteer />} />
         <Route path="/add-internship" element={<Add_Internship />} />
-        <Route path="/add-resource" element={<Add_Resource />} />
+        <Route path="/add-program" element={<Add_Program />} />
         <Route path="/edit-service" element={<Edit_Service />} />
         <Route path="/member-management" element={<MemberManagement />} />
 
@@ -74,12 +76,14 @@ function App() {
         <Route path="/add-event" element={<Add_Event />} />
         <Route path="/edit-club" element={<Edit_Club />} />
         <Route path="/edit-internship" element={<Edit_Internship />} />
+        <Route path="/edit-program" element={<Edit_Program />} />
 
         {/* account pages */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/forgot-password" element={<Forgot_Password />} />
         <Route path="reset-password" element={<Reset_Password />} />
+        <Route path="/unsubscribe" element={<Unsubscribe />} />
 
         {/* other */}
         <Route path="/" element={<LandingPage />} />

@@ -116,7 +116,12 @@ const ImageUploadWindow = ({ imageUrl, onClose, uploadData, setAccount}) => {
     noClick: true, 
   });
 
-  const defaultImage = imageUrl || localStorage.getItem('profileImage') || 'photos-optimized/user-pic.png'; 
+  // when the component mounts, have the user upload a file
+  useEffect(() => {
+    handleButtonClick();
+  }, []);
+
+  const defaultImage = imageUrl  || 'photos-optimized/user-pic.png'; 
 
   return (
     <div className="container-login" onWheel={handleWheel}>

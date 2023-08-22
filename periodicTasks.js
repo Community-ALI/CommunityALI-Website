@@ -15,30 +15,34 @@ const ses = new AWS.SES();
 
 // email function
 const sendEmail = async (toAdress, subject, body) => {
-    const params = {
-      Destination: {
-        ToAddresses: [toAdress],
-      },
-      Message: {
-        Body: {
-          Text: {
-            Data: body,
-          },
+  // Add the unsubscribe link to the email body
+  const unsubscribeLink = `http://localhost:8080/unsubscribe?email=${encodeURIComponent(toAdress)}`;
+  body += `\n\nTo unsubscribe, click here: ${unsubscribeLink}`;
+
+  const params = {
+    Destination: {
+      ToAddresses: [toAdress],
+    },
+    Message: {
+      Body: {
+        Text: {
+          Data: body,
         },
-        Subject: {
-          Data: subject,
-        },
       },
-      Source: "communityalis@gmail.com",
-    };
-  
-    try {
-      const data = await ses.sendEmail(params).promise();
-      console.log(`Email sent to ${toAdress} successfully:`, data.MessageId);
-    } catch (err) {
-      console.error("Error sending email:", err);
-    }
+      Subject: {
+        Data: subject,
+      },
+    },
+    Source: "communityalis@gmail.com",
   };
+
+  try {
+    const data = await ses.sendEmail(params).promise();
+    console.log(`Email sent to ${toAdress} successfully:`, data.MessageId);
+  } catch (err) {
+    console.error("Error sending email:", err);
+  }
+};
 
 // function to send a notification email to all users collaborating on a service if that service has one or more new applicants
 exports.send_email_notifications = async function () {

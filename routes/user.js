@@ -130,11 +130,11 @@ router.post("/login", async (req, res) => {
         username: user.username,
         email: user.email,
         platformManager: false,
-        clubAdmin: user.clubAdmin,
-        eventAdmin: user.eventAdmin,
         administrator: user.administrator,
-        volunteeringAdmin: user.volunteeringAdmin,
+        clubAdmin: user.clubAdmin,
         internshipAdmin: user.internshipAdmin,
+        programAdmin: user.programAdmin,
+        // volunteeringAdmin: user.volunteeringAdmin,
       },
       JWT_SECRET
     );
@@ -596,6 +596,18 @@ router.post(
     }
   }
 );
+
+// unsubscribe from email notifications
+router.post("/unsubscribe", async function (req, res) {
+  const email = req.body.email;
+  const message = await user_data.unsubscribe_user(email);
+  if (message.success) {
+    res.json({ status: "ok" });
+  }
+  else {
+    res.json({ status: "error", error: message.error });
+  }
+});
 
 router.get("/get-username", async function (req, res) {
   try {

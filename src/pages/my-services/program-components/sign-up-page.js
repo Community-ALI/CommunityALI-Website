@@ -3,7 +3,7 @@ import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
 import RequirementsPage from "../general-components/requirements-page.js";
 import { useNavigate } from 'react-router-dom';
-function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
+function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = false}) {
 
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
 
@@ -16,7 +16,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
     const checkRequired = () => {
       if (
         !mainInfo.title) {
-        alert('Please provide an internship name');
+        alert('Please provide a program name');
         return false;
       }
 
@@ -27,7 +27,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
         !allFormData.Overview.date ||
         !allFormData.Overview.location ||
         !allFormData.Overview.description ||
-        !allFormData.Overview.file
+        !allFormData.Overview.file,
+        !allFormData.Overview.categories
       ) {
         alert('Overview is incomplete');
         return false;
@@ -40,7 +41,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
         // Check required fields for each contact
         const contactsComplete = contacts.every(
           (contact) =>
-            contact.contactRole && contact.contactName && contact.contactEmail
+            contact.contactName && contact.contactEmail
         );
     
         if (!contactsComplete) {
@@ -48,9 +49,9 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           return false;
         }
       }
-      if (allFormData.Contacts.socialMedia){
+      if (allFormData.socialMedia){
         // Check required fields for social media
-        const socialMedia = allFormData.Contacts.socialMedia
+        const socialMedia = allFormData.socialMedia
         const socialMediaComplete = socialMedia.every(
           (media) => media.mediaType && media.mediaName && media.mediaUrl
         );
@@ -110,13 +111,13 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             'time': allFormData.Overview.time,
             'date': allFormData.Overview.date,
             'location': allFormData.Overview.location,
+            'categories': allFormData.Overview.categories,
             'description': allFormData.Overview.description
           }
           var ContactsData = {}
           if (allFormData.Contacts.contacts || allFormData.Contacts.socialMedia){
             ContactsData = {
               'contacts': allFormData.Contacts.contacts,
-              'socialMedia': allFormData.Contacts.socialMedia
             }
           }
 
@@ -217,11 +218,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                   Please Read the Following
                 </div>
                 <label htmlFor="authorization" className="authorization-text">
-                By submitting this application I authorize Community ALI to publish all the information of this application for any person
-                to view. I hold responsibility for the information displayed from this application and I represent the organization's interest to do so.
-                I understand that this application will be subject to review, in which any inappropriate content associated with the organization or its
-                members will result in immediate termination of the internship from the platform. I understand that there is no tolerance for any discrimination
-                against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
+                FIME: This is a disclaimer that the information you are submitting is accurate and true.
                 </label>
 
                 <input
