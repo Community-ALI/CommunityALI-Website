@@ -11,7 +11,6 @@ function Services(props) {
   return (
     <div>
       <NavBar isFixedPage={false} />
-      <ServiceDropdown></ServiceDropdown>
       <ServicesDisplay  startingfilter={props.startingfilter}/>
       <Footer />
     </div>
