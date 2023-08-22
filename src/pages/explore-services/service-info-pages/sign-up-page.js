@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {BASE_BACKEND_URL} from '../../../config.js'
-import SignupPopup from "../../../components/SignupPopup.js"
-import SignUpButton from "../../../components/SignUpButton.js"
+import SignupPopup from '../../../components/SignupPopup.js';
+import LoginPopup from '../../../components/LoginPopup.js';
 
 function SignUpPage() {
-  // variable to record wether the user is logged in or not
+  const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
+  const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
+  // variable to record if the user is logged in or not
   const [loggedIn, setLoggedIn] = useState(true);
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -43,6 +45,23 @@ function SignUpPage() {
       });
   }
 
+  function showLoginPopup() {
+    setIsShowingLoginPopup(true);
+    setIsShowingSignupPopup(false);
+}
+
+function showSignupPopup() {
+    setIsShowingSignupPopup(true);
+    setIsShowingLoginPopup(false);
+}
+
+function hidePopups() {
+    setIsShowingLoginPopup(false);
+    setIsShowingSignupPopup(false);
+}
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -80,7 +99,7 @@ function SignUpPage() {
       {!loggedIn && 
         <div className="sign-up-form flex-col">
          <div className="service-header px-[5%] font-[500] text-center">Wanna Sign Up? Make a New Account today or Login to Start your Journey!</div>
-         <button className='service-create-account'>Create an Account</button>
+         <button onClick={showSignupPopup} className='service-create-account'>Create an Account</button>
        </div>
       } 
       {/* keep this invisible until loggedIn === true */}
@@ -108,6 +127,16 @@ function SignUpPage() {
             <input type="submit" value="Submit" className="service-submit-button"/><br/>
         </form>
       </div>
+
+      <LoginPopup isShowingLoginPopup={isShowingLoginPopup} showSignupPopup={showSignupPopup} />
+      <SignupPopup isShowingSignupPopup={isShowingSignupPopup} showLoginPopup={showLoginPopup} />
+
+      <div
+          id='login-popup-background'
+          className={isShowingLoginPopup || isShowingSignupPopup ? '' : 'hidden'}
+          onClick={hidePopups}
+          style={{ cursor: 'pointer' }}
+      ></div>
   </div>
   )
 }

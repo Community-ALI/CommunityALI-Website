@@ -65,7 +65,7 @@ function LoginPopup(props) {
         return (
                 <div className='container-login'>
                     <div className="container-for-login">
-                        <h1>Login</h1>
+                        <h1 className='login-title-h1'>Login</h1>
                         <form id="login" onSubmit={login}>
                             <div className="text-field">
                                 <input 

@@ -56,7 +56,7 @@ function SignupPopup(props) {
     return (
       <div className='container-login'>
         <div className="container-for-login">
-          <h1>Sign Up</h1>
+          <h1 className='login-title-h1'>Sign Up</h1>
           <form id="signup" onSubmit={signup}>
             <div className="text-field" id="sign-up-text-field">
               <input
