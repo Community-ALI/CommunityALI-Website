@@ -4,7 +4,7 @@ const message_data = require("../controllers/message-data");
 const sanitizeHtml = require("sanitize-html");
 
 router.get("/get_service_messages/:serviceId", async function (req, res) {
-    console.log('attempting to send messages...');
+  console.log("attempting to send messages...");
   serviceId = req.params.serviceId;
   try {
     const messages = await message_data.get_service_messages(serviceId);
@@ -17,10 +17,10 @@ router.get("/get_service_messages/:serviceId", async function (req, res) {
 });
 
 function validateMessage(req, res, next) {
-  const messageContent = req.body.content;
+  const messageContent = sanitizeHtml(req.body.content.trim());
   console.log(req.body);
-  if (typeof messageContent !== "string" || messageContent.trim().length <= 0) {
-    console.log("Invalid message body");
+  if (typeof messageContent !== "string" || messageContent.length <= 0) {
+    console.log("Invalid message body: ", messageContent);
     return res
       .status(400)
       .json({ error: `${messageContent} is an invalid message body` });

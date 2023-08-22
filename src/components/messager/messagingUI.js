@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { BASE_BACKEND_URL } from "../../config";
 
 function Message(props) {
   const message = props.message;
+  const content = message.content.split("\n");
   return (
     <div>
       <p className="text-center text-white text-xs">{message.createdAt}</p>
       <div className="bg-[#001E60] rounded-lg text-white p-4">
-        <p>{message.content}</p>
+        <p>
+            {content.map}
+          {content.map((line) => {
+            return (
+              <span>
+                {line}
+                <br />
+              </span>
+            );
+          })}
+          </p>
       </div>
     </div>
   );
@@ -28,6 +39,7 @@ function MessageForm(props) {
 
     const postData = async function () {
       try {
+        console.log("Posting message to database: ", message.content);
         await fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
           headers: { "content-Type": "application/json" },
@@ -57,7 +69,7 @@ function MessageForm(props) {
   };
 
   // TODO: this is unecessary, remove it and prevent users from
-    // sending messages their _id is undefined
+  // sending messages their _id is undefined
   function updateSenderId() {
     setMessage({ ...message, ["senderId"]: props.senderId });
   }
@@ -72,16 +84,41 @@ function MessageForm(props) {
       value: event.target.value,
     };
     setMessage({ ...message, [name]: value });
+    resizeTextarea();
   };
 
+  const [isSingleLine, setIsSingleLine] = useState(true);
+  const textareaRef = useRef(null);
+
+  function resizeTextarea() {
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    console.log(textareaRef.current.scrollHeight);
+    setIsSingleLine(textareaRef.current.scrollHeight >= 24 ? false : true);
+  }
+
   return (
-    <div className="bg-[#001E60] rounded-lg h-[59px]">
-      <form onSubmit={handleSubmit} className='flex items-center h-[100%]'>
-        <input type="text" className="bg-transparent text-white flex-1 px-4" value={message.content} placeholder="Message..." name="content" onChange={handleInputChange} />
-        <button type="submit" className="bg-[#ECAA1E] rounded-lg">
-          <img src="Photos/Send_fill.png" alt="" />
-        </button>
-      </form>
+    <div>
+      <div className="bg-[#001E60] rounded-lg">
+        <form
+          onSubmit={handleSubmit}
+          className={`flex items-start ${isSingleLine ? "max-h-[52px]" : ""}`}
+        >
+          <textarea
+            ref={textareaRef}
+            type="text"
+            rows="1"
+            className="bg-transparent box-border text-white flex-1 resize-none overflow-y-scroll my-[14px] px-4"
+            value={message.content}
+            placeholder="Message..."
+            name="content"
+            onChange={handleInputChange}
+          />
+          <button type="submit" className="bg-[#ECAA1E] rounded-lg">
+            <img src="Photos/Send_fill.png" alt="" />
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
@@ -149,7 +186,10 @@ export default function MessagingUI(props) {
       </div>
       {props.canSendMessages && (
         <div className="bg-[#00468D] p-4 px-8">
-          <MessageForm senderId={props.senderId} updateMessages={fetchMessages} />
+          <MessageForm
+            senderId={props.senderId}
+            updateMessages={fetchMessages}
+          />
         </div>
       )}
     </div>
