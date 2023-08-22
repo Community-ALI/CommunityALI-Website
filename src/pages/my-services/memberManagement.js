@@ -11,6 +11,18 @@ export default function MemberManagement() {
   const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
 
+  const convertImageToUrl = async function (image) {
+    try {
+      const buffer = Buffer.from(image.data);
+      const base64 = buffer.toString("base64");
+      return `data:image/png;base64,${base64}`;
+    } catch (err) {
+      console.log(err);
+      console.error("no profile image, using default");
+      return "photos-optimized/user-pic.png";
+    }
+  };
+
   const fetchData = async () => {
     try {
       console.log("Fetching service data");
@@ -28,17 +40,6 @@ export default function MemberManagement() {
         })
         .then(async (data) => {
           try {
-            const convertImageToUrl = async function (image) {
-              try {
-                const buffer = Buffer.from(image.data);
-                const base64 = buffer.toString("base64");
-                return `data:image/png;base64,${base64}`;
-              } catch (err) {
-                console.log(err);
-                console.error("no profile image, using default");
-                return "photos-optimized/user-pic.png";
-              }
-            };
             const imageUrl = await convertImageToUrl(data.thumbnail);
             const service = {
               ...data,
@@ -57,11 +58,27 @@ export default function MemberManagement() {
               }
               return response.json();
             })
-            .then((data) => {
-              console.log(`Fetched users: ${data.length}`);
-              setUsers(data);
+            .then(async (data) => {
+              try {
+                console.log(`Fetched users: ${data.length}`);
+                const users = await Promise.all(
+                  data.map(async (user) => {
+                    try {
+                      const imageUrl = await convertImageToUrl(
+                        user.profileImage
+                      );
+                      return { ...user, ["profileImage"]: imageUrl };
+                    } catch (err) {
+                      console.log(err);
+                    }
+                  })
+                );
+                console.log(users);
+                setUsers(users);
+              } catch (err) {
+                console.log(err);
+              }
             });
-          //TODO: Turn the user profiles into the correct format
         });
     } catch (error) {
       console.error(`Fetch error: ${error}`);
@@ -74,7 +91,6 @@ export default function MemberManagement() {
 
   //TODO: Add page loading so users can't interact with elements
   //before all the data has been set up
-  //TODO: Connect backend data to elements
   //TODO: Add mobile support
   return (
     <div>

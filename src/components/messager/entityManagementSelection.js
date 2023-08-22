@@ -1,27 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Buffer } from "buffer";
 
 // TODO: Implement member management
 function EntityManagementButton(props) {
-  const [entityImageUrl, setEntityImageUrl] = useState(props.defaultImage);
   const entity = props.entity;
 
-  function convertImageToUrl() {
-    const buffer = Buffer.from(entity.profileImage);
-    const base64 = buffer.toString("base64");
-    imageUrl = `data:image/png;base64,${base64}`;
-    entityImageUrl(imageUrl);
-  }
-
-  useEffect(() => {
-    if (entity.profileImage) {
-      convertImageToUrl();
-      console.log(entity.profileImage);
-    } else {
-      console.log("profile image is: ", entity.profileImage);
-    }
-  }, [entity.profileImage]);
-
+  //  TODO: implement settings button
   return (
     <div
       className={`relative max-h-[101px] text-white px-4 py-2 border-black border-b-2
@@ -39,7 +22,7 @@ function EntityManagementButton(props) {
           props.SelectEntity(props.entireEntity);
         }}
       >
-        <img className="w-[82px]" src={entityImageUrl} />
+        <img className="w-[82px]" src={entity.image} />
         <div className="flex flex-col text-left">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
@@ -52,7 +35,10 @@ function EntityManagementButton(props) {
 }
 
 function EntityList(props) {
-  console.log("entites: ", props.entities);
+  useEffect(() => {
+    console.log("entites: ", props.entities);
+  }, [props.entities]);
+
   if (props.entityType == "user") {
     return (
       <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
