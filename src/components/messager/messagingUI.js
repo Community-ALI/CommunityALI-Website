@@ -9,10 +9,9 @@ function Message(props) {
       <p className="text-center text-white text-xs">{message.createdAt}</p>
       <div className="bg-[#001E60] rounded-lg text-white p-4">
         <p>
-            {content.map}
-          {content.map((line) => {
+          {content.map((line, index) => {
             return (
-              <span>
+              <span key={index}>
                 {line}
                 <br />
               </span>
