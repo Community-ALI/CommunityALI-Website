@@ -106,8 +106,54 @@ export default function Inbox() {
     fetchData();
   }, []);
 
-  //TODO: link selected service to messaging ui to display that
-  // service's messages
+  const [isMobile, setIsMobile] = useState(window.innerWidth);
+
+  useEffect(() => {
+    console.log("window width: ", window.innerWidth);
+    function updateWindow() {
+      setIsMobile(window.innerWidth <= 850);
+    }
+
+    window.addEventListener("resize", updateWindow);
+
+    return () => window.removeEventListener("resize", updateWindow);
+  }, [window.innerWidth]);
+
+  if (isMobile) {
+    if (selectedService) {
+      return (
+        <div>
+          <NavBar />
+          <div className="lr:mt-24 h-[80vh] flex">
+            <MessagingUI
+              serviceTitle={selectedService.title}
+              senderId={selectedService._id}
+              serviceImage={selectedService.thumbnail}
+              BackMobileButton={() => setSelectedService(null)}
+              isMobile={true}
+            />
+          </div>
+          <Footer />
+        </div>
+      );
+    }
+    return (
+      <div>
+        <NavBar />
+        <div className="lr:mt-24 h-[80vh] flex">
+          <EntityManagementSelection
+            entityType={"service"}
+            entities={services}
+            SelectEntity={setSelectedService}
+            selectedId={selectedService ? selectedService._id : false}
+            canSendMessages={false}
+          />
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div>
       <NavBar />

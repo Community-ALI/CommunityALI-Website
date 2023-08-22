@@ -94,7 +94,7 @@ export default function EntityManagementSelection(props) {
   console.log(props.entities);
 
   const handleBackClick = () => {
-    if (!props.isMobile) {
+    if (!props.isMobile || props.BackMobileButton === undefined) {
       window.history.back();
     } else {
       props.BackMobileButton();
