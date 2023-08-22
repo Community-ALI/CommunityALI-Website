@@ -22,7 +22,12 @@ function EntityManagementButton(props) {
           props.SelectEntity(props.entireEntity);
         }}
       >
-        <img className={`w-[82px] ${entity.isUser ? 'rounded-full' : "rounded-lg"}`} src={entity.image} />
+        <img
+          className={`w-[82px] ${
+            entity.isUser ? "rounded-full" : "rounded-lg"
+          }`}
+          src={entity.image}
+        />
         <div className="flex flex-col text-left">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
@@ -89,11 +94,15 @@ export default function EntityManagementSelection(props) {
   console.log(props.entities);
 
   const handleBackClick = () => {
-    window.history.back();
+    if (!props.isMobile) {
+      window.history.back();
+    } else {
+      props.BackMobileButton();
+    }
   };
 
   return (
-    <div className="bg-[#00468D] h-[100%]">
+    <div className="bg-[#00468D] h-[100%] w-[100%]">
       <div className="border-b-2 border-black">
         <button
           className="text-white p-2 border-[1px] border-black"

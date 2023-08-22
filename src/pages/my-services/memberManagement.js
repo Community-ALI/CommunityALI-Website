@@ -10,6 +10,18 @@ import { BASE_BACKEND_URL } from "../../config";
 export default function MemberManagement() {
   const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    console.log("window width: ", window.innerWidth);
+    function updateWindow() {
+      setIsMobile(window.innerWidth <= 850);
+    }
+
+    window.addEventListener("resize", updateWindow);
+
+    return () => window.removeEventListener("resize", updateWindow);
+  }, [window.innerWidth]);
 
   const convertImageToUrl = async function (image) {
     try {
@@ -89,21 +101,58 @@ export default function MemberManagement() {
     fetchData();
   }, []);
 
+  const [showEntityManagement, setShowEntityManagement] = useState(false);
+
   //TODO: Add page loading so users can't interact with elements
   //before all the data has been set up
   //TODO: Add mobile support
+  if (!isMobile) {
+    if (!showEntityManagement) {
+      return (
+        <div>
+        <NavBar />
+          <div className="lr:mt-24 h-[80vh] flex">
+            <MessagingUI
+              serviceTitle={service.title}
+              senderId={service._id}
+              canSendMessages={true}
+              serviceImage={service.thumbnail}
+              isMobile={true}
+              BackMobileButton={() => setShowEntityManagement(true)}
+            />
+          </div>
+        <Footer />
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <NavBar />
+        <div className="lr:mt-24 h-[80vh] w-[100%] flex">
+            <EntityManagementSelection entityType={"user"} entities={users} isMobile={true} BackMobileButton={() => setShowEntityManagement(false)} />
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div>
       <NavBar />
       <div className="lr:mt-24 h-[80vh] flex">
-        <div className="max-w-[40%]">
-          <EntityManagementSelection entityType={"user"} entities={users} />
-        </div>
+        {
+          <div className="max-w-[40%]">
+            <EntityManagementSelection entityType={"user"} entities={users} />
+          </div>
+        }
         <MessagingUI
           serviceTitle={service.title}
           senderId={service._id}
           canSendMessages={true}
           serviceImage={service.thumbnail}
+          isMobile={false}
+          BackMobileButton={() => setShowEntityManagement()}
         />
       </div>
       <Footer />

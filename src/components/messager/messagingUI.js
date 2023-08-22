@@ -169,7 +169,12 @@ export default function MessagingUI(props) {
 
   return (
     <div className="flex flex-col flex-1 max-h-[100%]">
-      <div className="bg-[#001E60] h-[126px] text-white flex p-4 items-center">
+      <div className="bg-[#001E60] h-[126px] text-white flex gap-4 p-4 items-center">
+        {props.isMobile && (
+          <button onClick={props.BackMobileButton}>
+            <img src="Photos/BackArrow.png" alt="" />
+          </button>
+        )}
         <img
           src={
             props.serviceImage
@@ -177,7 +182,7 @@ export default function MessagingUI(props) {
               : "Photos/DefaultServiceImage.png"
           }
           alt=""
-          className="mr-4 rounded-lg h-[82px]"
+          className="rounded-lg h-[82px]"
         />
         <h1>{props.serviceTitle}</h1>
       </div>
