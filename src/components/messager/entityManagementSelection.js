@@ -22,7 +22,7 @@ function EntityManagementButton(props) {
           props.SelectEntity(props.entireEntity);
         }}
       >
-        <img className="w-[82px]" src={entity.image} />
+        <img className={`w-[82px] ${entity.isUser ? 'rounded-full' : "rounded-lg"}`} src={entity.image} />
         <div className="flex flex-col text-left">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
@@ -51,6 +51,7 @@ function EntityList(props) {
                   : "/Photos/UserTemplateImage.png",
                 name: user.fullName,
                 subtext: [user.email],
+                isUser: true,
               }}
               key={user._id}
             />
@@ -65,8 +66,8 @@ function EntityList(props) {
           return (
             <EntityManagementButton
               entity={{
-                image: service.image
-                  ? service.image
+                image: service.thumbnail
+                  ? service.thumbnail
                   : "/Photos/DefaultServiceImage.png",
                 name: service.title,
                 subtext: [],

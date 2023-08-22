@@ -3,14 +3,29 @@ import NavBar from "../components/NavBar";
 import EntityManagementSelection from "../components/messager/entityManagementSelection";
 import MessagingUI from "../components/messager/messagingUI";
 import Footer from "../components/Footer";
+import { Buffer } from "buffer";
 import { BASE_BACKEND_URL } from "../config";
 
 function SelectServiceView() {
-    return(<div className="bg-[#00468D] flex flex-col h-[100%] justify-center items-center">
-        <img src="Photos/selectUser.png" alt="" />
-        <p className="text-[#002347]">Select a message to view</p>
-    </div>)
+  return (
+    <div className="bg-[#00468D] flex flex-col h-[100%] justify-center items-center">
+      <img src="Photos/selectUser.png" alt="" />
+      <p className="text-[#002347]">Select a message to view</p>
+    </div>
+  );
 }
+
+const convertImageToUrl = async function (image) {
+  try {
+    const buffer = Buffer.from(image.data);
+    const base64 = buffer.toString("base64");
+    return `data:image/png;base64,${base64}`;
+  } catch (err) {
+    console.log(err);
+    console.error("no profile image, using default");
+    return "photos-optimized/user-pic.png";
+  }
+};
 
 export default function Inbox() {
   const [user, setUser] = useState();
@@ -23,8 +38,25 @@ export default function Inbox() {
         `${BASE_BACKEND_URL}/userdata/get_services_user_is_member/${userId}`
       )
         .then((response) => response.json())
-        .then((data) => {
-          setServices(data);
+        .then(async (data) => {
+          try {
+            const services = await Promise.all(
+              data.map(async (service) => {
+                try {
+                  const imageUrl = await convertImageToUrl(service.thumbnail);
+                  return {
+                    ...service,
+                    ["thumbnail"]: imageUrl,
+                  };
+                } catch (err) {
+                  console.log(err);
+                }
+              })
+            );
+            setServices(services);
+          } catch (err) {
+            console.log(err);
+          }
         });
     } catch (error) {
       console.error("Failed to fetch services user is a member of", error);
@@ -85,21 +117,22 @@ export default function Inbox() {
             entityType={"service"}
             entities={services}
             SelectEntity={setSelectedService}
-            selectedId={(selectedService) ? selectedService._id : false}
+            selectedId={selectedService ? selectedService._id : false}
             canSendMessages={false}
           />
         </div>
-        {selectedService && 
+        {selectedService && (
           <MessagingUI
             serviceTitle={selectedService.title}
             senderId={selectedService._id}
+            serviceImage={selectedService.thumbnail}
           />
-        }
-        {!selectedService && 
-            <div className="flex-1">
-                <SelectServiceView />
-            </div>
-        }
+        )}
+        {!selectedService && (
+          <div className="flex-1">
+            <SelectServiceView />
+          </div>
+        )}
       </div>
       <Footer />
     </div>
