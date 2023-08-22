@@ -17,7 +17,7 @@ function Message(props) {
               </span>
             );
           })}
-          </p>
+        </p>
       </div>
     </div>
   );
@@ -29,8 +29,20 @@ function MessageForm(props) {
     senderId: props.senderId,
   });
 
+  const [isSingleLine, setIsSingleLine] = useState(true);
+  const textareaRef = useRef(null);
+  const worldLimit = 10000;
+
+  function resizeTextarea() {
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    console.log(textareaRef.current.scrollHeight);
+    setIsSingleLine(textareaRef.current.scrollHeight >= 24 ? false : true);
+  }
+
   const clearInput = () => {
     setMessage({ ...message, ["content"]: "" });
+    textareaRef.current.style.height = "auto";
   };
 
   const handleSubmit = (event) => {
@@ -87,20 +99,11 @@ function MessageForm(props) {
     resizeTextarea();
   };
 
-  const [isSingleLine, setIsSingleLine] = useState(true);
-  const textareaRef = useRef(null);
-  const worldLimit = 10000;
-
-  function resizeTextarea() {
-    textareaRef.current.style.height = "auto";
-    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
-    console.log(textareaRef.current.scrollHeight);
-    setIsSingleLine(textareaRef.current.scrollHeight >= 24 ? false : true);
-  }
-
   return (
     <div>
-      <p className={`text-white text-xs`}>{`Word limit: (${message.content.length}/${worldLimit})`}</p>
+      <p
+        className={`text-white text-xs`}
+      >{`Word limit: (${message.content.length}/${worldLimit})`}</p>
       <div className="bg-[#001E60] rounded-lg">
         <form
           onSubmit={handleSubmit}
