@@ -475,7 +475,7 @@ input[data-autocompleted]
 
 .meeting-details-text-box
 {
-    padding: 4px 10px;
+    padding: 4px 5px;
     font-size: clamp(8px, 3vh, 20px);
     width : 80%;
     background : none;
@@ -1046,6 +1046,12 @@ section .details span
         padding: 14px 20px;
     }
 
+    #overview-meeting-details
+    {
+        font-size: 17px;
+        padding: 14px 20px;
+    }
+
     .contacts-text-box
     {
         width : 90%;
@@ -1171,6 +1177,13 @@ section .details span
         width : 80%;
         line-height: 40px;
     }
+
+    #overview-meeting-details
+    {
+        width: 80%;
+        line-height: 40px;
+    }
+
 
     .service-description
     {
@@ -1351,6 +1364,12 @@ section .details span
         font-size: 15px;
     }
 
+    #overview-meeting-details
+    {
+        width: 95%;
+        font-size: 15px;
+    }
+
     .service-description
     {
         font-size : 15px;
@@ -1439,6 +1458,12 @@ section .details span
     .service-details
     {
         width : 95%;
+        font-size: 13px;
+    }
+
+    #overview-meeting-details
+    {
+        width: 95%;
         font-size: 13px;
     }
 

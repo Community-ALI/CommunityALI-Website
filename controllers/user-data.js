@@ -2,6 +2,7 @@
 const fs = require("fs");
 // database
 const models = require("../connect-to-database");
+const { ObjectId } = require("mongodb");
 const Applications = models.Application;
 const Services = models.Services;
 const Users = models.User;
@@ -69,6 +70,23 @@ exports.set_user_data = async function (username, req) {
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+exports.get_services_user_is_member = async function (userId) {
+  try {
+    const services = await Services.find({
+      members: { $in: new ObjectId(userId) },
+    });
+    if (services.length === 0) {
+      console.log("No services found for the user.", services);
+    } else {
+      console.log("Services found:", services.length);
+    }
+    return services;
+  } catch (error) {
+    console.error("Failed to fetch services", error);
+    return { success: false, error: error };
   }
 };
 
@@ -146,7 +164,9 @@ exports.get_user_applications = async function (username) {
 exports.get_user_data = async function (username) {
   try {
     const selected_account = await Users.find({ username: username })
-      .select("username email description dateCreated profileImage fullName sendNotifications")
+      .select(
+        "username email description dateCreated profileImage fullName sendNotifications"
+      )
       .exec();
     return selected_account;
   } catch (error) {
