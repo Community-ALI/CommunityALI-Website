@@ -1,8 +1,22 @@
 import React from "react";
 
-// TODO make generic pop up component to make it easier to make pop ups
-export default function popupComponent() {
-    (<div>
-        return(<div>    </div>)
-    </div>)
+export default function PopupComponent(props) {
+  const isShowingPopup = props.isShowingPopup;
+
+  function hidePopups() {
+    props.SetIsShowingPopupFalse();
+  }
+  if (isShowingPopup) {
+    return (
+      <div>
+        {props.popupToRender}
+        <div
+          id="login-popup-background"
+          className={isShowingPopup ? "" : "hidden"}
+          onClick={hidePopups}
+          style={{ cursor: "pointer" }}
+        ></div>
+      </div>
+    );
+  }
 }
