@@ -4,31 +4,53 @@ import { BASE_BACKEND_URL } from '../../config.js'
 import '../../../public/stylesheets/style.css'
 import NavBar from '../../components/NavBar';
 import Notifications from '../../components/Notification';
-function convertToNormalTime(armyTime) {
-    const [hours, minutes, seconds] = armyTime.split(':');
-    let period = 'am';
+import { Buffer } from 'buffer';
+import { set } from 'mongoose';
 
-    let normalizedHours = parseInt(hours, 10);
-    if (normalizedHours > 12) {
-        normalizedHours -= 12;
-        period = 'pm';
+
+// turn an ISO date string into a date string
+function getTime(isoDate) {
+    const date = new Date(isoDate);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    // create a string in the format HH:MM AM/PM (ex. 12:00 AM)
+    const time = `${hours % 12}:${minutes.toString().padStart(2, '0')} ${(hours < 12) ? 'AM' : 'PM'}`;
+    if (time == 'NaN:NaN PM' || time == 'NaN:NaN AM') {
+        return 'Long Ago';
     }
+    return time;
+}
 
-    const formattedHours = normalizedHours.toString();
-    const formattedMinutes = minutes.padStart(2, '0');
-
-    return `${formattedHours}:${formattedMinutes} ${period}`;
+// turn an ISO date string into a date string
+function getDate(isoDate) {
+    const date = new Date(isoDate);
+    const year = date.getFullYear();
+    const lastTwoDigitsOfYear = year.toString().slice(-2);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    // create a string in the format MM/DD/YY
+    const dateString = `${month}/${day}/${lastTwoDigitsOfYear}`;
+    if (dateString == 'NaN/NaN/aN') {
+        return 'Long Ago';
+    };
+    return dateString;
 }
 
 // each individual application to display
-const SearchResult = function (props) {
+const ApplicantDisplay = function (props) {
+    console.log('displaying applicant');
     const applicant = props.applicant;
-    const [isNotification, setIsNotification] = useState(applicant.is_new_applicant);
-    var normalTime = 'long ago';
-    if (applicant.time) {
-        normalTime = convertToNormalTime(applicant.time);
-    }
-
+    const isNotification = applicant.is_new_applicant;
+    // get date and time from the ISO date string
+    const ApplicationTime = getTime(applicant.isoDate);
+    const ApplicationDate = getDate(applicant.isoDate);
+    // turn applicant.miniProfileImage into an image url if it exists
+    var miniProfileImageURL = 'photos-optimized/user-pic.png';
+    if (applicant.miniProfileImage) {
+        const miniProfileImage = applicant.miniProfileImage;
+        const miniProfileImageBase64 = Buffer.from(miniProfileImage).toString('base64');
+        miniProfileImageURL = `data:image/png;base64,${miniProfileImageBase64}`;
+    };
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
     useState(() => {
         console.log(window.innerWidth);
@@ -52,8 +74,49 @@ const SearchResult = function (props) {
                     // Handle the error
                 });
         }
+    }, []);
+
+    // accept applicant and add their account to service members
+    const acceptApplicant = async () => {
+        const token = localStorage.getItem('token');
+        if (token){ 
+
+            // get the service name from the url
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const serviceName = urlParams.get('service');
+            console.log({username: applicant.user})
+            // send a fetch request to add the new member to the service
+            const response = await fetch(`${BASE_BACKEND_URL}/servicedata/add-member?service=` + serviceName, {
+                method: 'POST',
+                body: JSON.stringify({username: applicant.user}),
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'content-type': 'application/json'
+                },
+                
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.success){
+                    alert('Applicant accepted');
+                    // remove the applicant from the list of applicants
+                    props.removeApplicantLocally(props.applicant);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert('Error accepting applicant');
+            });
+
+        }
+    }
+
+    // reject applicant and remove their application
+    const rejectApplicant = async (applicant) => {
         
-    }, [])
+    }
 
     const [showAdditionalDetails, setShowAdditionalDetails] = useState(false);
 
@@ -61,7 +124,7 @@ const SearchResult = function (props) {
         <div className='blue-container relative flex flex-col items-center'>
             <Notifications styleLeft={false} isRedDot={true} notifications={(isNotification) ? 1 : 0} />
             <div className='flex items-center justify-center flex-wrap w-[100%] md:flex-nowrap'>
-                <img src="Photos/UserTemplateImage.png" className='w-[60px] py-[10px] px-[5px] sm:w-[50px]' />
+                <img src={miniProfileImageURL} className='w-[60px] py-[10px] px-[5px] sm:w-[50px] ' style={{ borderRadius: '50%' }}/>
                 <div className='w-[100%] flex flex-col text-center justify-center items-center px-[10px] xsm:pt-[10px] md:items-start'>
                     <h3 className='text-[#ecaa1e] text-[18px] md:text-[16px] sm:text-[14px]'>{applicant.name}</h3>
                     <div className='text-[13px] overflow-x-hidden lr:text-[12px]'>
@@ -69,12 +132,12 @@ const SearchResult = function (props) {
                     </div>
                 </div>
                 <div className='flex w-[100%] text-[12px] font-semibold gap-3 justify-center items-center sm:text-[70%] xsm:text-[60%] py-[10px] px-[10px] md:justify-end md:absolute md:top-0'>
-                    <p>{`Date: ${applicant.date}`}</p>
-                    <p className='md:hidden'>{`Time: ${normalTime}`}</p>
+                    <p>{`Date: ${ApplicationDate}`}</p>
+                    <p className='md:hidden'>{`Time: ${ApplicationTime}`}</p>
                 </div>
                 <div className={`flex text-[13px] px-[5px] py-[5px] mt-[10px] relative md:hidden`}>
-                    <button className={`text-[#23F638] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>ACCEPT</button>
-                    <button className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
+                    <button onClick={() => acceptApplicant(applicant)} className={`text-[#23F638] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>ACCEPT</button>
+                    <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                 </div>
             </div>
             <div className='flex flex-col items-center pt-[10px]'>
@@ -92,8 +155,8 @@ const SearchResult = function (props) {
                         </p>
                     </div>
                     <div className={`flex gap-2 w-[100%] text-[80%] px-[5px] mb-[10px] relative lrr:hidden`}>
-                        <button className={`text-[#23F638] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>ACCEPT</button>
-                        <button className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
+                        <button onClick={() => acceptApplicant(applicant)} className={`text-[#23F638] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>ACCEPT</button>
+                        <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                     </div>
                 </div>
                 
@@ -105,18 +168,40 @@ const SearchResult = function (props) {
 
 // create the information required to display the page
 function ApplicationPageDisplay(props) {
-    const serviceName = props.serviceName;
+    // Remove applicants with no isoDate and store them in a new array
+    const applicantsWithNoDate = []
+    const applicants = props.applicants.filter((applicant) => {
+        if (applicant.isoDate) {
+            return true;
+        }
+        else {
+            applicantsWithNoDate.push(applicant);
+            return false;
+        }
+    });
+    // sort applicants by date
+    var sortedApplicants = applicants.sort((a, b) => {
+        const dateA = new Date(a.isoDate);
+        const dateB = new Date(b.isoDate);
+        return  dateB - dateA;
+    });
+    // add applicants with no date to the end of the array
+    sortedApplicants.push(...applicantsWithNoDate);
+
+    
 
     return (
         <div className='grid grid-cols-4 auto-cols-auto gap-6 justify-center items-start xxlr:grid-cols-3 lr:grid-cols-2 md:grid-cols-1'>
-            {props.applicants.map((applicant, index) => (
-                <SearchResult
+            {sortedApplicants.map((applicant, index) => (
+                <ApplicantDisplay
                     key={index}
-                    applicant={applicant} />
+                    applicant={applicant} 
+                    removeApplicantLocally={props.removeApplicantLocally}
+                    />
             ))}
         </div>
     );
-};
+}
 
 function ServiceApplicants() {
     const [applicants, setApplicants] = useState([]);
@@ -145,7 +230,6 @@ function ServiceApplicants() {
                             // 'data' variable will contain the received object with the data array and tokenUsername
 
                             setApplicants(data);
-                            console.log('data: ', data);
                         })
                 }
                 else {
@@ -162,6 +246,12 @@ function ServiceApplicants() {
     useEffect(() => {
         console.log(applicants);
     })
+
+    const removeApplicantLocally = (applicant) => {
+        // remove the applicant from the list of applicants
+        const newApplicants = applicants.filter((applicant2) => applicant2 != applicant); 
+        setApplicants(newApplicants);
+    }
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
     useState(() => {
@@ -203,7 +293,9 @@ function ServiceApplicants() {
                         <div className='md:w-[100%]'>
                             <ApplicationPageDisplay
                                 serviceName={serviceName}
-                                applicants={applicants} />
+                                applicants={applicants}
+                                removeApplicantLocally={removeApplicantLocally}
+                                />
                         </div>
                     </div>
                 </div>

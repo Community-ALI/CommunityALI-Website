@@ -3,6 +3,7 @@ const fs = require('fs');
 const models = require("../connect-to-database");
 const Services = models.Services;
 const Service = models.Services;
+const User = models.User;
 
 
 function search(keyword, attribute, dbServices, filteredData) {
@@ -256,3 +257,24 @@ exports.editService = async function (req, username) {
   }
 };
 
+// add member to service
+exports.add_member = async function (req, service_name) {
+  try {
+    const selected_service = await Services.findOne({ title: service_name });
+    // get get only the user's id from the database
+    const user = await User.findOne({ username: req.body.username }).select('_id');
+    const new_member = user._id;
+    console.log(req.body);
+    if (selected_service.members.includes(new_member)) {
+      return { success: false, error: 'user is already a member' };
+    }
+    else {
+      selected_service.members.push(new_member);
+      await selected_service.save();
+      return { success: true };
+    }
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: 'internal database error' };
+  }
+};

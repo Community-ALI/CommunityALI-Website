@@ -60,8 +60,9 @@ router.get("/get-service-applicants", async function (req, res) {
       if (service && username && username == service.user){
         // the user owns this service
         const applicants = await applicant_data.get_service_applicants(service.title);
+        // console.log(applicants);
         res.json(applicants);
-        console.log(applicants.length, 'applications sent for', service.title)
+        console.log(applicants.length, 'applications sent for', service.title);
       }
       else{
         console.log('unauthorized request')

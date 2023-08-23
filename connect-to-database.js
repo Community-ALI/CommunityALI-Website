@@ -29,11 +29,12 @@ const applicationSchema = {
     service: String,
     name: String,
     email: String,
-    w_number: String,
     date: String,
     time: String,
     isoDate: String, // we should try to use this instead of date and time
-    is_new_applicant: Boolean
+    is_new_applicant: Boolean,
+    // save the username of the user who created the application
+    user: String,
 };
 
 const userSchema = new mongoose.Schema(
@@ -51,6 +52,7 @@ const userSchema = new mongoose.Schema(
         administrator: { type: Boolean},
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,
+        miniProfileImage: Buffer, // a smaller version of the profile image
         fullName: String,
         sendNotifications: { type: Boolean},
         lastNotificationCheck: { type: Date, default: Date.now },

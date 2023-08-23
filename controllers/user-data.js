@@ -5,6 +5,32 @@ const models = require("../connect-to-database");
 const Applications = models.Application;
 const Services = models.Services;
 const Users = models.User;
+const sharp = require("sharp");
+
+
+// generate a smaller version of the profile image
+const generateMiniProfileImage = async function (photoBuffer) {
+  try {
+    // Load the photo buffer from the service
+
+    // Create a thumbnail with lower resolution using sharp
+    const thumbnailBuffer = await sharp(photoBuffer)
+      .resize(100, 100) // Set the desired  dimensions
+      .toBuffer();
+
+    // Convert the thumbnail buffer to a base64-encoded string
+    const thumbnailBase64 = thumbnailBuffer.toString('base64');
+
+    // Create a new Buffer object with the Base64-encoded string
+    const thumbnailBinData = new Buffer.from(thumbnailBase64, 'base64');
+
+    // Update the service object with the thumbnail field as BinData
+    return thumbnailBinData;
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: 'Error generating thumbnail' };
+  }
+};
 
 // access database, call functions, display page
 exports.get_all_user_notifications = async function (username) {
@@ -33,6 +59,7 @@ exports.set_user_data = async function (username, req) {
       Object.assign(selected_account, JSON.parse(req.body.account));
       const image = fs.readFileSync(req.file.path);
       selected_account.profileImage = image;
+      selected_account.miniProfileImage = await generateMiniProfileImage(image);
       // Save the updated account back to the database
       await selected_account.save();
 

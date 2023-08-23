@@ -8,6 +8,7 @@ const upload = multer({ dest: "uploads/" });
 const service_data = require('../controllers/service-data');
 const applicant_data = require("../controllers/applicant-data");
 
+
 router.get("get-clubs-and-communites/:sort/:service_type/:categories", (req, res) => {
     res.send(service_data(req.params.sort, req.params.service_type, req.params.categories));
 })
@@ -180,6 +181,40 @@ router.get("/get-service-notifications", async function (req, res) {
             dataServices: [],
             tokenUsername: 'not logged in'
         });
+    }
+})
+
+// add a new member to the service
+router.post("/add-member", async (req, res) => {
+    try {
+        const service_name = req.query.service;
+        const service = await service_data.get_one_service(service_name);
+
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const username = decodedToken.username;
+        if (service && username && username == service.user) {
+            // the user owns this service
+            const result = await service_data.add_member(req, service.title);
+            
+            if (result.success) {
+                // if the user was added successfully then remove the applicant with the same username
+                await applicant_data.remove_applicant(service.title, req.body.username);
+                res.json({ success: true });
+            }
+            else {
+                console.log(result.error);
+                res.json({ success: false, error: 'internal server error' });
+            }
+        }
+        else {
+            console.log('unauthorized request')
+            res.json({ success: false, error: 'unauthorized' });
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, error: 'internal server error' });
     }
 })
 
