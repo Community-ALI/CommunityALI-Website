@@ -200,6 +200,7 @@ router.post("/add-member", async (req, res) => {
             if (result.success) {
                 // if the user was added successfully then remove the applicant with the same username
                 await applicant_data.remove_applicant(service.title, req.body.username);
+                //TODO: email the new member that they have been added to the service
                 res.json({ success: true });
             }
             else {

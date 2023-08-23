@@ -77,4 +77,34 @@ router.get("/get-service-applicants", async function (req, res) {
     }
   })
 
-  module.exports = router;
+  // delete an application from the database
+router.post('/delete-application', async function (req, res) {
+    try {
+        const service_name = req.body.service;
+        // make sure the user owns the service
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const adminUsername = decodedToken.username;
+        const service = await service_data.get_one_service(service_name);
+        if (service.user != adminUsername){
+            res.json({ success: false, error: 'Unauthorized' });
+        }
+        // get the username of the applicant
+        const username = req.body.username;
+        const message = await applicant_data.remove_applicant(service_name, username);
+        if (message.success) {
+            // TODO: email the applicant that their application has been rejected
+            console.log('application from ', req.body.username, ' rejected');
+            res.setHeader("Content-Type", "application/json");
+            res.send(JSON.stringify({ success: true }));
+        }
+        else {
+            error(message.error)
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, error: 'internal server error' });
+    } 
+});
+
+module.exports = router;

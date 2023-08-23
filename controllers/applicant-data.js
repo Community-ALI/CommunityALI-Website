@@ -8,6 +8,7 @@ const User = models.User;
 exports.change_notification_status = async function (req) {
     try {
         const id = req.params.id;
+        console.log("id:", id)
 
         // Find the document by ID and update the is_new_applicant field to false
         const application = await Application.findByIdAndUpdate(id, { $set: { is_new_applicant: false } }, { new: true });
@@ -129,7 +130,7 @@ exports.get_service_applicants = async function (service_name) {
     try {
         // Get the applicants to a service (only necessary fields)
         const applications = await Applications.find({ service: service_name })
-            .select("name email isoDate is_new_applicant user miniProfileImage")
+            .select("name email isoDate is_new_applicant user miniProfileImage _id")
             .exec();
 
         // Create an array of promises to fetch miniProfileImages concurrently
@@ -140,6 +141,7 @@ exports.get_service_applicants = async function (service_name) {
             const user = await User.findOne({ username: username }).select("miniProfileImage").exec();
             if (user) {
                 const applicantWithMiniProfileImage = {
+                    _id: applicant._id,
                     name: applicant.name,
                     email: applicant.email,
                     isoDate: applicant.isoDate,

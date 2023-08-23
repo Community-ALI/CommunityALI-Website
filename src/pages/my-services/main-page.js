@@ -15,7 +15,6 @@ function MyServicePageDisplay(props) {
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString("base64");
   const imageUrl = `data:image/png;base64,${base64}`;
-  console.log(imageUrl);
   useEffect(() => {
     document.title = "Manage Services | Community ALI";
   }, []);

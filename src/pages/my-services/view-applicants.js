@@ -8,6 +8,8 @@ import { Buffer } from 'buffer';
 import { set } from 'mongoose';
 
 
+
+
 // turn an ISO date string into a date string
 function getTime(isoDate) {
     const date = new Date(isoDate);
@@ -20,6 +22,7 @@ function getTime(isoDate) {
     }
     return time;
 }
+
 
 // turn an ISO date string into a date string
 function getDate(isoDate) {
@@ -35,6 +38,7 @@ function getDate(isoDate) {
     };
     return dateString;
 }
+
 
 // each individual application to display
 const ApplicantDisplay = function (props) {
@@ -59,6 +63,7 @@ const ApplicantDisplay = function (props) {
         }));
     })
 
+
     useEffect(() => {
         if (isNotification) {
             fetch(`${BASE_BACKEND_URL}/applicantdata/change_notification_status/` + applicant._id, {
@@ -76,10 +81,12 @@ const ApplicantDisplay = function (props) {
         }
     }, []);
 
+
     // accept applicant and add their account to service members
     const acceptApplicant = async () => {
         const token = localStorage.getItem('token');
-        if (token){ 
+        if (token){
+
 
             // get the service name from the url
             const queryString = window.location.search;
@@ -94,7 +101,7 @@ const ApplicantDisplay = function (props) {
                     'Authorization': `Bearer ${token}`,
                     'content-type': 'application/json'
                 },
-                
+               
             })
             .then(response => response.json())
             .then(data => {
@@ -104,21 +111,57 @@ const ApplicantDisplay = function (props) {
                     // remove the applicant from the list of applicants
                     props.removeApplicantLocally(props.applicant);
                 }
+                else{
+                    alert(data.error);
+                }
             })
             .catch(error => {
                 console.log(error);
                 alert('Error accepting applicant');
             });
 
+
         }
     }
 
+
     // reject applicant and remove their application
     const rejectApplicant = async (applicant) => {
+        const token = localStorage.getItem('token');
+        if (token){
+            // get the service name from the url
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const serviceName = urlParams.get('service');
+            console.log({username: applicant.user})
+            fetch(`${BASE_BACKEND_URL}/applicantdata/delete-application`, {
+                method: 'POST',
+                body: JSON.stringify({username: applicant.user, service: serviceName}),
+                headers: {
+                    authorization: `Bearer ${token}`,
+                    'content-type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.success){
+                    alert('Applicant rejected');
+                    // remove the applicant from the list of applicants
+                    props.removeApplicantLocally(props.applicant);
+                }
+                else{
+                    alert(data.error);
+                }
+            })
         
+
+       }
     }
 
+
     const [showAdditionalDetails, setShowAdditionalDetails] = useState(false);
+
 
     return (
         <div className='blue-container relative flex flex-col items-center'>
@@ -146,6 +189,7 @@ const ApplicantDisplay = function (props) {
                     <span className={`arrow ${showAdditionalDetails ? 'up' : 'down'}`}></span>
                 </div>
 
+
                
                 <div className={`transition-max-height overflow-hidden ease-in-out duration-500 ${showAdditionalDetails ? 'max-h-[200px]' : 'max-h-0'}`}>
                     <h1 className='mt-[20px] mb-[10px]'>Additional Information</h1>
@@ -159,11 +203,13 @@ const ApplicantDisplay = function (props) {
                         <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                     </div>
                 </div>
-                
+               
             </div>
         </div>
     );
 };
+
+
 
 
 // create the information required to display the page
@@ -188,14 +234,24 @@ function ApplicationPageDisplay(props) {
     // add applicants with no date to the end of the array
     sortedApplicants.push(...applicantsWithNoDate);
 
-    
+
+   
+    // if there are no applicants, display a message
+    if (sortedApplicants.length === 0) {
+        return (
+            <div className='flex flex-col items-center'>
+                <h1 className='text-[28px] text-white mt-[40px] mb-[20px]'>No Applicants</h1>
+                <p className='text-[18px] text-white text-center mb-[40px]'>There are no applicants for this service.</p>
+            </div>
+        );
+    }
 
     return (
         <div className='grid grid-cols-4 auto-cols-auto gap-6 justify-center items-start xxlr:grid-cols-3 lr:grid-cols-2 md:grid-cols-1'>
             {sortedApplicants.map((applicant, index) => (
                 <ApplicantDisplay
                     key={index}
-                    applicant={applicant} 
+                    applicant={applicant}
                     removeApplicantLocally={props.removeApplicantLocally}
                     />
             ))}
@@ -203,13 +259,16 @@ function ApplicationPageDisplay(props) {
     );
 }
 
+
 function ServiceApplicants() {
     const [applicants, setApplicants] = useState([]);
 
-    useEffect(() => 
+
+    useEffect(() =>
     {
       document.title = 'Service Applicants | Community ALI';
     }, []);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -220,17 +279,24 @@ function ServiceApplicants() {
                     const urlParams = new URLSearchParams(queryString);
                     const serviceName = urlParams.get('service');
                     const response = await fetch(`${BASE_BACKEND_URL}/applicantdata/get-service-applicants?service=` + serviceName,
-                        {
-                            headers: {
-                                'Authorization': `Bearer ${token}`
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            // 'data' variable will contain the received object with the data array and tokenUsername
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // 'data' variable will contain the received object with the data array and tokenUsername
+                        
+                        setApplicants(data);
 
-                            setApplicants(data);
-                        })
+                        const loaderWrapper = document.querySelector(".loader-wrapper");
+                        loaderWrapper.style.transition = "opacity 0.5s";
+                        loaderWrapper.style.opacity = "0";
+                        setTimeout(() => {
+                            loaderWrapper.style.display = "none";
+                        }, 500); // fade out duration in milliseconds
+                    })
                 }
                 else {
                     console.log('no token found')
@@ -240,18 +306,22 @@ function ServiceApplicants() {
             }
         };
 
+
         fetchData();
     }, []);
+
 
     useEffect(() => {
         console.log(applicants);
     })
 
+
     const removeApplicantLocally = (applicant) => {
         // remove the applicant from the list of applicants
-        const newApplicants = applicants.filter((applicant2) => applicant2 != applicant); 
+        const newApplicants = applicants.filter((applicant2) => applicant2 != applicant);
         setApplicants(newApplicants);
     }
+
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
     useState(() => {
@@ -260,6 +330,14 @@ function ServiceApplicants() {
             setIsMobile(window.innerWidth <= 850)
         }));
     })
+
+    const redirectToMemberManagement = () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const serviceName = urlParams.get('service');
+        window.location.href = '/member-management?service=' + serviceName;
+    }
+
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -273,7 +351,7 @@ function ServiceApplicants() {
                         <div className="flex flex-row justify-between gap-3">
                             <button className='blue-container' onClick={() => {window.location.href = '/my-services'}}>&lt;&lt; BACK</button>
                             <div className='flex gap-3'>
-                                <button className='blue-container w-[112.766px]'>Members</button>
+                                <button onClick={redirectToMemberManagement} className='blue-container w-[112.766px]'>Members</button>
                                 {/* <button
                                 className='w-10 h-10 bg-[#00468D] text-white rounded-[50%] p-2'>
                                 ?</button> */}
@@ -286,7 +364,7 @@ function ServiceApplicants() {
                     </div>
                     <div className='flex flex-col items-center'>
                         <div className='w-[100%] mb-5'>
-                            <div className="text-white font-medium text-[28px] ml-8 mb-[10px] mt-[40px] lr:text-[22px] 
+                            <div className="text-white font-medium text-[28px] ml-8 mb-[10px] mt-[40px] lr:text-[22px]
                             sm:text-[18px] md:text-center md:ml-0">Club Sign-ups</div>
                             <hr className="border-[1.5px]"/>
                         </div>
@@ -299,9 +377,13 @@ function ServiceApplicants() {
                         </div>
                     </div>
                 </div>
+                <div className="loader-wrapper">
+                    <span className="loader"><span className="loader-inner"></span></span>
+                </div>
             </div>
         </>
     )
 }
+
 
 export default ServiceApplicants

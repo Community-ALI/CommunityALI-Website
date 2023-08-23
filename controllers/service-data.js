@@ -303,7 +303,8 @@ exports.add_member = async function (req, service_name) {
     const new_member = user._id;
     console.log(req.body);
     if (selected_service.members.includes(new_member)) {
-      return { success: false, error: 'user is already a member' };
+      console.log('member already exists');
+      return { success: true};
     }
     else {
       selected_service.members.push(new_member);
