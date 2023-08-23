@@ -10,7 +10,7 @@ import { BASE_BACKEND_URL } from "../../config";
 export default function MemberManagement() {
   const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
 
   useEffect(() => {
     console.log("window width: ", window.innerWidth);
@@ -106,7 +106,7 @@ export default function MemberManagement() {
   //TODO: Add page loading so users can't interact with elements
   //before all the data has been set up
   //TODO: Add mobile support
-  if (!isMobile) {
+  if (isMobile) {
     if (!showEntityManagement) {
       return (
         <div>

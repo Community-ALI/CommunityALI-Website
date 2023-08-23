@@ -106,7 +106,7 @@ export default function Inbox() {
     fetchData();
   }, []);
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
 
   useEffect(() => {
     console.log("window width: ", window.innerWidth);
