@@ -39,7 +39,6 @@ function Footer() {
                 className="footer-text">
                 <p> Community ALI is not directly affiliated with Modesto Junior College or any of its subsidiaries. </p>        
             </div>   
-            <PrivacyPopUp /> 
         </footer>
     )
 }
