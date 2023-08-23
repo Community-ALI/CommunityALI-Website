@@ -329,6 +329,7 @@ function NavBar(props) {
       <SignupPopup
         isShowingSignupPopup={isShowingSignupPopup}
         showLoginPopup={showLoginPopup}
+        SetIsShowingSignupPopupFalse={() => {setIsShowingSignupPopup(!isShowingSignupPopup)}}
       />
 
       <div

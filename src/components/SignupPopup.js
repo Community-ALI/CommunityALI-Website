@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
-import { BASE_BACKEND_URL } from '../config.js';
-import './login.css';
+import React, { useEffect, useState } from "react";
+import { BASE_BACKEND_URL } from "../config.js";
+import "./login.css";
+import PrivacyPopUp from "./PrivacyPopUp.js";
+import { set } from "mongoose";
 
 function SignupPopup(props) {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] =
+    useState(false);
 
   const [passwordVisible2, setPasswordVisible2] = useState(false);
   const [passwordVisible3, setPasswordVisible3] = useState(false);
 
   const togglePasswordVisibility2 = () => {
-      setPasswordVisible2((prev) => !prev);
-    };
+    setPasswordVisible2((prev) => !prev);
+  };
 
   const togglePasswordVisibility3 = () => {
     setPasswordVisible3((prev) => !prev);
@@ -23,7 +28,7 @@ function SignupPopup(props) {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
 
@@ -31,32 +36,50 @@ function SignupPopup(props) {
 
     try {
       const response = await fetch(`${BASE_BACKEND_URL}/userdata/register`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(authData),
       });
       const result = await response.json();
 
-      if (result.status === 'ok') {
-        console.log('Signed up successfully');
+      if (result.status === "ok") {
+        console.log("Signed up successfully");
         // Handle successful signup
-        window.location.href = `/verify?username=${username}`
+        window.location.href = `/verify?username=${username}`;
       } else {
         console.log(result.error);
         alert(result.error);
       }
     } catch (error) {
       console.error(error);
-      alert('An error occurred while signing up.');
+      alert("An error occurred while signing up.");
     }
   }
-  if (props.isShowingSignupPopup){
+
+  useEffect(() => {
+    setHasAgreedToPrivacyPolicy(false);
+  }, [props.isShowingSignupPopup]);
+  
+  if (props.isShowingSignupPopup) {
+    // TODO: set hasAgreedToPrivacyPolicy to false when user cancels the sign up
+    if (!hasAgreedToPrivacyPolicy) {
+      return (
+        <PrivacyPopUp
+          AcceptPrivacyPolicy={() => {
+            setHasAgreedToPrivacyPolicy(true);
+          }}
+          DeclinePrivacyPolicy={() => {
+            props.SetIsShowingSignupPopupFalse();
+          }}
+        />
+      );
+    }
     return (
-      <div className='container-login'>
+      <div className="container-login">
         <div className="container-for-login">
-          <h1 className='login-title-h1'>Sign Up</h1>
+          <h1 className="login-title-h1">Sign Up</h1>
           <form id="signup" onSubmit={signup}>
             <div className="text-field" id="sign-up-text-field">
               <input
@@ -64,12 +87,23 @@ function SignupPopup(props) {
                 className="text-field-input"
                 id="email"
                 required=""
-                onChange={e => {
+                onChange={(e) => {
                   setEmail(e.target.value);
                 }}
               />
-              <span className={`text-field-span${email !== '' ? ' focused-field' : ''}`}></span>
-              <label className={`text-field-label${email !== '' ? ' focused-field' : ''}`} htmlFor="email">Email</label>
+              <span
+                className={`text-field-span${
+                  email !== "" ? " focused-field" : ""
+                }`}
+              ></span>
+              <label
+                className={`text-field-label${
+                  email !== "" ? " focused-field" : ""
+                }`}
+                htmlFor="email"
+              >
+                Email
+              </label>
             </div>
             <div className="text-field">
               <input
@@ -77,12 +111,23 @@ function SignupPopup(props) {
                 className="text-field-input"
                 id="username"
                 required=""
-                onChange={e => {
+                onChange={(e) => {
                   setUsername(e.target.value);
                 }}
               />
-              <span className={`text-field-span${username !== '' ? ' focused-field' : ''}`}></span>
-              <label className={`text-field-label${username !== '' ? ' focused-field' : ''}`} htmlFor="username">Username</label>
+              <span
+                className={`text-field-span${
+                  username !== "" ? " focused-field" : ""
+                }`}
+              ></span>
+              <label
+                className={`text-field-label${
+                  username !== "" ? " focused-field" : ""
+                }`}
+                htmlFor="username"
+              >
+                Username
+              </label>
             </div>
             <div className="text-field">
               <input
@@ -91,17 +136,30 @@ function SignupPopup(props) {
                 type={passwordVisible2 ? "text" : "password"}
                 id="password"
                 required=""
-                onChange={e => {
+                onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
               <i
-                className={`fa-solid ${passwordVisible2 ? "fa-eye" : "fa-eye-slash"}`}
+                className={`fa-solid ${
+                  passwordVisible2 ? "fa-eye" : "fa-eye-slash"
+                }`}
                 id="password-eye"
                 onClick={togglePasswordVisibility2} // Add the onClick event to toggle the password visibility
               />
-              <span className={`text-field-span${password !== '' ? ' focused-field' : ''}`}></span>
-              <label className={`text-field-label${password !== '' ? ' focused-field' : ''}`} htmlFor="password">Password</label>
+              <span
+                className={`text-field-span${
+                  password !== "" ? " focused-field" : ""
+                }`}
+              ></span>
+              <label
+                className={`text-field-label${
+                  password !== "" ? " focused-field" : ""
+                }`}
+                htmlFor="password"
+              >
+                Password
+              </label>
             </div>
             <div className="text-field">
               <input
@@ -110,35 +168,52 @@ function SignupPopup(props) {
                 type={passwordVisible3 ? "text" : "password"}
                 id="confirmPassword"
                 required=""
-                onChange={e => {
+                onChange={(e) => {
                   setConfirmPassword(e.target.value);
                 }}
               />
               <i
-                className={`fa-solid ${passwordVisible3 ? "fa-eye" : "fa-eye-slash"}`}
+                className={`fa-solid ${
+                  passwordVisible3 ? "fa-eye" : "fa-eye-slash"
+                }`}
                 id="password-eye"
                 onClick={togglePasswordVisibility3} // Add the onClick event to toggle the password visibility
               />
-              <span className={`text-field-span${confirmPassword !== '' ? ' focused-field' : ''}`}></span>
-              <label className={`text-field-label${confirmPassword !== '' ? ' focused-field' : ''}`} htmlFor="confirmPassword">Confirm Password</label>
+              <span
+                className={`text-field-span${
+                  confirmPassword !== "" ? " focused-field" : ""
+                }`}
+              ></span>
+              <label
+                className={`text-field-label${
+                  confirmPassword !== "" ? " focused-field" : ""
+                }`}
+                htmlFor="confirmPassword"
+              >
+                Confirm Password
+              </label>
             </div>
 
             <input
               type="submit"
               value="Sign Up"
-              id='signup-submission'
+              id="signup-submission"
               className="login-submit-button"
             />
             <div className="signup_link">
               <p>Already have an account? </p>
-              <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={props.showLoginPopup}>Login</button>
+              <button
+                style={{ color: "blue", textDecoration: "underline" }}
+                onClick={props.showLoginPopup}
+              >
+                Login
+              </button>
             </div>
           </form>
         </div>
       </div>
     );
-  }
-  else {
+  } else {
     return null;
   }
 }
