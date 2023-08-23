@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './footer.css'
+import PrivacyPopUp from './PrivacyPopUp';
 
 function Footer() {
     return(
@@ -37,7 +38,8 @@ function Footer() {
             <div 
                 className="footer-text">
                 <p> Community ALI is not directly affiliated with Modesto Junior College or any of its subsidiaries. </p>        
-            </div>    
+            </div>   
+            <PrivacyPopUp /> 
         </footer>
     )
 }
