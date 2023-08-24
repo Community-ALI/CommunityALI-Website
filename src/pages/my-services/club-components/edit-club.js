@@ -244,7 +244,7 @@ function AddClub() {
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} editMode={true}  />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} editMode={true} mainInfo={
+        {activePage === "Sign-Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} editMode={true} mainInfo={
           { 'title': titleValue }
         }
           allFormData={
