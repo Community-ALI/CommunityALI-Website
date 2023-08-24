@@ -48,7 +48,7 @@ function SignUpPage({ service }) {
   function textWithLinksToParagraph(inputText) {
     const linkPattern = /(https?:\/\/[^\s]+)/g;
 
-    const replacedText = inputText.replace(linkPattern, '<a target="_blank" href="$&">$&</a>');
+    const replacedText = inputText.replace(linkPattern, '<u><a target="_blank" href="$&">$&</a></u>');
 
     return `<p>${replacedText}</p>`;
   }
