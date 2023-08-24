@@ -77,7 +77,7 @@ function MyServicePageDisplay(props) {
             </a>
             <a className='relative' href={`view-applicants?service=${service.title}`}>
             <Notifications notifications={notifications ? notifications.length : 0} /> 
-              <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/ApplicantsIcon.png"></img>
+              <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png"></img>
             </a>
             {/* <a  onClick={(event) => {
                 event.stopPropagation();

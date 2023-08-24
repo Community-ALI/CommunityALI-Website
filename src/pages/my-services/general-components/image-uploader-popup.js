@@ -129,11 +129,10 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => { // imageUrl c
             ref={fileInputRef}
             style={{ display: 'none' }}
           />
-          {/* <button className='file-upload-button' onClick={handleButtonClick}>Choose image from files</button> */}
         </div>
         
         {selectedImage || defaultImage ? (
-          <div className='profile-picture-editor' onClick={handleButtonClick}>
+          <div className='profile-picture-editor'>
             <AvatarEditor id='profile-icon-thumbnail'
               ref={editorRef}
               image={selectedImage || defaultImage}
@@ -148,6 +147,7 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => { // imageUrl c
                style={{ borderRadius: '2%' }} // make it slightly round
             />
             <input className='zoom-slider' type="range" min="1" max="2" step="0.1" value={scale} onChange={handleScaleChange} />
+            <button className='file-upload-button' onClick={handleButtonClick}>Choose Image from files</button>
             <button className='save-profile-image-button' onClick={handleSave}>Save</button>
           </div>
         ) : null}
