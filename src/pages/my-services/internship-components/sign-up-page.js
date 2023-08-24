@@ -47,18 +47,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           return false;
         }
       }
-      if (allFormData.Contacts.socialMedia){
-        // Check required fields for social media
-        const socialMedia = allFormData.Contacts.socialMedia
-        const socialMediaComplete = socialMedia.every(
-          (media) => media.mediaType && media.mediaName && media.mediaUrl
-        );
-
-        if (!socialMediaComplete) {
-          alert('Social media is incomplete');
-          return false;
-        }
-      }
+      
       if (allFormData.FAQ.faq){
         const FAQ = allFormData.FAQ.faq;
 
@@ -233,8 +222,6 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                   <input type="submit" value="Agree to Terms and Conditions" id="submit-button" className="application-buttons" onClick={handleSubmit} />
                 ) : (
                   <input type="submit" value="Update Internship" id="submit-button" className="application-buttons" onClick={handleSubmit} />
-
-                  
                 )}
             </div>
           </div>
