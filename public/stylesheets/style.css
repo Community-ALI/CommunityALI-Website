@@ -673,6 +673,10 @@ video {
   top: 50%;
 }
 
+.top-\[15vh\] {
+  top: 15vh;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -858,6 +862,14 @@ video {
   height: 89px;
 }
 
+.h-\[55vh\] {
+  height: 55vh;
+}
+
+.h-\[60vh\] {
+  height: 60vh;
+}
+
 .max-h-0 {
   max-height: 0px;
 }
@@ -956,6 +968,10 @@ video {
 
 .w-\[95\%\] {
   width: 95%;
+}
+
+.w-\[60vw\] {
+  width: 60vw;
 }
 
 .min-w-\[100vw\] {
@@ -1320,6 +1336,16 @@ video {
   padding-bottom: 5px;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pt-4 {
   padding-top: 1rem;
 }
@@ -1539,6 +1565,15 @@ video {
   background-color: var(--dark-secondary-color);
 }
 
+.hover\:bg-\[color\:var\(--secondary-color\)\]:hover {
+  background-color: var(--secondary-color);
+}
+
+.hover\:text-\[white\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 @media (max-width: 1250px) {
   .xxlr\:mr-\[0px\] {
     margin-right: 0px;
@@ -1566,8 +1601,20 @@ video {
 }
 
 @media (max-width: 1050px) {
+  .xlr\:top-\[15vh\] {
+    top: 15vh;
+  }
+
   .xlr\:h-\[40px\] {
     height: 40px;
+  }
+
+  .xlr\:h-\[75vh\] {
+    height: 75vh;
+  }
+
+  .xlr\:h-\[65vh\] {
+    height: 65vh;
   }
 
   .xlr\:w-\[180px\] {
@@ -1576,6 +1623,10 @@ video {
 
   .xlr\:w-\[40px\] {
     width: 40px;
+  }
+
+  .xlr\:w-\[80vw\] {
+    width: 80vw;
   }
 
   .xlr\:max-w-\[300px\] {
@@ -1666,6 +1717,14 @@ video {
     width: 80vw;
   }
 
+  .lr\:w-\[85vw\] {
+    width: 85vw;
+  }
+
+  .lr\:w-\[70vw\] {
+    width: 70vw;
+  }
+
   .lr\:max-w-\[1000px\] {
     max-width: 1000px;
   }
@@ -1724,6 +1783,10 @@ video {
     top: 0px;
   }
 
+  .md\:top-\[15vh\] {
+    top: 15vh;
+  }
+
   .md\:ml-0 {
     margin-left: 0px;
   }
@@ -1751,6 +1814,10 @@ video {
     height: 30px;
   }
 
+  .md\:h-\[65vh\] {
+    height: 65vh;
+  }
+
   .md\:w-\[100\%\] {
     width: 100%;
   }
@@ -1761,6 +1828,10 @@ video {
 
   .md\:w-\[95\%\] {
     width: 95%;
+  }
+
+  .md\:w-\[80vw\] {
+    width: 80vw;
   }
 
   .md\:grid-cols-1 {
@@ -1836,12 +1907,24 @@ video {
     width: 90%;
   }
 
+  .sm\:w-\[90vw\] {
+    width: 90vw;
+  }
+
   .sm\:flex-col {
     flex-direction: column;
   }
 
   .sm\:p-\[5px\] {
     padding: 5px;
+  }
+
+  .sm\:p-4 {
+    padding: 1rem;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
   }
 
   .sm\:px-\[10px\] {
