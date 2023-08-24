@@ -3,7 +3,7 @@ import React from "react";
 // make a react component that contains a privacy policy pop up which you can scroll through
 export default function PrivacyPopUp(props) {
   return (
-    <div className="fixed z-50 top-[20vh] left-[50vw] p-8 bg-white rounded-3xl flex flex-col translate-x-[-50%] inset-0 overflow-y-auto w-[50vw] h-[50vh]">
+    <div className="fixed z-50 top-[20vh] left-[50vw] p-8 bg-white rounded-3xl flex flex-col translate-x-[-50%] inset-0 overflow-y-auto w-[50vw] lr:w-[80vw] lr:h-[75vh] h-[50vh]">
       <div className="flex flex-col flex-grow">
         <iframe className="flex-grow" src="/privacyPolicy.html" />
         {!(
