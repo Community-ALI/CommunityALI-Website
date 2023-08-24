@@ -18,8 +18,11 @@ function EntityManagementButton(props) {
       </button> */}
       <button
         className="flex gap-4 items-center w-[100%] h-[100%]"
+        disabled={props.SelectEntity === undefined}
         onClick={() => {
-          props.SelectEntity(props.entireEntity);
+          if (props.SelectEntity !== undefined) {
+            props.SelectEntity(props.entireEntity);
+          }
         }}
       >
         <img

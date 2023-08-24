@@ -1,95 +1,95 @@
 .notification-icon {
-    background-color: #ecaa1e;
-    font-size: medium;
-    font-weight: bold;
-    font-family: sans-serif;
-    border-radius: 50%;
-    color: #001E60;
-    position: absolute;
-    right: -10px;
-    top: -12px;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #ecaa1e;
+  font-size: medium;
+  font-weight: bold;
+  font-family: sans-serif;
+  border-radius: 50%;
+  color: #001e60;
+  position: absolute;
+  right: -10px;
+  top: -12px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .red-notification-icon {
-    background-color: #FF3939;
-    font-size: medium;
-    font-weight: bold;
-    font-family: sans-serif;
-    border-radius: 50%;
-    color: #001E60;
-    position: absolute;
-    right: -4px;
-    top: -8px;
-    width: 20px;
-    height: 20px;
+  background-color: #ff3939;
+  font-size: medium;
+  font-weight: bold;
+  font-family: sans-serif;
+  border-radius: 50%;
+  color: #001e60;
+  position: absolute;
+  right: -4px;
+  top: -8px;
+  width: 20px;
+  height: 20px;
 }
 
 .relative-container {
-    position: relative;
+  position: relative;
 }
 
 .hidden {
-    display: none;
-    visibility: hidden;
+  display: none;
+  visibility: hidden;
 }
 
 .position-left {
-    left: -4px;
+  left: -4px;
 }
 
 .blue-container {
-    background-color: #00468D;
-    color: white;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-    transition: 300ms ease;
+  background-color: #00468d;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  transition: 300ms ease;
 }
 
-.blue-container:hover
-{
-    background-color: var(--dark-secondary-color);
+.blue-container:hover {
+  background-color: var(--dark-secondary-color);
 }
 
 .hoverable-blue-container {
-    background-color: #00468D;
-    color: white;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
+  background-color: #00468d;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
 }
 
 .hoverable-blue-container:hover {
-    background-color: #001E60;
+  background-color: #001e60;
 }
 
 .dark-blue-container {
-    background-color: #001E60;
-    color: white;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
+  background-color: #001e60;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
 }
 
-.blue-container>p {
-    font-size: 100%;
+.blue-container > p {
+  font-size: 100%;
 }
 
 .dark-blue-container-with-border {
-    background: #001E60;
-    border-color: #ecaa1e;
-    border-radius: 8px;
-    border-style: solid;
-    border-width: 1px;
-    margin: 0px 10px;
+  background: #001e60;
+  border-color: #ecaa1e;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0px 10px;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+

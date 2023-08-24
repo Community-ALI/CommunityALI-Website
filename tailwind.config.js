@@ -20,6 +20,8 @@ module.exports = {
       colors: {
         'regal-blue': '#243c5a',
         'ali-darkblue': '#001E60',
+        'ali-lightblue': '#0070C9',
+        'ali-orange': '#ecaa1e',
       },
     },
   },
