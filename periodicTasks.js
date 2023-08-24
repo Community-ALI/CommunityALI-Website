@@ -46,6 +46,7 @@ const sendEmail = async (toAdress, subject, body) => {
 
 // function to send a notification email to all users collaborating on a service if that service has one or more new applicants
 exports.send_email_notifications = async function () {
+  try{
     const new_applications = await Applications.find({ is_new_applicant: true }).exec();
     // organize applications by service
     const services = {};
@@ -94,6 +95,11 @@ exports.send_email_notifications = async function () {
             console.log('Notification not sent to', service_owner.username, 'because they have notifications turned off');
         }
     }
+  }
+  catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
 }
 
 
