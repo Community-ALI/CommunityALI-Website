@@ -219,10 +219,10 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
                 </div>
                 <label htmlFor="authorization" className="authorization-text">
                 By submitting this application I authorize Community ALI to publish all the information of this application for any person
-                  to view. I hold responsibility for the information displayed from this application and I represent the program's interest to do so.
-                  I understand that this application will be subject to review, in which any inappropriate content associated with the program or its
-                  members will result in immediate termination of the program from the platform. I understand that there is no tolerance for any discrimination
-                  against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
+                to view. I hold responsibility for the information displayed from this application and I represent the program's interest to do so.
+                I understand that this application will be subject to review, in which any inappropriate content associated with the program or its
+                members will result in immediate termination of the program from the platform. I understand that there is no tolerance for any discrimination
+                against race, religion, sex or gender, sexual orientation, ethnicity, or disability within Community ALI.
                 </label>
 
                 <input
