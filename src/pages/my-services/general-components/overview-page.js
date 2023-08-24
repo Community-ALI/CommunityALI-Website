@@ -184,6 +184,7 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
           value={formData.description || ""}
           className="meeting-description-text-box"
           id="description"
+          style={{ whiteSpace: 'pre-line' }}
         ></textarea>
       </div>
 

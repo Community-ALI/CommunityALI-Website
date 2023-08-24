@@ -44,7 +44,8 @@ function OverviewPage({service}) {
         </div>
       </div>
 
-      <div className="service-description">
+      <div className="service-description" style={{ whiteSpace: 'pre-line' }}>
+        
         {overview.description}
       </div>
     </div>
