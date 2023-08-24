@@ -14,7 +14,7 @@ const serviceSchema = {
     title: {type: String, unique: true},
     serviceType: String,
     thumbnail: Buffer,
-    photo: Buffer,        
+    photo: Buffer,
     pages: JSON,
     categories: Array,
     datePosted: String,
@@ -23,19 +23,22 @@ const serviceSchema = {
     collaborators: Array, // the usernames of the users who have access to edit the service
     members: Array, // the usernames of the users who have joined the service
     applicants: Array, // the usernames of the users who have applied to join the service
-    messages: Array // notifications to service members
-  }
+    messages: Array, // notifications to service members
+    internshipLink: String, // for internships only
+}
 
 const applicationSchema = {
     service: String,
     name: String,
     email: String,
+    phone: String,
     date: String,
     time: String,
     isoDate: String, // we should try to use this instead of date and time
     is_new_applicant: Boolean,
     // save the username of the user who created the application
     user: String,
+
 };
 
 const userSchema = new mongoose.Schema(

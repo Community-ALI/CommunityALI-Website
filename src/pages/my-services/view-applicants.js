@@ -183,28 +183,32 @@ const ApplicantDisplay = function (props) {
                     <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                 </div>
             </div>
+            {(applicant.phone || isMobile) &&
             <div className='flex flex-col items-center pt-[10px]'>
+                
                 <div className='flex items-center cursor-pointer' onClick={() => setShowAdditionalDetails(!showAdditionalDetails)}>
                     <p className='text-[14px] md:text-[13px] sm:text-[12px]'>More details</p>
                     <span className={`arrow ${showAdditionalDetails ? 'up' : 'down'}`}></span>
                 </div>
 
 
-               
+                
                 <div className={`transition-max-height overflow-hidden ease-in-out duration-500 ${showAdditionalDetails ? 'max-h-[200px]' : 'max-h-0'}`}>
                     <h1 className='mt-[20px] mb-[10px]'>Additional Information</h1>
+                    {applicant.phone && 
                     <div className='text-[13px] mb-[20px]'>
                         <p>
-                        Phone Number: 209-690-6969
+                        Phone Number: {applicant.phone}
                         </p>
                     </div>
+                    }
                     <div className={`flex gap-2 w-[100%] text-[80%] px-[5px] mb-[10px] relative lrr:hidden`}>
                         <button onClick={() => acceptApplicant(applicant)} className={`text-[#23F638] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>ACCEPT</button>
                         <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                     </div>
                 </div>
-               
             </div>
+            }   
         </div>
     );
 };

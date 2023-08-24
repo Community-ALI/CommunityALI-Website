@@ -94,12 +94,14 @@ exports.store_application = async function (req) {
             service: req.body.service,
             name: req.body.name,
             email: req.body.email,
+            phone: req.body.phone,
             date: formattedDate,
             time: time,
             isoDate: isoDate, // we should try to use this instead of date and time
             is_new_applicant: true,
             // save the user_id of the user who created the application
             user: user.username,
+            
         });
 
         await apply.save();
@@ -130,7 +132,7 @@ exports.get_service_applicants = async function (service_name) {
     try {
         // Get the applicants to a service (only necessary fields)
         const applications = await Applications.find({ service: service_name })
-            .select("name email isoDate is_new_applicant user miniProfileImage _id")
+            .select("name email phone isoDate is_new_applicant user miniProfileImage _id")
             .exec();
 
         // Create an array of promises to fetch miniProfileImages concurrently
@@ -144,6 +146,7 @@ exports.get_service_applicants = async function (service_name) {
                     _id: applicant._id,
                     name: applicant.name,
                     email: applicant.email,
+                    phone: applicant.phone,
                     isoDate: applicant.isoDate,
                     is_new_applicant: applicant.is_new_applicant,
                     user: applicant.user,

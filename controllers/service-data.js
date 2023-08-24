@@ -76,6 +76,7 @@ exports.store_add_service = async function (req, username) {
       members: [username], // the user who created the service is automatically a member
       applicants: [],
       messages: [],
+      internshipLink: req.body.internshipLink,
     });
 
     await newService.save();
@@ -263,6 +264,7 @@ exports.editService = async function (req, username) {
     existingService.datePosted = formattedDate;
     existingService.timePosted = time;
     existingService.user = username;
+    existingService.internshipLink = req.body.internshipLink;
 
     await existingService.save();
 
