@@ -117,10 +117,10 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => { // imageUrl c
   }
 
   return (
-    <div className="container-login" onWheel={handleWheel}>
+    <div className="container-login" id='container-photo-uploader' onWheel={handleWheel}>
       <div className='container-profile-picture' {...getRootProps()}> 
-        <div  className='picture-upload'>
-          <p>Drag and drop profile picture</p>
+        <div  className='picture-upload' id='service-uploader'>
+          {/* <p>Drag and drop profile picture</p> */}
           <input
             type="file"
             id="imageInput"
@@ -129,11 +129,11 @@ const ImageUploadWindow = ({ imageUrl, onClose, setFormData}) => { // imageUrl c
             ref={fileInputRef}
             style={{ display: 'none' }}
           />
-          <button className='file-upload-button' onClick={handleButtonClick}>Choose image from files</button>
+          {/* <button className='file-upload-button' onClick={handleButtonClick}>Choose image from files</button> */}
         </div>
         
         {selectedImage || defaultImage ? (
-          <div className='profile-picture-editor'>
+          <div className='profile-picture-editor' onClick={handleButtonClick}>
             <AvatarEditor id='profile-icon-thumbnail'
               ref={editorRef}
               image={selectedImage || defaultImage}

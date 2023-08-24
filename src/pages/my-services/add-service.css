@@ -994,6 +994,11 @@ section .details span
     background-color: var(--secondary-color);
 }
 
+#container-photo-uploader
+{
+    width: 800px;
+}
+
 @media all and (max-width : 1300px)
 {
     .meeting-details-text-box
@@ -1013,6 +1018,21 @@ section .details span
     .service-description
     {
         margin : 50px 5%;
+    }
+
+    #container-photo-uploader
+    {
+        width: 650px;
+    }
+
+    #profile-icon-thumbnail
+    {
+        scale: 0.9;
+    }
+
+    #service-uploader
+    {
+        display: none;
     }
 }
 
@@ -1095,6 +1115,11 @@ section .details span
 
 @media all and (max-width : 850px)
 {
+    #container-photo-uploader
+    {
+        width: 520px;
+    }
+
     ::-webkit-scrollbar
     {
         height: 8px;
@@ -1262,6 +1287,11 @@ section .details span
     .service-navbar-text a
     {
         font-size: 16px;
+    }
+
+    #container-photo-uploader
+    {
+        width: 420px;
     }
 }
 
@@ -1456,6 +1486,12 @@ section .details span
         text-align: center;
     }
 
+    #container-photo-uploader
+    {
+        width: 320px;
+    }
+
+
 }
 
 @media all and (max-width : 360px)
@@ -1521,5 +1557,11 @@ section .details span
     {
         font-size: 13px;
     }
+
+    #container-photo-uploader
+    {
+        width: 300px;
+    }
+
 
 }
