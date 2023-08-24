@@ -177,7 +177,7 @@ function SignUpPage({ service }) {
                   </div>
 
                   {/* phone number */}
-                  <div className="text-container" id="phone-container">
+                  <div className="text-container" id="name-container">
                     <label htmlFor="phone" className="sign-up-form-text">
                       {" "}
                       Phone:{" "}
