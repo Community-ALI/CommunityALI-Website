@@ -4,7 +4,6 @@ import '../add-service.css';
 function MediaPage({ formData, setFormData, serviceType = 'Club'}) { 
 
   const updateFormData = (updatedMediaData) => {
-    setContactData(updatedContactData);
     setMediaData(updatedMediaData);
     setFormData((prevData) => ({ ...prevData, socialMedia: updatedMediaData }));
   };

@@ -1467,6 +1467,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1629,6 +1634,10 @@ video {
     height: 35px;
   }
 
+  .lr\:h-\[75vh\] {
+    height: 75vh;
+  }
+
   .lr\:w-\[160px\] {
     width: 160px;
   }
@@ -1643,6 +1652,10 @@ video {
 
   .lr\:w-\[80\%\] {
     width: 80%;
+  }
+
+  .lr\:w-\[80vw\] {
+    width: 80vw;
   }
 
   .lr\:w-\[85\%\] {

@@ -308,8 +308,8 @@ router.post("/password-change-password", async (req, res) => {
       }
 
       // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
-      const passwordComplexityRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/; // this could be used for special characters (?=.*[@$!%*?&])
+      const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
+
       if (!passwordComplexityRegex.test(plainTextPassword)) {
         return res
           .status(400)
@@ -351,8 +351,7 @@ router.post("/token-change-password", async (req, res) => {
     }
 
     // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
-    const passwordComplexityRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/; // this could be used for special characters (?=.*[@$!%*?&])
+    const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
     if (!passwordComplexityRegex.test(plainTextPassword)) {
       return res
         .status(400)
@@ -478,8 +477,9 @@ router.post("/register", async (req, res) => {
   }
 
   // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
-  const passwordComplexityRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/; // this could be used for special characters (?=.*[@$!%*?&])
+  const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
+
+
   if (!passwordComplexityRegex.test(plainTextPassword)) {
     return res
       .status(400)
