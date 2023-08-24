@@ -1654,16 +1654,16 @@ video {
     width: 80%;
   }
 
-  .lr\:w-\[80vw\] {
-    width: 80vw;
-  }
-
   .lr\:w-\[85\%\] {
     width: 85%;
   }
 
   .lr\:w-\[92\%\] {
     width: 92%;
+  }
+
+  .lr\:w-\[80vw\] {
+    width: 80vw;
   }
 
   .lr\:max-w-\[1000px\] {
