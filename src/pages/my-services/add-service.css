@@ -576,6 +576,7 @@ input[data-autocompleted]
 #question-text-box
 {
     width : 98%;
+    word-wrap: break-word;
 }
 
 #answer-text-box
@@ -999,6 +1000,7 @@ section .details span
     width: 800px;
 }
 
+
 @media all and (max-width : 1300px)
 {
     .meeting-details-text-box
@@ -1115,6 +1117,18 @@ section .details span
 
 @media all and (max-width : 850px)
 {
+    #requirements-container
+    {
+        margin-bottom: 0px;
+    }
+
+    #question-text-box
+    {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 18px;
+    }
+
     #container-photo-uploader
     {
         width: 520px;
@@ -1297,6 +1311,12 @@ section .details span
 
 @media all and (max-width : 480px)
 {
+
+    #question-text-box
+    {
+        font-size: 16px;
+    }
+
     .file-container
     {
         height: 280px;
