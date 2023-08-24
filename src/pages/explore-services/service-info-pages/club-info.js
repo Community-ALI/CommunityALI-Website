@@ -78,17 +78,17 @@ function AddClub() {
 
           setService(data);
           if (!data.pages.contacts){
-            removePage("Contacts")
-          }
+            removePage("Contacts");
+          };
           if (!data.pages.FAQ){
-            removePage("FAQ")
-          }
+            removePage("FAQ");
+          };
           if (!data.pages.requirements){
-            removePage("Requirements")
-          }
+            removePage("Requirements");
+          };
           if (!data.pages.socialMedia){
-            removePage("Social Media")
-          }
+            removePage("Social Media");
+          };
           // show the page
           const loaderWrapper = document.querySelector(".loader-wrapper");
           loaderWrapper.style.transition = "opacity 0.5s";
