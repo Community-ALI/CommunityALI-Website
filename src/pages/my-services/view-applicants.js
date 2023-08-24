@@ -183,7 +183,7 @@ const ApplicantDisplay = function (props) {
                     <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                 </div>
             </div>
-            {(applicant.phoneNumber || isMobile) &&
+            {(applicant.phone || isMobile) &&
             <div className='flex flex-col items-center pt-[10px]'>
                 
                 <div className='flex items-center cursor-pointer' onClick={() => setShowAdditionalDetails(!showAdditionalDetails)}>
@@ -195,10 +195,10 @@ const ApplicantDisplay = function (props) {
                 
                 <div className={`transition-max-height overflow-hidden ease-in-out duration-500 ${showAdditionalDetails ? 'max-h-[200px]' : 'max-h-0'}`}>
                     <h1 className='mt-[20px] mb-[10px]'>Additional Information</h1>
-                    {applicant.phoneNumber && 
+                    {applicant.phone && 
                     <div className='text-[13px] mb-[20px]'>
                         <p>
-                        Phone Number: {applicant.phoneNumber}
+                        Phone Number: {applicant.phone}
                         </p>
                     </div>
                     }
@@ -207,7 +207,6 @@ const ApplicantDisplay = function (props) {
                         <button onClick={() => rejectApplicant(applicant)} className={`text-[#FE2F2F] dark-blue-container-with-border px-[15px] py-[5px] ${(isMobile) ? "w=[100%]" : "w-[50%]"}`}>REJECT</button>
                     </div>
                 </div>
-                
             </div>
             }   
         </div>

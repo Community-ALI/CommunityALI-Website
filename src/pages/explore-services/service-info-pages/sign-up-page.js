@@ -10,6 +10,7 @@ function SignUpPage({ service }) {
   const [loggedIn, setLoggedIn] = useState(true);
   const nameRef = useRef(null);
   const emailRef = useRef(null);
+  const phoneRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,6 +25,7 @@ function SignUpPage({ service }) {
     formData.append("service", searchParams.get("service"));
     formData.append("name", nameRef.current.value);
     formData.append("email", emailRef.current.value);
+    formData.append("phone", phoneRef.current.value);
 
     fetch(`${BASE_BACKEND_URL}/applicantdata/store-application`, {
       method: "POST",
@@ -134,48 +136,117 @@ function SignUpPage({ service }) {
               ></div>
             </div>
           ) : (
+            
             <div>
-              <div className="sign-up-form-container">
-                <div className="text-container" id="name-container">
-                  <label htmlFor="name" className="sign-up-form-text">
-                    {" "}
-                    Full Name:{" "}
-                  </label>
-                  <input
-                    type="text"
-                    className="sign-up-form-input"
-                    placeholder="First and Last Name"
-                    ref={nameRef}
-                    id="name"
-                    name="name"
-                    required
-                  />
-                  <br />
+              {service.serviceType === "Program" 
+              ? 
+              <div>
+                <div className="sign-up-form-container">
+                  <div className="text-container" id="name-container">
+                    <label htmlFor="name" className="sign-up-form-text">
+                      {" "}
+                      Full Name:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      className="sign-up-form-input"
+                      placeholder="First and Last Name"
+                      ref={nameRef}
+                      id="name"
+                      name="name"
+                      required
+                    />
+                    <br />
+                  </div>
+
+                  <div className="text-container" id="email-container">
+                    <label htmlFor="email" className="sign-up-form-text">
+                      {" "}
+                      Email:{" "}
+                    </label>
+                    <input
+                      type="email"
+                      className="sign-up-form-input"
+                      placeholder="School Email"
+                      ref={emailRef}
+                      id="email"
+                      name="email"
+                      required
+                    />
+                    <br />
+                  </div>
+
+                  {/* phone number */}
+                  <div className="text-container" id="phone-container">
+                    <label htmlFor="phone" className="sign-up-form-text">
+                      {" "}
+                      Phone:{" "}
+                    </label>
+                    <input
+                      type="phone"
+                      className="sign-up-form-input"
+                      placeholder="Phone Number"
+                      ref={phoneRef}
+                      id="email"
+                      name="email"
+                      required
+                    />
+                    <br />
+                  </div>
+
                 </div>
 
-                <div className="text-container" id="email-container">
-                  <label htmlFor="email" className="sign-up-form-text">
-                    {" "}
-                    Email:{" "}
-                  </label>
-                  <input
-                    type="email"
-                    className="sign-up-form-input"
-                    placeholder="School Email"
-                    ref={emailRef}
-                    id="email"
-                    name="email"
-                    required
-                  />
-                  <br />
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="service-submit-button"
+                />
+              </div> 
+              : 
+              <div>
+                <div className="sign-up-form-container">
+                  <div className="text-container" id="name-container">
+                    <label htmlFor="name" className="sign-up-form-text">
+                      {" "}
+                      Full Name:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      className="sign-up-form-input"
+                      placeholder="First and Last Name"
+                      ref={nameRef}
+                      id="name"
+                      name="name"
+                      required
+                    />
+                    <br />
+                  </div>
+
+                  <div className="text-container" id="email-container">
+                    <label htmlFor="email" className="sign-up-form-text">
+                      {" "}
+                      Email:{" "}
+                    </label>
+                    <input
+                      type="email"
+                      className="sign-up-form-input"
+                      placeholder="School Email"
+                      ref={emailRef}
+                      id="email"
+                      name="email"
+                      required
+                    />
+                    <br />
+                  </div>
                 </div>
+
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="service-submit-button"
+                />
               </div>
-
-              <input
-                type="submit"
-                value="Submit"
-                className="service-submit-button"
-              />
+              }
             </div>
           )}
 

@@ -31,12 +31,14 @@ const applicationSchema = {
     service: String,
     name: String,
     email: String,
+    phone: String,
     date: String,
     time: String,
     isoDate: String, // we should try to use this instead of date and time
     is_new_applicant: Boolean,
     // save the username of the user who created the application
     user: String,
+
 };
 
 const userSchema = new mongoose.Schema(
