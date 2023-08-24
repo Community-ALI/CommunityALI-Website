@@ -12,7 +12,7 @@ const ses = new AWS.SES();
 
 const sendEmail = async (toAdress, subject, body) => {
   // Add the unsubscribe link to the email body
-  const unsubscribeLink = `http://localhost:8080/unsubscribe?email=${encodeURIComponent(toAdress)}`;
+  const unsubscribeLink = `https://communityali.org/unsubscribe?email=${encodeURIComponent(toAdress)}`;
   body += `\n\nTo unsubscribe, click here: ${unsubscribeLink}`;
 
   const params = {
