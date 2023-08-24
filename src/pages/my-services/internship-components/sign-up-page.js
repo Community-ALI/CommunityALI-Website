@@ -25,7 +25,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
         !allFormData.Overview.date ||
         !allFormData.Overview.location ||
         !allFormData.Overview.description ||
-        !allFormData.Overview.file
+        !allFormData.Overview.file ||
+        !allFormData.Overview.categories
       ) {
         alert('Overview is incomplete');
         return false;
@@ -38,7 +39,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
         // Check required fields for each contact
         const contactsComplete = contacts.every(
           (contact) =>
-            contact.contactRole && contact.contactName && contact.contactEmail
+            contact.contactName && contact.contactEmail
         );
     
         if (!contactsComplete) {
@@ -117,6 +118,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             'time': allFormData.Overview.time,
             'date': allFormData.Overview.date,
             'location': allFormData.Overview.location,
+            'categories': allFormData.Overview.categories,
             'description': allFormData.Overview.description
           }
           var ContactsData = {}
