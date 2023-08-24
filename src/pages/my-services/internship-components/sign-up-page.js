@@ -38,7 +38,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
         // Check required fields for each contact
         const contactsComplete = contacts.every(
           (contact) =>
-            contact.contactRole && contact.contactName && contact.contactEmail
+            contact.contactName && contact.contactEmail
         );
     
         if (!contactsComplete) {
@@ -84,7 +84,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
 
         const RequirementsComplete = Requirements.every(
           (require) =>
-          require.RequireTitle && require.RequireDescription
+          require.RequireTitle
         );
     
         if (!RequirementsComplete) {
