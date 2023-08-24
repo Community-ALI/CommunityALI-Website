@@ -25,7 +25,7 @@ function AddProgram() {
     "Sign Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ"];
+  const removablePages = ["Contacts", "FAQ", "Requirements"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
@@ -97,6 +97,10 @@ function AddProgram() {
                 addPage('FAQ');
                 setFaqFormData(data.pages.FAQ);
               }
+              if (data.pages.requirements){
+                addPage('Requirements');
+                setRequireFormData(data.pages.requirements);
+              }
               // show the page
               const loaderWrapper = document.querySelector(".loader-wrapper");
               loaderWrapper.style.transition = "opacity 0.5s";
@@ -134,6 +138,9 @@ function AddProgram() {
       if (pageToRemove === 'FAQ') {
         setFaqFormData({})
       }
+      if (pageToRemove === 'Requirements'){
+        setRequireFormData({})
+      }
       const newArray = allCurrentPages.filter((page) => page !== pageToRemove);
       setAllCurrentPages(newArray);
     }
@@ -161,6 +168,13 @@ function AddProgram() {
         }
         
       }
+
+      else if (pageToAdd === 'Requirements') {
+        if (requireFormData === {}){
+          setRequireFormData({ "requirements": [{ "requirement": "" }] })
+        }
+      }
+
       const updatedPages = [...prevPages];
       updatedPages.splice(insertIndex, 0, pageToAdd);
       return updatedPages;
