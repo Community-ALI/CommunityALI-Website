@@ -68,6 +68,12 @@ export default function MemberManagement() {
               if (!response.ok) {
                 throw new Error("Network response was not ok");
               }
+              const loaderWrapper = document.querySelector(".loader-wrapper");
+              loaderWrapper.style.transition = "opacity 0.5s";
+              loaderWrapper.style.opacity = "0";
+              setTimeout(() => {
+                loaderWrapper.style.display = "none";
+              }, 500);
               return response.json();
             })
             .then(async (data) => {
@@ -156,6 +162,11 @@ export default function MemberManagement() {
         />
       </div>
       <Footer />
+      <div className="loader-wrapper">
+        <span className="loader">
+          <span className="loader-inner"></span>
+        </span>
+      </div>
     </div>
   );
 }
