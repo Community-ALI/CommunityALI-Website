@@ -80,7 +80,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
 
         const RequirementsComplete = Requirements.every(
           (require) =>
-          require.RequireTitle && require.RequireDescription
+          require.RequireTitle
         );
     
         if (!RequirementsComplete) {
