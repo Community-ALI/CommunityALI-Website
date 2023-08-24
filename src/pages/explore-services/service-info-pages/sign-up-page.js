@@ -129,9 +129,7 @@ function SignUpPage({ service }) {
               <div
                 className="sign-up-form-container"
                 dangerouslySetInnerHTML={{
-                  __html: textWithLinksToParagraph(
-                    "I love https://templeos.org/"
-                  ),
+                  __html: textWithLinksToParagraph(service.internshipLink),
                 }}
               ></div>
             </div>

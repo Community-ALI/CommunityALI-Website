@@ -3,8 +3,6 @@ import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
 import { useNavigate } from 'react-router-dom';
 function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
-
-  const linkRef = useRef(null);
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
 
   const toggleAuthorizationPopup = () => 
@@ -75,7 +73,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
       }
 
       // check that the link has been provided
-      if (!linkRef.current.value){
+      const link = document.getElementById('sign-up-form-box-input');
+      if (!link.value){
         alert('Please provide a link to the internship');
         return false;
       };
@@ -111,6 +110,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           sendFormData.append('title', mainInfo.title);
           sendFormData.append('serviceType', mainInfo.serviceType);
           sendFormData.append('image', selectedFile);
+          const link = document.getElementById('sign-up-form-box-input');
+          sendFormData.append('internshipLink', link.value);
           const OverviewData = {
             'subtitle': allFormData.Overview.subtitle,
             'time': allFormData.Overview.time,
@@ -191,7 +192,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
                     {/* text input styled */}
                     
                         <div className="sign-up-form-box-title">Link</div>
-                        <input useRef={linkRef} placeholder="Link" className="sign-up-form-box-input" ></input>
+                        <input placeholder="Link" className="sign-up-form-box-input" id="sign-up-form-box-input" ></input>
 
                     
                 </div> 
