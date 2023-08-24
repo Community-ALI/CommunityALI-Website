@@ -147,7 +147,22 @@ input[data-autocompleted]
 {
     appearance: none;
 }
-
+.sign-up-form-box-input
+{
+    width: 100%;
+    background-color: #001E60;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: 300ms ease;
+}
 .sign-up-form
 {
     display: flex;

@@ -3,7 +3,7 @@ import { BASE_BACKEND_URL } from "../../../config.js";
 import SignupPopup from "../../../components/SignupPopup.js";
 import LoginPopup from "../../../components/LoginPopup.js";
 
-function SignUpPage() {
+function SignUpPage({service}) {
   const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
   const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
   // variable to record if the user is logged in or not
@@ -115,7 +115,17 @@ function SignUpPage() {
           <div className="service-header" id="sign-up-header">
             Apply Today!
           </div>
-          <div className="sign-up-form-container">
+          {/* if the service is an internship, show a link, otherwise, do the sign up form */}
+          {service.serviceType === "Internship" 
+            ? 
+            <div>
+              <div className="sign-up-form-container">
+                <a href={`https://www.google.com`} >https://www.google.com</a>
+              </div>
+            </div> 
+            : 
+            <div>
+              <div className="sign-up-form-container">
             <div className="text-container" id="name-container">
               <label htmlFor="name" className="sign-up-form-text">
                 {" "}
@@ -156,6 +166,9 @@ function SignUpPage() {
             value="Submit"
             className="service-submit-button"
           />
+            </div>
+          }
+          
           <br />
         </form>
       </div>

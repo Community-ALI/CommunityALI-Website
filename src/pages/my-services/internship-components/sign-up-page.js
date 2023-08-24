@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
-import RequirementsPage from "../general-components/requirements-page.js";
 import { useNavigate } from 'react-router-dom';
 function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
 
+  const linkRef = useRef(null);
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
 
   const toggleAuthorizationPopup = () => 
@@ -73,6 +73,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
           return false;
         }
       }
+
+      // check that the link has been provided
+      if (!linkRef.current.value){
+        alert('Please provide a link to the internship');
+        return false;
+      };
 
       if (allFormData.Requirements.Requirements){
         const Requirements = allFormData.Requirements.Requirements;
@@ -182,17 +188,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             <div id="form" className="sign-up-form-boxes">
               <div className="service-header" id="sign-up-header">Join this Internship Today!</div>
                 <div className="sign-up-form-container">
-                    <div className="text-container" id="name-container">
-                        <label htmlFor="name" className="sign-up-form-text"> Full Name: </label>
-                        <input type="text" className="sign-up-form-input" placeholder="First and Last Name" 
-                        id="name" name="name" readOnly/><br/>
-                    </div>
+                    {/* text input styled */}
+                    
+                        <div className="sign-up-form-box-title">Link</div>
+                        <input useRef={linkRef} placeholder="Link" className="sign-up-form-box-input" ></input>
 
-                    <div className="text-container" id="email-container">
-                        <label htmlFor="email" className="sign-up-form-text"> Email: </label>
-                        <input type="email" className="sign-up-form-input" placeholder="School Email" 
-                        id="email" name="email" readOnly/><br/>
-                    </div>
+                    
                 </div> 
                 {/* <input placeholder="Submit" className="sign-up-submit-button" readOnly/><br/> */}
             </div>
