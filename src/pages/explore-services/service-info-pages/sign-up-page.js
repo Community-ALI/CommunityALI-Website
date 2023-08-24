@@ -3,7 +3,7 @@ import { BASE_BACKEND_URL } from "../../../config.js";
 import SignupPopup from "../../../components/SignupPopup.js";
 import LoginPopup from "../../../components/LoginPopup.js";
 
-function SignUpPage({service}) {
+function SignUpPage({ service }) {
   const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
   const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
   // variable to record if the user is logged in or not
@@ -42,6 +42,14 @@ function SignUpPage({service}) {
         console.log(error);
       });
   };
+
+  function textWithLinksToParagraph(inputText) {
+    const linkPattern = /(https?:\/\/[^\s]+)/g;
+
+    const replacedText = inputText.replace(linkPattern, '<a target="_blank" href="$&">$&</a>');
+
+    return `<p>${replacedText}</p>`;
+  }
 
   function showLoginPopup() {
     setIsShowingLoginPopup(true);
@@ -116,59 +124,63 @@ function SignUpPage({service}) {
             Apply Today!
           </div>
           {/* if the service is an internship, show a link, otherwise, do the sign up form */}
-          {service.serviceType === "Internship" 
-            ? 
+          {service.serviceType === "Internship" ? (
+            <div>
+              <div
+                className="sign-up-form-container"
+                dangerouslySetInnerHTML={{
+                  __html: textWithLinksToParagraph(
+                    "I love https://templeos.org/"
+                  ),
+                }}
+              ></div>
+            </div>
+          ) : (
             <div>
               <div className="sign-up-form-container">
-                <a href={`https://www.google.com`} >https://www.google.com</a>
+                <div className="text-container" id="name-container">
+                  <label htmlFor="name" className="sign-up-form-text">
+                    {" "}
+                    Full Name:{" "}
+                  </label>
+                  <input
+                    type="text"
+                    className="sign-up-form-input"
+                    placeholder="First and Last Name"
+                    ref={nameRef}
+                    id="name"
+                    name="name"
+                    required
+                  />
+                  <br />
+                </div>
+
+                <div className="text-container" id="email-container">
+                  <label htmlFor="email" className="sign-up-form-text">
+                    {" "}
+                    Email:{" "}
+                  </label>
+                  <input
+                    type="email"
+                    className="sign-up-form-input"
+                    placeholder="School Email"
+                    ref={emailRef}
+                    id="email"
+                    name="email"
+                    required
+                  />
+                  <br />
+                </div>
               </div>
-            </div> 
-            : 
-            <div>
-              <div className="sign-up-form-container">
-            <div className="text-container" id="name-container">
-              <label htmlFor="name" className="sign-up-form-text">
-                {" "}
-                Full Name:{" "}
-              </label>
-              <input
-                type="text"
-                className="sign-up-form-input"
-                placeholder="First and Last Name"
-                ref={nameRef}
-                id="name"
-                name="name"
-                required
-              />
-              <br />
-            </div>
 
-            <div className="text-container" id="email-container">
-              <label htmlFor="email" className="sign-up-form-text">
-                {" "}
-                Email:{" "}
-              </label>
               <input
-                type="email"
-                className="sign-up-form-input"
-                placeholder="School Email"
-                ref={emailRef}
-                id="email"
-                name="email"
-                required
+                type="submit"
+                value="Submit"
+                className="service-submit-button"
               />
-              <br />
             </div>
-          </div>
+          )}
 
-          <input
-            type="submit"
-            value="Submit"
-            className="service-submit-button"
-          />
-            </div>
-          }
-          
           <br />
         </form>
       </div>
