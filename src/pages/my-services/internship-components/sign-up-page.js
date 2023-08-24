@@ -85,7 +85,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
 
         const RequirementsComplete = Requirements.every(
           (require) =>
-          require.RequireTitle && require.RequireDescription
+          require.RequireTitle
         );
     
         if (!RequirementsComplete) {
