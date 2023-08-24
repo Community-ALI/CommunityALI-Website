@@ -84,7 +84,7 @@ function SignupPopup(props) {
             <div className="text-field" id="sign-up-text-field">
               <input
                 autoComplete="new-email"
-                className="text-field-input"
+                className="text-black text-field-input"
                 id="email"
                 required=""
                 onChange={(e) => {
@@ -108,7 +108,7 @@ function SignupPopup(props) {
             <div className="text-field">
               <input
                 autoComplete="new-username"
-                className="text-field-input"
+                className="text-black text-field-input"
                 id="username"
                 required=""
                 onChange={(e) => {
@@ -132,7 +132,7 @@ function SignupPopup(props) {
             <div className="text-field">
               <input
                 autoComplete="new-password"
-                className="text-field-input"
+                className="text-black text-field-input"
                 type={passwordVisible2 ? "text" : "password"}
                 id="password"
                 required=""
@@ -164,7 +164,7 @@ function SignupPopup(props) {
             <div className="text-field">
               <input
                 autoComplete="new-password-2"
-                className="text-field-input"
+                className="text-black text-field-input"
                 type={passwordVisible3 ? "text" : "password"}
                 id="confirmPassword"
                 required=""
@@ -198,7 +198,7 @@ function SignupPopup(props) {
               type="submit"
               value="Sign Up"
               id="signup-submission"
-              className="login-submit-button"
+              className="text-black login-submit-button"
             />
             <div className="signup_link">
               <p>Already have an account? </p>
