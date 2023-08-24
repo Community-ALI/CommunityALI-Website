@@ -271,6 +271,7 @@
     .navigation-text
     {
         margin: 15px 0px;
+        margin-bottom: 50px;
     }
 
     #navigation-login 
@@ -278,6 +279,12 @@
         margin-right: 0px;
         margin-left: 0px; 
         padding : 15px 15px;
+        margin: 15px 0px;
+    }
+
+    #navbar-login
+    {
+        margin: 15px 0px;
     }
 
     .navigation-bar-not-fixed
