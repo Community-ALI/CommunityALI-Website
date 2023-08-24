@@ -107,12 +107,11 @@ function MyServicePageDisplay(props) {
 
       <Link 
         className="flex items-center content-center flex-wrap text-center justify-center max-w-[300px] text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white 
-        rounded-[20px] bg-[color:var(--dark-secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
+        rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
         xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] sm:text-[80%] xsm:text-[80%] sm:hidden"
         to={`/member-management?service=${service.title}`}
         >
         <p> Manage <span className="text-[var(--accent-color)] text-[110%]"> Members </span> and Send <span className="text-[var(--accent-color)] text-[110%]"> Updates </span> </p>
-        <p className="font-[300] text-[16px] mt-[10px] lr:mt-0 lr:ml-4 lr:text-[14px]"> (Coming Soon) </p>
       </Link>
       
     </div>

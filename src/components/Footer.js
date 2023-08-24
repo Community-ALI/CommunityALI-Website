@@ -50,7 +50,7 @@ function Footer() {
           Community ALI is not directly affiliated with Modesto Junior College
           or any of its subsidiaries.{" "}
         </p>
-        <u
+        <u className="cursor-pointer"
           onClick={() => {
             setShowPrivacyPolicy(true);
           }}

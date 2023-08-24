@@ -47,14 +47,15 @@ function MessageForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    const postingMessage = message;
+    clearInput();
     const postData = async function () {
       try {
-        console.log("Posting message to database: ", message.content);
+        console.log("Posting message to database: ", postingMessage.content);
         await fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
           headers: { "content-Type": "application/json" },
-          body: JSON.stringify(message),
+          body: JSON.stringify(postingMessage),
         })
           .then((response) => {
             return response.json();
@@ -65,7 +66,6 @@ function MessageForm(props) {
             } else {
               console.log("Message successfully sent");
               props.updateMessages();
-              clearInput();
             }
           })
           .catch((error) => {

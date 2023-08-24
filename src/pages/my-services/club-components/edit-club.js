@@ -247,12 +247,9 @@ function AddClub() {
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "Social Media" && <MediaPage key="MediaPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} editMode={true} mainInfo={
-          { 
-            'title': titleValue,
-            'serviceType': 'Club'
-          }
-          }
+        {activePage === "Sign-Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} editMode={true} mainInfo={
+          { 'title': titleValue }
+        }
           allFormData={
             {
               'Overview': overviewFormData,
