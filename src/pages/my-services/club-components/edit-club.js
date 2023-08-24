@@ -7,6 +7,7 @@ import '../add-service.css';
 import ContactsPage from "../general-components/contacts-page.js";
 import OverviewPage from "../general-components/overview-page.js";
 import FaqPage from "../general-components/faq-page";
+import MediaPage from "../general-components/media-page";
 import SignUpPage from "./sign-up-page";
 import { Buffer } from 'buffer';
 
@@ -14,6 +15,7 @@ function AddClub() {
   const allPossiblePages = [
     "Overview",
     "Contacts",
+    "Social Media",
     "FAQ",
     "Sign-Up"
   ];
@@ -23,7 +25,7 @@ function AddClub() {
     "Sign-Up"
   ]);
 
-  const removablePages = ["Contacts", "FAQ"];
+  const removablePages = ["Contacts", "FAQ", "Social Media"];
 
   const [showAddButtons, setShowAddButtons] = useState(false);
 
@@ -243,10 +245,14 @@ function AddClub() {
 
         {activePage === "Overview" && <OverviewPage key="OverviewPage" formData={overviewFormData} setFormData={setOverviewFormData} editMode={true}  />}
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} />}
+        {activePage === "Social Media" && <MediaPage key="MediaPage" formData={contactsFormData} setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} />}
         {activePage === "Sign Up" && <SignUpPage key="SignUpPage" handleShowPromptChange={handleShowPromptChange} editMode={true} mainInfo={
-          { 'title': titleValue }
-        }
+          { 
+            'title': titleValue,
+            'serviceType': 'Club'
+          }
+          }
           allFormData={
             {
               'Overview': overviewFormData,
