@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../add-service.css';
 
 function RequirementsPage({ formData, setFormData }) {
-  const maxRequireLength = 10;
+  const maxRequireLength = 50;
   const [RequireData, setRequireData] = useState(formData.Requirements || [{ RequireTitle: "", RequireDescription: "" }]);
   const [RequireVisible, setRequireVisible] = useState(true);
 
