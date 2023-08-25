@@ -5,6 +5,8 @@ const Applications = models.Application;
 const Application = models.Application;
 const User = models.User;
 
+const jwt = require('jsonwebtoken');
+
 exports.change_notification_status = async function (req) {
     try {
         const id = req.params.id;
@@ -72,22 +74,10 @@ exports.store_application = async function (req) {
 
         console.log("service: " + req.body.service);
 
-        const [serviceArray] = await Promise.all([
-            Service.find({ title: req.body.service }).exec(),
-        ]);
-
-        const [service] = serviceArray; // Extract the first document from the array
-
-        const [userArray] = await Promise.all([
-            User.find({ username: service.user }).exec(),
-        ]);
-
-        const [user] = userArray; // Extract the first document from the array
-
-        console.log("applicationService:", service.title);
-        console.log("User:", user.username);
-
-        // sendNotification(req, user);
+        // Get the user who created the application
+        const token = req.headers.authorization.split(" ")[1];
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const username = decodedToken.username;
 
 
         const apply = new Application({
@@ -100,7 +90,7 @@ exports.store_application = async function (req) {
             isoDate: isoDate, // we should try to use this instead of date and time
             is_new_applicant: true,
             // save the user_id of the user who created the application
-            user: user.username,
+            user: username,
             
         });
 

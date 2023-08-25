@@ -25,8 +25,9 @@ function SignUpPage({ service }) {
     formData.append("service", searchParams.get("service"));
     formData.append("name", nameRef.current.value);
     formData.append("email", emailRef.current.value);
-    formData.append("phone", phoneRef.current.value);
-
+    if (phoneRef.current){
+      formData.append("phone", phoneRef.current.value);
+    };
     fetch(`${BASE_BACKEND_URL}/applicantdata/store-application`, {
       method: "POST",
       headers: {
