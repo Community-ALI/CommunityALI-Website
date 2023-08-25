@@ -34,7 +34,7 @@ input[data-autocompleted]
 .service-title
 {
     color: white;
-    font-size: clamp(25px, 2.3vw, 32px);
+    font-size: clamp(18px, 5vw, 32px);
     font-weight: 300;
     text-decoration: none;
     text-align: center;
@@ -565,7 +565,10 @@ input[data-autocompleted]
     top: 10px;
   }
 
-
+.service-contact-name
+{
+    margin-right: 10px;
+}
 
 .service-contact-link
 {
@@ -1000,6 +1003,12 @@ section .details span
     width: 800px;
 }
 
+#contact-page-container
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 @media all and (max-width : 1300px)
 {
@@ -1117,6 +1126,12 @@ section .details span
 
 @media all and (max-width : 850px)
 {
+
+    #contact-container
+    {
+        width: 90%;
+    }
+
     #requirements-container
     {
         margin-bottom: 0px;
