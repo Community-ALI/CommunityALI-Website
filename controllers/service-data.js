@@ -5,7 +5,6 @@ const Services = models.Services;
 const Service = models.Services;
 const User = models.User;
 
-
 function search(keyword, attribute, dbServices, filteredData) {
   // list of matches
   for (service of dbServices) {
@@ -95,13 +94,12 @@ exports.store_add_service = async function (req, username) {
 
 const find_filter_service = async function (
   sortingType,
-  serviceTypeStr,
+  serviceTypes,
   fields,
   categoriesStr,
   usersStr
 ) {
   try {
-    const serviceTypes = serviceTypeStr.split(",");
     const users = usersStr.split(",");
     const categories = categoriesStr.split(">");
     console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}`);
@@ -139,10 +137,43 @@ exports.get_services = async function (
   keywords,
   fields,
   sortingType,
-  serviceType,
+  serviceTypeStr,
   categories,
   users
 ) {
+
+  let serviceType = serviceTypeStr.split(",");
+  console.log(
+    `keywords: ${keywords}, fields: ${fields}, sortingType: ${sortingType}, serviceType: ${serviceType}, categories: ${categories}, users: ${users}`
+  );
+
+  const internshipKeywords = ["internship", "internships", "intern", "interns"];
+  const clubKeywords = ["club", "clubs"];
+
+  let filterTitles = true;
+
+  const addToServiceType = (type, array) => {
+    if (array.includes("all")) {
+      array.splice(array.indexOf("add"), 1);
+    }
+    filterTitles = false;
+    array.push(type);
+    return array;
+  };
+
+  if (keywords != undefined) {
+    keywords = keywords.trim();
+    var subStrings = keywords.split(" ");
+    for (subString of subStrings) {
+      if (internshipKeywords.includes(subString.toLowerCase())) {
+        serviceType = addToServiceType("Internship", serviceType);
+      }
+      if (clubKeywords.includes(subString.toLowerCase())) {
+        serviceType = addToServiceType("Club", serviceType);
+      }
+    }
+  }
+
   try {
     filteredData = [];
     foundServices = await find_filter_service(
@@ -154,7 +185,7 @@ exports.get_services = async function (
     );
 
     filterAttribute = "title";
-    if (keywords != undefined) {
+    if (keywords != undefined && filterTitles) {
       keywords = keywords.trim();
       var subStrings = keywords.split(" ");
       for (subString of subStrings) {
@@ -188,7 +219,7 @@ exports.delete_service = async function (service_name) {
     return selected_service;
   } catch (error) {
     console.error(error);
-    return { success: false, error: "internal database error" };
+    return { success: false, error: "failed to fetch services" };
   }
 };
 
@@ -287,9 +318,9 @@ exports.get_service_users = async function (serviceName) {
       .select("members")
       .exec();
 
-      if (!users) {
-        throw new Error("Service with matching title not found");
-      }
+    if (!users) {
+      throw new Error("Service with matching title not found");
+    }
 
     return users.members;
   } catch (error) {
@@ -301,20 +332,21 @@ exports.add_member = async function (req, service_name) {
   try {
     const selected_service = await Services.findOne({ title: service_name });
     // get get only the user's id from the database
-    const user = await User.findOne({ username: req.body.username }).select('_id');
+    const user = await User.findOne({ username: req.body.username }).select(
+      "_id"
+    );
     const new_member = user._id;
     console.log(req.body);
     if (selected_service.members.includes(new_member)) {
-      console.log('member already exists');
-      return { success: true};
-    }
-    else {
+      console.log("member already exists");
+      return { success: true };
+    } else {
       selected_service.members.push(new_member);
       await selected_service.save();
       return { success: true };
     }
   } catch (error) {
     console.error(error);
-    return { success: false, error: 'internal database error' };
+    return { success: false, error: "internal database error" };
   }
 };
