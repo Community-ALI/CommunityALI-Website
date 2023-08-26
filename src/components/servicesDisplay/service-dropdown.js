@@ -32,7 +32,7 @@ function ServiceTypeSelector(props) {
   )
 }
 
-const ServiceDropdown = (props) => {
+export default function ServiceDropdown(props) {
 
   const [isContentVisible1, setServiceTypeFilterDropDownVisability] = useState(false);
   const [isContentVisible2, setContentVisible2] = useState(false);
@@ -190,7 +190,7 @@ const ServiceDropdown = (props) => {
           </div>
         </div>
 
-        {/* <div className="right-section">
+        <div className="right-section">
           <div className="sort-by">
             <label className='sort-label'>Sort by: </label>
             <div className="cont">
@@ -201,10 +201,8 @@ const ServiceDropdown = (props) => {
 
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );
 };
-
-export default ServiceDropdown;

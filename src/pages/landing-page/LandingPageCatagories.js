@@ -22,11 +22,10 @@ function LandingPageCatagories() {
                     <div className="landing-page-category-coming-soon"> COMING SOON </div>
                     <div className="landing-page-category-title-bottom"> Volunteer & Community Service </div>
                 </div>  
-                <div className="landing-page-category-box" id="box4">
+                <a className="landing-page-category-box" href="/services-internships" id="box4">
                     <img src="photos-optimized/internship-opt.webp" alt='Photos/NoCategoryImg.webp'/>
-                    <div className="landing-page-category-coming-soon"> COMING SOON </div>
                     <div className="landing-page-category-title-bottom"> Internships & Work Experience </div>
-                </div>  
+                </a>  
             </div>
         </div>
     )

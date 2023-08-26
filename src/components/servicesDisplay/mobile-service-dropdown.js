@@ -55,7 +55,7 @@ const ServiceDropdown = (props) => {
 
   const toggleServiceTypeFilterDropDown = () => {
     setServiceTypeFilterDropDownVisability((prevIsContentVisible1) => !prevIsContentVisible1);
-    props.SetShowServices(!props.showServices);
+    // props.SetShowServices(!props.showServices);
   };
 
   const toggleContent2 = () => {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BASE_BACKEND_URL } from "../../config";
+import ServiceDropdown from "./service-dropdown";
+import MobileServiceDropdown from "./mobile-service-dropdown";
 import "../../pages/explore-services/main-page.css";
 import "../loading-screen.css";
 import "../../pages/explore-services/service-filter.css";
@@ -102,7 +104,6 @@ function ServicesDisplay(props) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
         }
 
-
         const response = await fetch(url);
         console.log(response);
         const data = await response.json();
@@ -131,31 +132,39 @@ function ServicesDisplay(props) {
 
   // return the page
   return (
-    <div className="flex justify-center">
-      <title> Explore Services </title>
-      <div className="loader-wrapper">
-        <span className="loader">
-          <span className="loader-inner"></span>
-        </span>
-      </div>
-      {/* {!isMobile &&
+    <div className="flex flex-col ">
+      <div className="flex w-[100%] flex-row justify-between ml-[40px]">
+        {/* {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}
             SetServiceTypeFilter={setServiceTypeFilter}
             serviceTypeFilter={serviceTypeFilter}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
-          />} {isMobile &&
-            <MobileServiceDropdown
-              SetSortingType={setSortingtype}
-              SetServiceTypeFilter={setServiceTypeFilter}
-              serviceTypeFilter={serviceTypeFilter}
-              SetCategoriesFilter={setCategoriesFilter}
-              categoriesFilter={categoriesFilter}
-              showServices={showServices}
-              SetShowServices={setShowServices}
-            />} */}
-      {showServices && <DisplayAllServices services={services} />}
+          />
+        )}{" "}
+        {isMobile && (
+          <MobileServiceDropdown
+            SetSortingType={setSortingtype}
+            SetServiceTypeFilter={setServiceTypeFilter}
+            serviceTypeFilter={serviceTypeFilter}
+            SetCategoriesFilter={setCategoriesFilter}
+            categoriesFilter={categoriesFilter}
+            showServices={showServices}
+            SetShowServices={setShowServices}
+          />
+        )} */}
+        <div></div>
+      </div>
+      <div className="flex">
+        <title> Explore Services </title>
+        <div className="loader-wrapper">
+          <span className="loader">
+            <span className="loader-inner"></span>
+          </span>
+        </div>
+        {showServices && <DisplayAllServices services={services} />}
+      </div>
     </div>
   );
 }
