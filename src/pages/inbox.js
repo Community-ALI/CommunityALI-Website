@@ -123,8 +123,8 @@ export default function Inbox() {
     if (selectedService) {
       return (
         <div>
-          <NavBar />
-          <div className="lr:mt-24 h-[80vh] flex">
+          <NavBar hideMobileSearchBar={true}/>
+          <div className="lr:mt-[66px] h-[80vh] flex">
             <MessagingUI
               serviceTitle={selectedService.title}
               senderId={selectedService._id}
@@ -140,7 +140,7 @@ export default function Inbox() {
     return (
       <div>
         <NavBar hideMobileSearchBar={true} />
-        <div className="lr:mt-24 h-[80vh] flex">
+        <div className="lr:mt-[66px] h-[80vh] flex">
           <EntityManagementSelection
             entityType={"service"}
             entities={services}

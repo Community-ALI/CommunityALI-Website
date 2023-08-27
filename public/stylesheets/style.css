@@ -1677,6 +1677,30 @@ video {
     margin-top: 120px;
   }
 
+  .lr\:mt-20 {
+    margin-top: 5rem;
+  }
+
+  .lr\:mt-\[75\] {
+    margin-top: 75;
+  }
+
+  .lr\:mt-\[75px\] {
+    margin-top: 75px;
+  }
+
+  .lr\:mt-\[70px\] {
+    margin-top: 70px;
+  }
+
+  .lr\:mt-\[65px\] {
+    margin-top: 65px;
+  }
+
+  .lr\:mt-\[66px\] {
+    margin-top: 66px;
+  }
+
   .lr\:h-\[30px\] {
     height: 30px;
   }
