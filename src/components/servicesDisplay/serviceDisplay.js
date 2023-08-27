@@ -133,8 +133,8 @@ function ServicesDisplay(props) {
   // return the page
   return (
     <div className="flex flex-col ">
-      <div className="flex w-[100%] flex-row justify-between ml-[40px]">
-        {/* {!isMobile && (
+      <div className="flex w-[100%] flex-row justify-between">
+        {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}
             SetServiceTypeFilter={setServiceTypeFilter}
@@ -153,7 +153,7 @@ function ServicesDisplay(props) {
             showServices={showServices}
             SetShowServices={setShowServices}
           />
-        )} */}
+        )}
         <div></div>
       </div>
       <div className="flex">

@@ -826,6 +826,10 @@ video {
   margin-top: 50px;
 }
 
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1274,6 +1278,10 @@ video {
 
 .p-\[15px\] {
   padding: 15px;
+}
+
+.p-\[25px\] {
+  padding: 25px;
 }
 
 .px-2 {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 function CategorySelector(props) {
   return (
@@ -6,14 +6,17 @@ function CategorySelector(props) {
       <input
         type="checkbox"
         checked={props.categoriesFilter.includes(props.category)}
-        onChange={() => { props.ChangeFilter(
-          props.category, 
-          props.categoriesFilter, 
-          props.SetCategoriesFilter) 
+        onChange={() => {
+          props.ChangeFilter(
+            props.category,
+            props.categoriesFilter,
+            props.SetCategoriesFilter
+          );
         }}
-      /> {props.category}
+      />{" "}
+      {props.category}
     </label>
-  )
+  );
 }
 
 function ServiceTypeSelector(props) {
@@ -22,25 +25,28 @@ function ServiceTypeSelector(props) {
       <input
         type="checkbox"
         checked={props.serviceTypeFilter.includes(props.serviceType)}
-        onChange={() => { props.ChangeFilter(
-          props.serviceType, 
-          props.serviceTypeFilter, 
-          props.SetServiceTypeFilter) 
+        onChange={() => {
+          props.ChangeFilter(
+            props.serviceType,
+            props.serviceTypeFilter,
+            props.SetServiceTypeFilter
+          );
         }}
-      /> {props.title}
+      />{" "}
+      {props.title}
     </label>
-  )
+  );
 }
 
 export default function ServiceDropdown(props) {
-
-  const [isContentVisible1, setServiceTypeFilterDropDownVisability] = useState(false);
+  const [isContentVisible1, setServiceTypeFilterDropDownVisability] =
+    useState(false);
   const [isContentVisible2, setContentVisible2] = useState(false);
 
   const [isCheckedVolunteer, setIsCheckedVolunteer] = useState(false);
 
   const [isContOpen, setContOpen] = useState(false);
-  const [sortBy, setSortBy] = useState('');
+  const [sortBy, setSortBy] = useState("");
 
   const buttonRef1 = useRef(null);
   const buttonRef2 = useRef(null);
@@ -48,7 +54,9 @@ export default function ServiceDropdown(props) {
   const contentRef2 = useRef(null);
 
   const toggleServiceTypeFilterDropDown = () => {
-    setServiceTypeFilterDropDownVisability((prevIsContentVisible1) => !prevIsContentVisible1);
+    setServiceTypeFilterDropDownVisability(
+      (prevIsContentVisible1) => !prevIsContentVisible1
+    );
   };
 
   const toggleContent2 = () => {
@@ -56,7 +64,7 @@ export default function ServiceDropdown(props) {
   };
 
   const toggleCont = () => {
-    setContOpen(isContOpen => !isContOpen);
+    setContOpen((isContOpen) => !isContOpen);
   };
 
   const handleSortByChange = (event) => {
@@ -67,17 +75,17 @@ export default function ServiceDropdown(props) {
   const changeFilter = (input, filter, filterSetState) => {
     if (filter.includes(input)) {
       if (filter.length < 2) {
-        filterSetState(['all']);
+        filterSetState(["all"]);
         return;
       }
-      console.log(`removing ${input} form ${filter}`)
-      filterSetState(
-        filter.filter((filterType) => filterType != input));
+      console.log(`removing ${input} form ${filter}`);
+      filterSetState(filter.filter((filterType) => filterType != input));
       return;
     }
-    console.log("02: " + props.serviceTypeFilter)
+    console.log("02: " + props.serviceTypeFilter);
     filterSetState(
-      (filter.filter((filterType) => filterType != 'all')).concat(input));
+      filter.filter((filterType) => filterType != "all").concat(input)
+    );
   };
 
   const handleClickOutside = (event) => {
@@ -100,109 +108,158 @@ export default function ServiceDropdown(props) {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   useEffect(() => {
-    console.log(props.serviceTypeFilter)
-    console.log(props.categoriesFilter)
+    console.log(props.serviceTypeFilter);
+    console.log(props.categoriesFilter);
   }, [props.serviceTypeFilter, props.categoriesFilter]);
 
   return (
-    <>
-      <div className="filter-system-container">
-        <div className='filter-both-buttons-container'>
-          <div className='filter-buttons-container'>
-            <button className="add-service-button mobileFilterServiceButton" 
+    <div className="flex justify-between w-[100%] p-[25px] items-center">
+      <div className="filter-both-buttons-container">
+        <div className="filter-buttons-container">
+          <button
+            className="add-service-button mobileFilterServiceButton"
             onClick={toggleServiceTypeFilterDropDown}
-            ref={buttonRef1} >
-              <b>Filter Service Category</b><span className={`arrow ${isContentVisible1 ? 'up' : 'down'}`}></span>
-            </button>
+            ref={buttonRef1}
+          >
+            <b>Filter Service Category</b>
+            <span
+              className={`arrow ${isContentVisible1 ? "up" : "down"}`}
+            ></span>
+          </button>
 
-            {isContentVisible1 && (
-              <div className="content fadeInDown" ref={contentRef1}>
-                <form className='filter-category-container'>
-                  {[{ serviceType: 'Club', title: 'Clubs & Communities' }]
-                    .map((serviceTypeSelector, index) => {
-                      <ServiceTypeSelector
-                        key={index}
-                        serviceType={serviceTypeSelector.serviceType}
-                        title={serviceTypeSelector.title}
-                        serviceTypeFilter={props.serviceTypeFilter}
-                        SetServiceTypeFilter={props.SetServiceTypeFilter}
-                        ChangeFilter={changeFilter}
-                      />
-                    })}
-                  <label className="category-section">
-                    <input
-                      type="checkbox"
-                      name="Club"
-                      checked={props.serviceTypeFilter.includes('Club')}
-                      onChange={() => { changeFilter('Club', props.serviceTypeFilter, props.SetServiceTypeFilter) }}
-                    /> Clubs & Communities
-                  </label>
-                  <label className="category-section">
-                    <input
-                      type="checkbox"
-                      name="Volunteer"
-                      checked={isCheckedVolunteer}
-                    /> Volunteering and Projects
-                  </label>
-                  <label className="category-section">
-                    <input
-                      type="checkbox"
-                      name="Internship"
-                      checked={props.serviceTypeFilter.includes('Internship')}
-                      onChange={() => { changeFilter('Internship', props.serviceTypeFilter, props.SetServiceTypeFilter) }}
-                    /> Internships & Work Experience
-                  </label>
+          {isContentVisible1 && (
+            <div className="content fadeInDown" ref={contentRef1}>
+              <form className="filter-category-container">
+                {[{ serviceType: "Club", title: "Clubs & Communities" }].map(
+                  (serviceTypeSelector, index) => {
+                    <ServiceTypeSelector
+                      key={index}
+                      serviceType={serviceTypeSelector.serviceType}
+                      title={serviceTypeSelector.title}
+                      serviceTypeFilter={props.serviceTypeFilter}
+                      SetServiceTypeFilter={props.SetServiceTypeFilter}
+                      ChangeFilter={changeFilter}
+                    />;
+                  }
+                )}
+                <label className="category-section">
+                  <input
+                    type="checkbox"
+                    name="Club"
+                    checked={props.serviceTypeFilter.includes("Club")}
+                    onChange={() => {
+                      changeFilter(
+                        "Club",
+                        props.serviceTypeFilter,
+                        props.SetServiceTypeFilter
+                      );
+                    }}
+                  />{" "}
+                  Clubs & Communities
+                </label>
+                {/* <label className="category-section">
+                  <input
+                    type="checkbox"
+                    name="Volunteer"
+                    checked={isCheckedVolunteer}
+                  />{" "}
+                  Volunteering and Projects
+                </label> */}
+                <label className="category-section">
+                  <input
+                    type="checkbox"
+                    name="Internship"
+                    checked={props.serviceTypeFilter.includes("Internship")}
+                    onChange={() => {
+                      changeFilter(
+                        "Internship",
+                        props.serviceTypeFilter,
+                        props.SetServiceTypeFilter
+                      );
+                    }}
+                  />{" "}
+                  Internships & Work Experience
+                </label>
 
-                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetServiceTypeFilter(['all']) })}></input>
-                </form>
-              </div>
-            )}
-          </div>
-
-          <div className='filter-buttons-container'>
-            <button className="filter-school-button" 
-            onClick={toggleContent2} 
-            ref={buttonRef2}>
-              <b>Filter By School</b><span className={`arrow ${isContentVisible2 ? 'up' : 'down'}`}></span>
-            </button>
-
-            {isContentVisible2 && (
-              <div className="school-filter-content fadeInDown" ref={contentRef2}>
-                <form className='filter-category-container'>
-                  {["Agriculture", "Art, Performance, & the Humanities ", "Behavioral & Social Sciences", "Business & Computing", "Fitness & Health Professions",
-                    "Industry & Trades", "Language Arts & Education", "Public Safety", "Science, Engineering, & Mathematics"]
-                    .map((category, index) => <CategorySelector key={index}
-                      category={category}
-                      categoriesFilter={props.categoriesFilter}
-                      SetCategoriesFilter={props.SetCategoriesFilter}
-                      ChangeFilter={changeFilter} />)}
-                  <input type="reset" className="filter-reset" value="Clear All" onClick={(() => { props.SetCategoriesFilter(['all']) })}></input>
-                </form>
-              </div>
-            )}
-          </div>
+                <input
+                  type="reset"
+                  className="filter-reset"
+                  value="Clear All"
+                  onClick={() => {
+                    props.SetServiceTypeFilter(["all"]);
+                  }}
+                ></input>
+              </form>
+            </div>
+          )}
         </div>
 
-        <div className="right-section">
-          <div className="sort-by">
-            <label className='sort-label'>Sort by: </label>
-            <div className="cont">
-              <select className='sort-select' value={sortBy}>
-                <option value="alphabetical">Alphabetical</option>
-                <option value="recent">Most Recent</option>
-              </select>
+        <div className="filter-buttons-container">
+          <button
+            className="filter-school-button"
+            onClick={toggleContent2}
+            ref={buttonRef2}
+          >
+            <b>Filter By School</b>
+            <span
+              className={`arrow ${isContentVisible2 ? "up" : "down"}`}
+            ></span>
+          </button>
 
+          {isContentVisible2 && (
+            <div className="school-filter-content fadeInDown" ref={contentRef2}>
+              <form className="filter-category-container">
+                {[
+                  "Agriculture",
+                  "Art, Performance, & the Humanities ",
+                  "Behavioral & Social Sciences",
+                  "Business & Computing",
+                  "Fitness & Health Professions",
+                  "Industry & Trades",
+                  "Language Arts & Education",
+                  "Public Safety",
+                  "Science, Engineering, & Mathematics",
+                ].map((category, index) => (
+                  <CategorySelector
+                    key={index}
+                    category={category}
+                    categoriesFilter={props.categoriesFilter}
+                    SetCategoriesFilter={props.SetCategoriesFilter}
+                    ChangeFilter={changeFilter}
+                  />
+                ))}
+                <input
+                  type="reset"
+                  className="filter-reset"
+                  value="Clear All"
+                  onClick={() => {
+                    props.SetCategoriesFilter(["all"]);
+                  }}
+                ></input>
+              </form>
             </div>
-          </div>
+          )}
         </div>
       </div>
-    </>
+
+      {/* <div className="right-section">
+        <div className="sort-by">
+          <label className="sort-label">Sort by: </label>
+          <div className="cont">
+            <select className="sort-select" value={sortBy}>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="recent">Most Recent</option>
+            </select>
+          </div>
+        </div>
+      </div> */}
+    </div>
   );
-};
+}
