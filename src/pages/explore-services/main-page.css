@@ -44,6 +44,7 @@
     margin: 0px 20px;
     max-width: 1600px;
     padding-bottom: 200px;
+    justify-content: center;
 }
 
 .service-result-card
