@@ -218,7 +218,8 @@ function NavBar(props) {
         className={
           "navigation-bar" +
           (props.isFixedPage ? "" : " navigation-bar-not-fixed") +
-          (showNavBarMobile ? " active" : "")
+          (showNavBarMobile ? " active" : "") +
+          (props.hideMobileSearchBar ? " top-4" : "")
         }
       >
         <nav
@@ -234,8 +235,15 @@ function NavBar(props) {
             />
           </a>
 
-          {!isMobile && (
-            <div id="navigation-search-bar">
+          {(!isMobile || props.hideMobileSearchBar) && (
+            <div
+              className={
+                "flex-grow border-2 border-white rounded-2xl p-2 px-4 mr-3 text-base text-white relative" +
+                (props.hideMobileSearchBar
+                  ? " h-[40px] bg-transparent w-[90%] transition-all mr-0 mb-[50px]"
+                  : "")
+              }
+            >
               <input
                 id="navigation-search-bar-input"
                 placeholder="Search..."
@@ -281,8 +289,9 @@ function NavBar(props) {
         </nav>
       </div>
 
-      {isMobile && (
-        <div id="navigation-search-bar">
+      {isMobile && !props.hideMobileSearchBar && (
+        <div className="h-[40px] z-10 bg-transparent w-[90%] top-[80px] left-[5%] transition-all 
+          flex-grow border-2 border-white rounded-2xl p-2 px-4 mr-3 text-base text-white relative">
           <input
             id="navigation-search-bar-input"
             placeholder="Search..."
@@ -329,7 +338,9 @@ function NavBar(props) {
       <SignupPopup
         isShowingSignupPopup={isShowingSignupPopup}
         showLoginPopup={showLoginPopup}
-        SetIsShowingSignupPopupFalse={() => {setIsShowingSignupPopup(!isShowingSignupPopup)}}
+        SetIsShowingSignupPopupFalse={() => {
+          setIsShowingSignupPopup(!isShowingSignupPopup);
+        }}
       />
 
       <div

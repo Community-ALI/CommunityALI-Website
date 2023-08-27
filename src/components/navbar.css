@@ -94,18 +94,6 @@
     transform-origin: top left;
 }
 
-#navigation-search-bar 
-{
-    flex-grow: 1;
-    border: 2px solid white;
-    border-radius: 15px;
-    padding: 8px 15px;
-    margin-right: 10px;
-    font-size: 16px;
-    color : white;
-    position: relative;
-}
-
 #navigation-search-bar-input
 {
     width: 100%;
@@ -191,12 +179,6 @@
     {
         margin-right : 0px;
         padding: 10px 10px;
-    }
-
-    #navigation-search-bar
-    {
-        font-size: 15px;
-        padding: 8px 12px;
     }
 }
 

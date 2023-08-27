@@ -139,7 +139,7 @@ export default function Inbox() {
     }
     return (
       <div>
-        <NavBar />
+        <NavBar hideMobileSearchBar={true} />
         <div className="lr:mt-24 h-[80vh] flex">
           <EntityManagementSelection
             entityType={"service"}
