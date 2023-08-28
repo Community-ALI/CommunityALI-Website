@@ -155,6 +155,8 @@ exports.get_services = async function (
 
   const internshipKeywords = ["internship", "internships", "intern", "interns"];
   const clubKeywords = ["club", "clubs"];
+  const programKeywords = ["program", "programs", "resources", "resource"];
+
 
   let filterTitles = true;
 
@@ -176,7 +178,9 @@ exports.get_services = async function (
       }
       if (clubKeywords.includes(subString.toLowerCase())) {
         serviceType = addToServiceType("Club", serviceType);
-        setContentVisible2;
+      }
+      if (programKeywords.includes(subString.toLowerCase())) {
+        serviceType = addToServiceType("Program", serviceType);
       }
     }
   }
