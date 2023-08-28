@@ -13,7 +13,7 @@ function LandingPageCatagories() {
                     <img src="photos-optimized/clubs-opt.webp" alt='Photos/NoCategoryImg.webp'/>
                     <div className="landing-page-category-title-top"> Clubs and Campus Life </div>
                 </a>  
-                <a className="landing-page-category-box" href="/services-clubs" aria-label="Programs and Resources">
+                <a className="landing-page-category-box" href="/services-programs" aria-label="Programs and Resources">
                     <img src="photos-optimized/student-opt.webp" alt='Photos/NoCategoryImg.webp'/>
                     <div className="landing-page-category-title-top"> Programs and Resources</div>
                 </a>  

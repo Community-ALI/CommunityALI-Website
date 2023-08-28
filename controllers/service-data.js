@@ -175,7 +175,6 @@ exports.get_services = async function (
         serviceType = addToServiceType("Internship", serviceType);
       }
       if (clubKeywords.includes(subString.toLowerCase())) {
-        console.log("WE have club");
         serviceType = addToServiceType("Club", serviceType);
       }
     }
