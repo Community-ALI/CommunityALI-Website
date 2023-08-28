@@ -158,7 +158,7 @@ function ServicesDisplay(props) {
         )}
         <div></div>
       </div>
-      <div className="flex">
+      <div className="flex items-center justify-center">
         <title> Explore Services </title>
         <div className="loader-wrapper">
           <span className="loader">
