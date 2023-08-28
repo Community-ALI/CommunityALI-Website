@@ -71,6 +71,7 @@ function DisplayAllServices(props) {
 }
 
 function ServicesDisplay(props) {
+  const serviceTypes = [{ serviceType: "Club", title: "Clubs & Communities"}, { serviceType: "Internship", title: "Internships & Work Experience"}]
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState("alphabetical");
   const [serviceTypeFilter, setServiceTypeFilter] = useState([
@@ -143,6 +144,7 @@ function ServicesDisplay(props) {
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
             sortingType={sortingType}
+            serviceTypes={serviceTypes}
           />
         )}{" "}
         {isMobile && (
