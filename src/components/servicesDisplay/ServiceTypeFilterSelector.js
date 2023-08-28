@@ -14,19 +14,20 @@ function ServiceTypeSelector(props) {
 }
 
 export default function ServiceTypeFilterSelector(props) {
+  console.log(props.serviceTypes);
   return (
     <div>
-      {props.filterTypes.map(
-        (serviceType, index) => {
+      {props.serviceTypes.map((serviceType, index) => {
+        return (
           <ServiceTypeSelector
             key={index}
             serviceType={serviceType.serviceType}
             title={serviceType.title}
             serviceTypeFilter={props.serviceTypeFilter}
             ChangeServiceTypeFilter={props.ChangeServiceTypeFilter}
-          />;
-        }
-      )}
+          />
+        );
+      })}
     </div>
   );
 }

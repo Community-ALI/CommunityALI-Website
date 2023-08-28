@@ -41,21 +41,6 @@ export default function CategoryFilterSelector(props) {
           ChangeFilter={props.ChangeFilter}
         />
       ))}
-      <hr />
-      <div className="flex text-white justify-between p-2 items-center">
-        <input
-          type="reset"
-          value="Clear All"
-          onClick={() => {
-            props.SetCategoriesFilter(["all"]);
-          }}
-        ></input>
-        <input
-          type="submit"
-          className="bg-ali-orange p-1 px-2 rounded-lg text-black"
-          value="Apply"
-        ></input>
-      </div>
     </div>
   );
 }

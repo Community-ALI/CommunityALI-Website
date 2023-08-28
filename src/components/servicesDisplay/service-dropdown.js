@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import CategoryFilterSelector from "./CategoryFilteringSelector";
+import ServiceTypeSelector from "./ServiceTypeFilterSelector";
 
 export default function ServiceDropdown(props) {
   const [isContentVisible1, setServiceTypeFilterDropDownVisability] =
     useState(false);
   const [isContentVisible2, setContentVisible2] = useState(false);
 
-  const buttonRef1 = useRef(null);
+  const serviceTypeFilterToggle = useRef(null);
+  const categoryFilterToggle = useRef(null);
+  const serviceTypeFilterContent = useRef(null);
+  const categoryFilterContent = useRef(null);
 
   const toggleServiceTypeFilterDropDown = () => {
     setServiceTypeFilterDropDownVisability(
@@ -50,18 +54,18 @@ export default function ServiceDropdown(props) {
 
   const handleClickOutside = (event) => {
     if (
-      buttonRef1.current &&
-      !buttonRef1.current.contains(event.target) &&
-      contentRef1.current &&
-      !contentRef1.current.contains(event.target)
+      serviceTypeFilterToggle.current &&
+      !serviceTypeFilterToggle.current.contains(event.target) &&
+      serviceTypeFilterContent.current &&
+      !serviceTypeFilterContent.current.contains(event.target)
     ) {
       setServiceTypeFilterDropDownVisability(false);
     }
     if (
-      buttonRef2.current &&
-      !buttonRef2.current.contains(event.target) &&
-      contentRef2.current &&
-      !contentRef2.current.contains(event.target)
+      categoryFilterToggle.current &&
+      !categoryFilterToggle.current.contains(event.target) &&
+      categoryFilterContent.current &&
+      !categoryFilterContent.current.contains(event.target)
     ) {
       setContentVisible2(false);
     }
@@ -86,7 +90,7 @@ export default function ServiceDropdown(props) {
           <button
             className="add-service-button mobileFilterServiceButton"
             onClick={toggleServiceTypeFilterDropDown}
-            ref={buttonRef1}
+            ref={serviceTypeFilterToggle}
           >
             <b>Filter Service Category</b>
             <span
@@ -95,21 +99,13 @@ export default function ServiceDropdown(props) {
           </button>
 
           {isContentVisible1 && (
-            <div className="content fadeInDown" ref={contentRef1}>
+            <div className="content fadeInDown" ref={serviceTypeFilterContent}>
               <form className="filter-category-container">
                 <ServiceTypeSelector
                   serviceTypes={props.serviceTypes}
                   serviceTypeFilter={serviceTypeFilter}
                   ChangeServiceTypeFilter={changeServiceTypeFilter}
                 />
-                <input
-                  type="reset"
-                  className="filter-reset"
-                  value="Clear All"
-                  onClick={() => {
-                    props.SetServiceTypeFilter(["all"]);
-                  }}
-                ></input>
               </form>
             </div>
           )}
@@ -124,13 +120,31 @@ export default function ServiceDropdown(props) {
           </button>
 
           {isContentVisible2 && (
-            <div className="school-filter-content fadeInDown" ref={contentRef2}>
+            <div
+              className="school-filter-content fadeInDown"
+              ref={categoryFilterContent}
+            >
               <form className="filter-category-container">
                 <CategoryFilterSelector
                   categoriesFilter={props.categoriesFilter}
                   SetCategoriesFilter={props.SetCategoriesFilter}
                   ChangeFilter={changeFilter}
                 />
+                <hr />
+                <div className="flex text-white justify-between p-2 items-center">
+                  <input
+                    type="reset"
+                    value="Clear All"
+                    onClick={() => {
+                      props.SetCategoriesFilter(["all"]);
+                    }}
+                  ></input>
+                  <input
+                    type="submit"
+                    className="bg-ali-orange p-1 px-2 rounded-lg text-black"
+                    value="Apply"
+                  ></input>
+                </div>
               </form>
             </div>
           )}
