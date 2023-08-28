@@ -35,6 +35,7 @@ function AddInternship() {
   const [contactsFormData, setContactsFormData] = useState({});
   const [requireFormData, setRequireFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
+  const [signUpFormData, setSignUpFormData] = useState({});
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
@@ -96,6 +97,9 @@ function AddInternship() {
               if (data.pages.requirements){
                 addPage('Requirements');
                 setRequireFormData(data.pages.requirements);
+              }
+              if (data.internshipLink){
+                setSignUpFormData((prevData) => ({ ...prevData, internshipLink: data.internshipLink }));
               }
               // show the page
               const loaderWrapper = document.querySelector(".loader-wrapper");
@@ -236,7 +240,7 @@ function AddInternship() {
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} setFormData={setContactsFormData} serviceType='Internship' />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} setFormData={setFaqFormData} serviceType='Internship' />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" editMode={true} serviceType='Internship' formData={signUpFormData} setFormData={setSignUpFormData} handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 'title': titleValue }
         }
         allFormData={
