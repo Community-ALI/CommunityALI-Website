@@ -111,7 +111,7 @@ function ServicesDisplay(props) {
         setServices(data || []);
 
         const loaderWrapper = document.querySelector(".loader-wrapper");
-        loaderWrapper.style.transition = "opacity 0.5s";
+        loaderWrapper.style.transition = "opacity 1.5s";
         loaderWrapper.style.opacity = "0";
         setTimeout(() => {
           loaderWrapper.style.display = "none";

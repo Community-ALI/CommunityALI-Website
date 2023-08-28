@@ -47,11 +47,16 @@ function SignUpPage({ service }) {
   };
 
   function textWithLinksToParagraph(inputText) {
-    const linkPattern = /(https?:\/\/[^\s]+)/g;
+    try{
+      const linkPattern = /(https?:\/\/[^\s]+)/g;
 
-    const replacedText = inputText.replace(linkPattern, '<u><a target="_blank" href="$&">$&</a></u>');
+      const replacedText = inputText.replace(linkPattern, '<u><a target="_blank" href="$&">$&</a></u>');
 
-    return `<p>${replacedText}</p>`;
+      return `<p>${replacedText}</p>`;
+    }
+    catch{
+      return inputText;
+    }
   }
 
   function showLoginPopup() {
