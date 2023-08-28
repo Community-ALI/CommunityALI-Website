@@ -169,7 +169,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
             .then(response => response.json())
             .then(data => {
               // Handle response from the server
-              navigate('/services'); // Navigate to the new page without triggering beforeunload event
+              navigate('/my-services'); // Navigate to the new page without triggering beforeunload event
             })
             .catch(error => {
               // Handle error

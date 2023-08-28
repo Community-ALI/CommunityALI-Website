@@ -143,7 +143,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             .then(response => response.json())
             .then(data => {
               if (data.success){
-                navigate('/services'); // Navigate to the new page without triggering beforeunload event
+                navigate('/my-services'); // Navigate to the new page without triggering beforeunload event
               }
               else{
                 alert(data.error);
