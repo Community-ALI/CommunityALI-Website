@@ -72,7 +72,7 @@ exports.store_add_service = async function (req, username) {
       timePosted: time,
       user: username,
       collaborators: [username], // the user who created the service is automatically a collaborator
-      members: [username], // the user who created the service is automatically a member
+      members: [], // FIXME: Make the user who created the service a member
       applicants: [],
       messages: [],
       internshipLink: req.body.internshipLink,

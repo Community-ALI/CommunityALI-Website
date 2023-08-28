@@ -256,19 +256,7 @@ router.post("/add-member", async (req, res) => {
 router.get("/get-service-members/:serviceTitle", async function (req, res) {
     try {
         users = await service_data.get_service_users(req.params.serviceTitle);
-        if (users) {
-            console.log(`Members for: ${req.params.serviceTitle} sent`);
-            res.json(users);
-        }
-    } catch (error) {
-        console.error(error)
-        res.json( {success: false, error: "Failed to fetch service members"});
-    }
-  })
-
-  router.get("/get-service-members/:serviceTitle", async function (req, res) {
-    try {
-        users = await service_data.get_service_users(req.params.serviceTitle);
+        console.log(users);
         if (users) {
             console.log(`Members for: ${req.params.serviceTitle} sent`);
             res.json(users);

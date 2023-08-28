@@ -25,17 +25,28 @@ function OverviewPage({service}) {
             {overview.subtitle}
           </div>
 
-          <div className="service-header">Meeting Details</div>
+          {service.serviceType === "Program" ?
+            <div className="service-header">Office Time and Place</div>
+            :
+            <div className="service-header">Meeting Details</div>
+          }
 
           <div>
             <u> Time: </u>
               {overview.time}
           </div>
 
-          <div>
-            <u> Date: </u>       
-              {overview.date}   
-          </div>
+          {service.serviceType === 'Program' ? 
+            <div>
+              <u> Days: </u>       
+                {overview.date}   
+            </div>
+            : 
+            <div>
+              <u> Date: </u>       
+                {overview.date}   
+            </div>
+          }
 
           <div>
             <u> Location: </u>

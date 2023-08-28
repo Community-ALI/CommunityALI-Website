@@ -35,8 +35,8 @@ function Profile() {
   const [isShowingPasswordPopup, setIsShowingPasswordPopup] = useState(false);
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [buttonText, setButtonText] = useState('Edit Information');
+  const [editMode, setEditMode] = useState(true);
+  const [buttonText, setButtonText] = useState('Save Edits');
   const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
   const nameRef = useRef(null);
   const popupRef = useRef(null);
@@ -194,7 +194,7 @@ function Profile() {
   const handleButtonClick = () => {
     
     if (!editMode) {
-      setButtonText(editMode ? 'Edit Information' : 'Save Information');
+      setButtonText(editMode ? 'Save Edits' : 'Save Information');
       nameRef.current.focus();
       setEditMode(!editMode);
     } else {
@@ -225,7 +225,7 @@ function Profile() {
   const toggleNotifications = () => {
     if (!editMode) {
       setEditMode(true);
-      setButtonText(editMode ? 'Edit Information' : 'Save Information');
+      setButtonText(editMode ? 'Save Edits' : 'Save Information');
     }
       console.log(name);
       setAccount((prevAccount) => ({
@@ -398,7 +398,7 @@ function Profile() {
         {editMode &&
           <input type="button" className="profile-save-button" id='profile-cancel-button'
             
-            onClick={() => { setEditMode(false); navigate('/profile'); }}
+            onClick={() => { setEditMode(false); window.location.reload(); }}
             value='Cancel Edits'
           />
         }
