@@ -2,9 +2,9 @@ import React, {useState, useRef} from "react";
 import {BASE_BACKEND_URL} from '../../../config.js'
 import '../add-service.css';
 import { useNavigate } from 'react-router-dom';
-function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
+function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', formData, setFormData, editMode = false}) {
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
-
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const toggleAuthorizationPopup = () => 
   {
     setShowAuthorizationPopup((prev) => !prev);
@@ -63,8 +63,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
       }
 
       // check that the link has been provided
-      const link = document.getElementById('sign-up-form-box-input');
-      if (!link.value){
+      const link = formData.internshipLink;
+      if (!link){
         alert('Please provide a link to the internship');
         return false;
       };
@@ -86,6 +86,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
     };
 
       
+    const linkChanged = (event) => {
+      const { value } = event.target;
+      setFormData((prev) => {
+        return { ...prev, internshipLink: value };
+      });
+    };
 
       
 
@@ -94,14 +100,19 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
       event.preventDefault();
       if (checkRequired()){
         const selectedFile = allFormData.Overview.file;
+        // display loading screen
+        setShowLoadingScreen(true);
+        // hide the authorization popup
+        toggleAuthorizationPopup();
         
+
         if (selectedFile) {
           const sendFormData = new FormData();
           sendFormData.append('title', mainInfo.title);
           sendFormData.append('serviceType', mainInfo.serviceType);
           sendFormData.append('image', selectedFile);
-          const link = document.getElementById('sign-up-form-box-input');
-          sendFormData.append('internshipLink', link.value);
+          const link = formData.internshipLink;
+          sendFormData.append('internshipLink', link);
           const OverviewData = {
             'subtitle': allFormData.Overview.subtitle,
             'time': allFormData.Overview.time,
@@ -161,7 +172,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             .then(response => response.json())
             .then(data => {
               // Handle response from the server
-              navigate('/services'); // Navigate to the new page without triggering beforeunload event
+              navigate('/my-services'); // Navigate to the new page without triggering beforeunload event
             })
             .catch(error => {
               // Handle error
@@ -178,12 +189,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
       <div>
           <div className="sign-up-form">
             <div id="form" className="sign-up-form-boxes">
-              <div className="service-header" id="sign-up-header">Join this Internship Today!</div>
+              <div className="service-header" id="sign-up-header">Click the Link Below To Apply Today</div>
                 <div className="sign-up-form-container">
                     {/* text input styled */}
                     
-                        <div className="sign-up-form-box-title">Link</div>
-                        <input placeholder="Link" className="sign-up-form-box-input" id="sign-up-form-box-input" ></input>
+                        {/* this is where users can add a link */}
+                        <input value={formData.internshipLink || ""} onChange={linkChanged} placeholder="Ex: You can apply at https://www.example.com/" className="sign-up-form-box-input" id="sign-up-form-box-input"></input>
 
                     
                 </div> 
@@ -226,6 +237,14 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             </div>
           </div>
           )}
+        {showLoadingScreen && 
+        (<div className="loader-wrapper">
+          <span className="loader">
+            <span className="loader-inner"></span>
+          </span>
+        </div>)}
+
+          
       </div>
   )
 }

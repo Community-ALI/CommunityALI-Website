@@ -35,6 +35,7 @@ function AddInternship() {
   const [contactsFormData, setContactsFormData] = useState({});
   const [faqFormData, setFaqFormData] = useState({});
   const [requireFormData, setRequireFormData] = useState({});
+  const [signUpFormData, setSignUpFormData] = useState({});
 
   const pageRefs = useRef(allPossiblePages.reduce((refs, page) => {
     refs[page] = useRef(null);
@@ -175,7 +176,7 @@ function AddInternship() {
 
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <NavBar isFixedPage={false} />
       <title> Internship Editor </title>
       <form method="POST" className="service-container" id='form'>
@@ -206,7 +207,7 @@ function AddInternship() {
         {activePage === "Contacts" && <ContactsPage key="ContactsPage" formData={contactsFormData} serviceType='Internship' setFormData={setContactsFormData} />}
         {activePage === "FAQ" && <FaqPage key="FaqPage" formData={faqFormData} serviceType='Internship' setFormData={setFaqFormData} />}
         {activePage === "Requirements" && <RequirementsPage key="RequirementsPage" formData={requireFormData}  setFormData={setRequireFormData} />}
-        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' handleShowPromptChange={handleShowPromptChange} mainInfo={
+        {activePage === "Sign Up" && <SignUpPage key="SignUpPage" serviceType='Internship' formData={signUpFormData} setFormData={setSignUpFormData} handleShowPromptChange={handleShowPromptChange} mainInfo={
           { 
             'title': titleValue,
             'serviceType': 'Internship'

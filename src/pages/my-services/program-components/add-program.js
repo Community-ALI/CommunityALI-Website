@@ -11,9 +11,9 @@ import SignUpPage from "./sign-up-page";
 function AddResource() {
   const allPossiblePages = [
     "Overview",
+    "Requirements",
     "Contacts",
     "FAQ",
-    "Requirements",
     "Sign Up"
   ];
 
@@ -176,7 +176,7 @@ function AddResource() {
 
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <NavBar isFixedPage={false} />
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = false}) {
 
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
-
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const toggleAuthorizationPopup = () => 
   {
     setShowAuthorizationPopup((prev) => !prev);
@@ -81,7 +81,10 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
     const handleSubmit = (event) => {
       event.preventDefault();
       if (checkRequired()){
-        
+        // display loading screen
+        setShowLoadingScreen(true);
+        // hide the authorization popup
+        toggleAuthorizationPopup();
         const selectedFile = allFormData.Overview.file;
         
         if (selectedFile) {
@@ -140,7 +143,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             .then(response => response.json())
             .then(data => {
               if (data.success){
-                navigate('/services'); // Navigate to the new page without triggering beforeunload event
+                navigate('/my-services'); // Navigate to the new page without triggering beforeunload event
               }
               else{
                 alert(data.error);
@@ -215,6 +218,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
               </div>
             </div>
             )}
+            {showLoadingScreen && 
+        (<div className="loader-wrapper">
+          <span className="loader">
+            <span className="loader-inner"></span>
+          </span>
+        </div>)}
         </div>
     )
 }

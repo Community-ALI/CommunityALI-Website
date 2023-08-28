@@ -91,6 +91,9 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
       height: '100%',
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
       zIndex: 100000,
+      display: "flex",
+      margin: 0,
+      padding: 0
     }}
     onClick={handleClickOutsidePopup}
   >
@@ -116,19 +119,24 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
 
         <div className="service-details" id='overview-meeting-details'>
           <div className="service-author">
-            <input
-              type="text"
-              placeholder= {`President of the ${serviceType}`}
-              onChange={handleFormChange}
-              name="subtitle"
-              value={formData.subtitle || ""}
-              className="meeting-details-title-box"
-              id="meeting-details-title-box"
-            />
-            <br />
+              <input
+                type="text"
+                placeholder={serviceType === 'Program' ? 'Name of the Administrator' 
+                : `President of the ${serviceType}`}
+                onChange={handleFormChange}
+                name="subtitle"
+                value={formData.subtitle || ""}
+                className="meeting-details-title-box"
+                id="meeting-details-title-box"
+              />    
           </div>
 
-          <div className="service-header">Meeting Details</div>
+          {serviceType === 'Program' ? 
+              <div className="service-header">Office Time and Place</div>
+              : 
+              <div className="service-header">Meeting Details</div>
+          }
+          
 
           <div>
             <u> Time: </u>
@@ -141,22 +149,37 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
               className="meeting-details-text-box"
               id="details-times"
             />
-            <br />
           </div>
 
-          <div>
-            <u> Date: </u>
-            <input
-              type="text"
-              placeholder="Include day and month"
-              onChange={handleFormChange}
-              name="date"
-              value={formData.date || ""}
-              className="meeting-details-text-box"
-              id="details-date"
-            />
-            <br />
-          </div>
+
+
+          {serviceType === 'Program' ? 
+            <div>
+              <u> Days: </u>
+              <input
+                type="text"
+                placeholder="Include day and month"
+                onChange={handleFormChange}
+                name="date"
+                value={formData.date || ""}
+                className="meeting-details-text-box"
+                id="details-date"
+              />
+            </div>
+              : 
+              <div>
+                <u> Date: </u>
+                <input
+                  type="text"
+                  placeholder="Include day and month"
+                  onChange={handleFormChange}
+                  name="date"
+                  value={formData.date || ""}
+                  className="meeting-details-text-box"
+                  id="details-date"
+                />
+            </div>
+          }
 
           <div>
             <u> Location: </u>
@@ -169,7 +192,6 @@ function OverviewPage({ formData, setFormData, serviceType = 'Club', editMode = 
               className="meeting-details-text-box"
               id="details-location"
             />
-            <br />
           </div>
         </div>
       </div>
