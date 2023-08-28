@@ -1,10 +1,12 @@
 import React from "react";
 
 function ServiceTypeSelector(props) {
+
   return (
     <label className="category-section">
       <input
         type="checkbox"
+        value={props.serviceType}
         checked={props.serviceTypeFilter.includes(props.serviceType)}
         onChange={props.ChangeServiceTypeFilter}
       />{" "}
@@ -14,7 +16,7 @@ function ServiceTypeSelector(props) {
 }
 
 export default function ServiceTypeFilterSelector(props) {
-  console.log(props.serviceTypes);
+  console.log(props.serviceTypeFilter);
   return (
     <div>
       {props.serviceTypes.map((serviceType, index) => {

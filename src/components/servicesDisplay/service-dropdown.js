@@ -34,12 +34,9 @@ export default function ServiceDropdown(props) {
     setContOpen(false);
   };
 
-  const [serviceTypeFilter, setServiceTypeFilter] = useState(
-    props.serviceTypeFilter
-  );
-
   const changeServiceTypeFilter = (event) => {
-    setServiceTypeFilter(event.target.value);
+    console.log(event.target.value)
+    props.SetServiceTypeFilter(event.target.value);
   };
 
   const changeFilter = (input, filter, filterSetState) => {
@@ -118,7 +115,7 @@ export default function ServiceDropdown(props) {
               <form className="filter-category-container">
                 <ServiceTypeSelector
                   serviceTypes={props.serviceTypes}
-                  serviceTypeFilter={serviceTypeFilter}
+                  serviceTypeFilter={props.serviceTypeFilter}
                   ChangeServiceTypeFilter={changeServiceTypeFilter}
                 />
               </form>
