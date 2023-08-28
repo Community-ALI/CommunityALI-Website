@@ -36,7 +36,7 @@ function Profile() {
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
   const [editMode, setEditMode] = useState(true);
-  const [buttonText, setButtonText] = useState('Edit Information');
+  const [buttonText, setButtonText] = useState('Save Edits');
   const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
   const nameRef = useRef(null);
   const popupRef = useRef(null);
@@ -194,7 +194,7 @@ function Profile() {
   const handleButtonClick = () => {
     
     if (!editMode) {
-      setButtonText(editMode ? 'Edit Information' : 'Save Information');
+      setButtonText(editMode ? 'Save Edits' : 'Save Information');
       nameRef.current.focus();
       setEditMode(!editMode);
     } else {
@@ -225,7 +225,7 @@ function Profile() {
   const toggleNotifications = () => {
     if (!editMode) {
       setEditMode(true);
-      setButtonText(editMode ? 'Edit Information' : 'Save Information');
+      setButtonText(editMode ? 'Save Edits' : 'Save Information');
     }
       console.log(name);
       setAccount((prevAccount) => ({
