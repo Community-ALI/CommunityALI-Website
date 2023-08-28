@@ -90,20 +90,6 @@ input[type="checkbox"]:checked:after
     padding-left: 20px;
 }
 
-input[type="reset"] 
-{
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    background: none;
-    border: none;
-    font-weight: 500;
-    font-size: 16px;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
 .filter-submit 
 {
     padding: 8px;

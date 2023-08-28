@@ -1,23 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
-function CategorySelector(props) {
-  return (
-    <label className="category-section">
-      <input
-        type="checkbox"
-        checked={props.categoriesFilter.includes(props.category)}
-        onChange={() => {
-          props.ChangeFilter(
-            props.category,
-            props.categoriesFilter,
-            props.SetCategoriesFilter
-          );
-        }}
-      />{" "}
-      {props.category}
-    </label>
-  );
-}
+import CategoryFilterSelector from "./CategoryFilteringSelector";
 
 function ServiceTypeSelector(props) {
   return (
@@ -203,11 +185,7 @@ export default function ServiceDropdown(props) {
         </div>
 
         <div className="filter-buttons-container">
-          <button
-            className="filter-school-button"
-            onClick={toggleContent2}
-            ref={buttonRef2}
-          >
+          <button className="filter-school-button" onClick={toggleContent2}>
             <b>Filter By School</b>
             <span
               className={`arrow ${isContentVisible2 ? "up" : "down"}`}
@@ -217,33 +195,11 @@ export default function ServiceDropdown(props) {
           {isContentVisible2 && (
             <div className="school-filter-content fadeInDown" ref={contentRef2}>
               <form className="filter-category-container">
-                {[
-                  "Agriculture",
-                  "Art, Performance, & the Humanities ",
-                  "Behavioral & Social Sciences",
-                  "Business & Computing",
-                  "Fitness & Health Professions",
-                  "Industry & Trades",
-                  "Language Arts & Education",
-                  "Public Safety",
-                  "Science, Engineering, & Mathematics",
-                ].map((category, index) => (
-                  <CategorySelector
-                    key={index}
-                    category={category}
-                    categoriesFilter={props.categoriesFilter}
-                    SetCategoriesFilter={props.SetCategoriesFilter}
-                    ChangeFilter={changeFilter}
-                  />
-                ))}
-                <input
-                  type="reset"
-                  className="filter-reset"
-                  value="Clear All"
-                  onClick={() => {
-                    props.SetCategoriesFilter(["all"]);
-                  }}
-                ></input>
+                <CategoryFilterSelector
+                  categoriesFilter={props.categoriesFilter}
+                  SetCategoriesFilter={props.SetCategoriesFilter}
+                  ChangeFilter={changeFilter}
+                />
               </form>
             </div>
           )}
@@ -257,9 +213,7 @@ export default function ServiceDropdown(props) {
             <select
               className="sort-select"
               value={props.sortingType}
-              onChange={
-                handleSortByChange
-              }
+              onChange={handleSortByChange}
             >
               <option value="alphabetical">Alphabetical</option>
               <option value="reverse_alphabetical">Reverse Alphabetical</option>
