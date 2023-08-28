@@ -68,6 +68,7 @@ export default function ServiceDropdown(props) {
   };
 
   const handleSortByChange = (event) => {
+    setSortBy(event.target.value);
     props.SetSortingType(event.target.value);
     setContOpen(false);
   };
@@ -249,17 +250,25 @@ export default function ServiceDropdown(props) {
         </div>
       </div>
 
-      {/* <div className="right-section">
+      <div className="right-section">
         <div className="sort-by">
           <label className="sort-label">Sort by: </label>
           <div className="cont">
-            <select className="sort-select" value={sortBy}>
+            <select
+              className="sort-select"
+              value={props.sortingType}
+              onChange={
+                handleSortByChange
+              }
+            >
               <option value="alphabetical">Alphabetical</option>
-              <option value="recent">Most Recent</option>
+              <option value="reverse_alphabetical">Reverse Alphabetical</option>
+              <option value="newest">Most Recent</option>
+              <option value="oldest">Oldest</option>
             </select>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

@@ -495,12 +495,4 @@ input[type="reset"]
         text-align: center;
     }
 
-    .add-service-button 
-    {
-        padding : 10px 90px;
-        margin: 0px;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        display: none;
-    }
 }
