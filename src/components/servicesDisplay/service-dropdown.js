@@ -256,7 +256,7 @@ export default function ServiceDropdown(props) {
           <div className="cont">
             <select
               className="sort-select"
-              value={sortBy}
+              value={props.sortingType}
               onChange={
                 handleSortByChange
               }

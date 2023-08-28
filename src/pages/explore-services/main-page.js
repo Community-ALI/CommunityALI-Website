@@ -11,7 +11,7 @@ function Services(props) {
   return (
     <div className="w-[100vw]">
       <NavBar isFixedPage={false} />
-      <div className="flex justify-center mt-4 w-[100%]">
+      <div className="flex justify-center mt-4 lr:mt-32 w-[100%]">
         <ServicesDisplay  startingfilter={props.startingfilter}/>
       </div>
       <Footer />

@@ -132,8 +132,8 @@ function ServicesDisplay(props) {
 
   // return the page
   return (
-    <div className="flex flex-col ">
-      <div className="flex w-[100%] flex-row justify-between">
+    <div className="flex flex-col max-w-[100%]">
+      <div className="flex w-[100%] flex-row max-w-[100%] justify-between">
         {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}
@@ -141,6 +141,7 @@ function ServicesDisplay(props) {
             serviceTypeFilter={serviceTypeFilter}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
+            sortingType={sortingType}
           />
         )}{" "}
         {isMobile && (
@@ -152,6 +153,7 @@ function ServicesDisplay(props) {
             categoriesFilter={categoriesFilter}
             showServices={showServices}
             SetShowServices={setShowServices}
+            sortingType={sortingType}
           />
         )}
         <div></div>

@@ -188,8 +188,8 @@ const ServiceDropdown = (props) => {
   }
 
   return (
-    <div>
-      <div className='flex justify-center'>
+    <div className="flex-grow max-w-[100%]">
+      <div className='flex justify-between items-center max-w-[100%] lr:mx-6'>
         {!isContentVisible2 &&
           <div className='filter-buttons-container'>
             <button className="add-service-button"
@@ -215,14 +215,22 @@ const ServiceDropdown = (props) => {
                 <div className="sort-by">
                   <label className='sort-label'>Sort by: </label>
                   <div className="cont">
-                    <label className="category-section">
-                      <input
-                        type="checkbox"
-                        name="Internship"
-                        checked={true}
-                      /> Alphabetical
-                    </label>
-
+                      {[{title: "Alphabetical", value: "alphabetical"},
+                       {title: "Reverse Alphabetical", value: "reverse_alphabetical"}]
+                        .map((sortType, index) => {
+                          return (
+                            <label key={sortType.value} className="category-section">
+                              <input
+                                type="checkbox"
+                                checked={props.sortingType === sortType.value}
+                                onChange={() => {
+                                  props.SetSortingType(sortType.value)
+                                }}
+                              /> {sortType.title}
+                            </label>
+                          )
+                        })
+                      }
                   </div>
                 </div>
               </div>
