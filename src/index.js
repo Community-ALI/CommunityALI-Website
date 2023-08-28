@@ -54,6 +54,10 @@ function App() {
           path="/services-internships"
           element={<Services_Main_Page startingfilter={"Internship"} />}
         />
+        <Route
+          path="/services-programs"
+          element={<Services_Main_Page startingfilter={"Program"} />}
+        />
         <Route path="/service-info" element={<View_Services />} />
         <Route path="/signup-success" element={<Signup_Success />} />
         <Route path="/SignupPopup" element={<SignupPopup />} />
