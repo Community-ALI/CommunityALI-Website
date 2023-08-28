@@ -92,7 +92,7 @@ function AddEvent() {
   };
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <NavBar isFixedPage={false} />
       <title> Volunteering Editor </title>
       <form action="/store-service" method="POST" className="service-container" id='form'>

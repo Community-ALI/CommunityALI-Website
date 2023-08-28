@@ -175,7 +175,7 @@ function AddInternship() {
 
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <NavBar isFixedPage={false} />
       <title> Internship Editor </title>
       <form method="POST" className="service-container" id='form'>
