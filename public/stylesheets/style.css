@@ -1407,6 +1407,16 @@ video {
   padding-bottom: 0.25rem;
 }
 
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.py-\[20px\] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .pt-4 {
   padding-top: 1rem;
 }
@@ -1485,6 +1495,10 @@ video {
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.text-\[20px\] {
+  font-size: 20px;
 }
 
 .font-\[400\] {
@@ -1628,6 +1642,12 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:scale-\[1\.05\]:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:bg-\[\#00468D\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 70 141 / var(--tw-bg-opacity));
@@ -1644,6 +1664,10 @@ video {
 .hover\:text-\[white\]:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[color\:var\(--accent-color\)\]:hover {
+  color: var(--accent-color);
 }
 
 @media (max-width: 1250px) {
@@ -1720,6 +1744,10 @@ video {
 
   .xlr\:text-\[110\%\] {
     font-size: 110%;
+  }
+
+  .xlr\:text-\[20px\] {
+    font-size: 20px;
   }
 }
 
@@ -1857,6 +1885,10 @@ video {
   .lr\:text-\[14px\] {
     font-size: 14px;
   }
+
+  .lr\:text-\[16px\] {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1963,6 +1995,10 @@ video {
 
   .md\:text-\[16px\] {
     font-size: 16px;
+  }
+
+  .md\:text-\[14px\] {
+    font-size: 14px;
   }
 }
 

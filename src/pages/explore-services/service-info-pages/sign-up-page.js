@@ -124,13 +124,20 @@ function SignUpPage({ service }) {
           onSubmit={handleSubmit}
         >
           <div className="service-header" id="sign-up-header">
-            Apply Today!
+            {service.serviceType === "Internship" ? 
+            ( <p>Click the Link Below To Apply Today</p> )
+            :
+              ( <p>Apply Today</p> )
+            }
+
           </div>
           {/* if the service is an internship, show a link, otherwise, do the sign up form */}
           {service.serviceType === "Internship" ? (
-            <div>
+            <div className="bg-[color:var(--secondary-color)] px-[30px] py-[20px] w-[100%] rounded-[20px] 
+            flex justify-center items-center transition duration-300 hover:bg-[color:var(--dark-secondary-color)] 
+            hover:text-[color:var(--accent-color)]">
               <div
-                className="sign-up-form-container"
+                className="flex justify-center text-center items-center text-[20px] lr:text-[16px] md:text-[14px]"
                 dangerouslySetInnerHTML={{
                   __html: textWithLinksToParagraph(service.internshipLink),
                 }}
