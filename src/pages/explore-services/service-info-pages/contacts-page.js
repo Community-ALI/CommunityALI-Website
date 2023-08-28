@@ -6,10 +6,7 @@ function ContactsPage({ service }) {
   if (service.pages && service.pages.contacts) {
     contacts = service.pages.contacts.contacts;
   }
-  var socialMedia = [];
-  if (service.pages && service.pages.contacts.socialMedia) {
-    socialMedia = service.pages.contacts.socialMedia;
-  }
+
 
   return (
     <div>
@@ -33,19 +30,6 @@ function ContactsPage({ service }) {
           </div>
         )}
 
-        {socialMedia.length > 0 && (
-          <div className="service-details" id="social-media-container">
-            <div className="service-header">Follow our Social Media</div>
-            {socialMedia.map((media, index) => (
-              <div key={index}>
-                <u className="club-contacts-selection">{media.mediaType} : </u>
-                <a className="service-contact-link" target="_blank" href={media.mediaUrl}>
-                  {media.mediaName}
-                </a>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
