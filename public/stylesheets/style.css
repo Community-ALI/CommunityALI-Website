@@ -1365,11 +1365,6 @@ video {
   padding-bottom: 10px;
 }
 
-.py-\[20px\] {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 .py-\[40px\] {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -1378,6 +1373,11 @@ video {
 .py-\[5px\] {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.py-\[20px\] {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .pt-4 {
@@ -1438,10 +1438,6 @@ video {
   font-size: 18px;
 }
 
-.text-\[20px\] {
-  font-size: 20px;
-}
-
 .text-\[28px\] {
   font-size: 28px;
 }
@@ -1458,6 +1454,10 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[20px\] {
+  font-size: 20px;
 }
 
 .font-\[400\] {
@@ -1606,13 +1606,13 @@ video {
   background-color: var(--secondary-color);
 }
 
-.hover\:text-\[color\:var\(--accent-color\)\]:hover {
-  color: var(--accent-color);
-}
-
 .hover\:text-\[white\]:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[color\:var\(--accent-color\)\]:hover {
+  color: var(--accent-color);
 }
 
 @media (max-width: 1250px) {
@@ -1779,16 +1779,16 @@ video {
     font-size: 12px;
   }
 
-  .lr\:text-\[16px\] {
-    font-size: 16px;
-  }
-
   .lr\:text-\[22px\] {
     font-size: 22px;
   }
 
   .lr\:text-\[90\%\] {
     font-size: 90%;
+  }
+
+  .lr\:text-\[16px\] {
+    font-size: 16px;
   }
 }
 
@@ -1894,12 +1894,12 @@ video {
     font-size: 13px;
   }
 
-  .md\:text-\[14px\] {
-    font-size: 14px;
-  }
-
   .md\:text-\[16px\] {
     font-size: 16px;
+  }
+
+  .md\:text-\[14px\] {
+    font-size: 14px;
   }
 }
 
