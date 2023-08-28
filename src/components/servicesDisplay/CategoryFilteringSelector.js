@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 function CategorySelector(props) {
+  function HandleCategoryChange() {
+    if (props.selectedCategories.includes(props.category)) {
+      props.SetSelectedCategories(
+        props.selectedCategories.filter(
+          (category) => category != props.category
+        )
+      );
+      return;
+    }
+    props.SetSelectedCategories([...props.selectedCategories, props.category]);
+  }
+
   return (
     <label className="category-section">
       <input
         type="checkbox"
-        checked={props.categoriesFilter.includes(props.category)}
+        checked={props.selectedCategories.includes(props.category)}
         onChange={() => {
-          props.ChangeFilter(
-            props.category,
-            props.categoriesFilter,
-            props.SetCategoriesFilter
-          );
+          HandleCategoryChange();
         }}
       />{" "}
       {props.category}
@@ -36,9 +44,9 @@ export default function CategoryFilterSelector(props) {
         <CategorySelector
           key={index}
           category={category}
-          categoriesFilter={props.categoriesFilter}
+          selectedCategories={props.selectedCategories}
           SetCategoriesFilter={props.SetCategoriesFilter}
-          ChangeFilter={props.ChangeFilter}
+          SetSelectedCategories={props.SetSelectedCategories}
         />
       ))}
     </div>

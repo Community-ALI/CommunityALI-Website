@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import CategoryFilterSelector from "./CategoryFilteringSelector";
 import ServiceTypeSelector from "./ServiceTypeFilterSelector";
+import { event } from "jquery";
 
 export default function ServiceDropdown(props) {
-  const [isContentVisible1, setServiceTypeFilterDropDownVisability] =
+  const [isServiceTypeFilterVisable, setIsServiceTypeFilterVisable] =
     useState(false);
-  const [isContentVisible2, setContentVisible2] = useState(false);
+  const [isCategoryFilterVisable, setIsCategoryFilterVisable] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState(
+    props.categoriesFilter
+  );
 
   const serviceTypeFilterToggle = useRef(null);
   const categoryFilterToggle = useRef(null);
@@ -13,13 +17,15 @@ export default function ServiceDropdown(props) {
   const categoryFilterContent = useRef(null);
 
   const toggleServiceTypeFilterDropDown = () => {
-    setServiceTypeFilterDropDownVisability(
+    setIsServiceTypeFilterVisable(
       (prevIsContentVisible1) => !prevIsContentVisible1
     );
   };
 
   const toggleContent2 = () => {
-    setContentVisible2((prevIsContentVisible2) => !prevIsContentVisible2);
+    setIsCategoryFilterVisable(
+      (prevIsContentVisible2) => !prevIsContentVisible2
+    );
   };
 
   const handleSortByChange = (event) => {
@@ -52,6 +58,15 @@ export default function ServiceDropdown(props) {
     );
   };
 
+  const changeCategoryFilter = (input) => {
+    if (selectedCategories.includes("all") && selectedCategories.length > 1) {
+      setSelectedCategories(selectedCategories.filter((cat) => cat != "all"));
+    } else if (selectedCategories.length < 1) {
+      setSelectedCategories(["all"]);
+    }
+    props.SetCategoriesFilter(selectedCategories);
+  };
+
   const handleClickOutside = (event) => {
     if (
       serviceTypeFilterToggle.current &&
@@ -59,7 +74,7 @@ export default function ServiceDropdown(props) {
       serviceTypeFilterContent.current &&
       !serviceTypeFilterContent.current.contains(event.target)
     ) {
-      setServiceTypeFilterDropDownVisability(false);
+      setIsServiceTypeFilterVisable(false);
     }
     if (
       categoryFilterToggle.current &&
@@ -67,7 +82,7 @@ export default function ServiceDropdown(props) {
       categoryFilterContent.current &&
       !categoryFilterContent.current.contains(event.target)
     ) {
-      setContentVisible2(false);
+      setIsCategoryFilterVisable(false);
     }
   };
 
@@ -94,11 +109,11 @@ export default function ServiceDropdown(props) {
           >
             <b>Filter Service Category</b>
             <span
-              className={`arrow ${isContentVisible1 ? "up" : "down"}`}
+              className={`arrow ${isServiceTypeFilterVisable ? "up" : "down"}`}
             ></span>
           </button>
 
-          {isContentVisible1 && (
+          {isServiceTypeFilterVisable && (
             <div className="content fadeInDown" ref={serviceTypeFilterContent}>
               <form className="filter-category-container">
                 <ServiceTypeSelector
@@ -115,20 +130,26 @@ export default function ServiceDropdown(props) {
           <button className="filter-school-button" onClick={toggleContent2}>
             <b>Filter By School</b>
             <span
-              className={`arrow ${isContentVisible2 ? "up" : "down"}`}
+              className={`arrow ${isCategoryFilterVisable ? "up" : "down"}`}
             ></span>
           </button>
 
-          {isContentVisible2 && (
+          {isCategoryFilterVisable && (
             <div
               className="school-filter-content fadeInDown"
               ref={categoryFilterContent}
             >
-              <form className="filter-category-container">
+              <form
+                className="filter-category-container"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  changeCategoryFilter();
+                }}
+              >
                 <CategoryFilterSelector
-                  categoriesFilter={props.categoriesFilter}
+                  selectedCategories={selectedCategories}
                   SetCategoriesFilter={props.SetCategoriesFilter}
-                  ChangeFilter={changeFilter}
+                  SetSelectedCategories={setSelectedCategories}
                 />
                 <hr />
                 <div className="flex text-white justify-between p-2 items-center">
@@ -136,7 +157,7 @@ export default function ServiceDropdown(props) {
                     type="reset"
                     value="Clear All"
                     onClick={() => {
-                      props.SetCategoriesFilter(["all"]);
+                      setSelectedCategories(["all"]);
                     }}
                   ></input>
                   <input
