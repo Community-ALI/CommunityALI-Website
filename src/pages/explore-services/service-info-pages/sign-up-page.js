@@ -144,7 +144,6 @@ function SignUpPage({ service }) {
               ></div>
             </div>
           ) : (
-            
             <div>
               {service.serviceType === "Program" 
               ? 
