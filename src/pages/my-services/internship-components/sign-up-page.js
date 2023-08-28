@@ -4,7 +4,7 @@ import '../add-service.css';
 import { useNavigate } from 'react-router-dom';
 function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode = false}) {
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
-
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const toggleAuthorizationPopup = () => 
   {
     setShowAuthorizationPopup((prev) => !prev);
@@ -94,7 +94,12 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
       event.preventDefault();
       if (checkRequired()){
         const selectedFile = allFormData.Overview.file;
+        // display loading screen
+        setShowLoadingScreen(true);
+        // hide the authorization popup
+        toggleAuthorizationPopup();
         
+
         if (selectedFile) {
           const sendFormData = new FormData();
           sendFormData.append('title', mainInfo.title);
@@ -161,7 +166,7 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             .then(response => response.json())
             .then(data => {
               // Handle response from the server
-              navigate('/services'); // Navigate to the new page without triggering beforeunload event
+              navigate('/my-services'); // Navigate to the new page without triggering beforeunload event
             })
             .catch(error => {
               // Handle error
@@ -226,6 +231,14 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Internship', editMode
             </div>
           </div>
           )}
+        {showLoadingScreen && 
+        (<div className="loader-wrapper">
+          <span className="loader">
+            <span className="loader-inner"></span>
+          </span>
+        </div>)}
+
+          
       </div>
   )
 }

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = false}) {
 
   const [showAuthorizationPopup, setShowAuthorizationPopup] = useState(false);
-
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const toggleAuthorizationPopup = () => 
   {
     setShowAuthorizationPopup((prev) => !prev);
@@ -99,6 +99,11 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
     const handleSubmit = (event) => {
       event.preventDefault();
       if (checkRequired()){
+        // display loading screen
+        setShowLoadingScreen(true);
+        // hide the authorization popup
+        toggleAuthorizationPopup();
+
         const selectedFile = allFormData.Overview.file;
         
         if (selectedFile) {
@@ -242,6 +247,13 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Program', editMode = 
             </div>
           </div>
           )}
+
+{showLoadingScreen && 
+        (<div className="loader-wrapper">
+          <span className="loader">
+            <span className="loader-inner"></span>
+          </span>
+        </div>)}
       </div>
   )
 }
