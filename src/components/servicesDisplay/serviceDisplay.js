@@ -133,7 +133,7 @@ function ServicesDisplay(props) {
   // return the page
   return (
     <div className="flex flex-col max-w-[100%]">
-      <div className="flex w-[100%] flex-row max-w-[100%] justify-between">
+      {/* <div className="flex w-[100%] flex-row max-w-[100%] justify-between">
         {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}
@@ -157,9 +157,8 @@ function ServicesDisplay(props) {
           />
         )}
         <div></div>
-      </div>
-      <div className="flex">
-        <title> Explore Services </title>
+      </div> */}
+      <div className="flex items-center justify-center">
         <div className="loader-wrapper">
           <span className="loader">
             <span className="loader-inner"></span>
