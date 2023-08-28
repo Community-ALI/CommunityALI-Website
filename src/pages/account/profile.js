@@ -35,7 +35,7 @@ function Profile() {
   const [isShowingPasswordPopup, setIsShowingPasswordPopup] = useState(false);
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(true);
   const [buttonText, setButtonText] = useState('Edit Information');
   const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
   const nameRef = useRef(null);
@@ -398,7 +398,7 @@ function Profile() {
         {editMode &&
           <input type="button" className="profile-save-button" id='profile-cancel-button'
             
-            onClick={() => { setEditMode(false); navigate('/profile'); }}
+            onClick={() => { setEditMode(false); window.location.reload(); }}
             value='Cancel Edits'
           />
         }

@@ -153,7 +153,7 @@ const ImageUploadWindow = ({ imageUrl, onClose, uploadData, setAccount}) => {
               style={{ borderRadius: '50%' }} 
             />
             <input className='zoom-slider' type="range" min="1" max="2" step="0.1" value={scale} onChange={handleScaleChange} />
-            <button className='save-profile-image-button' onClick={handleSave}>Save</button>
+            <button className='save-profile-image-button' onClick={handleSave}>Review Changes</button>
           </div>
         ) : null}
       </div>
