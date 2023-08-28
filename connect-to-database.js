@@ -17,6 +17,7 @@ const serviceSchema = {
     photo: Buffer,
     pages: JSON,
     categories: Array,
+    createdAt: {type: Date, required: true, default: Date.now},
     datePosted: String,
     timePosted: String,
     user: String, // the username of the user who posted the service

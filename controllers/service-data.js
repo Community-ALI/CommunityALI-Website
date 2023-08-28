@@ -103,14 +103,6 @@ const find_filter_service = async function (
     const users = usersStr.split(",");
     const categories = categoriesStr.split(">");
     console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}`);
-    var sort;
-    switch (sortingType) {
-      case "reverse_alphabetical":
-        sort = -1;
-        break;
-      default:
-        sort = 1;
-    }
     const query = {
       ...(serviceTypes.includes("all")
         ? {}
@@ -120,10 +112,25 @@ const find_filter_service = async function (
         : { categories: { $in: categories } }),
       ...(users.includes("all") ? {} : { user: users }),
     };
-    services = await Services.find(query)
-      .select(fields)
-      .sort({ title: sort })
-      .exec();
+
+    let sort = {};
+    switch (sortingType) {
+      case "reverse_alphabetical":
+        sort = { title: -1 };
+        break;
+      case "oldest":
+        sort = { createdAt: 1 };
+        break;
+        case "newest":
+        sort = { createdAt: -1 };
+        break;
+        default:
+        sort = { title: 1 };
+    }
+
+    console.log("sort: ", sort);
+
+    services = await Services.find(query).select(fields).sort(sort).exec();
 
     return services;
   } catch (err) {
@@ -141,7 +148,6 @@ exports.get_services = async function (
   categories,
   users
 ) {
-
   let serviceType = serviceTypeStr.split(",");
   console.log(
     `keywords: ${keywords}, fields: ${fields}, sortingType: ${sortingType}, serviceType: ${serviceType}, categories: ${categories}, users: ${users}`
@@ -170,6 +176,7 @@ exports.get_services = async function (
       }
       if (clubKeywords.includes(subString.toLowerCase())) {
         serviceType = addToServiceType("Club", serviceType);
+        setContentVisible2;
       }
     }
   }
