@@ -56,6 +56,7 @@ function DisplayAllServices(props) {
         <div id="no-service-found-description">
           Please try again or contact technical support for more assistance.
         </div>
+        
       </div>
     );
   }

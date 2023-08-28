@@ -17,7 +17,7 @@ function ContactsPage({ service }) {
             {contacts.map((contact, index) => (
               <div className="contacts-container" id='contact-page-container' key={index}>
                 <div className="service-contact-name">
-                  <u className="club-contacts-selection">{contact.contactRole}</u>
+                  <u className="club-contacts-selection">{contact.contactRole}: </u>
                   {contact.contactName} -  
                 </div>
                 <div className="text-button-container">
