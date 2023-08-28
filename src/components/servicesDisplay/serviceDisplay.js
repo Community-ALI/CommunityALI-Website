@@ -99,7 +99,7 @@ function ServicesDisplay(props) {
             index === 0 ? category : `${result}>${category}`,
           ""
         );
-        url += `/${sortingType}/${serviceTypeFilter}/${categoriesFilter}/${userFilter}`;
+        url += `/${sortingType}/${serviceTypeFilter}/${categoriesFilterUrl}/${userFilter}`;
         if (keyword) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
         }

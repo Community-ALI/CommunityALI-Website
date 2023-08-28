@@ -101,8 +101,9 @@ const find_filter_service = async function (
 ) {
   try {
     const users = usersStr.split(",");
+    console.log(categoriesStr);
     const categories = categoriesStr.split(">");
-    console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}`);
+    console.log(`filterType: ${serviceTypes}, sortingType: ${sortingType}, categories: ${categories}, users: ${users}`);
     const query = {
       ...(serviceTypes.includes("all")
         ? {}
