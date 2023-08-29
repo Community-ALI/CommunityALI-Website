@@ -152,11 +152,13 @@ export default function ServiceDropdown(props) {
       </div>
 
       <div className="right-section">
-        <div className="sort-by">
-          <label className="sort-label">Sort by: </label>
+        <div className="flex items-center">
+          <label>Sort by: </label>
           <div className="cont">
             <select
-              className="sort-select"
+              className="border-none outline-none bg-transparent text-black 
+                font-bold appearance-none -webkit-appearance-none text-[18px]
+                text-center"
               value={props.sortingType}
               onChange={handleSortByChange}
             >

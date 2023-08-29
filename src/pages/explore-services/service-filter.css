@@ -373,10 +373,6 @@ input[type="checkbox"]:checked:after
 
 }
 
-.sort-by {
-    display: flex;
-}
-
 .sort-by label {
     margin-right: 10px;
 }
