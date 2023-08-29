@@ -24,12 +24,14 @@ const ServiceDropdown = (props) => {
   };
 
   const submitFilters = () => {
-    if (selectedCategories.includes("all") && selectedCategories.length > 1) {
-      setSelectedCategories(selectedCategories.filter((cat) => cat != "all"));
-    } else if (selectedCategories.length < 1) {
-      setSelectedCategories(["all"]);
+    let categories = selectedCategories;
+    if (categories.includes("all") && categories.length > 1) {
+      categories = selectedCategories.filter((cat) => cat != "all");
+    } else {
+      console.log("here");
+      categories = ["all"];
     }
-    props.SetCategoriesFilter(selectedCategories);
+    props.SetCategoriesFilter(categories);
     props.SetServiceTypeFilter(selectedServiceTypes);
     setIsServiceTypeAndCategoriesFiltersVisable(false);
   };
