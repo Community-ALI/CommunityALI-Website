@@ -29,30 +29,12 @@ export default function ServiceDropdown(props) {
   };
 
   const handleSortByChange = (event) => {
-    setSortBy(event.target.value);
     props.SetSortingType(event.target.value);
-    setContOpen(false);
   };
 
   const changeServiceTypeFilter = (event) => {
     console.log(event.target.value)
     props.SetServiceTypeFilter(event.target.value);
-  };
-
-  const changeFilter = (input, filter, filterSetState) => {
-    if (filter.includes(input)) {
-      if (filter.length < 2) {
-        filterSetState(["all"]);
-        return;
-      }
-      console.log(`removing ${input} form ${filter}`);
-      filterSetState(filter.filter((filterType) => filterType != input));
-      return;
-    }
-    console.log("02: " + props.serviceTypeFilter);
-    filterSetState(
-      filter.filter((filterType) => filterType != "all").concat(input)
-    );
   };
 
   const changeCategoryFilter = (input) => {
