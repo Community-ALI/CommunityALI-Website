@@ -12,12 +12,16 @@ const ServiceDropdown = (props) => {
   const [selectedCategories, setSelectedCategories] = useState(
     props.categoriesFilter
   );
-  const [selectedServiceTypes, setSelectedServiceTypes] = useState(props.serviceTypeFilter);
+  const [selectedServiceTypes, setSelectedServiceTypes] = useState(
+    props.serviceTypeFilter
+  );
+  const [selectedSortingType, setSelectedSortingType] = useState(
+    props.sortingType
+  );
 
   const changeServiceTypeFilter = (event) => {
     setSelectedServiceTypes(event.target.value);
   };
-
 
   const submitFilters = () => {
     if (selectedCategories.includes("all") && selectedCategories.length > 1) {
@@ -79,10 +83,13 @@ const ServiceDropdown = (props) => {
             </button>
           </div>
           <hr className="border-2 text-white border-white" />
-          <form className="flex-grow flex flex-col px-6 gap-6" onSubmit={(event) => {
-                  event.preventDefault();
-                  submitFilters();
-                }}>
+          <form
+            className="flex-grow flex flex-col px-6 gap-6"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submitFilters();
+            }}
+          >
             <h1 className="text-white mt-12 font-bold text-lg">
               Filter Service Category
             </h1>
@@ -130,7 +137,7 @@ const ServiceDropdown = (props) => {
             <button
               className="filter-school-button"
               onClick={() => {
-                setIsSortingFilterVisable(isSortingFilterVisable);
+                setIsSortingFilterVisable(!isSortingFilterVisable);
               }}
             >
               <b>Sort By</b>
@@ -141,36 +148,53 @@ const ServiceDropdown = (props) => {
           )}
 
           {isSortingFilterVisable && (
-            <div className="content fadeInDown" ref={contentRef2}>
-              <div className="right-section">
-                <div className="sort-by">
-                  <label className="sort-label">Sort by: </label>
-                  <div className="cont">
-                    {[
-                      { title: "Alphabetical", value: "alphabetical" },
-                      {
-                        title: "Reverse Alphabetical",
-                        value: "reverse_alphabetical",
-                      },
-                    ].map((sortType, index) => {
-                      return (
-                        <label
-                          key={sortType.value}
-                          className="category-section"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={props.sortingType === sortType.value}
-                            onChange={() => {
-                              props.SetSortingType(sortType.value);
-                            }}
-                          />{" "}
-                          {sortType.title}
-                        </label>
-                      );
-                    })}
-                  </div>
+            <div
+              className="fixed w-[100vw] z-30 bg-ali-lightblue h-[100vh] top-0
+              left-0 flex flex-col mt-[66px]"
+            >
+              <div className="flex flex-col gap-3 p-6">
+                <div className="flex justify-between">
+                  <label className="sort-label text-5xl font-bold text-white">
+                    Sort by:{" "}
+                  </label>
+                  <button
+                    className="w-6 h-6 cursor-pointer"
+                    onClick={toggleServiceTypeFilterDropDown}
+                  >
+                    <i className="fa-solid fa-x text-white"></i>
+                  </button>
                 </div>
+                <form
+                  className="flex-grow flex-col flex gap-3"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    props.SetSortingType(selectedSortingType);
+                    setIsSortingFilterVisable(false);
+                  }}
+                >
+                  {props.sortingTypes.map((sortType) => {
+                    return (
+                      <label
+                        key={sortType.value}
+                        className="category-section border-2 border-white rounded-lg p-2 text-white"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedSortingType === sortType.value}
+                          onChange={() => {
+                            setSelectedSortingType(sortType.value);
+                          }}
+                        />{" "}
+                        {sortType.title}
+                      </label>
+                    );
+                  })}
+                  <input
+                    type="submit"
+                    className="bg-ali-orange p-1 px-2 rounded-lg text-black"
+                    value="Apply"
+                  ></input>
+                </form>
               </div>
             </div>
           )}
