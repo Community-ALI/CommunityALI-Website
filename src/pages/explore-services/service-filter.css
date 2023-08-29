@@ -360,23 +360,6 @@ input[type="checkbox"]:checked:after
     top: -3px;
 }
 
-.sort-by select {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: black;
-    font-weight: bold;
-
-
-    appearance: none;
-    -webkit-appearance: none;
-
-}
-
-.sort-by label {
-    margin-right: 10px;
-}
-
 .sort-by .arrow {
     border-top: 1.5px solid #000;
     border-right: 1.5px solid #000;
@@ -401,11 +384,6 @@ input[type="checkbox"]:checked:after
     font-size: 18px;
 }
 
-
-.sort-select {
-    font-size: 18px;
-    color: white;
-}
 
 .right-section {
     color: white;
