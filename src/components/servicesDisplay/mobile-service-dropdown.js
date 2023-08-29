@@ -68,8 +68,8 @@ const ServiceDropdown = (props) => {
             <button
               className="cursor-pointer text-white"
               onClick={() => {
-                props.SetCategoriesFilter(["all"]);
-                props.SetServiceTypeFilter(["all"]);
+                setSelectedCategories(["all"]);
+                setSelectedServiceTypes(["all"]);
               }}
             >
               Clear All
