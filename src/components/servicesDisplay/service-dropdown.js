@@ -37,7 +37,7 @@ export default function ServiceDropdown(props) {
     props.SetServiceTypeFilter(event.target.value);
   };
 
-  const changeCategoryFilter = (input) => {
+  const changeCategoryFilter = () => {
     if (selectedCategories.includes("all") && selectedCategories.length > 1) {
       setSelectedCategories(selectedCategories.filter((cat) => cat != "all"));
     } else if (selectedCategories.length < 1) {
