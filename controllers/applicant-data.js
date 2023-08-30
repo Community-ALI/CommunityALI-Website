@@ -62,8 +62,35 @@ function sendNotification(req, user) {
     });
 }
 
+
 exports.store_application = async function (req) {
     try {
+
+        // Get the user who created the application
+        const token = req.headers.authorization.split(" ")[1];
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const username = decodedToken.username;
+
+        // make sure the user isn't already a member of the service
+        const service = await Service.findOne({ title: req.body.service }).exec();
+        // get the user's id
+        var user = await User.findOne({ username: username }).exec();
+        // convert the user to json
+        user = JSON.parse(JSON.stringify(user));
+        const user_id = user._id;
+        
+        if (service.members.includes(user_id)) {
+            return { success: false, error: `You are already a member of this service`};
+        }
+
+        // make sure the user has not already applied to this service
+        const application = await Application.findOne({ service: req.body.service, user: username }).exec();
+        if (application) {
+            return { success: false, error: `You have already applied to this service, please wait for a response`};
+        }
+        
+
+        // Get the user who created the application
         const currentDate = new Date();
         const isoDate = currentDate.toISOString(); // Convert to ISO date and time string
         const formattedDate = currentDate.toLocaleDateString();
@@ -74,11 +101,7 @@ exports.store_application = async function (req) {
 
         console.log("service: " + req.body.service);
 
-        // Get the user who created the application
-        const token = req.headers.authorization.split(" ")[1];
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        const username = decodedToken.username;
-
+        
 
         const apply = new Application({
             service: req.body.service,
