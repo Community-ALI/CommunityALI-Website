@@ -86,7 +86,7 @@ exports.store_application = async function (req) {
         // make sure the user has not already applied to this service
         const application = await Application.findOne({ service: req.body.service, user: username }).exec();
         if (application) {
-            return { success: false, error: `You have already applied to this service LMAO XD :P`};
+            return { success: false, error: `You have already applied to this service`};
         }
         
 
