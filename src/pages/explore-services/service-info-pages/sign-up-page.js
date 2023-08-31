@@ -21,7 +21,7 @@ function SignUpPage({ service }) {
       return;
     }
     setPreventDebounce(true);
-    
+
     const token = localStorage.getItem("token");
     if (!token) {
       alert("You must be logged in to sign up for a service");
@@ -54,6 +54,8 @@ function SignUpPage({ service }) {
         }
         else{
           alert(data.error);
+          // reset the preventDebounce variable
+          setPreventDebounce(false);
         }
       })
       .catch((error) => {
@@ -87,7 +89,7 @@ function SignUpPage({ service }) {
   function hidePopups() {
     setIsShowingLoginPopup(false);
     setIsShowingSignupPopup(false);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
