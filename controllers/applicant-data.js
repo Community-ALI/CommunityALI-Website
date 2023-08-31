@@ -78,7 +78,7 @@ exports.store_application = async function (req) {
         // convert the user to json
         user = JSON.parse(JSON.stringify(user));
         const user_id = user._id;
-        
+
         if (service.members.includes(user_id)) {
             return { success: false, error: `You are already a member of this service`};
         }
@@ -86,7 +86,7 @@ exports.store_application = async function (req) {
         // make sure the user has not already applied to this service
         const application = await Application.findOne({ service: req.body.service, user: username }).exec();
         if (application) {
-            return { success: false, error: `You have already applied to this service, please wait for a response`};
+            return { success: false, error: `You have already applied to this service LMAO XD :P`};
         }
         
 
