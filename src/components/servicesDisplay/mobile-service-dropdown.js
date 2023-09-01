@@ -40,6 +40,8 @@ const ServiceDropdown = (props) => {
     setIsServiceTypeAndCategoriesFiltersVisable(
       !isServiceTypeAndCategoriesFiltersVisable
     );
+    setSelectedCategories(props.categoriesFilter);
+    setSelectedServiceTypes(props.serviceTypeFilter);
   };
 
   const toggleCont = () => {
@@ -161,7 +163,10 @@ const ServiceDropdown = (props) => {
                   </label>
                   <button
                     className="w-6 h-6 cursor-pointer"
-                    onClick={toggleServiceTypeFilterDropDown}
+                    onClick={() => {
+                      setIsSortingFilterVisable(false);
+                      setSelectedSortingType(props.sortingType);
+                    }}
                   >
                     <i className="fa-solid fa-x text-white"></i>
                   </button>
