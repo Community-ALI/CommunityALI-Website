@@ -61,60 +61,58 @@ const ServiceDropdown = (props) => {
 
   if (isServiceTypeAndCategoriesFiltersVisable) {
     return (
-      <div>
-        <div
-          className="fixed w-[100vw] z-30 bg-ali-lightblue h-[100vh] top-0
-            left-0 flex flex-col mt-[66px]"
-        >
-          <div className="flex text-white justify-between items-center p-6">
-            <button
-              className="cursor-pointer text-white"
-              onClick={() => {
-                setSelectedCategories(["all"]);
-                setSelectedServiceTypes(["all"]);
-              }}
-            >
-              Clear All
-            </button>
-            <h1 className="font-bold text-lg absolute left-1/2 translate-x-[-50%]">
-              Filter
-            </h1>
-            <button
-              className="w-6 h-6 cursor-pointer"
-              onClick={toggleServiceTypeFilterDropDown}
-            >
-              <i className="fa-solid fa-x text-white"></i>
-            </button>
-          </div>
-          <hr className="border-2 text-white border-white" />
-          <form
-            className="flex-grow flex flex-col px-6 gap-6"
-            onSubmit={(event) => {
-              event.preventDefault();
-              submitFilters();
+      <div
+        className="fixed w-[100vw] z-30 bg-ali-lightblue h-[100%] top-0
+            left-0 flex flex-col pt-[66px] overflow-y-scroll pb-8"
+      >
+        <div className="flex text-white justify-between items-center p-6">
+          <button
+            className="cursor-pointer text-white"
+            onClick={() => {
+              setSelectedCategories(["all"]);
+              setSelectedServiceTypes(["all"]);
             }}
           >
-            <h1 className="text-white mt-12 font-bold text-lg">
-              Filter Service Category
-            </h1>
-            <ServiceTypeSelector
-              serviceTypes={props.serviceTypes}
-              serviceTypeFilter={selectedServiceTypes}
-              ChangeServiceTypeFilter={changeServiceTypeFilter}
-            />
-            <h1 className="text-white font-bold text-lg">Filter By School</h1>
-            <CategoryFilterSelector
-              selectedCategories={selectedCategories}
-              SetCategoriesFilter={props.SetCategoriesFilter}
-              SetSelectedCategories={setSelectedCategories}
-            />
-            <input
-              type="submit"
-              className="bg-ali-orange p-1 px-2 rounded-lg text-black"
-              value="Apply"
-            ></input>
-          </form>
+            Clear All
+          </button>
+          <h1 className="font-bold text-lg absolute left-1/2 translate-x-[-50%]">
+            Filter
+          </h1>
+          <button
+            className="w-6 h-6 cursor-pointer"
+            onClick={toggleServiceTypeFilterDropDown}
+          >
+            <i className="fa-solid fa-x text-white"></i>
+          </button>
         </div>
+        <hr className="border-2 text-white border-white" />
+        <form
+          className="flex-grow flex flex-col px-6 gap-6"
+          onSubmit={(event) => {
+            event.preventDefault();
+            submitFilters();
+          }}
+        >
+          <h1 className="text-white mt-12 font-bold text-lg">
+            Filter Service Category
+          </h1>
+          <ServiceTypeSelector
+            serviceTypes={props.serviceTypes}
+            serviceTypeFilter={selectedServiceTypes}
+            ChangeServiceTypeFilter={changeServiceTypeFilter}
+          />
+          <h1 className="text-white font-bold text-lg">Filter By School</h1>
+          <CategoryFilterSelector
+            selectedCategories={selectedCategories}
+            SetCategoriesFilter={props.SetCategoriesFilter}
+            SetSelectedCategories={setSelectedCategories}
+          />
+          <input
+            type="submit"
+            className="bg-ali-orange p-1 px-2 rounded-lg text-black"
+            value="Apply"
+          ></input>
+        </form>
       </div>
     );
   }
