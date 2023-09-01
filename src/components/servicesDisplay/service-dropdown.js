@@ -32,16 +32,16 @@ export default function ServiceDropdown(props) {
   };
 
   const changeServiceTypeFilter = (event) => {
-    console.log(event.target.value)
+    console.log(event.target.value);
     props.SetServiceTypeFilter(event.target.value);
   };
 
   const changeCategoryFilter = () => {
+    console.log("here ", selectedCategories);
     let categories = selectedCategories;
     if (categories.includes("all") && categories.length > 1) {
       categories = selectedCategories.filter((cat) => cat != "all");
     } else {
-      console.log("here")
       categories = ["all"];
     }
     props.SetCategoriesFilter(categories);
@@ -62,6 +62,7 @@ export default function ServiceDropdown(props) {
       categoryFilterContent.current &&
       !categoryFilterContent.current.contains(event.target)
     ) {
+      changeCategoryFilter();
       setIsCategoryFilterVisable(false);
     }
   };
@@ -71,7 +72,7 @@ export default function ServiceDropdown(props) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [selectedCategories]);
 
   useEffect(() => {
     console.log(props.serviceTypeFilter);
@@ -107,7 +108,11 @@ export default function ServiceDropdown(props) {
         </div>
 
         <div className="filter-buttons-container">
-          <button className="filter-school-button" onClick={toggleCategoriesFilterDropDown}>
+          <button
+            className="filter-school-button"
+            onClick={toggleCategoriesFilterDropDown}
+            ref={categoryFilterToggle}
+          >
             <b>Filter By School</b>
             <span
               className={`arrow ${isCategoryFilterVisable ? "up" : "down"}`}
