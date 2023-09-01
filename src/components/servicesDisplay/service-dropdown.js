@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import CategoryFilterSelector from "./CategoryFilteringSelector";
 import ServiceTypeSelector from "./ServiceTypeFilterSelector";
-import { event } from "jquery";
 
 export default function ServiceDropdown(props) {
   const [isServiceTypeFilterVisable, setIsServiceTypeFilterVisable] =
@@ -22,7 +21,7 @@ export default function ServiceDropdown(props) {
     );
   };
 
-  const toggleContent2 = () => {
+  const toggleCategoriesFilterDropDown = () => {
     setIsCategoryFilterVisable(
       (prevIsContentVisible2) => !prevIsContentVisible2
     );
@@ -108,7 +107,7 @@ export default function ServiceDropdown(props) {
         </div>
 
         <div className="filter-buttons-container">
-          <button className="filter-school-button" onClick={toggleContent2}>
+          <button className="filter-school-button" onClick={toggleCategoriesFilterDropDown}>
             <b>Filter By School</b>
             <span
               className={`arrow ${isCategoryFilterVisable ? "up" : "down"}`}
