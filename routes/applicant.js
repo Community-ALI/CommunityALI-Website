@@ -40,7 +40,8 @@ router.post('/store-application', upload.none(), async function (req, res) {
             res.send(JSON.stringify({ success: true }));
         }
         else {
-            error(message.error)
+            console.log(message.error);
+            res.json({ success: false, error: message.error });
         }
     } catch (error) {
         console.log(error);
