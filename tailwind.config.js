@@ -23,6 +23,26 @@ module.exports = {
         'ali-lightblue': '#0070C9',
         'ali-orange': '#ecaa1e',
       },
+      animation: {
+        'ali-spin': 'ali-spin 2s infinite ease', 
+        'ali-fill': 'ali-fill 2s infinite ease-in'
+      },
+      keyframes: {
+        'ali-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(180deg)' },
+          '50%': { transform: 'rotate(180deg)' },
+          '75%': { transform: 'rotate(360deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'ali-fill': {
+          '0%': { transform: 'scaleY(0)' },
+          '25%': { transform: 'scaleY(0)' },
+          '50%': { transform: 'scaleY(1)' },
+          '75%': { transform: 'scaleY(1)' },
+          '100%': { transform: 'scaleY(0)' },
+        }
+      }
     },
   },
   plugins: [],
