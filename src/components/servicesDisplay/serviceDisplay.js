@@ -6,6 +6,7 @@ import "../../pages/explore-services/main-page.css";
 import "../loading-screen.css";
 import "../../pages/explore-services/service-filter.css";
 import FilterTags from "./FilterTags";
+import LoadingUI from "../loading/LoadingUI";
 const Buffer = require("buffer").Buffer;
 
 // this function creates each individual service
@@ -70,7 +71,7 @@ function DisplayAllServices(props) {
   );
 }
 
-function ServicesDisplay(props) {
+export default function ServicesDisplay(props) {
   const serviceTypes = [
     { serviceType: "all", title: "Show All Types" },
     { serviceType: "Club", title: "Clubs & Communities" },
@@ -103,6 +104,7 @@ function ServicesDisplay(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setShowServices(false);
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get("keyword");
         let url = `${BASE_BACKEND_URL}/servicedata/get-all-services`;
@@ -116,11 +118,23 @@ function ServicesDisplay(props) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
         }
 
-        const response = await fetch(url);
-        console.log(response);
-        const data = await response.json();
-        console.log(data);
-        setServices(data || []);
+        await fetch(url)
+          .then((response) => {
+            console.log(response);
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            if (data) {
+              setServices(data);
+            } else {
+              setServices([]);
+            }
+            setShowServices(true);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
 
         const loaderWrapper = document.querySelector(".loader-wrapper");
         loaderWrapper.style.transition = "opacity 1.5s";
@@ -145,17 +159,19 @@ function ServicesDisplay(props) {
   // return the page
   return (
     <div className="flex flex-col max-w-[100%] w-[1600px]">
-      <div className="flex w-[100%] flex-row max-w-[100%] justify-between">
+      <div className="flex flex-row max-w-[100%] justify-between max-h-[100%] w-[90%] mr-auto ml-auto">
         {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}
             SetServiceTypeFilter={setServiceTypeFilter}
-            serviceTypeFilter={serviceTypeFilter}
+            showServices={showServices}
+            SetShowServices={setShowServices}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
             sortingType={sortingType}
             serviceTypes={serviceTypes}
             sortingTypes={sortingTypes}
+            serviceTypeFilter={serviceTypeFilter}
           />
         )}{" "}
         {isMobile && (
@@ -165,8 +181,6 @@ function ServicesDisplay(props) {
             serviceTypeFilter={serviceTypeFilter}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
-            showServices={showServices}
-            SetShowServices={setShowServices}
             sortingType={sortingType}
             serviceTypes={serviceTypes}
             sortingTypes={sortingTypes}
@@ -188,9 +202,12 @@ function ServicesDisplay(props) {
           </span>
         </div>
         {showServices && <DisplayAllServices services={services} />}
+        {!showServices && (
+          <div className="w-[100%] h-[70vh]">
+            <LoadingUI />
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
-export default ServicesDisplay;

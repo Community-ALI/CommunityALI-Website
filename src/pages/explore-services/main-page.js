@@ -14,7 +14,7 @@ function Services(props) {
       <div className="flex justify-center mt-4 lr:mt-32 w-[100%]">
         <ServicesDisplay  startingfilter={props.startingfilter}/>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

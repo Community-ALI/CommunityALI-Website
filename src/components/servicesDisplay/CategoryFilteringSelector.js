@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function CategorySelector(props) {
+  const [isSelected, setIsSelected] = useState(
+    props.selectedCategories.includes(props.category)
+  );
   function HandleCategoryChange() {
     if (props.selectedCategories.includes(props.category)) {
       props.SetSelectedCategories(
@@ -13,11 +16,15 @@ function CategorySelector(props) {
     props.SetSelectedCategories([...props.selectedCategories, props.category]);
   }
 
+  useEffect(() => {
+    setIsSelected(props.selectedCategories.includes(props.category));
+  }, [props.selectedCategories]);
+
   return (
     <label className="category-section">
       <input
         type="checkbox"
-        checked={props.selectedCategories.includes(props.category)}
+        checked={isSelected}
         onChange={() => {
           HandleCategoryChange();
         }}
