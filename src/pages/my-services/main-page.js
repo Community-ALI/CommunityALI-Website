@@ -76,15 +76,17 @@ function MyServicePageDisplay(props) {
               ></img>
             </a>
             <a className='relative' href={`view-applicants?service=${service.title}`}>
-            <Notifications notifications={notifications ? notifications.length : 0} /> 
-              <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png"></img>
+            <Notifications notifications={notifications ? notifications.length : 0} />
+              <img className='h-[50px] w-[50px] mr-[40px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png" />
             </a>
-            {/* <a  onClick={(event) => {
+
+            <a  onClick={(event) => {
                 event.stopPropagation();
                 props.setDeleteServiceTitle(service.title);
-                props.setIsShowingServiceDeletePopup(true);}}>
-              <img className='h-[50px] w-[50px] xlr:h-[40px] xlr:w-[40px] lr:mx-[10px] lr:w-[30px] lr:h-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/TrashIcon.png"></img>
-            </a> */}
+                props.setIsShowingServiceDeletePopup(true);
+                }}>
+              <img className='h-[50px] w-[50px]  xlr:h-[40px] xlr:w-[40px] lr:w-[30px] lr:h-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/TrashIcon.png"></img>
+            </a>
           </div>
         </div>
       </div>
@@ -144,9 +146,9 @@ function MyServicesHome() {
           )
             .then((response) => response.json())
             .then((data) => {
-              // 'data' variable will contain the received object with the data array and tokenUsername
-
-              setServices(data.dataServices);
+              // combine the two arrays into one
+              const services = data.OwnedServices.concat(data.ModeratedServices);
+              setServices(services);              
               setUsername(data.tokenUsername);
               const loaderWrapper = document.querySelector(".loader-wrapper");
               loaderWrapper.style.transition = "opacity 0.5s";

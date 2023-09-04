@@ -61,6 +61,11 @@ exports.store_add_service = async function (req, username) {
     const photoBuffer = fs.readFileSync(req.file.path);
     // make a thumbnail
     const thumbnail = await generateThumbnail(photoBuffer);
+    // get the user's id from the database
+    var user = await User.findOne({ username: username }).select("_id");
+    user = JSON.parse(JSON.stringify(user));
+    const user_id = user._id;
+
     const newService = new Service({
       title: req.body.title,
       serviceType: req.body.serviceType,
@@ -71,8 +76,9 @@ exports.store_add_service = async function (req, username) {
       datePosted: formattedDate,
       timePosted: time,
       user: username,
-      collaborators: [username], // the user who created the service is automatically a collaborator
-      members: [], // FIXME: Make the user who created the service a member
+      Editors: [], 
+      ApplicationManagers: [],
+      members: [user_id], // Make the user who created the service a member by default
       applicants: [],
       messages: [],
       internshipLink: req.body.internshipLink,
@@ -252,6 +258,27 @@ exports.get_one_service = async function (service_name) {
     return { success: false, error: "internal database error" };
   }
 };
+
+// add an editor to a service
+exports.add_editor = async function (req, service_name) {
+  try {
+    console.log(req.body);
+    const selected_service = await Services.findOne({ title: service_name });
+    // get only the user's id from the database
+    const username = req.body.username;
+    const user = await User.findOne({ username: username }).select("_id");
+    console.log(user);
+    const new_editor = user._id;
+    console.log(new_editor);
+    selected_service.Editor.push(new_editor);
+    await selected_service.save();
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
 
 const generateThumbnail2 = async function (photoBuffer) {
   try {

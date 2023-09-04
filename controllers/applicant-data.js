@@ -89,7 +89,7 @@ exports.store_application = async function (req) {
             return { success: false, error: `You have already applied to this service`};
         }
         
-
+        
         // Get the user who created the application
         const currentDate = new Date();
         const isoDate = currentDate.toISOString(); // Convert to ISO date and time string

@@ -122,15 +122,41 @@ exports.get_user_services = async function (username, requestedServices) {
     if (requestedServices === undefined) {
       requestedServices = "title";
     }
-    const selected_services = await Services.find({ user: username })
+    // Get the services owned by the user
+    const owned_services = await Services.find({ user: username })
       .select(requestedServices)
       .exec();
-    return selected_services;
+
+    return owned_services;
   } catch (error) {
     console.error(error);
     return { success: false, error: "internal database error" };
   }
 };
+
+// get services a user is an editor of from database
+exports.get_moderated_services = async function (username, requestedServices) {
+  try {
+    if (requestedServices === undefined) {
+      requestedServices = "title";
+    }
+    // find the user's _id 
+    var user_id = await Users.findOne({ username: username }, { _id: 1 }).exec().then((user) => user?._id);
+    console.log(user_id);
+    // get services which have the user's _id in their Editors array
+    const selected_services = await Services.find({
+      Editors: { $in: [user_id] },
+    })
+      .select(requestedServices)
+      .exec();
+    return selected_services;
+  }
+  catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+}; 
+
 
 exports.toggle_user_admin = async function (username, adminType) {
   try {

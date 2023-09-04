@@ -415,9 +415,16 @@ router.post("/get-user-services", async function (req, res) {
       username,
       req.body.requestedFields
     );
+    // get collaborations
+    const moderated_services = await user_data.get_moderated_services(
+      username,
+      req.body.requestedFields
+    );
+
 
     res.json({
-      dataServices: user_services,
+      OwnedServices: user_services,
+      ModeratedServices: moderated_services,
       tokenUsername: username,
     });
     console.log("services belonging to", username, "sent");

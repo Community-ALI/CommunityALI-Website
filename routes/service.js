@@ -115,7 +115,6 @@ async function storeEditService(req, res) {
 }
 
 router.post("/upload-service", upload.single("image"), async function (req, res) {
-    console.log('service uploading...');
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -155,6 +154,49 @@ router.post("/upload-service", upload.single("image"), async function (req, res)
 
     }
 });
+
+// add an editor to the service
+router.post("/assign-user-role", async (req, res) => {
+    try {
+        // make sure the user is authorized to change permissions (only the service owner can do this)
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const username = decodedToken.username;
+        
+        const service_name = req.query.service;
+        const service = await service_data.get_one_service(service_name);
+        if (service && username && username == service.user) { // the user owns this service
+            if (req.body.role === 'Editor') {
+                const result = await service_data.add_editor(req, service.title);
+            }
+            else if (req.body.role === 'Application Manager') {
+                const result = await service_data.add_application_manager(req, service.title);
+            }
+            else if (req.body.role === 'Member') {
+                const result = await service_data.demote_user(req, service.title);
+            }
+            else {
+                console.log('invalid role')
+                res.json({ success: false, error: 'invalid role' });
+            }
+            if (result.success) {
+                res.json({ success: true });
+            }
+            else {
+                console.log(result.error);
+                res.json({ success: false, error: 'internal server error' });
+            }
+        }
+        else {
+            console.log('unauthorized request')
+            res.json({ success: false, error: 'unauthorized' });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.json({ success: false, error: 'internal server error' });
+    }
+})
 
 router.get("/get-service-notifications", async function (req, res) {
     try {

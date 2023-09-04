@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 // TODO: Implement member management
 function EntityManagementButton(props) {
   const entity = props.entity;
-
   //  TODO: implement settings button
   return (
     <div
@@ -21,7 +20,9 @@ function EntityManagementButton(props) {
         disabled={props.SelectEntity === undefined}
         onClick={() => {
           if (props.SelectEntity !== undefined) {
+            
             props.SelectEntity(props.entireEntity);
+            
           }
         }}
       >
@@ -43,16 +44,15 @@ function EntityManagementButton(props) {
 }
 
 function EntityList(props) {
-  useEffect(() => {
-    console.log("entites: ", props.entities);
-  }, [props.entities]);
 
   if (props.entityType == "user") {
     return (
       <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
         {props.entities.map((user) => {
           return (
-            <EntityManagementButton
+            <EntityManagementButton 
+              SelectEntity={props.SelectEntity}
+              entireEntity={user}
               entity={{
                 image: user.profileImage
                   ? user.profileImage
@@ -60,7 +60,9 @@ function EntityList(props) {
                 name: user.fullName,
                 subtext: [user.email],
                 isUser: true,
+              
               }}
+              
               key={user._id}
             />
           );
@@ -94,8 +96,6 @@ function EntityList(props) {
 
 // TODO: implement searchbar
 export default function EntityManagementSelection(props) {
-  console.log(props.entities);
-
   const handleBackClick = () => {
     if (!props.isMobile || props.BackMobileButton === undefined) {
       window.history.back();
@@ -118,6 +118,7 @@ export default function EntityManagementSelection(props) {
           <img src="Photos/search.png" alt="" />
         </div> */}
       </div>
+      
       <EntityList
         SelectEntity={props.SelectEntity}
         entityType={props.entityType}

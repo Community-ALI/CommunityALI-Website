@@ -65,7 +65,7 @@ function Profile() {
               body: JSON.stringify({ requestedFields: 'title'})
             });
           const data = await response.json();
-          setServices(data.dataServices);
+          setServices(data.OwnedServices);
         } else {
         }
       } catch (error) {
