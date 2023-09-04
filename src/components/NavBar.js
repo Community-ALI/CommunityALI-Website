@@ -57,11 +57,7 @@ function MyServicesNavButton(props) {
         Manage
       </Link>
     );
-  } else if (
-    decodedToken.clubAdmin ||
-    decodedToken.internshipAdmin ||
-    decodedToken.programAdmin
-  ) {
+  } else if (decodedToken.hasManagementPrivileges) {
     return (
       <Link
         className="navigation-button navigation-text relative-container"
@@ -89,12 +85,7 @@ function MyServicesNavButton(props) {
         Manage
       </Link>
     );
-  } else if (
-    decodedToken.clubAdmin ||
-    decodedToken.eventAdmin ||
-    decodedToken.volunteerAdmin ||
-    decodedToken.internshipAdmin
-  ) {
+  } else if (decodedToken.hasManagementPrivileges) {
     return (
       <Link
         className="navigation-button navigation-text relative-container"

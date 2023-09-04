@@ -98,65 +98,101 @@ router.get("/get-all-user-notifications", async function (req, res) {
 
 // login
 router.post("/login", async (req, res) => {
-  const usernameOrEmail = req.body.usernameOrEmail;
-  const password = req.body.password;
-  const user = await User.findOne({
-    $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
-  }).lean();
-  if (!user) {
-    return res
-      .status(400)
-      .json({
-        status: "error",
-        error: "Invalid username or email/password combination",
-      });
-  }
-  if (!user.verified) {
-    return res
-      .status(400)
-      .json({
-        status: "unverified",
-        username: user.username,
-        error: "Account has not been verified.",
-      });
-    //FIXME: make a way to verify it
-  }
-  if (await bcryptjs.compare(password, user.password)) {
-    // the username, password combination is successful
+  try{
+    const usernameOrEmail = req.body.usernameOrEmail;
+    const password = req.body.password;
+    const user = await User.findOne({
+      $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+    }).lean();
+    if (!user) {
+      return res
+        .status(400)
+        .json({
+          status: "error",
+          error: "Invalid username or email/password combination",
+        });
+    }
+    if (!user.verified) {
+      return res
+        .status(400)
+        .json({
+          status: "unverified",
+          username: user.username,
+          error: "Account has not been verified.",
+        });
+    }
+    if (await bcryptjs.compare(password, user.password)) {
+      // the username, password combination is successful
+      var hasManagementPrivileges = false;
+      if (user.clubAdmin || user.eventAdmin || user.volunteeringAdmin || user.internshipAdmin) {
+        hasManagementPrivileges = true;
+      }
+      // if the user's servicesEditable or servicesManageable arrays have any elements, then they have management privileges
+      try{
+        if (user.servicesEditable.length > 0 || user.servicesManageable.length > 0) {
+          hasManagementPrivileges = true;
+        }
+      }
+      catch (error) {
+        console.log('no servicesEditable or servicesManageable arrays');
+      }
+      const token = jwt.sign(
+        {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          hasManagementPrivileges: hasManagementPrivileges
+        },
+        JWT_SECRET
+      );
 
-    const token = jwt.sign(
-      {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        platformManager: false,
-        administrator: user.administrator,
-        clubAdmin: user.clubAdmin,
-        internshipAdmin: user.internshipAdmin,
-        programAdmin: user.programAdmin,
-        // volunteeringAdmin: user.volunteeringAdmin,
-      },
-      JWT_SECRET
-    );
-
-    // set the cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 86400000, // 1 day
-    });
-
-    res.json({ status: "ok", data: token });
-  } else {
-    res
-      .status(400)
-      .json({
-        status: "error",
-        error: "Invalid username or email/password combination",
+      // set the cookie
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 86400000, // 1 day
       });
+
+      res.json({ status: "ok", data: token });
+    } else {
+      res
+        .status(400)
+        .json({
+          status: "error",
+          error: "Invalid username or email/password combination",
+        });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ status: "error", error: "error" });
   }
 });
+
+// tell a user if they are a club admin, event admin, etc.
+router.get("/check-permissions", async (req, res) => {
+  try{
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const user_id = decodedToken.id;
+    const user = await User.findOne({ _id: user_id });
+    res.json({
+      clubAdmin: user.clubAdmin,
+      eventAdmin: user.eventAdmin,
+      volunteeringAdmin: user.volunteeringAdmin,
+      internshipAdmin: user.internshipAdmin,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      clubAdmin: false,
+      eventAdmin: false,
+      volunteeringAdmin: false,
+      internshipAdmin: false,
+    });
+  }
+});
+
 
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
