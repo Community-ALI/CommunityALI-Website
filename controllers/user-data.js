@@ -135,17 +135,38 @@ exports.get_user_services = async function (username, requestedServices) {
 };
 
 // get services a user is an editor of from database
-exports.get_moderated_services = async function (username, requestedServices) {
+exports.get_editable_services = async function (username, requestedServices) {
   try {
     if (requestedServices === undefined) {
       requestedServices = "title";
     }
     // find the user's _id 
-    var user_id = await Users.findOne({ username: username }, { _id: 1 }).exec().then((user) => user?._id);
-    console.log(user_id);
-    // get services which have the user's _id in their Editors array
+    var user = await Users.findOne({ username: username }).exec();
+    // get services in user.servicesEditable
     const selected_services = await Services.find({
-      Editors: { $in: [user_id] },
+      _id: { $in: user.servicesEditable },
+    })
+      .select(requestedServices)
+      .exec();
+    return selected_services;
+  }
+  catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+}; 
+
+// get services a user is a manager of from database
+exports.get_manageable_services = async function (username, requestedServices) {
+  try {
+    if (requestedServices === undefined) {
+      requestedServices = "title";
+    }
+    // find the user's _id 
+    var user = await Users.findOne({ username: username }).exec();
+    // get services in user.servicesEditable
+    const selected_services = await Services.find({
+      _id: { $in: user.servicesManageable },
     })
       .select(requestedServices)
       .exec();

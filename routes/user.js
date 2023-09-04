@@ -127,15 +127,13 @@ router.post("/login", async (req, res) => {
       if (user.clubAdmin || user.eventAdmin || user.volunteeringAdmin || user.internshipAdmin) {
         hasManagementPrivileges = true;
       }
-      // if the user's servicesEditable or servicesManageable arrays have any elements, then they have management privileges
-      try{
-        if (user.servicesEditable.length > 0 || user.servicesManageable.length > 0) {
-          hasManagementPrivileges = true;
-        }
+      if (user.servicesEditable && user.servicesEditable.length > 0) {
+        hasManagementPrivileges = true;
       }
-      catch (error) {
-        console.log('no servicesEditable or servicesManageable arrays');
+      if (user.servicesManagable && user.servicesManagable.length > 0) {
+        hasManagementPrivileges = true;
       }
+      
       const token = jwt.sign(
         {
           id: user._id,
@@ -451,8 +449,13 @@ router.post("/get-user-services", async function (req, res) {
       username,
       req.body.requestedFields
     );
-    // get collaborations
-    const moderated_services = await user_data.get_moderated_services(
+    // get EditableServices
+    const EditableServices = await user_data.get_editable_services(
+      username,
+      req.body.requestedFields
+    );
+    // get ManageableServices
+    const ManageableServices = await user_data.get_manageable_services(
       username,
       req.body.requestedFields
     );
@@ -460,7 +463,8 @@ router.post("/get-user-services", async function (req, res) {
 
     res.json({
       OwnedServices: user_services,
-      ModeratedServices: moderated_services,
+      EditableServices: EditableServices,
+      ManageableServices: ManageableServices,
       tokenUsername: username,
     });
     console.log("services belonging to", username, "sent");

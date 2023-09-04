@@ -146,9 +146,19 @@ function MyServicesHome() {
           )
             .then((response) => response.json())
             .then((data) => {
-              // combine the two arrays into one
-              const services = data.OwnedServices.concat(data.ModeratedServices);
-              setServices(services);              
+              // combine the three arrays into one
+              const services = data.OwnedServices.concat(data.EditableServices).concat(data.ManageableServices);
+              // only keep unique services by title
+              const uniqueServices = [];
+              const map = new Map();
+              for (const service of services) {
+                if (!map.has(service.title)) {
+                  map.set(service.title, true); // set any value to Map
+                  uniqueServices.push(service);
+                }
+              }
+              
+              setServices(uniqueServices);              
               setUsername(data.tokenUsername);
               const loaderWrapper = document.querySelector(".loader-wrapper");
               loaderWrapper.style.transition = "opacity 0.5s";
