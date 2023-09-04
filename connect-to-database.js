@@ -55,6 +55,8 @@ const userSchema = new mongoose.Schema(
         clubAdmin: { type: Boolean},
         internshipAdmin: { type: Boolean},
         programAdmin: { type: Boolean},
+        servicesEditable: {type: Array}, // list of services that the user can edit
+        servicesManageable: {type: Array}, // list of services that the user can manage
         administrator: { type: Boolean},
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,

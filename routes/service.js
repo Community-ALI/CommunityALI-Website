@@ -164,20 +164,22 @@ router.post("/assign-user-role", async (req, res) => {
         const username = decodedToken.username;
         
         const service_name = req.query.service;
+        console.log(service_name)
         const service = await service_data.get_one_service(service_name);
+        console.log(service.title)
         if (service && username && username == service.user) { // the user owns this service
-            if (req.body.role === 'Editor') {
-                const result = await service_data.add_editor(req, service.title);
+            var result = {success: false, error: 'internal server error'};
+            if (req.body.isEditor) {
+                result = await service_data.add_editor(req, service);
             }
-            else if (req.body.role === 'Application Manager') {
-                const result = await service_data.add_application_manager(req, service.title);
+            else{
+                result = await service_data.remove_editor(req, service);
             }
-            else if (req.body.role === 'Member') {
-                const result = await service_data.demote_user(req, service.title);
+            if (req.body.isManager) {
+                result = await service_data.add_application_manager(req, service);
             }
             else {
-                console.log('invalid role')
-                res.json({ success: false, error: 'invalid role' });
+                result = await service_data.remove_application_manager(req, service);
             }
             if (result.success) {
                 res.json({ success: true });
@@ -298,7 +300,6 @@ router.post("/add-member", async (req, res) => {
 router.get("/get-service-members/:serviceTitle", async function (req, res) {
     try {
         users = await service_data.get_service_users(req.params.serviceTitle);
-        console.log(users);
         if (users) {
             console.log(`Members for: ${req.params.serviceTitle} sent`);
             res.json(users);

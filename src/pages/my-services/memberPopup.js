@@ -7,28 +7,24 @@ function MemberPopup(props) {
     // Step 1: Create state variables
     const [isEditorSelected, setIsEditorSelected] = useState(false);
     const [isManagerSelected, setIsManagerSelected] = useState(false);
-    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
 
     // Step 2: Update the updateMemberRole function
     const updateMemberRole = async function () {
         // Make the member an editor or application manager
         const token = localStorage.getItem('token');
-
-        const response = await fetch(`${BASE_BACKEND_URL}/servicedata/`, {
+        const query = new URLSearchParams(window.location.search);
+        const service = query.get('service');
+        const response = await fetch(`${BASE_BACKEND_URL}/servicedata/assign-user-role?service=${service}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ isEditor: isEditorSelected, isManager: isManagerSelected }),
+            body: JSON.stringify({ isEditor: isEditorSelected, isManager: isManagerSelected, user_id: member._id }),
         });
 
         // Handle the response here if needed
-
-        // Reset form state and mark the form as submitted
-        setIsEditorSelected(false);
-        setIsManagerSelected(false);
-        setIsFormSubmitted(true);
     }
 
     if (props.isShowingMemberPopup) {
@@ -51,8 +47,6 @@ function MemberPopup(props) {
 
                 <button onClick={updateMemberRole}>Submit</button>
 
-                {/* Display a confirmation message after form submission */}
-                {isFormSubmitted && <p>Permissions updated!</p>}
             </div>
         );
     }
