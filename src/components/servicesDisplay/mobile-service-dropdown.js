@@ -75,9 +75,9 @@ const ServiceDropdown = (props) => {
           >
             Clear All
           </button>
-          <h1 className="font-bold text-lg absolute left-1/2 translate-x-[-50%]">
+          {/* <h1 className="font-bold text-lg absolute left-1/2 translate-x-[-50%]">
             Filter
-          </h1>
+          </h1> */}
           <button
             className="w-6 h-6 cursor-pointer"
             onClick={toggleServiceTypeFilterDropDown}
@@ -85,7 +85,7 @@ const ServiceDropdown = (props) => {
             <i className="fa-solid fa-x text-white"></i>
           </button>
         </div>
-        <hr className="border-2 text-white border-white" />
+        <hr className="border-1 text-white border-white" />
         <form
           className="flex-grow flex flex-col px-6 gap-6"
           onSubmit={(event) => {
@@ -93,7 +93,7 @@ const ServiceDropdown = (props) => {
             submitFilters();
           }}
         >
-          <h1 className="text-white mt-12 font-bold text-lg">
+          <h1 className="text-white mt-12 font-[500] text-lg">
             Filter Service Category
           </h1>
           <ServiceTypeSelector
@@ -101,7 +101,7 @@ const ServiceDropdown = (props) => {
             serviceTypeFilter={selectedServiceTypes}
             ChangeServiceTypeFilter={changeServiceTypeFilter}
           />
-          <h1 className="text-white font-bold text-lg">Filter By School</h1>
+          <h1 className="text-white font-[500] text-lg mt-6">Filter By School</h1>
           <CategoryFilterSelector
             selectedCategories={selectedCategories}
             SetCategoriesFilter={props.SetCategoriesFilter}
@@ -109,7 +109,7 @@ const ServiceDropdown = (props) => {
           />
           <input
             type="submit"
-            className="bg-ali-orange p-1 px-2 rounded-lg text-black"
+            className="bg-ali-orange p-1 px-2 rounded-lg text-ali-darkblue font-[500] mt-4"
             value="Apply"
           ></input>
         </form>
@@ -119,7 +119,7 @@ const ServiceDropdown = (props) => {
 
   return (
     <div className="flex-grow max-w-[100%]">
-      <div className="flex justify-between items-center max-w-[100%] lr:mx-6">
+      <div className="flex justify-start items-center max-w-[100%] mb-5 sm:justify-around">
         {!isSortingFilterVisable && (
           <div className="filter-buttons-container">
             <button
@@ -142,7 +142,7 @@ const ServiceDropdown = (props) => {
                 setIsSortingFilterVisable(!isSortingFilterVisable);
               }}
             >
-              <b>Sort By</b>
+              <b className="whitespace-nowrap">Sort By</b>
               <span
                 className={`arrow ${isSortingFilterVisable ? "up" : "down"}`}
               ></span>
@@ -155,7 +155,7 @@ const ServiceDropdown = (props) => {
               left-0 flex flex-col mt-[66px]"
             >
               <div className="flex flex-col gap-3 p-6">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-end">
                   <label className="sort-label text-5xl font-bold text-white">
                     Sort by:{" "}
                   </label>
@@ -170,7 +170,7 @@ const ServiceDropdown = (props) => {
                   </button>
                 </div>
                 <form
-                  className="flex-grow flex-col flex gap-3"
+                  className="flex-grow flex-col flex gap-6 mt-6"
                   onSubmit={(event) => {
                     event.preventDefault();
                     props.SetSortingType(selectedSortingType);
@@ -181,7 +181,7 @@ const ServiceDropdown = (props) => {
                     return (
                       <label
                         key={sortType.value}
-                        className="category-section border-2 border-white rounded-lg p-2 text-white"
+                        className="category-section border-[1.5px] border-white rounded-lg px-4 py-2 text-white"
                       >
                         <input
                           type="checkbox"
@@ -196,7 +196,7 @@ const ServiceDropdown = (props) => {
                   })}
                   <input
                     type="submit"
-                    className="bg-ali-orange p-1 px-2 rounded-lg text-black"
+                    className="bg-ali-orange p-1 px-2 rounded-lg text-ali-darkblue font-[500] mt-4"
                     value="Apply"
                   ></input>
                 </form>

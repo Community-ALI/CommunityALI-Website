@@ -159,7 +159,7 @@ export default function ServicesDisplay(props) {
   // return the page
   return (
     <div className="flex flex-col max-w-[100%] w-[1600px]">
-      <div className="flex w-[100%] flex-row max-w-[100%] justify-between max-h-[100%]">
+      <div className="flex flex-row max-w-[100%] justify-between max-h-[100%] w-[90%] mr-auto ml-auto">
         {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}

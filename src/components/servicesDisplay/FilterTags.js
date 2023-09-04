@@ -6,7 +6,7 @@ function Tag(props) {
       onClick={() => {
         props.removeTag(props.tag);
       }}
-      className="text-white bg-ali-darkblue rounded-md flex gap-3 items-center p-1"
+      className="text-white bg-ali-darkblue rounded-md flex gap-3 items-center p-2"
       key={props.tag}
     >
       <p>{props.tag}</p>
@@ -17,7 +17,7 @@ function Tag(props) {
 
 export default function FilterTags(props) {
   return (
-    <div className="flex flex-wrap gap-3 px-[25px]">
+    <div className="flex flex-wrap gap-3 px-[25px] w-[90%] mr-auto ml-auto">
       {!props.serviceTypeFilter.includes("all") && (
         <Tag
           tag={props.serviceTypeFilter}

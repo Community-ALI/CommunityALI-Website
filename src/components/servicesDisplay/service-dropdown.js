@@ -137,17 +137,18 @@ export default function ServiceDropdown(props) {
                   SetSelectedCategories={setSelectedCategories}
                 />
                 <hr />
-                <div className="flex text-white justify-between p-2 items-center">
+                <div className="flex text-white justify-between p-2 items-center mt-3">
                   <input
                     type="reset"
                     value="Clear All"
+                    className="cursor-pointer"
                     onClick={() => {
                       setSelectedCategories(["all"]);
                     }}
                   ></input>
                   <input
                     type="submit"
-                    className="bg-ali-orange p-1 px-2 rounded-lg text-black"
+                    className="bg-ali-orange p-1 px-2 rounded-lg text-black cursor-pointer"
                     value="Apply"
                   ></input>
                 </div>
@@ -164,12 +165,12 @@ export default function ServiceDropdown(props) {
             <select
               className="border-none outline-none bg-transparent text-black 
                 font-bold appearance-none -webkit-appearance-none text-[18px]
-                text-center"
+                text-center px-3"
               value={props.sortingType}
               onChange={handleSortByChange}
             >
               <option value="alphabetical">Alphabetical</option>
-              <option value="reverse_alphabetical">Reverse Alphabetical</option>
+              {/* <option value="reverse_alphabetical">Reverse Alphabetical</option> */}
               <option value="newest">Most Recent</option>
               <option value="oldest">Oldest</option>
             </select>
