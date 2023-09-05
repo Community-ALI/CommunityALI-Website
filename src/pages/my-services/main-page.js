@@ -246,7 +246,7 @@ function MyServicesHome() {
       <div className='flex justify-center lr:mt-[100px]'>
           <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] sm:px-[10px]'}>
               <div className='flex flex-col gap-3'>
-                  <div className="flex flex-row justify-between gap-3 sm:flex-col">
+                  <div className="flex flex-row justify-between gap-3 pt-[20px] md:flex-col md:pt-0">
                       <button className='blue-container px-[15px]' onClick={() => {window.location.href = '/'}}>&lt;&lt; BACK</button>
                       <button className="blue-container flex justify-center gap-3">
                         <a className='px-[24px]' href="/categories-page"> Create a New Service + </a>

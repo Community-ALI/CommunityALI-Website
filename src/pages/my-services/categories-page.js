@@ -34,12 +34,21 @@ function CategoriesPage() {
     fetchData();
   }
   , []);
-        
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  useState(() => {
+      console.log(window.innerWidth);
+      window.addEventListener('resize', (() => {
+          setIsMobile(window.innerWidth <= 850)
+      }));
+  })
 
   return (
     <div>
+      {isMobile ?
+      <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
       <NavBar isFixedPage={false} />
+      }
       <div className="service-categories-container">
         <div className="category-container-title">
           <p className="mb-[15px]">Select the Category of Your New Service</p>

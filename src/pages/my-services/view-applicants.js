@@ -348,14 +348,17 @@ function ServiceApplicants() {
     const serviceName = urlParams.get('service');
     return (
         <>
-            <NavBar />
+            {isMobile ?
+            <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
+            <NavBar isFixedPage={false} />
+            }
             <div className='flex justify-center mb-[60px]'>
-                <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] lr:mt-[120px] sm:px-[10px] xsm:w-[95%]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
+                <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] lr:mt-[120px] sm:px-[10px] xsm:w-[95%] md:mt-[100px]' + ((!isMobile) ? ' mt-4' : ' mt-16')}>
                     <div className='flex flex-col gap-3'>
-                        <div className="flex flex-row justify-between gap-3">
+                        <div className="flex flex-row justify-between gap-3 md:flex-col">
                             <button className='blue-container' onClick={() => {window.location.href = '/my-services'}}>&lt;&lt; BACK</button>
                             <div className='flex gap-3'>
-                                <button onClick={redirectToMemberManagement} className='blue-container w-[112.766px]'>Members</button>
+                                <button onClick={redirectToMemberManagement} className='blue-container w-[112.766px] md:w-[100%]'>Members</button>
                                 {/* <button
                                 className='w-10 h-10 bg-[#00468D] text-white rounded-[50%] p-2'>
                                 ?</button> */}
