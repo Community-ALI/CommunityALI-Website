@@ -6,6 +6,7 @@ import "../../components/loading-screen.css";
 import NavBar from "../../components/NavBar";
 import Notifications from "../../components/Notification";
 import DeleteServicePopup from "../../components/DeleteServicePopup";
+import LoadingUI from "../../components/loading/LoadingUI.js";
 const Buffer = require("buffer").Buffer;
 // create the information required to display the page
 
@@ -15,9 +16,11 @@ function MyServicePageDisplay(props) {
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString("base64");
   const imageUrl = `data:image/png;base64,${base64}`;
+
   useEffect(() => {
     document.title = "Manage Services | Community ALI";
   }, []);
+  
   if (service.permissionLevel === "Owner"|| service.permissionLevel === "Manager") {
     useEffect(() => {
       const fetchData = async () => {
@@ -153,12 +156,13 @@ function MyServicePageDisplay(props) {
 function MyServicesHome() {
   // create the information required to display the page
   const [services, setServices] = useState([]);
-  const [username, setUsername] = useState("no username associated with token");
+  const [username, setUsername] = useState("Username... (Loading)");
   const [isShowingServiceDeletePopup, setIsShowingServiceDeletePopup] =
     useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState("");
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  const [showServices, setShowServices] = useState(true);
 
   useEffect(() => {
     console.log("window width: ", window.innerWidth);
@@ -175,6 +179,7 @@ function MyServicesHome() {
 
     const fetchData = async () => {
       try {
+        setShowServices(false);
         var token = localStorage.getItem("token");
         if (token) {
           const response = await fetch(
@@ -195,6 +200,7 @@ function MyServicesHome() {
               // only keep unique services by title
               const uniqueServices = [];
               const map = new Map();
+              setShowServices(true);
               for (const service of services) {
                 if (!map.has(service.title)) {
                   map.set(service.title, true); 
@@ -212,12 +218,6 @@ function MyServicesHome() {
               
               setServices(uniqueServices);              
               setUsername(data.tokenUsername);
-              const loaderWrapper = document.querySelector(".loader-wrapper");
-              loaderWrapper.style.transition = "opacity 0.5s";
-              loaderWrapper.style.opacity = "0";
-              setTimeout(() => {
-                loaderWrapper.style.display = "none";
-              }, 500); // fade out duration in milliseconds
             });
         } else {
           console.log("no token found");
@@ -232,12 +232,6 @@ function MyServicesHome() {
 
   return (
     <>
-      <div className="loader-wrapper">
-        <span className="loader">
-          <span className="loader-inner"></span>
-        </span>
-      </div>
-
       {isMobile ?
             <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
             <NavBar isFixedPage={false} />
@@ -283,9 +277,16 @@ function MyServicesHome() {
             service={service}
             setDeleteServiceTitle={setDeleteServiceTitle}
             setIsShowingServiceDeletePopup={setIsShowingServiceDeletePopup}
+            showServices={showServices}
+            SetShowServices={setShowServices}
           />
         ))
       )}
+        {!showServices && (
+          <div className="w-[100%] h-[50vh]">
+            <LoadingUI />
+          </div>
+        )}
     </>
   );
 }

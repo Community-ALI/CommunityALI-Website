@@ -17,6 +17,10 @@ export default function MemberManagement() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
 
   useEffect(() => {
+    document.title = "Manage Members and Send Updates | Community ALI";
+  }, []);
+
+  useEffect(() => {
 
     function updateWindow() {
       setIsMobile(window.innerWidth <= 850);

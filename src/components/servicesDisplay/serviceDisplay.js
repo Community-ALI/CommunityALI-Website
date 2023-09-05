@@ -203,7 +203,7 @@ export default function ServicesDisplay(props) {
         </div> */}
         {showServices && <DisplayAllServices services={services} />}
         {!showServices && (
-          <div className="w-[100%] h-[70vh]">
+          <div className="w-[100%] h-[60vh]">
             <LoadingUI />
           </div>
         )}
