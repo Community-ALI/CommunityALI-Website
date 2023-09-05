@@ -6,6 +6,7 @@ import ContactsPage from "../general-components/contacts-page";
 import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
 import SignUpPage from "./sign-up-page";
+import NavbarMobileHidden from "../../../components/navbar/navbar-mobile-hidden";
 
 function AddEvent() {
   const allPossiblePages = [
@@ -92,8 +93,7 @@ function AddEvent() {
 
   return (
     <div className="overflow-x-hidden">
-      <NavBar isFixedPage={false} />
-      <title> Event Editor </title>
+      <NavbarMobileHidden></NavbarMobileHidden>
       <form action="/store-service" method="POST" className="service-container" id='form'>
         <div className="service-title">
           <input type="text" placeholder="Name of the Event" className="club-title-text-box" name="title" id='title' /><br />

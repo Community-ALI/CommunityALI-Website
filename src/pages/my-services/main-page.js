@@ -241,7 +241,6 @@ function MyServicesHome() {
       {isMobile ?
             <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
             <NavBar isFixedPage={false} />
-
       }
       <div className='flex justify-center lr:mt-[100px]'>
           <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] sm:px-[10px]'}>
