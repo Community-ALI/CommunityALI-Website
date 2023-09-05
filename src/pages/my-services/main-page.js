@@ -59,7 +59,7 @@ function MyServicePageDisplay(props) {
   };
 
   return (
-    <div className="flex content-center justify-center px-[5%] lr:flex-col lr:items-center sm:mb-[30px]">
+    <div className="flex content-center justify-center fadeIn px-[5%] lr:flex-col lr:items-center sm:mb-[30px]">
       <div
         className="flex items-center w-[80%] my-[20px] mx-[15px] max-w-[1200px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
         duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:w-[86%] lr:w-[92%] md:w-[95%]"
@@ -116,9 +116,9 @@ function MyServicePageDisplay(props) {
           <Notifications notifications={notifications ? notifications.length : 0} /> 
             <img src="Photos/ApplicantsIcon.png" className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]'></img>
           </a>
-          {/* <a href={`view-applicants?service=${service.title}`}>
-            <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/SendIcon.png"></img>
-          </a> */}
+          <a href={`view-applicants?service=${service.title}`}>
+            <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/SendIcon.png"></img>
+          </a>
       </div>
       {(service.permissionLevel === "Owner" || service.permissionLevel === "Manager") ? (
         <Link 
@@ -158,7 +158,21 @@ function MyServicesHome() {
     useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState("");
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+
   useEffect(() => {
+    console.log("window width: ", window.innerWidth);
+    function updateWindow() {
+      setIsMobile(window.innerWidth <= 850);
+    }
+
+    window.addEventListener("resize", updateWindow);
+
+    return () => window.removeEventListener("resize", updateWindow);
+  }, [window.innerWidth]);
+
+  useEffect(() => {
+
     const fetchData = async () => {
       try {
         var token = localStorage.getItem("token");
@@ -223,8 +237,12 @@ function MyServicesHome() {
           <span className="loader-inner"></span>
         </span>
       </div>
-      <NavBar isFixedPage={false} />,
 
+      {isMobile ?
+            <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
+            <NavBar isFixedPage={false} />
+
+      }
       <div className='flex justify-center lr:mt-[100px]'>
           <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] sm:px-[10px]'}>
               <div className='flex flex-col gap-3'>

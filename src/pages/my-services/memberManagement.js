@@ -122,8 +122,8 @@ export default function MemberManagement() {
     if (!showEntityManagement) {
       return (
         <div>
-        <NavBar />
-          <div className="lr:mt-24 h-[80vh] flex">
+        <NavBar hideMobileSearchBar={true}/>
+          <div className="lr:mt-[3rem] h-[90vh] flex">
             <MessagingUI
               serviceTitle={service.title}
               senderId={service._id}
@@ -188,9 +188,10 @@ export default function MemberManagement() {
   }
 
   return (
-    <div>
+    <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
       <NavBar />
-      <div className="lr:mt-24 h-[80vh] flex">
+      <div className="lr:mt-24 h-[90vh] flex border-t-2 border-ali-backgroundblue relative border-opacity-50">
+      <a id="tech-support" className='absolute bottom-10 left-5' href="/contact-form"> Technical Support </a>
         {
           <div className="max-w-[40%]">
             <EntityManagementSelection 
@@ -211,7 +212,6 @@ export default function MemberManagement() {
           BackMobileButton={() => setShowEntityManagement()}
         />
       </div>
-      <Footer />
       <div className="loader-wrapper">
         <span className="loader">
           <span className="loader-inner"></span>

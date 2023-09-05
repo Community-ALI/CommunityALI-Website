@@ -40,6 +40,10 @@
 }
 
 
+.profile-page
+{
+    overflow-x: hidden;
+}
 
 .file-upload-button {
     padding: 8px 20px;

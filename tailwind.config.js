@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       colors: {
         'regal-blue': '#243c5a',
+        'ali-backgroundblue': '#0096C9',
         'ali-darkblue': '#001E60',
         'ali-lightblue': '#00468D',
         'ali-orange': '#ecaa1e',

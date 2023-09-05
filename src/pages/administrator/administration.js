@@ -9,11 +9,11 @@ export default function Administration() {
     return(
         <div>
             <NavBar />
-            <div className='flex mt-28 h-[80vh]'>
+            <div className='flex mt-28 h-[80vh] relative'>
+            <a id="tech-support" className='absolute bottom-10 left-5' href="/contact-form"> Technical Support </a>
                 <UserSelectionMenu setSelectedUser={setSelectedUser}/>
                 <UserManagement />
             </div>
-            <Footer />
         </div>
     )
 }

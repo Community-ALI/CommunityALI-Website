@@ -6,7 +6,8 @@ function EntityManagementButton(props) {
   //  TODO: implement settings button
   return (
     <div
-      className={`relative max-h-[101px] text-white px-4 py-2 border-black border-b-2
+      className={`relative max-h-[101px] text-white px-4 py-4 border-ali-darkblue border-b-2 
+      border-opacity-50 fadeIn
       ${props.isSelected ? "bg-[#2C6BAC]" : ""}`}
     >
       {/* <button
@@ -27,15 +28,15 @@ function EntityManagementButton(props) {
         }}
       >
         <img
-          className={`w-[82px] ${
+          className={`w-[90px] ${
             entity.isUser ? "rounded-full" : "rounded-lg"
           }`}
           src={entity.image}
         />
-        <div className="flex flex-col text-left">
+        <div className="flex flex-col text-left xlr:text-[14px] lr:text-[16px] sm:text-[14px]">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
-            <p className="text-white">{entity.subtext}</p>
+            <p className="text-white text-[14px]">{entity.subtext}</p>
           </div>
         </div>
       </button>
@@ -47,7 +48,8 @@ function EntityList(props) {
 
   if (props.entityType == "user") {
     return (
-      <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
+      <div className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
+      border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0">
         {props.entities.map((user) => {
           return (
             <EntityManagementButton 
@@ -71,7 +73,8 @@ function EntityList(props) {
     );
   } else {
     return (
-      <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
+      <div className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
+      border-r-2  border-ali-backgroundblue border-opacity-50 white lr:border-r-0">
         {props.entities.map((service) => {
           return (
             <EntityManagementButton
@@ -105,13 +108,13 @@ export default function EntityManagementSelection(props) {
   };
 
   return (
-    <div className="bg-[#00468D] h-[100%] w-[100%]">
-      <div className="border-b-2 border-black">
+    <div className="bg-[#00468D] h-[100%] w-[100%] relative">
+      <div className="border-b-2 border-r-2 border-r-ali-backgroundblue border-opacity-50 border-y-ali-darkblue lr:border-r-0">
         <button
-          className="text-white p-2 border-[1px] border-black"
+          className="text-white px-6 py-5 border-ali-darkblue"
           onClick={handleBackClick}
         >
-          Back
+           &lt;&lt; Back
         </button>
         {/* <div className="w-[90%] bg-transparent">
           <input placeholder="Search" type="search" />
