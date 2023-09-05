@@ -409,7 +409,6 @@ exports.editService = async function (req, username) {
     existingService.categories = pages.overview.categories;
     existingService.datePosted = formattedDate;
     existingService.timePosted = time;
-    existingService.user = username;
     existingService.internshipLink = req.body.internshipLink;
 
     await existingService.save();
