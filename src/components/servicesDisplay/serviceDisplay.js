@@ -136,12 +136,12 @@ export default function ServicesDisplay(props) {
             console.error(error);
           });
 
-        const loaderWrapper = document.querySelector(".loader-wrapper");
-        loaderWrapper.style.transition = "opacity 1.5s";
-        loaderWrapper.style.opacity = "0";
-        setTimeout(() => {
-          loaderWrapper.style.display = "none";
-        }, 500);
+        // const loaderWrapper = document.querySelector(".loader-wrapper");
+        // loaderWrapper.style.transition = "opacity 1.5s";
+        // loaderWrapper.style.opacity = "0";
+        // setTimeout(() => {
+        //   loaderWrapper.style.display = "none";
+        // }, 500);
       } catch (error) {
         console.error(error);
       }
@@ -196,14 +196,14 @@ export default function ServicesDisplay(props) {
         />
       )}
       <div className="flex items-center justify-center">
-        <div className="loader-wrapper">
+        {/* <div className="loader-wrapper">
           <span className="loader">
             <span className="loader-inner"></span>
           </span>
-        </div>
+        </div> */}
         {showServices && <DisplayAllServices services={services} />}
         {!showServices && (
-          <div className="w-[100%] h-[70vh]">
+          <div className="w-[100%] h-[60vh]">
             <LoadingUI />
           </div>
         )}

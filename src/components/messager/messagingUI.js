@@ -138,6 +138,16 @@ export default function MessagingUI(props) {
     },
   ]);
 
+  const messagesContainer = useRef(null);
+
+  function scrollToBottom() {
+    messagesContainer.current.scrollTop = messagesContainer.current.scrollHeight;
+  }
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  
   async function fetchMessages() {
     try {
       console.log("fetching database with id: " + props.senderId);
@@ -189,8 +199,8 @@ export default function MessagingUI(props) {
       </div>
       <div
         className="bg-[#00468D] flex-1 flex overflow-auto overflow-x-hidden
-        w-[100%] flex-col-reverse p-4 px-8 gap-4 pb-[80px]"
-      >
+        w-[100%] flex-col-reverse p-4 px-8 gap-4" ref={messagesContainer}
+       >
         {messages.map((message) => {
           return <Message message={message} key={message._id} />;
         })}

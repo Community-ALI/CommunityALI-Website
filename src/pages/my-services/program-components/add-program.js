@@ -7,6 +7,7 @@ import OverviewPage from "../general-components/overview-page";
 import FaqPage from "../general-components/faq-page";
 import RequirementsPage from "../general-components/requirements-page";
 import SignUpPage from "./sign-up-page";
+import NavbarMobileHidden from "../../../components/navbar/navbar-mobile-hidden";
 
 function AddResource() {
   const allPossiblePages = [
@@ -149,7 +150,6 @@ function AddResource() {
     setShowAddButtons((prevState) => !prevState);
   };
 
-
   const PopUp = () => {
     return (
       <div className="pop-up-container">
@@ -174,10 +174,9 @@ function AddResource() {
     );
   };
 
-
   return (
     <div className="overflow-x-hidden">
-      <NavBar isFixedPage={false} />
+      <NavbarMobileHidden></NavbarMobileHidden>
       <form method="POST" className="service-container" id='form'>
         <div className="service-title">
           <input type="text" placeholder="Name of the Program" className="club-title-text-box" name="title" id='title' ref={titleRef} onChange={() => setTitleValue(titleRef.current.value)} /><br />

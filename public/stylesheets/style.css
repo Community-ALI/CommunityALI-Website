@@ -995,6 +995,10 @@ video {
   height: 90vh;
 }
 
+.h-\[50vh\] {
+  height: 50vh;
+}
+
 .max-h-0 {
   max-height: 0px;
 }

@@ -8,6 +8,7 @@ import ProfilePicturePopup from './profilePicturePopup';
 import { Buffer } from 'buffer';
 import PasswordChangePopup from './passwordChangePopup';
 import { useNavigate } from 'react-router-dom';
+import NavbarMobileHidden from '../../components/navbar/navbar-mobile-hidden';
 
 function dataURItoBlob(dataURI) {
   const byteString = atob(dataURI.split(',')[1]);
@@ -40,19 +41,6 @@ function Profile() {
   const [isShowingProfilePicturePopup, setIsShowingProfilePicturePopup] = useState(false);
   const nameRef = useRef(null);
   const popupRef = useRef(null);
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
-
-  useEffect(() => {
-    console.log("window width: ", window.innerWidth);
-    function updateWindow() {
-      setIsMobile(window.innerWidth <= 850);
-    }
-
-    window.addEventListener("resize", updateWindow);
-
-    return () => window.removeEventListener("resize", updateWindow);
-  }, [window.innerWidth]);
 
   const handlePasswordChangeClick = () => 
   {
@@ -313,11 +301,7 @@ function Profile() {
       </div>
       )}
 
-      {isMobile ?
-            <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
-            <NavBar isFixedPage={false} />
-
-      }
+      <NavbarMobileHidden></NavbarMobileHidden>
       <div className="profile-container">
         <div className="profile-picture">
         
