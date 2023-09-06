@@ -291,6 +291,10 @@ function SignUpPage({ service }) {
         showLoginPopup={showLoginPopup}
       />
 
+      <LoginPopup
+      showSignupPopup={showSignupPopup}
+      isShowingLoginPopup={isShowingLoginPopup} />
+
       <div
         id="login-popup-background"
         className={isShowingLoginPopup || isShowingSignupPopup ? "" : "hidden"}

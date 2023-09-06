@@ -93,17 +93,28 @@ router.post("/delete-service", async function (req, res) {
 
 function sanitizeService(req, res, next) {
   if (!sanitizeHtml(req.body.title).length > 0) {
-    res.json({ success: false, error: "title required or detected injection attack" });
+    res.json({
+      success: false,
+      error: "title required or detected injection attack",
+    });
     return;
-  };
-  if (!sanitizeHtml(req.body.description).length > 0) { 
-    res.json({ success: false, error: "description required or detected injection attack" });
+  }
+  if (!sanitizeHtml(req.body.description).length > 0) {
+    res.json({
+      success: false,
+      error: "description required or detected injection attack",
+    });
     return;
   }
   next();
 }
 
-router.post("/edit-service", upload.single("image"), storeEditService);
+router.post(
+  "/edit-service",
+  upload.single("image"),
+  sanitizeService,
+  storeEditService
+);
 async function storeEditService(req, res) {
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -171,20 +182,16 @@ router.post(
           } else {
             console.log(result.error.code);
             if (result.error.code === 11000) {
-              res
-                .status(400)
-                .json({
-                  success: false,
-                  error: `We're sorry, but another service with the name "${req.body.title}" already exists.  Please choose a different name.`,
-                });
+              res.status(400).json({
+                success: false,
+                error: `We're sorry, but another service with the name "${req.body.title}" already exists.  Please choose a different name.`,
+              });
             } else {
-              res
-                .status(500)
-                .json({
-                  success: false,
-                  error:
-                    "An error occurred while adding the service. Please try again later.",
-                });
+              res.status(500).json({
+                success: false,
+                error:
+                  "An error occurred while adding the service. Please try again later.",
+              });
             }
           }
         } else {
@@ -199,13 +206,11 @@ router.post(
       }
     } catch (error) {
       console.log(error);
-      res
-        .status(500)
-        .json({
-          success: false,
-          error:
-            "An error occurred while adding the service. Please try again later.",
-        });
+      res.status(500).json({
+        success: false,
+        error:
+          "An error occurred while adding the service. Please try again later.",
+      });
     }
   }
 );

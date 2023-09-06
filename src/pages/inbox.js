@@ -5,6 +5,7 @@ import MessagingUI from "../components/messager/messagingUI";
 import Footer from "../components/Footer";
 import { Buffer } from "buffer";
 import { BASE_BACKEND_URL } from "../config";
+import LoadingUI from "../components/loading/LoadingUI";
 
 function SelectServiceView() {
   return (
@@ -31,14 +32,22 @@ export default function Inbox() {
   const [user, setUser] = useState();
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState();
+  const [showServices, setShowServices] = useState(true);
+
+  useEffect(() => 
+  {
+    document.title = 'Inbox | Community ALI';
+  }, []);
 
   const fetchServicesUserIsMember = async function (userId) {
     try {
+      setShowServices(false);
       await fetch(
         `${BASE_BACKEND_URL}/userdata/get_services_user_is_member/${userId}`
       )
         .then((response) => response.json())
         .then(async (data) => {
+          setShowServices(true);
           try {
             const services = await Promise.all(
               data.map(async (service) => {
@@ -124,7 +133,7 @@ export default function Inbox() {
       return (
         <div>
           <NavBar hideMobileSearchBar={true}/>
-          <div className="lr:mt-[66px] h-[80vh] flex">
+          <div className="lr:mt-[66px] h-[100vh] flex">
             <MessagingUI
               serviceTitle={selectedService.title}
               senderId={selectedService._id}
@@ -133,39 +142,53 @@ export default function Inbox() {
               isMobile={true}
             />
           </div>
-          <Footer />
         </div>
       );
     }
     return (
-      <div>
+      <div className="max-h-[100vh] overflow-hidden">
         <NavBar hideMobileSearchBar={true} />
-        <div className="lr:mt-[66px] h-[80vh] flex">
+        <div className="lr:mt-[66px] h-[100vh] flex relative">
           <EntityManagementSelection
             entityType={"service"}
             entities={services}
             SelectEntity={setSelectedService}
             selectedId={selectedService ? selectedService._id : false}
             canSendMessages={false}
+            showServices={showServices}
+            SetShowServices={setShowServices}
           />
+            {!showServices && (
+              <div className="absolute bottom-[55%] right-[46%]">
+                <LoadingUI />
+              </div>
+            )}
+            {/* <a id="tech-support" className='absolute bottom-[15%] left-[40vw] z-10' href="/contact-form"> Technical Support </a> */}
         </div>
-        <Footer />
       </div>
     );
   }
 
   return (
-    <div>
-      <NavBar />
-      <div className="lr:mt-24 h-[80vh] flex">
-        <div className="max-w-[40%] flex-1">
+    <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
+      <NavBar/>
+      <div className="lr:mt-24 h-[90vh] flex relative">
+        <a id="tech-support" className='absolute bottom-[5%] left-7 z-10' href="/contact-form"> Technical Support </a>
+        <div className="max-w-[35%] flex-1 relative xlr:max-w-[40%]">
           <EntityManagementSelection
             entityType={"service"}
             entities={services}
             SelectEntity={setSelectedService}
             selectedId={selectedService ? selectedService._id : false}
             canSendMessages={false}
+            showServices={showServices}
+            SetShowServices={setShowServices}
           />
+          {!showServices && (
+            <div className="absolute bottom-[50%] right-[50%]">
+              <LoadingUI />
+            </div>
+          )}
         </div>
         {selectedService && (
           <MessagingUI
@@ -180,7 +203,6 @@ export default function Inbox() {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 }

@@ -40,6 +40,10 @@
 }
 
 
+.profile-page
+{
+    overflow-x: hidden;
+}
 
 .file-upload-button {
     padding: 8px 20px;
@@ -120,6 +124,7 @@
 .profile-name-display
 {
     margin-bottom : 5px;
+    white-space: nowrap;
 }
 
 .profile-email-display
@@ -197,6 +202,7 @@
 {
     margin-right : 10px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .profile-email-title

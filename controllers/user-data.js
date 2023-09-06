@@ -122,15 +122,62 @@ exports.get_user_services = async function (username, requestedServices) {
     if (requestedServices === undefined) {
       requestedServices = "title";
     }
-    const selected_services = await Services.find({ user: username })
+    // Get the services owned by the user
+    const owned_services = await Services.find({ user: username })
       .select(requestedServices)
       .exec();
-    return selected_services;
+
+    return owned_services;
   } catch (error) {
     console.error(error);
     return { success: false, error: "internal database error" };
   }
 };
+
+// get services a user is an editor of from database
+exports.get_editable_services = async function (username, requestedServices) {
+  try {
+    if (requestedServices === undefined) {
+      requestedServices = "title";
+    }
+    // find the user's _id 
+    var user = await Users.findOne({ username: username }).exec();
+    // get services in user.servicesEditable
+    const selected_services = await Services.find({
+      _id: { $in: user.servicesEditable },
+    })
+      .select(requestedServices)
+      .exec();
+    return selected_services;
+  }
+  catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+}; 
+
+// get services a user is a manager of from database
+exports.get_manageable_services = async function (username, requestedServices) {
+  try {
+    if (requestedServices === undefined) {
+      requestedServices = "title";
+    }
+    // find the user's _id 
+    var user = await Users.findOne({ username: username }).exec();
+    // get services in user.servicesEditable
+    const selected_services = await Services.find({
+      _id: { $in: user.servicesManageable },
+    })
+      .select(requestedServices)
+      .exec();
+    return selected_services;
+  }
+  catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+}; 
+
 
 exports.toggle_user_admin = async function (username, adminType) {
   try {

@@ -2,24 +2,53 @@ import React, {useState, useEffect } from "react";
 import "./categories-page.css";
 import "../../../public/stylesheets/style.css";
 import NavBar from "../../components/NavBar";
+import { BASE_BACKEND_URL } from "../../config.js";
 
 function CategoriesPage() {
-
+  
   useEffect(() => 
   {
     document.title = 'Service Category | Community ALI';
   }, []);
-
-  const token = localStorage.getItem("token");
-  let decodedToken = {};
-  if (token) {
-    decodedToken = JSON.parse(atob(token.split(".")[1]));
+  const [permissions, setPermissions] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      await fetch(`${BASE_BACKEND_URL}/userdata/check-permissions`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        setPermissions(data);
+        const loaderWrapper = document.querySelector(".loader-wrapper");
+        loaderWrapper.style.transition = "opacity 0.5s";
+        loaderWrapper.style.opacity = "0";
+        setTimeout(() => {
+          loaderWrapper.style.display = "none";
+        }, 500);
+      });
+    }
+    fetchData();
   }
+  , []);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  useState(() => {
+      console.log(window.innerWidth);
+      window.addEventListener('resize', (() => {
+          setIsMobile(window.innerWidth <= 850)
+      }));
+  })
 
   return (
     <div>
+      {isMobile ?
+      <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
       <NavBar isFixedPage={false} />
+      }
       <div className="service-categories-container">
         <div className="category-container-title">
           <p className="mb-[15px]">Select the Category of Your New Service</p>
@@ -27,7 +56,7 @@ function CategoriesPage() {
         </div>
 
         {/* Box 1 */}
-        {decodedToken.clubAdmin ? (
+        {permissions.clubAdmin ? (
           <a className="category-container" href="/add-club">
             <p className="category-header">Add an MJC Club</p>
             <p className="category-text">
@@ -67,7 +96,7 @@ function CategoriesPage() {
         )} */}
 
           {/* Box 2 */}
-          {decodedToken.programAdmin ? (
+          {permissions.programAdmin ? (
           <a className="category-container" href="/add-program">
             <p className="category-header">Add an MJC Program</p>
             <p className="category-text">
@@ -86,7 +115,7 @@ function CategoriesPage() {
         )}
 
         {/* Box 3 */}
-        {decodedToken.volunteerAdmin ? (
+        {permissions.volunteerAdmin ? (
           <a className="category-container" href="/add-volunteer">
             <p className="category-header">Add Volunteering</p>
             <p className="category-text">
@@ -106,7 +135,7 @@ function CategoriesPage() {
         )}
 
         {/* Box 4 */}
-        {decodedToken.internshipAdmin ? (
+        {permissions.internshipAdmin ? (
           <a className="category-container" href="/add-internship">
             <p className="category-header">Add an Internship</p>
             <p className="category-text">
@@ -125,6 +154,11 @@ function CategoriesPage() {
           </div>
         )}
       </div>
+      <div className="loader-wrapper">
+          <span className="loader">
+            <span className="loader-inner"></span>
+          </span>
+        </div>
     </div>
   );
 }

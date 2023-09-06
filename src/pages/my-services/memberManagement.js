@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
 import EntityManagementSelection from "../../components/messager/entityManagementSelection";
+import MemberPopup from "./memberPopup";
 import MessagingUI from "../../components/messager/messagingUI";
 import Footer from "../../components/Footer";
 import { Buffer } from "buffer";
 import { BASE_BACKEND_URL } from "../../config";
 
+
 //TODO make a get function for a fully populated service
 export default function MemberManagement() {
+  const [isShowingMemberPopup, setIsShowingMemberPopup] = useState(false);
+  const [selectedMember, setSelectedMember] = useState({});
   const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
 
   useEffect(() => {
-    console.log("window width: ", window.innerWidth);
+    document.title = "Manage Members and Send Updates | Community ALI";
+  }, []);
+
+  useEffect(() => {
+
     function updateWindow() {
       setIsMobile(window.innerWidth <= 850);
     }
@@ -22,6 +30,11 @@ export default function MemberManagement() {
 
     return () => window.removeEventListener("resize", updateWindow);
   }, [window.innerWidth]);
+
+  const showMemberPopup = async  function (Member){
+    setIsShowingMemberPopup(true);
+    setSelectedMember(Member);
+  };
 
   const convertImageToUrl = async function (image) {
     try {
@@ -91,7 +104,6 @@ export default function MemberManagement() {
                     }
                   })
                 );
-                console.log(users);
                 setUsers(users);
               } catch (err) {
                 console.log(err);
@@ -109,15 +121,13 @@ export default function MemberManagement() {
 
   const [showEntityManagement, setShowEntityManagement] = useState(false);
 
-  //TODO: Add page loading so users can't interact with elements
-  //before all the data has been set up
   //TODO: Add mobile support
   if (isMobile) {
     if (!showEntityManagement) {
       return (
         <div>
-        <NavBar />
-          <div className="lr:mt-24 h-[80vh] flex">
+        <NavBar hideMobileSearchBar={true}/>
+          <div className="lr:mt-[3rem] h-[90vh] flex">
             <MessagingUI
               serviceTitle={service.title}
               senderId={service._id}
@@ -128,6 +138,22 @@ export default function MemberManagement() {
             />
           </div>
         <Footer />
+          <div className="loader-wrapper">
+            <span className="loader">
+              <span className="loader-inner"></span>
+            </span>
+          </div>
+          <MemberPopup
+            selectedMember={selectedMember}
+            isShowingMemberPopup={isShowingMemberPopup}
+            setIsShowingMemberPopup={setIsShowingMemberPopup}
+          ></MemberPopup>
+          <div
+            id="login-popup-background"
+            className={isShowingMemberPopup ? "" : "hidden"}
+            onClick={()=>{setIsShowingMemberPopup(false)}}
+            style={{ cursor: "pointer" }}
+          ></div>
         </div>
       );
     }
@@ -136,20 +162,49 @@ export default function MemberManagement() {
       <div>
         <NavBar />
         <div className="lr:mt-24 h-[80vh] w-[100%] flex">
-            <EntityManagementSelection entityType={"user"} entities={users} isMobile={true} BackMobileButton={() => setShowEntityManagement(false)} />
+            <EntityManagementSelection 
+            entityType={"user"} 
+            entities={users} 
+            isMobile={true} 
+            SelectEntity = {showMemberPopup}
+            BackMobileButton={() => setShowEntityManagement(false)} />
         </div>
         <Footer />
+          <div className="loader-wrapper">
+            <span className="loader">
+              <span className="loader-inner"></span>
+            </span>
+          </div>
+          <MemberPopup
+            selectedMember={selectedMember}
+            isShowingMemberPopup={isShowingMemberPopup}
+            setIsShowingMemberPopup={setIsShowingMemberPopup}
+          ></MemberPopup>
+          <div
+            id="login-popup-background"
+            className={isShowingMemberPopup ? "" : "hidden"}
+            onClick={()=>{setIsShowingMemberPopup(false)}}
+            style={{ cursor: "pointer" }}
+          ></div>
+
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
       <NavBar />
-      <div className="lr:mt-24 h-[80vh] flex">
+      <div className="lr:mt-24 h-[90vh] flex border-t-2 border-ali-backgroundblue relative border-opacity-50">
+      <a id="tech-support" className='absolute bottom-10 left-5' href="/contact-form"> Technical Support </a>
         {
           <div className="max-w-[40%]">
-            <EntityManagementSelection entityType={"user"} entities={users} />
+            <EntityManagementSelection 
+            entityType={"user"} 
+            entities={users}
+            isMobile={false}
+            SelectEntity = {showMemberPopup}
+            />
+            
           </div>
         }
         <MessagingUI
@@ -161,12 +216,23 @@ export default function MemberManagement() {
           BackMobileButton={() => setShowEntityManagement()}
         />
       </div>
-      <Footer />
       <div className="loader-wrapper">
         <span className="loader">
           <span className="loader-inner"></span>
         </span>
       </div>
+      {/* the member popup */}
+      <MemberPopup
+            selectedMember={selectedMember}
+            isShowingMemberPopup={isShowingMemberPopup}
+            setIsShowingMemberPopup={setIsShowingMemberPopup}
+      ></MemberPopup>
+      <div
+        id="login-popup-background"
+        className={isShowingMemberPopup ? "" : "hidden"}
+        onClick={()=>{setIsShowingMemberPopup(false)}}
+        style={{ cursor: "pointer" }}
+      ></div>
     </div>
   );
 }

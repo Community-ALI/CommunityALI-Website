@@ -58,10 +58,11 @@ router.get("/get-service-applicants", async function (req, res) {
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
       const username = decodedToken.username;
-      if (service && username && username == service.user){
-        // the user owns this service
+      const user_id = decodedToken.id;
+      // check if the user owns the service or is a manager of the service
+      if ((username == service.user) || (service.ApplicationManagers && service.ApplicationManagers.includes(user_id))){
+        // the user can view the applicants
         const applicants = await applicant_data.get_service_applicants(service.title);
-        // console.log(applicants);
         res.json(applicants);
         console.log(applicants.length, 'applications sent for', service.title);
       }
@@ -86,8 +87,10 @@ router.post('/delete-application', async function (req, res) {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
         const adminUsername = decodedToken.username;
+        const user_id = decodedToken.id;
         const service = await service_data.get_one_service(service_name);
-        if (service.user != adminUsername){
+        // check if the user owns the service or is a manager of the service
+        if (service.user != adminUsername && !service.ApplicationManagers.includes(user_id)){
             res.json({ success: false, error: 'Unauthorized' });
         }
         // get the username of the applicant

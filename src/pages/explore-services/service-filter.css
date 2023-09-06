@@ -255,6 +255,24 @@ input[type="checkbox"]:checked:after
     }
 }
 
+@media all and (max-width : 1050px) 
+{
+    .filter-school-button
+    {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .add-service-button
+    {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
 @media all and (max-width : 988px) 
 {
     .filter-system-container
@@ -359,8 +377,19 @@ input[type="checkbox"]:checked:after
     color: white;
 }
 
-@media all and (max-width: 768px) 
+
+@media all and (max-width: 850px) 
 {
+    .filter-school-button
+    {
+        padding: 12px 40px;
+    }
+
+    .add-service-button
+    {
+        padding: 12px 40px;
+    }
+
     .dropdown-container 
     {
         display: flex;
@@ -372,7 +401,7 @@ input[type="checkbox"]:checked:after
 
     .add-service-button 
     {
-        text-align: left;
+        text-align: left; 
     }
 
     .content 
@@ -405,9 +434,14 @@ input[type="checkbox"]:checked:after
     {
         padding-top: 120px;
     }
+
+    .category-section 
+    {
+        padding: 10px 10px;
+    }
 }
 
-@media all and (max-width: 425px) 
+@media all and (max-width: 480px) 
 {
     .content 
     {
@@ -423,6 +457,19 @@ input[type="checkbox"]:checked:after
     {
         width: 100%;
         text-align: center;
+    }
+
+    .filter-school-button
+    {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .add-service-button
+    {
+        padding: 10px 30px;
+        font-size: 14px;
+        margin-right: 0px;
     }
 
 }

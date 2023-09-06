@@ -8,6 +8,7 @@ import ProfilePicturePopup from './profilePicturePopup';
 import { Buffer } from 'buffer';
 import PasswordChangePopup from './passwordChangePopup';
 import { useNavigate } from 'react-router-dom';
+import NavbarMobileHidden from '../../components/navbar/navbar-mobile-hidden';
 
 function dataURItoBlob(dataURI) {
   const byteString = atob(dataURI.split(',')[1]);
@@ -65,7 +66,7 @@ function Profile() {
               body: JSON.stringify({ requestedFields: 'title'})
             });
           const data = await response.json();
-          setServices(data.dataServices);
+          setServices(data.OwnedServices);
         } else {
         }
       } catch (error) {
@@ -297,7 +298,7 @@ function Profile() {
       </div>
       )}
 
-      <NavBar isFixedPage={false} />
+      <NavbarMobileHidden></NavbarMobileHidden>
       <div className="profile-container">
         <div className="profile-picture">
         

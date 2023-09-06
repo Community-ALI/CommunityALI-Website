@@ -6,6 +6,7 @@ import "../../components/loading-screen.css";
 import NavBar from "../../components/NavBar";
 import Notifications from "../../components/Notification";
 import DeleteServicePopup from "../../components/DeleteServicePopup";
+import LoadingUI from "../../components/loading/LoadingUI.js";
 const Buffer = require("buffer").Buffer;
 // create the information required to display the page
 
@@ -15,46 +16,53 @@ function MyServicePageDisplay(props) {
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString("base64");
   const imageUrl = `data:image/png;base64,${base64}`;
+
   useEffect(() => {
     document.title = "Manage Services | Community ALI";
   }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const response = await fetch(
-            `${BASE_BACKEND_URL}/servicedata/get-service-notifications?service=` +
-              service.title,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              // 'data' variable will contain the received object with the data array and tokenUsername
-              setNotifications(data);
-            });
-        } else {
-          console.log("no token found");
+  
+  if (service.permissionLevel === "Owner"|| service.permissionLevel === "Manager") {
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          if (token) {
+            const response = await fetch(
+              `${BASE_BACKEND_URL}/servicedata/get-service-notifications?service=` +
+                service.title,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                // 'data' variable will contain the received object with the data array and tokenUsername
+                setNotifications(data);
+              });
+          } else {
+            console.log("no token found");
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      };
 
-    fetchData();
-  }, []);
+      fetchData();
+    }, []);
+  }
 
   const handleBackgroundClick = () => {
-    window.location.href = "view-applicants?service=" + service.title;
+    if (service.permissionLevel === "Owner" || service.permissionLevel === "Manager"){
+      window.location.href = "view-applicants?service=" + service.title;
+    } else {
+      window.location.href = "service-info?service=" + service.title;
+    }
   };
 
   return (
-    <div className="flex content-center justify-center px-[5%] lr:flex-col lr:items-center sm:mb-[30px]">
+    <div className="flex content-center justify-center fadeIn px-[5%] lr:flex-col lr:items-center sm:mb-[30px]">
       <div
         className="flex items-center w-[80%] my-[20px] mx-[15px] max-w-[1200px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
         duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:w-[86%] lr:w-[92%] md:w-[95%]"
@@ -69,22 +77,33 @@ function MyServicePageDisplay(props) {
           <div className="text-white text-[140%] xxlr:text-[120%] xlr:text-[110%] lr:text-[100%] xlr:items-center font-medium text-left overflow-hidden 
           overflow-ellipsis w-[60%] xxlr:text-start xxlr:max-w-[400px] xlr:max-w-[300px] md:w-[100%] md:text-center md:line-clamp-2 sm:text-[85%] xsm:text-[70%]">{service.title}</div>
           <div className="flex items-center flex-wrap lr:justify-end md:justify-center md:mt-[10px] sm:hidden">
-            <a href={`edit-service?service=${service.title}`}>
+            {(service.permissionLevel === "Owner" || service.permissionLevel === "Editor") && (
+              <a href={`edit-service?service=${service.title}`}>
               <img
                 className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]"
                 src="Photos/EditIcon.png"
               ></img>
-            </a>
-            <a className='relative' href={`view-applicants?service=${service.title}`}>
-            <Notifications notifications={notifications ? notifications.length : 0} /> 
-              <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png"></img>
-            </a>
-            {/* <a  onClick={(event) => {
-                event.stopPropagation();
-                props.setDeleteServiceTitle(service.title);
-                props.setIsShowingServiceDeletePopup(true);}}>
-              <img className='h-[50px] w-[50px] xlr:h-[40px] xlr:w-[40px] lr:mx-[10px] lr:w-[30px] lr:h-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/TrashIcon.png"></img>
-            </a> */}
+              </a>
+            )}
+            
+
+            {(service.permissionLevel === "Owner" || service.permissionLevel === "Manager")  && (
+              <a className='relative' href={`view-applicants?service=${service.title}`}>
+              <Notifications notifications={notifications ? notifications.length : 0} />
+                <img className='h-[50px] w-[50px] mr-[40px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png" />
+              </a>
+            )}
+            
+              {service.permissionLevel === "Owner" && (
+                <a  onClick={(event) => {
+                  event.stopPropagation();
+                  props.setDeleteServiceTitle(service.title);
+                  props.setIsShowingServiceDeletePopup(true);
+                  }}>
+                <img className='h-[50px] w-[50px]  xlr:h-[40px] xlr:w-[40px] lr:w-[30px] lr:h-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/TrashIcon.png"></img>
+              </a>
+              )}
+            
           </div>
         </div>
       </div>
@@ -100,12 +119,12 @@ function MyServicePageDisplay(props) {
           <Notifications notifications={notifications ? notifications.length : 0} /> 
             <img src="Photos/ApplicantsIcon.png" className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]'></img>
           </a>
-          {/* <a href={`view-applicants?service=${service.title}`}>
-            <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/SendIcon.png"></img>
-          </a> */}
+          <a href={`view-applicants?service=${service.title}`}>
+            <img className='h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/SendIcon.png"></img>
+          </a>
       </div>
-
-      <Link 
+      {(service.permissionLevel === "Owner" || service.permissionLevel === "Manager") ? (
+        <Link 
         className="flex items-center content-center flex-wrap text-center justify-center max-w-[300px] text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white 
         rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
         xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] sm:text-[80%] xsm:text-[80%] sm:hidden"
@@ -113,6 +132,22 @@ function MyServicePageDisplay(props) {
         >
         <p> Manage <span className="text-[var(--accent-color)] text-[110%]"> Members </span> and Send <span className="text-[var(--accent-color)] text-[110%]"> Updates </span> </p>
       </Link>
+      )
+      : // otherwise this user cannot manage service members
+      (
+        <div
+          className="flex items-center content-center flex-wrap text-center justify-center max-w-[300px] text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out  lr:max-w-[1000px] xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] sm:text-[80%] xsm:text-[80%] sm:hidden"
+          style={{ filter: 'brightness(60%)' }}
+        >
+          <p>
+            Manage <span className="text-[var(--accent-color)] text-[110%]"> Members </span> and Send{' '}
+            <span className="text-[var(--accent-color)] text-[110%]"> Updates </span>
+          </p>
+          <p className="text-xs">You are not authorized to manage members</p>
+        </div>
+      )
+      }
+      
       
     </div>
   );
@@ -121,14 +156,30 @@ function MyServicePageDisplay(props) {
 function MyServicesHome() {
   // create the information required to display the page
   const [services, setServices] = useState([]);
-  const [username, setUsername] = useState("no username associated with token");
+  const [username, setUsername] = useState("Username... (Loading)");
   const [isShowingServiceDeletePopup, setIsShowingServiceDeletePopup] =
     useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState("");
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  const [showServices, setShowServices] = useState(true);
+
   useEffect(() => {
+    console.log("window width: ", window.innerWidth);
+    function updateWindow() {
+      setIsMobile(window.innerWidth <= 850);
+    }
+
+    window.addEventListener("resize", updateWindow);
+
+    return () => window.removeEventListener("resize", updateWindow);
+  }, [window.innerWidth]);
+
+  useEffect(() => {
+
     const fetchData = async () => {
       try {
+        setShowServices(false);
         var token = localStorage.getItem("token");
         if (token) {
           const response = await fetch(
@@ -144,16 +195,29 @@ function MyServicesHome() {
           )
             .then((response) => response.json())
             .then((data) => {
-              // 'data' variable will contain the received object with the data array and tokenUsername
-
-              setServices(data.dataServices);
+              // combine the three arrays into one
+              const services = data.OwnedServices.concat(data.EditableServices).concat(data.ManageableServices);
+              // only keep unique services by title
+              const uniqueServices = [];
+              const map = new Map();
+              setShowServices(true);
+              for (const service of services) {
+                if (!map.has(service.title)) {
+                  map.set(service.title, true); 
+                  // record permission level for this service
+                  if (data.OwnedServices.find(s => s.title === service.title)) {
+                    service.permissionLevel = "Owner";
+                  } else if (data.EditableServices.find(s => s.title === service.title)) {
+                    service.permissionLevel = "Editor";
+                  } else if (data.ManageableServices.find(s => s.title === service.title)) {
+                    service.permissionLevel = "Manager";
+                  };
+                  uniqueServices.push(service);
+                }
+              }
+              
+              setServices(uniqueServices);              
               setUsername(data.tokenUsername);
-              const loaderWrapper = document.querySelector(".loader-wrapper");
-              loaderWrapper.style.transition = "opacity 0.5s";
-              loaderWrapper.style.opacity = "0";
-              setTimeout(() => {
-                loaderWrapper.style.display = "none";
-              }, 500); // fade out duration in milliseconds
             });
         } else {
           console.log("no token found");
@@ -168,17 +232,14 @@ function MyServicesHome() {
 
   return (
     <>
-      <div className="loader-wrapper">
-        <span className="loader">
-          <span className="loader-inner"></span>
-        </span>
-      </div>
-      <NavBar isFixedPage={false} />,
-
+      {isMobile ?
+            <NavBar isFixedPage={false} hideMobileSearchBar={true} /> :
+            <NavBar isFixedPage={false} />
+      }
       <div className='flex justify-center lr:mt-[100px]'>
           <div className={'max-w-[1600px] w-[90%] flex flex-col px-[25px] sm:px-[10px]'}>
               <div className='flex flex-col gap-3'>
-                  <div className="flex flex-row justify-between gap-3 sm:flex-col">
+                  <div className="flex flex-row justify-between gap-3 pt-[20px] md:flex-col md:pt-0">
                       <button className='blue-container px-[15px]' onClick={() => {window.location.href = '/'}}>&lt;&lt; BACK</button>
                       <button className="blue-container flex justify-center gap-3">
                         <a className='px-[24px]' href="/categories-page"> Create a New Service + </a>
@@ -216,9 +277,16 @@ function MyServicesHome() {
             service={service}
             setDeleteServiceTitle={setDeleteServiceTitle}
             setIsShowingServiceDeletePopup={setIsShowingServiceDeletePopup}
+            showServices={showServices}
+            SetShowServices={setShowServices}
           />
         ))
       )}
+        {!showServices && (
+          <div className="w-[100%] h-[50vh]">
+            <LoadingUI />
+          </div>
+        )}
     </>
   );
 }

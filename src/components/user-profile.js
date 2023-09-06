@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Buffer } from "buffer";
 
 const UserProfileCircle = (Logout) => {
-  const [username, setUsername] = useState("no username associated with token");
+  const [username, setUsername] = useState("Loading Username...");
   const dropdownRef = useRef(null);
   const dropdownIconRef = useRef(null);
 

@@ -61,6 +61,11 @@ exports.store_add_service = async function (req, username) {
     const photoBuffer = fs.readFileSync(req.file.path);
     // make a thumbnail
     const thumbnail = await generateThumbnail(photoBuffer);
+    // get the user's id from the database
+    var user = await User.findOne({ username: username }).select("_id");
+    user = JSON.parse(JSON.stringify(user));
+    const user_id = user._id;
+
     const newService = new Service({
       title: req.body.title,
       serviceType: req.body.serviceType,
@@ -71,8 +76,9 @@ exports.store_add_service = async function (req, username) {
       datePosted: formattedDate,
       timePosted: time,
       user: username,
-      collaborators: [username], // the user who created the service is automatically a collaborator
-      members: [], // FIXME: Make the user who created the service a member
+      Editors: [], 
+      ApplicationManagers: [],
+      members: [user_id], // Make the user who created the service a member by default
       applicants: [],
       messages: [],
       internshipLink: req.body.internshipLink,
@@ -253,6 +259,103 @@ exports.get_one_service = async function (service_name) {
   }
 };
 
+// add an editor to a service
+exports.add_editor = async function (req, service) {
+  try {
+    console.log(req.body);
+    const new_editor = req.body.user_id;
+    console.log(new_editor);
+    // make sure the user is not already an editor
+    if (service.Editors.includes(new_editor)) {
+      console.log("editor already exists");
+      return { success: true };
+    }
+    // add the service to the user's list of editable services
+    const user = await User.findOne({ _id: new_editor });
+    user.servicesEditable.push(service._id);
+    await user.save();
+    // add the user to the service's list of editors
+    service.Editors.push(new_editor);
+    await service.save();
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
+// remove an editor from a service
+exports.remove_editor = async function (req, service) {
+  try {
+    console.log(req.body);
+    const editor = req.body.user_id;
+    console.log(editor);
+    // make sure the user is not already an editor
+    if (!service.Editors.includes(editor)) {
+      console.log("editor does not exist");
+      return { success: true };
+    }
+    // remove the service from the user's list of editable services
+    const user = await User.findOne({ _id: editor });
+    user.servicesEditable.splice(user.servicesEditable.indexOf(service.id), 1);
+    await user.save();
+    // remove the user from the service's list of editors
+    service.Editors.splice(service.Editors.indexOf(editor), 1);
+    await service.save();
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
+// add an application manager to a service
+exports.add_application_manager = async function (req, service) {
+  try {
+    const new_manager = req.body.user_id;
+    console.log(new_manager);
+    // make sure the user is not already an editor
+    if (service.ApplicationManagers.includes(new_manager)) {
+      console.log("managers already exists");
+      return { success: true };
+    }
+    // add the service to the user's list of managable services
+    const user = await User.findOne({ _id: new_manager });
+    user.servicesManageable.push(service._id);
+    await user.save();
+    // add the user to the service's list of managers
+    service.ApplicationManagers.push(new_manager);
+    await service.save();
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
+// remove an application manager from a service
+exports.remove_application_manager = async function (req, service) {
+  try {
+    const manager = req.body.user_id;
+    if (!service.ApplicationManagers.includes(manager)) {
+      console.log("manager does not exist");
+      return { success: true };
+    }
+    // remove the service from the user's list of managable services
+    const user = await User.findOne({ _id: manager });
+    user.servicesManageable.splice(user.servicesManageable.indexOf(service.id), 1);
+    await user.save();
+    // remove the user from the service's list of managers
+    service.ApplicationManagers.splice(service.ApplicationManagers.indexOf(manager), 1);
+    await service.save();
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+    
+
 const generateThumbnail2 = async function (photoBuffer) {
   try {
     // Load the photo buffer from the service
@@ -306,7 +409,6 @@ exports.editService = async function (req, username) {
     existingService.categories = pages.overview.categories;
     existingService.datePosted = formattedDate;
     existingService.timePosted = time;
-    existingService.user = username;
     existingService.internshipLink = req.body.internshipLink;
 
     await existingService.save();

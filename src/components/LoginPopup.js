@@ -66,7 +66,7 @@ function LoginPopup(props) {
                 <div className='container-login'>
                     <div className="container-for-login">
                         <h1 className='login-title-h1'>Login</h1>
-                        <form id="login" onSubmit={login}>
+                        <form id="login" style={{color: 'black'}} onSubmit={login}>
                             <div className="text-field">
                                 <input 
                                     autoComplete="off"
