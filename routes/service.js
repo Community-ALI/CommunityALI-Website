@@ -112,7 +112,6 @@ function sanitizeService(req, res, next) {
 router.post(
   "/edit-service",
   upload.single("image"),
-  sanitizeService,
   storeEditService
 );
 async function storeEditService(req, res) {
