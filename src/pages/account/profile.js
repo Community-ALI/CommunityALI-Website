@@ -31,7 +31,7 @@ function Profile() {
     imageUrl: 'photos-optimized/user-pic.png',
     sendNotifications: false,
   });
-
+  const [changesMade, setChangesMade] = useState(false);
   const [isShowingPasswordPopup, setIsShowingPasswordPopup] = useState(false);
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -223,10 +223,12 @@ function Profile() {
       ...prevAccount,
       [name]: value,
     }));
+    setChangesMade(true);
   };
 
   const handleProfileButtonClick = () => {
     setIsShowingProfilePicturePopup(true);
+    setChangesMade(true);
   }
 
   const handleClickOutsidePopup = (event) => {
@@ -245,6 +247,7 @@ function Profile() {
         ...prevAccount,
         sendNotifications: !account.sendNotifications,
       }));
+      setChangesMade(true);
     
   };
 
@@ -407,12 +410,14 @@ function Profile() {
             <div className='profile-section-input'> {applications.length || 0} </div>
           </div>
         </div> */}
-
-        <input type="button" className="profile-save-button"
+        {changesMade && 
+        
+          <input type="button" className="profile-save-button"
           onClick={handleButtonClick}
           value={buttonText}
         />
-        {editMode &&
+        }
+        {changesMade &&
           <input type="button" className="profile-save-button" id='profile-cancel-button'
             
             onClick={() => { setEditMode(false); window.location.reload(); }}
