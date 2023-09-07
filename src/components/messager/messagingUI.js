@@ -13,11 +13,16 @@ function Message(props) {
                      date.getMonth() === now.getMonth() &&
                      date.getFullYear() === now.getFullYear();
   
+    const timeDiffInDays = (now - date) / (1000 * 60 * 60 * 24); // Calculate the difference in days
+  
     if (isSameDay) {
       // If it's today, return the time in 12-hour format
       const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format
       const amPm = date.getHours() >= 12 ? 'PM' : 'AM'; // Determine AM or PM
       return `${hours}:${String(date.getMinutes()).padStart(2, '0')} ${amPm}`;
+    } else if (timeDiffInDays <= 7) {
+      // If it's within the last 7 days, return the time, month, and day
+      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
     } else if (now.getFullYear() === date.getFullYear()) {
       // If it's within the same year, return the month and day
       return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
