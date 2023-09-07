@@ -241,7 +241,7 @@ function Profile() {
 
   // confirm that the user wants to leave the page if they have unsaved changes
   window.onbeforeunload = function () {
-    if (editMode) {
+    if (changesMade && editMode) {
       return true;
     }
   };

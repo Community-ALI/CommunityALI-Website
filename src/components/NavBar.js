@@ -10,6 +10,7 @@ import SignupPopup from "./SignupPopup";
 import SignUpButton from "./SignUpButton.js";
 
 function MyServicesNavButton(props) {
+  
   var token = localStorage.getItem("token");
   var decodedToken = {};
   if (token) {
@@ -203,6 +204,16 @@ function NavBar(props) {
     };
   }, [isMobile]);
 
+  // explore link only redirects if not already on explore page
+  const navigateExplore = (event) => {
+    event.preventDefault(); 
+    console.log(window.location.href);
+    // if the path does not contain /services, redirect to /services
+    if (!window.location.href.includes("/services")) {
+      window.location.href = "/services";
+    }
+  };
+
   return (
     <>
       <div
@@ -252,9 +263,9 @@ function NavBar(props) {
             Home
           </a>
 
-          <Link className="navigation-text" to="/services">
+          <a className="navigation-text" onClick={navigateExplore}>
             Explore
-          </Link>
+          </a>
 
           <MyServicesNavButton
             token={token}
