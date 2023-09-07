@@ -90,11 +90,11 @@ function MyServicePageDisplay(props) {
             {(service.permissionLevel === "Owner" || service.permissionLevel === "Manager")  && (
               <a className='relative' href={`view-applicants?service=${service.title}`}>
               <Notifications notifications={notifications ? notifications.length : 0} />
-                <img className='h-[50px] w-[50px] mr-[40px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png" />
+                <img className='h-[50px] w-[50px] mr-[10px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="Photos/ApplicantsIcon.png" />
               </a>
             )}
             
-              {service.permissionLevel === "Owner" && (
+              {/* {service.permissionLevel === "Owner" && (
                 <a  onClick={(event) => {
                   event.stopPropagation();
                   props.setDeleteServiceTitle(service.title);
@@ -102,7 +102,7 @@ function MyServicePageDisplay(props) {
                   }}>
                 <img className='h-[50px] w-[50px]  xlr:h-[40px] xlr:w-[40px] lr:w-[30px] lr:h-[30px] transition duration-300 ease-out hover:scale-[1.1]' src="photos/TrashIcon.png"></img>
               </a>
-              )}
+              )} */}
             
           </div>
         </div>
