@@ -306,6 +306,51 @@ router.post("/add-member", async (req, res) => {
   }
 });
 
+// add an editor to the service
+router.post("/assign-user-role", async (req, res) => {
+  try {
+      // make sure the user is authorized to change permissions (only the service owner can do this)
+      const token = req.headers.authorization.split(' ')[1];
+      const decodedToken = jwt.verify(token, JWT_SECRET);
+      const username = decodedToken.username;
+      
+      const service_name = req.query.service;
+      console.log(service_name)
+      const service = await service_data.get_one_service(service_name);
+      console.log(service.title)
+      if (service && username && username == service.user) { // the user owns this service
+          var result = {success: false, error: 'internal server error'};
+          if (req.body.isEditor) {
+              result = await service_data.add_editor(req, service);
+          }
+          else{
+              result = await service_data.remove_editor(req, service);
+          }
+          if (req.body.isManager) {
+              result = await service_data.add_application_manager(req, service);
+          }
+          else {
+              result = await service_data.remove_application_manager(req, service);
+          }
+          if (result.success) {
+              res.json({ success: true });
+          }
+          else {
+              console.log(result.error);
+              res.json({ success: false, error: 'internal server error' });
+          }
+      }
+      else {
+          console.log('unauthorized request')
+          res.json({ success: false, error: 'unauthorized' });
+      }
+  }
+  catch (error) {
+      console.log(error);
+      res.json({ success: false, error: 'internal server error' });
+  }
+});
+
 router.get("/get-service-members/:serviceTitle", async function (req, res) {
   try {
     users = await service_data.get_service_users(req.params.serviceTitle);
