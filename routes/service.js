@@ -307,19 +307,19 @@ router.post("/add-member", async (req, res) => {
 });
 
 // add an editor to the service
-router.post("/assign-user-role", async (req, res) => {
+router.post("/assign-member-permissions", async (req, res) => {
   try {
       // make sure the user is authorized to change permissions (only the service owner can do this)
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
       const username = decodedToken.username;
-      
       const service_name = req.query.service;
-      console.log(service_name)
       const service = await service_data.get_one_service(service_name);
-      console.log(service.title)
+      console.log(req.body);
       if (service && username && username == service.user) { // the user owns this service
+        console.log(req.body)
           var result = {success: false, error: 'internal server error'};
+          // FIXME: do this in a better way (result gets overwritten each time leading to possible errors)
           if (req.body.isEditor) {
               result = await service_data.add_editor(req, service);
           }
@@ -331,6 +331,12 @@ router.post("/assign-user-role", async (req, res) => {
           }
           else {
               result = await service_data.remove_application_manager(req, service);
+          }
+          if (req.body.isUpdateSender) {
+              result = await service_data.add_update_sender(req, service);
+          }
+          else {
+              result = await service_data.remove_update_sender(req, service);
           }
           if (result.success) {
               res.json({ success: true });
@@ -350,6 +356,37 @@ router.post("/assign-user-role", async (req, res) => {
       res.json({ success: false, error: 'internal server error' });
   }
 });
+
+// get the member's permissions
+router.post('/get-member-permissions', async (req, res) => {
+  try{
+    // make sure the user is authorized to view permissions
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    const username = decodedToken.username;
+
+    const service_name = req.query.service;
+    const service = await service_data.get_one_service(service_name);
+    if (!(service.user == username)) { // the user does not own this service
+        console.log('unauthorized request')
+        res.json({ success: false, error: 'unauthorized' });
+        return;
+    }
+    // get the member's id and check if they have certain permissions
+    const member_id = req.body.user_id;
+
+    const isEditor = (service.Editors && service.Editors.includes(member_id));
+    const isManager = (service.ApplicationManagers && service.ApplicationManagers.includes(member_id));
+    const isUpdateSender = (service.UpdateSenders && service.UpdateSenders.includes(member_id));
+    res.json({isEditor, isManager, isUpdateSender});
+  }
+  catch (error) {
+      console.log(error);
+      res.json({ success: false, error: 'internal server error' });
+  }
+});
+
+
 
 router.get("/get-service-members/:serviceTitle", async function (req, res) {
   try {
