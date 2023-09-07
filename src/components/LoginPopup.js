@@ -40,6 +40,7 @@ function LoginPopup(props) {
                 if (result.status === 'ok') {
                     //everything is a okay
                     localStorage.setItem('token', result.data);
+                    localStorage.setItem('username', result.username);
                     const decodedToken = JSON.parse(atob(result.data.split('.')[1]));
                     console.log('signed in as: '+ decodedToken.username);
                     // reload the page

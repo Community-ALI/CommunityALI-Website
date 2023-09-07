@@ -152,7 +152,7 @@ router.post("/login", async (req, res) => {
         maxAge: 86400000, // 1 day
       });
 
-      res.json({ status: "ok", data: token });
+      res.json({ status: "ok", data: token, username: user.username });
     } else {
       res
         .status(400)

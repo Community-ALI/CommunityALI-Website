@@ -156,7 +156,7 @@ function MyServicePageDisplay(props) {
 function MyServicesHome() {
   // create the information required to display the page
   const [services, setServices] = useState([]);
-  const [username, setUsername] = useState("Username... (Loading)");
+  const [username, setUsername] = useState(localStorage.getItem("username") || "Username... (Loading)");
   const [isShowingServiceDeletePopup, setIsShowingServiceDeletePopup] =
     useState(false);
   const [deleteServiceTitle, setDeleteServiceTitle] = useState("");
