@@ -49,12 +49,20 @@ function MessageForm(props) {
     event.preventDefault();
     const postingMessage = message;
     clearInput();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Not loggod in");
+      return;
+    }
     const postData = async function () {
       try {
         console.log("Posting message to database: ", postingMessage.content);
         await fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
-          headers: { "content-Type": "application/json" },
+          headers: {
+             "authorization": `Bearer ${token}`,
+             "content-Type": "application/json"
+             },
           body: JSON.stringify(postingMessage),
         })
           .then((response) => {
