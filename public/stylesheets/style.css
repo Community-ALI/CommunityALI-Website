@@ -991,6 +991,10 @@ video {
   margin-top: 66px;
 }
 
+.mr-\[10px\] {
+  margin-right: 10px;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1081,6 +1085,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-\[95vh\] {
+  height: 95vh;
 }
 
 .max-h-0 {

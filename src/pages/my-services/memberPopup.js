@@ -73,7 +73,7 @@ function MemberPopup(props) {
     if (props.isShowingMemberPopup) {
         return (
             <div  ref={popupRef} className='top-[15%] left-[335px] w-[380px] z-100 shadow-xl fixed rounded-[15px] fadeInFast'>
-                <i class="fa-solid fa-xmark text-white absolute top-2 right-3 cursor-pointer" onClick={closePopup}></i>
+                <i className="fa-solid fa-xmark text-white absolute top-2 right-3 cursor-pointer" onClick={closePopup}></i>
                 <img className="absolute w-[85px] top-[15px] left-[24px]" src='photos-optimized/user-pic.png' />
                 <div className='bg-ali-backgroundblue pt-4 pb-3 pl-[125px] flex justify-start rounded-t-[15px]'>
                     <h1 className='text-white text-[20px]'>{member.fullName}</h1>
