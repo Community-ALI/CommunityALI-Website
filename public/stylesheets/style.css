@@ -127,7 +127,7 @@
 }
 
 .toggleInput:checked + .toggleButton::before{
-  transform: translateX(19px);
+  transform: translateX(20px);
 }
 
 .toggleInput{
@@ -674,10 +674,6 @@ video {
   pointer-events: none;
 }
 
-.visible {
-  visibility: visible;
-}
-
 .invisible {
   visibility: hidden;
 }
@@ -800,6 +796,22 @@ video {
 
 .top-\[80px\] {
   top: 80px;
+}
+
+.right-2 {
+  right: 0.5rem;
+}
+
+.top-2 {
+  top: 0.5rem;
+}
+
+.top-3 {
+  top: 0.75rem;
+}
+
+.right-3 {
+  right: 0.75rem;
 }
 
 .z-10 {
@@ -1786,8 +1798,8 @@ video {
   padding-bottom: 2rem;
 }
 
-.pb-\[50px\] {
-  padding-bottom: 50px;
+.pb-\[40px\] {
+  padding-bottom: 40px;
 }
 
 .pl-\[125px\] {
@@ -1816,10 +1828,6 @@ video {
 
 .pt-\[66px\] {
   padding-top: 66px;
-}
-
-.pb-\[40px\] {
-  padding-bottom: 40px;
 }
 
 .text-left {

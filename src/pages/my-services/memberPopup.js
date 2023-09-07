@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BASE_BACKEND_URL } from '../../config.js';
 
 function ToggleButton({ isSelected, onClick }) {
@@ -17,6 +17,28 @@ function ToggleButton({ isSelected, onClick }) {
 
 function MemberPopup(props) {
     const member = props.selectedMember;
+
+    const closePopup = () => {
+        props.setIsShowingMemberPopup(false);
+        setAreButtonsVisible(true);
+        setIsManagePermissionsVisible(false);
+      };
+
+      const popupRef = useRef(null);
+
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (popupRef.current && !popupRef.current.contains(event.target)) {
+            closePopup();
+          }
+        };
+    
+        window.addEventListener('mousedown', handleClickOutside);
+    
+        return () => {
+          window.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
 
     // Step 1: Create state variables
     const [isEditorSelected, setIsEditorSelected] = useState(false);
@@ -50,7 +72,8 @@ function MemberPopup(props) {
 
     if (props.isShowingMemberPopup) {
         return (
-            <div className='top-[15%] left-[335px] w-[380px] z-100 shadow-xl fixed rounded-[15px] fadeInFast'>
+            <div  ref={popupRef} className='top-[15%] left-[335px] w-[380px] z-100 shadow-xl fixed rounded-[15px] fadeInFast'>
+                <i class="fa-solid fa-xmark text-white absolute top-2 right-3 cursor-pointer" onClick={closePopup}></i>
                 <img className="absolute w-[85px] top-[15px] left-[24px]" src='photos-optimized/user-pic.png' />
                 <div className='bg-ali-backgroundblue pt-4 pb-3 pl-[125px] flex justify-start rounded-t-[15px]'>
                     <h1 className='text-white text-[20px]'>{member.fullName}</h1>

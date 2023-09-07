@@ -219,16 +219,6 @@ export default function MemberManagement() {
         </span>
       </div>
       {/* the member popup */}
-
-      <div
-      className={`${
-        isShowingMemberPopup ? "block" : "hidden"
-      } fixed top-0 left-0 w-full h-full bg-black opacity-0`}
-      onClick={() => {
-        setIsShowingMemberPopup(false);
-      }}
-      style={{ cursor: "pointer" }}
-      ></div>
       <MemberPopup
             selectedMember={selectedMember}
             isShowingMemberPopup={isShowingMemberPopup}

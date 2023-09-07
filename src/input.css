@@ -127,7 +127,7 @@
 }
 
 .toggleInput:checked + .toggleButton::before{
-  transform: translateX(19px);
+  transform: translateX(20px);
 }
 
 .toggleInput{
