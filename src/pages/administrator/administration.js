@@ -6,9 +6,6 @@ import Footer from '../../components/Footer';
 
 export default function Administration() {
 
-    useEffect(() => {
-        document.title = "Manage Members and Send Updates | Community ALI";
-      }, []);
     const [selectedUser, setSelectedUser] = useState();
 
     return(

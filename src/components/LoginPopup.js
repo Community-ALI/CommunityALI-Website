@@ -63,64 +63,64 @@ function LoginPopup(props) {
 
     if (props.isShowingLoginPopup) {
         return (
-                <div className='container-login'>
-                    <div className="container-for-login">
-                        <h1 className='login-title-h1'>Login</h1>
-                        <form id="login" style={{color: 'black'}} onSubmit={login}>
-                            <div className="text-field">
-                                <input 
-                                    autoComplete="off"
-                                    className="text-field-input"
-                                    id="usernameOrEmail" 
-                                    required=""
-                                    onChange={e => {
-                                        setUsernameOrEmail(e.target.value);
-                                    }}
-                                    />
-                                <span className={`text-field-span${(usernameOrEmail != '') ? ' focused-field' : ''}`}></span>
-                                <label className={`text-field-label${(usernameOrEmail != '') ? ' focused-field' : ''}`} htmlFor="usernameOrEmail">Username or Email</label>
-                            </div>
-                            <div className="text-field">
-                                <input 
-                                    autoComplete="off"
-                                    className="text-field-input"
-                                    type={passwordVisible ? "text" : "password"} // Use the "text" type when passwordVisible is true
-                                    id="password" 
-                                    required=""
-                                    onChange={e => {
-                                        setPassword(e.target.value);
-                                    }}
-                                    />
-                                    <i
-                                        className={`fa-solid ${passwordVisible ? "fa-eye" : "fa-eye-slash"}`}
-                                        id="password-eye"
-                                        onClick={togglePasswordVisibility} // Add the onClick event to toggle the password visibility
-                                    />
-
-                                <span className={`text-field-span${(password != '') ? ' focused-field' : ''}`}></span>
-                                <label className={`text-field-label${(password != '') ? ' focused-field' : ''}`} htmlFor="password">Password</label>
-                            </div>
-                    
+            <div className='container-login'>
+                <div className="container-for-login">
+                    <h1 className='login-title-h1'>Login</h1>
+                    <form id="login" style={{color: 'black'}} onSubmit={login}>
+                        <div className="text-field">
                             <input 
-                                type="submit" 
-                                value="Login" 
-                                className="login-submit-button"
-                            />
-                            
-                            <div className="signup_link">
-                                <a style={{ color: 'blue', textDecoration: 'underline' }} href='/forgot-password'>Forgot password</a>
-                                <p>Don't have an account? </p>
-                                <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={props.showSignupPopup}>Sign Up</button>
-                            </div> 
-                            <div className="signup_link">
-                                <div> Can't log into your account?</div>
-                                <a href="mailto: techsupport@communityali.org" style={{ color: 'blue', textDecoration: 'underline' }}>
-                                techsupport@communityali.org
-                                </a>
-                            </div>
-                        </form>
-                    </div>
+                                autoComplete="off"
+                                className="text-field-input"
+                                id="usernameOrEmail" 
+                                required=""
+                                onChange={e => {
+                                    setUsernameOrEmail(e.target.value);
+                                }}
+                                />
+                            <span className={`text-field-span${(usernameOrEmail != '') ? ' focused-field' : ''}`}></span>
+                            <label className={`text-field-label${(usernameOrEmail != '') ? ' focused-field' : ''}`} htmlFor="usernameOrEmail">Username or Email</label>
+                        </div>
+                        <div className="text-field">
+                            <input 
+                                autoComplete="off"
+                                className="text-field-input"
+                                type={passwordVisible ? "text" : "password"} // Use the "text" type when passwordVisible is true
+                                id="password" 
+                                required=""
+                                onChange={e => {
+                                    setPassword(e.target.value);
+                                }}
+                                />
+                                <i
+                                    className={`fa-solid ${passwordVisible ? "fa-eye" : "fa-eye-slash"}`}
+                                    id="password-eye"
+                                    onClick={togglePasswordVisibility} // Add the onClick event to toggle the password visibility
+                                />
+
+                            <span className={`text-field-span${(password != '') ? ' focused-field' : ''}`}></span>
+                            <label className={`text-field-label${(password != '') ? ' focused-field' : ''}`} htmlFor="password">Password</label>
+                        </div>
+                
+                        <input 
+                            type="submit" 
+                            value="Login" 
+                            className="login-submit-button"
+                        />
+                        
+                        <div className="signup_link">
+                            <a style={{ color: 'blue', textDecoration: 'underline' }} href='/forgot-password'>Forgot password</a>
+                            <p>Don't have an account? </p>
+                            <button style={{ color: 'blue', textDecoration: 'underline' }} onClick={props.showSignupPopup}>Sign Up</button>
+                        </div> 
+                        <div className="signup_link">
+                            <div> Can't log into your account?</div>
+                            <a href="mailto: techsupport@communityali.org" style={{ color: 'blue', textDecoration: 'underline' }}>
+                            techsupport@communityali.org
+                            </a>
+                        </div>
+                    </form>
                 </div>
+            </div>
         )
     }
 

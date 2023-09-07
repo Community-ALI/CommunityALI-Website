@@ -94,6 +94,46 @@
   animation: fadeIn 0.5s;
 }
 
+.fadeInFast
+{
+  animation: fadeIn 0.25s;
+}
+
+.toggleButton{
+  background-color: var(--primary-color);
+  width: 40px;
+  height: 20px;
+  border-radius: 200px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease;
+  border-width: 1px;
+  border-color: white;
+}
+
+.toggleButton::before{
+  position: absolute;
+  content: '';
+  background-color: #fff;
+  width: 16px;
+  height: 16px;
+  margin: 1px;
+  border-radius: 200px;
+  transition: 0.3s ease;
+}
+
+.toggleInput:checked + .toggleButton{
+  background-color: var(--accent-color);
+}
+
+.toggleInput:checked + .toggleButton::before{
+  transform: translateX(19px);
+}
+
+.toggleInput{
+  display: none;
+}
+
 @layer utilities {
   @variants responsive {
     /* Hide scrollbar for Chrome, Safari and Opera */

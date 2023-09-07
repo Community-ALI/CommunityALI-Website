@@ -107,7 +107,7 @@ function CategoriesPage() {
           </a>
         ) : (
           <div className="category-container-unselectable">
-            <p className="category-header">Add a Student Resource</p>
+            <p className="category-header">Add an MJC Program</p>
             <p className="category-text">
               You do not have permission to add a student resource.
             </p>
