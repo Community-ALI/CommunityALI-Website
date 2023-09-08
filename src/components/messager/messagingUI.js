@@ -4,9 +4,43 @@ import { BASE_BACKEND_URL } from "../../config";
 function Message(props) {
   const message = props.message;
   const content = message.content.split("\n");
+
+  function formatDate(isoDate) {
+    const date = new Date(isoDate);
+    const now = new Date();
+  
+    const isSameDay = date.getDate() === now.getDate() &&
+                     date.getMonth() === now.getMonth() &&
+                     date.getFullYear() === now.getFullYear();
+  
+    const timeDiffInDays = (now - date) / (1000 * 60 * 60 * 24); // Calculate the difference in days
+  
+    if (isSameDay) {
+      // If it's today, return the time in 12-hour format
+      const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format
+      const amPm = date.getHours() >= 12 ? 'PM' : 'AM'; // Determine AM or PM
+      return `${hours}:${String(date.getMinutes()).padStart(2, '0')} ${amPm}`;
+    } else if (timeDiffInDays <= 7) {
+      // If it's within the last 7 days, return the time in 12-hour format, month, and day
+      const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format
+      const amPm = date.getHours() >= 12 ? 'PM' : 'AM'; // Determine AM or PM
+      // Return the time in 12-hour format, month, and day
+      return `${hours}:${String(date.getMinutes()).padStart(2, '0')} ${amPm} ${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
+    } else if (now.getFullYear() === date.getFullYear()) {
+      // If it's within the same year, return the month and day
+      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
+    } else if (now.getFullYear() - date.getFullYear() === 1 && now.getMonth() === date.getMonth()) {
+      // If it's less than a year ago but has the same month, treat it as older than a year
+      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}, ${date.getFullYear()}`;
+    } else {
+      // If it's more than a year ago or in a different month, return the full date (month, day, year)
+      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}, ${date.getFullYear()}`;
+    }
+  }
+
   return (
     <div>
-      <p className="text-center text-white mb-[5px] text-xs">{message.createdAt}</p>
+      <p className="text-center text-white mb-[5px] text-xs">{formatDate(message.createdAt)}</p>
       <div className="bg-[#001E60] rounded-lg text-white p-4 mb-[20px]">
         <p>
           {content.map((line, index) => {
@@ -31,7 +65,7 @@ function MessageForm(props) {
 
   const [isSingleLine, setIsSingleLine] = useState(true);
   const textareaRef = useRef(null);
-  const worldLimit = 10000;
+  const charLimit = 10000;
 
   function resizeTextarea() {
     textareaRef.current.style.height = "auto";
@@ -49,12 +83,20 @@ function MessageForm(props) {
     event.preventDefault();
     const postingMessage = message;
     clearInput();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Not loggod in");
+      return;
+    }
     const postData = async function () {
       try {
         console.log("Posting message to database: ", postingMessage.content);
         await fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
           method: "POST",
-          headers: { "content-Type": "application/json" },
+          headers: {
+             "authorization": `Bearer ${token}`,
+             "content-Type": "application/json"
+             },
           body: JSON.stringify(postingMessage),
         })
           .then((response) => {
@@ -103,7 +145,7 @@ function MessageForm(props) {
     <div>
       <p
         className={`text-white text-xs pb-2`}
-      >{`Word limit: (${message.content.length}/${worldLimit})`}</p>
+      >{`Character limit: (${message.content.length}/${charLimit})`}</p>
       <div className="bg-[#001E60] rounded-lg">
         <form
           onSubmit={handleSubmit}

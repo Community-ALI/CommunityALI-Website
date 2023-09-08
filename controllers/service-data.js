@@ -354,6 +354,60 @@ exports.remove_application_manager = async function (req, service) {
     return { success: false, error: "internal database error" };
   }
 };
+
+exports.add_update_sender = async function (req, service) {
+  try {
+    const new_send_updates = req.body.user_id;
+    if (service.UpdateSenders.includes(new_send_updates)) {
+      console.log("update sender already exists");
+      return { success: true };
+    }
+    // add the service to the user's list of services to send updates to
+    const user = await User.findOne({ _id: new_send_updates });
+    user.servicesSendUpdates.push(service._id);
+    await user.save();
+    // add the user to the service's list of update senders
+    service.UpdateSenders.push(new_send_updates);
+    await service.save();
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
+exports.remove_update_sender = async function (req, service) {
+  try {
+    const remove_send_updates = req.body.user_id;
+
+    // Check if the user is in the list of update senders
+    if (!service.UpdateSenders.includes(remove_send_updates)) {
+      console.log("Update sender does not exist");
+      return { success: true };
+    }
+
+    // Remove the service from the user's list of services to send updates to
+    const user = await User.findOne({ _id: remove_send_updates });
+    const serviceIndex = user.servicesSendUpdates.indexOf(service._id);
+    if (serviceIndex !== -1) {
+      user.servicesSendUpdates.splice(serviceIndex, 1);
+      await user.save();
+    }
+
+    // Remove the user from the service's list of update senders
+    const senderIndex = service.UpdateSenders.indexOf(remove_send_updates);
+    if (senderIndex !== -1) {
+      service.UpdateSenders.splice(senderIndex, 1);
+      await service.save();
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
     
 
 const generateThumbnail2 = async function (photoBuffer) {

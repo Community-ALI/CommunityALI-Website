@@ -127,7 +127,7 @@ export default function MemberManagement() {
       return (
         <div>
         <NavBar hideMobileSearchBar={true}/>
-          <div className="lr:mt-[3rem] h-[90vh] flex">
+          <div className="lr:mt-[3rem] h-[95vh] flex">
             <MessagingUI
               serviceTitle={service.title}
               senderId={service._id}
@@ -137,7 +137,6 @@ export default function MemberManagement() {
               BackMobileButton={() => setShowEntityManagement(true)}
             />
           </div>
-        <Footer />
           <div className="loader-wrapper">
             <span className="loader">
               <span className="loader-inner"></span>
@@ -149,7 +148,6 @@ export default function MemberManagement() {
             setIsShowingMemberPopup={setIsShowingMemberPopup}
           ></MemberPopup>
           <div
-            id="login-popup-background"
             className={isShowingMemberPopup ? "" : "hidden"}
             onClick={()=>{setIsShowingMemberPopup(false)}}
             style={{ cursor: "pointer" }}
@@ -181,12 +179,10 @@ export default function MemberManagement() {
             setIsShowingMemberPopup={setIsShowingMemberPopup}
           ></MemberPopup>
           <div
-            id="login-popup-background"
             className={isShowingMemberPopup ? "" : "hidden"}
             onClick={()=>{setIsShowingMemberPopup(false)}}
             style={{ cursor: "pointer" }}
           ></div>
-
       </div>
     );
   }
@@ -194,8 +190,8 @@ export default function MemberManagement() {
   return (
     <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
       <NavBar />
-      <div className="lr:mt-24 h-[90vh] flex border-t-2 border-ali-backgroundblue relative border-opacity-50">
-      <a id="tech-support" className='absolute bottom-10 left-5' href="/contact-form"> Technical Support </a>
+      <div className="lr:mt-24 h-[90vh] flex relative">
+      <a id="tech-support" className='absolute bottom-10 left-5 z-50' href="/contact-form"> Technical Support </a>
         {
           <div className="max-w-[40%]">
             <EntityManagementSelection 
@@ -228,7 +224,6 @@ export default function MemberManagement() {
             setIsShowingMemberPopup={setIsShowingMemberPopup}
       ></MemberPopup>
       <div
-        id="login-popup-background"
         className={isShowingMemberPopup ? "" : "hidden"}
         onClick={()=>{setIsShowingMemberPopup(false)}}
         style={{ cursor: "pointer" }}

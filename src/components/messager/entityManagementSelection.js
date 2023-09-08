@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // TODO: Implement member management
 function EntityManagementButton(props) {
   const entity = props.entity;
+  
   //  TODO: implement settings button
   return (
     <div
