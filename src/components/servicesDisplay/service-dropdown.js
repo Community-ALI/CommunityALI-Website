@@ -38,12 +38,16 @@ export default function ServiceDropdown(props) {
 
   const changeCategoryFilter = () => {
     let categories = selectedCategories;
-    if (JSON.stringify(categories) != JSON.stringify(props.categoriesFilter) ) {if (categories.includes("all") && categories.length > 1) {
-      categories = selectedCategories.filter((cat) => cat != "all");
-    } else {
-      categories = ["all"];
+    console.log(categories);
+    if (JSON.stringify(categories) != JSON.stringify(props.categoriesFilter)) {
+      if (categories.includes("all") && categories.length > 1) {
+        categories = selectedCategories.filter((cat) => cat != "all");
+      } else if (categories.length === 0) {
+        categories = ["all"];
+      }
+      console.log(categories);
+      props.SetCategoriesFilter(categories);
     }
-    props.SetCategoriesFilter(categories);}
   };
 
   const handleClickOutside = (event) => {
@@ -74,9 +78,13 @@ export default function ServiceDropdown(props) {
   }, [selectedCategories]);
 
   useEffect(() => {
-    console.log(props.serviceTypeFilter);
     console.log(props.categoriesFilter);
-  }, [props.serviceTypeFilter, props.categoriesFilter]);
+    setSelectedCategories(props.categoriesFilter);
+  }, [props.categoriesFilter]);
+
+  // useEffect(() => {
+  //   console.log(props.categoriesFilter);
+  // }, [props.serviceTypeFilter, props.categoriesFilter]);
 
   return (
     <div className="flex justify-between w-[100%] p-[25px] items-center">

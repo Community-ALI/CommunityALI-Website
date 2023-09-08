@@ -18,14 +18,6 @@ function Tag(props) {
 export default function FilterTags(props) {
   return (
     <div className="flex flex-wrap gap-3 px-[25px] w-[90%] mr-auto ml-auto">
-      {!props.serviceTypeFilter.includes("all") && (
-        <Tag
-          tag={props.serviceTypeFilter}
-          removeTag={() => {
-            props.SetServiceTypeFilter("all");
-          }}
-        />
-      )}
       {props.categoriesFilter.map((tag) => {
         if (!props.categoriesFilter.includes("all")) {
           return (
@@ -34,7 +26,7 @@ export default function FilterTags(props) {
               tag={tag}
               removeTag={() => {
                 props.SetCategoriesFilter(
-                  props.categoriesFilter.length == 1
+                  props.categoriesFilter.length === 1
                     ? ["all"]
                     : props.categoriesFilter.filter((cat) => cat != tag)
                 );
