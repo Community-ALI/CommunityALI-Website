@@ -86,6 +86,10 @@ export default function ServiceDropdown(props) {
   //   console.log(props.categoriesFilter);
   // }, [props.serviceTypeFilter, props.categoriesFilter]);
 
+  useEffect(() => {
+    console.log(selectedCategories);
+  }, [selectedCategories]);
+
   return (
     <div className="flex justify-between w-[100%] p-[25px] items-center">
       <div className="filter-both-buttons-container">
@@ -140,7 +144,6 @@ export default function ServiceDropdown(props) {
               >
                 <CategoryFilterSelector
                   selectedCategories={selectedCategories}
-                  SetCategoriesFilter={props.SetCategoriesFilter}
                   SetSelectedCategories={setSelectedCategories}
                 />
                 <hr />

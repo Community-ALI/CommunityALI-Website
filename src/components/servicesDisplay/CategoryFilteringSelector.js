@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function CategorySelector(props) {
-  const [isSelected, setIsSelected] = useState(
-    props.selectedCategories.includes(props.category)
-  );
+  const [isSelected, setIsSelected] = useState(false);
   function HandleCategoryChange() {
     if (props.selectedCategories.includes(props.category)) {
       props.SetSelectedCategories(
@@ -13,11 +11,20 @@ function CategorySelector(props) {
       );
       return;
     }
+
+    if (props.selectedCategories.includes("all")) {
+      props.SetSelectedCategories([props.category]);
+      return;
+    }
+
     props.SetSelectedCategories([...props.selectedCategories, props.category]);
   }
 
   useEffect(() => {
-    setIsSelected(props.selectedCategories.includes(props.category));
+    setIsSelected(
+      props.selectedCategories.includes(props.category) &&
+        !props.selectedCategories.includes("all")
+    );
   }, [props.selectedCategories]);
 
   return (
@@ -52,7 +59,6 @@ export default function CategoryFilterSelector(props) {
           key={index}
           category={category}
           selectedCategories={props.selectedCategories}
-          SetCategoriesFilter={props.SetCategoriesFilter}
           SetSelectedCategories={props.SetSelectedCategories}
         />
       ))}
