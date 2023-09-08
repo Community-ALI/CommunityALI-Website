@@ -2207,6 +2207,10 @@ video {
     margin-top: 66px;
   }
 
+  .lr\:mt-\[60px\] {
+    margin-top: 60px;
+  }
+
   .lr\:h-\[30px\] {
     height: 30px;
   }
@@ -2430,12 +2434,24 @@ video {
     margin-bottom: 30px;
   }
 
+  .sm\:mt-\[0px\] {
+    margin-top: 0px;
+  }
+
+  .sm\:mt-\[60px\] {
+    margin-top: 60px;
+  }
+
   .sm\:hidden {
     display: none;
   }
 
   .sm\:h-\[60px\] {
     height: 60px;
+  }
+
+  .sm\:h-\[100px\] {
+    height: 100px;
   }
 
   .sm\:w-\[130px\] {
