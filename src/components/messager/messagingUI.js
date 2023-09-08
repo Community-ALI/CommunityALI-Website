@@ -222,7 +222,7 @@ export default function MessagingUI(props) {
   return (
     <div className="flex flex-col flex-1 max-h-[100%]">
       <div className="bg-[#001E60] h-[126px] text-white flex gap-4 p-4 items-center
-      border-y-0 border-ali-backgroundblue border-opacity-50 border-b-2 lr:py-0">
+      border-y-0 border-ali-backgroundblue border-opacity-50 border-b-2 lr:py-0 sm:h-[100px] sm:mt-[60px]">
         {props.isMobile && (
           <button onClick={props.BackMobileButton}>
             <img src="Photos/BackArrow.png" alt="" />

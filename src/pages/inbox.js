@@ -133,7 +133,7 @@ export default function Inbox() {
       return (
         <div>
           <NavBar hideMobileSearchBar={true}/>
-          <div className="lr:mt-[66px] h-[100vh] flex">
+          <div className="lr:mt-[66px] sm:mt-[0px] h-[100vh] flex overflow-hidden">
             <MessagingUI
               serviceTitle={selectedService.title}
               senderId={selectedService._id}
