@@ -1,30 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-// TODO: Implement member management
 function EntityManagementButton(props) {
   const entity = props.entity;
-  
-  //  TODO: implement settings button
+
   return (
     <div
       className={`relative max-h-[101px] text-white px-4 py-4 border-ali-darkblue border-b-2 
       border-opacity-50 fadeIn
       ${props.isSelected ? "bg-[#2C6BAC]" : ""}`}
+      ref={ props.isSelected ? props.selectedEntityRef : undefined}
     >
-      {/* <button
-        className="bg-[#ECAA1E] absolute right-4 top-[50%] translate-y-[-50%]"
-        onClick={props.OnSettingsClick}
-      >
-        <img src="/Photos/Setting_fill.png" className=" max-h-[100%] " />
-      </button> */}
       <button
         className="flex gap-4 items-center w-[100%] h-[100%]"
         disabled={props.SelectEntity === undefined}
         onClick={() => {
           if (props.SelectEntity !== undefined) {
-            
             props.SelectEntity(props.entireEntity);
-            
           }
         }}
       >
@@ -46,14 +37,15 @@ function EntityManagementButton(props) {
 }
 
 function EntityList(props) {
-
   if (props.entityType == "user") {
     return (
-      <div className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
-      border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0">
+      <div
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
+      border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0"
+      >
         {props.entities.map((user) => {
           return (
-            <EntityManagementButton 
+            <EntityManagementButton
               SelectEntity={props.SelectEntity}
               entireEntity={user}
               entity={{
@@ -63,10 +55,10 @@ function EntityList(props) {
                 name: user.fullName,
                 subtext: [user.email],
                 isUser: true,
-              
               }}
-              
               key={user._id}
+              selectedEntityRef={props.selectedEntityRef}
+              isSelected={props.selectedId === user._id}
             />
           );
         })}
@@ -74,8 +66,10 @@ function EntityList(props) {
     );
   } else {
     return (
-      <div className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
-      border-r-2  border-ali-backgroundblue border-opacity-50 white lr:border-r-0">
+      <div
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
+      border-r-2  border-ali-backgroundblue border-opacity-50 white lr:border-r-0"
+      >
         {props.entities.map((service) => {
           return (
             <EntityManagementButton
@@ -115,19 +109,20 @@ export default function EntityManagementSelection(props) {
           className="text-white px-6 py-5 border-ali-darkblue"
           onClick={handleBackClick}
         >
-           &lt;&lt; Back
+          &lt;&lt; Back
         </button>
         {/* <div className="w-[90%] bg-transparent">
           <input placeholder="Search" type="search" />
           <img src="Photos/search.png" alt="" />
         </div> */}
       </div>
-      
+
       <EntityList
         SelectEntity={props.SelectEntity}
         entityType={props.entityType}
         entities={props.entities}
         selectedId={props.selectedId}
+        selectedEntityRef={props.selectedEntityRef}
       />
     </div>
   );

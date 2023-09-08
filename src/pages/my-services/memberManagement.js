@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import NavBar from "../../components/NavBar";
 import EntityManagementSelection from "../../components/messager/entityManagementSelection";
 import MemberPopup from "./memberPopup";
@@ -15,6 +15,7 @@ export default function MemberManagement() {
   const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  const selectedMemberRef = useRef(null);
 
   useEffect(() => {
     document.title = "Manage Members and Send Updates | Community ALI";
@@ -31,7 +32,7 @@ export default function MemberManagement() {
     return () => window.removeEventListener("resize", updateWindow);
   }, [window.innerWidth]);
 
-  const showMemberPopup = async  function (Member){
+  const showMemberPopup = function (Member){
     setIsShowingMemberPopup(true);
     setSelectedMember(Member);
   };
@@ -199,6 +200,8 @@ export default function MemberManagement() {
             entities={users}
             isMobile={false}
             SelectEntity = {showMemberPopup}
+            selectedEntityRef={selectedMemberRef}
+            selectedId={selectedMember._id}
             />
             
           </div>
@@ -222,6 +225,7 @@ export default function MemberManagement() {
             selectedMember={selectedMember}
             isShowingMemberPopup={isShowingMemberPopup}
             setIsShowingMemberPopup={setIsShowingMemberPopup}
+            selectedMemberRef={selectedMemberRef}
       ></MemberPopup>
       <div
         className={isShowingMemberPopup ? "" : "hidden"}
