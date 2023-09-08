@@ -47,6 +47,7 @@ export default function ServiceDropdown(props) {
       }
       console.log(categories);
       props.SetCategoriesFilter(categories);
+      setIsCategoryFilterVisable(false);
     }
   };
 
