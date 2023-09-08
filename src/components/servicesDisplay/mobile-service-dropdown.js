@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import CategoryFilterSelector from "./CategoryFilteringSelector";
 import ServiceTypeSelector from "./ServiceTypeFilterSelector";
+import { set } from "mongoose";
 
 const ServiceDropdown = (props) => {
   const [
@@ -27,8 +28,7 @@ const ServiceDropdown = (props) => {
     let categories = selectedCategories;
     if (categories.includes("all") && categories.length > 1) {
       categories = selectedCategories.filter((cat) => cat != "all");
-    } else {
-      console.log("here");
+    } else if (categories.length === 0) {
       categories = ["all"];
     }
     props.SetCategoriesFilter(categories);
@@ -56,8 +56,7 @@ const ServiceDropdown = (props) => {
   useEffect(() => {
     console.log(props.serviceTypeFilter);
     console.log(props.categoriesFilter);
-    console.log(props.showServices);
-  }, [props.serviceTypeFilter, props.categoriesFilter, props.showServices]);
+  }, [props.serviceTypeFilter, props.categoriesFilter]);
 
   if (isServiceTypeAndCategoriesFiltersVisable) {
     return (
