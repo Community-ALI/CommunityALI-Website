@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BASE_BACKEND_URL } from "../../config.js";
+import { set } from "mongoose";
 
 export default function MemberPopup(props) {
   function ToggleButton({ isSelected, update }) {
@@ -116,16 +117,38 @@ export default function MemberPopup(props) {
   const [areButtonsVisible, setAreButtonsVisible] = useState(true);
 
   const [popupYPosition, setPopupYPosition] = useState(0);
+  const popupHeight = 230;
+  const [maxYPosition, setMaxYPosition] = useState(
+    window.innerHeight - popupHeight
+  );
 
   useEffect(() => {
     console.log(props.selectedMember._id);
     if (props.selectedMember._id) {
-        console.log(document.getElementById(props.selectedMember._id).getBoundingClientRect().y);
-      setPopupYPosition(
-        document.getElementById(props.selectedMember._id).getBoundingClientRect().y
-      );
+      const y = document
+        .getElementById(props.selectedMember._id)
+        .getBoundingClientRect().y;
+      setPopupYPosition(y > maxYPosition ? maxYPosition : y);
     }
   }, [props.selectedMember._id]);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setMaxYPosition(window.innerHeight - popupHeight);
+    });
+    window.addEventListener("scroll", () => {
+      setMaxYPosition(window.innerHeight - popupHeight);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        setMaxYPosition(window.innerHeight - popupHeight);
+      });
+      window.removeEventListener("scroll", () => {
+        setMaxYPosition(window.innerHeight - popupHeight);
+      });
+    };
+  });
 
   if (props.isShowingMemberPopup) {
     return (
