@@ -37,14 +37,13 @@ export default function ServiceDropdown(props) {
   };
 
   const changeCategoryFilter = () => {
-    console.log("here ", selectedCategories);
     let categories = selectedCategories;
-    if (categories.includes("all") && categories.length > 1) {
+    if (JSON.stringify(categories) != JSON.stringify(props.categoriesFilter) ) {if (categories.includes("all") && categories.length > 1) {
       categories = selectedCategories.filter((cat) => cat != "all");
     } else {
       categories = ["all"];
     }
-    props.SetCategoriesFilter(categories);
+    props.SetCategoriesFilter(categories);}
   };
 
   const handleClickOutside = (event) => {
