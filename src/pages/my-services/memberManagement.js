@@ -172,11 +172,7 @@ export default function MemberManagement() {
             BackMobileButton={() => setShowEntityManagement(false)} />
         </div>
         <Footer />
-          <div className="loader-wrapper">
-            <span className="loader">
-              <span className="loader-inner"></span>
-            </span>
-          </div>
+          
           <MemberPopup
             selectedMember={selectedMember}
             isShowingMemberPopup={isShowingMemberPopup}
