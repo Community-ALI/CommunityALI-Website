@@ -115,11 +115,24 @@ export default function MemberPopup(props) {
     useState(false);
   const [areButtonsVisible, setAreButtonsVisible] = useState(true);
 
+  const [popupYPosition, setPopupYPosition] = useState(0);
+
+  useEffect(() => {
+    console.log(props.selectedMember._id);
+    if (props.selectedMember._id) {
+        console.log(document.getElementById(props.selectedMember._id).getBoundingClientRect().y);
+      setPopupYPosition(
+        document.getElementById(props.selectedMember._id).getBoundingClientRect().y
+      );
+    }
+  }, [props.selectedMember._id]);
+
   if (props.isShowingMemberPopup) {
     return (
       <div
         ref={popupRef}
-        className={`top-[${"20%"}] left-[335px] w-[380px] z-100 shadow-xl fixed rounded-[15px] fadeInFast`}
+        className={`left-[335px] w-[380px] z-100 shadow-xl fixed rounded-[15px] fadeInFast`}
+        style={{ top: `${popupYPosition}px` }}
       >
         <i
           className="fa-solid fa-xmark text-white absolute top-2 right-3 cursor-pointer"

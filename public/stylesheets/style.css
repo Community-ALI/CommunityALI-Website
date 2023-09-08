@@ -810,6 +810,10 @@ video {
   top: 20%;
 }
 
+.top-\[14\%\] {
+  top: 14%;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -2176,10 +2180,6 @@ video {
 
   .lr\:mt-\[66px\] {
     margin-top: 66px;
-  }
-
-  .lr\:mt-\[60px\] {
-    margin-top: 60px;
   }
 
   .lr\:h-\[30px\] {

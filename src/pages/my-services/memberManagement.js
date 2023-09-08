@@ -7,7 +7,6 @@ import Footer from "../../components/Footer";
 import { Buffer } from "buffer";
 import { BASE_BACKEND_URL } from "../../config";
 
-
 //TODO make a get function for a fully populated service
 export default function MemberManagement() {
   const [isShowingMemberPopup, setIsShowingMemberPopup] = useState(false);
@@ -15,14 +14,12 @@ export default function MemberManagement() {
   const [service, setService] = useState({ title: "Loading..." });
   const [users, setUsers] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
-  const selectedMemberRef = useRef(null);
 
   useEffect(() => {
     document.title = "Manage Members and Send Updates | Community ALI";
   }, []);
 
   useEffect(() => {
-
     function updateWindow() {
       setIsMobile(window.innerWidth <= 850);
     }
@@ -32,7 +29,7 @@ export default function MemberManagement() {
     return () => window.removeEventListener("resize", updateWindow);
   }, [window.innerWidth]);
 
-  const showMemberPopup = function (Member){
+  const showMemberPopup = function (Member) {
     setIsShowingMemberPopup(true);
     setSelectedMember(Member);
   };
@@ -82,14 +79,14 @@ export default function MemberManagement() {
               if (!response.ok) {
                 throw new Error("Network response was not ok");
               }
-              try{
+              try {
                 const loaderWrapper = document.querySelector(".loader-wrapper");
                 loaderWrapper.style.transition = "opacity 0.5s";
                 loaderWrapper.style.opacity = "0";
                 setTimeout(() => {
                   loaderWrapper.style.display = "none";
                 }, 500);
-              }catch(err){
+              } catch (err) {
                 console.log(err);
               }
               return response.json();
@@ -131,7 +128,7 @@ export default function MemberManagement() {
     if (!showEntityManagement) {
       return (
         <div>
-        <NavBar hideMobileSearchBar={true}/>
+          <NavBar hideMobileSearchBar={true} />
           <div className="lr:mt-[3rem] h-[95vh] flex">
             <MessagingUI
               serviceTitle={service.title}
@@ -154,7 +151,9 @@ export default function MemberManagement() {
           ></MemberPopup>
           <div
             className={isShowingMemberPopup ? "" : "hidden"}
-            onClick={()=>{setIsShowingMemberPopup(false)}}
+            onClick={() => {
+              setIsShowingMemberPopup(false);
+            }}
             style={{ cursor: "pointer" }}
           ></div>
         </div>
@@ -165,25 +164,28 @@ export default function MemberManagement() {
       <div>
         <NavBar />
         <div className="lr:mt-24 h-[80vh] w-[100%] flex">
-            <EntityManagementSelection 
-            entityType={"user"} 
-            entities={users} 
-            isMobile={true} 
-            SelectEntity = {showMemberPopup}
-            BackMobileButton={() => setShowEntityManagement(false)} />
+          <EntityManagementSelection
+            entityType={"user"}
+            entities={users}
+            isMobile={true}
+            SelectEntity={showMemberPopup}
+            BackMobileButton={() => setShowEntityManagement(false)}
+          />
         </div>
         <Footer />
-          
-          <MemberPopup
-            selectedMember={selectedMember}
-            isShowingMemberPopup={isShowingMemberPopup}
-            setIsShowingMemberPopup={setIsShowingMemberPopup}
-          ></MemberPopup>
-          <div
-            className={isShowingMemberPopup ? "" : "hidden"}
-            onClick={()=>{setIsShowingMemberPopup(false)}}
-            style={{ cursor: "pointer" }}
-          ></div>
+
+        <MemberPopup
+          selectedMember={selectedMember}
+          isShowingMemberPopup={isShowingMemberPopup}
+          setIsShowingMemberPopup={setIsShowingMemberPopup}
+        ></MemberPopup>
+        <div
+          className={isShowingMemberPopup ? "" : "hidden"}
+          onClick={() => {
+            setIsShowingMemberPopup(false);
+          }}
+          style={{ cursor: "pointer" }}
+        ></div>
       </div>
     );
   }
@@ -192,18 +194,23 @@ export default function MemberManagement() {
     <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
       <NavBar />
       <div className="lr:mt-24 h-[90vh] flex relative">
-      <a id="tech-support" className='absolute bottom-10 left-5 z-50' href="/contact-form"> Technical Support </a>
+        <a
+          id="tech-support"
+          className="absolute bottom-10 left-5 z-50"
+          href="/contact-form"
+        >
+          {" "}
+          Technical Support{" "}
+        </a>
         {
           <div className="max-w-[40%]">
-            <EntityManagementSelection 
-            entityType={"user"} 
-            entities={users}
-            isMobile={false}
-            SelectEntity = {showMemberPopup}
-            selectedEntityRef={selectedMemberRef}
-            selectedId={selectedMember._id}
+            <EntityManagementSelection
+              entityType={"user"}
+              entities={users}
+              isMobile={false}
+              SelectEntity={showMemberPopup}
+              selectedId={selectedMember._id}
             />
-            
           </div>
         }
         <MessagingUI
@@ -222,14 +229,15 @@ export default function MemberManagement() {
       </div>
       {/* the member popup */}
       <MemberPopup
-            selectedMember={selectedMember}
-            isShowingMemberPopup={isShowingMemberPopup}
-            setIsShowingMemberPopup={setIsShowingMemberPopup}
-            selectedMemberRef={selectedMemberRef}
+        selectedMember={selectedMember}
+        isShowingMemberPopup={isShowingMemberPopup}
+        setIsShowingMemberPopup={setIsShowingMemberPopup}
       ></MemberPopup>
       <div
         className={isShowingMemberPopup ? "" : "hidden"}
-        onClick={()=>{setIsShowingMemberPopup(false)}}
+        onClick={() => {
+          setIsShowingMemberPopup(false);
+        }}
         style={{ cursor: "pointer" }}
       ></div>
     </div>

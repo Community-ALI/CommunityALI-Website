@@ -5,10 +5,9 @@ function EntityManagementButton(props) {
 
   return (
     <div
-      className={`relative max-h-[101px] text-white px-4 py-4 border-ali-darkblue border-b-2 
-      border-opacity-50 fadeIn
+      id={entity._id}
+      className={`relative max-h-[101px] text-white px-4 py-4 border-ali-darkblue border-b-2 border-opacity-50 fadeIn
       ${props.isSelected ? "bg-[#2C6BAC]" : ""}`}
-      ref={ props.isSelected ? props.selectedEntityRef : undefined}
     >
       <button
         className="flex gap-4 items-center w-[100%] h-[100%]"
@@ -55,9 +54,9 @@ function EntityList(props) {
                 name: user.fullName,
                 subtext: [user.email],
                 isUser: true,
+                _id: user._id,
               }}
               key={user._id}
-              selectedEntityRef={props.selectedEntityRef}
               isSelected={props.selectedId === user._id}
             />
           );
@@ -122,7 +121,6 @@ export default function EntityManagementSelection(props) {
         entityType={props.entityType}
         entities={props.entities}
         selectedId={props.selectedId}
-        selectedEntityRef={props.selectedEntityRef}
       />
     </div>
   );
