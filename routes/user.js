@@ -459,12 +459,18 @@ router.post("/get-user-services", async function (req, res) {
       username,
       req.body.requestedFields
     );
+    // get services a user can send updates to
+    const UpdatableServices = await user_data.get_updatable_services(
+      username,
+      req.body.requestedFields
+    );
 
 
     res.json({
       OwnedServices: user_services,
       EditableServices: EditableServices,
       ManageableServices: ManageableServices,
+      UpdatableServices: UpdatableServices,
       tokenUsername: username,
     });
     console.log("services belonging to", username, "sent");

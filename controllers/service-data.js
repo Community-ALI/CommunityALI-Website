@@ -78,6 +78,7 @@ exports.store_add_service = async function (req, username) {
       user: username,
       Editors: [], 
       ApplicationManagers: [],
+      UpdateSenders: [],
       members: [user_id], // Make the user who created the service a member by default
       applicants: [],
       messages: [],
