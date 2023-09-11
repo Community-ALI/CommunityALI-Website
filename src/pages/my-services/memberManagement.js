@@ -124,109 +124,75 @@ export default function MemberManagement() {
 
   const [showEntityManagement, setShowEntityManagement] = useState(false);
 
-  //TODO: Add mobile support
-  if (isMobile) {
-    if (!showEntityManagement) {
-      return (
-        <div>
-          <NavBar hideMobileSearchBar={true} />
-          <div className="lr:pt-[3rem] h-[100vh] flex">
-            <MessagingUI
-              serviceTitle={service.title}
-              senderId={service._id}
-              canSendMessages={true}
-              serviceImage={service.thumbnail}
-              isMobile={true}
-              BackMobileButton={() => setShowEntityManagement(true)}
-            />
-          </div>
-          <div className="loader-wrapper">
-            <span className="loader">
-              <span className="loader-inner"></span>
-            </span>
-          </div>
-          <MemberPopup
-            selectedMember={selectedMember}
-            isShowingMemberPopup={isShowingMemberPopup}
-            setIsShowingMemberPopup={setIsShowingMemberPopup}
-          ></MemberPopup>
-          <div
-            className={isShowingMemberPopup ? "" : "hidden"}
-            onClick={() => {
-              setIsShowingMemberPopup(false);
-            }}
-            style={{ cursor: "pointer" }}
-          ></div>
-        </div>
-      );
-    }
-
-    return (
-      <div>
-        <NavbarMobileHidden></NavbarMobileHidden>
-        <div className="h-[100vh] w-[100%] flex">
-          <EntityManagementSelection
-            entityType={"user"}
-            entities={users}
-            isMobile={true}
-            SelectEntity={showMemberPopup}
-            BackMobileButton={() => setShowEntityManagement(false)}
-          />
-        </div>
-
-        <MemberPopup
-          selectedMember={selectedMember}
-          isShowingMemberPopup={isShowingMemberPopup}
-          setIsShowingMemberPopup={setIsShowingMemberPopup}
-        ></MemberPopup>
-        <div
-          className={isShowingMemberPopup ? "" : "hidden"}
-          onClick={() => {
-            setIsShowingMemberPopup(false);
-          }}
-          style={{ cursor: "pointer" }}
-        ></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
-      <NavBar />
-      <div className="lr:mt-24 h-[90vh] flex relative">
-        <a
-          id="tech-support"
-          className="absolute bottom-10 left-5 z-50"
-          href="/contact-form"
-        >
-          {" "}
-          Technical Support{" "}
-        </a>
-        {
-          <div className="max-w-[40%]">
-            <EntityManagementSelection
-              entityType={"user"}
-              entities={users}
-              isMobile={false}
-              SelectEntity={showMemberPopup}
-              selectedId={selectedMember._id}
-            />
-          </div>
-        }
-        <MessagingUI
-          serviceTitle={service.title}
-          senderId={service._id}
-          canSendMessages={true}
-          serviceImage={service.thumbnail}
-          isMobile={false}
-          BackMobileButton={() => setShowEntityManagement()}
-        />
-      </div>
+    
+    <div className={`max-h-[100vh] overflow-hidden ${isMobile ? 'bg-ali-darkblue' : ''}`}>
       <div className="loader-wrapper">
         <span className="loader">
           <span className="loader-inner"></span>
         </span>
       </div>
+      {isMobile ? (
+        !showEntityManagement ? (
+          <>
+            <NavBar hideMobileSearchBar={true} />
+            <div className="lr:pt-[3rem] h-[100vh] flex">
+              <MessagingUI
+                serviceTitle={service.title}
+                senderId={service._id}
+                canSendMessages={true}
+                serviceImage={service.thumbnail}
+                isMobile={true}
+                BackMobileButton={() => setShowEntityManagement(true)}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <NavbarMobileHidden />
+            <div className="h-[100vh] w-[100%] flex">
+              <EntityManagementSelection
+                entityType={"user"}
+                entities={users}
+                isMobile={true}
+                SelectEntity={showMemberPopup}
+                BackMobileButton={() => setShowEntityManagement(false)}
+              />
+            </div>
+          </>
+        )
+      ) : (
+        <>
+          <NavBar />
+          <div className="lr:mt-24 h-[90vh] flex relative">
+            <a
+              id="tech-support"
+              className="absolute bottom-10 left-5 z-50"
+              href="/contact-form"
+            >
+              Technical Support
+            </a>
+            <div className="max-w-[40%]">
+              <EntityManagementSelection
+                entityType={"user"}
+                entities={users}
+                isMobile={false}
+                SelectEntity={showMemberPopup}
+                selectedId={selectedMember._id}
+              />
+            </div>
+            <MessagingUI
+              serviceTitle={service.title}
+              senderId={service._id}
+              canSendMessages={true}
+              serviceImage={service.thumbnail}
+              isMobile={false}
+              BackMobileButton={() => setShowEntityManagement()}
+            />
+          </div>
+        </>
+      )}
+  
       {/* the member popup */}
       <MemberPopup
         selectedMember={selectedMember}
