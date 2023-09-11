@@ -1,69 +1,51 @@
-import React, { useState, useEffect, useRef } from 'react';
-
-function CategorySelector(props) {
-  return (
-    <label className="category-section">
-      <input
-        type="checkbox"
-        checked={props.categoriesFilter.includes(props.category)}
-        onChange={() => {
-          props.ChangeFilter(
-            props.category,
-            props.categoriesFilter,
-            props.SetCategoriesFilter)
-        }}
-      /> {props.category}
-    </label>
-  )
-}
-
-function ServiceTypeSelector(props) {
-  return (
-    <label className="category-section">
-      <input
-        type="checkbox"
-        checked={props.serviceTypeFilter.includes(props.serviceType)}
-        onChange={() => {
-          props.ChangeFilter(
-            props.serviceType,
-            props.serviceTypeFilter,
-            props.SetServiceTypeFilter)
-        }}
-      /> {props.title}
-    </label>
-  )
-}
-
-function servicePopup(props) {
-
-}
+import React, { useState, useEffect, useRef } from "react";
+import CategoryFilterSelector from "./CategoryFilteringSelector";
+import ServiceTypeSelector from "./ServiceTypeFilterSelector";
+import { set } from "mongoose";
 
 const ServiceDropdown = (props) => {
+  const [
+    isServiceTypeAndCategoriesFiltersVisable,
+    setIsServiceTypeAndCategoriesFiltersVisable,
+  ] = useState(false);
+  const [isSortingFilterVisable, setIsSortingFilterVisable] = useState(false);
 
-  const [isContentVisible1, setServiceTypeFilterDropDownVisability] = useState(false);
-  const [isContentVisible2, setContentVisible2] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState(
+    props.categoriesFilter
+  );
+  const [selectedServiceTypes, setSelectedServiceTypes] = useState(
+    props.serviceTypeFilter
+  );
+  const [selectedSortingType, setSelectedSortingType] = useState(
+    props.sortingType
+  );
 
-  const [isCheckedVolunteer, setIsCheckedVolunteer] = useState(false);
-
-  const [isContOpen, setContOpen] = useState(false);
-  const [sortBy, setSortBy] = useState('');
-
-  const buttonRef1 = useRef(null);
-  const buttonRef2 = useRef(null);
-  const contentRef1 = useRef(null);
-  const contentRef2 = useRef(null);
-
-  const toggleServiceTypeFilterDropDown = () => {
-    setServiceTypeFilterDropDownVisability((prevIsContentVisible1) => !prevIsContentVisible1);
-    // props.SetShowServices(!props.showServices);
+  const changeServiceTypeFilter = (event) => {
+    setSelectedServiceTypes(event.target.value);
   };
 
-  const toggleContent2 = () => {
-    setContentVisible2((prevIsContentVisible2) => !prevIsContentVisible2);
+  const submitFilters = () => {
+    let categories = selectedCategories;
+    if (categories.includes("all") && categories.length > 1) {
+      categories = selectedCategories.filter((cat) => cat != "all");
+    } else if (categories.length === 0) {
+      categories = ["all"];
+    }
+    props.SetCategoriesFilter(categories);
+    props.SetServiceTypeFilter(selectedServiceTypes);
+    setIsServiceTypeAndCategoriesFiltersVisable(false);
+  };
+
+  const toggleServiceTypeFilterDropDown = () => {
+    setIsServiceTypeAndCategoriesFiltersVisable(
+      !isServiceTypeAndCategoriesFiltersVisable
+    );
+    setSelectedCategories(props.categoriesFilter);
+    setSelectedServiceTypes(props.serviceTypeFilter);
   };
 
   const toggleCont = () => {
-    setContOpen(isContOpen => !isContOpen);
+    setContOpen((isContOpen) => !isContOpen);
   };
 
   const handleSortByChange = (event) => {
@@ -71,174 +53,157 @@ const ServiceDropdown = (props) => {
     setContOpen(false);
   };
 
-  const changeFilter = (input, filter, filterSetState) => {
-    if (filter.includes(input)) {
-      if (filter.length < 2) {
-        filterSetState(['all']);
-        return;
-      }
-      console.log(`removing ${input} form ${filter}`)
-      filterSetState(
-        filter.filter((filterType) => filterType != input));
-      return;
-    }
-    console.log("02: " + props.serviceTypeFilter)
-    filterSetState(
-      (filter.filter((filterType) => filterType != 'all')).concat(input));
-  };
-
-  const handleClickOutside = (event) => {
-    if (
-      buttonRef1.current &&
-      !buttonRef1.current.contains(event.target) &&
-      contentRef1.current &&
-      !contentRef1.current.contains(event.target)
-    ) {
-      setServiceTypeFilterDropDownVisability(false);
-    }
-    if (
-      buttonRef2.current &&
-      !buttonRef2.current.contains(event.target) &&
-      contentRef2.current &&
-      !contentRef2.current.contains(event.target)
-    ) {
-      setContentVisible2(false);
-    }
-  };
-
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+    console.log(props.serviceTypeFilter);
+    console.log(props.categoriesFilter);
+  }, [props.serviceTypeFilter, props.categoriesFilter]);
 
-  useEffect(() => {
-    console.log(props.serviceTypeFilter)
-    console.log(props.categoriesFilter)
-    console.log(props.showServices)
-  }, [props.serviceTypeFilter, props.categoriesFilter, props.showServices]);
-
-  if (isContentVisible1) {
+  if (isServiceTypeAndCategoriesFiltersVisable) {
     return (
-      <div>
-        <div className="content fadeInDown" ref={contentRef1}>
-          <div className='flex flex-row justify-between w-[100%] items-center'>
-            <button className="w-6 h-6 cursor-pointer"
-              onClick={toggleServiceTypeFilterDropDown}>
-              <i className="fa-solid fa-x text-white"
-              ></i>
-            </button>
-            <button className="cursor-pointer text-white" onClick={(() => {
-              props.SetCategoriesFilter(['all'])
-              props.SetServiceTypeFilter(['all'])
-            })}>Clear All</button>
-          </div>
-          <h1 className='text-white mt-12'>Filter Service Category</h1>
-          <form className='filter-category-container'>
-            {[{ serviceType: 'Club', title: 'Clubs & Communities' }]
-              .map((serviceTypeSelector, index) => {
-                <ServiceTypeSelector
-                  key={index}
-                  serviceType={serviceTypeSelector.serviceType}
-                  title={serviceTypeSelector.title}
-                  serviceTypeFilter={props.serviceTypeFilter}
-                  SetServiceTypeFilter={props.SetServiceTypeFilter}
-                  ChangeFilter={changeFilter}
-                />
-              })}
-            <label className="category-section">
-              <input
-                type="checkbox"
-                name="Club"
-                checked={props.serviceTypeFilter.includes('Club')}
-                onChange={() => { changeFilter('Club', props.serviceTypeFilter, props.SetServiceTypeFilter) }}
-              /> Clubs & Communities
-            </label>
-            <label className="category-section">
-              <input
-                type="checkbox"
-                name="Volunteer"
-                checked={isCheckedVolunteer}
-              /> Volunteering and Projects
-            </label>
-            <label className="category-section">
-              <input
-                type="checkbox"
-                name="Internship"
-                checked={props.serviceTypeFilter.includes('Internship')}
-                onChange={() => { changeFilter('Internship', props.serviceTypeFilter, props.SetServiceTypeFilter) }}
-              /> Internships & Work Experience
-            </label>
-
-            <h1 className='text-white'>Filter By School</h1>
-          </form>
-          <form className='filter-category-container'>
-            {["Agriculture", "Art, Performance, & the Humanities ", "Behavioral & Social Sciences", "Business & Computing", "Fitness & Health Professions",
-              "Industry & Trades", "Language Arts & Education", "Public Safety", "Science, Engineering, & Mathematics"]
-              .map((category, index) => <CategorySelector key={index}
-                category={category}
-                categoriesFilter={props.categoriesFilter}
-                SetCategoriesFilter={props.SetCategoriesFilter}
-                ChangeFilter={changeFilter} />)}
-          </form>
+      <div
+        className="fixed w-[100vw] z-30 bg-ali-lightblue h-[100%] top-0
+            left-0 flex flex-col pt-[66px] overflow-y-scroll pb-8"
+      >
+        <div className="flex text-white justify-between items-center p-6">
+          <button
+            className="cursor-pointer text-white"
+            onClick={() => {
+              setSelectedCategories(["all"]);
+              setSelectedServiceTypes(["all"]);
+            }}
+          >
+            Clear All
+          </button>
+          {/* <h1 className="font-bold text-lg absolute left-1/2 translate-x-[-50%]">
+            Filter
+          </h1> */}
+          <button
+            className="w-6 h-6 cursor-pointer"
+            onClick={toggleServiceTypeFilterDropDown}
+          >
+            <i className="fa-solid fa-x text-white"></i>
+          </button>
         </div>
+        <hr className="border-1 text-white border-white" />
+        <form
+          className="flex-grow flex flex-col px-6 gap-6"
+          onSubmit={(event) => {
+            event.preventDefault();
+            submitFilters();
+          }}
+        >
+          <h1 className="text-white mt-12 font-[500] text-lg">
+            Filter Service Category
+          </h1>
+          <ServiceTypeSelector
+            serviceTypes={props.serviceTypes}
+            serviceTypeFilter={selectedServiceTypes}
+            ChangeServiceTypeFilter={changeServiceTypeFilter}
+          />
+          <h1 className="text-white font-[500] text-lg mt-6">Filter By School</h1>
+          <CategoryFilterSelector
+            selectedCategories={selectedCategories}
+            SetCategoriesFilter={props.SetCategoriesFilter}
+            SetSelectedCategories={setSelectedCategories}
+          />
+          <input
+            type="submit"
+            className="bg-ali-orange p-1 px-2 rounded-lg text-ali-darkblue font-[500] mt-4"
+            value="Apply"
+          ></input>
+        </form>
       </div>
-    )
+    );
   }
 
   return (
     <div className="flex-grow max-w-[100%]">
-      <div className='flex justify-between items-center max-w-[100%] lr:mx-6'>
-        {!isContentVisible2 &&
-          <div className='filter-buttons-container'>
-            <button className="add-service-button"
+      <div className="flex justify-start items-center max-w-[100%] mb-5 sm:justify-around">
+        {!isSortingFilterVisable && (
+          <div className="filter-buttons-container">
+            <button
+              className="add-service-button"
               onClick={toggleServiceTypeFilterDropDown}
-              ref={buttonRef1} >
-              <b>Filter</b><span className={`arrow ${isContentVisible1 ? 'up' : 'down'}`}></span>
+            >
+              <b>Filter</b>
+              <span
+                className={`arrow ${isSortingFilterVisable ? "up" : "down"}`}
+              ></span>
             </button>
           </div>
-        }
+        )}
 
-        <div className='filter-buttons-container'>
-          {!isContentVisible1 &&
-            <button className="filter-school-button"
-              onClick={toggleContent2}
-              ref={buttonRef2}>
-              <b>Sort By</b><span className={`arrow ${isContentVisible2 ? 'up' : 'down'}`}></span>
+        <div className="filter-buttons-container">
+          {!isSortingFilterVisable && (
+            <button
+              className="filter-school-button"
+              onClick={() => {
+                setIsSortingFilterVisable(!isSortingFilterVisable);
+              }}
+            >
+              <b className="whitespace-nowrap">Sort By</b>
+              <span
+                className={`arrow ${isSortingFilterVisable ? "up" : "down"}`}
+              ></span>
             </button>
-          }
+          )}
 
-          {isContentVisible2 && (
-            <div className="content fadeInDown" ref={contentRef2}>
-              <div className="right-section">
-                <div className="sort-by">
-                  <label className='sort-label'>Sort by: </label>
-                  <div className="cont">
-                      {[{title: "Alphabetical", value: "alphabetical"},
-                       {title: "Reverse Alphabetical", value: "reverse_alphabetical"}]
-                        .map((sortType, index) => {
-                          return (
-                            <label key={sortType.value} className="category-section">
-                              <input
-                                type="checkbox"
-                                checked={props.sortingType === sortType.value}
-                                onChange={() => {
-                                  props.SetSortingType(sortType.value)
-                                }}
-                              /> {sortType.title}
-                            </label>
-                          )
-                        })
-                      }
-                  </div>
+          {isSortingFilterVisable && (
+            <div
+              className="fixed w-[100vw] z-30 bg-ali-lightblue h-[100vh] top-0
+              left-0 flex flex-col mt-[66px]"
+            >
+              <div className="flex flex-col gap-3 p-6">
+                <div className="flex justify-between items-end">
+                  <label className="sort-label text-5xl font-bold text-white">
+                    Sort by:{" "}
+                  </label>
+                  <button
+                    className="w-6 h-6 cursor-pointer"
+                    onClick={() => {
+                      setIsSortingFilterVisable(false);
+                      setSelectedSortingType(props.sortingType);
+                    }}
+                  >
+                    <i className="fa-solid fa-x text-white"></i>
+                  </button>
                 </div>
+                <form
+                  className="flex-grow flex-col flex gap-6 mt-6"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    props.SetSortingType(selectedSortingType);
+                    setIsSortingFilterVisable(false);
+                  }}
+                >
+                  {props.sortingTypes.map((sortType) => {
+                    return (
+                      <label
+                        key={sortType.value}
+                        className="category-section border-[1.5px] border-white rounded-lg px-4 py-2 text-white"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedSortingType === sortType.value}
+                          onChange={() => {
+                            setSelectedSortingType(sortType.value);
+                          }}
+                        />{" "}
+                        {sortType.title}
+                      </label>
+                    );
+                  })}
+                  <input
+                    type="submit"
+                    className="bg-ali-orange p-1 px-2 rounded-lg text-ali-darkblue font-[500] mt-4"
+                    value="Apply"
+                  ></input>
+                </form>
               </div>
             </div>
           )}
         </div>
       </div>
-
     </div>
   );
 };

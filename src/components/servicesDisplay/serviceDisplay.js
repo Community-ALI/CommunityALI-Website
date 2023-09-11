@@ -5,6 +5,8 @@ import MobileServiceDropdown from "./mobile-service-dropdown";
 import "../../pages/explore-services/main-page.css";
 import "../loading-screen.css";
 import "../../pages/explore-services/service-filter.css";
+import FilterTags from "./FilterTags";
+import LoadingUI from "../loading/LoadingUI";
 const Buffer = require("buffer").Buffer;
 
 // this function creates each individual service
@@ -56,7 +58,6 @@ function DisplayAllServices(props) {
         <div id="no-service-found-description">
           Please try again or contact technical support for more assistance.
         </div>
-        
       </div>
     );
   }
@@ -70,7 +71,18 @@ function DisplayAllServices(props) {
   );
 }
 
-function ServicesDisplay(props) {
+export default function ServicesDisplay(props) {
+  const serviceTypes = [
+    { serviceType: "all", title: "Show All Types" },
+    { serviceType: "Club", title: "Clubs & Communities" },
+    { serviceType: "Internship", title: "Internships & Work Experience" },
+  ];
+  const sortingTypes = [
+    { title: "Alphabetical", value: "alphabetical" },
+    { title: "Reverse Alphabetical", value: "reverse_alphabetical" },
+    { title: "Most Recent", value: "newest" },
+    { title: "Oldest", value: "oldest" },
+  ];
   const [services, setServices] = useState([]);
   const [sortingType, setSortingtype] = useState("alphabetical");
   const [serviceTypeFilter, setServiceTypeFilter] = useState([
@@ -92,6 +104,7 @@ function ServicesDisplay(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setShowServices(false);
         const queryParams = new URLSearchParams(window.location.search);
         const keyword = queryParams.get("keyword");
         let url = `${BASE_BACKEND_URL}/servicedata/get-all-services`;
@@ -105,18 +118,30 @@ function ServicesDisplay(props) {
           url += `?keyword=${encodeURIComponent(keyword)}`;
         }
 
-        const response = await fetch(url);
-        console.log(response);
-        const data = await response.json();
-        console.log(data);
-        setServices(data || []);
+        await fetch(url)
+          .then((response) => {
+            console.log(response);
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            if (data) {
+              setServices(data);
+            } else {
+              setServices([]);
+            }
+            setShowServices(true);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
 
-        const loaderWrapper = document.querySelector(".loader-wrapper");
-        loaderWrapper.style.transition = "opacity 1.5s";
-        loaderWrapper.style.opacity = "0";
-        setTimeout(() => {
-          loaderWrapper.style.display = "none";
-        }, 500);
+        // const loaderWrapper = document.querySelector(".loader-wrapper");
+        // loaderWrapper.style.transition = "opacity 1.5s";
+        // loaderWrapper.style.opacity = "0";
+        // setTimeout(() => {
+        //   loaderWrapper.style.display = "none";
+        // }, 500);
       } catch (error) {
         console.error(error);
       }
@@ -133,16 +158,20 @@ function ServicesDisplay(props) {
 
   // return the page
   return (
-    <div className="flex flex-col max-w-[100%]">
-      {/* <div className="flex w-[100%] flex-row max-w-[100%] justify-between">
+    <div className="flex flex-col max-w-[100%] w-[1600px]">
+      <div className="flex flex-row max-w-[100%] justify-between max-h-[100%] w-[90%] mr-auto ml-auto">
         {!isMobile && (
           <ServiceDropdown
             SetSortingType={setSortingtype}
             SetServiceTypeFilter={setServiceTypeFilter}
-            serviceTypeFilter={serviceTypeFilter}
+            showServices={showServices}
+            SetShowServices={setShowServices}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
             sortingType={sortingType}
+            serviceTypes={serviceTypes}
+            sortingTypes={sortingTypes}
+            serviceTypeFilter={serviceTypeFilter}
           />
         )}{" "}
         {isMobile && (
@@ -152,23 +181,33 @@ function ServicesDisplay(props) {
             serviceTypeFilter={serviceTypeFilter}
             SetCategoriesFilter={setCategoriesFilter}
             categoriesFilter={categoriesFilter}
-            showServices={showServices}
-            SetShowServices={setShowServices}
             sortingType={sortingType}
+            serviceTypes={serviceTypes}
+            sortingTypes={sortingTypes}
           />
         )}
-        <div></div>
-      </div> */}
+      </div>
+      {!isMobile && (
+        <FilterTags
+          serviceTypeFilter={serviceTypeFilter}
+          SetCategoriesFilter={setCategoriesFilter}
+          SetServiceTypeFilter={setServiceTypeFilter}
+          categoriesFilter={categoriesFilter}
+        />
+      )}
       <div className="flex items-center justify-center">
-        <div className="loader-wrapper">
+        {/* <div className="loader-wrapper">
           <span className="loader">
             <span className="loader-inner"></span>
           </span>
-        </div>
+        </div> */}
         {showServices && <DisplayAllServices services={services} />}
+        {!showServices && (
+          <div className="w-[100%] h-[60vh]">
+            <LoadingUI />
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
-export default ServicesDisplay;

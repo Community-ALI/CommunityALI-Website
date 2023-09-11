@@ -90,20 +90,6 @@ input[type="checkbox"]:checked:after
     padding-left: 20px;
 }
 
-input[type="reset"] 
-{
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    background: none;
-    border: none;
-    font-weight: 500;
-    font-size: 16px;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
 .filter-submit 
 {
     padding: 8px;
@@ -269,6 +255,24 @@ input[type="reset"]
     }
 }
 
+@media all and (max-width : 1050px) 
+{
+    .filter-school-button
+    {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .add-service-button
+    {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
 @media all and (max-width : 988px) 
 {
     .filter-system-container
@@ -296,36 +300,6 @@ input[type="reset"]
 *::-webkit-scrollbar-thumb:hover {
     background-color: #ecaa1e;
 }
-
-@-webkit-keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(-20px);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-}
-
 
 .details {
     display: flex;
@@ -374,27 +348,6 @@ input[type="reset"]
     top: -3px;
 }
 
-.sort-by select {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: black;
-    font-weight: bold;
-
-
-    appearance: none;
-    -webkit-appearance: none;
-
-}
-
-.sort-by {
-    display: flex;
-}
-
-.sort-by label {
-    margin-right: 10px;
-}
-
 .sort-by .arrow {
     border-top: 1.5px solid #000;
     border-right: 1.5px solid #000;
@@ -420,17 +373,23 @@ input[type="reset"]
 }
 
 
-.sort-select {
-    font-size: 18px;
-    color: white;
-}
-
 .right-section {
     color: white;
 }
 
-@media all and (max-width: 768px) 
+
+@media all and (max-width: 850px) 
 {
+    .filter-school-button
+    {
+        padding: 12px 40px;
+    }
+
+    .add-service-button
+    {
+        padding: 12px 40px;
+    }
+
     .dropdown-container 
     {
         display: flex;
@@ -442,7 +401,7 @@ input[type="reset"]
 
     .add-service-button 
     {
-        text-align: left;
+        text-align: left; 
     }
 
     .content 
@@ -475,9 +434,14 @@ input[type="reset"]
     {
         padding-top: 120px;
     }
+
+    .category-section 
+    {
+        padding: 10px 10px;
+    }
 }
 
-@media all and (max-width: 425px) 
+@media all and (max-width: 480px) 
 {
     .content 
     {
@@ -493,6 +457,19 @@ input[type="reset"]
     {
         width: 100%;
         text-align: center;
+    }
+
+    .filter-school-button
+    {
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+
+    .add-service-button
+    {
+        padding: 10px 40px;
+        font-size: 14px;
+        margin-right: 0px;
     }
 
 }

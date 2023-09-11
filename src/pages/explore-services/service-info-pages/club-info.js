@@ -17,23 +17,24 @@ import '../../../../public/stylesheets/style.css';
 
 
 function AddClub() {
-  const allPossiblePages = [
+    const allPossiblePages = [
     "Overview",
+    "Requirements",
     "Contacts",
     "Social Media",
     "FAQ",
-    'Requirements',
     "Sign Up"
   ];
 
   const [allCurrentPages, setAllCurrentPages] = useState([
     "Overview",
+    "Requirements",
     "Contacts",
     "Social Media",
     "FAQ",
-    'Requirements',
     "Sign Up"
   ]);
+
   const [service, setService] = useState({})
   const [activePage, setActivePage] = useState("Overview");
 

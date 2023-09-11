@@ -3,6 +3,7 @@ import './contact-form.css';
 import NavBar from './NavBar';
 import emailjs from 'emailjs-com';
 import { useHistory } from 'react-router-dom';
+import NavbarMobileHidden from './navbar/navbar-mobile-hidden';
 
 function isValidEmail(email) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,7 +53,7 @@ function ContactForm() {
 
   return (
     <>
-      <NavBar isFixedPage={false} />
+      <NavbarMobileHidden></NavbarMobileHidden>
       <div className = {'text-white flex flex-wrap justify-center pt-5 mb-20 max-[850px]:pt-[100px] lr:pt-[110px]'}>
         <div className = {'text-center mx-[12%] max-[480px]:mx-[30px]'}>
           <h1 id='contact-form-title'> Having Questions or Concerns? </h1>

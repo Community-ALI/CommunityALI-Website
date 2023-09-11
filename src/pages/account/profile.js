@@ -8,6 +8,7 @@ import ProfilePicturePopup from './profilePicturePopup';
 import { Buffer } from 'buffer';
 import PasswordChangePopup from './passwordChangePopup';
 import { useNavigate } from 'react-router-dom';
+import NavbarMobileHidden from '../../components/navbar/navbar-mobile-hidden';
 
 function dataURItoBlob(dataURI) {
   const byteString = atob(dataURI.split(',')[1]);
@@ -31,7 +32,7 @@ function Profile() {
     imageUrl: 'photos-optimized/user-pic.png',
     sendNotifications: false,
   });
-
+  const [changesMade, setChangesMade] = useState(false);
   const [isShowingPasswordPopup, setIsShowingPasswordPopup] = useState(false);
   const [services, setServices] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -65,7 +66,7 @@ function Profile() {
               body: JSON.stringify({ requestedFields: 'title'})
             });
           const data = await response.json();
-          setServices(data.dataServices);
+          setServices(data.OwnedServices);
         } else {
         }
       } catch (error) {
@@ -210,10 +211,12 @@ function Profile() {
       ...prevAccount,
       [name]: value,
     }));
+    setChangesMade(true);
   };
 
   const handleProfileButtonClick = () => {
     setIsShowingProfilePicturePopup(true);
+    setChangesMade(true);
   }
 
   const handleClickOutsidePopup = (event) => {
@@ -232,12 +235,13 @@ function Profile() {
         ...prevAccount,
         sendNotifications: !account.sendNotifications,
       }));
+      setChangesMade(true);
     
   };
 
   // confirm that the user wants to leave the page if they have unsaved changes
   window.onbeforeunload = function () {
-    if (editMode) {
+    if (changesMade && editMode) {
       return true;
     }
   };
@@ -297,7 +301,7 @@ function Profile() {
       </div>
       )}
 
-      <NavBar isFixedPage={false} />
+      <NavbarMobileHidden></NavbarMobileHidden>
       <div className="profile-container">
         <div className="profile-picture">
         
@@ -390,12 +394,14 @@ function Profile() {
             <div className='profile-section-input'> {applications.length || 0} </div>
           </div>
         </div> */}
-
-        <input type="button" className="profile-save-button"
+        {changesMade && 
+        
+          <input type="button" className="profile-save-button"
           onClick={handleButtonClick}
           value={buttonText}
         />
-        {editMode &&
+        }
+        {changesMade &&
           <input type="button" className="profile-save-button" id='profile-cancel-button'
             
             onClick={() => { setEditMode(false); window.location.reload(); }}

@@ -15,14 +15,38 @@ module.exports = {
 
       'mdd': {'min': '480px'},
       'lrr': {'min': '600px'},
+      'xlrr': {'min': '850px'},
     },
     extend: {
       colors: {
         'regal-blue': '#243c5a',
+        'ali-backgroundblue': '#0096C9',
         'ali-darkblue': '#001E60',
-        'ali-lightblue': '#0070C9',
+        'ali-lightblue': '#00468D',
         'ali-orange': '#ecaa1e',
       },
+      animation: {
+        'ali-spin': 'ali-spin 2s infinite ease', 
+        'ali-fill': 'ali-fill 2s infinite ease-in',
+        'fadeInFast' : 'fadeIn 0.25s'
+
+      },
+      keyframes: {
+        'ali-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(180deg)' },
+          '50%': { transform: 'rotate(180deg)' },
+          '75%': { transform: 'rotate(360deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'ali-fill': {
+          '0%': { transform: 'scaleY(0)' },
+          '25%': { transform: 'scaleY(0)' },
+          '50%': { transform: 'scaleY(1)' },
+          '75%': { transform: 'scaleY(1)' },
+          '100%': { transform: 'scaleY(0)' },
+        }
+      }
     },
   },
   plugins: [],

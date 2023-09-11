@@ -6,6 +6,7 @@ import LoginPopup from "../../../components/LoginPopup.js";
 function SignUpPage({ service }) {
   const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
   const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
+  const [preventDebounce, setPreventDebounce] = useState(false); // prevents handle submit from being called twice
   // variable to record if the user is logged in or not
   const [loggedIn, setLoggedIn] = useState(true);
   const nameRef = useRef(null);
@@ -13,7 +14,14 @@ function SignUpPage({ service }) {
   const phoneRef = useRef(null);
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
+
+    if (preventDebounce) {
+      return;
+    }
+    setPreventDebounce(true);
+
     const token = localStorage.getItem("token");
     if (!token) {
       alert("You must be logged in to sign up for a service");
@@ -39,7 +47,16 @@ function SignUpPage({ service }) {
         return response.text();
       })
       .then((data) => {
-        window.location.href = "/signup-success";
+        data = JSON.parse(data);
+        console.log(data);
+        if (data.success) {
+          window.location.href = "/signup-success";
+        }
+        else{
+          alert(data.error);
+          // reset the preventDebounce variable
+          setPreventDebounce(false);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -72,7 +89,7 @@ function SignUpPage({ service }) {
   function hidePopups() {
     setIsShowingLoginPopup(false);
     setIsShowingSignupPopup(false);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -273,6 +290,10 @@ function SignUpPage({ service }) {
         isShowingSignupPopup={isShowingSignupPopup}
         showLoginPopup={showLoginPopup}
       />
+
+      <LoginPopup
+      showSignupPopup={showSignupPopup}
+      isShowingLoginPopup={isShowingLoginPopup} />
 
       <div
         id="login-popup-background"

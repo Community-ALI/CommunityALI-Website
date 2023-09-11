@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-// TODO: Implement member management
 function EntityManagementButton(props) {
   const entity = props.entity;
 
-  //  TODO: implement settings button
   return (
     <div
-      className={`relative max-h-[101px] text-white px-4 py-2 border-black border-b-2
+      id={entity._id}
+      className={`relative max-h-[101px] text-white px-4 py-4 border-ali-darkblue border-b-2 border-opacity-50 fadeIn
       ${props.isSelected ? "bg-[#2C6BAC]" : ""}`}
     >
-      {/* <button
-        className="bg-[#ECAA1E] absolute right-4 top-[50%] translate-y-[-50%]"
-        onClick={props.OnSettingsClick}
-      >
-        <img src="/Photos/Setting_fill.png" className=" max-h-[100%] " />
-      </button> */}
       <button
         className="flex gap-4 items-center w-[100%] h-[100%]"
         disabled={props.SelectEntity === undefined}
@@ -26,15 +19,15 @@ function EntityManagementButton(props) {
         }}
       >
         <img
-          className={`w-[82px] ${
+          className={`w-[90px] ${
             entity.isUser ? "rounded-full" : "rounded-lg"
           }`}
           src={entity.image}
         />
-        <div className="flex flex-col text-left">
+        <div className="flex flex-col text-left xlr:text-[14px] lr:text-[16px] sm:text-[14px]">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
-            <p className="text-white">{entity.subtext}</p>
+            <p className="text-white text-[14px]">{entity.subtext}</p>
           </div>
         </div>
       </button>
@@ -43,16 +36,17 @@ function EntityManagementButton(props) {
 }
 
 function EntityList(props) {
-  useEffect(() => {
-    console.log("entites: ", props.entities);
-  }, [props.entities]);
-
   if (props.entityType == "user") {
     return (
-      <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
+      <div
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] lr:h-auto
+      border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0"
+      >
         {props.entities.map((user) => {
           return (
             <EntityManagementButton
+              SelectEntity={props.SelectEntity}
+              entireEntity={user}
               entity={{
                 image: user.profileImage
                   ? user.profileImage
@@ -60,8 +54,10 @@ function EntityList(props) {
                 name: user.fullName,
                 subtext: [user.email],
                 isUser: true,
+                _id: user._id,
               }}
               key={user._id}
+              isSelected={props.selectedId === user._id}
             />
           );
         })}
@@ -69,7 +65,10 @@ function EntityList(props) {
     );
   } else {
     return (
-      <div className="flex flex-col overflow-scroll overflow-x-hidden h-[100%]">
+      <div
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] lr:h-auto
+      border-r-2  border-ali-backgroundblue border-opacity-50 white lr:border-r-0"
+      >
         {props.entities.map((service) => {
           return (
             <EntityManagementButton
@@ -94,8 +93,6 @@ function EntityList(props) {
 
 // TODO: implement searchbar
 export default function EntityManagementSelection(props) {
-  console.log(props.entities);
-
   const handleBackClick = () => {
     if (!props.isMobile || props.BackMobileButton === undefined) {
       window.history.back();
@@ -105,19 +102,23 @@ export default function EntityManagementSelection(props) {
   };
 
   return (
-    <div className="bg-[#00468D] h-[100%] w-[100%]">
-      <div className="border-b-2 border-black">
+    <div className="bg-[#00468D] h-[100vh] w-[100%] relative">
+      <div
+        className="border-b-2 border-r-2 border-r-ali-backgroundblue border-opacity-50
+       border-y-ali-darkblue lr:border-r-0 lr:mt-[70px]"
+      >
         <button
-          className="text-white p-2 border-[1px] border-black"
+          className="text-white px-6 py-5 border-ali-darkblue"
           onClick={handleBackClick}
         >
-          Back
+          &lt;&lt; Back
         </button>
         {/* <div className="w-[90%] bg-transparent">
           <input placeholder="Search" type="search" />
           <img src="Photos/search.png" alt="" />
         </div> */}
       </div>
+
       <EntityList
         SelectEntity={props.SelectEntity}
         entityType={props.entityType}

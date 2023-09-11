@@ -20,10 +20,12 @@ const serviceSchema = {
     createdAt: {type: Date, required: true, default: Date.now},
     datePosted: String,
     timePosted: String,
-    user: String, // the username of the user who posted the service
-    collaborators: Array, // the usernames of the users who have access to edit the service
-    members: Array, // the usernames of the users who have joined the service
-    applicants: Array, // the usernames of the users who have applied to join the service
+    user: String, // top level user, can manage permissions of other users and has access to all abilities of lower level users
+    Editors: Array, // can edit the service
+    ApplicationManagers: Array, // can accept or reject applications
+    UpdateSenders: Array, // can send updates to members
+    members: Array, 
+    applicants: Array, // waiting to be accepted or rejected
     messages: Array, // notifications to service members
     internshipLink: String, // for internships only
 }
@@ -54,6 +56,9 @@ const userSchema = new mongoose.Schema(
         clubAdmin: { type: Boolean},
         internshipAdmin: { type: Boolean},
         programAdmin: { type: Boolean},
+        servicesEditable: {type: Array}, // list of services that the user can edit
+        servicesManageable: {type: Array}, // list of services that the user can manage
+        servicesSendUpdates: {type: Array}, // list of services that the user can send updates to
         administrator: { type: Boolean},
         dateCreated: {type: Date, default: Date.now},
         profileImage: Buffer,

@@ -14,9 +14,9 @@ import { Buffer } from 'buffer';
 function AddProgram() {
   const allPossiblePages = [
     "Overview",
+    "Requirements",
     "Contacts",
     "FAQ",
-    "Requirements",
     "Sign Up"
   ];
 
