@@ -125,8 +125,11 @@ export default function MemberManagement() {
   const [showEntityManagement, setShowEntityManagement] = useState(false);
 
   return (
-    
-    <div className={`max-h-[100vh] overflow-hidden ${isMobile ? 'bg-ali-darkblue' : ''}`}>
+    <div
+      className={`max-h-[100vh] overflow-hidden bg-ali-darkblue ${
+        isMobile ? "bg-ali-darkblue" : ""
+      }`}
+    >
       <div className="loader-wrapper">
         <span className="loader">
           <span className="loader-inner"></span>
@@ -192,7 +195,7 @@ export default function MemberManagement() {
           </div>
         </>
       )}
-  
+
       {/* the member popup */}
       <MemberPopup
         selectedMember={selectedMember}

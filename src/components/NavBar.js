@@ -10,7 +10,6 @@ import SignupPopup from "./SignupPopup";
 import SignUpButton from "./SignUpButton.js";
 
 function MyServicesNavButton(props) {
-  
   var token = localStorage.getItem("token");
   var decodedToken = {};
   if (token) {
@@ -133,7 +132,8 @@ function NavBar(props) {
       if (
         navigationMenuRef.current &&
         !navigationMenuRef.current.contains(event.target) &&
-        event.target.className !== "navigation-menu"
+        event.target.className !== "navigation-menu" &&
+        event.target !== searchRef.current
       ) {
         setShowNavBarMobile(false);
       }
@@ -206,7 +206,7 @@ function NavBar(props) {
 
   // explore link only redirects if not already on explore page
   const navigateExplore = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     console.log(window.location.href);
     // if the path does not contain /services, redirect to /services
     if (!window.location.href.includes("/services")) {
@@ -240,9 +240,9 @@ function NavBar(props) {
           {(!isMobile || props.hideMobileSearchBar) && (
             <div
               className={
-                "flex-grow border-2 border-white rounded-2xl p-2 px-4 mr-3 text-base text-white relative" +
+                "flex-grow border-2 border-white rounded-2xl p-2 px-4 mr-0 text-base text-white relative" +
                 (props.hideMobileSearchBar
-                  ? " h-[40px] bg-transparent w-[90%] transition-all mr-0 mb-[50px]"
+                  ? " h-[40px] bg-transparent w-[220px] xsm:w-[200px] transition-all mr-0 mb-[40px] md:text-[12px]"
                   : "")
               }
             >
@@ -292,8 +292,10 @@ function NavBar(props) {
       </div>
 
       {isMobile && !props.hideMobileSearchBar && (
-        <div className="h-[40px] z-10 bg-transparent w-[90%] top-[80px] left-[5%] transition-all 
-          flex-grow border-2 border-white rounded-2xl p-2 px-4 mr-3 text-base text-white relative">
+        <div
+          className="h-[40px] z-10 bg-transparent w-[90%] top-[80px] left-[5%] transition-all 
+          flex-grow border-2 border-white rounded-2xl p-2 px-4 mr-3 text-base text-white relative"
+        >
           <input
             id="navigation-search-bar-input"
             placeholder="Search..."
