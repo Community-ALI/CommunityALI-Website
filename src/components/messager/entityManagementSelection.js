@@ -39,7 +39,7 @@ function EntityList(props) {
   if (props.entityType == "user") {
     return (
       <div
-        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] lr:h-auto
       border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0"
       >
         {props.entities.map((user) => {
@@ -66,7 +66,7 @@ function EntityList(props) {
   } else {
     return (
       <div
-        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[90%]
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] lr:h-auto
       border-r-2  border-ali-backgroundblue border-opacity-50 white lr:border-r-0"
       >
         {props.entities.map((service) => {
@@ -102,8 +102,11 @@ export default function EntityManagementSelection(props) {
   };
 
   return (
-    <div className="bg-[#00468D] h-[100%] w-[100%] relative">
-      <div className="border-b-2 border-r-2 border-r-ali-backgroundblue border-opacity-50 border-y-ali-darkblue lr:border-r-0">
+    <div className="bg-[#00468D] h-[100vh] w-[100%] relative">
+      <div
+        className="border-b-2 border-r-2 border-r-ali-backgroundblue border-opacity-50
+       border-y-ali-darkblue lr:border-r-0 lr:mt-[70px]"
+      >
         <button
           className="text-white px-6 py-5 border-ali-darkblue"
           onClick={handleBackClick}
