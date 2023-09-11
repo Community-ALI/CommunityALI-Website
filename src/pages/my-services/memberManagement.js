@@ -6,6 +6,7 @@ import MessagingUI from "../../components/messager/messagingUI";
 import Footer from "../../components/Footer";
 import { Buffer } from "buffer";
 import { BASE_BACKEND_URL } from "../../config";
+import NavbarMobileHidden from '../../components/navbar/navbar-mobile-hidden.js';
 
 //TODO make a get function for a fully populated service
 export default function MemberManagement() {
@@ -129,7 +130,7 @@ export default function MemberManagement() {
       return (
         <div>
           <NavBar hideMobileSearchBar={true} />
-          <div className="lr:mt-[3rem] h-[95vh] flex">
+          <div className="lr:pt-[3rem] h-[100vh] flex">
             <MessagingUI
               serviceTitle={service.title}
               senderId={service._id}
@@ -162,8 +163,8 @@ export default function MemberManagement() {
 
     return (
       <div>
-        <NavBar />
-        <div className="lr:mt-24 h-[80vh] w-[100%] flex">
+        <NavbarMobileHidden></NavbarMobileHidden>
+        <div className="lr:pt-16 h-[100vh] w-[100%] flex">
           <EntityManagementSelection
             entityType={"user"}
             entities={users}
@@ -172,7 +173,6 @@ export default function MemberManagement() {
             BackMobileButton={() => setShowEntityManagement(false)}
           />
         </div>
-        <Footer />
 
         <MemberPopup
           selectedMember={selectedMember}
