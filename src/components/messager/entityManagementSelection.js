@@ -19,7 +19,7 @@ function EntityManagementButton(props) {
         }}
       >
         <img
-          className={`w-[90px] ${
+          className={`w-[90px] lr:w-[70px] ${
             entity.isUser ? "rounded-full" : "rounded-lg"
           }`}
           src={entity.image}
@@ -27,7 +27,9 @@ function EntityManagementButton(props) {
         <div className="flex flex-col text-left xlr:text-[14px] lr:text-[16px] sm:text-[14px]">
           <h1>{entity.name}</h1>
           <div className="text-[#465985]">
-            <p className="text-white text-[14px]">{entity.subtext}</p>
+            <p className="text-white text-[14px] sm:text-[12px]">
+              {entity.subtext}
+            </p>
           </div>
         </div>
       </button>
