@@ -221,14 +221,11 @@ function NavBar(props) {
           "navigation-bar" +
           (props.isFixedPage ? "" : " navigation-bar-not-fixed") +
           (showNavBarMobile ? " active" : "") +
-          (props.hideMobileSearchBar ? " top-4" : "")
+          (props.hideMobileSearchBar ? " top-4" : "") +
+          (hasScrolled ? " navigation-bar-scrolled" : "")
         }
       >
-        <nav
-          className={
-            "navigation-menu" + (hasScrolled ? " navigation-bar-scrolled" : "")
-          }
-        >
+        <nav className={"navigation-menu"}>
           <a href="/">
             <img
               src="/photos-optimized/TeamLogo-opt.png"
