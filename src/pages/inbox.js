@@ -34,9 +34,8 @@ export default function Inbox() {
   const [selectedService, setSelectedService] = useState();
   const [showServices, setShowServices] = useState(true);
 
-  useEffect(() => 
-  {
-    document.title = 'Inbox | Community ALI';
+  useEffect(() => {
+    document.title = "Inbox | Community ALI";
   }, []);
 
   const fetchServicesUserIsMember = async function (userId) {
@@ -132,8 +131,8 @@ export default function Inbox() {
     if (selectedService) {
       return (
         <div>
-          <NavBar hideMobileSearchBar={true}/>
-          <div className="lr:mt-[66px] sm:mt-[0px] h-[100vh] flex overflow-hidden">
+          <NavBar hideMobileSearchBar={true} />
+          <div className="lr:pt-[66px] sm:pt-[0px] h-[100vh] flex overflow-hidden">
             <MessagingUI
               serviceTitle={selectedService.title}
               senderId={selectedService._id}
@@ -148,7 +147,7 @@ export default function Inbox() {
     return (
       <div className="max-h-[100vh] overflow-hidden">
         <NavBar hideMobileSearchBar={true} />
-        <div className="lr:mt-[66px] h-[100vh] flex relative">
+        <div className="h-[100vh] flex relative">
           <EntityManagementSelection
             entityType={"service"}
             entities={services}
@@ -158,12 +157,12 @@ export default function Inbox() {
             showServices={showServices}
             SetShowServices={setShowServices}
           />
-            {!showServices && (
-              <div className="absolute bottom-[55%] right-[46%]">
-                <LoadingUI />
-              </div>
-            )}
-            {/* <a id="tech-support" className='absolute bottom-[15%] left-[40vw] z-10' href="/contact-form"> Technical Support </a> */}
+          {!showServices && (
+            <div className="absolute bottom-[55%] right-[46%]">
+              <LoadingUI />
+            </div>
+          )}
+          {/* <a id="tech-support" className='absolute bottom-[15%] left-[40vw] z-10' href="/contact-form"> Technical Support </a> */}
         </div>
       </div>
     );
@@ -171,9 +170,16 @@ export default function Inbox() {
 
   return (
     <div className="max-h-[100vh] overflow-hidden bg-ali-darkblue">
-      <NavBar/>
+      <NavBar />
       <div className="lr:mt-24 h-[90vh] flex relative">
-        <a id="tech-support" className='absolute bottom-[5%] left-7 z-10' href="/contact-form"> Technical Support </a>
+        <a
+          id="tech-support"
+          className="absolute bottom-[5%] left-7 z-10"
+          href="/contact-form"
+        >
+          {" "}
+          Technical Support{" "}
+        </a>
         <div className="max-w-[35%] flex-1 relative xlr:max-w-[40%]">
           <EntityManagementSelection
             entityType={"service"}

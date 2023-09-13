@@ -2405,6 +2405,10 @@ video {
     padding-top: 3rem;
   }
 
+  .lr\:pt-\[66px\] {
+    padding-top: 66px;
+  }
+
   .lr\:text-\[100\%\] {
     font-size: 100%;
   }
@@ -2646,6 +2650,10 @@ video {
   .sm\:px-\[10px\] {
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  .sm\:pt-\[0px\] {
+    padding-top: 0px;
   }
 
   .sm\:text-\[12px\] {
