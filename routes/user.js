@@ -139,7 +139,8 @@ router.post("/login", async (req, res) => {
           id: user._id,
           username: user.username,
           email: user.email,
-          hasManagementPrivileges: hasManagementPrivileges
+          hasManagementPrivileges: hasManagementPrivileges,
+          expires: new Date(Date.now() + 10800000), // 3 hours
         },
         JWT_SECRET
       );
@@ -149,7 +150,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 86400000, // 1 day
+        maxAge: 10800000, // 3 hours
       });
 
       res.json({ status: "ok", data: token, username: user.username });
@@ -161,6 +162,44 @@ router.post("/login", async (req, res) => {
           error: "Invalid username or email/password combination",
         });
     }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ status: "error", error: "error" });
+  }
+});
+
+// user is requesting a new token
+//FIXME: this might be a security issue
+router.post("/refresh-token", async (req, res) => {
+  try {
+    const oldtoken = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(oldtoken, JWT_SECRET);
+    const username = decodedToken.username;
+    const user = await User.findOne({username: username});
+    if (!user) {
+      return {success: false, error: "User not found"};
+    }
+    
+    const token = jwt.sign(
+      {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        hasManagementPrivileges: hasManagementPrivileges,
+        expires: new Date(Date.now() + 86400000), // 1 day
+      },
+      JWT_SECRET
+    );
+
+    // set the cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 86400000, // 1 day
+    });
+
+    res.json({ success: true, token: token, username: user.username });
   } catch (error) {
     console.log(error);
     res.status(400).json({ status: "error", error: "error" });

@@ -154,7 +154,35 @@ function NavBar(props) {
 
   // get token from local storage
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    var token = localStorage.getItem("token");
+    // if the token is older than its max age, remove it
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      console.log(decodedToken);
+      if (!decodedToken.expires || decodedToken.expires < Date.now() / 1000) {
+        // if the token is expired, request a new one
+        fetch(`${BASE_BACKEND_URL}/user/refresh-token`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: token }),
+        })
+
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              localStorage.setItem("token", data.token);
+              token = data.token;
+              localStorage.setItem("token", data.token);
+              console.log("token refreshed");
+            } else {
+              localStorage.removeItem("token");
+            }
+          }
+        );
+      }
+    }
     setToken(token);
   }, [setToken]);
 

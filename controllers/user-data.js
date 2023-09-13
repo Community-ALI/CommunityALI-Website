@@ -201,6 +201,7 @@ exports.get_updatable_services = async function (username, requestedServices) {
 };
 
 
+
 exports.toggle_user_admin = async function (username, adminType) {
   try {
     currentIsAdmin = await Users.find({ username: username })
