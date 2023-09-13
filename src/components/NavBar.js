@@ -158,7 +158,6 @@ function NavBar(props) {
     // if the token is older than its max age, remove it
     if (token) {
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      console.log(decodedToken);
       if (!decodedToken.expires || decodedToken.expires < Date.now() / 1000) {
         // if the token is expired, request a new one
         fetch(`${BASE_BACKEND_URL}/user/refresh-token`, {
