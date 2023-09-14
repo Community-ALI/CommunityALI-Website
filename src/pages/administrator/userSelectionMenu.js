@@ -5,8 +5,8 @@ function User(props) {
   const user = props.user;
 
   return (
-    <button className="flex" onClick={props.SelectUser}>
-      <img src={user.profileImage} alt="photos-optimized/user-pic.png" />
+    <button className="flex border-t-2 p-2 px-3 gap-4 border-black" onClick={props.SelectUser}>
+      <img className="w-[82px] rounded-full" src={user.profileImage} alt="photos-optimized/user-pic.png" />
       <div className="flex flex-col">
         <h1>{user.fullName}</h1>
         <div className="text-[#465985]">
