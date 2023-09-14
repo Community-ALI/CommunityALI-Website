@@ -5,10 +5,10 @@ const controllers = require("./controllers.js");
 router.get("/", async function (req, res) {
   try {
     const users = await controllers.GET();
-    res.json({ users: users });
+    res.json(users);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
