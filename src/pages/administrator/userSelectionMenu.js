@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import { BASE_BACKEND_URL } from "../../config";
 
 function User(props) {
-  user = props.user;
+  const user = props.user;
 
-  return (
-    <button className="flex" onClick={props.SelectUser}>
-      <img src={user.profileImage} alt="photos-optimized/user-pic.png" />
-      <div className="flex flex-col">
-        <h1>{user.fullName}</h1>
-        <div className="text-[#465985]">
-          <p>{user.username}</p>
-          <p>{user.email}</p>
-        </div>
-      </div>
-    </button>
-  );
+  //   return (
+  //     <button className="flex" onClick={props.SelectUser}>
+  //       <img src={user.profileImage} alt="photos-optimized/user-pic.png" />
+  //       <div className="flex flex-col">
+  //         <h1>{user.fullName}</h1>
+  //         <div className="text-[#465985]">
+  //           <p>{user.username}</p>
+  //           <p>{user.email}</p>
+  //         </div>
+  //       </div>
+  //     </button>
+  //   );
+  return <div className="text-black">HELLO WORLD</div>;
 }
 
 export default function UserSelectionMenu(props) {
@@ -25,16 +26,19 @@ export default function UserSelectionMenu(props) {
     try {
       console.log("fetching users");
       const response = await fetch(`${BASE_BACKEND_URL}/api/users/`);
+      const data = await response.json();
       if (response.status !== 200) {
         throw new Error(
-          "failed to fetch users: " + response.status + " " + response.error
+          "failed to fetch users: " +
+            response.status +
+            " " +
+            response.statusText
         );
       }
-      const data = await response.json();
       console.log(data.users);
       setUsers(data.users);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -50,7 +54,10 @@ export default function UserSelectionMenu(props) {
         <button>Sort by</button>
       </div>
       {users.map((user) => {
-        <User user={user} SelectUser={props.SetSelectedUser} />;
+        <div className="text-black">
+          <User user={user} SelectUser={props.SetSelectedUser} />
+          HELLO WORLD
+        </div>;
       })}
     </div>
   );
