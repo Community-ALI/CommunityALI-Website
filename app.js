@@ -24,6 +24,8 @@ const serviceRouter = require("./routes/service");
 const applicantRouter = require("./routes/applicant");
 const messageRouter = require("./routes/message");
 
+const userAPI = require("./api/users/routes");
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -49,6 +51,8 @@ app.use('/userdata', userRouter);
 app.use('/applicantdata', applicantRouter);
 app.use('/servicedata', serviceRouter);
 app.use('/messagedata', messageRouter);
+
+app.use('/api/users', userAPI);
 
 
 //last route, important for frontend I believe
