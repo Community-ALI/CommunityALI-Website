@@ -4,19 +4,18 @@ import { BASE_BACKEND_URL } from "../../config";
 function User(props) {
   const user = props.user;
 
-  //   return (
-  //     <button className="flex" onClick={props.SelectUser}>
-  //       <img src={user.profileImage} alt="photos-optimized/user-pic.png" />
-  //       <div className="flex flex-col">
-  //         <h1>{user.fullName}</h1>
-  //         <div className="text-[#465985]">
-  //           <p>{user.username}</p>
-  //           <p>{user.email}</p>
-  //         </div>
-  //       </div>
-  //     </button>
-  //   );
-  return <div className="text-black">HELLO WORLD</div>;
+    return (
+      <button className="flex" onClick={props.SelectUser}>
+        <img src={user.profileImage} alt="photos-optimized/user-pic.png" />
+        <div className="flex flex-col">
+          <h1>{user.fullName}</h1>
+          <div className="text-[#465985]">
+            <p>{user.username}</p>
+            <p>{user.email}</p>
+          </div>
+        </div>
+      </button>
+    );
 }
 
 export default function UserSelectionMenu(props) {
@@ -53,12 +52,9 @@ export default function UserSelectionMenu(props) {
         <input type="search" className="w-[75%]"></input>
         <button>Sort by</button>
       </div>
-      {users.map((user) => {
-        <div className="text-black">
-          <User user={user} SelectUser={props.SetSelectedUser} />
-          HELLO WORLD
-        </div>;
-      })}
+      {users.map((user) => (
+        <User user={user} SelectUser={props.SetSelectedUser} />
+      ))}
     </div>
   );
 }
