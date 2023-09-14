@@ -119,10 +119,10 @@ async function storeEditService(req, res) {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
-
+    const user_id = decodedToken.id;
     const service_name = req.query.service;
     const service = await service_data.get_one_service(service_name);
-    if (service.user == username) {
+    if (service.user == username || service.Editors.includes(user_id)) {
       const result = await service_data.editService(req, username);
       if (result.success) {
         console.log("service edited by", username);
@@ -144,7 +144,7 @@ async function storeEditService(req, res) {
       }
     } else {
       console.log(service.user, username);
-      console.log("user does not own service!");
+      console.log("user is not authorized to edit service!");
       res.json({ success: false, error: "unauthorized" });
     }
   } catch (error) {

@@ -22,8 +22,8 @@ function MyServicePageDisplay(props) {
   }, []);
 
   if (
-    service.permissionLevel === "Owner" ||
-    service.permissionLevel === "Manager"
+    service.permissions.includes("Owner") ||
+    service.permissions.includes("Manager")
   ) {
     useEffect(() => {
       const fetchData = async () => {
@@ -58,8 +58,8 @@ function MyServicePageDisplay(props) {
 
   const handleBackgroundClick = () => {
     if (
-      service.permissionLevel === "Owner" ||
-      service.permissionLevel === "Manager"
+      service.permissions.includes("Owner") ||
+      service.permissions.includes("Manager")
     ) {
       window.location.href = "view-applicants?service=" + service.title;
     } else {
@@ -87,8 +87,8 @@ function MyServicePageDisplay(props) {
             {service.title}
           </div>
           <div className="flex items-center flex-wrap lr:justify-end md:justify-center md:mt-[10px] sm:hidden">
-            {(service.permissionLevel === "Owner" ||
-              service.permissionLevel === "Editor") && (
+            {(service.permissions.includes("Owner") ||
+              service.permissions.includes("Editor")) && (
               <a href={`edit-service?service=${service.title}`}>
                 <img
                   className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]"
@@ -97,8 +97,8 @@ function MyServicePageDisplay(props) {
               </a>
             )}
 
-            {(service.permissionLevel === "Owner" ||
-              service.permissionLevel === "Manager") && (
+            {(service.permissions.includes("Owner") ||
+              service.permissions.includes("Manager")) && (
               <a
                 className="relative"
                 href={`view-applicants?service=${service.title}`}
@@ -156,8 +156,8 @@ function MyServicePageDisplay(props) {
           ></img>
         </a>
       </div>
-      {service.permissionLevel === "Owner" ||
-      service.permissionLevel === "Manager" ? (
+      {service.permissions.includes("Owner") ||
+    service.permissions.includes("UpdateSender")? (
         <Link
           className="flex items-center content-center flex-wrap text-center justify-center max-w-[300px] text-[130%] font-[600] w-[25%] my-[20px] mx-[15px] p-[15px] text-white 
         rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
@@ -249,7 +249,8 @@ function MyServicesHome() {
               // combine the three arrays into one
               const services = data.OwnedServices.concat(
                 data.EditableServices
-              ).concat(data.ManageableServices);
+              ).concat(data.ManageableServices
+              ).concat(data.UpdatableServices);
               // only keep unique services by title
               const uniqueServices = [];
               const map = new Map();
@@ -261,17 +262,29 @@ function MyServicesHome() {
                   if (
                     data.OwnedServices.find((s) => s.title === service.title)
                   ) {
-                    service.permissionLevel = "Owner";
-                  } else if (
+                    // add owner to the permissions array
+                    service.permissions = (service.permissions || []).concat(['Owner']);
+                  }  
+                  if (
                     data.EditableServices.find((s) => s.title === service.title)
                   ) {
-                    service.permissionLevel = "Editor";
-                  } else if (
+                    service.permissions = (service.permissions || []).concat(['Editor']);
+                  }  
+                  if (
                     data.ManageableServices.find(
                       (s) => s.title === service.title
                     )
+                    
                   ) {
-                    service.permissionLevel = "Manager";
+                    service.permissions = (service.permissions || []).concat(['Manager']);
+                  }
+                  if (
+                    data.UpdatableServices.find(
+                      (s) => s.title === service.title
+                    )
+                    
+                  ) {
+                    service.permissions = (service.permissions || []).concat(['UpdateSender']);
                   }
                   uniqueServices.push(service);
                 }

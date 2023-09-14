@@ -15,6 +15,7 @@ module.exports = {
 
       'mdd': {'min': '480px'},
       'lrr': {'min': '600px'},
+      'xlrr': {'min': '850px'},
     },
     extend: {
       colors: {
@@ -26,7 +27,9 @@ module.exports = {
       },
       animation: {
         'ali-spin': 'ali-spin 2s infinite ease', 
-        'ali-fill': 'ali-fill 2s infinite ease-in'
+        'ali-fill': 'ali-fill 2s infinite ease-in',
+        'fadeInFast' : 'fadeIn 0.25s'
+
       },
       keyframes: {
         'ali-spin': {

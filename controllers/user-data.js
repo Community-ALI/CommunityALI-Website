@@ -178,6 +178,29 @@ exports.get_manageable_services = async function (username, requestedServices) {
   }
 }; 
 
+// get services a user can send updates to from database
+exports.get_updatable_services = async function (username, requestedServices) {
+  try{
+    if (requestedServices === undefined) {
+      requestedServices = "title";
+    }
+    // find the user's _id
+    var user = await Users.findOne({ username: username }).exec();
+    // get services in user.servicesSendUpdates
+    const selected_services = await Services.find({
+      _id: { $in: user.servicesSendUpdates },
+    })
+      .select(requestedServices)
+      .exec();
+    return selected_services;
+  }
+  catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
+
 
 exports.toggle_user_admin = async function (username, adminType) {
   try {

@@ -99,6 +99,11 @@
   animation: fadeIn 0.25s;
 }
 
+.fadeInZero
+{
+  animation: fadeIn 0s;
+}
+
 .toggleButton{
   background-color: var(--primary-color);
   width: 40px;

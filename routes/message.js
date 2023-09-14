@@ -47,7 +47,7 @@ router.post("/post_message", validateMessage, async function (req, res) {
       console.log('invalid service id');
       return res.status(400).json({ error: "Invalid service ID" });
     }
-    if (!service.user === username && !(service.ApplicationManagers && service.ApplicationManagers.includes(user_id))) {
+    if (!service.user === username && !(service.UpdateSenders && service.UpdateSenders.includes(user_id))) {
       console.log('unauthorized');
       return res.status(403).json({ error: "You do not have permission to send a message to this service" });
     }

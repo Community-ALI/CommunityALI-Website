@@ -320,10 +320,11 @@ input[data-autocompleted]
 
 .service-author
 {
-    font-size : 25px;
+    font-size : clamp(15px, 4vw, 25px);
     display: flex;
     justify-content: center;
     padding-bottom : 15px;
+    text-align: center;
 }
 
 .service-header
@@ -1127,7 +1128,6 @@ section .details span
 
 @media all and (max-width : 850px)
 {
-
     #contact-container
     {
         width: 90%;
@@ -1327,6 +1327,11 @@ section .details span
 
 @media all and (max-width : 480px)
 {
+
+    .service-author
+    {
+        line-height: 30px;
+    }
 
     #question-text-box
     {
