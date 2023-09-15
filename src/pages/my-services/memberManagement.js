@@ -47,11 +47,29 @@ export default function MemberManagement() {
     }
   };
 
-  // async function verifyUser() {
-  //   try {
-  //     const response = await fetch('')
-  //   }
-  // } 
+  async function verifyUser(title, username) {
+    try {
+      const response = await fetch(`${BASE_BACKEND_URL}/api/services/:${title}`);
+      const data = await response.json();
+      if (response.status !== 200) {
+        throw new Error(
+          "failed to fetch service: " +
+            response.status +
+            " " +
+            response.statusText
+        );
+      }
+      if (data.user === username) {
+        return true;
+      } else {
+        throw new Error("user is not the owner of the service");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("You are not the owner of this service");
+      return false;
+    }
+  }
 
   const fetchData = async () => {
     try {
@@ -59,6 +77,10 @@ export default function MemberManagement() {
       const queryString = window.location.search;
       const queryParams = new URLSearchParams(queryString);
       const serviceTitle = queryParams.get("service");
+      const isVarified = await verifyUser(serviceTitle, localStorage.getItem("username"));
+      if (!isVarified) {
+        return;
+      }
       const response = await fetch(
         `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${serviceTitle}`
       )
