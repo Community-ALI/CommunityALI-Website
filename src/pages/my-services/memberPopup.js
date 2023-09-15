@@ -118,7 +118,7 @@ export default function MemberPopup(props) {
   const [areButtonsVisible, setAreButtonsVisible] = useState(true);
 
   const [popupYPosition, setPopupYPosition] = useState(0);
-  const popupHeight = 230;
+  const popupHeight = 443.5;
   const [maxYPosition, setMaxYPosition] = useState(
     window.innerHeight - popupHeight
   );
@@ -166,7 +166,7 @@ export default function MemberPopup(props) {
         <div className="lr:w-[100vw] lr:h-[100vh] flex justify-center fixed z-[101] top-0 right-0 w-0 h-0">
           <div
             ref={popupRef}
-            className={`left-[335px] w-[380px] z-[100] shadow-xl rounded-[15px] fadeInFast h-0 lr:mt-[160px] sm:mt-[140px] xlrr:fixed
+            className={`left-[380px] w-[380px] z-[100] shadow-xl rounded-[15px] fadeInFast h-0 lr:mt-[160px] sm:mt-[140px] xlrr:fixed
             lr:animate-none lr:scale-[1.0] md:scale-[0.9] sm:scale-[0.8] xsm:scale-[0.7] flex-shrink-0`}
             style={
               !isMobile ? { top: `${popupYPosition}px` } : { top: "140px" }

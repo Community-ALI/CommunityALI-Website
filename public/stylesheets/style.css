@@ -798,6 +798,10 @@ video {
   top: 80px;
 }
 
+.left-\[380px\] {
+  left: 380px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1221,6 +1225,10 @@ video {
 
 .min-w-\[100vw\] {
   min-width: 100vw;
+}
+
+.min-w-\[380px\] {
+  min-width: 380px;
 }
 
 .max-w-\[100\%\] {
@@ -2008,6 +2016,11 @@ video {
 .text-ali-darkblue {
   --tw-text-opacity: 1;
   color: rgb(0 30 96 / var(--tw-text-opacity));
+}
+
+.text-ali-orange {
+  --tw-text-opacity: 1;
+  color: rgb(236 170 30 / var(--tw-text-opacity));
 }
 
 .text-black {

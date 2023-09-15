@@ -41,7 +41,7 @@ function EntityList(props) {
   if (props.entityType == "user") {
     return (
       <div
-        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] lr:h-auto
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] min-w-[380px] lr:h-auto
       border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0"
       >
         {props.entities.map((user) => {
@@ -54,7 +54,7 @@ function EntityList(props) {
                   ? user.profileImage
                   : "/Photos/UserTemplateImage.png",
                 name: user.fullName,
-                subtext: [user.email],
+                subtext: [],
                 isUser: true,
                 _id: user._id,
               }}

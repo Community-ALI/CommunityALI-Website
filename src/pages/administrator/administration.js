@@ -9,6 +9,13 @@ export default function Administration() {
   const [selectedUser, setSelectedUser] = useState();
   const [users, setUsers] = useState([]);
 
+  var token = localStorage.getItem("token");
+  var decodedToken = {};
+  if (token) {
+    decodedToken = JSON.parse(atob(token.split(".")[1]));
+    console.log(decodedToken);
+  }
+
   const convertImageToUrl = async function (image) {
     try {
       const buffer = Buffer.from(image.data);
@@ -53,15 +60,23 @@ export default function Administration() {
   useEffect(() => {
     fetchUsers();
   }, []);
-
+if (decodedToken.administrator) {
   return (
     <div>
       <NavBar />
       <div className="flex mt-28 lrr:mt-0 h-[80vh] relative">
         <UserSelectionMenu users={users} SetSelectedUser={setSelectedUser} />
-        <UserManagement user={selectedUser}/>
+        <UserManagement user={selectedUser} />
       </div>
       <Footer />
     </div>
-  );
+  );}
+  else {
+    return (
+      <div>
+        <NavBar />
+        <div className="flex justify-center h-[80vh] mt-28 items-center text-white font-bold"><h1>YOU DO NOT HAVE <span className="text-ali-orange">AUTHORIZATION</span> FOR THIS PAGE... sorry</h1> </div>
+      </div>
+    )
+  }
 }
