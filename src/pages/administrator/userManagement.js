@@ -7,7 +7,7 @@ export default function UserManagement(props) {
     console.log(props.user);
     const user = props.user;
     return (
-      <div className="flex-grow flex flex-col relative max-w-[60%]">
+      <div className="flex-grow flex flex-col relative max-w-[70%]">
         <div className="h-8 bg-white"></div>
         <div className="flex p-4 min-h-[201px] relative justify-between bg-[#EDEDED]">
           <div className="flex flex-col justify-between items-start">
@@ -39,7 +39,7 @@ export default function UserManagement(props) {
     );
   } else {
     return (
-      <div className="w-[60%] h-[100%] flex flex-col">
+      <div className="w-[70%] h-[100%] flex flex-col">
         <div className="h-8 bg-white"></div>
 
         <div className="flex flex-col items-center justify-center bg-[#C5C5C5] flex-grow">

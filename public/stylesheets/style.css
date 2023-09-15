@@ -1091,16 +1091,12 @@ video {
   max-height: 52px;
 }
 
-.min-h-full {
-  min-height: 100%;
-}
-
-.min-h-\[185px\] {
-  min-height: 185px;
-}
-
 .min-h-\[201px\] {
   min-height: 201px;
+}
+
+.min-h-full {
+  min-height: 100%;
 }
 
 .w-0 {
@@ -1219,6 +1215,14 @@ video {
   width: 95%;
 }
 
+.w-\[30\%\] {
+  width: 30%;
+}
+
+.w-\[70\%\] {
+  width: 70%;
+}
+
 .min-w-\[100vw\] {
   min-width: 100vw;
 }
@@ -1249,6 +1253,10 @@ video {
 
 .max-w-\[60\%\] {
   max-width: 60%;
+}
+
+.max-w-\[70\%\] {
+  max-width: 70%;
 }
 
 .flex-1 {
@@ -1414,12 +1422,12 @@ video {
   gap: 1rem;
 }
 
-.gap-6 {
-  gap: 1.5rem;
-}
-
 .gap-5 {
   gap: 1.25rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .overflow-auto {
