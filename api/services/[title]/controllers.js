@@ -1,8 +1,9 @@
-const database = require("../../../connect-to-database.js");
-const Services = database.services;
+const database = require("./../../../connect-to-database");
+const Services = database.Services;
 
 exports.GET = async function (service_name) {
     try {
+      console.log("getting service:", service_name);
       const selected_service = await Services.findOne({
         title: service_name,
       }).exec();

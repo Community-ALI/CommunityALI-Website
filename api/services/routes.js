@@ -8,10 +8,10 @@ router.get("/:title", async function (req, res) {
     const service_name = req.params.title;
     const service = await title_controller.GET(service_name);
     console.log("sending service:", service_name);
-    res.json(service);
+    res.status(200).json(service);
   } catch (error) {
     console.log(error);
-    res.json({ success: false, error: "internal server error" });
+    res.status(500).json({ success: false, error: "internal server error" });
   }
 });
 

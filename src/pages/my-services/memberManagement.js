@@ -49,8 +49,12 @@ export default function MemberManagement() {
 
   async function verifyUser(title, username) {
     try {
-      const response = await fetch(`${BASE_BACKEND_URL}/api/services/:${title}`);
+      console.log("Verifying user ", username, " for service ", title);
+      const response = await fetch(
+        `${BASE_BACKEND_URL}/api/services/${title}`
+      );
       const data = await response.json();
+      console.log(data.user + " " + username);
       if (response.status !== 200) {
         throw new Error(
           "failed to fetch service: " +
@@ -77,7 +81,10 @@ export default function MemberManagement() {
       const queryString = window.location.search;
       const queryParams = new URLSearchParams(queryString);
       const serviceTitle = queryParams.get("service");
-      const isVarified = await verifyUser(serviceTitle, localStorage.getItem("username"));
+      const isVarified = await verifyUser(
+        serviceTitle,
+        localStorage.getItem("username")
+      );
       if (!isVarified) {
         return;
       }
