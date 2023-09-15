@@ -15,7 +15,7 @@ export default function Administration() {
       const base64 = buffer.toString("base64");
       return `data:image/png;base64,${base64}`;
     } catch (err) {
-      console.error("no profile image, using default");
+      console.log("no profile image, using default");
       return "photos-optimized/user-pic.png";
     }
   };
@@ -59,7 +59,7 @@ export default function Administration() {
       <NavBar />
       <div className="flex mt-28 lrr:mt-0 h-[80vh] relative">
         <UserSelectionMenu users={users} SetSelectedUser={setSelectedUser} />
-        <UserManagement />
+        <UserManagement user={selectedUser}/>
       </div>
       <Footer />
     </div>
