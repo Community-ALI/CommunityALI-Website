@@ -22,7 +22,7 @@ function User(props) {
 export default function UserSelectionMenu(props) {
 
   return (
-    <div className="flex flex-col bg-white w-[40%]">
+    <div className="flex flex-col bg-white w-[40%] overflow-y-scroll">
       <div className="flex bg-[#F5F5F5] p-1 justify-between">
         <button>Back</button>
         <input type="search" className="w-[75%]"></input>
