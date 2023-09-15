@@ -100,6 +100,10 @@ export default function ServicesDisplay(props) {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
   const [showServices, setShowServices] = useState(true);
 
+  useEffect(() => {
+    setUserFilter(props.userFilter ? props.userFilter : ["all"]);
+  }, [props.userFilter]);
+
   // get services from the backend
   useEffect(() => {
     const fetchData = async () => {
@@ -148,7 +152,7 @@ export default function ServicesDisplay(props) {
     };
 
     fetchData();
-  }, [serviceTypeFilter, sortingType, categoriesFilter]);
+  }, [serviceTypeFilter, sortingType, categoriesFilter, userFilter]);
 
   useState(() => {
     window.addEventListener("resize", () => {

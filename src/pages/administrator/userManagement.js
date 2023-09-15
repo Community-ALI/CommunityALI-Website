@@ -33,7 +33,7 @@ export default function UserManagement(props) {
         </div>
         <div className="bg-[#FFFFFF]">{`${user.fullName} is a part of the following Services:`}</div>
         <div className="bg-[#D9D9D9] flex-grow overflow-y-scroll">
-            <ServiceDisplay startingfilter={"all"}/>
+            <ServiceDisplay startingfilter={"all"} userFilter={user.username}/>
         </div>
       </div>
     );
