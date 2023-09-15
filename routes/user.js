@@ -140,6 +140,8 @@ router.post("/login", async (req, res) => {
           username: user.username,
           email: user.email,
           hasManagementPrivileges: hasManagementPrivileges,
+          administrator: user.administrator,
+
           expires: new Date(Date.now() + 10800000), // 3 hours
         },
         JWT_SECRET

@@ -14,6 +14,7 @@ function MyServicesNavButton(props) {
   var decodedToken = {};
   if (token) {
     decodedToken = JSON.parse(atob(token.split(".")[1]));
+    console.log(decodedToken);
   }
   const [notifications, setNotifications] = useState([]);
 
@@ -54,7 +55,7 @@ function MyServicesNavButton(props) {
         <Notifications
           notifications={notifications ? notifications.length : 0}
         />
-        Manage
+        Admin
       </Link>
     );
   } else if (decodedToken.hasManagementPrivileges) {
