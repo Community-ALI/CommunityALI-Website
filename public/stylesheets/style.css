@@ -1015,10 +1015,6 @@ video {
   height: 2rem;
 }
 
-.h-\[0px\] {
-  height: 0px;
-}
-
 .h-\[100\%\] {
   height: 100%;
 }
@@ -1099,6 +1095,10 @@ video {
   min-height: 100%;
 }
 
+.min-h-\[185px\] {
+  min-height: 185px;
+}
+
 .min-h-\[201px\] {
   min-height: 201px;
 }
@@ -1129,6 +1129,10 @@ video {
 
 .w-\[112\.766px\] {
   width: 112.766px;
+}
+
+.w-\[113px\] {
+  width: 113px;
 }
 
 .w-\[1600px\] {
@@ -1195,6 +1199,10 @@ video {
   width: 80%;
 }
 
+.w-\[82px\] {
+  width: 82px;
+}
+
 .w-\[85px\] {
   width: 85px;
 }
@@ -1209,14 +1217,6 @@ video {
 
 .w-\[95\%\] {
   width: 95%;
-}
-
-.w-\[113px\] {
-  width: 113px;
-}
-
-.w-\[82px\] {
-  width: 82px;
 }
 
 .min-w-\[100vw\] {
@@ -1555,14 +1555,14 @@ video {
   border-color: rgb(0 30 96 / var(--tw-border-opacity));
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .border-y-ali-darkblue {
@@ -1605,14 +1605,29 @@ video {
   background-color: rgb(197 197 197 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#D9D9D9\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#ECAA1E\] {
   --tw-bg-opacity: 1;
   background-color: rgb(236 170 30 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#EDEDED\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 237 237 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#F5F5F5\] {
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FFFFFF\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-\[color\:var\(--secondary-color\)\] {
@@ -1654,21 +1669,6 @@ video {
 }
 
 .bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#D9D9D9\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#EDEDED\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(237 237 237 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#FFFFFF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }

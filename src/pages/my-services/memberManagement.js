@@ -47,6 +47,12 @@ export default function MemberManagement() {
     }
   };
 
+  // async function verifyUser() {
+  //   try {
+  //     const response = await fetch('')
+  //   }
+  // } 
+
   const fetchData = async () => {
     try {
       console.log("Fetching service data");
