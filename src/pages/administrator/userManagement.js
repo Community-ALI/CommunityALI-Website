@@ -26,14 +26,17 @@ export default function UserManagement(props) {
             <h1 className="text-2xl text-ali-darkblue">{user.fullName}</h1>
           </div>
           <div>
-            <button className="p-4 text-ali-darkblue border rounded-xl border-black">
-              Manage Permissions
-            </button>
+            <div className="relative">
+              <button className="p-4 text-ali-darkblue border rounded-xl border-black">
+                Manage Permissions
+              </button>
+              <div className="absolute w-[332px] h-[155px] z-10 bg-slate-400 bottom-[-155px] right-0">Hello World</div>
+            </div>
           </div>
         </div>
         <div className="bg-[#FFFFFF]">{`${user.fullName} is a part of the following Services:`}</div>
         <div className="bg-[#D9D9D9] flex-grow overflow-y-scroll">
-            <ServiceDisplay startingfilter={"all"} userFilter={user.username}/>
+          <ServiceDisplay startingfilter={"all"} userFilter={user.username} />
         </div>
       </div>
     );
