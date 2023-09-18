@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Notifications from "../Notification";
 
 function EntityManagementButton(props) {
   const entity = props.entity;
@@ -25,11 +26,14 @@ function EntityManagementButton(props) {
           src={entity.image}
         />
         <div className="flex flex-col text-left xlr:text-[14px] lr:text-[16px] sm:text-[14px]">
-          <h1>{entity.name}</h1>
+          <h1 className="relative pr-2">
+            {entity.name}
+            <Notifications notifications={1} />
+          </h1>
           <div className="text-[#465985]">
-            <p className="text-white text-[14px] sm:text-[12px]">
+            <div className="text-white text-[14px] sm:text-[12px]">
               {entity.subtext}
-            </p>
+            </div>
           </div>
         </div>
       </button>

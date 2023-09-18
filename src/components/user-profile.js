@@ -146,10 +146,10 @@ const UserProfileCircle = (Logout) => {
           to="/inbox"
         >
           <i className="fa-solid fa-inbox" style={{ color: "#ffffff" }}></i>
-          <p className="px-4 text-white relative">
+          <div className="px-4 text-white relative">
             Inbox
             <Notifications notifications={1} styleLeft={true} />
-          </p>
+          </div>
         </Link>
 
         <a
