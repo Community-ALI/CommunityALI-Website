@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { BASE_BACKEND_URL } from "../config.js";
 import { Link } from "react-router-dom";
 import { Buffer } from "buffer";
+import Notifications from "./Notification.js";
 
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState("Loading Username...");
@@ -124,6 +125,7 @@ const UserProfileCircle = (Logout) => {
         onClick={toggleDropdown}
         ref={dropdownIconRef}
       />
+      <Notifications notifications={1} styleLeft={true} />
       <div
         ref={dropdownRef}
         className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-100px] py-4 --tw-shadow-color: #000
@@ -144,7 +146,10 @@ const UserProfileCircle = (Logout) => {
           to="/inbox"
         >
           <i className="fa-solid fa-inbox" style={{ color: "#ffffff" }}></i>
-          <p className="px-4 text-white">Inbox</p>
+          <p className="px-4 text-white relative">
+            Inbox
+            <Notifications notifications={1} styleLeft={true} />
+          </p>
         </Link>
 
         <a
