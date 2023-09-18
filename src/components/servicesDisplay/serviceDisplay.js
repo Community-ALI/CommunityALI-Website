@@ -15,15 +15,58 @@ const DisplayService = function (props) {
   const buffer = Buffer.from(service.thumbnail.data);
   const base64 = buffer.toString("base64");
   const imageUrl = `data:image/png;base64,${base64}`;
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const toggleBookmark = (event) => {
+    event.stopPropagation();
+    setIsBookmarked(!isBookmarked);
+  };
+
+  const navigateToServiceInfo = () => {
+    window.location.href = `/service-info?service=${service.title}`;
+  };
 
   return (
     <div
-      className="service-result-card"
+      className="service-result-card relative"
       id={service.title}
-      onClick={() =>
-        (window.location.href = `/service-info?service=${service.title}`)
-      }
+      onClick={navigateToServiceInfo}
     >
+      {isBookmarked ? (
+        <svg
+          viewBox="0 0 82 82"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute top-3 right-3 h-[40px] w-[40px] select-none md:h-[30px] md:w-[30px] sm:h-[20px] sm:w-[20px]"
+          onClick={toggleBookmark}
+        >
+          <path
+            d="M23.9167 61.3975L41.0001 54.0517L58.0834 61.3975V17.0834H23.9167V61.3975Z"
+            fill="#ECAA1E"
+            fill-opacity="1"
+          />
+          <path
+            d="M58.0833 10.25H23.9166C20.1583 10.25 17.0833 13.325 17.0833 17.0833V71.75L40.9999 61.5L64.9166 71.75V17.0833C64.9166 13.325 61.8416 10.25 58.0833 10.25ZM58.0833 61.3975L40.9999 54.0858L23.9166 61.3975V17.0833H58.0833V61.3975Z"
+            fill="#ECAA1E"
+          />
+        </svg>
+      ) : (
+        <svg
+          viewBox="0 0 82 82"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute top-3 right-3 h-[40px] w-[40px] select-none md:h-[30px] md:w-[30px]"
+          onClick={toggleBookmark}
+        >
+          <path
+            d="M23.9167 61.3975L41.0001 54.0517L58.0834 61.3975V17.0834H23.9167V61.3975Z"
+            fill="black"
+            fill-opacity="0.2"
+          />
+          <path
+            d="M58.0833 10.25H23.9166C20.1583 10.25 17.0833 13.325 17.0833 17.0833V71.75L40.9999 61.5L64.9166 71.75V17.0833C64.9166 13.325 61.8416 10.25 58.0833 10.25ZM58.0833 61.3975L40.9999 54.0858L23.9166 61.3975V17.0833H58.0833V61.3975Z"
+            fill="#ECAA1E"
+          />
+        </svg>
+      )}
       <img className="service-result-thumbnail" src={imageUrl} />
       <div className="result-text-container">
         <div className="service-result-title">{service.title}</div>
@@ -139,13 +182,6 @@ export default function ServicesDisplay(props) {
           .catch((error) => {
             console.error(error);
           });
-
-        // const loaderWrapper = document.querySelector(".loader-wrapper");
-        // loaderWrapper.style.transition = "opacity 1.5s";
-        // loaderWrapper.style.opacity = "0";
-        // setTimeout(() => {
-        //   loaderWrapper.style.display = "none";
-        // }, 500);
       } catch (error) {
         console.error(error);
       }
