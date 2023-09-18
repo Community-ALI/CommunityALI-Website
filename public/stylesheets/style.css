@@ -782,6 +782,10 @@ video {
   top: 0.5rem;
 }
 
+.top-3 {
+  top: 0.75rem;
+}
+
 .top-4 {
   top: 1rem;
 }
@@ -798,6 +802,7 @@ video {
   top: 80px;
 }
 
+<<<<<<< HEAD
 .bottom-\[-171px\] {
   bottom: -171px;
 }
@@ -828,6 +833,10 @@ video {
 
 .bottom-\[-155px\] {
   bottom: -155px;
+=======
+.right-2 {
+  right: 0.5rem;
+>>>>>>> 78a6a4a578f35d2d37355b6a0876903e4681cea1
 }
 
 .z-10 {
@@ -1255,8 +1264,13 @@ video {
   width: 95%;
 }
 
+<<<<<<< HEAD
 .w-\[332px\] {
   width: 332px;
+=======
+.w-\[40px\] {
+  width: 40px;
+>>>>>>> 78a6a4a578f35d2d37355b6a0876903e4681cea1
 }
 
 .min-w-\[100vw\] {
@@ -1380,6 +1394,12 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .resize-none {
@@ -1727,6 +1747,7 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
 .bg-slate-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(71 85 105 / var(--tw-bg-opacity));
@@ -1737,6 +1758,8 @@ video {
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
+=======
+>>>>>>> 78a6a4a578f35d2d37355b6a0876903e4681cea1
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1993,6 +2016,10 @@ video {
   font-size: 20px;
 }
 
+.text-\[25px\] {
+  font-size: 25px;
+}
+
 .text-\[28px\] {
   font-size: 28px;
 }
@@ -2014,6 +2041,10 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[30px\] {
+  font-size: 30px;
 }
 
 .font-\[400\] {
@@ -2155,6 +2186,10 @@ video {
   transition-duration: 150ms;
 }
 
+.duration-100 {
+  transition-duration: 100ms;
+}
+
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -2165,6 +2200,10 @@ video {
 
 .duration-\[300ms\] {
   transition-duration: 300ms;
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
 .ease-in-out {
@@ -2492,6 +2531,10 @@ video {
     height: 65vh;
   }
 
+  .md\:h-\[20px\] {
+    height: 20px;
+  }
+
   .md\:w-\[100\%\] {
     width: 100%;
   }
@@ -2506,6 +2549,10 @@ video {
 
   .md\:w-\[95\%\] {
     width: 95%;
+  }
+
+  .md\:w-\[20px\] {
+    width: 20px;
   }
 
   .md\:scale-\[0\.9\] {
@@ -2603,6 +2650,10 @@ video {
     height: 60px;
   }
 
+  .sm\:h-\[20px\] {
+    height: 20px;
+  }
+
   .sm\:w-\[130px\] {
     width: 130px;
   }
@@ -2617,6 +2668,10 @@ video {
 
   .sm\:w-\[90vw\] {
     width: 90vw;
+  }
+
+  .sm\:w-\[20px\] {
+    width: 20px;
   }
 
   .sm\:scale-\[0\.8\] {

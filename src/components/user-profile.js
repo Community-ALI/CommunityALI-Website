@@ -139,13 +139,21 @@ const UserProfileCircle = (Logout) => {
           <p className="px-4 text-white">Profile</p>
         </a>
 
-          <Link
-            className="transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3"
-            to="/inbox"
-          >
-            <i className="fa-solid fa-inbox" style={{ color: "#ffffff" }}></i>
-            <p className="px-4 text-white">Inbox</p>
-          </Link>
+        <Link
+          className="transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3"
+          to="/inbox"
+        >
+          <i className="fa-solid fa-inbox" style={{ color: "#ffffff" }}></i>
+          <p className="px-4 text-white">Inbox</p>
+        </Link>
+
+        <a
+          className="transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3"
+          href="/save-services"
+        >
+          <i className="fa-solid fa-bookmark text-white"></i>
+          <p className="px-4 text-white"> Saved </p>
+        </a>
 
         <button
           onClick={Logout}

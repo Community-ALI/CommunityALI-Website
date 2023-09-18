@@ -29,6 +29,7 @@ import SignupPopup from "./components/SignupPopup";
 import ManagementSelectionPage from "./pages/administrator/managementSelectionPage";
 import Administration from "./pages/administrator/administration";
 import Unsubscribe from "./pages/account/unsubscribe";
+import SaveServices from "./pages/account/save-services";
 
 import "./style.scss";
 import "../public/stylesheets/style.css";
@@ -98,6 +99,7 @@ function App() {
         <Route path="/contact-form" element={<ContactForm />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/inbox" element={<Inbox />} />
+        <Route path="/save-services" element={<SaveServices />} />
       </Routes>
     </BrowserRouter>
   );
