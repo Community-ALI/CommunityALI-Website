@@ -136,7 +136,7 @@ router.post("/login", async (req, res) => {
       
       const token = jwt.sign(
         {
-          id: user._id,
+          _id: user._id,
           username: user.username,
           email: user.email,
           hasManagementPrivileges: hasManagementPrivileges,
@@ -220,6 +220,7 @@ router.get("/check-permissions", async (req, res) => {
       eventAdmin: user.eventAdmin,
       volunteeringAdmin: user.volunteeringAdmin,
       internshipAdmin: user.internshipAdmin,
+      _id: user._id,
     });
   } catch (error) {
     console.log(error);

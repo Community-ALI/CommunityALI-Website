@@ -1885,6 +1885,10 @@ video {
   padding-left: 125px;
 }
 
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -1907,14 +1911,6 @@ video {
 
 .pt-\[66px\] {
   padding-top: 66px;
-}
-
-.pr-4 {
-  padding-right: 1rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .text-left {

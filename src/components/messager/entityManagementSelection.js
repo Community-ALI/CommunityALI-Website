@@ -1,8 +1,43 @@
 import React, { useState, useEffect } from "react";
 import Notifications from "../Notification";
+import { BASE_BACKEND_URL } from "../../config";
 
 function EntityManagementButton(props) {
   const entity = props.entity;
+  const [notifications, setNotifications] = useState(0);
+
+  if (!entity.isUser) {
+    useEffect(() => {
+      const fetchNotifications = async () => {
+        try {
+          var token = localStorage.getItem("token");
+          var decodedToken = {};
+          if (token) {
+            decodedToken = JSON.parse(atob(token.split(".")[1]));
+            console.log(decodedToken);
+          }
+          if (decodedToken._id) {
+            await fetch(`${BASE_BACKEND_URL}/api/messages/${entity._id}/${decodedToken._id}`)
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                if (data.error) {
+                  console.error(data.error);
+                } else {
+                  console.log(`Fetched ${data.length} many messages`);
+                  setNotifications(data.length);
+                }
+              });
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      fetchNotifications();
+    }, []);
+  }
 
   return (
     <div
@@ -28,7 +63,7 @@ function EntityManagementButton(props) {
         <div className="flex flex-col text-left xlr:text-[14px] lr:text-[16px] sm:text-[14px]">
           <h1 className="relative pr-2">
             {entity.name}
-            <Notifications notifications={1} />
+            {!entity.isUser && <Notifications notifications={notifications} />}
           </h1>
           <div className="text-[#465985]">
             <div className="text-white text-[14px] sm:text-[12px]">
@@ -84,6 +119,7 @@ function EntityList(props) {
                   : "/Photos/DefaultServiceImage.png",
                 name: service.title,
                 subtext: [],
+                _id: service._id,
               }}
               entireEntity={service}
               isSelected={props.selectedId === service._id}

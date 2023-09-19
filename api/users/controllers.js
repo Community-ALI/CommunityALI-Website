@@ -1,4 +1,3 @@
-const { rejects } = require("assert");
 const database = require("../../connect-to-database.js");
 const User = database.User;
 

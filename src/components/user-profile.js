@@ -6,6 +6,7 @@ import Notifications from "./Notification.js";
 
 const UserProfileCircle = (Logout) => {
   const [username, setUsername] = useState("Loading Username...");
+  const [notifications, setNotifications] = useState(0);
   const dropdownRef = useRef(null);
   const dropdownIconRef = useRef(null);
 
@@ -34,6 +35,36 @@ const UserProfileCircle = (Logout) => {
       }
     };
 
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        var token = localStorage.getItem("token");
+        var decodedToken = {};
+        if (token) {
+          decodedToken = JSON.parse(atob(token.split(".")[1]));
+          console.log(decodedToken);
+        }
+        if (decodedToken._id) {
+          const response = await fetch(
+            `${BASE_BACKEND_URL}/api/users/${decodedToken._id}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              setNotifications(data.uncheckedMessages.length);
+              console.log(data.uncheckedMessages.length);
+            });
+        } else {
+          alert("no token found");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
     fetchData();
   }, []);
 
@@ -125,7 +156,7 @@ const UserProfileCircle = (Logout) => {
         onClick={toggleDropdown}
         ref={dropdownIconRef}
       />
-      <Notifications notifications={1} styleLeft={true} />
+      <Notifications notifications={notifications} styleLeft={true} />
       <div
         ref={dropdownRef}
         className={`rounded-lg flex flex-col absolute dropdown-menu bg-ali-darkblue left-[-100px] py-4 --tw-shadow-color: #000
@@ -148,7 +179,7 @@ const UserProfileCircle = (Logout) => {
           <i className="fa-solid fa-inbox" style={{ color: "#ffffff" }}></i>
           <div className="px-4 text-white relative">
             Inbox
-            <Notifications notifications={1} styleLeft={true} />
+            <Notifications notifications={notifications} styleLeft={true} />
           </div>
         </Link>
 
