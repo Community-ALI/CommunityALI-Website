@@ -66,6 +66,7 @@ const userSchema = new mongoose.Schema(
         fullName: String,
         sendNotifications: { type: Boolean},
         lastNotificationCheck: { type: Date, default: Date.now },
+        uncheckedMessages: { type: Schema.Types.ObjectId, ref: 'messages' },
     }, { collection: 'users' }
 )
 

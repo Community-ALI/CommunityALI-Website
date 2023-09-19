@@ -91,7 +91,7 @@ function MessageForm(props) {
     const postData = async function () {
       try {
         console.log("Posting message to database: ", postingMessage.content);
-        await fetch(`${BASE_BACKEND_URL}/messagedata/post_message`, {
+        await fetch(`${BASE_BACKEND_URL}/api/messages`, {
           method: "POST",
           headers: {
              "authorization": `Bearer ${token}`,
