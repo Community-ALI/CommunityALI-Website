@@ -1,6 +1,7 @@
-const database = require ("./../../connect-to-database");
+const database = require("./../../connect-to-database");
 const Messages = database.Message;
-Services = database.Services;
+const Services = database.Services;
+const User = database.User;
 
 const AWS = require("aws-sdk");
 AWS.config.update({
@@ -45,12 +46,18 @@ exports.POST = async function (message) {
   try {
     const newMessage = new Messages(message);
     await newMessage.save();
+    const savedMessageId = newMessage._id;
     // email each service member about the new message
     const service = await Services.findById(message.sender).exec();
     const serviceMembers = service.members;
     for (let i = 0; i < serviceMembers.length; i++) {
       // get the email of the service member
       const serviceMember = await User.findById(serviceMembers[i]).exec();
+
+      await User.findByIdAndUpdate(serviceMember._id, {
+        $push: { uncheckedMessages: savedMessageId },
+      }).exec();
+
       const serviceMemberEmail = serviceMember.email;
       // send the email
       const subject = `New message from ${service.title}`;
