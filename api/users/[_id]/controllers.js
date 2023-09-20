@@ -11,3 +11,17 @@ exports.GET = async function (_id) {
       throw new Error("Internal Server Error");
     }
   };
+
+  exports.PUT = async function (_id, body) {
+    try {
+      const selected_account = await User.findByIdAndUpdate(
+        _id,
+        body,
+        { new: true }
+      ).exec();
+      return selected_account;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Internal Server Error");
+    }
+  }
