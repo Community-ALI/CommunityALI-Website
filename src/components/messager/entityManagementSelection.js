@@ -68,7 +68,7 @@ function EntityManagementButton(props) {
         const newUserUncheckedMessages = user.uncheckedMessages.filter(
           (message) => {
             return notifications.some(
-              (notification) => notification._id === message
+              (notification) => notification._id != message
             );
           }
         );
