@@ -14,12 +14,15 @@ exports.GET = async function (_id) {
 
   exports.PUT = async function (_id, body) {
     try {
+      console.log(body);
       const selected_account = await User.findByIdAndUpdate(
         _id,
         body,
         { new: true }
       ).exec();
-      return selected_account;
+      selected_account.save();
+      console.log('Successfully updated user');
+      return ('Successfully updated user');
     } catch (error) {
       console.error(error);
       throw new Error("Internal Server Error");

@@ -4,7 +4,7 @@ import { BASE_BACKEND_URL } from "../../config";
 
 function EntityManagementButton(props) {
   const entity = props.entity;
-  const [notifications, setNotifications] = useState(0);
+  const [notifications, setNotifications] = useState([]);
 
   if (!entity.isUser) {
     useEffect(() => {
@@ -17,7 +17,9 @@ function EntityManagementButton(props) {
             console.log(decodedToken);
           }
           if (decodedToken._id) {
-            await fetch(`${BASE_BACKEND_URL}/api/messages/${entity._id}/${decodedToken._id}`)
+            await fetch(
+              `${BASE_BACKEND_URL}/api/messages/${entity._id}/${decodedToken._id}`
+            )
               .then((response) => {
                 return response.json();
               })
@@ -26,7 +28,7 @@ function EntityManagementButton(props) {
                   console.error(data.error);
                 } else {
                   console.log(`Fetched ${data.length} many messages`);
-                  setNotifications(data.length);
+                  setNotifications(data);
                 }
               });
           }
@@ -37,6 +39,70 @@ function EntityManagementButton(props) {
 
       fetchNotifications();
     }, []);
+  }
+
+  async function clearNotificationsForService() {
+    try {
+      var token = localStorage.getItem("token");
+      var decodedToken = {};
+      if (token) {
+        decodedToken = JSON.parse(atob(token.split(".")[1]));
+        console.log(decodedToken);
+      }
+      if (decodedToken._id) {
+        const user = await fetch(
+          `${BASE_BACKEND_URL}/api/users/${decodedToken._id}`
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            if (data.error) {
+              console.error(data.error);
+            } else {
+              console.log("Successfully fetched user");
+              return data;
+            }
+          });
+
+        const newUserUncheckedMessages = user.uncheckedMessages.filter(
+          (message) => {
+            return notifications.some(
+              (notification) => notification._id === message
+            );
+          }
+        );
+        console.log("NEW USER UNCHECKED MESSAGES: ", newUserUncheckedMessages);
+
+        const newUser = {
+          ...user,
+          uncheckedMessages: newUserUncheckedMessages,
+        };
+
+        console.log("NOTIFICATIONS: ", notifications);
+        console.log("NEW USER: ", newUser);
+        await fetch(`${BASE_BACKEND_URL}/api/users/${decodedToken._id}`, {
+          method: "PUT",
+          body: JSON.stringify(newUser),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            if (data.error) {
+              console.error(data.error);
+            } else {
+              console.log("Successfully cleared notifications");
+              setNotifications(0);
+            }
+          });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -51,6 +117,9 @@ function EntityManagementButton(props) {
         onClick={() => {
           if (props.SelectEntity !== undefined) {
             props.SelectEntity(props.entireEntity);
+            if (!entity.isUser) {
+              clearNotificationsForService();
+            }
           }
         }}
       >
@@ -63,7 +132,9 @@ function EntityManagementButton(props) {
         <div className="flex flex-col text-left xlr:text-[14px] lr:text-[16px] sm:text-[14px]">
           <h1 className="relative pr-2">
             {entity.name}
-            {!entity.isUser && <Notifications notifications={notifications} />}
+            {!entity.isUser && (
+              <Notifications notifications={notifications.length} />
+            )}
           </h1>
           <div className="text-[#465985]">
             <div className="text-white text-[14px] sm:text-[12px]">
