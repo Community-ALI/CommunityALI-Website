@@ -215,7 +215,7 @@ export default function EntityManagementSelection(props) {
   };
 
   return (
-    <div className="bg-[#00468D] h-[100vh] w-[100%] relative">
+    <div className="bg-[#00468D] h-[100vh] w-[100%] relative overflow-y-auto">
       <div
         className="border-b-2 border-r-2 border-r-ali-backgroundblue border-opacity-50
        border-y-ali-darkblue lr:border-r-0 lr:mt-[70px]"
