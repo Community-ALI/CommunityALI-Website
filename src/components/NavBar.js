@@ -14,7 +14,7 @@ function MyServicesNavButton(props) {
   var decodedToken = {};
   if (token) {
     decodedToken = JSON.parse(atob(token.split(".")[1]));
-    console.log(decodedToken);
+    console.log('TOKEN: ', decodedToken);
   }
   const [notifications, setNotifications] = useState([]);
 

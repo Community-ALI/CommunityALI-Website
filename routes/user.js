@@ -98,33 +98,34 @@ router.get("/get-all-user-notifications", async function (req, res) {
 
 // login
 router.post("/login", async (req, res) => {
-  try{
+  try {
     const usernameOrEmail = req.body.usernameOrEmail;
     const password = req.body.password;
     const user = await User.findOne({
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
     }).lean();
     if (!user) {
-      return res
-        .status(400)
-        .json({
-          status: "error",
-          error: "Invalid username or email/password combination",
-        });
+      return res.status(400).json({
+        status: "error",
+        error: "Invalid username or email/password combination",
+      });
     }
     if (!user.verified) {
-      return res
-        .status(400)
-        .json({
-          status: "unverified",
-          username: user.username,
-          error: "Account has not been verified.",
-        });
+      return res.status(400).json({
+        status: "unverified",
+        username: user.username,
+        error: "Account has not been verified.",
+      });
     }
     if (await bcryptjs.compare(password, user.password)) {
       // the username, password combination is successful
       var hasManagementPrivileges = false;
-      if (user.clubAdmin || user.eventAdmin || user.volunteeringAdmin || user.internshipAdmin) {
+      if (
+        user.clubAdmin ||
+        user.eventAdmin ||
+        user.volunteeringAdmin ||
+        user.internshipAdmin
+      ) {
         hasManagementPrivileges = true;
       }
       if (user.servicesEditable && user.servicesEditable.length > 0) {
@@ -133,7 +134,7 @@ router.post("/login", async (req, res) => {
       if (user.servicesManagable && user.servicesManagable.length > 0) {
         hasManagementPrivileges = true;
       }
-      
+
       const token = jwt.sign(
         {
           _id: user._id,
@@ -157,12 +158,10 @@ router.post("/login", async (req, res) => {
 
       res.json({ status: "ok", data: token, username: user.username });
     } else {
-      res
-        .status(400)
-        .json({
-          status: "error",
-          error: "Invalid username or email/password combination",
-        });
+      res.status(400).json({
+        status: "error",
+        error: "Invalid username or email/password combination",
+      });
     }
   } catch (error) {
     console.log(error);
@@ -177,11 +176,11 @@ router.post("/refresh-token", async (req, res) => {
     const oldtoken = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(oldtoken, JWT_SECRET);
     const username = decodedToken.username;
-    const user = await User.findOne({username: username});
+    const user = await User.findOne({ username: username });
     if (!user) {
-      return {success: false, error: "User not found"};
+      return { success: false, error: "User not found" };
     }
-    
+
     const token = jwt.sign(
       {
         id: user._id,
@@ -210,18 +209,24 @@ router.post("/refresh-token", async (req, res) => {
 
 // tell a user if they are a club admin, event admin, etc.
 router.get("/check-permissions", async (req, res) => {
-  try{
+  try {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
-    const user_id = decodedToken.id;
-    const user = await User.findOne({ _id: user_id });
-    res.json({
-      clubAdmin: user.clubAdmin,
-      eventAdmin: user.eventAdmin,
-      volunteeringAdmin: user.volunteeringAdmin,
-      internshipAdmin: user.internshipAdmin,
-      _id: user._id,
-    });
+    const user_id = decodedToken._id;
+    console.log("USER ID: ", user_id);
+    if (user_id) {
+      const user = await User.findOne({ _id: user_id });
+      console.log("USER: ", user);
+      res.json({
+        clubAdmin: user.clubAdmin,
+        eventAdmin: user.eventAdmin,
+        volunteeringAdmin: user.volunteeringAdmin,
+        internshipAdmin: user.internshipAdmin,
+        _id: user._id,
+      });
+    } else {
+      throw new Error("User not found");
+    }
   } catch (error) {
     console.log(error);
     res.json({
@@ -232,7 +237,6 @@ router.get("/check-permissions", async (req, res) => {
     });
   }
 });
-
 
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
@@ -350,12 +354,10 @@ router.post("/forgot-password", async (req, res) => {
       );
       res.json({ status: "ok" });
     } else {
-      res
-        .status(400)
-        .json({
-          status: "error",
-          error: "email not associated with an account",
-        });
+      res.status(400).json({
+        status: "error",
+        error: "email not associated with an account",
+      });
     }
   } catch (err) {
     console.log(err);
@@ -375,25 +377,22 @@ router.post("/password-change-password", async (req, res) => {
       // the username, password combination is successful
       plainTextPassword = req.body.newPassword;
       if (plainTextPassword.length < 8) {
-        return res
-          .status(400)
-          .json({
-            status: "error",
-            error: "Password should be at least 8 characters",
-          });
+        return res.status(400).json({
+          status: "error",
+          error: "Password should be at least 8 characters",
+        });
       }
 
       // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
-      const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
+      const passwordComplexityRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
 
       if (!passwordComplexityRegex.test(plainTextPassword)) {
-        return res
-          .status(400)
-          .json({
-            status: "error",
-            error:
-              "Password should contain at least one uppercase letter, one lowercase letter and one digit",
-          });
+        return res.status(400).json({
+          status: "error",
+          error:
+            "Password should contain at least one uppercase letter, one lowercase letter and one digit",
+        });
       }
 
       const newPassword = await bcryptjs.hash(plainTextPassword, 10);
@@ -418,24 +417,21 @@ router.post("/token-change-password", async (req, res) => {
     const token = req.query.token;
     plainTextPassword = req.body.newPassword;
     if (plainTextPassword.length < 8) {
-      return res
-        .status(400)
-        .json({
-          status: "error",
-          error: "Password should be at least 8 characters",
-        });
+      return res.status(400).json({
+        status: "error",
+        error: "Password should be at least 8 characters",
+      });
     }
 
     // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
-    const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
+    const passwordComplexityRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
     if (!passwordComplexityRegex.test(plainTextPassword)) {
-      return res
-        .status(400)
-        .json({
-          status: "error",
-          error:
-            "Password should contain at least one uppercase letter, one lowercase letter and one digit",
-        });
+      return res.status(400).json({
+        status: "error",
+        error:
+          "Password should contain at least one uppercase letter, one lowercase letter and one digit",
+      });
     }
 
     // Find the corresponding password reset entry in the database
@@ -507,7 +503,6 @@ router.post("/get-user-services", async function (req, res) {
       req.body.requestedFields
     );
 
-
     res.json({
       OwnedServices: user_services,
       EditableServices: EditableServices,
@@ -541,21 +536,17 @@ router.post("/register", async (req, res) => {
   if (!usernameRegex.test(username)) {
     const allowedCharacters =
       "letters (both uppercase and lowercase), numbers, underscores, and hyphens";
-    return res
-      .status(400)
-      .json({
-        status: "error",
-        error: `Invalid characters in username. Only ${allowedCharacters} are allowed.`,
-      });
+    return res.status(400).json({
+      status: "error",
+      error: `Invalid characters in username. Only ${allowedCharacters} are allowed.`,
+    });
   }
 
   if (username.length < 3 || username.length > 20) {
-    return res
-      .status(400)
-      .json({
-        status: "error",
-        error: "Username length should be between 3 and 20 characters",
-      });
+    return res.status(400).json({
+      status: "error",
+      error: "Username length should be between 3 and 20 characters",
+    });
   }
 
   if (!plainTextPassword || typeof plainTextPassword !== "string") {
@@ -563,26 +554,22 @@ router.post("/register", async (req, res) => {
   }
 
   if (plainTextPassword.length < 8) {
-    return res
-      .status(400)
-      .json({
-        status: "error",
-        error: "Password should be at least 8 characters",
-      });
+    return res.status(400).json({
+      status: "error",
+      error: "Password should be at least 8 characters",
+    });
   }
 
   // Additional checks for password complexity (e.g., uppercase, lowercase, digits, special characters)
-  const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
-
+  const passwordComplexityRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]+$/;
 
   if (!passwordComplexityRegex.test(plainTextPassword)) {
-    return res
-      .status(400)
-      .json({
-        status: "error",
-        error:
-          "Password should contain at least one uppercase letter, one lowercase letter and one digit",
-      });
+    return res.status(400).json({
+      status: "error",
+      error:
+        "Password should contain at least one uppercase letter, one lowercase letter and one digit",
+    });
   }
 
   const password = await bcryptjs.hash(plainTextPassword, 10);
@@ -698,8 +685,7 @@ router.post("/unsubscribe", async function (req, res) {
   const message = await user_data.unsubscribe_user(email);
   if (message.success) {
     res.json({ status: "ok" });
-  }
-  else {
+  } else {
     res.json({ status: "error", error: message.error });
   }
 });
@@ -747,13 +733,15 @@ router.post(
 
 router.get("/get_services_user_is_member/:userId", async function (req, res) {
   try {
-    const services = await user_data.get_services_user_is_member(req.params.userId);
+    const services = await user_data.get_services_user_is_member(
+      req.params.userId
+    );
     console.log(`services for ${req.params.userId} sent`);
     res.json(services);
   } catch (error) {
     console.error(error);
-    res.status(500).json( { status: 'error', error: "Something went wrong"});
+    res.status(500).json({ status: "error", error: "Something went wrong" });
   }
-})
+});
 
 module.exports = router;
