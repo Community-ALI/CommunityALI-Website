@@ -1,0 +1,12 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.custom-link {
+  color: #ecaa1e;
+  text-decoration: underline;
+}
+
+.custom-link:hover {
+  text-decoration: underline;
+}
