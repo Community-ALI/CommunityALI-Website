@@ -30,6 +30,7 @@ import ManagementSelectionPage from "./pages/administrator/managementSelectionPa
 import Administration from "./pages/administrator/administration";
 import Unsubscribe from "./pages/account/unsubscribe";
 import SaveServices from "./pages/account/save-services";
+import LibraryResources from "./pages/explore-services/LibraryResources";
 
 import "./style.scss";
 import "../public/stylesheets/style.css";
@@ -100,6 +101,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/inbox" element={<Inbox />} />
         <Route path="/save-services" element={<SaveServices />} />
+        <Route path="/LibraryResources" element={<LibraryResources />} />
       </Routes>
     </BrowserRouter>
   );
