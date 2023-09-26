@@ -30,7 +30,9 @@ function ImageSection({ imageSrc, altText, children }) {
 
 function InfoBox({ title, children, extraClass, titleClass, innerClass }) {
   return (
-    <div className={`bg-mutedblue text-white p-2 rounded-xl  ${extraClass}`}>
+    <div
+      className={`bg-ali-lightblue text-white p-2 rounded-xl  ${extraClass}`}
+    >
       {title && <p className={`font-semibold ${titleClass}`}>{title}</p>}
       {children && (
         <div className={`mt-2 break-words ${innerClass}`}>{children}</div>
@@ -85,6 +87,12 @@ function computeCircleClass(index, breakpoint) {
 
   positionClass += "-left-2 top-10 ";
 
+  if (breakpoint <= "txsm") {
+    if (index === 1 || index === 3) {
+      positionClass += " txsm:top-6 txsm: -left-2";
+    }
+  }
+
   if (breakpoint >= "txsm") {
     if (index === 1 || index === 3) {
       positionClass += " txsm:top-10 txsm: -left-2";
@@ -99,14 +107,14 @@ function computeCircleClass(index, breakpoint) {
   }
 
   if (breakpoint >= "tlg") {
-    positionClass += " tlg:absolute tlg:left-36 tlg:top-10";
+    positionClass += " tlg:absolute tlg:left-36 tlg:top-8";
     if (index === 1 || index === 3) {
       positionClass += " tlg:absolute tlg:left-36 tlg:top-[35px] ";
     }
   }
 
   if (breakpoint <= "txl") {
-    positionClass += " txl:absolute txl:left-40 txl:top-10";
+    positionClass += " txl:absolute txl:left-40 txl:top-8";
     if (index === 1 || index === 3) {
       positionClass += " txl:absolute txl:left-40 txl:top-[35px]";
     }
