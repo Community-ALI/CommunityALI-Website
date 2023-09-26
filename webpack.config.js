@@ -2,6 +2,7 @@ const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
+const ModuleResolver = require("babel-plugin-module-resolver");
 
 module.exports = {
   devtool: "source-map",
@@ -19,6 +20,12 @@ module.exports = {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+    alias: {
+      "@Photos": path.resolve(__dirname, "./public/Photos"),
+    },
   },
 
   plugins: [

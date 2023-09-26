@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./LibraryResources.css";
-import librimage from "./../../../public/Photos/librimage.jpg";
+import librimage from "@Photos/librimage.jpg";
 
 function Header() {
   return (
