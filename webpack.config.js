@@ -25,6 +25,7 @@ module.exports = {
     extensions: [".js", ".jsx"],
     alias: {
       "@Photos": path.resolve(__dirname, "./public/Photos"),
+      "@components": path.resolve(__dirname, "./src/components"),
     },
   },
 
