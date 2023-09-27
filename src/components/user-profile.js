@@ -78,8 +78,8 @@ const UserProfileCircle = (Logout) => {
         } else {
           decodedToken = JSON.parse(atob(token.split(".")[1]));
           if (!(decodedToken._id || decodedToken.id))
-            alert("no id found on token");
-          else alert("no token found");
+            alert("no id found on token try logging in again");
+          else alert("no token found, try logging in again or contact support");
         }
       } catch (error) {
         console.log(error);
