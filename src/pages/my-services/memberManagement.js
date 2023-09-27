@@ -81,9 +81,27 @@ export default function MemberManagement() {
       const queryString = window.location.search;
       const queryParams = new URLSearchParams(queryString);
       const serviceTitle = queryParams.get("service");
+      let userName = localStorage.getItem("username");
+      if (!userName) {
+        console.log("No username found in local storage");
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("No token found in local storage");
+          alert("You are not logged in");
+          return;
+        }
+        decodedToken = JSON.parse(atob(token.split(".")[1]));
+        userName = decodedToken.username;
+        if (!userName) {
+          console.log("No username found in token");
+          alert("You are not logged in or token is corrupted, try logging in or contact support");
+          return;
+        }
+        localStorage.setItem("username", userName);
+      }
       const isVarified = await verifyUser(
         serviceTitle,
-        localStorage.getItem("username")
+        userName
       );
       if (!isVarified) {
         return;
