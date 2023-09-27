@@ -58,6 +58,7 @@ const UserProfileCircle = (Logout) => {
               console.log(data.uncheckedMessages.length);
             });
         } else if (decodedToken.id) {
+          console.log("id found, but is in old format... updating token to new format");
           const response = await fetch(
             `${BASE_BACKEND_URL}/api/users/${decodedToken.id}`
           )
