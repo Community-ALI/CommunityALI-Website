@@ -27,6 +27,7 @@ const messageRouter = require("./routes/message");
 const userAPI = require("./api/users/routes");
 const serviceAPI = require("./api/services/routes");
 const messageAPI = require("./api/messages/routes");
+const tokenRouter = require("./api/token/routes");
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -57,6 +58,7 @@ app.use('/messagedata', messageRouter);
 app.use('/api/users', userAPI);
 app.use('/api/services', serviceAPI);
 app.use('/api/messages', messageAPI);
+app.use('/api/token', tokenRouter);
 
 
 //last route, important for frontend I believe
