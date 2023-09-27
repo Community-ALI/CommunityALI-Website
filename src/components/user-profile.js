@@ -57,14 +57,35 @@ const UserProfileCircle = (Logout) => {
               setNotifications(data.uncheckedMessages.length);
               console.log(data.uncheckedMessages.length);
             });
+        } else if (decodedToken.id) {
+          const response = await fetch(
+            `${BASE_BACKEND_URL}/api/users/${decodedToken.id}`
+          )
+            .then((response) => response.json())
+            .then(async (data) => {
+              try {
+                console.log(data);
+                await fetch(`${BASE_BACKEND_URL}/api/token/`, {
+                  method: "POST",
+                  body: JSON.stringify(data),
+                });
+                setNotifications(data.uncheckedMessages.length);
+                console.log(data.uncheckedMessages.length);
+              } catch (error) {
+                console.log(error);
+              }
+            });
         } else {
-          alert("no token found");
+          decodedToken = JSON.parse(atob(token.split(".")[1]));
+          if (!(decodedToken._id || decodedToken.id))
+            alert("no id found on token");
+          else alert("no token found");
         }
       } catch (error) {
         console.log(error);
       }
     };
-    
+
     fetchData();
   }, []);
 
