@@ -112,6 +112,8 @@ export default function MemberPopup(props) {
       }
     );
   };
+  
+
 
   const [isManagePermissionsVisible, setIsManagePermissionsVisible] =
     useState(false);
@@ -124,7 +126,7 @@ export default function MemberPopup(props) {
   );
 
   useEffect(() => {
-    console.log(props.selectedMember._id);
+    console.log(props.selectedMember);
     if (props.selectedMember._id) {
       const y = document
         .getElementById(props.selectedMember._id)
@@ -176,16 +178,19 @@ export default function MemberPopup(props) {
               className="fa-solid fa-xmark text-white absolute top-2 right-3 cursor-pointer"
               onClick={closePopup}
             ></i>
-            <img
-              className="absolute w-[85px] top-[15px] left-[24px]"
-              src="photos-optimized/user-pic.png"
-            />
+            <div className="absolute w-[85px] h-[85px] top-[15px] left-[24px] rounded-full overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={member.profileImage}
+                alt="Member Profile"
+              />
+            </div>
             <div className="bg-ali-backgroundblue pt-4 pb-3 pl-[125px] flex justify-start rounded-t-[15px]">
               <h1 className="text-white text-[20px]">{member.fullName}</h1>
             </div>
             <div className="bg-[#001A52] text-white rounded-b-[15px] pb-4">
               <div className="pl-[125px] pb-[40px] pt-2 text-[13px]">
-                <p> benjamin964837@my.yosemite.edu</p>
+                <p> {member.email}</p>
               </div>
 
               {areButtonsVisible && (

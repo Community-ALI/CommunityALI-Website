@@ -213,20 +213,15 @@ router.get("/check-permissions", async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const user_id = decodedToken._id;
-    console.log("USER ID: ", user_id);
-    if (user_id) {
-      const user = await User.findOne({ _id: user_id });
-      console.log("USER: ", user);
-      res.json({
-        clubAdmin: user.clubAdmin,
-        eventAdmin: user.eventAdmin,
-        volunteeringAdmin: user.volunteeringAdmin,
-        internshipAdmin: user.internshipAdmin,
-        _id: user._id,
-      });
-    } else {
-      throw new Error("User not found");
-    }
+    console.log(decodedToken)
+    const user = await User.findOne({ _id: user_id });
+    res.json({
+      clubAdmin: user.clubAdmin || false,
+      eventAdmin: user.eventAdmin,
+      volunteeringAdmin: user.volunteeringAdmin,
+      internshipAdmin: user.internshipAdmin,
+      _id: user._id,
+    });
   } catch (error) {
     console.log(error);
     res.json({
