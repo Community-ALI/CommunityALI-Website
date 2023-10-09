@@ -32,7 +32,7 @@ const DisplayService = function (props) {
       id={service._id}
       onClick={navigateToServiceInfo}
     >
-      {isBookmarked ? (
+      {/* {isBookmarked ? (
         <svg
           viewBox="0 0 82 82"
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const DisplayService = function (props) {
             fill="#ECAA1E"
           />
         </svg>
-      )}
+      )} */}
       <img className="service-result-thumbnail" src={imageUrl} />
       <div className="result-text-container">
         <div className="service-result-title">{service.title}</div>
