@@ -14,7 +14,6 @@ exports.GET = async function (_id) {
 
   exports.PUT = async function (_id, body) {
     try {
-      console.log(body);
       const selected_account = await User.findByIdAndUpdate(
         _id,
         body,

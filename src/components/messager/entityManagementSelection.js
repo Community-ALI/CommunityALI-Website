@@ -43,11 +43,11 @@ function EntityManagementButton(props) {
 
   async function clearNotificationsForService() {
     try {
+      console.log("CLEARING NOTIFICATIONS");
       var token = localStorage.getItem("token");
       var decodedToken = {};
       if (token) {
         decodedToken = JSON.parse(atob(token.split(".")[1]));
-        console.log(decodedToken);
       }
       if (decodedToken._id) {
         const user = await fetch(
@@ -65,6 +65,7 @@ function EntityManagementButton(props) {
             }
           });
 
+          console.log("USER: ", user);
         const newUserUncheckedMessages = user.uncheckedMessages.filter(
           (message) => {
             return notifications.some(
@@ -72,15 +73,15 @@ function EntityManagementButton(props) {
             );
           }
         );
-        console.log("NEW USER UNCHECKED MESSAGES: ", newUserUncheckedMessages);
+        console.log("USER UNCHECKED MESSAGES: ", newUserUncheckedMessages);
 
         const newUser = {
-          ...user,
           uncheckedMessages: newUserUncheckedMessages,
         };
 
         console.log("NOTIFICATIONS: ", notifications);
         console.log("NEW USER: ", newUser);
+        
         await fetch(`${BASE_BACKEND_URL}/api/users/${decodedToken._id}`, {
           method: "PUT",
           body: JSON.stringify(newUser),
