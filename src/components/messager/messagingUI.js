@@ -8,39 +8,56 @@ function Message(props) {
   function formatDate(isoDate) {
     const date = new Date(isoDate);
     const now = new Date();
-  
-    const isSameDay = date.getDate() === now.getDate() &&
-                     date.getMonth() === now.getMonth() &&
-                     date.getFullYear() === now.getFullYear();
-  
+
+    const isSameDay =
+      date.getDate() === now.getDate() &&
+      date.getMonth() === now.getMonth() &&
+      date.getFullYear() === now.getFullYear();
+
     const timeDiffInDays = (now - date) / (1000 * 60 * 60 * 24); // Calculate the difference in days
-  
+
     if (isSameDay) {
       // If it's today, return the time in 12-hour format
       const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format
-      const amPm = date.getHours() >= 12 ? 'PM' : 'AM'; // Determine AM or PM
-      return `${hours}:${String(date.getMinutes()).padStart(2, '0')} ${amPm}`;
+      const amPm = date.getHours() >= 12 ? "PM" : "AM"; // Determine AM or PM
+      return `${hours}:${String(date.getMinutes()).padStart(2, "0")} ${amPm}`;
     } else if (timeDiffInDays <= 7) {
       // If it's within the last 7 days, return the time in 12-hour format, month, and day
       const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format
-      const amPm = date.getHours() >= 12 ? 'PM' : 'AM'; // Determine AM or PM
+      const amPm = date.getHours() >= 12 ? "PM" : "AM"; // Determine AM or PM
       // Return the time in 12-hour format, month, and day
-      return `${hours}:${String(date.getMinutes()).padStart(2, '0')} ${amPm} ${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
+      return `${hours}:${String(date.getMinutes()).padStart(
+        2,
+        "0"
+      )} ${amPm} ${date.toLocaleString("default", {
+        month: "short",
+      })} ${date.getDate()}`;
     } else if (now.getFullYear() === date.getFullYear()) {
       // If it's within the same year, return the month and day
-      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
-    } else if (now.getFullYear() - date.getFullYear() === 1 && now.getMonth() === date.getMonth()) {
+      return `${date.toLocaleString("default", {
+        month: "short",
+      })} ${date.getDate()}`;
+    } else if (
+      now.getFullYear() - date.getFullYear() === 1 &&
+      now.getMonth() === date.getMonth()
+    ) {
       // If it's less than a year ago but has the same month, treat it as older than a year
-      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}, ${date.getFullYear()}`;
+      return `${date.toLocaleString("default", {
+        month: "short",
+      })} ${date.getDate()}, ${date.getFullYear()}`;
     } else {
       // If it's more than a year ago or in a different month, return the full date (month, day, year)
-      return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}, ${date.getFullYear()}`;
+      return `${date.toLocaleString("default", {
+        month: "short",
+      })} ${date.getDate()}, ${date.getFullYear()}`;
     }
   }
 
   return (
     <div>
-      <p className="text-center text-white mb-[5px] text-xs">{formatDate(message.createdAt)}</p>
+      <p className="text-center text-white mb-[5px] text-xs">
+        {formatDate(message.createdAt)}
+      </p>
       <div className="bg-[#001E60] rounded-lg text-white p-4 mb-[20px]">
         <p>
           {content.map((line, index) => {
@@ -94,9 +111,9 @@ function MessageForm(props) {
         await fetch(`${BASE_BACKEND_URL}/api/messages`, {
           method: "POST",
           headers: {
-             "authorization": `Bearer ${token}`,
-             "content-Type": "application/json"
-             },
+            authorization: `Bearer ${token}`,
+            "content-Type": "application/json",
+          },
           body: JSON.stringify(postingMessage),
         })
           .then((response) => {
@@ -183,13 +200,14 @@ export default function MessagingUI(props) {
   const messagesContainer = useRef(null);
 
   function scrollToBottom() {
-    messagesContainer.current.scrollTop = messagesContainer.current.scrollHeight;
+    messagesContainer.current.scrollTop =
+      messagesContainer.current.scrollHeight;
   }
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-  
+
   async function fetchMessages() {
     try {
       console.log("fetching database with id: " + props.senderId);
@@ -221,8 +239,10 @@ export default function MessagingUI(props) {
 
   return (
     <div className="flex flex-col flex-1 max-h-[100%]">
-      <div className="bg-[#001E60] h-[126px] text-white flex gap-4 p-4 items-center
-      border-y-0 border-ali-backgroundblue border-opacity-50 border-b-2 lr:py-0 sm:h-[100px] sm:mt-[60px]">
+      <div
+        className="bg-[#001E60] h-[126px] text-white flex gap-4 p-4 items-center
+      border-y-0 border-ali-backgroundblue border-opacity-50 border-b-2 lr:py-0 sm:h-[100px]"
+      >
         {props.isMobile && (
           <button onClick={props.BackMobileButton}>
             <img src="Photos/BackArrow.png" alt="" />
@@ -237,12 +257,15 @@ export default function MessagingUI(props) {
           alt=""
           className="rounded-lg h-[82px] sm:h-[60px]"
         />
-        <h1 className="text-[18px] font-[500] sm:text-[16px]">{props.serviceTitle}</h1>
+        <h1 className="text-[18px] font-[500] sm:text-[16px]">
+          {props.serviceTitle}
+        </h1>
       </div>
       <div
         className="bg-[#00468D] flex-1 flex overflow-auto overflow-x-hidden
-        w-[100%] flex-col-reverse p-4 px-8 gap-4" ref={messagesContainer}
-       >
+        w-[100%] flex-col-reverse p-4 px-8 gap-4"
+        ref={messagesContainer}
+      >
         {messages.map((message) => {
           return <Message message={message} key={message._id} />;
         })}

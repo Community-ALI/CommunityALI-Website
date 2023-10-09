@@ -152,8 +152,8 @@ function EntityList(props) {
   if (props.entityType == "user") {
     return (
       <div
-        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] min-w-[380px] lr:h-auto
-      border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0"
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-auto h-[100%] min-w-[380px] lr:h-auto
+      border-r-2  border-ali-backgroundblue border-opacity-50 lr:border-r-0 pb-[100px] lr:pb-[50px]"
       >
         {props.entities.map((user) => {
           return (
@@ -179,7 +179,7 @@ function EntityList(props) {
   } else {
     return (
       <div
-        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-hidden h-[100%] lr:h-auto
+        className="flex flex-col overflow-scroll overflow-x-hidden overflow-y-auto h-[100%] lr:h-auto
       border-r-2  border-ali-backgroundblue border-opacity-50 white lr:border-r-0"
       >
         {props.entities.map((service) => {
@@ -216,7 +216,7 @@ export default function EntityManagementSelection(props) {
   };
 
   return (
-    <div className="bg-[#00468D] h-[100vh] w-[100%] relative overflow-y-auto">
+    <div className="bg-[#00468D] h-[100%] w-[100%] relative overflow-x-hidden overflow-y-hidden lr:overflow-y-scroll">
       <div
         className="border-b-2 border-r-2 border-r-ali-backgroundblue border-opacity-50
        border-y-ali-darkblue lr:border-r-0 lr:mt-[70px]"
