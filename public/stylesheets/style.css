@@ -2031,10 +2031,6 @@ video {
   padding-top: 66px;
 }
 
-.pt-\[70px\] {
-  padding-top: 70px;
-}
-
 .pb-\[100px\] {
   padding-bottom: 100px;
 }
@@ -2656,10 +2652,6 @@ video {
 
   .md\:justify-center {
     justify-content: center;
-  }
-
-  .md\:overflow-y-scroll {
-    overflow-y: scroll;
   }
 
   .md\:px-\[10px\] {

@@ -66,11 +66,12 @@ function AddClub() {
       const urlParams = new URLSearchParams(queryString);
 
       // Retrieve a specific parameter value
-      const serviceName = urlParams.get('service');
+      const serviceId = urlParams.get('service');
 
-      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + serviceName)
+      const response = await fetch(`${BASE_BACKEND_URL}/api/services/${serviceId}`)
         .then(response => response.json())
         .then(data => {
+          console.log(data);
           // 'data' variable will contain the received service
           const buffer = Buffer.from(data.photo.data);
           const base64 = buffer.toString('base64');
@@ -97,7 +98,7 @@ function AddClub() {
           setTimeout(() => {
             loaderWrapper.style.display = "none";
           }, 500); // fade out duration in milliseconds
-          document.title = serviceName;
+          document.title = serviceId;
         })
     };
     fetchData();

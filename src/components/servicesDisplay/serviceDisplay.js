@@ -23,13 +23,13 @@ const DisplayService = function (props) {
   };
 
   const navigateToServiceInfo = () => {
-    window.location.href = `/service-info?service=${service.title}`;
+    window.location.href = `/service-info?service=${service._id}`;
   };
 
   return (
     <div
       className="service-result-card relative"
-      id={service.title}
+      id={service._id}
       onClick={navigateToServiceInfo}
     >
       {isBookmarked ? (
@@ -76,7 +76,7 @@ const DisplayService = function (props) {
       </div>
       <a
         className="service-result-button"
-        href={`/service-info?service=${service.title}`}
+        href={`/service-info?service=${service._id}`}
       >
         Click for more info
       </a>

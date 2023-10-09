@@ -47,10 +47,10 @@ export default function MemberManagement() {
     }
   };
 
-  async function verifyUser(title, username) {
+  async function verifyUser(_id, username) {
     try {
-      console.log("Verifying user ", username, " for service ", title);
-      const response = await fetch(`${BASE_BACKEND_URL}/api/services/${title}`);
+      console.log("Verifying user ", username, " for service ", _id);
+      const response = await fetch(`${BASE_BACKEND_URL}/api/services/${_id}`);
       const data = await response.json();
       console.log(data.user + " " + username);
       if (response.status !== 200) {
@@ -73,99 +73,104 @@ export default function MemberManagement() {
     }
   }
 
+  const getServiceIdFromUrl = () => {
+    const queryString = window.location.search;
+    const queryParams = new URLSearchParams(queryString);
+    return queryParams.get("service");
+  };
+
+  const getUsernameFromLocalStorage = () => {
+    let userName = localStorage.getItem("username");
+    if (!userName) {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decodedToken = JSON.parse(atob(token.split(".")[1]));
+        userName = decodedToken.username;
+        if (userName) {
+          localStorage.setItem("username", userName);
+        }
+      }
+    }
+    return userName;
+  };
+
+  const fetchServiceTitle = async (serviceId) => {
+    const response = await fetch(
+      `${BASE_BACKEND_URL}/api/services/${serviceId}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch service title");
+    const data = await response.json();
+    return data.title;
+  };
+
+  const fetchServiceData = async (serviceTitle) => {
+    const response = await fetch(
+      `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${serviceTitle}`
+    );
+    if (!response.ok) throw new Error("Network response was not ok");
+    return response.json();
+  };
+
+  const fetchServiceMembers = async (serviceTitle) => {
+    const response = await fetch(
+      `${BASE_BACKEND_URL}/servicedata/get-service-members/${serviceTitle}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch service members");
+    return response.json();
+  };
+
   const fetchData = async () => {
     try {
       console.log("Fetching service data");
-      const queryString = window.location.search;
-      const queryParams = new URLSearchParams(queryString);
-      const serviceTitle = queryParams.get("service");
-      let userName = localStorage.getItem("username");
+
+      const serviceId = getServiceIdFromUrl();
+      const userName = getUsernameFromLocalStorage();
+
       if (!userName) {
-        console.log("No username found in local storage");
-        const token = localStorage.getItem("token");
-        if (!token) {
-          console.log("No token found in local storage");
-          alert("You are not logged in");
-          return;
-        }
-        decodedToken = JSON.parse(atob(token.split(".")[1]));
-        userName = decodedToken.username;
-        if (!userName) {
-          console.log("No username found in token");
-          alert(
-            "You are not logged in or token is corrupted, try logging in or contact support"
-          );
-          return;
-        }
-        localStorage.setItem("username", userName);
-      }
-      const isVarified = await verifyUser(serviceTitle, userName);
-      if (!isVarified) {
+        alert(
+          "You are not logged in or token is corrupted, try logging in or contact support"
+        );
         return;
       }
-      const response = await fetch(
-        `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${serviceTitle}`
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
+
+      const serviceTitle = await fetchServiceTitle(serviceId);
+      const isVerified = await verifyUser(serviceId, userName);
+
+      if (!isVerified) {
+        return;
+      }
+
+      const serviceData = await fetchServiceData(serviceTitle);
+      const imageUrl = await convertImageToUrl(serviceData.thumbnail);
+      const service = {
+        ...serviceData,
+        ["thumbnail"]: imageUrl,
+      };
+      setService(service);
+
+      const serviceMembers = await fetchServiceMembers(serviceTitle);
+
+      if (!serviceMembers) {
+        throw new Error("Failed to fetch service members");
+      }
+
+      const users = await Promise.all(
+        serviceMembers.map(async (user) => {
+          const imageUrl = await convertImageToUrl(user.profileImage);
+          return { ...user, ["profileImage"]: imageUrl };
         })
-        .then(async (data) => {
-          try {
-            const imageUrl = await convertImageToUrl(data.thumbnail);
-            const service = {
-              ...data,
-              ["thumbnail"]: imageUrl,
-            };
-            setService(service);
-          } catch (err) {
-            console.log(err);
-          }
-          await fetch(
-            `${BASE_BACKEND_URL}/servicedata/get-service-members/${serviceTitle}`
-          )
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Network response was not ok");
-              }
-              try {
-                const loaderWrapper = document.querySelector(".loader-wrapper");
-                loaderWrapper.style.transition = "opacity 0.5s";
-                loaderWrapper.style.opacity = "0";
-                setTimeout(() => {
-                  loaderWrapper.style.display = "none";
-                }, 500);
-              } catch (err) {
-                console.log(err);
-              }
-              return response.json();
-            })
-            .then(async (data) => {
-              try {
-                console.log(`Fetched users: ${data.length}`);
-                const users = await Promise.all(
-                  data.map(async (user) => {
-                    try {
-                      const imageUrl = await convertImageToUrl(
-                        user.profileImage
-                      );
-                      return { ...user, ["profileImage"]: imageUrl };
-                    } catch (err) {
-                      console.log(err);
-                    }
-                  })
-                );
-                setUsers(users);
-              } catch (err) {
-                console.log(err);
-              }
-            });
-        });
+      );
+      setUsers(users);
     } catch (error) {
       console.error(`Fetch error: ${error}`);
     }
+
+    const loaderWrapper = document.querySelector(".loader-wrapper");
+    loaderWrapper.style.transition = "opacity 0.5s";
+    loaderWrapper.style.opacity = "0";
+    setTimeout(() => {
+      loaderWrapper.style.display = "none";
+    }, 500);
   };
 
   useEffect(() => {
