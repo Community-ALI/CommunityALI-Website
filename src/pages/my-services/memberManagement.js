@@ -50,9 +50,7 @@ export default function MemberManagement() {
   async function verifyUser(title, username) {
     try {
       console.log("Verifying user ", username, " for service ", title);
-      const response = await fetch(
-        `${BASE_BACKEND_URL}/api/services/${title}`
-      );
+      const response = await fetch(`${BASE_BACKEND_URL}/api/services/${title}`);
       const data = await response.json();
       console.log(data.user + " " + username);
       if (response.status !== 200) {
@@ -94,15 +92,14 @@ export default function MemberManagement() {
         userName = decodedToken.username;
         if (!userName) {
           console.log("No username found in token");
-          alert("You are not logged in or token is corrupted, try logging in or contact support");
+          alert(
+            "You are not logged in or token is corrupted, try logging in or contact support"
+          );
           return;
         }
         localStorage.setItem("username", userName);
       }
-      const isVarified = await verifyUser(
-        serviceTitle,
-        userName
-      );
+      const isVarified = await verifyUser(serviceTitle, userName);
       if (!isVarified) {
         return;
       }
@@ -221,13 +218,13 @@ export default function MemberManagement() {
         <>
           <NavBar />
           <div className="lr:mt-24 h-[90vh] flex relative">
-            <a
+            {/* <a
               id="tech-support"
               className="absolute bottom-10 left-5 z-50"
               href="/contact-form"
             >
               Technical Support
-            </a>
+            </a> */}
             <div className="max-w-[40%]">
               <EntityManagementSelection
                 entityType={"user"}
