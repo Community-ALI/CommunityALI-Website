@@ -58,7 +58,9 @@ const UserProfileCircle = (Logout) => {
               console.log(data.uncheckedMessages.length);
             });
         } else if (decodedToken.id) {
-          console.log("id found, but is in old format... updating token to new format");
+          console.log(
+            "id found, but is in old format... updating token to new format"
+          );
           const response = await fetch(
             `${BASE_BACKEND_URL}/api/users/${decodedToken.id}`
           )
@@ -205,13 +207,13 @@ const UserProfileCircle = (Logout) => {
           </div>
         </Link>
 
-        <a
+        {/* <a
           className="transition-colors text-regal-blue flex justify-center items-center hover:bg-[#00468D] px-4 py-3"
           href="/save-services"
         >
           <i className="fa-solid fa-bookmark text-white"></i>
           <p className="px-4 text-white"> Saved </p>
-        </a>
+        </a> */}
 
         <button
           onClick={Logout}
