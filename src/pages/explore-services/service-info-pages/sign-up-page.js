@@ -6,122 +6,103 @@ import LoginPopup from "../../../components/LoginPopup.js";
 function SignUpPage({ service }) {
   const [isShowingLoginPopup, setIsShowingLoginPopup] = useState(false);
   const [isShowingSignupPopup, setIsShowingSignupPopup] = useState(false);
-  const [preventDebounce, setPreventDebounce] = useState(false); // prevents handle submit from being called twice
-  // variable to record if the user is logged in or not
+  const [preventDebounce, setPreventDebounce] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const phoneRef = useRef(null);
 
-  const handleSubmit = (event) => {
-    
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (preventDebounce) {
-      return;
-    }
+    if (preventDebounce) return;
     setPreventDebounce(true);
 
     const token = localStorage.getItem("token");
     if (!token) {
       alert("You must be logged in to sign up for a service");
+      setPreventDebounce(false);
       return;
     }
 
-    const formData = new FormData();
-    const searchParams = new URLSearchParams(window.location.search);
-    formData.append("service", searchParams.get("service"));
-    formData.append("name", nameRef.current.value);
-    formData.append("email", emailRef.current.value);
-    if (phoneRef.current){
-      formData.append("phone", phoneRef.current.value);
-    };
-    fetch(`${BASE_BACKEND_URL}/applicantdata/store-application`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((data) => {
-        data = JSON.parse(data);
-        console.log(data);
-        if (data.success) {
-          window.location.href = "/signup-success";
-        }
-        else{
-          alert(data.error);
-          // reset the preventDebounce variable
-          setPreventDebounce(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const serviceId = searchParams.get("service");
+      const response = await fetch(`${BASE_BACKEND_URL}/api/services/${serviceId}`);
+      const { title: serviceTitle } = await response.json();
+
+      const formData = new FormData();
+      formData.append("service", serviceTitle);
+      formData.append("name", nameRef.current.value);
+      formData.append("email", emailRef.current.value);
+      if (phoneRef.current) formData.append("phone", phoneRef.current.value);
+
+      const appResponse = await fetch(`${BASE_BACKEND_URL}/applicantdata/store-application`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
       });
+
+      const appData = await appResponse.json();
+      if (appData.success) {
+        window.location.href = "/signup-success";
+      } else {
+        alert(appData.error);
+        setPreventDebounce(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setPreventDebounce(false);
+    }
   };
 
-  function textWithLinksToParagraph(inputText) {
-    try{
-      const linkPattern = /(https?:\/\/[^\s]+)/g;
+  const textWithLinksToParagraph = (inputText) => {
+    const linkPattern = /(https?:\/\/[^\s]+)/g;
+    return inputText.replace(linkPattern, '<u><a target="_blank" href="$&">$&</a></u>');
+  };
 
-      const replacedText = inputText.replace(linkPattern, '<u><a target="_blank" href="$&">$&</a></u>');
-
-      return `<p>${replacedText}</p>`;
-    }
-    catch{
-      return inputText;
-    }
-  }
-
-  function showLoginPopup() {
+  const showLoginPopup = () => {
     setIsShowingLoginPopup(true);
     setIsShowingSignupPopup(false);
-  }
+  };
 
-  function showSignupPopup() {
+  const showSignupPopup = () => {
     setIsShowingSignupPopup(true);
     setIsShowingLoginPopup(false);
-  }
+  };
 
-  function hidePopups() {
+  const hidePopups = () => {
     setIsShowingLoginPopup(false);
     setIsShowingSignupPopup(false);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const response = await fetch(
-            `${BASE_BACKEND_URL}/userdata/get-account`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = await fetch(`${BASE_BACKEND_URL}/userdata/get-account`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           const data = await response.json();
-          console.log(data.dataAccount[0]);
-          // use data to populate the form
           nameRef.current.value = data.dataAccount[0].fullName;
           emailRef.current.value = data.dataAccount[0].email;
           setLoggedIn(true);
-          console.log("logged in");
-        } else {
-          console.log("not logged in");
+        } catch (error) {
+          console.error(error);
           setLoggedIn(false);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        setLoggedIn(false);
       }
     };
     fetchData();
   }, []);
-
+  
   return (
     <div>
       {!loggedIn && (
