@@ -94,7 +94,7 @@ export default function MemberManagement() {
     return userName;
   };
 
-  const fetchServiceTitle = async (serviceId) => {
+  const fetchservice_id = async (serviceId) => {
     const response = await fetch(
       `${BASE_BACKEND_URL}/api/services/${serviceId}`
     );
@@ -103,17 +103,17 @@ export default function MemberManagement() {
     return data.title;
   };
 
-  const fetchServiceData = async (serviceTitle) => {
+  const fetchServiceData = async (service_id) => {
     const response = await fetch(
-      `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${serviceTitle}`
+      `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${service_id}`
     );
     if (!response.ok) throw new Error("Network response was not ok");
     return response.json();
   };
 
-  const fetchServiceMembers = async (serviceTitle) => {
+  const fetchServiceMembers = async (service_id) => {
     const response = await fetch(
-      `${BASE_BACKEND_URL}/servicedata/get-service-members/${serviceTitle}`
+      `${BASE_BACKEND_URL}/servicedata/get-service-members/${service_id}`
     );
     if (!response.ok) throw new Error("Failed to fetch service members");
     return response.json();
@@ -133,14 +133,14 @@ export default function MemberManagement() {
         return;
       }
 
-      const serviceTitle = await fetchServiceTitle(serviceId);
+      const service_id = await fetchservice_id(serviceId);
       const isVerified = await verifyUser(serviceId, userName);
 
       if (!isVerified) {
         return;
       }
 
-      const serviceData = await fetchServiceData(serviceTitle);
+      const serviceData = await fetchServiceData(service_id);
       const imageUrl = await convertImageToUrl(serviceData.thumbnail);
       const service = {
         ...serviceData,
@@ -148,7 +148,7 @@ export default function MemberManagement() {
       };
       setService(service);
 
-      const serviceMembers = await fetchServiceMembers(serviceTitle);
+      const serviceMembers = await fetchServiceMembers(service_id);
 
       if (!serviceMembers) {
         throw new Error("Failed to fetch service members");
@@ -196,7 +196,7 @@ export default function MemberManagement() {
             <NavBar hideMobileSearchBar={true} />
             <div className="lr:pt-[3rem] h-[100vh] flex">
               <MessagingUI
-                serviceTitle={service.title}
+                service_id={service._id}
                 senderId={service._id}
                 canSendMessages={true}
                 serviceImage={service.thumbnail}
@@ -240,7 +240,7 @@ export default function MemberManagement() {
               />
             </div>
             <MessagingUI
-              serviceTitle={service.title}
+              service_id={service._id}
               senderId={service._id}
               canSendMessages={true}
               serviceImage={service.thumbnail}

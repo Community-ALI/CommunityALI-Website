@@ -11,20 +11,20 @@ function EditService() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
 
-      const serviceName = urlParams.get('service');
+      const service_id = urlParams.get('service');
           
-      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + serviceName)
+      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + service_id)
           .then(response => response.json())
           .then(data => {
 
             if (data.serviceType == 'Club'){
-              window.location.href = `edit-club?service=${serviceName}`
+              window.location.href = `edit-club?service=${service_id}`
             }
             else if (data.serviceType == 'Internship'){
-              window.location.href = `edit-internship?service=${serviceName}`
+              window.location.href = `edit-internship?service=${service_id}`
             }
             else if (data.serviceType == 'Program'){
-              window.location.href = `edit-program?service=${serviceName}`
+              window.location.href = `edit-program?service=${service_id}`
             }
             
           })

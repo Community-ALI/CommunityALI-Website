@@ -34,7 +34,7 @@ router.post('/store-application', upload.none(), async function (req, res) {
             console.log('application from ', req.body.name, ' submitted');
             res.setHeader("Content-Type", "application/json");
             // add the application to the service's list of applicants using the application id
-            const service = await service_data.get_one_service(req.body.service);
+            const service = await service_data.get_one_service_by_title(req.body.service);
             service.applicants.push(new ObjectId(message.application_id));
             await service.save();
             res.send(JSON.stringify({ success: true }));
@@ -52,8 +52,8 @@ router.post('/store-application', upload.none(), async function (req, res) {
 // get the applicants to a service (as long as the user is authorized)
 router.get("/get-service-applicants", async function (req, res) {
     try {
-      const service_name = req.query.service;
-      const service = await service_data.get_one_service(service_name);
+      const service_id = req.query.service;
+      const service = await service_data.get_one_service(service_id);
   
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -82,19 +82,20 @@ router.get("/get-service-applicants", async function (req, res) {
   // delete an application from the database
 router.post('/delete-application', async function (req, res) {
     try {
-        const service_name = req.body.service;
+        const service_id = req.body.service;
         // make sure the user owns the service
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, JWT_SECRET);
         const adminUsername = decodedToken.username;
         const user_id = decodedToken._id;
-        const service = await service_data.get_one_service(service_name);
+        const service = await service_data.get_one_service(service_id);
         // check if the user owns the service or is a manager of the service
         if (service.user != adminUsername && !service.ApplicationManagers.includes(user_id)){
             res.json({ success: false, error: 'Unauthorized' });
         }
         // get the username of the applicant
         const username = req.body.username;
+        const service_name = service.title;
         const message = await applicant_data.remove_applicant(service_name, username);
         if (message.success) {
             // TODO: email the applicant that their application has been rejected

@@ -90,10 +90,10 @@ const ApplicantDisplay = function (props) {
             // get the service name from the url
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const serviceName = urlParams.get('service');
+            const service_id = urlParams.get('service');
             console.log({username: applicant.user})
             // send a fetch request to add the new member to the service
-            const response = await fetch(`${BASE_BACKEND_URL}/servicedata/add-member?service=` + serviceName, {
+            const response = await fetch(`${BASE_BACKEND_URL}/servicedata/add-member?service=` + service_id, {
                 method: 'POST',
                 body: JSON.stringify({username: applicant.user}),
                 headers: {
@@ -131,11 +131,11 @@ const ApplicantDisplay = function (props) {
             // get the service name from the url
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const serviceName = urlParams.get('service');
+            const service_id = urlParams.get('service');
             console.log({username: applicant.user})
             fetch(`${BASE_BACKEND_URL}/applicantdata/delete-application`, {
                 method: 'POST',
-                body: JSON.stringify({username: applicant.user, service: serviceName}),
+                body: JSON.stringify({username: applicant.user, service: service_id}),
                 headers: {
                     authorization: `Bearer ${token}`,
                     'content-type': 'application/json'
@@ -280,8 +280,8 @@ function ServiceApplicants() {
                 if (token) {
                     const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
-                    const serviceName = urlParams.get('service');
-                    const response = await fetch(`${BASE_BACKEND_URL}/applicantdata/get-service-applicants?service=` + serviceName,
+                    const serviceID = urlParams.get('service');
+                    const response = await fetch(`${BASE_BACKEND_URL}/applicantdata/get-service-applicants?service=` + serviceID,
                     {
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -337,8 +337,8 @@ function ServiceApplicants() {
     const redirectToMemberManagement = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const serviceName = urlParams.get('service');
-        window.location.href = '/member-management?service=' + serviceName;
+        const service_id = urlParams.get('service');
+        window.location.href = '/member-management?service=' + service_id;
     }
 
 

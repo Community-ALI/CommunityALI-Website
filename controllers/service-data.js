@@ -242,8 +242,9 @@ exports.delete_service = async function (service_name) {
   }
 };
 
-exports.get_one_service = async function (service_name) {
+exports.get_one_service_by_title = async function (service_name) {
   try {
+    console.log('getting service by title')
     const selected_service = await Services.findOne({
       title: service_name,
     }).exec();
@@ -251,6 +252,25 @@ exports.get_one_service = async function (service_name) {
     if (!selected_service) {
       console.error(`No service found with the name '${service_name}'.`);
       return { success: false, error: "no service with the provided name" };
+    }
+
+    return selected_service;
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "internal database error" };
+  }
+};
+
+// updated version of the above function using _id instead of title
+exports.get_one_service = async function (service_id) {
+  try {
+    const selected_service = await Services.findOne({
+      _id: service_id,
+    }).exec();
+
+    if (!selected_service) {
+      console.error(`No service found with the ID '${service_id}'.`);
+      return { success: false, error: "no service with the provided ID" };
     }
 
     return selected_service;
@@ -451,10 +471,10 @@ exports.editService = async function (req, username) {
     const photoBuffer = fs.readFileSync(req.file.path);
     const thumbnail = await generateThumbnail2(photoBuffer);
 
-    const existingService = await Service.findOne({ title: req.query.service });
+    const existingService = await Service.findOne({ _id: req.query.service });
 
     if (!existingService) {
-      throw new Error("Service with matching title not found");
+      throw new Error("Service with matching ID not found");
     }
 
     existingService.title = req.body.title;
@@ -480,15 +500,15 @@ exports.editService = async function (req, username) {
   }
 };
 
-exports.get_service_users = async function (serviceName) {
+exports.get_service_users = async function (service_id) {
   try {
-    users = await Services.findOne({ title: serviceName })
+    users = await Services.findOne({ _id: service_id })
       .populate({ path: "members", model: "User" })
       .select("members")
       .exec();
 
     if (!users) {
-      throw new Error("Service with matching title not found");
+      throw new Error("Service with matching ID not found");
     }
 
     return users.members;

@@ -75,9 +75,9 @@ function AddInternship() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
 
-      const serviceName = urlParams.get('service');
+      const service_id = urlParams.get('service');
           
-      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + serviceName)
+      const response = await fetch(`${BASE_BACKEND_URL}/servicedata/get-one-service?service=` + service_id)
           .then(response => response.json())
           .then(data => {
               const buffer = Buffer.from(data.photo.data, 'base64');

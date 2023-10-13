@@ -22,12 +22,26 @@ router.get(
   }
 );
 
-// send the user one service
-router.get("/get-one-service", async function (req, res) {
+// send the user one service by title
+router.get("/get-one-service-by-title", async function (req, res) {
   try {
     const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service = await service_data.get_one_service_by_title(service_name);
     console.log("sending service:", service_name);
+    res.json(service);
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, error: "internal server error" });
+  }
+});
+
+// send the user one service by id
+router.get("/get-one-service", async function (req, res) {
+  try {
+    console.log('getting service by id')
+    const service_id = req.query.service;
+    const service = await service_data.get_one_service(service_id);
+    console.log("sending service:", service_id);
     res.json(service);
   } catch (error) {
     console.log(error);
@@ -67,7 +81,7 @@ router.post("/delete-service", async function (req, res) {
     const username = decodedToken.username;
 
     const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service = await service_data.get_one_service_by_title(service_name);
 
     if (service.user == username) {
       const success = await service_data.delete_service(service_name);
@@ -120,8 +134,8 @@ async function storeEditService(req, res) {
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
     const user_id = decodedToken._id;
-    const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service_id = req.query.service;
+    const service = await service_data.get_one_service(service_id);
     if (service.user == username || service.Editors.includes(user_id)) {
       const result = await service_data.editService(req, username);
       if (result.success) {
@@ -216,8 +230,8 @@ router.post(
 
 router.get("/get-service-notifications", async function (req, res) {
   try {
-    const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service_id = req.query.service;
+    const service = await service_data.get_one_service(service_id);
 
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -246,8 +260,8 @@ router.get("/get-service-notifications", async function (req, res) {
 // add a new member to the service
 router.post("/add-member", async (req, res) => {
   try {
-    const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service_id = req.query.service;
+    const service = await service_data.get_one_service(service_id);
 
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -278,8 +292,8 @@ router.post("/add-member", async (req, res) => {
 // add a new member to the service
 router.post("/add-member", async (req, res) => {
   try {
-    const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service_id = req.query.service;
+    const service = await service_data.get_one_service(service_id);
 
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -314,7 +328,7 @@ router.post("/assign-member-permissions", async (req, res) => {
       const decodedToken = jwt.verify(token, JWT_SECRET);
       const username = decodedToken.username;
       const service_name = req.query.service;
-      const service = await service_data.get_one_service(service_name);
+      const service = await service_data.get_one_service_by_title(service_name);
       console.log(req.body);
       if (service && username && username == service.user) { // the user owns this service
         console.log(req.body)
@@ -366,7 +380,7 @@ router.post('/get-member-permissions', async (req, res) => {
     const username = decodedToken.username;
 
     const service_name = req.query.service;
-    const service = await service_data.get_one_service(service_name);
+    const service = await service_data.get_one_service_by_title(service_name);
     if (!(service.user == username)) { // the user does not own this service
         console.log('unauthorized request')
         res.json({ success: false, error: 'unauthorized' });
@@ -388,12 +402,12 @@ router.post('/get-member-permissions', async (req, res) => {
 
 
 
-router.get("/get-service-members/:serviceTitle", async function (req, res) {
+router.get("/get-service-members/:service_id", async function (req, res) {
   try {
-    users = await service_data.get_service_users(req.params.serviceTitle);
+    users = await service_data.get_service_users(req.params.service_id);
     console.log(users);
     if (users) {
-      console.log(`Members for: ${req.params.serviceTitle} sent`);
+      console.log(`Members for: ${req.params.service_id} sent`);
       res.json(users);
     }
   } catch (error) {

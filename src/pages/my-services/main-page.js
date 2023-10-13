@@ -32,7 +32,7 @@ function MyServicePageDisplay(props) {
           if (token) {
             const response = await fetch(
               `${BASE_BACKEND_URL}/servicedata/get-service-notifications?service=` +
-                service.title,
+                service._id,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -61,9 +61,9 @@ function MyServicePageDisplay(props) {
       service.permissions.includes("Owner") ||
       service.permissions.includes("Manager")
     ) {
-      window.location.href = "view-applicants?service=" + service.title;
+      window.location.href = "view-applicants?service=" + service._id;
     } else {
-      window.location.href = "service-info?service=" + service.title;
+      window.location.href = "service-info?service=" + service._id;
     }
   };
 
@@ -72,7 +72,7 @@ function MyServicePageDisplay(props) {
       <div
         className="flex items-center w-[80%] my-[20px] mx-[15px] max-w-[1200px] text-white rounded-[20px] bg-[color:var(--secondary-color)] transition 
         duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:w-[86%] lr:w-[92%] md:w-[95%]"
-        id={service.title}
+        id={service._id}
         onClick={handleBackgroundClick}
       >
         <img
@@ -89,7 +89,7 @@ function MyServicePageDisplay(props) {
           <div className="flex items-center flex-wrap lr:justify-end md:justify-center md:mt-[10px] sm:hidden">
             {(service.permissions.includes("Owner") ||
               service.permissions.includes("Editor")) && (
-              <a href={`edit-service?service=${service.title}`}>
+              <a href={`edit-service?service=${service._id}`}>
                 <img
                   className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] transition duration-300 ease-out hover:scale-[1.1]"
                   src="Photos/EditIcon.png"
@@ -101,7 +101,7 @@ function MyServicePageDisplay(props) {
               service.permissions.includes("Manager")) && (
               <a
                 className="relative"
-                href={`view-applicants?service=${service.title}`}
+                href={`view-applicants?service=${service._id}`}
               >
                 <Notifications
                   notifications={notifications ? notifications.length : 0}
@@ -131,7 +131,7 @@ function MyServicePageDisplay(props) {
         rounded-[20px] bg-[color:var(--secondary-color)] transition duration-300 ease-out hover:bg-[color:var(--dark-secondary-color)] cursor-pointer xxlr:text-[120%] lr:max-w-[1000px]
         xlr:text-[100%] lr:text-[90%] lr:p-[10px] lr:w-[85%] md:w-[95%] mdd:hidden sm:p-[5px]"
       >
-        <a href={`edit-service?service=${service.title}`}>
+        <a href={`edit-service?service=${service._id}`}>
           <img
             src="Photos/EditIcon.png"
             className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]"
@@ -139,7 +139,7 @@ function MyServicePageDisplay(props) {
         </a>
         <a
           className="relative"
-          href={`view-applicants?service=${service.title}`}
+          href={`view-applicants?service=${service._id}`}
         >
           <Notifications
             notifications={notifications ? notifications.length : 0}
@@ -149,7 +149,7 @@ function MyServicePageDisplay(props) {
             className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]"
           ></img>
         </a>
-        <a href={`view-applicants?service=${service.title}`}>
+        <a href={`view-applicants?service=${service._id}`}>
           <img
             className="h-[50px] w-[50px] mr-[30px] xlr:h-[40px] xlr:w-[40px] xxlr:mr-[0px] lr:h-[35px] lr:w-[35px] md:h-[30px] md:w-[30px] sm:mx-[20px] transition duration-300 ease-out hover:scale-[1.1]"
             src="Photos/SendIcon.png"
@@ -256,23 +256,23 @@ function MyServicesHome() {
               const map = new Map();
               setShowServices(true);
               for (const service of services) {
-                if (!map.has(service.title)) {
-                  map.set(service.title, true);
+                if (!map.has(service._id)) {
+                  map.set(service._id, true);
                   // record permission level for this service
                   if (
-                    data.OwnedServices.find((s) => s.title === service.title)
+                    data.OwnedServices.find((s) => s._id === service._id)
                   ) {
                     // add owner to the permissions array
                     service.permissions = (service.permissions || []).concat(['Owner']);
                   }  
                   if (
-                    data.EditableServices.find((s) => s.title === service.title)
+                    data.EditableServices.find((s) => s._id === service._id)
                   ) {
                     service.permissions = (service.permissions || []).concat(['Editor']);
                   }  
                   if (
                     data.ManageableServices.find(
-                      (s) => s.title === service.title
+                      (s) => s._id === service._id
                     )
                     
                   ) {
@@ -280,7 +280,7 @@ function MyServicesHome() {
                   }
                   if (
                     data.UpdatableServices.find(
-                      (s) => s.title === service.title
+                      (s) => s._id === service._id
                     )
                     
                   ) {

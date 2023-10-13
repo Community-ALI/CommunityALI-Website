@@ -46,7 +46,7 @@ const editService = async function (req, username) {
     const existingService = await Service.findOne({ title: req.body.title });
 
     if (!existingService) {
-      throw new Error('Service with matching title not found');
+      throw new Error('Service with matching title not found 2');
     }
 
     existingService.photo = photoBuffer;
