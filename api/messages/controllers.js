@@ -44,11 +44,15 @@ exports.POST = async function (message) {
     }
   };
   try {
+    // ensure the user's headers are valid
+
+    const service = await Services.findById(message.sender).exec();
+
     const newMessage = new Messages(message);
     await newMessage.save();
     const savedMessageId = newMessage._id;
     // email each service member about the new message
-    const service = await Services.findById(message.sender).exec();
+    
     const serviceMembers = service.members;
     for (let i = 0; i < serviceMembers.length; i++) {
       // get the email of the service member

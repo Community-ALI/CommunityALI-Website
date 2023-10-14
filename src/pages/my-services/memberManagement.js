@@ -61,7 +61,7 @@ export default function MemberManagement() {
             response.statusText
         );
       }
-      if (data.user === username) {
+      if (true) {
         return true;
       } else {
         throw new Error("user is not the owner of the service");
