@@ -17,6 +17,28 @@ export default function MemberPopup(props) {
       </label>
     );
   }
+  // messy code hopefully I never have to look at this again
+  const [service, setService] = useState({});
+  const query = new URLSearchParams(window.location.search);
+  const service_id = query.get("service");
+  //check if the service has been fetched already
+  if (service._id !== service_id) {
+  const response = fetch(
+    `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${service_id}`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.error) {
+        console.error(data.error);
+      } else {
+        setService(data);
+        console.log('service:', data);
+      }
+    });
+  }
+
 
   const [isEditorSelected, setIsEditorSelected] = useState(false);
   const [isManagerSelected, setIsManagerSelected] = useState(false);
@@ -67,10 +89,10 @@ export default function MemberPopup(props) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const query = new URLSearchParams(window.location.search);
-    const service = query.get("service");
+    const service_id = query.get("service");
     const getMemberPermissions = async function () {
       const response = await fetch(
-        `${BASE_BACKEND_URL}/servicedata/get-member-permissions?service=${service}`,
+        `${BASE_BACKEND_URL}/servicedata/get-member-permissions?service=${service_id}`,
         {
           method: "POST",
           headers: {
@@ -94,9 +116,9 @@ export default function MemberPopup(props) {
     // Make the member an editor or application manager
     const token = localStorage.getItem("token");
     const query = new URLSearchParams(window.location.search);
-    const service = query.get("service");
+    const service_id = query.get("service");
     const response = await fetch(
-      `${BASE_BACKEND_URL}/servicedata/assign-member-permissions?service=${service}`,
+      `${BASE_BACKEND_URL}/servicedata/assign-member-permissions?service=${service_id}`,
       {
         method: "POST",
         headers: {
@@ -193,9 +215,10 @@ export default function MemberPopup(props) {
                 <p> {member.email}</p>
               </div>
 
-              {areButtonsVisible && (
+              {(areButtonsVisible && service.user === localStorage.getItem("username"))  && (
                 <div className="flex justify-evenly fadeInFast mt-4">
-                  <button
+                  
+                   <button
                     className="text-[14px] px-3 py-2 bg-ali-orange text-ali-darkblue font-[500] rounded-[10px] 
                             hover:bg-ali-lightblue hover:text-white transition duration-[300ms] ease-in-out"
                     onClick={() => {
@@ -207,6 +230,7 @@ export default function MemberPopup(props) {
                   >
                     Manage Permissions
                   </button>
+                  
                   <button
                     className="text-[14px] px-3 py-2 bg-ali-lightblue text-white font-[500] rounded-[10px]
                             border-2 border-ali-backgroundblue hover:bg-ali-darkblue transition duration-[300ms] ease-in-out"

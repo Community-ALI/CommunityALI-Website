@@ -4,8 +4,8 @@ import librimage from "@Photos/librimage.jpg";
 
 function Header() {
   return (
-    <div className="bg-ali-darkblue rounded mx-auto  text-white p-2 text-center tlg:w-[80%] t2xl:w-[80%]   t3xl:h-20  t3xl:mt-4">
-      <div className="t3xl:flex t3xl:justify-center t3xl:items-center t3xl:text-5xl t3xl:font-bold t3xl:mt-2">
+    <div className="bg-ali-darkblue rounded mx-auto  text-white p-2 text-center tlg:w-[90%] t2xl:w-[90%] t3xl:h-20  t3xl:mt-4">
+      <div className="t3xl:flex t3xl:justify-center t3xl:items-center t3xl:text-5xl  t3xl:mt-2">
         MJC Library Resources
       </div>
     </div>
@@ -13,12 +13,12 @@ function Header() {
 }
 function ImageSection({ imageSrc, altText, children }) {
   return (
-    <div className="mt-6 mb-10 flex flex-col tsm:gap-10 tsm:items-center tsm:flex-row tsm:justify-center tmd:gap-20 tlg:flex tlg:flex-row tlg:items-center tlg:justify-center tlg:gap-20 tlg:h-[176px] txl:gap-48 t3xl:gap-56 t3xl:h-[400px] t3xl:mt-16  ">
+    <div className="mt-6 mb-10 flex flex-col tsm:gap-10 tsm:items-center tsm:flex-row tsm:justify-center tmd:gap-20 tlg:flex tlg:flex-row tlg:items-center tlg:justify-center tlg:gap-20 tlg:h-[176px] txl:gap-20 t3xl:gap-20 t3xl:h-[400px] t3xl:mt-16  ">
       <div className="flex justify-center">
         <img
           src={imageSrc}
           alt={altText}
-          className="h-32 w-64 rounded-lg object-cover tsm:h-36 tmd:h-44 tmd:w-80 tlg:w-80 tlg:h-44  txl:h-44 txl:w-96 t3xl:h-[400px] t3xl:w-[800px]"
+          className="h-32 w-64 rounded-lg object-cover tsm:h-36 tmd:h-44 tmd:w-80 tlg:w-[430px] tlg:h-52 tlg:mt-20 txl:mt-20  txl:h-52 txl:w-[450px] t2xl:mt-20 t2xl:h-60 t2xl:w-[550px] t3xl:mt-24 t3xl:h-[500px] t3xl:w-[1200px] t3xl:rounded-xl "
         />
       </div>
       <div className="flex justify-center mt-4 tmd:mt-0 tlg:mt-0">
@@ -83,7 +83,7 @@ const useBreakpoint = () => {
 function computeCircleClass(index, breakpoint) {
   let positionClass = "";
   const baseClass =
-    "circle bg-yellow-500 flex items-center justify-center w-24 h-24 rounded-full t3xl:w-52 t3xl:h-52 absolute z-1000 shadow-sm ";
+    "circle bg-yellow-500 flex items-center justify-center w-24 h-24 rounded-full tmd:w-28 tmd:h-28 tlg:w-32 tlg:h-32 t3xl:w-72 t3xl:h-72 absolute z-1000 shadow-sm ";
 
   positionClass += "-left-2 top-10 ";
 
@@ -101,35 +101,70 @@ function computeCircleClass(index, breakpoint) {
 
   if (breakpoint <= "tmd") {
     positionClass += " tmd:absolute tmd:left-4 tmd:top-8";
-    if (index === 1 || index === 3) {
-      positionClass += " tmd:absolute tmd:left-20 tmd:top-108px]";
+    if (
+      index === 0 ||
+      index === 1 ||
+      index === 2 ||
+      index === 3 ||
+      index === 4 ||
+      index === 5
+    ) {
+      positionClass += " tmd:absolute tmd:left-20 tmd:top-[24px]";
     }
   }
 
   if (breakpoint >= "tlg") {
-    positionClass += " tlg:absolute tlg:left-36 tlg:top-8";
-    if (index === 1 || index === 3) {
-      positionClass += " tlg:absolute tlg:left-36 tlg:top-[35px] ";
+    positionClass += " tlg:absolute tlg:left-32 tlg:top-8";
+    if (
+      index === 0 ||
+      index === 1 ||
+      index === 2 ||
+      index === 3 ||
+      index === 4 ||
+      index === 5
+    ) {
+      positionClass += " tlg:absolute tlg:left-36 tlg:top-[24px] ";
     }
   }
 
   if (breakpoint <= "txl") {
-    positionClass += " txl:absolute txl:left-40 txl:top-8";
-    if (index === 1 || index === 3) {
-      positionClass += " txl:absolute txl:left-40 txl:top-[35px]";
+    positionClass += " txl:absolute txl:left-36 txl:top-8";
+    if (
+      index === 0 ||
+      index === 1 ||
+      index === 2 ||
+      index === 3 ||
+      index === 4 ||
+      index === 5
+    ) {
+      positionClass += " txl:absolute txl:left-40 txl:top-[24px]";
     }
   }
   if (breakpoint >= "t2xl") {
-    positionClass += " t2xl:absolute t2xl:left-52 t2xl:top-8";
-    if (index === 1 || index === 3) {
-      positionClass += " t2xl:absolute t2xl:left-52 t2xl:top-108px]";
+    positionClass += " t2xl:absolute t2xl:left-48 t2xl:top-8";
+    if (
+      index === 0 ||
+      index === 1 ||
+      index === 2 ||
+      index === 3 ||
+      index === 4 ||
+      index === 5
+    ) {
+      positionClass += " t2xl:absolute t2xl:left-52 t2xl:top-[24px]";
     }
   }
 
   if (breakpoint >= "t3xl") {
     positionClass += " t3xl:absolute t3xl:left-96 t3xl:top-8";
-    if (index === 1 || index === 3) {
-      positionClass += " t3xl:absolute t3xl:left-52 t3xl:top-[108px]";
+    if (
+      index === 0 ||
+      index === 1 ||
+      index === 2 ||
+      index === 3 ||
+      index === 4 ||
+      index === 5
+    ) {
+      positionClass += " t3xl:absolute t3xl:left-[8%] t3xl:top-[52px]";
     }
   }
 
@@ -147,7 +182,7 @@ function computeCircleClass(index, breakpoint) {
 function ServicesList({ services }) {
   const breakpoint = useBreakpoint();
   return (
-    <div className="space-y-4 mt-10 mx-auto flex flex-col  ">
+    <div className="space-y-4 tlg:mt-24 txl:mt-24 t2xl:mt-32 t3xl:mt-44 mx-auto flex flex-col  ">
       {services.map((service, index) => (
         <div
           key={index}
@@ -160,14 +195,14 @@ function ServicesList({ services }) {
             <img
               src={service.imageUrl}
               alt={service.title}
-              className="object-cover w-14 h-14 tlg:w-14 tlg:h-14 t3xl:h-36 t3xl:w-36"
+              className="object-cover w-14 h-14 tlg:w-16 tlg:h-16 txl: t3xl:h-36 t3xl:w-36"
             />
           </div>
           <InfoBox
             title={service.title}
-            titleClass="text-left pl-20 pt-2.5 t3xl:text-5xl t3xl:flex t3xl:justify-center  "
-            innerClass={`pl-20 pb-2 p-auto text-sm whitespace-normal t3xl:text-4xl t3xl:mt-10  t3xl:ml-40 t3xl:leading-normal`}
-            extraClass={`flex flex-col w-[100%] tsm:w-[90%] tlg:w-[70%] txl:w-[70%]  t2xl:w-[70%] tmd:h-[175px] t2xl:h-[150px] t3xl:h-[400px]   ${
+            titleClass="text-left pl-24  pt-2.5 t3xl:text-5xl  t3xl:pl-60 "
+            innerClass={`pl-24 pb-2 p-auto text-sm whitespace-normal  t3xl:text-4xl t3xl:mt-10  t3xl:ml-40 t3xl:leading-normal`}
+            extraClass={`flex flex-col w-[100%] tsm:w-[90%] tlg:w-[70%] txl:w-[70%]  t2xl:w-[70%] tmd:h-[175px] t2xl:h-[150px] t3xl:h-[400px] t3xl:w-[75%]   ${
               breakpoint === "txsm" && index === 0
                 ? "txsm:h-[300px]"
                 : breakpoint === "txsm" && index === 2
@@ -216,16 +251,31 @@ function ServicesList({ services }) {
                 ? "txl:h-[250px]"
                 : breakpoint === "txl" && index === 4
                 ? "txl:h-[260px]"
-                : // xxl
+                : // < xxl
                 breakpoint === "t2xl" && index === 0
-                ? "t2xl:h-[350px]"
+                ? "t2xl:h-[550px]"
                 : breakpoint === "t2xl" && index === 1
                 ? "t2xl:h-[180px]"
                 : breakpoint === "t2xl" && index === 2
-                ? "t2xl:h-[130px]"
+                ? "t2xl:h-[180px]"
                 : breakpoint === "t2xl" && index === 3
                 ? "t2xl:h-[190px]"
                 : breakpoint === "t2xl" && index === 4
+                ? "t2xl:h-[200px]"
+                : breakpoint === "t2xl" && index === 5
+                ? "t2xl:h-[400px]"
+                : // xxl
+                breakpoint >= "t2xl" && index == 0
+                ? "t2xl:h-[180px]"
+                : breakpoint >= "t2xl" && index == 1
+                ? "t2xl:h-[180px]"
+                : breakpoint >= "t2xl" && index == 2
+                ? "t2xl:h-[180px]"
+                : breakpoint >= "t2xl" && index == 3
+                ? "t2xl:h-[190px]"
+                : breakpoint >= "t2xl" && index == 4
+                ? "t2xl:h-[200px]"
+                : breakpoint >= "t2xl" && index == 5
                 ? "t2xl:h-[200px]"
                 : //3xl
                 breakpoint === "t3xl" && index === 0
@@ -299,21 +349,21 @@ function LibraryResources() {
       <ImageSection imageSrc={librimage} altText="Library">
         <InfoBox
           title="Spring and Fall Open Hours"
-          extraClass="w-80 h-36 tsm:h-36 tsm:w-72 tmd:h-44 tmd:w-80 txl:h-44 txl:w-96 t3xl:h-[400px] t3xl:w-[800px]" // Info box child div
-          titleClass="text-center pt-2 text-sm t3xl:text-3xl t3xl:mt-6  " // Info box title
-          innerClass="flex flex-col justify-between h-20 p-2 text-xs t3xl:text-3xl t3xl:mt-8 t3xl:ml-4" // Info box content
+          extraClass="w-80 h-36 tsm:h-36 tsm:w-72 tmd:h-44 tmd:w-80 tlg:h-52 tlg:w-[439px] tlg:mt-20 txl:mt20 txl:h-52 txl:w-[450px] t2xl:h-60 t2xl:w-[550px] t2xl:mt-20 t3xl:mt-24 t3xl:h-[500px] t3xl:w-[1200px] t3xl:rounded-xl" // Info box child div
+          titleClass="text-center pt-2 text-sm tlg:text-base t2xl:text-base t2xl:text-base t3xl:text-3xl t3xl:mt-6  " // Info box title
+          innerClass="flex flex-col justify-between h-20 p-2 text-xs t2xl:text-base t3xl:text-3xl t3xl:mt-8 t3xl:ml-4" // Info box content
         >
-          <p className="mb-2 sm:mb-1 t3xl:mb-4">
+          <p className="mb-2 sm:mb-1 t3xl:mb-12">
             <span className="text-ali-orange whitespace-nowrap">
               Monday - Friday:
             </span>{" "}
             7:30am - 8:30pm
           </p>
-          <p className="mb-2 sm:mb-1 t3xl:mb-4">
+          <p className="mb-2 sm:mb-1 t3xl:mb-12">
             <span className="text-ali-orange whitespace-nowrap">Saturday:</span>{" "}
             8:30am - 5:00pm
           </p>
-          <p className="mb-4 t3xl:mb-4">
+          <p className="mb-4 t3xl:mb-12">
             <span className="text-ali-orange whitespace-nowrap">Location:</span>
             <span className="font-semibold"> East Campus </span>
             Library & Learning Center Building Yosemite Hall Room 235

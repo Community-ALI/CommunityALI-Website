@@ -130,8 +130,8 @@ function SignUpPage({mainInfo, allFormData, serviceType = 'Club', editMode = fal
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             
-            const serviceName = urlParams.get('service');
-            fetchURL = `${BASE_BACKEND_URL}/servicedata/edit-service?service=`+serviceName;
+            const service_id = urlParams.get('service');
+            fetchURL = `${BASE_BACKEND_URL}/servicedata/edit-service?service=`+ service_id;
           }
           fetch(fetchURL, {
             method: 'POST',

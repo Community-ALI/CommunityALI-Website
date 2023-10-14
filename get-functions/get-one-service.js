@@ -2,7 +2,7 @@ const models = require("../connect-to-database");
 const Services = models.Services;
 
 
-const get_one_service = async function (service_name) {
+const get_one_service_by_title = async function (service_name) {
   try {
     const selected_service = await Services.findOne({ title: service_name }).exec();
 
@@ -19,4 +19,4 @@ const get_one_service = async function (service_name) {
 };
 
 
-module.exports = get_one_service;
+module.exports = get_one_service_by_title;
