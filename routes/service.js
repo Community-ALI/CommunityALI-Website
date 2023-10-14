@@ -327,8 +327,8 @@ router.post("/assign-member-permissions", async (req, res) => {
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, JWT_SECRET);
       const username = decodedToken.username;
-      const service_name = req.query.service;
-      const service = await service_data.get_one_service_by_title(service_name);
+      const service_id = req.query.service;
+      const service = await service_data.get_one_service(service_id);
       console.log(req.body);
       if (service && username && username == service.user) { // the user owns this service
         console.log(req.body)
@@ -379,8 +379,8 @@ router.post('/get-member-permissions', async (req, res) => {
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const username = decodedToken.username;
 
-    const service_name = req.query.service;
-    const service = await service_data.get_one_service_by_title(service_name);
+    const service_id = req.query.service;
+    const service = await service_data.get_one_service(service_id);
     if (!(service.user == username)) { // the user does not own this service
         console.log('unauthorized request')
         res.json({ success: false, error: 'unauthorized' });

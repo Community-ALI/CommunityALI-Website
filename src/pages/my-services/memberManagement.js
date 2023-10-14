@@ -104,6 +104,7 @@ export default function MemberManagement() {
   };
 
   const fetchServiceData = async (service_id) => {
+    console.log('service_id:', service_id)
     const response = await fetch(
       `${BASE_BACKEND_URL}/servicedata/get-one-service?service=${service_id}`
     );
@@ -132,15 +133,15 @@ export default function MemberManagement() {
         );
         return;
       }
-
-      const service_id = await fetchservice_id(serviceId);
+      console.log('serviceId:', serviceId)
+      const service_Name = await fetchservice_id(serviceId);
       const isVerified = await verifyUser(serviceId, userName);
 
       if (!isVerified) {
         return;
       }
 
-      const serviceData = await fetchServiceData(service_id);
+      const serviceData = await fetchServiceData(serviceId);
       const imageUrl = await convertImageToUrl(serviceData.thumbnail);
       const service = {
         ...serviceData,
@@ -148,7 +149,7 @@ export default function MemberManagement() {
       };
       setService(service);
 
-      const serviceMembers = await fetchServiceMembers(service_id);
+      const serviceMembers = await fetchServiceMembers(serviceId);
 
       if (!serviceMembers) {
         throw new Error("Failed to fetch service members");
