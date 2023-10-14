@@ -31,6 +31,7 @@ export default function MemberManagement() {
   }, [window.innerWidth]);
 
   const showMemberPopup = function (Member) {
+    
     setIsShowingMemberPopup(true);
     setSelectedMember(Member);
   };
